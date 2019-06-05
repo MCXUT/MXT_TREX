@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width-device-width,initial-scale=1.0">
+        <title>Navbar Demo</title>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+            <a href="#" class="logo">TrexLogo</a>
+            <div class="menu-toggle" ></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">회사 소개</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">업무 지원하기</a></li>
+                    <li><a href="#">파트너 페이지</a></li>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">가입하기</a></li>
+                </ul>
+            </nav>
+            <div class="clearFix"></div>
+        </header>
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".menu-toggle").click(function(){
+                    $(".menu-toggle").toggleClass("active");
+                    $("nav").toggleClass("active");
+                });
+            });
+        </script>
+    </body>
+</html>
