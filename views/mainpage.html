@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MxTwebsite</title>
+  <meta charset="utf-8">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
+  <meta name="google" content="notranslate" />
+  <!-- css cdn -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- cdn for jQuery must be before that of JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link rel="stylesheet" href="../public/stylesheets/style.css">
+
+
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">TrexLogo</a>
+        <div class="menu-toggle" ></div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">회사 소개</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">업무 지원하기</a></li>
+                <li><a href="#">파트너 페이지</a></li>
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/register">가입하기</a></li>
+            </ul>
+        </nav>
+        <div class="clearFix"></div>
+    </header>
+    <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".menu-toggle").click(function(){
+                $(".menu-toggle").toggleClass("active");
+                $("nav").toggleClass("active");
+            });
+        });
+    </script>
+
+  <!-- Carousel Section -->
+  <div class="container-fluid">
+  <div id="slides" class="carousel slide" data-ride="carousel">
+
+  <ul class="carousel-indicators">
+    <li data-target="#slides" data-slide-to="0" class="active"></li>
+    <li data-target="#slides" data-slide-to="1"></li>
+    <li data-target="#slides" data-slide-to="2"></li>
+  </ul>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/london.jpg" class="center">
+      <div class="carousel-caption" >
+        <h1 class="display-2">어디로 출장 가시나요?</h1>
+        <h3>현지 파트너를 검색 해보세요.</h3>
+
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search" name="search">
+               <div class="divider"></div>
+               <div class="input-group-btn">
+               <button class="btn btn-warning" type="submit">
+               <i class="fas fa-search"></i></button>
+               </div>
+            </div>
+      </div>
+        <div class="bottom-right">LONDON</div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="images/montreal.jpg" class="center">
+      <div class="carousel-caption" >
+        <h1 class="display-2">어디로 출장 가시나요?</h1>
+        <h3>현지 파트너를 검색 해보세요.</h3>
+
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search" name="search">
+               <div class="divider"></div>
+               <div class="input-group-btn">
+               <button class="btn btn-warning" type="submit">
+               <i class="fas fa-search"></i></button>
+               </div>
+            </div>
+      </div>
+      <div class="bottom-right">MONTREAL</div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="images/newyork.jpg" class="center">
+      <div class="carousel-caption" >
+        <h1 class="display-2">어디로 출장 가시나요?</h1>
+        <h3>현지 파트너를 검색 해보세요.</h3>
+
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search" name="search">
+               <div class="divider"></div>
+               <div class="input-group-btn">
+               <button class="btn btn-warning" type="submit">
+               <i class="fas fa-search"></i></button>
+               </div>
+            </div>
+      </div>
+      <div class="bottom-right">NEW YORK</div>
+    </div>
+  </div>
+</div>
+</div>
+  <!-- End of Carousel Section -->
