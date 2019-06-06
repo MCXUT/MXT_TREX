@@ -6,7 +6,7 @@ var UserSchema = mongoose.Schema({
     email: { type: String, unique: true, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
-    clientOrPartner: { type: String, required: true },
+    clientOrPartner: { type: String, required: true }, // 클라이언트 파트너 나눌때 지우기
     dateOfBirth: Date,
     address: {
       unit: String,
@@ -16,7 +16,7 @@ var UserSchema = mongoose.Schema({
       country: String
     },
     phoneNumber: Number,
-    kId: String,
+    kakaoId: String,
     //pic:
 });
 
