@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>트렉스 - 가입하기</title>
+    <style>
+      .register_content{
+        width: 500px;
+        height: 500x;
+        border-style: solid;
+        border-width: 1px;
+      }
+      input[type=text] {
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+button{
+  background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+canvas{
+  /*prevent interaction with the canvas*/
+  pointer-events:none;
+}
+    </style>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css"/>
+
+  </head>
+  <body onload="createCaptcha()">
+
+
+
+
+
+<div class="modal-dialog">
+  <div class="register-content" id="emailcontent">
+    <div class="modal-header">
+      <h2>긱풀에 오신걸 환영합니다</h2>
+      <br>
+      <h4>클라이언트로 가입하기</h4>
+    </div>
+  <article class="modal_article login p_lr_space pb24">
+
+
+
+  <form action="/auth/register" method="post" target="hidden_frame">
+    <input type="hidden" name="back_url" value="Lw%3D%3D">
+    <input type="hidden" name="used_login_btn" value="Y">
+
+  <!-- <div class="social-box"> -->
+    <!-- <span class="signinwith">Sign in with Social Network</span> -->
+
+    <!-- <button class="social facebook"><i class="fab fa-facebook-f" style="color: #fff;"></i>Sign in with Facebook</button> -->
+       	<!-- </div> -->
+
+
+  <br>
+  <span style="position: relative; left: 22px; opacity: 0.5;"><i class="fas fa-user"></i></span>
+  <input class="form-control" type="text" name="name" value="" placeholder="성함 또는 회사명"
+    style="padding-left: 30px;" required>
+    <br>
+  <span style="position: relative; left:22px; opacity: 0.5;"><i class="fas fa-envelope"></i></span>
+  <input class="form-control" type="email" name="email" value="" placeholder="이메일"
+    style="padding-left: 30px;" required>
+    <br>
+  <span style="position: relative; left: 22px; opacity: 0.5;"><i class="fas fa-lock"></i></span>
+  <input class="form-control" type="password" name="password" value=""
+    id="confirm_password" placeholder="비밀번호"
+    onkeyup='check();' style="padding-left: 30px;" required>
+    <br>
+
+
+
+
+  <!-- </div><input_form에 active클래스명이 붙으면 (인풋에 글자가 입력된 상태) 체크표시 활성화 -->
+
+    <!-- <input type="text" id="capt" style= "width: 150px; height: 150px;
+    font-size: 30px; background:black; color: white;" onclick="cap()"> -->
+
+    <div id="captcha">
+    </div>
+    <input type="text" placeholder="자동 가입 방지 글" id="cpatchaTextBox">
+
+
+    <div class="form-control-flat"><label class="checkbox">
+      <input type="checkbox" id="5cf81abcec9b5_rememberme" class="rememberme"
+      name="rememberme" value="forever" required><i></i>
+      서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label></div>
+
+   <button class="btn btn-primary" style="background:#F9C700;"><span style="color:#fff;">
+     무료 가입</span></button>
+     <br><br>
+     Or
+     <br><br>
+
+
+     <a href="/auth/facebook" class='btn btn-info' style="background-color: #3b5998; color: white;
+     margin-bottom: 10px;" >
+       <span id="facebookIcon" style="color: white;"><i class="fab fa-facebook-f fa-lg"></i></span>
+         Sign in with Facebook</a>
+         <!-- </div> -->
+
+   <a href="/auth/google" class='btn btn-info' style="margin-bottom: 10px;">
+       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         width="25" height="25"
+         viewBox="0 0 48 48"
+         style=" fill:#000000;"><g id="surface1"><path style=" fill:#FFC107;" d="M 43.609375 20.082031 L 42 20.082031 L 42 20 L 24 20 L 24 28 L 35.304688 28 C 33.652344 32.65625 29.222656 36 24 36 C 17.371094 36 12 30.628906 12 24 C 12 17.371094 17.371094 12 24 12 C 27.058594 12 29.84375 13.152344 31.960938 15.039063 L 37.617188 9.382813 C 34.046875 6.054688 29.269531 4 24 4 C 12.953125 4 4 12.953125 4 24 C 4 35.046875 12.953125 44 24 44 C 35.046875 44 44 35.046875 44 24 C 44 22.660156 43.863281 21.351563 43.609375 20.082031 Z "></path><path style=" fill:#FF3D00;" d="M 6.304688 14.691406 L 12.878906 19.511719 C 14.65625 15.109375 18.960938 12 24 12 C 27.058594 12 29.84375 13.152344 31.960938 15.039063 L 37.617188 9.382813 C 34.046875 6.054688 29.269531 4 24 4 C 16.316406 4 9.65625 8.335938 6.304688 14.691406 Z "></path><path style=" fill:#4CAF50;" d="M 24 44 C 29.164063 44 33.859375 42.023438 37.410156 38.808594 L 31.21875 33.570313 C 29.210938 35.089844 26.714844 36 24 36 C 18.796875 36 14.382813 32.683594 12.71875 28.054688 L 6.195313 33.078125 C 9.503906 39.554688 16.226563 44 24 44 Z "></path><path style=" fill:#1976D2;" d="M 43.609375 20.082031 L 42 20.082031 L 42 20 L 24 20 L 24 28 L 35.304688 28 C 34.511719 30.238281 33.070313 32.164063 31.214844 33.570313 C 31.21875 33.570313 31.21875 33.570313 31.21875 33.570313 L 37.410156 38.808594 C 36.972656 39.203125 44 34 44 24 C 44 22.660156 43.863281 21.351563 43.609375 20.082031 Z "></path></g></svg>
+   Sign in with Google+</a>
+   유저의 허락없이 게시물을 올리지 않습니다.<br>
+
+    </form>
+  </article>
+  </div>
+</div>
+
+<!-- <script>
+  function cap(){
+    var alpha=['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J','K','L'
+    ,'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b'
+    ,'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r'
+    ,'s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0'];
+
+    var a = alpha[Math.floor(Math.random()*62)];
+    var b = alpha[Math.floor(Math.random()*62)];
+    var c = alpha[Math.floor(Math.random()*62)];
+    var d = alpha[Math.floor(Math.random()*62)];
+    var e = alpha[Math.floor(Math.random()*62)];
+    var f = alpha[Math.floor(Math.random()*62)];
+
+    var captcha = a+b+c+d+e+f;
+
+    document.getElementById("capt").value=captcha;
+  }
+
+</script> -->
+
+
+</body>
+<script>
+  var code;
+  function createCaptcha() {
+  //clear the contents of captcha div first
+  document.getElementById('captcha').innerHTML = "";
+  var charsArray =
+  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lengthOtp = 6;
+  var captcha = [];
+  for (var i = 0; i < lengthOtp; i++) {
+    //below code will not allow Repetition of Characters
+    var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+    if (captcha.indexOf(charsArray[index]) == -1)
+      captcha.push(charsArray[index]);
+    else i--;
+  }
+  var canv = document.createElement("canvas");
+  canv.id = "captcha";
+  canv.width = 110;
+  canv.height = 50;
+  var ctx = canv.getContext("2d");
+  ctx.font = "25px Georgia";
+  ctx.strokeText(captcha.join(""), 0, 30);
+  //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+  code = captcha.join("");
+  document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+  }
+  function validateCaptcha() {
+  event.preventDefault();
+  debugger
+  if (document.getElementById("cpatchaTextBox").value == code) {
+    alert("Valid Captcha")
+  }else{
+    alert("Invalid Captcha. try Again");
+    createCaptcha();
+  }
+  }
+
+</script>
+
+</html>
