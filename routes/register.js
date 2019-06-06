@@ -9,6 +9,14 @@ router.get("/register", function(req,res) {
   res.render("register");
 })
 
+router.get("/register/client", function(req, res) {
+  res.render("register_client");
+});
+
+router.get("/register/partner", function(req, res) {
+  res.render("register_partner");
+});
+
 router.post("/register", function(req, res) {
   var newUser = {
     name: req.body.name,
