@@ -26,6 +26,13 @@ header
   border-width: 1px;
 }
 
+.register_content{
+  width: 500px;
+  height: 500x;
+  border-style: solid;
+  border-width: 1px;
+}
+
 
 .logo
 {
