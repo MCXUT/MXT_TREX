@@ -14,14 +14,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 app.engine("html", ejs.renderFile);
 
-<<<<<<< HEAD
 // Set bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req,res){
-  res.render("mainpage.html");
-=======
+  res.render("mainpage");
+});
+
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
@@ -35,12 +35,12 @@ app.get("/login", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.render("register");
->>>>>>> 85031eb395c9f99b8f789822de1e7915199552a4
 });
 
 app.use('/auth', registerRoutes);
 
 app.set('port', process.env.PORT || 8080);
+
 app.listen(app.get('port'), () => {
     console.log("Server started on port " + app.get('port'));
-});
+})
