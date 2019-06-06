@@ -19,6 +19,14 @@ body
     box-shadow: 0 2px 5px rgba(0,0,0,.2);
 } */
 
+.login_content{
+  width: 500px;
+  height: 500x;
+  border-style: solid;
+  border-width: 1px;
+}
+
+
 .logo
 {
     color: #069370;
@@ -49,10 +57,6 @@ nav
     /* float: right;  */
     /* padding-right: 80px;*/
 }
-.clearFix
-{
-    clear: both;
-}
 nav ul
 {
     margin: 0;
@@ -64,12 +68,12 @@ nav ul li
     list-style: none;
     font-size: 14px;
     font-weight: 700;
-    margin: 0 10px;
+    padding: 0 20px;
 }
 nav ul li a
 {
     display: block;
-    margin: 10px 6px;
+    /* margin: 10px 6px; */
     padding: 10px 20px;
     text-decoration: none;
     color: #262626;
@@ -77,18 +81,15 @@ nav ul li a
 nav ul li a.active,
 nav ul li a:hover
 {
-    color: rgb(249, 196, 22);
+    background-color: rgb(249, 196, 22);
+    border-radius: 4px;
     transition: 100ms;
     text-decoration: none;
 }
 
 
-@media (max-width: 1000px)
+@media (max-width: 1200px)
 {
-    header
-    {
-        margin: 20px;
-    }
     .menu-toggle
     {
         display: block;
