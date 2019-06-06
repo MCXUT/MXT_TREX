@@ -7,26 +7,27 @@ body
     font-family: "Poppins", sans-serif;
 }
 
-/* header
-{
-    position: relative;
-    max-width: 1200px;
-    margin: 0px auto;
-    padding: 10px;
-    background: #fff;
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);
-} */
+.navbar {
+    margin: 0 4% 0 4%;
+}
+.nav-item {
+    text-align: center;
+    letter-spacing: 1px;
+    width: 120px;
+    font-weight: bold;
 
+}
+.nav-item a:hover {
+    background-color: rgba(151, 156, 200, 0.3);
+    border-radius: 4px;
+    transition: 0.1s;
+}
 .login_content{
   width: 500px;
   height: 500x;
   border-style: solid;
   border-width: 1px;
 }
-
-
 .logo
 {
     color: #069370;
@@ -44,90 +45,37 @@ body
     text-decoration: none;
 }
 
-nav
-{
-    position: relative;
-    /* max-width: 1200px; */
-    margin: 0px auto;
-    padding: 0;
-    background: #fff;
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);
-    /* float: right;  */
-    /* padding-right: 80px;*/
-}
-nav ul
-{
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-nav ul li
-{
-    list-style: none;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 0 20px;
-}
-nav ul li a
-{
-    display: block;
-    /* margin: 10px 6px; */
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #262626;
-}
-nav ul li a.active,
-nav ul li a:hover
-{
-    background-color: rgb(249, 196, 22);
-    border-radius: 4px;
-    transition: 100ms;
-    text-decoration: none;
-}
 
-
-@media (max-width: 1200px)
-{
-    .menu-toggle
-    {
-        display: block;
-        width: 40px;
-        height: 40px;
-        margin: 10px;
-        float: right;
-        cursor: pointer;
-        text-align: center;
-        font-size: 30px;
-        color: black;
+@media (max-width: 768px) {
+    .navbar {
+        margin: 0;
     }
-    .menu-toggle:before
-    {
-        content: '\f0c9';
-        font-family: fontAwesome;
-        line-height: 40px;
+    .logo {
+        margin-left: 0px;
     }
-    .menu-toggle.active:before
-    {
-        content: '\f00d';
+    .nav-item {
+        margin: 5px 0px 5px 30px;
     }
-    nav
-    {
-        display: none;
+    .navbar-nav {
+        border-top: 1px solid #f2f2f2;
     }
-    nav.active
-    {
-        display: block;
-        width: 100%;
+    .collapse.navbar-collapse {
+        border-top: 1px;
     }
-    nav.active ul
-    {
-        display: block;
+    .navbar-toggler {
+        border: none;
+    }
+    .navbar-toggler-icon {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png") !important;
     }
 }
 
-
+/* .navbar .navbar-nav {
+    margin: 0 30px;
+} */
+.navbar .nav-item a {
+    color: #000 !important;
+}
 
 /* carousel section */
 .carousel-inner > .carousel-item > img {

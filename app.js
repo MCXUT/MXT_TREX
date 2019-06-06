@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
+const flash = require("connect-flash");
 
 const app = express();
 const keys = require("./config/keys");
@@ -18,8 +19,14 @@ app.engine("html", ejs.renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(flash());
+
+// mongoose.connect("mongodb+srv://mxt:1q2w3e4r!@cluster0-gdoa3.mongodb.net/TREX_Demo?retryWrites=true&w=majority");
+// var db = mongoose.connection;
+
 app.get('/', function(req,res){
-  res.render("mainpage.html");
+  res.render("mainpage");
+});
 
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
@@ -39,6 +46,7 @@ app.get("/register", (req, res) => {
 app.use('/auth', registerRoutes);
 
 app.set('port', process.env.PORT || 8080);
+
 app.listen(app.get('port'), () => {
-    console.log("Server started on port " + app.get('port'))
+    console.log("Server started on port " + app.get('port'));
 });

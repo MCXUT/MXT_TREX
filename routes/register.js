@@ -4,6 +4,10 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
 
+router.get("/register", function(req, res) {
+    res.render("register");
+});
+
 router.post("/register", function(req, res) {
   var newUser = {
     name: req.body.username,
@@ -11,15 +15,15 @@ router.post("/register", function(req, res) {
     password: req.body.password
   };
 
-  if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {
-      req.flash("error_signup", "Some information is missing");
+  if(!(req.body.username && req.body.email && req.body.password && req.body.password2)) {
+      // req.flash("error_signup", "Some information is missing");
       return res.redirect("/");
   }
 
   User.getUserByUsername(newUser.email, function(err,user){
     if(err) throw err;
     if(user) {
-      req.flash("error_signup", "Email is already taken!");
+      // req.flash("error_signup", "Email is already taken!");
       return res.redirect("/");
     } else {
       bcrypt.hash(req.body.password2, 10, function (err, hash){
@@ -27,7 +31,7 @@ router.post("/register", function(req, res) {
         User.comparePassword(newUser.password, hash, function (err, isMatch) {
           if(err) throw err;
           if(!isMatch) {
-            req.flash("error_signup", "Passwords do not match");
+            // req.flash("error_signup", "Passwords do not match");
             return res.redirect("/");
           } else {
             var user = new User({
@@ -35,9 +39,14 @@ router.post("/register", function(req, res) {
               email: newUser.email,
               password: newUser.password
             });
-            User.createUser(user, (err, createdUser) => {
-              if(err) throw err;
-              Verification.createToken(req, res, createdUser);
+            // User.createUser(user, (err, createdUser) => {
+            //   if(err) throw err;
+            //   Verification.createToken(req, res, createdUser);
+            // });
+            user.save((err, createdUser) => {
+                if(err) throw err;
+                console.log(createdUser);
+                res.redirect("/");
             });
           }
         });
