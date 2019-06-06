@@ -54,7 +54,7 @@ canvas{
 
 
 
-  <form action="/auth/register" method="post" target="hidden_frame">
+  <form action="/auth/register/client" method="post" target="hidden_frame">
     <input type="hidden" name="back_url" value="Lw%3D%3D">
     <input type="hidden" name="used_login_btn" value="Y">
 
@@ -79,6 +79,11 @@ canvas{
     id="confirm_password" placeholder="비밀번호"
     onkeyup='check();' style="padding-left: 30px;" required>
     <br>
+  <span style="position: relative; left: 22px; opacity: 0.5;"><i class="fas fa-lock"></i></span>
+  <input class="form-control" type="password" name="password2" value=""
+  id="confirm_password2" placeholder="비밀번호를 한번 더 입력해주세요" style="padding-left: 30px;"
+  onkeyup='check();' required>
+  <br><span id='message'></span>
 
 
 
