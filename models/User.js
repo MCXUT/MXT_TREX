@@ -40,4 +40,4 @@ module.exports.comparePassword = (candidatePassword, hash, done) => {
         if(err) throw err;
         done(null, isMatch);
     });
-  };
+};
