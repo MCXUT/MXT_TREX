@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
 
+
 const app = express();
 const keys = require("./config/keys");
 
@@ -24,6 +25,11 @@ app.engine("html", ejs.renderFile);
 // Set bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// app.use(flash());
+
+// mongoose.connect("mongodb+srv://mxt:1q2w3e4r!@cluster0-gdoa3.mongodb.net/TREX_Demo?retryWrites=true&w=majority");
+// var db = mongoose.connection;
 
 app.get('/', function(req,res){
   res.render("mainpage");

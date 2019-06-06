@@ -59,7 +59,7 @@ router.post("/register/:type", function(req, res) {
         });
       });
     }
-  })
+});
 });
 
 module.exports = router;

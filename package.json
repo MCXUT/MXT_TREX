@@ -20,6 +20,7 @@
     "bcryptjs": "^2.4.3",
     "ejs": "^2.6.1",
     "express": "^4.17.1",
+    "flash": "^1.1.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.5.13",
     "passport": "^0.4.0",
