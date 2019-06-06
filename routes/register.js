@@ -7,7 +7,7 @@ const User = require("../models/User");
 
 router.get("/register", function(req,res) {
   res.render("register");
-})
+});
 
 router.get("/register/client", function(req, res) {
   res.render("register_client");
