@@ -1,12 +1,15 @@
 const express = require("express");
 const mongo = require("mongodb");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 mongoose.Promise = global.Promise;
 const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 
 
+const passport = require("./config/passport");
 const app = express();
 const keys = require("./config/keys");
 
@@ -25,8 +28,22 @@ app.engine("html", ejs.renderFile);
 // Set bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 
 // app.use(flash());
+
+
+// session setting
+app.use(session({
+    secret: "secret",
+    saveUninitialized: true,
+    resave: true
+}));
+
+// passport setting
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // mongoose.connect("mongodb+srv://mxt:1q2w3e4r!@cluster0-gdoa3.mongodb.net/TREX_Demo?retryWrites=true&w=majority");
 // var db = mongoose.connection;

@@ -14,7 +14,6 @@ router.post('/login', passport.authenticate('local-login', {
     // failureFlash: true,
     // successFlash: "Successfully logged in"
 }), (req, res) => {
-
 });
 
 module.exports = router;
