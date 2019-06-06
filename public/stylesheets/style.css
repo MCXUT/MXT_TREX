@@ -19,6 +19,14 @@ header
     box-shadow: 0 2px 5px rgba(0,0,0,.2);
 }
 
+.login_content{
+  width: 500px;
+  height: 500x;
+  border-style: solid;
+  border-width: 1px;
+}
+
+
 .logo
 {
     color: #069370;
