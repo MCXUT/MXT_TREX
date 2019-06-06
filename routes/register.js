@@ -2,15 +2,24 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
+// const Verification = require("./createToken");
 const User = require("../models/User");
 
-router.get("/register", function(req, res) {
-    res.render("register");
+router.get("/register", function(req,res) {
+  res.render("register");
+})
+
+router.get("/register/client", function(req, res) {
+  res.render("register_client");
+});
+
+router.get("/register/partner", function(req, res) {
+  res.render("register_partner");
 });
 
 router.post("/register", function(req, res) {
   var newUser = {
-    name: req.body.username,
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password
   };
@@ -48,6 +57,7 @@ router.post("/register", function(req, res) {
                 console.log(createdUser);
                 res.redirect("/");
             });
+            res.redirect("/");
           }
         });
       });

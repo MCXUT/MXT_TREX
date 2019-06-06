@@ -1,3 +1,13 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>트렉스 - 로그인하기</title>
+  <style media="screen">
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
 <body>
   <div class="modal-body">
       <div class="login_content">
@@ -7,9 +17,8 @@
 
 
 
-      <form method="POST"
-      style="max-width: 600px;" class="noo-ajax-login-form form-horizontal"
-      action="">
+      <form action="/auth/login" method="POST"
+      style="max-width: 600px;" class="noo-ajax-login-form form-horizontal">
         <div style="display: none">
            <input type="hidden" name="action" value="noo_ajax_login">
            <input type="hidden" class="security" name="security" value="4fbcb86302">
@@ -77,3 +86,8 @@
      </div>
     </form>
   </div>
+  </div>
+</body>
+
+
+</html>

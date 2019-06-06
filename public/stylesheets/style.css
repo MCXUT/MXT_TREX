@@ -28,6 +28,15 @@ body
   border-style: solid;
   border-width: 1px;
 }
+
+.register_content{
+  width: 500px;
+  height: 500x;
+  border-style: solid;
+  border-width: 1px;
+}
+
+
 .logo
 {
     color: #069370;
@@ -55,6 +64,7 @@ body
     }
     .nav-item {
         margin: 5px 0px 5px 30px;
+        text-align: left;
     }
     .navbar-nav {
         border-top: 1px solid #f2f2f2;
