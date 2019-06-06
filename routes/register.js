@@ -4,6 +4,10 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
 
+router.get("/register", function(req,res) {
+  res.render("register");
+})
+
 router.post("/register", function(req, res) {
   var newUser = {
     name: req.body.username,
