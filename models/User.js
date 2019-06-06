@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-var UserSchema = mongoose.Schema({
+var ClientSchema = mongoose.Schema({
     name: { type: String, required: true},
     email: { type: String, unique: true, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
-    clientOrPartner: { type: String, required: true }, // 클라이언트 파트너 나눌때 지우기
     dateOfBirth: Date,
     address: {
       unit: String,
@@ -20,6 +19,33 @@ var UserSchema = mongoose.Schema({
     //pic:
 });
 
+var PartnerSchema = mongoose.Schema({
+    name: { type: String, required: true},
+    email: { type: String, unique: true, required: true},
+    isVerified: {type: Boolean, default: false},
+    password: String,
+    dateOfBirth: Date,
+    address: {
+      unit: String,
+      street: String,
+      pc: String,
+      province: String,
+      country: String
+    },
+    phoneNumber: Number,
+    kakaoId: String,
+    //pic:
+});
+
+var UserSchema = mongoose.Schema({
+    name: { type: String, required: true},
+    email: { type: String, unique: true, required: true},
+    isVerified: {type: Boolean, default: false},
+    password: String,
+});
+
+var Client = module.exports = mongoose.model('Client', ClientSchema);
+var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
 var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = (newUser, done) => {
