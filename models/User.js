@@ -5,6 +5,7 @@ var UserSchema = mongoose.Schema({
     name: { type: String, required: true},
     email: { type: String, unique: true, required: true},
     isVerified: {type: Boolean, default: false},
+    password: String,
     dateOfBirth: Date,
     address: {
       unit: String,
@@ -39,3 +40,4 @@ module.exports.comparePassword = (candidatePassword, hash, done) => {
         if(err) throw err;
         done(null, isMatch);
     });
+  };
