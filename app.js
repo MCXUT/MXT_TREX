@@ -15,7 +15,7 @@ app.engine("html", ejs.renderFile);
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
-  res.render("mainpage.html");
+  res.render("mainpage");
 });
 
 app.get("/login", (req, res) => {
