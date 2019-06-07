@@ -3,11 +3,9 @@
 
 
 /* carousel section */
-.container-fluid {
+#mainDiv {
     padding: 0;
-}
-.carousel-inner {
-    width: 100%;
+    margin: 0;
 }
 .carousel-inner > .carousel-item > img {
   width:100%;
