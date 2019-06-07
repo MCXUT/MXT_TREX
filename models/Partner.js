@@ -1,24 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-var ClientSchema = mongoose.Schema({
-    name: { type: String, required: true},
-    email: { type: String, unique: true, required: true},
-    isVerified: {type: Boolean, default: false},
-    password: String,
-    dateOfBirth: Date,
-    address: {
-      unit: String,
-      street: String,
-      pc: String,
-      province: String,
-      country: String
-    },
-    phoneNumber: Number,
-    kakaoId: String,
-    //pic:
-});
-
 var PartnerSchema = mongoose.Schema({
     name: { type: String, required: true},
     email: { type: String, unique: true, required: true},
@@ -37,16 +19,7 @@ var PartnerSchema = mongoose.Schema({
     //pic:
 });
 
-var UserSchema = mongoose.Schema({
-    name: { type: String, required: true},
-    email: { type: String, unique: true, required: true},
-    isVerified: {type: Boolean, default: false},
-    password: String,
-});
-
-var Client = module.exports = mongoose.model('Client', ClientSchema);
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
-var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = (newUser, done) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -57,9 +30,9 @@ module.exports.createUser = (newUser, done) => {
     });
 };
 
-module.exports.getUserByUsername = (username, done) => {
+module.exports.getPartnerByUsername = (username, done) => {
     var query = {email: username};
-    User.findOne(query, done);
+    Partner.findOne(query, done);
 };
 
 module.exports.comparePassword = (candidatePassword, hash, done) => {
