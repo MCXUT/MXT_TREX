@@ -1,6 +1,11 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
+// const Client = require("../models/User");
+// const Partner = require("../models/User");
+
+const models = require("../models/User");
+
 module.exports.registerRoute = function(req,res,newUser) {
 
   if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {

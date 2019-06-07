@@ -1,0 +1,132 @@
+.auth_content p {
+    font-weight: bold;
+}
+
+/* LOGIN SECTION */
+.auth_content .loginform {
+    padding-top: 50px;
+}
+
+.loginform {
+    color: rgba(30, 30, 30, 0.5);
+    font-size: 16px;
+    width: 330px;
+    text-align: left;
+    padding: 0 20px 0 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(30, 30, 30, 0.3);
+    border-radius: 4px;
+}
+.loginform p {
+    margin-bottom: 0;
+}
+.auth_content input.form-control {
+    margin: 0px 0 25px 0;
+}
+.login-form-links {
+    margin-bottom: 15px;
+}
+.form-group {
+    padding: 15px 20px 0 20px;
+    width: 330px;
+}
+.form-group div {
+    padding-bottom: 10px;
+}
+.form-group a.btn {
+    text-align: left;
+}
+.form-group .facebook a.btn {
+    padding-left: 20px;
+}
+.form-group a.btn span#socialText {
+    font-weight: normal;
+    margin-left: 55px;
+    font-size: 15px;
+}
+.form-group a.btn-info {
+    width: 100%;
+}
+.form-group .facebook a.btn-info {
+    background-color: #3b5998;
+    border-width: thin;
+    border-color: #3b5998
+}
+.form-group .google a.btn-info {
+    background-color: white;
+    border-width: thin;
+    border-color: rgb(39, 73, 255);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 576px) {
+    .auth_content p {
+        font-size: 22px;
+    }
+    .loginform {
+        width: 270px;
+        font-size: 14px;
+    }
+    .form-group {
+        width: 270px;
+    }
+    .form-group a.btn span#socialText {
+        font-size: 13px;
+        margin-left: 35px;
+    }
+}
+
+
+/* REGISTER LANDING PAGE */
+.service-item {
+    background-color: rgb(240, 240, 240);
+    width: 350px;
+    padding: 0 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+.service-item p {
+    font-size: 18px;
+    padding: 50px 0;
+}
+.service-item .service-content a {
+    margin: 20px 0;
+    height: 40px;
+    line-height: 1.8;
+}
+#clientService {
+    border-right: 2px solid rgba(200, 200, 200, 0.7);
+}
+.row .col-md-6 {
+    margin: 50px 0;
+}
+#clientButton {
+    background-color: rgb(0, 113, 191);
+    border: none;
+}
+#partnerButton {
+    background-color: rgb(87, 87, 87);
+    border: none;
+}
+@media (max-width: 768px) {
+    #clientService {
+        border-right: none;
+    }
+}
+@media (max-width: 576px) {
+    .service-item {
+        width: 270px;
+    }
+    .service-item p {
+        font-size: 16px;
+        padding: 40px 0;
+    }
+    .service-item .service-content a {
+        margin: 10px 0;
+    }
+    .row .col-md-6 {
+        margin: 30px 0;
+    }
+}
