@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-var ClientSchema = mongoose.Schema({
+var PartnerSchema = mongoose.Schema({
     name: { type: String, required: true},
     email: { type: String, unique: true, required: true},
     isVerified: {type: Boolean, default: false},
@@ -19,7 +19,7 @@ var ClientSchema = mongoose.Schema({
     //pic:
 });
 
-var Client = module.exports = mongoose.model('Client', ClientSchema);
+var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
 
 module.exports.createUser = (newUser, done) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -30,9 +30,9 @@ module.exports.createUser = (newUser, done) => {
     });
 };
 
-module.exports.getClientByUsername = (username, done) => {
+module.exports.getPartnerByUsername = (username, done) => {
     var query = {email: username};
-    Client.findOne(query, done);
+    Partner.findOne(query, done);
 };
 
 module.exports.comparePassword = (candidatePassword, hash, done) => {
