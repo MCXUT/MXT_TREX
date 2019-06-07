@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
+
+
 html, body{
 
 }
@@ -35,45 +37,28 @@ html, body{
 /* End of Jumbotron Section*/
 
 /* Accordion Section */
-body{
-  padding:50px;
-  background:#fff;
+.accordion {
+  .card:first-of-type:not(:last-of-type) {
+    border-bottom: 0;
+  }
+  .card:first-of-type {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
-.wrapper{
-  width:70%;
-}
-@media(max-width:992px){
- .wrapper{
-  width:100%;
-}
-}
-.panel-heading {
-  padding: 0;
-	border:0;
-}
-.panel-title>a, .panel-title>a:active{
-	display:block;
-	padding:15px;
-  color:#555;
-  font-size:16px;
-  font-weight:bold;
-	text-transform:uppercase;
-	letter-spacing:1px;
-  word-spacing:3px;
-	text-decoration:none;
-}
-.panel-heading  a:before {
-   font-family: 'Glyphicons Halflings';
-   content: "\e114";
-   float: right;
-   transition: all 0.5s;
-}
-.panel-heading.active a:before {
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	transform: rotate(180deg);
-} 
 /* End of Accordion Section */
+
+/*footer section*/
+
+
+.fa-blogger,.fa-linkedin
+.fa-facebook-square:hover,
+.fa-google-plus-g:hover,
+.fa-instagram:hover{
+  color: #d5d5d5;
+}
+
+/*end of footer section*/
 /*---Media Queries --*/
 @media (max-width: 992px) {
 

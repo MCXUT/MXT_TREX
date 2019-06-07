@@ -15,9 +15,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -248,9 +253,150 @@
 <!-- /국가/지역 별 파트너를 만나보세요. -->
 <br><br>
 <!-- 자주 묻는 질문 & 이용후기-->
+<div class="container-fluid text-center" style="background-color:#efefef">
+<div class="container">
+<div class="sectionContent">
+<div class="row">
 
+<div class="col-md-12 col-lg-7">
+  <h2>자주 묻는 질문</h2>
+<style>
+[data-toggle="collapse"]:after {
+display: inline-block;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+content: "\f078";
+transform: rotate(-180deg) ;
+transition: all linear 0.25s;
+}
+[data-toggle="collapse"].collapsed:after {
+transform: rotate(0deg) ;
+}
+</style>
+<ol id="qlist">
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="heading-1">
+        <div class="mb-0" style="padding-bottom:4%;">
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+            I registered, but I can't log-in, what do I do?   </a>
+        </div>
+      </div>
+      <div id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1">
+        <div class="card-body">
+          1) Make sure that you have verified your email address through the verification email we've sent you when you registered.<br><br>
+          2) Make sure that you entered the correct email address and password.<br><br>
+          3) Still now working? <a href="/services/contact-us">Contact us</a> :)
+        </div>
 
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-2">
+        <div class="mb-0" style="padding-bottom:4%;">
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+            I forgot my password, what do I do?  </a>
+        </div>
+      </div>
+      <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+        <div class="card-body">
+          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
+          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
+          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
+          4) Check your email. You will have received an email with a link to reset your password.<br><br>
+          5) You will be able to reset your password from the given link.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-3">
+        <div class="mb-0" style="padding-bottom:4%;">
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+            I forgot my password, what do I do?  </a>
+        </div>
+      </div>
+      <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
+        <div class="card-body">
+          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
+          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
+          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
+          4) Check your email. You will have received an email with a link to reset your password.<br><br>
+          5) You will be able to reset your password from the given link.
+        </div>
+      </div>
+    </div>
+  </div>
+</ol>
+<button type="button" >모든 질문 보기</button>
+</div>
+
+<div class="col-md-12 col-lg-5">
+  <h2>이용자 후기</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- /자주 묻는 질문 & 이용후기 -->
+<br><br>
+<!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
+<div class="container-fluid text-center">
+  <h3>기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
+<div class="container">
+
+</div>
+</div>
+<!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
+<br><br>
+<!-- footer -->
+<div class="container-fluid"  style="background-color:grey;">
+  <div class="row text-center">
+
+    <div class="col-sm-12 col-md-4">
+      <h3>트렉스</h3>
+      <hr style="display:none;">
+      <p>회사소개<br>고객센터<br>최소 및 환불 규정</p>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <h3>클라이언트</h3>
+      <hr style="display:none;">
+      <p>클라이언트 이용안내<br>파트너 찾기<br>업무 견적 요청 하기</p>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <h3>파트너</h3>
+      <hr style="display:none;">
+      <p>파트너 페이지</p>
+    </div>
+
+
+      <div class="col-12 social" style="font-size:35px;" > <!--add padding class if needed. .padding{padding-top: 2rem;padding-bottom: 2rem;}-->
+        <a href="#"><i class="fab fa-blogger" style="color:#ff4500;margin:15px;"></i></a>
+        <a href="#"><i class="fab fa-facebook-square" style="color: #3b5998;margin:15px;"></i></a>
+        <a href="#"><i class="fab fa-linkedin" style="color:#007bb5;margin:15px;"></i></a>
+        <a href="#"><i class="fab fa-instagram" style="color: #517fa4;margin:15px;"></i></a>
+      </div>
+</div>
+</div>
+
+
+  <div class="col-12 text-center" style="background-color:grey;">
+    <hr class="light-100">
+    <h6>Copyright&copy; 2017 - 2019 TREX. All Rights Reserved by trexservice.com</h6>
+    <h6>(주)신영TRC | 대표: 김정훈 | 사업자등록번호: 125-24-02211</h6>
+    <h6>일반 문의: info@trexservice.com | 파트너 문의: partnership@trexservice.com</h6>
+    <h6>주소: 3 Place Ville Marie Suite 400, Montreal, QC Canada H3B 2E3 </h6>
+    <h6>트렉스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 트렉스는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</h6>
+  </div>
+</div>
+<!-- /footer -->
 </body>
 <script src="/static/scripts/register.js"></script>
 </html>
