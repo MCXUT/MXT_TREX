@@ -22,19 +22,19 @@ router.get("/register/partner", function(req, res) {
 router.post("/register/:type", function(req, res) {
   if(req.params.type === "client")
   {
-    var newUser = new Client {
+    var newUser = new Client ({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-    };
+    });
     registerRouter.registerRoute(req,res,newUser);
   }
   else {
-    var newUser = new Partner {
+    var newUser = new Partner ({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-    };
+    });
     registerRouter.registerRoute(req,res,newUser);
   }
 });
