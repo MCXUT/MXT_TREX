@@ -2,12 +2,18 @@
 
 
 
-/* carousel section */
-#mainDiv {
-    padding: 0;
-    margin: 0;
+html, body{
+
 }
+
+.padding{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* carousel section */
 .carousel-inner > .carousel-item > img {
+  margin-left: 0 auto;
   width:100%;
   height:650px;
 }
@@ -16,6 +22,12 @@
     height:auto;
     display:inline-block;
 }
+.divider2{
+  width:50px;
+  height:auto;
+  display:inline-block;
+}
+
 .bottom-right{
   color:white;
   position:absolute;
@@ -24,11 +36,68 @@
 }
 /* end of carousel section */
 
+/* Jumbotron Section */
+.Jumbotron{
+  background-color: #e6e6e6;
+}
+.buttonjumbotron{
+  width:250px;
+  height:100px;
+  background-color: #efefef;
+  border:none;
+  font-size: 25px ;
+  font-weight: bold;
+  color:#333333;
+}
+.buttonjumbotron:hover{
+  color:#999999;
+}
+
+/* End of Jumbotron Section*/
+
+/* Accordion Section */
+
+  /* .card:first-of-type:not(:last-of-type) { */
+#qlist{
+  padding:0;
+}
+#accordion .card, #accordion {
+  background-color:transparent;
+  border-left:none;
+  border-right:none;
+  border-bottom:none;
+  border-radius:0;
+  padding: 0;
+}
+#accordion a{
+  color:#4d4d4d;
+}
+#accordion a:hover, #accordion a:after{
+  color:black;
+  text-decoration: none;
+}
+#button1{
+  background-color:#f8ba00;
+  border:#f8ba00;
+  border-radius:5px;
+  height:50px;
+}
+#button1:hover{
+  color:white;
+}
+/* End of Accordion Section */
+
+/*footer section*/
 
 
+.fa-blogger,.fa-linkedin
+.fa-facebook-square:hover,
+.fa-google-plus-g:hover,
+.fa-instagram:hover{
+  color: #d5d5d5;
+}
 
-
-
+/*end of footer section*/
 /*---Media Queries --*/
 @media (max-width: 992px) {
 
@@ -81,8 +150,26 @@ figure {
 /*--- Bootstrap Padding Fix --*/
 [class*="col-"] {
     padding: 1rem;
+    text-align:
 }
 
-.navbar .nav-item a {
-    color: #000 !important;
-}
+
+
+
+
+/*
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/

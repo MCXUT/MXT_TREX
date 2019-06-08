@@ -21,8 +21,9 @@ html, body{
     height:auto;
     display:inline-block;
 }
+
 .bottom-right{
-  color:white;
+  color:pink;
   position:absolute;
   bottom:8px;
   right:16px;
@@ -37,14 +38,10 @@ html, body{
 /* End of Jumbotron Section*/
 
 /* Accordion Section */
-.accordion {
-  .card:first-of-type:not(:last-of-type) {
-    border-bottom: 0;
-  }
-  .card:first-of-type {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
+
+  /* .card:first-of-type:not(:last-of-type) { */
+#qlist{
+  padding:80px;
 }
 /* End of Accordion Section */
 

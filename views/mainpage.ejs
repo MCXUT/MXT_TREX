@@ -10,9 +10,10 @@
     <% include ./partials/navbar %>
 
 
-
+<div class="">
+</div>
   <!-- Carousel Section -->
-  <div class="container-fluid" id="mainDiv">
+  <div class="container-fluid padding" id="mainDiv">
   <div id="slides" class="carousel slide" data-ride="carousel">
 
   <ul class="carousel-indicators">
@@ -79,7 +80,6 @@
 </div>
 </div>
   <!-- End of Carousel Section -->
-
   <!-- Jumbotron Section -->
   <!-- <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -93,23 +93,21 @@
   </div>
 </div> -->
 
-<div class="container-fluid">
-<div class="row Jumbotron">
-  <div class="col-xs-12 col-md-6 col-lg-7 col-xl-7">
-    <h5 class="lead" style="text-align:right;">검색 할 시간이 없으신가요? 3분이면 충분합니다!</h5>
-    <div style="text-align:right;">업무를 요청하고 지원자를 받아보세요.</div>
-  </div>
-
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
-    <a href="#"><button type="button" class="btn btn-warning">업무 요청하기  <i class="fas fa-chevron-right"></i></button></a>
-  </div>
-  <div class="col-3"></div>
-</div>
-</div>
 <!-- End of Jumbotron Section -->
-
+<!-- 기업 섭외 견적 요청 -->
+<div class="text-center">
+<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
+<div class="divider2"></div>
+<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
+<div class="divider2"></div>
+<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
+<div class="divider2"></div>
+<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
+</div>
+<!-- /기업 섭외 견적 요청 -->
+<br><br>
 <!-- 트렉스 간편 이용 방법 section-->
-<div class="container-fluid text-center">
+<div class="container-fluid padding text-center">
 
   <h1>트렉스 간편 이용 방법</h1>
   <div class="container">
@@ -139,7 +137,7 @@
 <!-- end of 트렉스 간편 이용 방법 section -->
 <br><br>
 <!-- 통역 그 이상의 서비스를 경험 해 보세요-->
-<div class="container-fluid text-center" style="background-color:#e6e6e6;">
+<div class="container-fluid padding text-center" style="background-color:#e6e6e6;">
 
   <h1>통역 그 이상의 서비스를 경험 해 보세요</h1>
   <div class="container">
@@ -178,7 +176,7 @@
 <br><br>
 
 <!-- 국가/지역 별 파트너를 만나보세요. -->
-<div class="container-fluid text-center">
+<div class="container-fluid padding text-center">
   <h1>국가/지역 별 파트너를 만나보세요.</h1>
 <div class="container">
 <div class="sectionContent">
@@ -208,13 +206,14 @@
 <!-- /국가/지역 별 파트너를 만나보세요. -->
 <br><br>
 <!-- 자주 묻는 질문 & 이용후기-->
-<div class="container-fluid text-center" style="background-color:#efefef">
+<div class="container-fluid padding text-center" style="background-color:#efefef">
+  <br><br>
 <div class="container">
 <div class="sectionContent">
 <div class="row">
 
 <div class="col-md-12 col-lg-7">
-  <h2>자주 묻는 질문</h2>
+  <h2 style="color:#f8ba00;">자주 묻는 질문</h2>
 <style>
 [data-toggle="collapse"]:after {
 display: inline-block;
@@ -225,27 +224,25 @@ display: inline-block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 content: "\f078";
-transform: rotate(180deg) ;
+transform: rotate(-180deg) ;
 transition: all linear 0.25s;
 }
 [data-toggle="collapse"].collapsed:after {
 transform: rotate(0deg) ;
 }
 </style>
-<ol id="qlist">
+<ol id="qlist" style="padding:0;">
   <div id="accordion">
-    <div class="card">
+    <div class="card" >
       <div class="card-header" id="heading-1">
         <div class="mb-0" style="padding-bottom:4%;">
-          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
-            I registered, but I can't log-in, what do I do?   </a>
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1" >
+            출장지 인근에 검색 되는 파트너가 없습니다. 어떻게 해야 하나요?   </a>
         </div>
       </div>
       <div id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1">
         <div class="card-body">
-          1) Make sure that you have verified your email address through the verification email we've sent you when you registered.<br><br>
-          2) Make sure that you entered the correct email address and password.<br><br>
-          3) Still now working? <a href="/services/contact-us">Contact us</a> :)
+          트렉스 파트너 모두가 플랫폼에 노출되지는 않습니다. 검색되는 파트너가 없을시, 고객센터로 예약 요청을 해주시면 빠르게 도움 드리고 있습니다.
         </div>
 
       </div>
@@ -255,16 +252,12 @@ transform: rotate(0deg) ;
       <div class="card-header" id="heading-2">
         <div class="mb-0" style="padding-bottom:4%;">
           <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-            I forgot my password, what do I do?  </a>
+            파트너 급여 지급은 어떻게 하나요?  </a>
         </div>
       </div>
       <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
         <div class="card-body">
-          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
-          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
-          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
-          4) Check your email. You will have received an email with a link to reset your password.<br><br>
-          5) You will be able to reset your password from the given link.
+          파트너 비용 지급을 위해 많은 현금을 가져가실 필요가 없습니다. 간편한 송금으로 파트너 예약을 확정하고, 업무에만 집중하세요!
         </div>
       </div>
     </div>
@@ -273,27 +266,27 @@ transform: rotate(0deg) ;
       <div class="card-header" id="heading-3">
         <div class="mb-0" style="padding-bottom:4%;">
           <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-            I forgot my password, what do I do?  </a>
+            트렉스 검증 프로세스가 무엇 인가요?  </a>
         </div>
       </div>
       <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
         <div class="card-body">
-          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
-          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
-          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
-          4) Check your email. You will have received an email with a link to reset your password.<br><br>
-          5) You will be able to reset your password from the given link.
+          트렉스는 클라이언트의 성공적인 업무를 위해 최고의 파트너님들을 선별합니다. 업무에 매칭되는 파트너님은 본인 확인 - 이력 확인 - 인터뷰 절차를 걸쳐 선별된 인재입니다.
         </div>
       </div>
     </div>
   </div>
 </ol>
-<button type="button" >모든 질문 보기</button>
+
+<button type="button" id="button1">모든 질문 보기</button>
+<br><br>
 </div>
 
 <div class="col-md-12 col-lg-5">
-  <h2>이용자 후기</h2>
+<h2><span style='color:#f8ba00'>이용자 </span> 후기</h2>
 </div>
+
+
 </div>
 </div>
 </div>
@@ -301,7 +294,7 @@ transform: rotate(0deg) ;
 <!-- /자주 묻는 질문 & 이용후기 -->
 <br><br>
 <!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
-<div class="container-fluid text-center">
+<div class="container-fluid padding text-center">
   <h3>기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
 <div class="container">
 
@@ -309,49 +302,9 @@ transform: rotate(0deg) ;
 </div>
 <!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
 <br><br>
-<!-- footer -->
-<div class="container-fluid"  style="background-color:grey;">
-  <div class="row text-center">
 
-    <div class="col-sm-12 col-md-4">
-      <h3>트렉스</h3>
-      <hr style="display:none;">
-      <p>회사소개<br>고객센터<br>최소 및 환불 규정</p>
-    </div>
+<% include ./partials/footer %>
 
-    <div class="col-sm-12 col-md-4">
-      <h3>클라이언트</h3>
-      <hr style="display:none;">
-      <p>클라이언트 이용안내<br>파트너 찾기<br>업무 견적 요청 하기</p>
-    </div>
-
-    <div class="col-sm-12 col-md-4">
-      <h3>파트너</h3>
-      <hr style="display:none;">
-      <p>파트너 페이지</p>
-    </div>
-
-
-      <div class="col-12 social" style="font-size:35px;" > <!--add padding class if needed. .padding{padding-top: 2rem;padding-bottom: 2rem;}-->
-        <a href="#"><i class="fab fa-blogger" style="color:#ff4500;margin:15px;"></i></a>
-        <a href="#"><i class="fab fa-facebook-square" style="color: #3b5998;margin:15px;"></i></a>
-        <a href="#"><i class="fab fa-linkedin" style="color:#007bb5;margin:15px;"></i></a>
-        <a href="#"><i class="fab fa-instagram" style="color: #517fa4;margin:15px;"></i></a>
-      </div>
-</div>
-</div>
-
-
-  <div class="col-12 text-center" style="background-color:grey;">
-    <hr class="light-100">
-    <h6>Copyright&copy; 2017 - 2019 TREX. All Rights Reserved by trexservice.com</h6>
-    <h6>(주)신영TRC | 대표: 김정훈 | 사업자등록번호: 125-24-02211</h6>
-    <h6>일반 문의: info@trexservice.com | 파트너 문의: partnership@trexservice.com</h6>
-    <h6>주소: 3 Place Ville Marie Suite 400, Montreal, QC Canada H3B 2E3 </h6>
-    <h6>트렉스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 트렉스는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</h6>
-  </div>
-</div>
-<!-- /footer -->
 </body>
 <script src="/static/scripts/register.js"></script>
 </html>
