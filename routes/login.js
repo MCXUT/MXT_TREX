@@ -2,18 +2,22 @@ const express = require("express");
 const router = express.Router()
 
 const keys = require("../config/keys");
-const passport = require("../config/passport");
+const passportClient = require("../config/passportClient");
+const passportPartner = require("../config/passportPartner");
 
 router.get("/login", function(req,res){
   res.render("login");
 })
 
-router.post('/login', passport.authenticate('local-login', {
+router.post('/login', passportClient.authenticate('local-login', {
     successRedirect: "/",
     failureRedirect: "back"
     // failureFlash: true,
     // successFlash: "Successfully logged in"
-}), (req, res) => {
+}),passportPartner.authenticate('local-partnerLogin', {
+  successRedirect: "/",
+  failureRedirect: "back"
+}),(req, res) => {
 });
 
 module.exports = router;
