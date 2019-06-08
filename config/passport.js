@@ -4,8 +4,10 @@ const LocalStrategy = require("passport-local").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
 // const KakaoStrategy = require("passport-kakao").Strategy;
 
-const User = require("../models/User");
+const Client = require("../models/Client");
+const Partner = require("../models/Partner");
 const keys = require("./keys");
+const middleware = require("../middlewares/middleware")
 
 //Passport-local Strategy
 passport.use(
@@ -13,34 +15,67 @@ passport.use(
         usernameField: "email",
         passwordField: "password"
     }, (username, password, done) => {
-        User.getUserByUsername(username, (err, user) => {
-            if(err) throw err;
-            if(!user) {
-                return done(null, false, {message: "Invalid Username or Password"});
-            }
-            if(!user.isVerified) {
-                return done(null, false, {message: "Your email has not been verified yet!"});
-            }
-            User.comparePassword(password, user.password, (err, isMatch) => {
-                if(err) throw err;
-                if(!isMatch) {
-                    return done(null, false, {message: "Invalid Username or Password"});
-                } else {
-                    return done(null, user);
-                }
-            });
-        });
+      middleware.searchTypeByEmail(username, (foundUser, type) => {
+        if (type == "c") {
+          Client.getClientByUsername(username, (err, user) => {
+              if(err) throw err;
+              if(!user) {
+                  return done(null, false, {message: "Invalid Username or Password"});
+              }
+              if(!user.isVerified) {
+                  return done(null, false, {message: "Your email has not been verified yet!"});
+              }
+              Client.comparePassword(password, user.password, (err, isMatch) => {
+                  if(err) throw err;
+                  if(!isMatch) {
+                      return done(null, false, {message: "Invalid Username or Password"});
+                  } else {
+                      return done(null, user);
+                  }
+              });
+          });
+        } else {
+          Partner.getPartnerByUsername(username, (err, user) => {
+              if(err) throw err;
+              if(!user) {
+                  return done(null, false, {message: "Invalid Username or Password"});
+              }
+              if(!user.isVerified) {
+                  return done(null, false, {message: "Your email has not been verified yet!"});
+              }
+              Partner.comparePassword(password, user.password, (err, isMatch) => {
+                  if(err) throw err;
+                  if(!isMatch) {
+                      return done(null, false, {message: "Invalid Username or Password"});
+                  } else {
+                      return done(null, user);
+                  }
+              });
+          });
+        }
+      });
     })
 );
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        done(err, user);
-    });
+  middleware.searchTypeById(id, (returnedId, type) => {
+    if (type == "c") {
+      Client.findById(returnedId, (err, user) => {
+          done(err, user);
+      });
+    } else {
+      Partner.findById(returnedId, (err, user) => {
+          done(err, user);
+      });
+    }
+  });
+    // User.findById(id, (err, user) => {
+    //     done(err, user);
+    // });
 });
 
 // passport.use {
