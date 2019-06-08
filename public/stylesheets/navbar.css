@@ -5,6 +5,9 @@ body
     font-family: "Poppins", sans-serif;
 }
 
+/* .myNav {
+    background-color: transparent;
+} */
 .navbar {
     margin: 0 4% 0 4%;
     border-bottom: 1px solid #f2f2f2;
