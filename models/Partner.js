@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 var PartnerSchema = mongoose.Schema({
+    type: {type: String, default: "p"},
     name: { type: String, required: true},
     email: { type: String, unique: true, required: true},
     isVerified: {type: Boolean, default: false},
