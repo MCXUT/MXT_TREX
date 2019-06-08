@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My airbnb</title>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- <link href="/public/stylesheets/datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="/public/scripts/datepicker.js"></script> -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- <script>
+    $(function(){
+      $('.dates #user1').datepicker({
+        'format' : 'yyyy-mm-dd',
+        'autoclose': true
+      });
+    });
+    </script> -->
+    <style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: green;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+  .dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+  </style>
+  </head>
+  <body>
+
+
+    <div style="display: inline-block;">
+
+
+    <input type="button" name="daterange" value="01/01/2018 - 01/15/2018" placeholder="날짜"/>
+
+    <button aria-haspopup="true" aria-expanded=
+    "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj" id="login"><div class="_17u98ky">
+      인원</div></button>
+
+      <!-- register popup -->
+      <div id="registerModal" role="dialog" aria-hidden="true"
+      class="modal in modal_site_login ui-draggable sticky-top" data-backdrop="true"
+      data-keyboard="true" display="none">
+      	<div class="modal-dialog">
+      		<div class="modal-content" id="registercontent">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled"
+                  data-type="minus" data-field="quant[1]">
+                      <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+              </span>
+              <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+              </span>
+          </div>
+          </div>
+      	</div>
+      </div>
+
+
+      <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+
+
+    </div>
+
+
+  <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">업종/전공</button>
+    <div id="myDropdown" class="dropdown-content">
+      <input type="checkbox" name="koko">IT/기술<br>
+      <input type="checkbox" name="koko">과학<br>
+      <input type="checkbox" name="koko">교육<br>
+      <input type="checkbox" name="koko">금융/회계<br>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button onclick="myFunction2()" class="dropbtn">서비스</button>
+    <div id="myDropdown2" class="dropdown-content">
+      <input type="checkbox" name="koko">통역<br>
+      <input type="checkbox" name="koko">차량<br>
+      <input type="checkbox" name="koko">등등<br>
+    </div>
+  </div>
+
+  <div id="map" style="width:100%;height:400px;"></div>
+
+
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+
+
+$(function() {
+  var minDate = new Date();
+  $('input[name="daterange"]').daterangepicker({
+    minDate : minDate,
+    opens: 'right'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+
+
+
+document.getElementById("login").addEventListener("click", (e) => {
+    document.querySelector("#registerModal").style.display = "block";
+
+});
+
+
+document.getElementById("registerModal").addEventListener("click", (e) => {
+    if(e.target.className == "modal in modal_site_login ui-draggable sticky-top") {
+        document.getElementById("registerModal").style.display = "none";
+    }
+});
+
+
+$('.btn-number').click(function(e){
+    e.preventDefault();
+
+    fieldName = $(this).attr('data-field');
+    type      = $(this).attr('data-type');
+    var input = $("input[name='"+fieldName+"']");
+    var currentVal = parseInt(input.val());
+    if (!isNaN(currentVal)) {
+        if(type == 'minus') {
+
+            if(currentVal > input.attr('min')) {
+                input.val(currentVal - 1).change();
+            }
+            if(parseInt(input.val()) == input.attr('min')) {
+                $(this).attr('disabled', true);
+            }
+
+        } else if(type == 'plus') {
+
+            if(currentVal < input.attr('max')) {
+                input.val(currentVal + 1).change();
+            }
+            if(parseInt(input.val()) == input.attr('max')) {
+                $(this).attr('disabled', true);
+            }
+
+        }
+    } else {
+        input.val(0);
+    }
+});
+$('.input-number').focusin(function(){
+   $(this).data('oldValue', $(this).val());
+});
+$('.input-number').change(function() {
+
+    minValue =  parseInt($(this).attr('min'));
+    maxValue =  parseInt($(this).attr('max'));
+    valueCurrent = parseInt($(this).val());
+
+    name = $(this).attr('name');
+    if(valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        alert('Sorry, the minimum value was reached');
+        $(this).val($(this).data('oldValue'));
+    }
+    if(valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        alert('Sorry, the maximum value was reached');
+        $(this).val($(this).data('oldValue'));
+    }
+
+
+});
+$(".input-number").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+             // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+             // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+
+    function initMap() {
+      //Map options
+      // var mapProp= {
+      //   center:new google.maps.LatLng(45.510191,-73.575735),
+      //   zoom:14,
+      // };
+      //
+      // function initMap(){
+        var options = {
+          zoom: 8,
+          center: {lat:42.4668, lng: -70.9495}
+        }
+
+      //New map
+      var map = new google.maps.Map(document.getElementById('map'), options);
+
+      //Listen for click on map
+      // google.maps.event.addListener(map,'click',
+      // function(event){
+      //   //Add marker
+      //   addMarker({coords:event.latLng});
+      // });
+
+
+
+
+      // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+      // //Add marker
+      // var marker = new google.maps.Marker({
+      //   position:{lat: 42.4668, lng: -70.9495},
+      //   map: map
+      // })
+      // var infoWindow = new google.maps.InfoWindow({
+      //   content:'<h1>Lynn MA</h1>'
+      // });
+      //
+      // marker.addListener('click', function(){
+      //   infoWindow.open(map, marker);
+      // });
+
+
+      //Array of markers
+      var markers = [
+        {
+        coords:{lat:42.4668, lng:-70.9495},
+        // iconImage:"https://developers.google.com/maps/documentation/
+        // javascript/examples/full/images/beachflag.png",
+        content:'<h1>kokokoko</h1>'
+        },
+
+        {
+          coords:{lat:42.7762, lng:-71.0773},
+          content:'<h1>Ameesbury MA</h1>'
+        },
+        {
+          coords:{lat:42.4762, lng:-71.0773},
+          content:'<h1>AasdadaMA</h1><br><h2>aksdlakdlakdla</h2>'
+        }
+      ];
+
+      // Loop through markers
+      for(var i = 0; i < markers.length; i++){
+        addMarker(markers[i]);
+      }
+        // addMarker({
+        //   coords:{lat:42.4668, lng:-70.9495},
+        //   // iconImage:"https://developers.google.com/maps/documentation/
+        //   // javascript/examples/full/images/beachflag.png",
+        //   content:'<h1>kokokoko</h1>'
+        // });
+        // addMarker({
+        //   coords:{lat:42.7762, lng:-71.0773},
+        //   content:'<h1>Ameesbury MA</h1>'
+        // });
+
+        function addMarker(props){
+          var marker = new google.maps.Marker({
+            position: props.coords,
+            map:map,
+            //icon: props.iconImage
+          });
+
+          // Check for customicon
+          if(props.iconImage){
+            // Set icon image
+            marker.setIcon(props.iconImage);
+          }
+
+          //Check contents
+          if(props.content){
+            var infoWindow = new google.maps.InfoWindow({
+              content:props.content
+            });
+
+            marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+            });
+
+          }
+        }
+      }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=
+AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
+
+</script>
+  </body>
+</html>

@@ -30,8 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-// app.use(flash());
-
 
 // session setting
 app.use(session({
@@ -43,6 +41,14 @@ app.use(session({
 // passport setting
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+// app.use(flash());
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+
+    next();
+});
 
 
 // mongoose.connect("mongodb+srv://mxt:1q2w3e4r!@cluster0-gdoa3.mongodb.net/TREX_Demo?retryWrites=true&w=majority");
