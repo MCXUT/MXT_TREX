@@ -1,5 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+// const FacebookStrategy = require("passport-facebook").Strategy;
+// const NaverStrategy = require("passport-naver").Strategy;
+// const KakaoStrategy = require("passport-kakao").Strategy;
 
 const User = require("../models/User");
 const keys = require("./keys");
@@ -39,5 +42,20 @@ passport.deserializeUser((id, done) => {
         done(err, user);
     });
 });
+
+// passport.use {
+//   "facebook", new FacebookStrategy({
+//     clientID: keys.facebookClientInfo.clientID,
+//     clientSecret: keys.facebookClientInfo.clietnSecret,
+//     callbackURL: keys.facebookClientInfo.callbackURL,
+//     profileFields: profileFields: ['id', 'email', 'name', 'photos']
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     const socialID = profile.id;
+//     const nickname = profile.displayName;
+//     const profileImageUrl = profile.photos[0].value;
+//   }
+// )
+// }
 
 module.exports = passport;
