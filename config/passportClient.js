@@ -4,16 +4,17 @@ const LocalStrategy = require("passport-local").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
 // const KakaoStrategy = require("passport-kakao").Strategy;
 
-const User = require("../models/User");
+const Client = require("../models/Client");
+
 const keys = require("./keys");
 
 //Passport-local Strategy
 passport.use(
-    "local-login", new LocalStrategy({
+    "local-clientLogin", new LocalStrategy({
         usernameField: "email",
         passwordField: "password"
     }, (username, password, done) => {
-        User.getUserByUsername(username, (err, user) => {
+        Client.getUserByUsername(username, (err, user) => {
             if(err) throw err;
             if(!user) {
                 return done(null, false, {message: "Invalid Username or Password"});
@@ -21,7 +22,7 @@ passport.use(
             if(!user.isVerified) {
                 return done(null, false, {message: "Your email has not been verified yet!"});
             }
-            User.comparePassword(password, user.password, (err, isMatch) => {
+            Client.comparePassword(password, user.password, (err, isMatch) => {
                 if(err) throw err;
                 if(!isMatch) {
                     return done(null, false, {message: "Invalid Username or Password"});
@@ -38,7 +39,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
+    Client.findById(id, (err, user) => {
         done(err, user);
     });
 });

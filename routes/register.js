@@ -23,26 +23,6 @@ router.get("/register/partner", function(req, res) {
   res.render("register_partner");
 });
 
-// router.post("/register/:type", function(req, res) {
-  // if(req.params.type === "client")
-  // {
-  //   var newUser = new Client ({
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //     password: req.body.password,
-  //   });
-  //   registerRouter.registerRoute(req,res,newUser);
-  // }
-//   else {
-//     var newUser = new Partner ({
-//       name: req.body.name,
-//       email: req.body.email,
-//       password: req.body.password,
-//     });
-//     registerRouter.registerRoute(req,res,newUser);
-//   }
-// });
-
 // POST route for registering client
 router.post("/register/client", function(req, res) {
   var newClient = {
