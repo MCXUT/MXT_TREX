@@ -1,7 +1,7 @@
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 
-module.exports.searchTypeByEmail = (email, callback) => {
+module.exports.searchTypebyEmail = (email, callback) => {
   Client.findOne({email: email}, function(err,user){
     if (user) {
       return callback(user,"c");

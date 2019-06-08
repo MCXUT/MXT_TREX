@@ -7,7 +7,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 const keys = require("./keys");
-const middleware = require("../middlewares/middleware")
+const middleware = require("../middlewares/middleware");
 
 //Passport-local Strategy
 passport.use(
@@ -15,8 +15,8 @@ passport.use(
         usernameField: "email",
         passwordField: "password"
     }, (username, password, done) => {
-      middleware.searchTypeByEmail(username, (foundUser, type) => {
-        if (type == "c") {
+      middleware.searchTypebyEmail(username, (user, type) => {
+        if (type === "c") {
           Client.getClientByUsername(username, (err, user) => {
               if(err) throw err;
               if(!user) {
@@ -34,7 +34,8 @@ passport.use(
                   }
               });
           });
-        } else {
+        }
+        else {
           Partner.getPartnerByUsername(username, (err, user) => {
               if(err) throw err;
               if(!user) {
@@ -53,7 +54,7 @@ passport.use(
               });
           });
         }
-      });
+      })
     })
 );
 
@@ -62,20 +63,17 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  middleware.searchTypeById(id, (returnedId, type) => {
-    if (type == "c") {
-      Client.findById(returnedId, (err, user) => {
+  middleware.searchTypeById(id,(user,type) => {
+    if(type === "c"){
+      Client.findById(id, (err, user) => {
           done(err, user);
       });
     } else {
-      Partner.findById(returnedId, (err, user) => {
+      Partner.findById(id, (err, user) => {
           done(err, user);
       });
     }
   });
-    // User.findById(id, (err, user) => {
-    //     done(err, user);
-    // });
 });
 
 // passport.use {
