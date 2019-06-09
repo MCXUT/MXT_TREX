@@ -30,6 +30,15 @@ router.get("/facebook/callback", passport.authenticate("facebook", {
 
 });
 
+
+router.get("/kakao", passport.authenticate("login-kakao"));
+
+router.get("/kakao/callback", passport.authenticate("login-kakao", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
+
+
 router.get("/logout", function(req,res) {
   req.logout();
   res.redirect("back");

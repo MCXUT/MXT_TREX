@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 var ClientSchema = mongoose.Schema({
     type: {type: String, default: "c"},
     name: { type: String, required: true},
-    email: { type: String, unique: true, required: true},
+    email: { type: String, unique: true},//, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
     dateOfBirth: Date,
@@ -16,9 +16,10 @@ var ClientSchema = mongoose.Schema({
       country: String
     },
     phoneNumber: Number,
-    kakaoId: String,
-    facebookID: String
-    //pic:
+    kakaoID: String,
+    facebookID: String,
+    //For test
+    pic: String
 });
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);
