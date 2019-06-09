@@ -15,6 +15,7 @@ const keys = require("./config/keys");
 
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
+const partnerPages = require("./routes/partnerpages");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb.user + ":" + keys.mongodb.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -71,6 +72,7 @@ app.get('/', function(req,res){
 
 app.use('/auth', registerRoutes);
 app.use('/auth', loginRoutes);
+app.use('/', partnerPages);
 
 app.set('port', process.env.PORT || 8080);
 
