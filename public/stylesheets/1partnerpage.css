@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-
-
 html, body{
 
 }
@@ -12,52 +10,80 @@ html, body{
 }
 
 /* carousel section */
-.carousel-inner > .carousel-item > img {
-  margin-left: 0 auto;
+.carousel-inner > .carousel-item >img{
+  padding-left:3%;
+  padding-right:3%;
   width:100%;
   height:650px;
 }
-.divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
-}
-.divider2{
-  width:50px;
-  height:auto;
-  display:inline-block;
-}
 
-.bottom-right{
-  color:white;
-  position:absolute;
-  bottom:8px;
-  right:16px;
-}
 /* end of carousel section */
 
 /* Jumbotron Section */
 .Jumbotron{
   background-color: #e6e6e6;
 }
-.buttonjumbotron{
-  width:250px;
-  height:100px;
-  background-color: #efefef;
-  border:none;
-  font-size: 25px ;
-  font-weight: bold;
-  color:#333333;
-}
-.buttonjumbotron:hover{
-  color:#999999;
-}
 
 /* End of Jumbotron Section*/
 
-/* Accordion Section */
+/* 파트너 활동은 어떻게 하나요?*/
+.grid-container {
+  display: grid;
+  grid-gap: 0;
+  background-color: transparent;
+}
 
-  /* .card:first-of-type:not(:last-of-type) { */
+.grid-item {
+  background-color: transparent;
+  padding: 10px;
+}
+
+
+.item1 {
+  grid-column: 1;
+  grid-row: 1;
+  text-align:center;
+  font-size:30px;
+  padding-bottom: 0;
+}
+
+.item2 {
+  grid-column: 2 /span 2;
+  grid-row: 1 ;
+  text-align: left;
+  font-size:20px;
+  padding-top:4%;
+  padding-bottom:0;
+}
+
+.item3 {
+  grid-column: 1;
+  grid-row: 2 /span 2;
+  text-align: center;
+  font-size:70px;
+  padding-top:0;
+  color:#00b3b3;
+}
+.item4 {
+  grid-column: 2 / span 2;
+  grid-row: 2 /span 2;
+  text-align: left;
+  font-size:15px;
+  padding-top:5%;
+
+}
+/*/파트너 활동은 어떻게 하나요? */
+/* 업무에 지원 해 보세요*/
+.card1{
+  background-color: #f2f2f2;
+  box-shadow: 4px 4px 8px #cccccc;
+  text-align: left;
+  color:#999999;
+}
+
+
+/* /업무에 지원 해 보세요.*/
+/* 자주 묻는 질문 &트렉스 파트너의 후기*/
 #qlist{
   padding:0;
 }
@@ -107,46 +133,24 @@ html, body{
   background-color:transparent;
   box-shadow: 4px 4px 8px #cccccc;
 }
-.grid-container {
-  display: grid;
-  grid-gap: 0;
-  background-color: transparent;
-}
-
-.grid-item {
-  background-color: transparent;
-  padding: 10px;
-}
-.item4 {
+.item5 {
   grid-column: 1 ;
   grid-row: 1 ;
   padding-top:25px;
 }
 
-.item5 {
+.item6 {
   grid-column: 2 / span 2;
   grid-row: 1 ;
 }
 
-.item6 {
+.item7 {
   grid-column: 1 / span 3;
   grid-row: 2 ;
   padding-left:50px;
   padding-right:50px;
 }
-/* End of Accordion Section */
-
-/*footer section*/
-
-
-.fa-blogger,.fa-linkedin
-.fa-facebook-square:hover,
-.fa-google-plus-g:hover,
-.fa-instagram:hover{
-  color: #d5d5d5;
-}
-
-/*end of footer section*/
+/* /자주 묻는 질문 &트렉스 파트너의 후기*/
 /*---Media Queries --*/
 @media (max-width: 992px) {
 
@@ -199,7 +203,6 @@ figure {
 /*--- Bootstrap Padding Fix --*/
 [class*="col-"] {
     padding: 1rem;
-    text-align:
 }
 
 

@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// const FacebookStrategy = require("passport-facebook").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
 // const KakaoStrategy = require("passport-kakao").Strategy;
 
@@ -58,6 +58,55 @@ passport.use(
     })
 );
 
+// function loginByThirdParty(user,foundUser,done) {
+//       if(foundUser) {
+//           done(null, foundUser);
+//       } else {
+//           console.log(profile);
+//           user.save().then((newUser) => {
+//               console.log("new User Created: " + newUser);
+//               done(null, newUser);
+//           });
+//       }
+// }
+
+passport.use(
+  new FacebookStrategy({
+    clientID: keys.facebookClientInfo.clientID,
+    clientSecret: keys.facebookClientInfo.clientSecret,
+    callbackURL: keys.facebookClientInfo.callback,
+    profileFields: ['id', 'email', 'name', 'photos']
+  },
+  (accessToken, refreshToken, profile, done) => {
+    Client.findOne({facebookID: profile.id}).then((foundUser) => {
+      if(foundUser) {
+        console.log("This is FoundUser"+ foundUser);
+        done(null, foundUser);
+      } else {
+        console.log(profile);
+        console.log(profile.emails);
+        new Client({
+            name: profile.name.givenName + " " + profile.name.familyName,
+            email: profile.emails[0].value,
+            facebookID: profile.id
+        }).save().then((newUser) => {
+            console.log("new User Created: " + newUser);
+            done(null, newUser);
+        });
+      }
+    });
+  }))
+    // const user = new Client({
+    //   name: profile.name.givenName + " " + profile.name.familyName,
+    //   email: profile.emails[0].value,
+    //   facebookID: profile.id
+    // });
+    // User.findOne({facebookID: profile.id}).then((foundUser) =>
+    // loginByThirdParty(user,foundUser,done);
+//   }
+// )
+// }
+
 passport.serializeUser((user, done) => {
     done(null, user._id);
 });
@@ -75,20 +124,5 @@ passport.deserializeUser((id, done) => {
     }
   });
 });
-
-// passport.use {
-//   "facebook", new FacebookStrategy({
-//     clientID: keys.facebookClientInfo.clientID,
-//     clientSecret: keys.facebookClientInfo.clietnSecret,
-//     callbackURL: keys.facebookClientInfo.callbackURL,
-//     profileFields: profileFields: ['id', 'email', 'name', 'photos']
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     const socialID = profile.id;
-//     const nickname = profile.displayName;
-//     const profileImageUrl = profile.photos[0].value;
-//   }
-// )
-// }
 
 module.exports = passport;
