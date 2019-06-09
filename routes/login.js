@@ -11,7 +11,6 @@ router.get("/login", function(req,res){
 })
 
 
-
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: "/",
     failureRedirect: "/auth/login",
@@ -20,17 +19,15 @@ router.post('/login', passport.authenticate('local-login', {
 }), (req, res) => {
   
 });
-// router.post('/login/client',passport.authenticate("local-clientLogin"){
-// 
-// }, (foundUser, res) => {
-// 
-// });
-// 
-// router.post('/login/partner',passport.authenticate("local-partnerLogin"){
-// 
-// }, (foundUser, res) => {
-// 
-// });
+
+
+router.get("/kakao", passport.authenticate("login-kakao"));
+
+router.get("/kakao/callback", passport.authenticate("login-kakao", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
+
 
 router.get("/logout", function(req,res) {
   req.logout();

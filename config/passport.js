@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 // const FacebookStrategy = require("passport-facebook").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
-// const KakaoStrategy = require("passport-kakao").Strategy;
+const KakaoStrategy = require("passport-kakao").Strategy;
 
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
@@ -75,6 +75,29 @@ passport.deserializeUser((id, done) => {
     }
   });
 });
+
+
+passport.use("login-kakao", new KakaoStrategy({
+    clientID : "a1d2b0ec8597b88eb06cf6edf05e0048",  // The REST API Key goes here
+    callbackURL : "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // The user info is in profile
+    Client.findOne({kakaoID: profile.id}).then((foundUser) => {
+      if(foundUser) {
+        done(null, foundUser);
+      } else {
+        new Client({
+          name: profile.displayName,
+          kakaoID: profile.id
+        }).save().then((newUser) => {
+          console.log("New Client Created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  }
+));
 
 // passport.use {
 //   "facebook", new FacebookStrategy({
