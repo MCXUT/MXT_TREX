@@ -1,74 +1,106 @@
-.background {
-    background-image: url("https://media.holidayme.com/wp-content/uploads/2019/05/08133432/holidayme_Engelberg_where-to-go-in-Switzerland_shutterstock_1160372566.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    height: 380px;
+.tab .top {
+    margin: 0 4%;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.2);
 }
-.main {
-    background: #fff;
-    position: relative;
-    z-index: 3;
+.tab .top .col-md-4 {
+    margin: 0 100px;
+    padding: 0 0 10px !important;
 }
-.main-raised {
-    margin: -60px 30px 0;
-    border-radius: 6px;
-    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
-    height: auto;
-    width: auto;
-}
-.avatar {
+.tab .top .col-md-4 p.setting {
     margin-bottom: 0;
+    padding: 30px 5px;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.7);
 }
-.profile {
+.tab .top .col-md-4 .menu a {
+    font-size: 20px;
+    margin-right: 40px;
+    padding: 10px 10px;
+    width: auto;
+    color: rgba(0, 0, 0, 0.7);
+}
+.tab .top .col-md-4 .menu a:hover {
+    color: rgb(0, 127, 205);
+    text-decoration: none;
+    border-bottom: 2px solid rgb(0, 127, 205);
+    transition: 0.1s;
+}
+.tab .top .col-md-4 .menu a.active{
+    color: rgb(0, 167, 235);
+    border-bottom: 2px solid rgb(0, 127, 205);
+}
+
+.bottom {
+    margin: 50px 4%;
+}
+.bottom .col-md-4 {
     text-align: center;
+    border-right: 2px solid rgba(100, 100, 100, 0.2);
 }
-.profile img {
-    max-width: 160px;
+.bottom .col-md-4 .profileimg {
+    max-width: 150px;
+    max-height: 180px;
+    border-radius: 50%;
+    margin: 30px;
+    padding: 4px;
+    border: 2px solid rgba(110, 110, 110, 0.6);
+}
+.bottom .col-md-4 .userName {
+    color: rgb(0, 127, 205);
+    font-size: 28px;
+    font-weight: 600;
+}
+.bottom .col-md-4 .btn {
+    margin: 40px 0;
+    max-width: 60%;
+}
+.bottom .col-md-4 .btn-primary {
+    background-color: rgb(166, 80, 110);
+    border: 1px solid rgb(166, 80, 110);
+}
+.bottom .col-md-8 .sections {
+    margin: 5% 10%;
+}
+.bottom .col-md-8 .divider {
     width: 100%;
-    margin: 0 auto;
-    transform: translate3d(0, -50%, 0);
+    border-bottom: 2px solid rgba(100, 100, 100, 0.2);
+    margin-bottom: 20px;
 }
-.rounded-circle {
-    border-radius: 50% !important;
-}
-.img-raised {
-    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
-}
-.name {
-    margin-top: -50px;
-}
-.name p {
-    font-size: 35px;
-    font-weight: bold;
-}
-.rowdivider {
-    border-bottom: 1px solid grey;
+.bottom .col-md-8 .sections .basictitle {
+    font-size: 24px;
+    width: 20%;
 }
 
-.rowdivider {
-    padding: 0 50px 20px 50px;
+.bottom .col-md-8 .sections .buttons {
+    width: 80%;
+    font-size: 24px;
 }
-.col-md-6.ml-auto.mr-auto {
-    padding-top: 0;
+.bottom .col-md-8 .sections .btn {
+    width: 60px;
+    float: right;
+    margin: 0 5px;
 }
-.rowdivider .col-md-6 {
-    text-align: left;
-    padding-top: 30px;
+.bottom .col-md-8 .sections #cancel {
+    background-color: white;
+    color: black;
 }
-.rowdivider .description-title p {
-    font-size: 26px;
-    font-weight: 500;
-    color: rgb(101, 101, 164);
-}
-
-.description-contents .col-md-6 {
-    padding-top: 0;
-}
-.description-contents p {
+.bottom .sections .element {
+    list-style: none;
     font-size: 16px;
-    padding-top: 10px;
+    padding: 10px 0px;
+    width: 100%;
+    display: inline;
 }
-.descriptionrow p {
-    font-size: 15px;
+.bottom .sections .element svg {
+    margin-right: 10px;
+}
+.bottom .sections .element span:first-child {
+    padding-left: 10%;
+    width: 50% !important;
+    text-align: left;
+}
+.bottom .sections .element .form-control {
+    display: inline;
+    width: 50%;
+    float: right;
 }

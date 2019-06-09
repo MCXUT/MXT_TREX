@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Profile Page</title>
+
+        <!-- HEADER -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
+        <meta name="google" content="notranslate" />
+        <!-- css cdn -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- cdn for jQuery must be before that of JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <!-- END OF HEADER -->
+
+    </head>
+    <body>
+
+        <!-- NAVBAR -->
+        <link rel="stylesheet" href="../public/stylesheets/navbar.css">
+
+        <div class="myNav">
+            <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="logo" href="/">TrexLogo</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/#project">파트너 찾기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/#teams">파트너 페이지</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/auth/login">로그인</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/auth/register">회원가입</a>
+                            </li>
+                        </ul>
+                    </div>
+            </nav>
+        </div>
+        <!-- END OF NAVBAR -->
+
+        <link rel="stylesheet" href="../public/stylesheets/profile.css">
+
+        <div class="profile">
+            <div class="tab">
+                <div class="row top">
+                    <div class="col-md-4">
+                        <p class="setting">프로필</p>
+                        <div class="menu">
+                            <a href="#">정보</a>
+                            <a href="#">보안</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col-md-4">
+                        <img class="profileimg" src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
+                        <p class="userName">John Doe</p>
+                        <a class="btn btn-primary form-control" href="#">사진 교체하기</a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row sections">
+                            <p class="basictitle"><b>기본 정보</b></p>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-info editbuttons" id="edit">편집</a>
+                                <a href="#" class="btn btn-info editbuttons" id="cancel">취소</a>
+                                <a href="#" class="btn btn-info editbuttons" id="confirm">확인</a>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row element">
+                                    <span><i class="fa fa-venus-mars" aria-hidden="true"></i><b>성별</b></span>
+                                    <span><input class="form-control" name="gender" value="남자"></span>
+                            </div>
+                            <div class="row element">
+                                    <span><i class="fa fa-globe" aria-hidden="true"></i><b>지역</b></span>
+                                    <span><input class="form-control" name="area" value="몬트리올"></span>                            </div>
+                            <div class="row element">
+                                    <span><i class="fa fa-flag" aria-hidden="true"></i><b>타 지역 업무 가능 여부</b></span>
+                                    <span><input class="form-control" name="posibility" value="타지역 업무 가능"></span>                            </div>
+                            <div class="row element">
+                                    <span><i class="fa fa-laptop" aria-hidden="true"></i><b>직업</b></span>
+                                    <span><input class="form-control" name="profession" value="직장인"></span>
+                            </div>
+                            <div class="row element">
+                                    <span><i class="fa fa-certificate" aria-hidden="true"></i><b>업종/전공</b></span>
+                                    <span><input class="form-control" name="major" value="회계/금융"></span>
+                            </div>
+
+                        </div>
+                        <div class="row sections">
+                            <p class="basictitle"><b>서비스</b></p>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-info editbuttons" id="edit">편집</a>
+                                <a href="#" class="btn btn-info editbuttons" id="cancel">취소</a>
+                                <a href="#" class="btn btn-info editbuttons" id="confirm">확인</a>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="row sections">
+                            <p class="basictitle"><b>기본 정보</b></p>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-info editbuttons" id="edit">편집</a>
+                                <a href="#" class="btn btn-info editbuttons" id="cancel">취소</a>
+                                <a href="#" class="btn btn-info editbuttons" id="confirm">확인</a>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        $(document).ready(() => {
+            $(".menu").click((e) => {
+                var menu = document.querySelector(".menu");
+                var currentActive = menu.querySelector(".active");
+                $(currentActive).toggleClass("active");
+                $(e.target).toggleClass("active");
+            });
+        });
+    </script>
+    </body>
+</html>

@@ -103,10 +103,14 @@
     font-weight: 500;
     color: rgb(101, 101, 164);
 }
+
 .description-contents .row,.language-contents .row {
     list-style: none;
     font-size: 16px;
     padding: 10px 0;
+}
+.description-contents .row span svg {
+    margin-right: 10px;
 }
 .description-contents .row span:first-child {
     padding-left: 10%;
