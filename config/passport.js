@@ -87,7 +87,8 @@ passport.use(
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
             password: profile.emails[0].value,
-            facebookID: profile.id
+            facebookID: profile.id,
+            pic: "https://graph.facebook.com/" + profile.id + "/picture?height=250&width=250"
         }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
             done(null, newUser);

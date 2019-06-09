@@ -17,8 +17,9 @@ var ClientSchema = mongoose.Schema({
     },
     phoneNumber: Number,
     kakaoID: String,
-    facebookID: String
-    //pic:
+    facebookID: String,
+    //For test
+    pic: String
 });
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);
