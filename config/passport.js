@@ -127,6 +127,7 @@ passport.use("login-kakao", new KakaoStrategy({
       } else {
         new Client({
           name: profile.displayName,
+          password: profile.id + profile.displayName,
           kakaoID: profile.id
         }).save().then((newUser) => {
           console.log("New Client Created: " + newUser);
