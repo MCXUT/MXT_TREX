@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
-// const KakaoStrategy = require("passport-kakao").Strategy;
+const KakaoStrategy = require("passport-kakao").Strategy;
 
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
@@ -83,11 +83,10 @@ passport.use(
         console.log("This is FoundUser"+ foundUser);
         done(null, foundUser);
       } else {
-        console.log(profile);
-        console.log(profile.emails);
         new Client({
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
+            password: profile.emails[0].value,
             facebookID: profile.id
         }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
@@ -96,16 +95,6 @@ passport.use(
       }
     });
   }))
-    // const user = new Client({
-    //   name: profile.name.givenName + " " + profile.name.familyName,
-    //   email: profile.emails[0].value,
-    //   facebookID: profile.id
-    // });
-    // User.findOne({facebookID: profile.id}).then((foundUser) =>
-    // loginByThirdParty(user,foundUser,done);
-//   }
-// )
-// }
 
 passport.serializeUser((user, done) => {
     done(null, user._id);
@@ -124,5 +113,44 @@ passport.deserializeUser((id, done) => {
     }
   });
 });
+
+
+passport.use("login-kakao", new KakaoStrategy({
+    clientID : "a1d2b0ec8597b88eb06cf6edf05e0048",  // The REST API Key goes here
+    callbackURL : "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // The user info is in profile
+    Client.findOne({kakaoID: profile.id}).then((foundUser) => {
+      if(foundUser) {
+        done(null, foundUser);
+      } else {
+        new Client({
+          name: profile.displayName,
+          password: profile.id + profile.displayName,
+          kakaoID: profile.id
+        }).save().then((newUser) => {
+          console.log("New Client Created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  }
+));
+
+// passport.use {
+//   "facebook", new FacebookStrategy({
+//     clientID: keys.facebookClientInfo.clientID,
+//     clientSecret: keys.facebookClientInfo.clietnSecret,
+//     callbackURL: keys.facebookClientInfo.callbackURL,
+//     profileFields: profileFields: ['id', 'email', 'name', 'photos']
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     const socialID = profile.id;
+//     const nickname = profile.displayName;
+//     const profileImageUrl = profile.photos[0].value;
+//   }
+// )
+// }
 
 module.exports = passport;
