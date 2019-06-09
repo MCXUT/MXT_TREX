@@ -17,6 +17,7 @@ var ClientSchema = mongoose.Schema({
     },
     phoneNumber: Number,
     kakaoID: String,
+    facebookID: String
     //pic:
 });
 

@@ -10,14 +10,24 @@ router.get("/login", function(req,res){
   res.render("login");
 })
 
-
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: "/",
-    failureRedirect: "/auth/login",
+    failureRedirect: "/auth/login"
     // failureFlash: true,
     // successFlash: "Successfully logged in"
 }), (req, res) => {
-  
+
+});
+
+// Facebook Login
+router.get("/facebook", passport.authenticate("facebook", {
+  scope: ["email","public_profile"]}));
+// Facebook login callback
+router.get("/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}), (req,res) => {
+
 });
 
 
