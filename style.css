@@ -6,9 +6,8 @@ html, body{
 
 }
 
-.padding{
-  padding-top: 40px;
-  padding-bottom: 40px;
+.container-fluid{
+  padding: 0;
 }
 
 /* carousel section */
@@ -22,14 +21,9 @@ html, body{
     height:auto;
     display:inline-block;
 }
-.divider2{
-  width:50px;
-  height:auto;
-  display:inline-block;
-}
 
 .bottom-right{
-  color:white;
+  color:pink;
   position:absolute;
   bottom:8px;
   right:16px;
@@ -40,18 +34,6 @@ html, body{
 .Jumbotron{
   background-color: #e6e6e6;
 }
-.buttonjumbotron{
-  width:250px;
-  height:100px;
-  background-color: #efefef;
-  border:none;
-  font-size: 25px ;
-  font-weight: bold;
-  color:#333333;
-}
-.buttonjumbotron:hover{
-  color:#999999;
-}
 
 /* End of Jumbotron Section*/
 
@@ -59,80 +41,7 @@ html, body{
 
   /* .card:first-of-type:not(:last-of-type) { */
 #qlist{
-  padding:0;
-}
-#accordion .card, #accordion {
-  background-color:transparent;
-  border-left:none;
-  border-right:none;
-  border-bottom:none;
-  border-radius:0;
-  padding: 0;
-}
-#accordion a{
-  color:#4d4d4d;
-}
-#accordion a:hover, #accordion a:after{
-  color:black;
-  text-decoration: none;
-}
-#button1{
-  background-color:#f8ba00;
-  border:#f8ba00;
-  border-radius:5px;
-  height:50px;
-}
-#button1:hover{
-  color:white;
-}
-.carousel-indicators li {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-    text-indent: 0;
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
-    background-color: #a6a6a6;
-}
-.carousel-indicators .active {
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-    background-color: #f8ba00;
-}
-
-.carousel-inner{
-  background-color:transparent;
-  box-shadow: 4px 4px 8px #cccccc;
-}
-.grid-container {
-  display: grid;
-  grid-gap: 0;
-  background-color: transparent;
-}
-
-.grid-item {
-  background-color: transparent;
-  padding: 10px;
-}
-.item4 {
-  grid-column: 1 ;
-  grid-row: 1 ;
-  padding-top:25px;
-}
-
-.item5 {
-  grid-column: 2 / span 2;
-  grid-row: 1 ;
-}
-
-.item6 {
-  grid-column: 1 / span 3;
-  grid-row: 2 ;
-  padding-left:50px;
-  padding-right:50px;
+  padding:80px;
 }
 /* End of Accordion Section */
 
