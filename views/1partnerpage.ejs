@@ -1,31 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>partnerpage</title>
+  <title>MxTwebsite</title>
   <meta charset="utf-8">
-<% include ./partials/header %>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
-  <meta name="google" content="notranslate" />
-  <!-- css cdn -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- cdn for jQuery must be before that of JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link rel="stylesheet" href="style.css">
-
-
+  <% include ./partials/header %>
+    <link rel="stylesheet" href="../static/stylesheets/1partnerpage.css">
 </head>
 
 <body>
-<% include ./partials/navbar %>
+    <% include ./partials/navbar %>
 <!-- Carousel Section -->
-<div class="container-fluid" id="mainDiv">
+<div class="container-fluid padding" id="mainDiv">
 <div id="slides" class="carousel slide" data-ride="carousel">
 
 
@@ -47,8 +33,9 @@
 </div>
 <!-- End of Carousel Section -->
 <br><br>
+
 <!-- 파트너 활동은 어떻게 하나요? -->
-<div class="container-fluid text-center" >
+<div class="container-fluid padding text-center" >
 <div class="container">
 <div class="sectionContent">
 <div class="row">
@@ -100,7 +87,7 @@
 <!-- /파트너 활동은 어떻게 하나요?-->
 <br><br>
 <!-- 업무에 지원 해 보세요! -->
-<div class="container-fluid text-center" >
+<div class="container-fluid padding text-center" >
   <h1>업무에 지원 해보세요!</h1>
   <h3>트렉스 파트너만 지원 가능 합니다.</h3>
 <div class="container" style="width:60%;">
@@ -108,7 +95,7 @@
 <div class="row">
 
   <div class="col-sm-12 col-md-6">
-    <div class="card " >
+    <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
     <div >Do you wish to continue?</div>
@@ -122,7 +109,7 @@
   </div>
 
   <div class="col-sm-12 col-md-6">
-    <div class="card " >
+    <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
     <div >Do you wish to continue?</div>
@@ -136,7 +123,7 @@
   </div>
 
   <div class="col-sm-12 col-md-6">
-    <div class="card " >
+    <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
     <div >Do you wish to continue?</div>
@@ -150,7 +137,7 @@
   </div>
 
   <div class="col-sm-12 col-md-6">
-    <div class="card " >
+    <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
     <div >Do you wish to continue?</div>
@@ -172,7 +159,7 @@
 <!-- /업무에 지원 해 보세요! -->
 <br><br>
 <!-- faq&트렉스 파트너의 후기-->
-<div class="container-fluid text-center" >
+<div class="container-fluid padding text-center" >
 <div class="container">
 <div class="sectionContent">
 <div class="row">
@@ -222,11 +209,7 @@ transform: rotate(0deg) ;
       </div>
       <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
         <div class="card-body">
-          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
-          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
-          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
-          4) Check your email. You will have received an email with a link to reset your password.<br><br>
-          5) You will be able to reset your password from the given link.
+          답변.
         </div>
       </div>
     </div>
@@ -240,11 +223,7 @@ transform: rotate(0deg) ;
       </div>
       <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
         <div class="card-body">
-          1) Click the "Log In / Sign Up" button at the top right corner of the website.<br><br>
-          2) Click the <text style="color:blue;">Find My Account</text> button at the bottom of the login page.<br><br>
-          3) Enter the email address that you registered with and click <button class="btn btn-primary" style="background-color: #F4573C;" disabled>Reset Password</button>.<br><br>
-          4) Check your email. You will have received an email with a link to reset your password.<br><br>
-          5) You will be able to reset your password from the given link.
+          답변.
         </div>
       </div>
     </div>
@@ -252,24 +231,59 @@ transform: rotate(0deg) ;
 </ol>
 </div>
 
+
 <div class="col-md-12 col-lg-5">
-  <h2><span style='color: #ffcc00'>트렉스 파트너</span>의 후기</h2>
-</div>
-</div>
-</div>
+  <h2><span style='color:#f8ba00'>트렉스 파트너</span>의 후기</h2>
+  <!--Carousel Wrapper-->
+  <div id="slides2" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Indicators-->
+    <ul class="carousel-indicators">
+      <li data-target="#slides2" data-slide-to="0" class="active"></li>
+      <li data-target="#slides2" data-slide-to="1"></li>
+      <li data-target="#slides2" data-slide-to="2"></li>
+    </ul>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" > <!-- add role="listbox" if needed-->
+       <div class="carousel-item active">
+         <div class="grid-container">
+           <div class="grid-item item5 text-center" ><img class="rounded-circle" src="nibbler.jpeg" style="width:70px;height:70px;"></div>
+           <div class="grid-item item6 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
+           <div class="grid-item item7 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+         </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="grid-container">
+          <div class="grid-item item5 text-center" ><img class="rounded-circle" src="nibbler.jpeg" style="width:70px;height:70px;"></div>
+          <div class="grid-item item6 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
+          <div class="grid-item item7 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+        </div>
+     </div>
+     <div class="carousel-item">
+       <div class="grid-container">
+         <div class="grid-item item5 text-center" ><img class="rounded-circle" src="nibbler.jpeg" style="width:70px;height:70px;"></div>
+         <div class="grid-item item6 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
+         <div class="grid-item item7 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+       </div>
+    </div>
+    </div>
+    <!--/.Slides-->
+
+  </div>
+  <!--/.Carousel Wrapper-->
+
+
 </div>
 
+</div>
+</div>
+</div>
 <button type="button" class="btn btn-secondary">파트너 질문 더 보기</button>
 </div>
 <!-- /faq&트렉스 파트너의 후기-->
 <br><br>
 
-</body>
-</html>
-
-
-
-<% include ./partials/footer %> 
-
+<% include ./partials/footer %>
 </body>
 </html>
