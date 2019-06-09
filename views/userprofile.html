@@ -109,15 +109,66 @@
                                 <a href="#" class="btn btn-info editbuttons" id="confirm">확인</a>
                             </div>
                             <div class="divider"></div>
+                            <select id="inputState" class="form-control langselect" style="width: 100%;">
+                              <option selected>가능 서비스 선택...</option>
+                              <option>현지 통역 서비스</option>
+                              <option>현지 차량 서비스</option>
+                              <option>현지 기관 서비스</option>
+                            </select>
+                                <div class="choice" id="translate">
+                                    <p class="title">현지 통역 서비스<span class="exit">x</span></p>
+                                </div>
+                                <div class="choice" id="cars">
+                                    <p class="title">현지 차량 서비스<span class="exit">x</span></p>
+                                </div>
+                                <div class="choice" id="agency">
+                                    <p class="title">현지 기관 서비스<span class="exit">x</span></p>
+                                </div>
                         </div>
                         <div class="row sections">
-                            <p class="basictitle"><b>기본 정보</b></p>
+                            <p class="basictitle"><b>언어</b></p>
                             <div class="buttons">
                                 <a href="#" class="btn btn-info editbuttons" id="edit">편집</a>
                                 <a href="#" class="btn btn-info editbuttons" id="cancel">취소</a>
                                 <a href="#" class="btn btn-info editbuttons" id="confirm">확인</a>
                             </div>
                             <div class="divider"></div>
+                            <div class="row language">
+                                <span><b>한국어</b></span>
+                                <span>
+                                    <div class="percentage"
+                                        style="width: 70%;
+                                                height: 100%;
+                                                background-color: rgb(208, 255, 151);
+                                                border-radius: 10px;"></div>70%
+                                </span>
+                            </div>
+                            <div class="row language">
+                                  <select id="inputState" class="form-control langselect" style="width: 30%;">
+                                    <option selected>언어 선택...</option>
+                                    <option>영어</option>
+                                    <option>한국어</option>
+                                    <option>프랑스어</option>
+                                    <option>스페인어</option>
+                                    <option>중국어</option>
+                                    <option>일본어</option>
+                                  </select>
+
+                                  <select id="inputState" class="form-control proficiency" style="width: 30%;">
+                                    <option selected>숙련도 선택...</option>
+                                    <option>10%</option>
+                                    <option>20%</option>
+                                    <option>30%</option>
+                                    <option>40%</option>
+                                    <option>50%</option>
+                                    <option>60%</option>
+                                    <option>70%</option>
+                                    <option>80%</option>
+                                    <option>90%</option>
+                                    <option>100%</option>
+                                  </select>
+                            </div>
+                            <button class="btn btn-info addbutton">+ 언어 추가</button>
                         </div>
                     </div>
                 </div>
@@ -131,6 +182,13 @@
                 var currentActive = menu.querySelector(".active");
                 $(currentActive).toggleClass("active");
                 $(e.target).toggleClass("active");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(() => {
+            $(".exit").click((e) => {
+                e.target.parentElement.parentElement.remove();
             });
         });
     </script>

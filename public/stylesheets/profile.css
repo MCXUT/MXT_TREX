@@ -59,7 +59,7 @@
     border: 1px solid rgb(166, 80, 110);
 }
 .bottom .col-md-8 .sections {
-    margin: 5% 10%;
+    margin: 5% 10% 10%;
 }
 .bottom .col-md-8 .divider {
     width: 100%;
@@ -85,7 +85,6 @@
     color: black;
 }
 .bottom .sections .element {
-    list-style: none;
     font-size: 16px;
     padding: 10px 0px;
     width: 100%;
@@ -103,4 +102,76 @@
     display: inline;
     width: 50%;
     float: right;
+}
+
+.sections .choice {
+    text-align: center;
+    margin: 10px 0;
+    width: 60%;
+    border-radius: 10px;
+}
+.sections .choice .title {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.sections .choice .exit {
+    margin-right: 10px;
+    float: right;
+    cursor: pointer;
+    color: rgba(20, 20, 20, 0.3);
+    font-size: 18px;
+}
+.sections .choice .exit:hover {
+    color: rgba(20, 20, 20, 1);
+}
+#translate {
+    background-color: rgb(203, 226, 237);
+}
+#cars {
+    background-color: rgb(241, 158, 155);
+}
+#agency {
+    background-color: rgb(209, 244, 200);
+}
+.sections .remove .btn-primary {
+    background-color: red;
+    width: 70% !important;
+    height: 40%;
+    margin-top: 20px !important;
+}
+
+.bottom .sections .btn.addbutton {
+    width: 100px;
+    background-color: white;
+    color: rgba(30, 30, 30, 0.4);
+    border: 1px dashed rgba(30, 30, 30, 0.4);
+    margin-top: 20px;
+}
+.bottom .sections .btn.addbutton:hover {
+    width: 100px;
+    background-color: white;
+    color: rgba(30, 30, 30, 1);
+    border: 1px dashed rgba(30, 30, 30, 1);
+}
+
+.bottom .sections .language {
+    font-size: 16px;
+    padding: 20px 0px;
+    width: 100%;
+}
+.bottom .sections .language span:first-child {
+    margin-left: 10%;
+    width: 30% !important;
+    text-align: left;
+}
+.bottom .sections .language span:last-child {
+    width: 60% !important;
+    text-align: right;
+    background-color: rgba(200, 200, 200, 0.6);
+    border-radius: 15px;
+}
+
+.bottom .sections .language #inputState {
+    width: 30% !important;
+    margin: 0 10%;
 }
