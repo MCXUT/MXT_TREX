@@ -83,11 +83,10 @@ passport.use(
         console.log("This is FoundUser"+ foundUser);
         done(null, foundUser);
       } else {
-        console.log(profile);
-        console.log(profile.emails);
         new Client({
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
+            password: profile.emails[0].value,
             facebookID: profile.id
         }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
@@ -96,16 +95,6 @@ passport.use(
       }
     });
   }))
-    // const user = new Client({
-    //   name: profile.name.givenName + " " + profile.name.familyName,
-    //   email: profile.emails[0].value,
-    //   facebookID: profile.id
-    // });
-    // User.findOne({facebookID: profile.id}).then((foundUser) =>
-    // loginByThirdParty(user,foundUser,done);
-//   }
-// )
-// }
 
 passport.serializeUser((user, done) => {
     done(null, user._id);
