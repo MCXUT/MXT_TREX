@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 
-app.get("/user_profile", (req, res) => {
+router.get("/user_profile", (req, res) => {
     var info = {
         gender: "남자",
         area: "몬트리올",
@@ -12,7 +12,7 @@ app.get("/user_profile", (req, res) => {
     res.render("userprofile", {info: info});
 });
 
-app.post("/user_profile", (req, res) => {
+router.post("/user_profile", (req, res) => {
     var newinfo = req.body;
     console.log(newinfo);
     res.render("userprofile", {info: newinfo});
