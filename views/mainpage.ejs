@@ -3,12 +3,63 @@
 <head>
   <title>MxTwebsite</title>
   <meta charset="utf-8">
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <% include ./partials/header %>
 </head>
 
 <body>
     <% include ./partials/navbar %>
 
+
+    <!-- <a id="custom-login-btn" href="javascript:loginWithKakao()">
+    <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+    </a>
+    <script type='text/javascript'>
+      //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('7188d01694d4a7d45287f28046236a1d');
+        function loginWithKakao() {
+          // 로그인 창을 띄웁니다.
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+              alert(JSON.stringify(res.kakao_account.email));
+            },
+            fail: function(error) {
+              alert(JSON.stringify(error));
+            }
+          });
+        };
+      //]]>
+    </script> -->
+    <a id="kakao-login-btn"></a>
+      <script type='text/javascript'>
+        //<![CDATA[
+          // 사용할 앱의 JavaScript 키를 설정해 주세요.
+          Kakao.init('7188d01694d4a7d45287f28046236a1d');
+          // 카카오 로그인 버튼을 생성합니다.
+          Kakao.Auth.createLoginButton({
+            container: '#kakao-login-btn',
+            success: function(authObj) {
+              // 로그인 성공시, API를 호출합니다.
+              Kakao.API.request({
+                url: '/v2/user/me',
+                success: function(res) {
+                  console.log(JSON.stringify(res));
+                },
+                fail: function(error) {
+                  console.log(JSON.stringify(error));
+                }
+              });
+            },
+            fail: function(err) {
+              alert(JSON.stringify(err));
+            }
+          });
+        //]]>
+      </script>
+    
+    
 
 <div class="">
 </div>
@@ -235,7 +286,7 @@ transform: rotate(0deg) ;
   <div id="accordion">
     <div class="card" >
       <div class="card-header" id="heading-1">
-        <div class="mb-0" style="padding-bottom:4%;">
+        <div class="mb-0" >
           <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1" >
             출장지 인근에 검색 되는 파트너가 없습니다. 어떻게 해야 하나요?   </a>
         </div>
@@ -250,7 +301,7 @@ transform: rotate(0deg) ;
 
     <div class="card">
       <div class="card-header" id="heading-2">
-        <div class="mb-0" style="padding-bottom:4%;">
+        <div class="mb-0" s>
           <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
             파트너 급여 지급은 어떻게 하나요?  </a>
         </div>
@@ -264,7 +315,7 @@ transform: rotate(0deg) ;
 
     <div class="card">
       <div class="card-header" id="heading-3">
-        <div class="mb-0" style="padding-bottom:4%;">
+        <div class="mb-0" >
           <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
             트렉스 검증 프로세스가 무엇 인가요?  </a>
         </div>
@@ -340,6 +391,10 @@ transform: rotate(0deg) ;
 </div>
 <!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
 <br><br>
+
+
+
+
 
 <% include ./partials/footer %>
 
