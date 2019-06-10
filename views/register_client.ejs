@@ -20,6 +20,9 @@
           <h5><p>클라이언트로 가입하기</p></h5>
 
           <div class="loginform">
+            <% if (error) { %>
+              <span style="color:red"><%= error %></span>
+            <% } %>
               <form action="/auth/register/client" method="post">
 
                   <p>성함</p>
