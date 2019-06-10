@@ -59,7 +59,7 @@
     border: 1px solid rgb(166, 80, 110);
 }
 .bottom .col-md-8 .sections {
-    margin: 5% 10% 10%;
+    margin: 5% 10% 7%;
 }
 .bottom .col-md-8 .divider {
     width: 100%;
@@ -79,6 +79,10 @@
     width: 60px;
     float: right;
     margin: 0 5px;
+    display: none;
+}
+.bottom .col-md-8 .sections .btn.activebutton {
+    display: block;
 }
 .bottom .col-md-8 .sections #cancel {
     background-color: white;
@@ -98,11 +102,22 @@
     width: 50% !important;
     text-align: left;
 }
+.bottom .sections .element span.answer {
+    width: 50% !important;
+    float:right;
+}
+.bottom .sections .element .switch {
+    display: none;
+}
+.bottom .sections .element .switch.active {
+    display: inline
+}
 .bottom .sections .element .form-control {
     display: inline;
     width: 50%;
     float: right;
 }
+
 
 .sections .choice {
     text-align: center;
