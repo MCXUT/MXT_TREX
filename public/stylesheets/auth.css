@@ -3,9 +3,10 @@
 }
 
 /* LOGIN SECTION */
-.auth_content .loginform {
-    padding-top: 50px;
-}
+/* .auth_content .loginform {
+    padding-top: 10px;
+} */
+
 
 .loginform {
     color: rgba(30, 30, 30, 0.5);
@@ -27,9 +28,34 @@
 .login-form-links {
     margin-bottom: 15px;
 }
+
+.loginform .loginasclient, .loginform .loginaspartner {
+    display: inline-block;
+    width: 40%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 5%;
+    color: rgb(0, 113, 191);
+}
+.loginform .loginasclient.active, .loginform .loginaspartner.active {
+    cursor: default;
+}
+/* .loginform .loginaspartner {
+    display: inline-block;
+
+    width: 40%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 5%;
+} */
+
+
 .form-group {
     padding: 15px 20px 0 20px;
     width: 330px;
+    display: none;
 }
 .form-group div {
     padding-bottom: 10px;
@@ -62,7 +88,7 @@
 
 @media (max-width: 576px) {
     .auth_content p {
-        font-size: 22px;
+        font-size: 16px;
     }
     .loginform {
         width: 270px;
@@ -129,4 +155,11 @@
     .row .col-md-6 {
         margin: 30px 0;
     }
+}
+
+.clientform,.partnerform {
+    display: none;
+}
+.clientform.active,.partnerform.active {
+    display:block;
 }
