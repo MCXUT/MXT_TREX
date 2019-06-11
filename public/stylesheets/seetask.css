@@ -1,0 +1,55 @@
+.task{
+margin-top:5%;
+width:80%;
+border:1px solid #999999;
+border:1px solid #999999;
+border-radius: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 1px;
+  background-color: transparent;
+  padding: 1px;
+  margin-right:5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+
+}
+
+.grid-item {
+  background-color: transparent;
+  text-align: left;
+  padding: 20px;
+  font-size: 17px;
+  border:1px solid #999999;
+  border-radius: 10px;
+
+}
+
+.item11 {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.item12 {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.item13 {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+.item14 {
+  grid-column: 4 ;
+  grid-row: 3;
+}
+
+
+.linespace{
+  height:10px;
+}
+.linespace{
+  height:5px;
+}
