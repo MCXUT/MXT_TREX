@@ -127,7 +127,6 @@ passport.use("login-kakao", new KakaoStrategy({
       if(foundUser) {
         done(null, foundUser);
       } else {
-        // console.log(profile);
         // If the user agrees to share Kakao Account Email
         if(profile._json.kaccount_email) {
           new Client({

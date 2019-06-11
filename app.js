@@ -19,6 +19,7 @@ const loginRoutes = require("./routes/login");
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
 const servicePages = require("./routes/service");
+const taskRoutes = require("./routes/tasks");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb.user + ":" + keys.mongodb.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -81,6 +82,7 @@ app.use('/auth', loginRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", servicePages);
+app.use("/", taskRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
