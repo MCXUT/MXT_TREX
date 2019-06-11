@@ -27,6 +27,11 @@
         <div class="loginform">
             <div class="loginasclient"><p>클라이언트</p></div>
             <div class="loginaspartner active"><p>파트너</p></div>
+
+            <% if (error) { %>
+              <span style="color: red"><%= error %></span>
+            <% } %>
+
             <form class="clientform" action="/auth/login" method="POST">
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>

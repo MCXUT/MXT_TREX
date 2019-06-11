@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>개별 업무 보기 & 업무 지원 하기</title>
+  <meta charset="utf-8">
+  <% include ./partials/header %>
+  <link rel="stylesheet" href="../static/stylesheets/seetask.css">
+</head>
+
+<body>
+  <% include ./partials/navbar %>
+
+
+  <div class="container-fluid task" >
+    <h1 style="margin:2%;"><b>트렉스 #통역 업무 @ 영국, 런던</b></h1>
+    <div class="grid-container">
+      <div class="grid-item item11">
+        <h4>근무내용</h4>
+        <div class="linespace"></div>
+        - 클라이언트 명 <br>
+        - 위치 <br>
+        - 날짜 <br>
+        - 시간 <br>
+        <br><br><br><br>
+      </div>
+      <div class="grid-item item12">
+        <h4>모집 인원 및 내용</h4>
+          <div class="linespace"></div>
+            - 모집 인원 <br>
+            - 필요한 서비스 <br>
+            - 모집 분야 <br>
+            - 상세 내용 <br>
+            - 추가 내용 <br>
+            <br><br><br><br></div>
+
+      <div class="grid-item item13">
+        <h4>업무 관련 사항 일러스트로 추가하기</h4>
+        <div class="linespace"></div>
+        <br><br>
+      </div>
+
+      <div class="grid-item item14 ">
+
+        <% include ./partials/applymodal %>
+        <button type="button" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#myModal" style="right:50%;">지원하기</button>
+        <br>
+        <div class="linespace2">
+        </div>
+        <button type="button" class="btn btn-light btn-lg" href="#" style="right:5%;">저장하기</button>
+
+      </div>
+    </div>
+  </div>
+
+
+
+    <% include ./partials/footer %>
+</body>
+</html>

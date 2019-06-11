@@ -9,13 +9,14 @@ const Partner = require("../models/Partner");
 const keys = require("./keys");
 const middleware = require("../middlewares/middleware");
 
+
 //Passport-local Strategy
 passport.use(
     "local-login", new LocalStrategy({
         usernameField: "email",
         passwordField: "password"
     }, (username, password, done) => {
-      middleware.searchTypebyEmail(username, (user, type) => {
+      middleware.searchTypebyEmail(username, (type) => {
         if (type === "c") {
           Client.getClientByUsername(username, (err, user) => {
               if(err) throw err;
@@ -34,8 +35,7 @@ passport.use(
                   }
               });
           });
-        }
-        else {
+        } else if (type === "p") {
           Partner.getPartnerByUsername(username, (err, user) => {
               if(err) throw err;
               if(!user) {
@@ -53,6 +53,8 @@ passport.use(
                   }
               });
           });
+        } else {
+          return done(null, false, {message: "No user exists with such email."});
         }
       })
     })
@@ -125,7 +127,6 @@ passport.use("login-kakao", new KakaoStrategy({
       if(foundUser) {
         done(null, foundUser);
       } else {
-        // console.log(profile);
         // If the user agrees to share Kakao Account Email
         if(profile._json.kaccount_email) {
           new Client({

@@ -12,9 +12,9 @@ router.get("/login", function(req,res){
 
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: "/",
-    failureRedirect: "/auth/login"
-    // failureFlash: true,
-    // successFlash: "Successfully logged in"
+    failureRedirect: "back",
+    failureFlash: true,
+    successFlash: "Successfully logged in"
 }), (req, res) => {
 
 });
