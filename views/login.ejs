@@ -24,6 +24,9 @@
         </h3>
 
         <div class="loginform">
+          <% if (error) { %>
+            <span style="color: red"><%= error %></span>
+          <% } %>
         <form action="/auth/login" method="POST">
 
             <p>이메일</p>

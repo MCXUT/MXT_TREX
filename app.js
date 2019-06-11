@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 
 const passport = require("./config/passport");
@@ -46,11 +47,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// app.use(flash());
+app.use(flash());
 app.use(function (req, res, next) {
-    res.locals.currentUser = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
 
-    next();
+  next();
 });
 
 

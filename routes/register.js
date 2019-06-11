@@ -32,23 +32,23 @@ router.post("/register/client", function(req, res) {
   };
 
   if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {
-      // req.flash("error_signup", "Some information is missing");
-      return res.redirect("/");
+      req.flash("error", "Some information is missing");
+      return res.redirect("/auth/register/client");
   }
 
   Client.getClientByUsername(newClient.email, function(err,user){
     if(err) throw err;
     if(user) {
-      // req.flash("error_signup", "Email is already taken!");
-      return res.redirect("/");
+      req.flash("error", "Email is already taken!");
+      return res.redirect("/auth/register/client");
     } else {
       bcrypt.hash(req.body.password2, 10, function (err, hash){
         if(err) throw err;
         Client.comparePassword(newClient.password, hash, function (err, isMatch) {
           if(err) throw err;
           if(!isMatch) {
-            // req.flash("error_signup", "Passwords do not match");
-            return res.redirect("/");
+            req.flash("error", "Passwords do not match");
+            return res.redirect("/auth/register/client");
           } else {
             var user = new Client({
               name: newClient.name,
@@ -77,23 +77,23 @@ router.post("/register/partner", function(req, res) {
   };
 
   if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {
-      // req.flash("error_signup", "Some information is missing");
-      return res.redirect("/");
+      req.flash("error", "Some information is missing");
+      return res.redirect("/auth/register/partner");
   }
 
   Partner.getPartnerByUsername(newPartner.email, function(err,user){
     if(err) throw err;
     if(user) {
-      // req.flash("error_signup", "Email is already taken!");
-      return res.redirect("/");
+      req.flash("error", "Email is already taken!");
+      return res.redirect("/auth/register/partner");
     } else {
       bcrypt.hash(req.body.password2, 10, function (err, hash){
         if(err) throw err;
         Partner.comparePassword(newPartner.password, hash, function (err, isMatch) {
           if(err) throw err;
           if(!isMatch) {
-            // req.flash("error_signup", "Passwords do not match");
-            return res.redirect("/");
+            req.flash("error", "Passwords do not match");
+            return res.redirect("/auth/register/partner");
           } else {
             var user = new Partner({
               name: newPartner.name,
