@@ -45,6 +45,7 @@ $(document).ready(() => {
                     url: basicinfoform.attr("action"),
                     data: basicinfoform.serialize()
                 });
+                basicinfoform.reset();
 
                 var spans = document.querySelectorAll(".switch");
                 spans.forEach((span) => {

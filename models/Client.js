@@ -8,19 +8,28 @@ var ClientSchema = mongoose.Schema({
     isVerified: {type: Boolean, default: false},
     password: String,
     dateOfBirth: Date,
+    // address: {
+    //   unit: String,
+    //   street: String,
+    //   pc: String,
+    //   province: String,
+    //   country: String
+    // },
     address: {
-      unit: String,
-      street: String,
-      pc: String,
-      province: String,
-      country: String
+      type: String,
+      default: ""
+    },
+    coordinates: {
+      lat: Number,
+      lng: Number,
+      default: {}
     },
     phoneNumber: Number,
     kakaoID: String,
     facebookID: String,
     //For test
     pic: String
-});
+}, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);
 

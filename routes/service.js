@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 
 //////// 고객센터 관련 routes /////////
 
