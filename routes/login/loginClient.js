@@ -26,7 +26,7 @@ router.get("/facebook/callback", thirdPartyClient.authenticate("login-facebook",
 });
 
 // KakaoTalk Login for Client
-router.get("/kakao", thirdPartyClient.authenticate("login-kakao"));
+router.get("/kakao/client", thirdPartyClient.authenticate("login-kakao"));
 
 router.get("/kakao/callback", thirdPartyClient.authenticate("login-kakao", {
   successRedirect: "/",

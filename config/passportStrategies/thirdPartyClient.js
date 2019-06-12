@@ -82,4 +82,4 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-module.exports = thirdPartyClient;
+module.exports = passport;

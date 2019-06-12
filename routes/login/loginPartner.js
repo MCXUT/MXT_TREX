@@ -4,52 +4,32 @@ const router = express.Router()
 const localPartner = require("../../config/passportStrategies/localPartner");
 const thirdPartyPartner = require("../../config/passportStrategies/thirdPartyPartner");
 
-// Local Strategy for Client log-in
-router.post('/login/client', passport.authenticate('local-login', {
-    successRedirect: "/",
-    failureRedirect: "back",
-    failureFlash: true,
-    successFlash: "Successfully logged in"
-}), (req, res) => {
-
-});
 
 // Local Strategy for Partner log-in
-router.post('/login/partner', passport.authenticate('local-login', {
+router.post('/login/partner', localPartner.authenticate('local-login', {
     successRedirect: "/",
     failureRedirect: "back",
     failureFlash: true,
     successFlash: "Successfully logged in"
 }), (req, res) => {
-
-});
-
-// Facebook Login for Client
-router.get("/facebook", passport.authenticate("facebook", {
-  scope: ["email","public_profile"]}));
-// Facebook login callback
-router.get("/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login"
-}), (req,res) => {
 
 });
 
 // Facebook Login for Partner
-router.get("/facebook", passport.authenticate("facebook", {
+router.get("/facebook/partner", thirdPartyPartner.authenticate("login-facebook", {
   scope: ["email","public_profile"]}));
 // Facebook login callback
-router.get("/facebook/callback", passport.authenticate("facebook", {
+router.get("/facebook/callback", thirdPartyPartner.authenticate("login-facebook", {
   successRedirect: "/",
   failureRedirect: "/auth/login"
 }), (req,res) => {
 
 });
 
+// KakaoTalk Login for Partner
+router.get("/kakao/partner", thirdPartyPartner.authenticate("login-kakao"));
 
-router.get("/kakao", passport.authenticate("login-kakao"));
-
-router.get("/kakao/callback", passport.authenticate("login-kakao", {
+router.get("/kakao/callback", thirdPartyPartner.authenticate("login-kakao", {
   successRedirect: "/",
   failureRedirect: "/auth/login"
 }));
