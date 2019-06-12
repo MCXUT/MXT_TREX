@@ -26,7 +26,10 @@ router.get("/user_profile", (req, res) => {
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
     }
-    res.render("userprofile", {userInfo: userInfo});
+    res.render("userprofile", {userInfo: userInfo, langinfo: {
+        langchoice: [],
+        langproficiency: []
+    }});
   }
 });
 
@@ -85,5 +88,16 @@ router.post("/user_profile", (req, res) => {
   
   // res.redirect("/user_profile");
 });
+
+router.post("/user_profile/language", (req, res) => {
+
+    var newinfo = {
+        langchoice: req.body.langchoice,
+        langproficiency: req.body.langproficiency
+    }
+    console.log(newinfo);
+
+    res.render("userprofile", {info: {}, langinfo: newinfo});
+})
 
 module.exports = router;

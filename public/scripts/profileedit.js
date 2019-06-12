@@ -1,63 +1,105 @@
+
+
 $(document).ready(() => {
-    // var editbutton = document.getElementById("edit");
-    // var confirmbutton = document.getElementById("confirm");
-    // var cancelbutton = document.getElementById("cancel");
     var editbuttons = document.querySelectorAll("#edit");
     var confirmbuttons = document.querySelectorAll("#confirm");
     var cancelbuttons = document.querySelectorAll("#cancel");
 
-    editbuttons.forEach((editbutton) => {
-        $(editbutton).click((e) => {
-            e.preventDefault();
+    // editbuttons.forEach((editbutton) => {
+    //     $(editbutton).click((e) => {
+    //         // e.preventDefault();
+    //
+    //         var parentDivision = editbutton.parentElement;
+    //         var parentDivisionClass = parentDivision.className.split(" ");
+    //         var allButtons = parentDivision.querySelectorAll("button");
+    //         allButtons.forEach((button) => {
+    //             $(button).toggleClass("activebutton");
+    //         });
+    //
+    //         if(parentDivisionClass[1] === "basicinfo") {
+    //             var spans = document.querySelectorAll(".switch");
+    //             spans.forEach((span) => {
+    //                 $(span).toggleClass("active");
+    //             });
+    //         } else if(parentDivisionClass[1] === "languageinfo") {
+    //             $(".language").remove();
+    //
+    //             var langinfo = "";
+    //             console.log(langinfo);
+    //             // for(var i = 0; )
+    //             $(".lang").append(manipulateAdd);
+    //
+    //
+    //             var addbutton = $(".lang").find(".addbutton");
+    //             $(addbutton).toggleClass("addactive");
+    //
+    //             $(addbutton).off().click((e) => {
+    //                 $(".lang").append(manipulateAdd());
+    //             });
+    //         }
+    //     });
+    // });
 
-            var parentDivision = editbutton.parentElement;
-            var parentDivisionClass = parentDivision.className.split(" ");
-            var allButtons = parentDivision.querySelectorAll("button");
-            allButtons.forEach((button) => {
-                $(button).toggleClass("activebutton");
-            });
 
-            if(parentDivisionClass[1] === "basicinfo") {
-                var spans = document.querySelectorAll(".switch");
-                spans.forEach((span) => {
-                    $(span).toggleClass("active");
-                });
-            }
+    // confirmbuttons.forEach((confirmbutton) => {
+    //     $(confirmbutton).unbind().click((e) => {
+    //         var parentDivision = confirmbutton.parentElement;
+    //         var parentDivisionClass = parentDivision.className.split(" ");
+    //         var allButtons = parentDivision.querySelectorAll("button");
+    //         allButtons.forEach((button) => {
+    //             $(button).toggleClass("activebutton");
+    //         });
+    //
+    //         if(parentDivisionClass[1] === "basicinfo") {
+    //
+    //             var basicinfoform = $("#basicinfoform");
+    //             // console.log($(basicinfoform).serialize());
+    //             $.ajax({
+    //                 type: basicinfoform.attr("method"),
+    //                 url: basicinfoform.attr("action"),
+    //                 data: basicinfoform.serialize()
+    //             });
+    //
+    //             // var spans = document.querySelectorAll(".switch");
+    //             // spans.forEach((span) => {
+    //             //     $(span).toggleClass("active");
+    //             // });
+    //         } else if(parentDivisionClass[1] === "serviceinfo") {
+    //             var serviceform = $("#serviceform");
+    //             console.log(serviceform.serialize());
+    //         }
+    //         var spans = document.querySelectorAll(".switch");
+    //         spans.forEach((span) => {
+    //             $(span).toggleClass("active");
+    //         });
+    //     });
+    // });
+
+    $("#languageform").unbind().submit((e) => {
+        var languageform = $("#languageform");
+        console.log(languageform.serialize());
+        $.ajax({
+            type: languageform.attr("method"),
+            url: languageform.attr("action"),
+            data: languageform.serialize()
         });
-    });
 
+        languageform.reset();
 
-    confirmbuttons.forEach((confirmbutton) => {
-        $(confirmbutton).click((e) => {
-            var parentDivision = confirmbutton.parentElement;
-            var parentDivisionClass = parentDivision.className.split(" ");
-            var allButtons = parentDivision.querySelectorAll("button");
-            allButtons.forEach((button) => {
-                $(button).toggleClass("activebutton");
-            });
+        var addbutton = $(".lang").find(".addbutton");
+        $(addbutton).toggleClass("addactive");
 
-            if(parentDivisionClass[1] === "basicinfo") {
+        $(".languagedropdown").remove();
 
-                var basicinfoform = $("#basicinfoform");
-                // console.log($(basicinfoform).serialize());
-                $.ajax({
-                    type: basicinfoform.attr("method"),
-                    url: basicinfoform.attr("action"),
-                    data: basicinfoform.serialize()
-                });
-                basicinfoform.reset();
-
-                var spans = document.querySelectorAll(".switch");
-                spans.forEach((span) => {
-                    $(span).toggleClass("active");
-                });
-            }
+        var spans = document.querySelectorAll(".switch");
+        spans.forEach((span) => {
+            $(span).toggleClass("active");
         });
     });
 
     cancelbuttons.forEach((cancelbutton) => {
         $(cancelbutton).click((e) => {
-            e.preventDefault();
+            // e.preventDefault();
             var parentDivision = cancelbutton.parentElement;
             var parentDivisionClass = parentDivision.className.split(" ");
             var allButtons = parentDivision.querySelectorAll("button");
@@ -70,7 +112,33 @@ $(document).ready(() => {
                 spans.forEach((span) => {
                     $(span).toggleClass("active");
                 });
+            } else if(parentDivisionClass[1] === "languageinfo") {
+                var addbutton = $(".lang").find(".addbutton");
+                $(addbutton).toggleClass("addactive");
+
+                $(".languagedropdown").remove();
             }
         });
     })
+});
+
+var manipulateAdd = () => {
+    return '<div class="row language languageinput">' +
+             '<span class="langexit">x</span>' +
+             '<input form="languageform" name="langchoice" id="inputState" class="form-control langselect">' +
+             '<input form="languageform" name="langproficiency" id="inputState" class="form-control proficiency">' +
+        '</div>' +
+        '<script>' +
+            '$(document).ready(() => {' +
+                '$(".langexit").click((e) => {' +
+                    'e.target.parentElement.remove();' +
+                '});' +
+            '});' +
+        '</script>';
+};
+
+$(document).ready(() => {
+    $(".exit").click((e) => {
+        e.target.parentElement.parentElement.remove();
+    });
 });
