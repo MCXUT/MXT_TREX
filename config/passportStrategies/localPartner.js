@@ -39,4 +39,4 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-module.exports = localPartner;
+module.exports = passport;

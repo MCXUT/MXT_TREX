@@ -3,7 +3,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
 
-const Client = require("../../models/Client");
+const Partner = require("../../models/Partner");
 const keys = require("../keys");
 
 passport.use("login-facebook", new FacebookStrategy({
@@ -13,14 +13,14 @@ passport.use("login-facebook", new FacebookStrategy({
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
-      Client.findOne({
+      Partner.findOne({
         facebookID: profile.id
       }).then((foundUser) => {
         if (foundUser) {
           console.log("This is FoundUser" + foundUser);
           done(null, foundUser);
         } else {
-          new Client({
+          new Partner({
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
             facebookID: profile.id,
@@ -40,7 +40,7 @@ passport.use("login-kakao", new KakaoStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     // The user info is in profile
-    Client.findOne({
+    Partner.findOne({
       kakaoID: profile.id
     }).then((foundUser) => {
       if (foundUser) {
@@ -48,7 +48,7 @@ passport.use("login-kakao", new KakaoStrategy({
       } else {
         // If the user agrees to share Kakao Account Email
         if (profile._json.kaccount_email) {
-          new Client({
+          new Partner({
             name: profile.displayName,
             email: profile._json.kaccount_email,
             kakaoID: profile.id
@@ -59,7 +59,7 @@ passport.use("login-kakao", new KakaoStrategy({
         } else {
           // If the user doesn't want to provide their Kakao Account Email
           // Must prompt them to give us an Email
-          new Client({
+          new Partner({
             name: profile.displayName,
             kakaoID: profile.id
           }).save().then((newUser) => {
@@ -77,9 +77,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  Client.findById(id, (err, user) => {
+  Partner.findById(id, (err, user) => {
     done(err, user);
   });
 });
 
-module.exports = thirdPartyClient;
+module.exports = passport;
