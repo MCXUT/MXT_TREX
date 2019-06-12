@@ -45,10 +45,18 @@
                                         <span class="answer switch active"><%= userInfo.type %></span>
                                         <span class="switch"><input form="basicinfoform" class="form-control" name="type" value="<%= userInfo.type %>"></span>
                                 </div> -->
+                                <!-- <div class="row element">
+                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>날짜</b></span>
+                                        <input type="date" class="answer switch active" id="startDate">
+                                        <span class="answer switch active"><%= userInfo.birthday %></span>
+                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
+
+                                </div> -->
+                                
                                 <div class="row element">
                                         <span><i class="fa fa-globe" aria-hidden="true"></i><b>생일</b></span>
-                                        <span class="answer switch active"><%= userInfo.birthday %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
+                                        <span class="answer switch active"><%= userInfo.displayBirthday %></span>
+                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
 
                                 </div>
                                 <div class="row element">

@@ -7,7 +7,7 @@ var ClientSchema = mongoose.Schema({
     email: { type: String, unique: true},//, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
-    dateOfBirth: Date,
+    dateOfBirth: String,
     // address: {
     //   unit: String,
     //   street: String,
@@ -24,7 +24,7 @@ var ClientSchema = mongoose.Schema({
       lng: Number,
       default: {}
     },
-    phoneNumber: Number,
+    phoneNumber: String,
     kakaoID: String,
     facebookID: String,
     //For test

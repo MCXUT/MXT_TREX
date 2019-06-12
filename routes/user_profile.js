@@ -1,5 +1,9 @@
 const express = require("express");
+const moment = require("moment");
 const router = express.Router();
+
+const Client = require("../models/Client");
+const Partner = require("../models/Partner");
 
 const keys = require("../config/keys");
 
@@ -19,10 +23,13 @@ router.get("/user_profile", (req, res) => {
     } else {
       type = "Client";
     }
+    var birthday = moment(res.locals.currentUser.dateOfBirth).format('YYYY-MM-DD');
+    var displayBirthday = moment(birthday).format('MMMM DD, YYYY');
     var userInfo = {
       name: res.locals.currentUser.name,
       type: type,
-      birthday: res.locals.currentUser.dateOfBirth,
+      birthday: birthday,
+      displayBirthday: displayBirthday,
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
     }
@@ -50,14 +57,25 @@ router.post("/user_profile", (req, res) => {
           lat: response.json.results[0].geometry.location.lat,
           lng: response.json.results[0].geometry.location.lng
         }
-        // Update zipcode and its coordinates
-        Client.findOneAndUpdate({ _id: res.locals.currentUser._id }, { $set: { dateOfBirth: req.body.birthday, address : req.body.address , coordinates: newCoordinates, phoneNumber: req.body.phoneNumber } }, function(err, board) {
+        // Find and update client profile
+        Client.findById(req.user._id, function(err, foundUser) {
           if (err) {
             console.log(err);
-            res.redirect("/user_profile");
+            return res.redirect("/user_profile");
           };
-          console.log("Profile Update Successful");
-          res.redirect("/user_profile");
+          foundUser.dateOfBirth = req.body.birthday;
+          foundUser.address = req.body.address;
+          foundUser.coordinates = newCoordinates;
+          foundUser.phoneNumber = req.body.phoneNumber;
+          foundUser.save((err) => {
+            if (err) {
+              console.log(err);
+              return res.redirect("/user_profile");
+            }
+            console.log("Profile Update Successful");
+            return res.redirect("/user_profile");
+          });
+          
         });
       }
     });
@@ -71,22 +89,30 @@ router.post("/user_profile", (req, res) => {
           lat: response.json.results[0].geometry.location.lat,
           lng: response.json.results[0].geometry.location.lng
         }
-        console.log(newCoordinates);
-        console.log(res.locals.currentUser._id);
-        // Update zipcode and its coordinates
-        Partner.findOneAndUpdate({ _id: res.locals.currentUser._id }, { $set: { birthday: req.body.birthday, address : req.body.address , coordinates: newCoordinates, phoneNumber: req.body.phoneNumber } }, function(err, board) {
+        // Find and update client profile
+        Partner.findById(req.user._id, function(err, foundUser) {
           if (err) {
             console.log(err);
-            res.redirect("/user_profile");
+            return res.redirect("/user_profile");
           };
-          console.log("Profile Update Successful");
-          res.redirect("/user_profile");
+          foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
+          foundUser.address = req.body.address;
+          foundUser.coordinates = newCoordinates;
+          foundUser.phoneNumber = req.body.phoneNumber;
+          foundUser.save((err) => {
+            if (err) {
+              console.log(err);
+              return res.redirect("/user_profile");
+            }
+            console.log("Profile Update Successful");
+            return res.redirect("/user_profile");
+          });
+    
         });
       }
     });
   }
   
-  // res.redirect("/user_profile");
 });
 
 router.post("/user_profile/language", (req, res) => {
