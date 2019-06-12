@@ -26,7 +26,7 @@
                 <div class="row bottom">
                     <div class="col-md-4">
                         <img class="profileimg" src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
-                        <p class="userName">John Doe</p>
+                        <p class="userName"><%= userInfo.name %>, (<%= userInfo.type %>)</p>
                         <a class="btn btn-primary form-control" href="#">사진 교체하기</a>
                     </div>
                     <div class="col-md-8">
@@ -40,33 +40,33 @@
                                     <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
                                 </div>
                                 <div class="divider"></div>
+                                <!-- <div class="row element">
+                                        <span><i class="fa fa-venus-mars" aria-hidden="true"></i><b>타입</b></span>
+                                        <span class="answer switch active"><%= userInfo.type %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="type" value="<%= userInfo.type %>"></span>
+                                </div> -->
                                 <div class="row element">
-                                        <span><i class="fa fa-venus-mars" aria-hidden="true"></i><b>성별</b></span>
-                                        <span class="answer switch active"><%= info.gender %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="gender" value="<%= info.gender %>"></span>
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>지역</b></span>
-                                        <span class="answer switch active"><%= info.area %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="area" value="<%= info.area %>"></span>
+                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>생일</b></span>
+                                        <span class="answer switch active"><%= userInfo.birthday %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
 
                                 </div>
                                 <div class="row element">
-                                        <span><i class="fa fa-flag" aria-hidden="true"></i><b>타 지역 업무 가능 여부</b></span>
-                                        <span class="answer switch active"><%= info.availability %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="availability" value="<%= info.availability %>"></span>
+                                        <span><i class="fa fa-flag" aria-hidden="true"></i><b>주소</b></span>
+                                        <span class="answer switch active"><%= userInfo.address %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="address" value="<%= userInfo.address %>"></span>
 
                                 </div>
                                 <div class="row element">
-                                        <span><i class="fa fa-laptop" aria-hidden="true"></i><b>직업</b></span>
-                                        <span class="answer switch active"><%= info.job %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="job" value="<%= info.job %>"></span>
+                                        <span><i class="fa fa-laptop" aria-hidden="true"></i><b>전화번호</b></span>
+                                        <span class="answer switch active"><%= userInfo.phoneNumber %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= userInfo.phoneNumber %>"></span>
                                 </div>
-                                <div class="row element">
+                                <!-- <div class="row element">
                                         <span><i class="fa fa-certificate" aria-hidden="true"></i><b>업종/전공</b></span>
-                                        <span class="answer switch active"><%= info.major %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="major" value="<%= info.major %>"></span>
-                                </div>
+                                        <span class="answer switch active"><%= userInfo.major %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="major" value="<%= userInfo.major %>"></span>
+                                </div> -->
                         </div>
 
                         <div class="row sections">
