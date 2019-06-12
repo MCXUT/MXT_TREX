@@ -24,6 +24,10 @@ var PartnerSchema = mongoose.Schema({
       lng: Number,
       default: {}
     },
+    languages: {
+      langchoice: String,
+      langproficiency: String
+    },
     phoneNumber: String,
     kakaoID: String,
     facebookID: String,
