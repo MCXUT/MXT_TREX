@@ -6,7 +6,7 @@ const KakaoStrategy = require("passport-kakao").Strategy;
 const Client = require("../../models/Client");
 const keys = require("../keys");
 
-passport.use("login-facebook", new FacebookStrategy({
+passport.use("client-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
       callbackURL: keys.facebookClientInfo.callback,
@@ -34,7 +34,7 @@ passport.use("login-facebook", new FacebookStrategy({
     }
 ));
 
-passport.use("login-kakao", new KakaoStrategy({
+passport.use("client-kakao", new KakaoStrategy({
     clientID: "6bfe97b371c7b6bb8e1e1ae0735d6775", // The REST API Key goes here
     callbackURL: "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
   },
@@ -72,14 +72,14 @@ passport.use("login-kakao", new KakaoStrategy({
   }
 ));
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  Client.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
+//
+// passport.deserializeUser((id, done) => {
+//   Client.findById(id, (err, user) => {
+//     done(err, user);
+//   });
+// });
 
 module.exports = passport;
