@@ -9,13 +9,14 @@ const Partner = require("../models/Partner");
 const keys = require("./keys");
 const middleware = require("../middlewares/middleware");
 
+
 //Passport-local Strategy
 passport.use(
     "local-login", new LocalStrategy({
         usernameField: "email",
         passwordField: "password"
     }, (username, password, done) => {
-      middleware.searchTypebyEmail(username, (user, type) => {
+      middleware.searchTypebyEmail(username, (type) => {
         if (type === "c") {
           Client.getClientByUsername(username, (err, user) => {
               if(err) throw err;
@@ -34,8 +35,7 @@ passport.use(
                   }
               });
           });
-        }
-        else {
+        } else if (type === "p") {
           Partner.getPartnerByUsername(username, (err, user) => {
               if(err) throw err;
               if(!user) {
@@ -53,6 +53,8 @@ passport.use(
                   }
               });
           });
+        } else {
+          return done(null, false, {message: "No user exists with such email."});
         }
       })
     })
@@ -86,7 +88,6 @@ passport.use(
         new Client({
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
-            password: profile.emails[0].value,
             facebookID: profile.id,
             pic: "https://graph.facebook.com/" + profile.id + "/picture?height=250&width=250"
         }).save().then((newUser) => {
@@ -117,7 +118,7 @@ passport.deserializeUser((id, done) => {
 
 
 passport.use("login-kakao", new KakaoStrategy({
-    clientID : "a1d2b0ec8597b88eb06cf6edf05e0048",  // The REST API Key goes here
+    clientID : "6bfe97b371c7b6bb8e1e1ae0735d6775",  // The REST API Key goes here
     callbackURL : "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
   },
   function(accessToken, refreshToken, profile, done) {
@@ -126,14 +127,28 @@ passport.use("login-kakao", new KakaoStrategy({
       if(foundUser) {
         done(null, foundUser);
       } else {
-        new Client({
-          name: profile.displayName,
-          password: profile.id + profile.displayName,
-          kakaoID: profile.id
-        }).save().then((newUser) => {
-          console.log("New Client Created: " + newUser);
-          done(null, newUser);
-        });
+        // console.log(profile);
+        // If the user agrees to share Kakao Account Email
+        if(profile._json.kaccount_email) {
+          new Client({
+            name: profile.displayName,
+            email: profile._json.kaccount_email,
+            kakaoID: profile.id
+          }).save().then((newUser) => {
+            console.log("New Client Created: " + newUser);
+            done(null, newUser);
+          });
+        } else {
+          // If the user doesn't want to provide their Kakao Account Email
+          // Must prompt them to give us an Email
+          new Client({
+            name: profile.displayName,
+            kakaoID: profile.id
+          }).save().then((newUser) => {
+            console.log("New Client Created: " + newUser);
+            done(null, newUser);
+          });
+        }
       }
     });
   }

@@ -10,85 +10,101 @@
 </head>
 
 <body>
-    <% include ./partials/navbar %>
-    <div class="container text-center">
-  <br><br><br>
-  <h2> 업무 지원하기 Modal</h2>
-  <!-- Button to Open the Modal -->
-  <br><br>
-  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">
-    업무 지원하기
-  </button>
+  <% include ./partials/navbar %>
+  <div class="container text-center">
+    <br><br><br>
+    <h2> 업무 지원하기 Modal</h2>
+    <!-- Button to Open the Modal -->
+    <br><br>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">
+      업무 지원하기
+    </button>
 
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-        <!-- Modal Header -->
-         <div class="modal-header" >
-          <h4 class="col-12 modal-title text-cente">업무 지원 하기
-          <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
-        </div>
+          <!-- Modal Header -->
+           <div class="modal-header" >
+            <h4 class="col-12 modal-title text-cente">업무 지원 하기
+            <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+          </div>
 
 
-        <!-- Modal body -->
-        <div class="modal-body text-left">
+          <!-- Modal body -->
 
-              <div>지원 메세지를 작성 해주세요.</div>
-              <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
-              <div>견적서 제출 하기</div>
 
-              <select id="service" name="service" required>
-                <option value="" disabled selected hidden>서비스를 선택 해주세요.</option>
-                <option value="service1">서비스1</option>
-                <option value="service2">서비스2</option>
-                <option value="service3">서비스3</option>
-              </select>
+          <div class="modal-body text-left">
 
-              <input type="text" id="wage" name="wage" placeholder="시급을 입력 해주세요.">
-              <input type="button" name="" value="+">
-              <input type="text" placeholder="1" style="width:40px;">
-              <input type="button" name="" value="-">
+                <div>지원 메세지를 작성 해주세요.</div>
+                <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
+                <div>견적서 제출 하기</div>
 
-               $ <input placeholder="--"/>
+                <div class="form-group row">
+
+                <select id="service" name="service" required>
+                  <option selected>서비스를 선택 해주세요.</option>
+                  <option value="service1">서비스1</option>
+                  <option value="service2">서비스2</option>
+                  <option value="service3">서비스3</option>
+                </select>
+
+                <!-- <form oninput="x.value=parseFloat(a.value)*parseFloat(b.value)" > -->
+                  <form oninput="x.value = Math.round(a.value*b.value*100)/100" >
+                  <label for="a" class="col- col-form-label">시급: </label>
+                  $ <input type="number" id="a" step="0.01" placeholder="시급을 입력 해주세요." min="0.00">
+
+                <label for="b" class="col- col-form-label">시간: </label>
+                <input type="number" id="b" step="0.5" placeholder="1" min="0.00">
+
+                 $ <output name="x" id="x" for="a b"></output></form>
+                </div>
+
+                <div class="form-group row">
+                 <select id="extra" name="extra" required>
+                   <option selected>추가 비용을 선택 해주세요.</option>
+                   <option value="service1">추가 비용1</option>
+                   <option value="service2">추가 비용2</option>
+                   <option value="service3">추가 비용3</option>
+                 </select>
+
+                 <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+
+                 <form oninput="y.value=parseFloat(x.value)+parseFloat(c.value)">
+                   <label for="c" class="col- col-form-label">  추가비용: </label>
+                 $ <input type="number" id="c"  placeholder="추가 비용을 입력 해주세요.">
 
 <br>
-               <select id="extra" name="extra" required>
-                 <option value="" disabled selected hidden>추가 비용을 선택 해주세요.</option>
-                 <option value="service1">추가 비용1</option>
-                 <option value="service2">추가 비용2</option>
-                 <option value="service3">추가 비용3</option>
-               </select>
 
-               <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+              </div>
+              <input type="button" name="" value="+"> 추가 비용 청구하기
+              <hr style="width:30%">
 
-                $<input placeholder="--"/>
-
-<br><br>
-                <input type="button" name="" value="+"> 추가 비용 청구하기
-
-        </div>
-
-        <hr style="width:30%">
-        <h6 class="text-center">
-           합계:$---<br></h6>
-<hr style="width:100%">
-        <div class="wrapper " >
-          <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
-        </div>
-        <br>
-<!-- Modal footer -->
-        <!-- <div class="modal-footer col-12 text-center" >
-          <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
-        </div> -->
-      </div>
-
+              <div class="text-center">
+              합계:$<output name="y" id="y" for="x c"></output></form>
             </div>
           </div>
 
 
+
+
+<hr style="width:100%">
+          <div class="wrapper " >
+            <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
+          </div>
+          <br>
+<!-- Modal footer -->
+          <!-- <div class="modal-footer col-12 text-center" >
+            <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
+          </div> -->
         </div>
+
+              </div>
+            </div>
+
+
+          </div>
 
 
 

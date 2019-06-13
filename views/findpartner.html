@@ -132,8 +132,9 @@
 
 .leftside, .rightside{
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 0.3px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 
@@ -142,7 +143,7 @@
   <body style="margin: 0 10%">
 
 
-    <div style="display:block; border-bottom: 1px solid black;">
+    <div style="display:block; border-bottom: 1px solid black; padding-bottom: 10px;">
 
 
     <input type="button" name="daterange" value="01/01/2018 - 01/15/2018" placeholder="날짜"/>
@@ -159,37 +160,38 @@
 
 
 
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">업종/전공</button>
-    <div id="myDropdown" class="dropdown-content">
-      <input type="checkbox" name="koko">IT/기술<br>
-      <input type="checkbox" name="koko">과학<br>
-      <input type="checkbox" name="koko">교육<br>
-      <input type="checkbox" name="koko">금융/회계<br>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">업종/전공</button>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="checkbox" name="koko">IT/기술<br>
+        <input type="checkbox" name="koko">과학<br>
+        <input type="checkbox" name="koko">교육<br>
+        <input type="checkbox" name="koko">금융/회계<br>
+      </div>
     </div>
+
+    <div class="dropdown">
+      <button onclick="myFunction2()" class="dropbtn">서비스</button>
+      <div id="myDropdown2" class="dropdown-content">
+        <input type="checkbox" name="koko">통역<br>
+        <input type="checkbox" name="koko">차량<br>
+        <input type="checkbox" name="koko">등등<br>
+      </div>
+    </div>
+
+    <label class="switch text-right" style="float: right;">
+      <input type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
   </div>
 
-  <div class="dropdown">
-    <button onclick="myFunction2()" class="dropbtn">서비스</button>
-    <div id="myDropdown2" class="dropdown-content">
-      <input type="checkbox" name="koko">통역<br>
-      <input type="checkbox" name="koko">차량<br>
-      <input type="checkbox" name="koko">등등<br>
-    </div>
-  </div>
-  <label class="switch text-right">
-    <input type="checkbox" checked>
-    <span class="slider round"></span>
-  </label>
-</div>
 
   <br><br><br>
 
 
-  <div class="wrapper" style="width: 60%; height: 500px; overflow-y:scroll;
-  overflow-x: hidden; float:left; position: relative; margin:0;">
+  <div class="wrapper" style="width: 60%; height: 550px; overflow-y:scroll; left: 40%;
+  overflow-x: hidden; float:left; position: relative; margin:0; padding-left: 2.5%; padding-right: 2.5%;">
       <div id="slider4">
-
           <div class="row">
             <div class="col">
               <div class="leftside">
@@ -289,7 +291,7 @@
 
 
       </div>
-      <div id="map" style="width:40%;height:600px;"></div>
+      <div id="map" style="width:40%;height:550px;"></div>
 
       <!-- register popup -->
       <div id="registerModal" role="dialog" aria-hidden="true"

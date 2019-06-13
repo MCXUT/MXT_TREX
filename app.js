@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 
 const passport = require("./config/passport");
@@ -16,6 +17,8 @@ const keys = require("./config/keys");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 const partnerPages = require("./routes/partnerpages");
+const userProfile = require("./routes/user_profile");
+const servicePages = require("./routes/service");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb.user + ":" + keys.mongodb.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -44,11 +47,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// app.use(flash());
+app.use(flash());
 app.use(function (req, res, next) {
-    res.locals.currentUser = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
 
-    next();
+  next();
 });
 
 
@@ -70,9 +75,12 @@ app.get('/', function(req,res){
 //   res.render("login");
 // });
 
+
 app.use('/auth', registerRoutes);
 app.use('/auth', loginRoutes);
 app.use('/', partnerPages);
+app.use("/", userProfile);
+app.use("/", servicePages);
 
 app.set('port', process.env.PORT || 8080);
 

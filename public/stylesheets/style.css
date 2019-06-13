@@ -10,7 +10,21 @@ html, body{
   padding-top: 40px;
   padding-bottom: 40px;
 }
+.padding2{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.linespace{
+  width:auto;
+  height:1px;
+  display:inline-block;
+}
 
+.heada:hover{
+  color:#999999;
+  text-decoration: none;
+
+}
 /* carousel section */
 .carousel-inner > .carousel-item > img {
   margin-left: 0 auto;
@@ -75,6 +89,16 @@ html, body{
 #accordion a:hover, #accordion a:after{
   color:black;
   text-decoration: none;
+}
+#accordion .card-header{
+  background-color:transparent;
+}
+#accordion .mb-0{
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
+}
+#accordion .collapse{
+  background-color: #f2f2f2;
 }
 #button1{
   background-color:#f8ba00;
