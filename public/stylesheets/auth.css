@@ -48,7 +48,7 @@
     font-size: 16px;
     width: 330px;
     text-align: left;
-    padding: 0 20px 0 20px;
+    padding: 20px 20px 0 20px;
     border-width: 1px;
     border-style: solid;
     border-color: rgba(30, 30, 30, 0.3);
@@ -134,6 +134,9 @@
     border-width: thin;
     border-color: rgb(39, 73, 255);
     color: rgba(0, 0, 0, 0.8);
+}
+.form-group.registerform {
+    display: block;
 }
 
 @media (max-width: 576px) {

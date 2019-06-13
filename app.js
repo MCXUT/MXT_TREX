@@ -16,6 +16,7 @@ const keys = require("./config/keys");
 
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
+const resetRoutes = require("./routes/reset");
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
 const servicePages = require("./routes/service");
@@ -72,13 +73,9 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-
-
 app.use('/auth', registerRoutes);
 app.use('/auth', loginRoutes);
+app.use("/auth", resetRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", servicePages);
