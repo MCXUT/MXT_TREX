@@ -8,17 +8,28 @@ var PartnerSchema = mongoose.Schema({
     isVerified: {type: Boolean, default: false},
     password: String,
     dateOfBirth: Date,
+    // address: {
+    //   unit: String,
+    //   street: String,
+    //   pc: String,
+    //   province: String,
+    //   country: String
+    // },
     address: {
-      unit: String,
-      street: String,
-      pc: String,
-      province: String,
-      country: String
+      type: String,
+      default: ""
     },
-    phoneNumber: Number,
-    kakaoId: String,
-    //pic:
-});
+    coordinates: {
+      lat: Number,
+      lng: Number,
+      default: {}
+    },
+    phoneNumber: String,
+    kakaoID: String,
+    facebookID: String,
+    //For test
+    pic: String
+}, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
 

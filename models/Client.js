@@ -7,20 +7,29 @@ var ClientSchema = mongoose.Schema({
     email: { type: String, unique: true},//, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
-    dateOfBirth: Date,
+    dateOfBirth: String,
+    // address: {
+    //   unit: String,
+    //   street: String,
+    //   pc: String,
+    //   province: String,
+    //   country: String
+    // },
     address: {
-      unit: String,
-      street: String,
-      pc: String,
-      province: String,
-      country: String
+      type: String,
+      default: ""
     },
-    phoneNumber: Number,
+    coordinates: {
+      lat: Number,
+      lng: Number,
+      default: {}
+    },
+    phoneNumber: String,
     kakaoID: String,
     facebookID: String,
     //For test
     pic: String
-});
+}, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);
 
