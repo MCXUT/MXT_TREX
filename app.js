@@ -10,13 +10,19 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 
-const passport = require("./config/passport");
+const lcPassport = require("./config/passportStrategies/localClient");
+const lpPassport = require("./config/passportStrategies/localPartner");
+const tcPassport = require("./config/passportStrategies/thirdPartyClient");
+const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
 const app = express();
 const keys = require("./config/keys");
 
 const registerRoutes = require("./routes/register");
-const loginRoutes = require("./routes/login");
+const loginRoutes = require("./routes/login/login");
+const clientLoginRoutes = require("./routes/login/loginClient");
+const partnerLoginRoutes = require("./routes/login/loginPartner");
 const resetRoutes = require("./routes/reset");
+
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
 const servicePages = require("./routes/service");
@@ -45,8 +51,14 @@ app.use(session({
 }));
 
 // passport setting
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(lcPassport.initialize());
+app.use(lcPassport.session());
+app.use(lpPassport.initialize());
+app.use(lpPassport.session());
+app.use(tcPassport.initialize());
+app.use(tcPassport.session());
+app.use(tpPassport.initialize());
+app.use(tpPassport.session());
 
 
 app.use(flash());
@@ -75,6 +87,8 @@ app.get('/', function(req,res){
 
 app.use('/auth', registerRoutes);
 app.use('/auth', loginRoutes);
+app.use('/auth', clientLoginRoutes);
+app.use('/auth', partnerLoginRoutes);
 app.use("/auth", resetRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);

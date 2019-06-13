@@ -7,7 +7,7 @@ var PartnerSchema = mongoose.Schema({
     email: { type: String, unique: true},//, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
-    dateOfBirth: String,
+    dateOfBirth: Date,
     // address: {
     //   unit: String,
     //   street: String,

@@ -33,7 +33,7 @@
               <span style="color: red"><%= error %></span>
             <% } %>
 
-            <form class="clientform" action="/auth/login" method="POST">
+            <form class="clientform" action="/auth/login/client" method="POST">
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
@@ -47,7 +47,7 @@
                     <input class="btn btn-primary form-control" type="submit" value="로그인">
             </form>
 
-            <form class="partnerform active" action="/auth/login" method="POST">
+            <form class="partnerform active" action="/auth/login/partner" method="POST">
 
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
@@ -67,13 +67,13 @@
         <div class="form-group clientform">
             <p>OR</p>
             <div class="facebook">
-                <a href="/auth/facebook" class='btn btn-info'>
+                <a href="/auth/facebook/client" class='btn btn-info'>
                     <span id="facebookIcon" style="color: white;"><i class="fab fa-facebook-f fa-lg"></i></span>
                     <span id="socialText">페이스북으로 로그인하기</span>
                 </a>
             </div>
             <div class="google">
-                <a href="/auth/google" class='btn btn-info'>
+                <a href="/auth/google/client" class='btn btn-info'>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="25" height="25"
                         viewBox="0 0 48 48"
@@ -97,7 +97,7 @@
             </div>
 
             <div class="kakaotalk">
-                <a href="/auth/kakao" class='btn btn-info'>
+                <a href="/auth/kakao/client" class='btn btn-info'>
                     <span id="facebookIcon" style="color: yellow;"><i class="fab fa-facebook-f fa-lg"></i></span>
                     <span id="socialText">카카오 계정으로 로그인하기</span>
                 </a>
@@ -108,13 +108,13 @@
         <div class="form-group partnerform active">
             <p>OR</p>
             <div class="facebook">
-                <a href="/auth/facebook" class='btn btn-info'>
+                <a href="/auth/facebook/partner" class='btn btn-info'>
                     <span id="facebookIcon" style="color: white;"><i class="fab fa-facebook-f fa-lg"></i></span>
                     <span id="socialText">페이스북으로 로그인하기</span>
                 </a>
             </div>
             <div class="google">
-                <a href="/auth/google" class='btn btn-info'>
+                <a href="/auth/google/partner" class='btn btn-info'>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="25" height="25"
                         viewBox="0 0 48 48"
@@ -138,7 +138,7 @@
             </div>
 
             <div class="kakaotalk">
-                <a href="/auth/kakao" class='btn btn-info'>
+                <a href="/auth/kakao/partner" class='btn btn-info'>
                     <span id="facebookIcon" style="color: yellow;"><i class="fab fa-facebook-f fa-lg"></i></span>
                     <span id="socialText">카카오 계정으로 로그인하기</span>
                 </a>
