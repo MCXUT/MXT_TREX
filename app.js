@@ -14,6 +14,7 @@ const lcPassport = require("./config/passportStrategies/localClient");
 const lpPassport = require("./config/passportStrategies/localPartner");
 const tcPassport = require("./config/passportStrategies/thirdPartyClient");
 const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
+
 const app = express();
 const keys = require("./config/keys");
 

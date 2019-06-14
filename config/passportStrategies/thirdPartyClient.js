@@ -9,10 +9,11 @@ const keys = require("../keys");
 passport.use("client-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
-      callbackURL: keys.facebookClientInfo.callback,
+      callbackURL: "/auth/facebook/callback/client",
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log("Client: accessToken");
       Client.findOne({
         facebookID: profile.id
       }).then((foundUser) => {
@@ -36,7 +37,7 @@ passport.use("client-facebook", new FacebookStrategy({
 
 passport.use("client-kakao", new KakaoStrategy({
     clientID: "6bfe97b371c7b6bb8e1e1ae0735d6775", // The REST API Key goes here
-    callbackURL: "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
+    callbackURL: "/auth/kakao/callback/client" // The "redirect path" that we set in the developer setting in Kakao
   },
   function(accessToken, refreshToken, profile, done) {
     // The user info is in profile
