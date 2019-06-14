@@ -1,85 +1,261 @@
+<link rel="stylesheet" href="../static/stylesheets/applymodal.css">
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-      <!-- Modal Header -->
-       <div class="modal-header" >
-        <h4 class="col-12 modal-title text-cente">업무 지원 하기
-        <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+    <!-- Modal Header -->
+      <div class="modal-header text-center" >
+        <h3 class="col-12 modal-title text-cente"><b>업무 지원 하기</b>
+        <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
       </div>
 
 
-      <!-- Modal body -->
+    <!-- Modal body -->
 
 
       <div class="modal-body text-left">
 
-            <div>지원 메세지를 작성 해주세요.</div>
-            <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
-            <div>견적서 제출 하기</div>
+        <div><b>지원 메세지를 작성 해주세요.</b></div>
+        <div style="height:14px;"></div>
+        <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
+        <div style="height:17px;"></div>
+        <div><b>견적서 제출 하기</b></div>
+        <div style="height:14px;"></div>
+    <!-- 서비스선택,시급&시간 -->
 
-            <div class="form-group row">
+<form name="TESTING">
+      <TABLE id="dataTable2"  border="0">
+        <TR>
+        <td>
+          <select id="service" name="service" required onchange="calculateTotal()">
+            <option selected>서비스를 선택 해주세요.</option>
+            <option value="service1">서비스1</option>
+            <option value="service2">서비스2</option>
+            <option value="service3">서비스3</option>
+          </select>
+        </td>
+        <!-- <form oninput="x.value=parseFloat(a.value)*parseFloat(b.value)" > -->
 
-            <select id="service" name="service" required>
-              <option selected>서비스를 선택 해주세요.</option>
-              <option value="service1">서비스1</option>
-              <option value="service2">서비스2</option>
-              <option value="service3">서비스3</option>
-            </select>
 
-            <!-- <form oninput="x.value=parseFloat(a.value)*parseFloat(b.value)" > -->
 
-              <form oninput="x.value = Math.round(a.value*b.value*100)/100; y.value=parseFloat(x.value)+parseFloat(c.value);" >
+        <td>
+            <div>시급:</div>
+        </td>
+        <td>
+            $ <input type="number" name="INPUT1" id="input" step="0.01" placeholder="시급을 입력 해주세요." min="0.00" onchange="calculate();"/>
 
-              <label for="a" class="col- col-form-label">시급: </label>
-              $ <input type="number" id="a" step="0.01" placeholder="시급을 입력 해주세요." min="0.00">
+        </td>
 
-            <label for="b" class="col- col-form-label">시간: </label>
-            <input type="number" id="b" step="0.5" placeholder="1" min="0.00">
+        <td>
+            <div>시간:</div>
+        </td>
+        <td>
+            <input type="number" name="INPUT2" id="input2" step="0.5" placeholder="시간을 입력 해주세요." min="0.00" onchange="calculate();" />
+        </td>
 
-             $ <output name="x" id="x" for="a b"></output> <!--</form>-->
+        <td>
+            $ <output name="OUTPUT1" id="output" ></output>
+        </td>
+        </TR>
+    </table>
+    <div style="height:8px;"></div>
+  <!-- /서비스선택,시급&시간 -->
 
-            </div>
 
-            <div class="form-group row">
-             <select id="extra" name="extra" required>
-               <option selected>추가 비용을 선택 해주세요.</option>
-               <option value="service1">추가 비용1</option>
-               <option value="service2">추가 비용2</option>
-               <option value="service3">추가 비용3</option>
-             </select>
 
-             <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+  <!-- 추가비용 선택하기 -->
+  <!-- js for adding row onclick -->
+  <SCRIPT language="javascript">
+    function addRow(tableID) {
 
-            <!-- <form oninput="y.value=parseFloat(x.value)+parseFloat(c.value)"> -->
-               <label for="c" class="col- col-form-label">  추가비용: </label>
-             $ <input type="number" id="c"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00">
+    var table = document.getElementById(tableID);
 
-<br>
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
 
+    var colCount = table.rows[0].cells.length;
+
+    for(var i=0; i<colCount; i++) {
+      // if(i>=3){
+      //   document.getElementById('input3').name="INPUT4";
+      //   document.getElementById('input3').id="input4";
+      // }
+
+    var newcell	= row.insertCell(i);
+
+    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+    //alert(newcell.childNodes);
+    switch(newcell.childNodes[0].type) {
+    case "text":
+        newcell.childNodes[0].value = "";
+        break;
+    case "checkbox":
+        newcell.childNodes[0].checked = false;
+        break;
+    case "select-one":
+        newcell.childNodes[0].selectedIndex = 0;
+        break;
+    }
+    }
+    }
+
+    function deleteRow(tableID) {
+    try {
+    var table = document.getElementById(tableID);
+    var rowCount = table.rows.length;
+
+    for(var i=0; i<rowCount; i++) {
+    var row = table.rows[i];
+    var chkbox = row.cells[0].childNodes[0];
+    if(null != chkbox && true == chkbox.checked) {
+    if(rowCount <= 1) {
+      alert("Cannot delete all the rows.");
+      break;
+    }
+    table.deleteRow(i);
+    rowCount--;
+    i--;
+    }
+
+
+    }
+    }catch(e) {
+    alert(e);
+    }
+    }
+
+  </SCRIPT>
+  <!-- /js for adding row onclick -->
+
+                <TABLE id="dataTable"  border="0">
+                  <TR>
+                     <td id="extra">
+                       <select  name="extra" required>
+                         <option selected>추가 비용을 선택 해주세요.</option>
+                         <option value="service1">추가 비용1</option>
+                         <option value="service2">추가 비용2</option>
+                         <option value="service3">추가 비용3</option>
+                       </select>
+                       <a1></a1>
+                     </td>
+
+                     <td>
+                        <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+                     </td>
+
+                     <td>
+                       <div>추가비용: $</div>
+                     </td>
+
+                     <td>
+                        <input type="number" name="INPUT3" id="input3"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00" onchange="calculate();"/>
+                     </td>
+                  </TR>
+               </TABLE>
+               <div style="height:8px;"></div>
+
+               <TABLE id="dataTable3"  border="0" style="display:none;">
+                 <TR>
+                    <td id="extra">
+                      <select  name="extra" required>
+                        <option selected>추가 비용을 선택 해주세요.</option>
+                        <option value="service1">추가 비용1</option>
+                        <option value="service2">추가 비용2</option>
+                        <option value="service3">추가 비용3</option>
+                      </select>
+                      <a1></a1>
+                    </td>
+
+                    <td>
+                       <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+                    </td>
+
+                    <td>
+                      <div>추가비용: $</div>
+                    </td>
+
+                    <td>
+                       <input type="number" name="INPUT4" id="input4"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00" onchange="calculate();"/>
+                    </td>
+                 </TR>
+              </table>
+
+              <TABLE id="dataTable4"  border="0" style="display:none;">
+                <TR>
+                   <td id="extra">
+                     <select  name="extra" required>
+                       <option selected>추가 비용을 선택 해주세요.</option>
+                       <option value="service1">추가 비용1</option>
+                       <option value="service2">추가 비용2</option>
+                       <option value="service3">추가 비용3</option>
+                     </select>
+                     <a1></a1>
+                   </td>
+
+                   <td>
+                      <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+                   </td>
+
+                   <td>
+                     <div>추가비용: $</div>
+                   </td>
+
+                   <td>
+                      <input type="number" name="INPUT5" id="input5"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00" onchange="calculate();"/>
+                   </td>
+                </TR>
+             </table>
+
+               <!-- <div >
+               <input type="button" onclick="addRow('dataTable')" value="+" style="display:inline;width:30px;"> 추가 비용 청구하기
+               </div> -->
+
+               <div >
+               <input id="button11" type="button" onclick="document.getElementById('dataTable3').style.display='inline';document.getElementById('button11').style.display='none';document.getElementById('button2').style.display='inline';" value="+" style="display:inline;width:30px;">
+               <input id="button2" type="button" onclick="document.getElementById('dataTable4').style.display='inline';" value="+" style="display:none;width:30px;"> 추가 비용 청구하기
+               </div>
+               <!-- <div>
+                <INPUT type="button" value="-" onclick="deleteRow('dataTable')" style="display:inline;width:30px;"> 추가 비용 취소하기
+              </div> -->
+          <!-- /추가비용 선택하기 -->
+              <hr style="width:30%">
+
+              <div class="text-center"><b>
+              합계:$<output name="OUTPUT2" id="output2"></output>
+              </b></div>
           </div>
-          <input type="button" name="" value="+"> 추가 비용 청구하기
-          <hr style="width:30%">
+        </form>
 
-          <div class="text-center">
-          합계:$<output name="y" id="y" for="a b c"></output> <!--</form>-->
+      <!-- form calculation script -->
+        <script type="text/javascript">
+          function calculate() {
+
+          var USERINPUT1 = document.TESTING.INPUT1.value;
+          var USERINPUT2 = document.TESTING.INPUT2.value;
+          var USERINPUT3 = document.TESTING.INPUT3.value;
+          var USERINPUT4 = document.TESTING.INPUT4.value;
+          var USERINPUT5 = document.TESTING.INPUT5.value;
+          var CALC0 = USERINPUT1*USERINPUT2;
+          var CALC1 = CALC0.toFixed(2);
+          var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5;
+          var CALC3 = CALC2.toFixed(2);
+          document.TESTING.OUTPUT1.value = CALC1;
+          document.TESTING.OUTPUT2.value = CALC3;
+          }
+        </script>
+      <!-- /form calculation script -->
+
+
+
+      <hr style="width:100%">
+        <div class="text-center" >
+          <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
+        </div><br>
+
+
         </div>
-      </div>
 
-
-
-
-<hr style="width:100%">
-      <div class="wrapper " >
-        <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
-      </div>
-      <br>
-<!-- Modal footer -->
-      <!-- <div class="modal-footer col-12 text-center" >
-        <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
-      </div> -->
-    </form></div>
-
-          </div>
-        </div>
+    </div>
+    </div>
+  <!-- /The Modal -->
