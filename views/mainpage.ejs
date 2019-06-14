@@ -21,11 +21,12 @@
     <li data-target="#slides" data-slide-to="0" class="active"></li>
     <li data-target="#slides" data-slide-to="1"></li>
     <li data-target="#slides" data-slide-to="2"></li>
+    <li data-target="#slides" data-slide-to="3"></li>
   </ul>
 
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/static/images/london.jpg" class="center">
+      <img src="/static/images/slider/slider-1-newyork.jpg" class="center">
       <div class="carousel-caption" >
         <h1 class="display-2">어디로 출장 가시나요?</h1>
         <h3>현지 파트너를 검색 해보세요.</h3>
@@ -39,11 +40,47 @@
                </div>
             </div>
       </div>
-        <div class="bottom-right">LONDON</div>
+        <div class="bottom-right">NEW YORK</div>
     </div>
 
     <div class="carousel-item">
-      <img src="/static/images/montreal.jpg" class="center">
+      <img src="/static/images/slider/slider-2-london.jpg" class="center">
+      <div class="carousel-caption" >
+        <h1 class="display-2">어디로 출장 가시나요?</h1>
+        <h3>현지 파트너를 검색 해보세요.</h3>
+
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search" name="search">
+               <div class="divider"></div>
+               <div class="input-group-btn">
+               <button class="btn btn-warning" type="submit">
+               <i class="fas fa-search"></i></button>
+               </div>
+            </div>
+      </div>
+      <div class="bottom-right">LONDON</div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="/static/images/slider/slider-3-tokyo.jpg" class="center">
+      <div class="carousel-caption" >
+        <h1 class="display-2">어디로 출장 가시나요?</h1>
+        <h3>현지 파트너를 검색 해보세요.</h3>
+
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search" name="search">
+               <div class="divider"></div>
+               <div class="input-group-btn">
+               <button class="btn btn-warning" type="submit">
+               <i class="fas fa-search"></i></button>
+               </div>
+            </div>
+      </div>
+      <div class="bottom-right">TOKYO</div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="/static/images/slider/slider-4-montreal.jpg" class="center">
       <div class="carousel-caption" >
         <h1 class="display-2">어디로 출장 가시나요?</h1>
         <h3>현지 파트너를 검색 해보세요.</h3>
@@ -58,24 +95,6 @@
             </div>
       </div>
       <div class="bottom-right">MONTREAL</div>
-    </div>
-
-    <div class="carousel-item">
-      <img src="/static/images/newyork.jpg" class="center">
-      <div class="carousel-caption" >
-        <h1 class="display-2">어디로 출장 가시나요?</h1>
-        <h3>현지 파트너를 검색 해보세요.</h3>
-
-            <div class="input-group">
-               <input type="text" class="form-control" placeholder="Search" name="search">
-               <div class="divider"></div>
-               <div class="input-group-btn">
-               <button class="btn btn-warning" type="submit">
-               <i class="fas fa-search"></i></button>
-               </div>
-            </div>
-      </div>
-      <div class="bottom-right">NEW YORK</div>
     </div>
   </div>
 </div>
@@ -96,15 +115,36 @@
 
 <!-- End of Jumbotron Section -->
 <!-- 기업 섭외 견적 요청 -->
-<div class="text-center">
-<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
-<div class="divider2"></div>
-<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
-<div class="divider2"></div>
-<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
-<div class="divider2"></div>
-<button type="button" class="buttonjumbotron" >기업 섭외 견적 요청</button>
+<div class="container-fluid text-center">
+
+  <div class="container">
+    <div class="sectionContent">
+      <div class="row">
+        <div class="container2 col-md-3 col-sm-6">
+          <a href="#"><img src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" style="height: 150px; width: 200px;-o-object-fit: contain;">
+          <div class="centered">현지 통역</div></a>
+        </div>
+<!-- <div class="divider2"></div> -->
+  <div class="container2 col-md-3 col-sm-6">
+  <a href="#"><img src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" style="height: 150px; width: 200px;-o-object-fit: contain;">
+  <div class="centered">현지 차량</div></a>
+  </div>
+<!-- <div class="divider2"></div> -->
+  <div class="container2 col-md-3 col-sm-6">
+  <a href="#"><img src="/static/images/request-service-estimate/3.translationservice2.jpg" class="center" style="height: 150px; width: 200px;-o-object-fit: contain;">
+  <div class="centered">번역</div></a>
+  </div>
+<!-- <div class="divider2"></div> -->
+  <div class="container2 col-md-3 col-sm-6">
+  <a href="#"><img src="/static/images/request-service-estimate/4.castagency.jpg" class="center" style="height: 150px; width: 200px;-o-object-fit: contain;">
+  <div class="centered">현지 기관 섭외</div></a>
+  </div>
+
 </div>
+</div>
+</div>
+</div>
+
 <!-- /기업 섭외 견적 요청 -->
 <br><br>
 <!-- 트렉스 간편 이용 방법 section-->
@@ -115,19 +155,19 @@
 <div class="sectionContent">
 <div class="row">
   <div class="col-md-4 col-sm-4">
-    <i class="fas fa-map-signs"></i>
+    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
     <h3>1.파트너 검색</h3>
     <div>출장지를 검색하고 알맞는 파트너에게 업무를 문의하세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <i class="fas fa-map-signs"></i>
+    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
     <h3>2.예약 결제</h3>
     <div>업무일자를 입력하고 예약을 확정지으세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <i class="fas fa-map-signs"></i>
+    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
     <h3>3.업무 진행</h3>
     <div>성공적으로 업무를 진행하고 파트너 리뷰를 작성해주세요.</div>
   </div>
