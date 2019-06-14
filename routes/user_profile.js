@@ -6,6 +6,8 @@ const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 
 const keys = require("../config/keys");
+const Client = require("../models/Client");
+const Partner = require("../models/Partner");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -34,8 +36,8 @@ router.get("/user_profile", (req, res) => {
       phoneNumber: res.locals.currentUser.phoneNumber
     }
     res.render("userprofile", {userInfo: userInfo, langinfo: {
-        langchoice: [],
-        langproficiency: []
+        // langchoice: [],
+        // langproficiency: []
     }});
   }
 });
@@ -45,7 +47,7 @@ router.get("/user_profile", (req, res) => {
 router.post("/user_profile", (req, res) => {
   // var newInfo = req.body;
   // console.log(newInfo);
-  
+
   // Changing profile info of a client
   if (res.locals.currentUser.type === "c") {
     // Get coordinates of the new address
@@ -75,7 +77,7 @@ router.post("/user_profile", (req, res) => {
             console.log("Profile Update Successful");
             return res.redirect("/user_profile");
           });
-          
+
         });
       }
     });
@@ -107,23 +109,34 @@ router.post("/user_profile", (req, res) => {
             console.log("Profile Update Successful");
             return res.redirect("/user_profile");
           });
-    
+
         });
       }
     });
   }
-  
+
 });
 
 router.post("/user_profile/language", (req, res) => {
-
+    var type;
+    if (res.locals.currentUser.type === "p") {
+      type = "Partner";
+    } else {
+      type = "Client";
+    }
     var newinfo = {
         langchoice: req.body.langchoice,
         langproficiency: req.body.langproficiency
     }
     console.log(newinfo);
-
-    res.render("userprofile", {info: {}, langinfo: newinfo});
+    var userInfo = {
+      name: res.locals.currentUser.name,
+      type: type,
+      birthday: res.locals.currentUser.dateOfBirth,
+      address: res.locals.currentUser.address,
+      phoneNumber: res.locals.currentUser.phoneNumber
+    }
+    res.render("userprofile", {userInfo: userInfo, langinfo: newinfo});
 })
 
 module.exports = router;
