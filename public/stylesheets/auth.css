@@ -72,7 +72,9 @@
 .login-form-links {
     margin-bottom: 15px;
 }
-
+.loginform.registerform, .loginform.resetform {
+    border-radius: 4px 4px 0 0;
+}
 
 
 

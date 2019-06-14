@@ -8,6 +8,10 @@ const Partner = require("../models/Client");
 
 router.get("/reset", function(req,res){
   res.render("password_reset");
-})
+});
+
+router.get("/reset/password", (req, res) => {
+    res.render("reset");
+});
 
 module.exports = router;
