@@ -9,10 +9,11 @@ const keys = require("../keys");
 passport.use("partner-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
-      callbackURL: keys.facebookClientInfo.callback,
+      callbackURL: "/auth/facebook/callback/partner",
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log("Partner: accessToken");
       Partner.findOne({
         facebookID: profile.id
       }).then((foundUser) => {
@@ -36,7 +37,7 @@ passport.use("partner-facebook", new FacebookStrategy({
 
 passport.use("partner-kakao", new KakaoStrategy({
     clientID: "6bfe97b371c7b6bb8e1e1ae0735d6775", // The REST API Key goes here
-    callbackURL: "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
+    callbackURL: "/auth/kakao/callback/partner" // The "redirect path" that we set in the developer setting in Kakao
   },
   function(accessToken, refreshToken, profile, done) {
     // The user info is in profile
@@ -71,16 +72,5 @@ passport.use("partner-kakao", new KakaoStrategy({
     });
   }
 ));
-
-// passport.serializeUser((user, done) => {
-//   console.log("Partner: thirdPartyPartner");
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser((id, done) => {
-//   Partner.findById(id, (err, user) => {
-//     done(err, user);
-//   });
-// });
 
 module.exports = passport;

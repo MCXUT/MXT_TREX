@@ -27,6 +27,7 @@ var PartnerSchema = mongoose.Schema({
     phoneNumber: String,
     kakaoID: String,
     facebookID: String,
+    googleID: String,
     //For test
     pic: String
 }, {minimize: false});
