@@ -37,7 +37,7 @@ router.get("/kakao/callback/partner", thirdPartyPartner.authenticate("partner-ka
 router.get("/google/partner", thirdPartyPartner.authenticate('partner-google', {
     scope: ['email', 'profile']
 }));
-router.get("/google/callback", thirdPartyPartner.authenticate('partner-google'), (req, res) => {
+router.get("/google/callback/partner", thirdPartyPartner.authenticate('partner-google'), (req, res) => {
     res.redirect("/");
 });
 

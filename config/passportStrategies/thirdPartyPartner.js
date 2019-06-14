@@ -1,6 +1,7 @@
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // const NaverStrategy = require("passport-naver").Strategy;
 
 const Partner = require("../../models/Partner");
@@ -70,6 +71,30 @@ passport.use("partner-kakao", new KakaoStrategy({
         }
       }
     });
+  }
+));
+
+passport.use("partner-google", new GoogleStrategy({
+  clientID: keys.googleClientInfo.clientID,
+  clientSecret: keys.googleClientInfo.clientSecret,
+  callbackURL: keys.googleClientInfo.callback + "/partner"
+}, function(accessToken, refreshToken, profile, done) {
+  Partner.findOne({
+    googleID: profile.id
+  }).then((foundUser)=> {
+    if(foundUser) {
+      done(null, foundUser);
+    } else {
+      new Partner({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        googleID: profile.id
+      }).save().then((newUser) => {
+        console.log("new User Created: " + newUser);
+        done(null, newUser);
+      });
+    }
+  });
   }
 ));
 
