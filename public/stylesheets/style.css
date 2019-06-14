@@ -69,6 +69,21 @@ html, body{
 
 /* End of Jumbotron Section*/
 
+/* 서비스 견적 */
+.container2 {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color:white;
+}
+/* /서비스 견적 */
+
 /* Accordion Section */
 
   /* .card:first-of-type:not(:last-of-type) { */

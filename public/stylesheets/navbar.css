@@ -34,6 +34,25 @@ body
   position: fixed;
   z-index: 99;
 }
+@media (max-width: 768px) {
+    #scroll {
+        padding: 5px 12px;
+        font-size: 10px;
+        bottom: 60px;
+        right: 10px;
+        width:40px;
+        height: 40px;
+    }
+    .bottom-fixed{
+      bottom: 10px;
+      right: 10px;
+    }
+    .bottom-fixed svg{
+      width:40px;
+      height:40px;
+    }
+}
+
 /* end of scroll to top button*/
 .navbar {
     margin: 0 4% 0 4%;

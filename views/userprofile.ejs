@@ -15,131 +15,157 @@
         <div class="profile">
             <div class="tab">
                 <div class="row top">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12">
                         <p class="setting">프로필</p>
                         <div class="menu">
-                            <a href="#">정보</a>
-                            <a href="#">보안</a>
+                            <a class="publicinfo active" href="#">일반</a>
+                            <a class="privateinfo" href="#">보안</a>
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12">
                         <img class="profileimg" src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
-                        <p class="userName"><%= userInfo.name %>, (<%= userInfo.type %>)</p>
+                        <p class="userName"><%= userInfo.name %><br/> (<%= userInfo.type %>)</p>
                         <a class="btn btn-primary form-control" href="#">사진 교체하기</a>
                     </div>
-                    <div class="col-md-8">
-                            <div class="row sections basic">
-                                <p class="basictitle"><b>기본 정보</b></p>
-                                <form id="basicinfoform" action="/user_profile" method="post">
-                                </form>
-                                <div class="buttons basicinfo">
-                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                    <div class="col-md-8 col-12">
+                        <div class="todisplay publicinfo profileactive">
+                                <div class="row sections basic" id="basic">
+                                    <p class="basictitle"><b>기본 정보</b></p>
+                                    <form id="basicinfoform" action="/user_profile" method="post">
+                                    </form>
+                                    <div class="buttons basicinfo">
+                                        <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                        <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                        <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="row element">
+                                            <span><i class="fa fa-globe" aria-hidden="true"></i><b>생일</b></span>
+                                            <span class="answer switch active"><%= userInfo.birthday %></span>
+                                            <span class="switch"><input form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
+
+                                    </div>
+                                    <div class="row element">
+                                            <span><i class="fa fa-flag" aria-hidden="true"></i><b>주소</b></span>
+                                            <span class="answer switch active"><%= userInfo.address %></span>
+                                            <span class="switch"><input form="basicinfoform" class="form-control" name="address" value="<%= userInfo.address %>"></span>
+
+                                    </div>
+                                    <div class="row element">
+                                            <span><i class="fa fa-laptop" aria-hidden="true"></i><b>전화번호</b></span>
+                                            <span class="answer switch active"><%= userInfo.phoneNumber %></span>
+                                            <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= userInfo.phoneNumber %>"></span>
+                                    </div>
+                            </div>
+                            <div class="row sections photo" id="photo">
+                                <p class="basictitle"><b>프로필 사진</b></p>
+                                <form id="serviceform" action="/user_profile/language" method="post"></form>
+                                <div class="buttons photoinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
                                     <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                    <button form="serviceform" class="btn btn-info editbuttons" id="confirm">확인</a>
                                 </div>
                                 <div class="divider"></div>
-                                <!-- <div class="row element">
-                                        <span><i class="fa fa-venus-mars" aria-hidden="true"></i><b>타입</b></span>
-                                        <span class="answer switch active"><%= userInfo.type %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="type" value="<%= userInfo.type %>"></span>
-                                </div> -->
-                                <!-- <div class="row element">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>날짜</b></span>
-                                        <input type="date" class="answer switch active" id="startDate">
-                                        <span class="answer switch active"><%= userInfo.birthday %></span>
-                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
-
-                                </div> -->
-                                
                                 <div class="row element">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>생일</b></span>
-                                        <span class="answer switch active"><%= userInfo.displayBirthday %></span>
-                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
-
+                                    <span class="switch"><input type="file" name="profilePic" accept="image/*" value="사진 교체하기"></span>
                                 </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-flag" aria-hidden="true"></i><b>주소</b></span>
-                                        <span class="answer switch active"><%= userInfo.address %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="address" value="<%= userInfo.address %>"></span>
-
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-laptop" aria-hidden="true"></i><b>전화번호</b></span>
-                                        <span class="answer switch active"><%= userInfo.phoneNumber %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= userInfo.phoneNumber %>"></span>
-                                </div>
-                                <!-- <div class="row element">
-                                        <span><i class="fa fa-certificate" aria-hidden="true"></i><b>업종/전공</b></span>
-                                        <span class="answer switch active"><%= userInfo.major %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="major" value="<%= userInfo.major %>"></span>
-                                </div> -->
-                        </div>
-
-                        <div class="row sections">
-                            <p class="basictitle"><b>서비스</b></p>
-                            <form id="serviceform" action="/user_profile/language" method="post"></form>
-                            <div class="buttons serviceinfo">
-                                <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
-                                <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                <button form="serviceform" class="btn btn-info editbuttons" id="confirm">확인</a>
                             </div>
-                            <div class="divider"></div>
-                            <select form="serviceform" name="service" id="inputState" class="form-control serviceselect">
-                              <option selected>가능 서비스 선택...</option>
-                              <option>현지 통역 서비스</option>
-                              <option>현지 차량 서비스</option>
-                              <option>현지 기관 서비스</option>
-                            </select>
-                                <div class="choice" id="translate">
-                                    <p class="title">현지 통역 서비스<span class="exit">x</span></p>
+                            <div class="row sections">
+                                <p class="basictitle"><b>서비스</b></p>
+                                <form id="serviceform" action="/user_profile/language" method="post"></form>
+                                <div class="buttons serviceinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button form="serviceform" class="btn btn-info editbuttons" id="confirm">확인</a>
                                 </div>
-                                <div class="choice" id="cars">
-                                    <p class="title">현지 차량 서비스<span class="exit">x</span></p>
-                                </div>
-                                <div class="choice" id="agency">
-                                    <p class="title">현지 기관 서비스<span class="exit">x</span></p>
-                                </div>
-                        </div>
-                        <div class="row sections lang">
-                            <p class="basictitle"><b>언어</b></p>
-                            <form id="languageform" action="/user_profile/language" method="post"></form>
-                            <div class="buttons languageinfo">
-                                <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
-                                <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                <button form="languageform" class="btn btn-info editbuttons" id="confirm">확인</a>
+                                <div class="divider"></div>
+                                <select form="serviceform" name="service" id="inputState" class="form-control serviceselect">
+                                  <option selected>가능 서비스 선택...</option>
+                                  <option>현지 통역 서비스</option>
+                                  <option>현지 차량 서비스</option>
+                                  <option>현지 기관 서비스</option>
+                                </select>
+                                    <div class="choice" id="translate">
+                                        <p class="title">현지 통역 서비스<span class="exit">x</span></p>
+                                    </div>
+                                    <div class="choice" id="cars">
+                                        <p class="title">현지 차량 서비스<span class="exit">x</span></p>
+                                    </div>
+                                    <div class="choice" id="agency">
+                                        <p class="title">현지 기관 서비스<span class="exit">x</span></p>
+                                    </div>
                             </div>
-                            <div class="divider"></div>
-                            <% if(typeof langinfo.langchoice == "string") { %>
-                                <div class="row language">
-                                    <span><b><%= langinfo.langchoice %></b></span>
-                                    <span>
-                                        <div class="percentage"
-                                            style="width: <%= langinfo.langproficiency %>;
-                                                    height: 100%;
-                                                    background-color: rgb(208, 255, 151);
-                                                    border-radius: 10px;"></div>
-                                                    <%= langinfo.langproficiency %>
-                                    </span>
+                            <div class="row sections lang">
+                                <p class="basictitle"><b>언어</b></p>
+                                <form id="languageform" action="/user_profile/language" method="post"></form>
+                                <div class="buttons languageinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button form="languageform" class="btn btn-info editbuttons" id="confirm">확인</a>
                                 </div>
-                            <% } else { %>
-                                <% for(var i = 0; i < langinfo.langchoice.length; i++) { %>
+                                <div class="divider"></div>
+                                <% if(typeof langinfo.langchoice == "string") { %>
                                     <div class="row language">
-                                        <span><b><%= langinfo.langchoice[i] %></b></span>
+                                        <span><b><%= langinfo.langchoice %></b></span>
                                         <span>
                                             <div class="percentage"
-                                                style="width: <%= langinfo.langproficiency[i] %>;
+                                                style="width: <%= langinfo.langproficiency %>;
+                                                        max-width: 100%;
                                                         height: 100%;
                                                         background-color: rgb(208, 255, 151);
                                                         border-radius: 10px;"></div>
-                                                        <%= langinfo.langproficiency[i] %>
+                                                        <%= langinfo.langproficiency %>
                                         </span>
                                     </div>
+                                <% } else if(Array.isArray(langinfo.langchoice)) { %>
+                                    <% for(var i = 0; i < langinfo.langchoice.length; i++) { %>
+                                        <div class="row language">
+                                            <span><b><%= langinfo.langchoice[i] %></b></span>
+                                            <span>
+                                                <div class="percentage"
+                                                    style="width: <%= langinfo.langproficiency[i] %>;
+                                                            max-width: 100%;
+                                                            height: 100%;
+                                                            background-color: rgb(208, 255, 151);
+                                                            border-radius: 10px;"></div>
+                                                            <%= langinfo.langproficiency[i] %>
+                                            </span>
+                                        </div>
+                                    <% } %>
                                 <% } %>
-                            <% } %>
 
-                            <button class="btn btn-info addbutton">+ 언어 추가</button>
+                                <button class="btn btn-info addbutton">+ 언어 추가</button>
+                            </div>
+                        </div>
+
+                        <div class="todisplay privateinfo">
+                            <div class="row sections security" id="security">
+                                <p class="basictitle"><b>보안 정보</b></p>
+                                <form id="privateinfoform" action="/user_profile/security" method="post">
+                                </form>
+                                <div class="buttons privateinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row element">
+                                        <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
+                                        <span class="answer switch active">********</span>
+                                        <span class="currentpassword switch"><i class="fa fa-lock" aria-hidden="true"></i><b>현재 비밀번호</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                                <div class="row element">
+                                        <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                                <div class="row element">
+                                        <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,10 +175,27 @@
     <script>
         $(document).ready(() => {
             $(".menu").click((e) => {
-                var menu = document.querySelector(".menu");
-                var currentActive = menu.querySelector(".active");
-                $(currentActive).toggleClass("active");
-                $(e.target).toggleClass("active");
+                e.preventDefault();
+
+
+                if($(e.target).hasClass("publicinfo") && !$(e.target).hasClass("active")) {
+                    var menu = document.querySelector(".menu");
+                    var currentActive = menu.querySelector(".active");
+                    $(currentActive).toggleClass("active");
+                    $(e.target).toggleClass("active");
+
+                    $(".publicinfo").toggleClass("profileactive");
+                    $(".privateinfo").toggleClass("profileactive");
+                }
+                else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){
+                    var menu = document.querySelector(".menu");
+                    var currentActive = menu.querySelector(".active");
+                    $(currentActive).toggleClass("active");
+                    $(e.target).toggleClass("active");
+
+                    $(".publicinfo").toggleClass("profileactive");
+                    $(".privateinfo").toggleClass("profileactive");
+                }
             });
         });
     </script>
@@ -174,12 +217,12 @@
                     });
 
                     if(parentDivisionClass[1] === "basicinfo") {
-                        var spans = document.querySelectorAll(".switch");
+                        var spans = document.getElementById("basic").querySelectorAll(".switch");
                         spans.forEach((span) => {
                             $(span).toggleClass("active");
                         });
                     } else if(parentDivisionClass[1] === "languageinfo") {
-                        $(".language").remove();
+                        $(".language").toggleClass("disable");
 
                         var langinfo = {
                             langchoice: '<%= langinfo.langchoice %>'.split(","),
@@ -211,6 +254,16 @@
 
                         $(addbutton).off().click((e) => {
                             $(".lang").append(manipulateAdd());
+                        });
+                    } else if(parentDivisionClass[1] === "photoinfo") {
+                        var spans = document.getElementById("photo").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "privateinfo") {
+                        var spans = document.getElementById("security").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
                         });
                     }
                 });

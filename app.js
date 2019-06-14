@@ -14,6 +14,7 @@ const lcPassport = require("./config/passportStrategies/localClient");
 const lpPassport = require("./config/passportStrategies/localPartner");
 const tcPassport = require("./config/passportStrategies/thirdPartyClient");
 const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
+
 const app = express();
 const keys = require("./config/keys");
 
@@ -21,6 +22,7 @@ const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login/login");
 const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
+const passwordResetRoutes = require("./routes/passwordReset");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -84,15 +86,11 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-
-
 app.use('/auth', registerRoutes);
 app.use('/auth', loginRoutes);
 app.use('/auth', clientLoginRoutes);
 app.use('/auth', partnerLoginRoutes);
+app.use("/auth", passwordResetRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", servicePages);

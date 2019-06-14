@@ -31,6 +31,7 @@ router.post("/register/client", function(req, res) {
     password: req.body.password
   };
 
+
   if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {
       req.flash("error", "Some information is missing");
       return res.redirect("/auth/register/client");
