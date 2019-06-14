@@ -80,8 +80,6 @@
 
 .form-group {
     padding: 0;
-    /* width: 330px; */
-    display: none;
 }
 .form-group div {
     padding-bottom: 10px;
@@ -89,12 +87,9 @@
 .form-group a.btn {
     text-align: left;
 }
-.form-group .facebook a.btn {
-    padding-left: 20px;
-}
 .form-group a.btn span#socialText {
     font-weight: normal;
-    margin-left: 55px;
+    margin-left: 45px;
     font-size: 15px;
 }
 .form-group a.btn-info {
@@ -105,12 +100,39 @@
     border-width: thin;
     border-color: #3b5998
 }
+.form-group .facebook a.btn-info:hover {
+    background-color: rgb(29, 59, 122);
+    border-color: rgb(29, 59, 122);
+}
 .form-group .google a.btn-info {
     background-color: white;
     border-width: thin;
     border-color: rgb(39, 73, 255);
     color: rgba(0, 0, 0, 0.8);
 }
+.form-group .google a.btn-info:hover {
+    background-color: rgb(225, 225, 225);
+}
+.form-group .kakaotalk a.btn-info {
+    background-color: #ffe812;
+    border-width: thin;
+    border-color: #ffe812;
+    color: rgba(0, 0, 0, 0.8);
+}
+.form-group .kakaotalk a.btn-info:hover {
+    background-color: rgb(225, 202, 0);
+    border-color: rgb(225, 202, 18);
+}
+.form-group .naver a.btn-info {
+    background-color: #1EC800;
+    border-width: thin;
+    border-color: #1EC800;
+}
+.form-group .naver a.btn-info:hover {
+    background-color: rgb(0, 170, 0);
+    border-color: rgb(0, 170, 0);
+}
+
 .form-group.registerform {
     display: block;
 }
@@ -128,7 +150,7 @@
     }
     .form-group a.btn span#socialText {
         font-size: 13px;
-        margin-left: 35px;
+        margin-left: 25px;
     }
 }
 
