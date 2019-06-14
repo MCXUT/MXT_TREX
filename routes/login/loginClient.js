@@ -18,7 +18,7 @@ router.post('/login/client', localClient.authenticate('local-client', {
 router.get("/facebook/client", thirdPartyClient.authenticate("client-facebook", {
   scope: ["email","public_profile"]}));
 // Facebook login callback
-router.get("/facebook/callback", thirdPartyClient.authenticate("client-facebook", {
+router.get("/facebook/callback/client", thirdPartyClient.authenticate("client-facebook", {
   successRedirect: "/",
   failureRedirect: "/auth/login"
 }), (req,res) => {
@@ -28,9 +28,17 @@ router.get("/facebook/callback", thirdPartyClient.authenticate("client-facebook"
 // KakaoTalk Login for Client
 router.get("/kakao/client", thirdPartyClient.authenticate("client-kakao"));
 
-router.get("/kakao/callback", thirdPartyClient.authenticate("client-kakao", {
+router.get("/kakao/callback/client", thirdPartyClient.authenticate("client-kakao", {
   successRedirect: "/",
   failureRedirect: "/auth/login"
 }));
+
+// Google Login for Client
+router.get("/google/client", thirdPartyClient.authenticate('client-google', {
+    scope: ['email', 'profile']
+}));
+router.get("/google/callback", thirdPartyClient.authenticate('client-google'), (req, res) => {
+    res.redirect("/");
+});
 
 module.exports = router;
