@@ -2,9 +2,6 @@ const express = require("express");
 const moment = require("moment");
 const router = express.Router();
 
-const Client = require("../models/Client");
-const Partner = require("../models/Partner");
-
 const keys = require("../config/keys");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
