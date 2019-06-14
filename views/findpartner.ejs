@@ -7,6 +7,7 @@
     <title>My airbnb</title>
 
 
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -19,7 +20,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 
     <!-- glyphicon 꺼임 -->
@@ -107,7 +108,7 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  background-color: rgba(0.2, 0.3, 0.4, 0.2);
+  background-color: rgba(0.2, 0.3, 0.4, 0.5);
 }
 
 .dropdown {
@@ -197,9 +198,85 @@
   color: rgba(0, 0, 0, 0.6)
 }
 
+/* .daterangepicker td .active, .daterangepicker td.active:hover{
+  background-color: #236298;
+} */
+/* .daterangepicker td .in-range .end-date{
+  background-color: #236298;
+} */
+
+/* .daterangepicker td.in-range{
+  background-color: #bfdffa;
+} */
 
 
 
+
+.daterangepicker {
+  flex-direction: row;
+  width: 531px !important;
+  border: 1px solid #e3e3e3;
+  border-radius: 0px;
+}
+
+.ranges {
+  height: 35px;
+  display: inline-flex;
+  flex-direction: row;
+  padding: 0px;
+  margin: 4px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.ranges ul {
+  margin: 0px;
+  padding: 0px;
+  display: -webkit-box;
+  font-weight: bold;
+}
+/*
+.ranges li {
+  padding: 3px 16px !important;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: rgba(13, 37, 50, 0.6);
+  border-radius: 0;
+  border: none;
+}
+
+.ranges li.active {
+  background-color: #ffffff;
+  border-bottom: 2px solid #9fd44e;
+  color: #9fd44e;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.ranges li:hover {
+  background-color: #ffffff;
+  border-bottom: 2px solid #9fd44e;
+  color: #9fd44e;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+*/
+.applyBtn {
+
+  /* margin-left: 249px;
+  height: 75px; */
+  background-color: #9fd44e;
+  border: none;
+  /* width: 113px; */
+  border-radius: 0px;
+  border-left: 1px solid #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  background-image: url("assets/images/apply-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 45px 51px;
+}
 
 
   </style>
@@ -211,13 +288,16 @@
     padding-top: 20px;">
 
 
-    <input type="button" name="daterange" value="01/01/2018 - 01/15/2018"
-    placeholder="날짜" class="dropbtn" style="margin: 5px;">
+    <input type="button" name="daterange" value="날짜"
+    placeholder="날짜" class="dropbtn datepicker" style="margin: 5px;">
+    <!-- <button type="button" name="daterange" class="dropbtn datepicker btn-cal" style="margin: 5px;"
+    onclick="kimochi()">날짜</button> -->
+
 
     <button aria-haspopup="true" aria-expanded=
     "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
-    style="margin: 5px;" id="login"><div class="_17u98ky">
-      인원</div></button>
+    style="margin: 5px;" id="login">
+      <div>인원<span id="inwon"></span></div></button>
 
 
 
@@ -245,8 +325,9 @@
       <input type="checkbox" name="koko">등등<br>
     </div>
   </div>
-  <label class="switch text-right" style="float: right;">
-    <input type="checkbox" checked>
+
+  <label class="switch" style="float: right;">
+    <input type="checkbox" id="roundswitch" onclick="myFunction5()" checked>
     <span class="slider round"></span>
   </label>
 </div>
@@ -254,7 +335,7 @@
   <br><br><br>
 
 
-  <div class="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
+  <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
       <div id="slider4">
@@ -472,7 +553,7 @@
                       <span class="glyphicon glyphicon-minus"></span>
                   </button>
               </span>
-              <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
+              <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
               <span class="input-group-btn">
                   <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
                       <span class="glyphicon glyphicon-plus"></span>
@@ -486,6 +567,32 @@
 
 
 <script>
+function myFunction5(){
+
+  var checkbox = document.getElementById("roundswitch");
+  var map = document.getElementById("map");
+  var wrapper = document.getElementById("wrapper");
+  if(checkbox.checked == true){
+    map.style.width= "40%";
+    wrapper.style.width = "60%";
+  } else {
+    map.style.width= "0%";
+    wrapper.style.width = "100%";
+  }
+}
+
+
+
+
+
+
+function myFunction(){
+  var element = document.getElementsByClassName("end-date");
+  element.classList.remove("in-range");
+}
+
+
+
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
@@ -499,15 +606,31 @@ function myFunction2() {
 // Close the dropdown if the user clicks outside of it
 
 
-$(function() {
+$(function(e) {
   var minDate = new Date();
   $('input[name="daterange"]').daterangepicker({
     minDate : minDate,
-    opens: 'right'
-  }, function(start, end, label) {
+    opens: 'right',
+    showOn: "both"
+
+
+
+    // buttonClasses: ['btn btn-default'],
+    //       applyClass: 'btn-small btn-primary',
+    //       cancelClass: 'btn-small'
+
+
+    // buttonImageOnly: true,
+    // buttonText: "선택",
+    // today: "날짜"
+  }
+  , function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
+
 });
+
+// document.getElementsByClassName("datepicker").defaultValue = "날짜";
 
 
 
@@ -519,9 +642,14 @@ document.getElementById("login").addEventListener("click", (e) => {
 
 document.getElementById("registerModal").addEventListener("click", (e) => {
     if(e.target.className == "modal in modal_site_login ui-draggable sticky-top") {
-        document.getElementById("registerModal").style.display = "none";
+      var memi = document.getElementById("memi").value;
+      var inwon = document.getElementsByClassName("inwon");
+      document.getElementById("registerModal").style.display = "none";
+      document.getElementById("inwon").innerHTML = " : " + document.getElementById("memi").value + "명";
     }
 });
+
+// $(".inwon").text() = document.getElementById("memi").value;
 
 
 $('.btn-number').click(function(e){
@@ -705,6 +833,6 @@ $(".input-number").keydown(function (e) {
 <script src="https://maps.googleapis.com/maps/api/js?key=
 AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
 
-</<sc></sc>ript>
+</script>
   </body>
 </html>

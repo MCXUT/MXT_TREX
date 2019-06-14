@@ -23,7 +23,7 @@
             <% if (error) { %>
               <span style="color:red"><%= error %></span>
             <% } %>
-              <form action="/auth/register/client" method="post" id="myform">
+              <form action="/auth/register/client" method="post" id="myform" onsubmit="return validateCaptcha()">
 
                   <p>성함</p>
                   <input class="form-control" type="text" name="name" required>
@@ -40,10 +40,13 @@
 
                   <div class="form-control-flat"><label class="checkbox">
                       <input type="checkbox" id="5cf81abcec9b5_rememberme" class="rememberme"
-                      name="rememberme" value="forever" required><i></i>
+                      name="rememberme" onclick="
+                      $(this).click((e)=> {
+                        console.log(this)
+                      })" required>
                       서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label></div>
 
-                      <input class="form-control btn btn-primary" type="submit" value="무료 가입" onclick="validateCaptcha()">
+                      <input class="form-control btn btn-primary" type="submit" value="무료 가입">
                 </form>
             </div>
 
@@ -126,10 +129,12 @@
 
   if (document.getElementById("captchaTextBox").value == code) {
     document.getElementById("myform").submit();
-  console.log("jungoh")
+    return true;
+
   }else{
     alert("Invalid Captcha. try Again");
     createCaptcha();
+    return false;
   }
   }
 

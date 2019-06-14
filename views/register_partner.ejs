@@ -23,7 +23,7 @@
             <% if (error) { %>
               <span style="color:red"><%= error %></span>
             <% } %>
-              <form action="/auth/register/partner" method="post">
+              <form action="/auth/register/partner" method="post" id="myform" onsubmit="return validateCaptcha()">
 
                   <p>성함</p>
                   <input class="form-control" type="text" name="name" required>
@@ -43,7 +43,7 @@
                       name="rememberme" value="forever" required><i></i>
                       서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label></div>
 
-                      <input class="form-control btn btn-primary" type="submit" value="무료 가입">
+                      <input class="form-control btn btn-primary" type="submit" value="무료 가입" required>
                 </form>
             </div>
 
@@ -123,12 +123,13 @@
   }
   function validateCaptcha() {
   event.preventDefault();
-  debugger
   if (document.getElementById("cpatchaTextBox").value == code) {
-    alert("Valid Captcha")
+    document.getElementById("myform").submit();
+    return true;
   }else{
     alert("Invalid Captcha. try Again");
     createCaptcha();
+    return false;
   }
   }
 
