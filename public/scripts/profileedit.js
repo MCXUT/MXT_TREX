@@ -60,7 +60,7 @@ $(document).ready(() => {
                     data: basicinfoform.serialize()
                 });
 
-                var spans = document.querySelectorAll(".switch");
+                var spans = document.getElementById("basic").querySelectorAll(".switch");
                 spans.forEach((span) => {
                     $(span).toggleClass("active");
                 });
@@ -92,6 +92,23 @@ $(document).ready(() => {
         $(".languageinput").remove();
 
         var spans = document.querySelectorAll(".switch");
+        spans.forEach((span) => {
+            $(span).toggleClass("active");
+        });
+    });
+
+    $("#privateinfoform").unbind().submit((e) => {
+        var privateinfoform = $("#privateinfoform");
+        // e.preventDefault();
+        $.ajax({
+            type: privateinfoform.attr("method"),
+            url: privateinfoform.attr("action"),
+            data: privateinfoform.serialize()
+        });
+
+        privateinfoform.reset();
+
+        var spans = document.getElementById("security").querySelectorAll(".switch");
         spans.forEach((span) => {
             $(span).toggleClass("active");
         });
