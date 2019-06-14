@@ -2,8 +2,6 @@ const express = require("express");
 const moment = require("moment");
 const router = express.Router();
 
-const Client = require("../models/Client");
-const Partner = require("../models/Partner");
 
 const keys = require("../config/keys");
 const Client = require("../models/Client");
@@ -137,6 +135,11 @@ router.post("/user_profile/language", (req, res) => {
       phoneNumber: res.locals.currentUser.phoneNumber
     }
     res.render("userprofile", {userInfo: userInfo, langinfo: newinfo});
-})
+});
+
+router.post("/user_profile/security", (req, res) => {
+    console.log(req.body);
+    res.redirect("/user_profile");
+});
 
 module.exports = router;
