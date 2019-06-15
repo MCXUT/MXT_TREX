@@ -29,7 +29,7 @@
               <span style="color: red"><%= error %></span>
             <% } %>
 
-            <form action="/auth/reset/passwordReset" method="post">
+            <form action="/auth/reset/client/passwordReset/<%= token %>" method="post">
                 <p>비밀번호</p>
                 <input class="form-control" type="password" name="newpassword" id="confirm_password" onkeyup='check();' required>
                 <p>비밀번호 확인</p>
