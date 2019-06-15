@@ -24,8 +24,8 @@
         </h3>
 
         <div class="choicetabs">
-            <div class="loginasclient"><p>클라이언트</p></div>
-            <div class="loginaspartner active"><p>파트너</p></div>
+            <div class="loginasclient active"><p>클라이언트</p></div>
+            <div class="loginaspartner"><p>파트너</p></div>
         </div>
         <div class="loginform">
 
@@ -33,7 +33,7 @@
               <span style="color: red"><%= error %></span>
             <% } %>
 
-            <form class="clientform" action="/auth/login/client" method="POST">
+            <form class="clientform active" action="/auth/login/client" method="POST">
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
@@ -47,7 +47,7 @@
                     <input class="btn btn-primary form-control" type="submit" value="로그인">
             </form>
 
-            <form class="partnerform active" action="/auth/login/partner" method="POST">
+            <form class="partnerform" action="/auth/login/partner" method="POST">
 
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
@@ -63,7 +63,7 @@
             </form>
 
 
-            <div class="form-group clientform">
+            <div class="form-group clientform active">
                 <p class="secondchoice">OR</p>
                 <div class="facebook">
                     <a href="/auth/facebook/client" class='btn btn-info'>
@@ -97,7 +97,7 @@
 
 
 
-            <div class="form-group partnerform active">
+            <div class="form-group partnerform">
                 <p class="secondchoice">OR</p>
                 <div class="facebook">
                     <a href="/auth/facebook/partner" class='btn btn-info'>
