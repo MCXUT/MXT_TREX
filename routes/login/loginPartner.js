@@ -41,5 +41,13 @@ router.get("/google/callback/partner", thirdPartyPartner.authenticate('partner-g
     res.redirect("/");
 });
 
+// Naver Login for Partner
+router.get("/naver/partner", thirdPartyPartner.authenticate('partner-naver'));
+
+router.get("/naver/callback/partner", thirdPartyPartner.authenticate('partner-naver', {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
+
 
 module.exports = router;

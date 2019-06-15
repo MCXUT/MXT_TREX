@@ -2,7 +2,7 @@ const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-// const NaverStrategy = require("passport-naver").Strategy;
+const NaverStrategy = require("passport-naver").Strategy;
 
 const Client = require("../../models/Client");
 const keys = require("../keys");
@@ -10,7 +10,7 @@ const keys = require("../keys");
 passport.use("client-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
-      callbackURL: "/auth/facebook/callback/client",
+      callbackURL: keys.facebookClientInfo.callback + "/client",
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
@@ -95,6 +95,31 @@ passport.use("client-google", new GoogleStrategy({
       });
     }
   });
+  }
+));
+
+passport.use("client-naver", new NaverStrategy({
+    clientID: keys.naverClientInfo.clientID,
+    clientSecret: keys.naverClientInfo.clientSecret,
+    callbackURL: keys.naverClientInfo.callback + "/client"
+    },
+  function(accessToken, refreshToken, profile, done) {
+    Client.findOne({
+      naverID: profile.id
+    }).then((foundUser)=> {
+      if(foundUser) {
+        done(null, foundUser)
+      } else {
+        new Client({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          naverID: profile.id
+        }).save().then((newUser) => {
+          console.log("new User Created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
   }
 ));
 

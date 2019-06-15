@@ -41,4 +41,12 @@ router.get("/google/callback/client", thirdPartyClient.authenticate('client-goog
     res.redirect("/");
 });
 
+// Naver Login for Client
+router.get("/naver/client", thirdPartyClient.authenticate('partner-naver'));
+
+router.get("/naver/callback/client", thirdPartyClient.authenticate('partner-naver', {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
+
 module.exports = router;
