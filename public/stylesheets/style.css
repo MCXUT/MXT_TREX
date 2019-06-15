@@ -5,6 +5,12 @@
 html, body{
 
 }
+.container-fluid{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
 
 .padding{
   padding-top: 40px;
@@ -26,6 +32,7 @@ html, body{
 
 }
 /* carousel section */
+
 .carousel-inner > .carousel-item > img {
   margin-left: 0 auto;
   width:100%;
@@ -41,12 +48,19 @@ html, body{
   height:auto;
   display:inline-block;
 }
-
+.divider3{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
 .bottom-right{
   color:white;
   position:absolute;
   bottom:8px;
   right:16px;
+}
+.carousel-caption{
+  padding-bottom:7%;
 }
 /* end of carousel section */
 
@@ -74,6 +88,7 @@ html, body{
   position: relative;
   text-align: center;
   color: white;
+  font-size: 20px;
 }
 .centered{
 position: absolute;
@@ -83,6 +98,47 @@ transform: translate(-50%, -50%);
 color:white;
 }
 /* /서비스 견적 */
+/* 통역 그 이상의 서비스 */
+.font1{
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 60px;
+
+  text-shadow: #f8ba00 1px 0 10px;
+  text-shadow: 5px 5px #8C8C8C;
+}
+/* /통역 그 이상의 서비스 */
+/* 국가,지역 별 파트너 */
+.container3{
+  position: relative;
+  text-align: center;
+  color: white;
+  background-color: pink;
+}
+.container2:hover{
+  font-size: 25px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+#button2{
+  border:none;
+  background-color: transparent;
+  color:#595959;
+  font-size: 25px;
+}
+#button2:hover{
+  color:#f8ba00;
+}
+/* #button3{
+  background-color:#4d4d4d;
+  border:#4d4d4d;
+  border-radius:5px;
+  height:50px;
+  color:white;
+}
+#button3:hover{
+  background-color: #f8ba00;
+} */
+/* /국가,지역 별 파트너 */
 
 /* Accordion Section */
 
@@ -194,6 +250,9 @@ color:white;
 
 }
 @media (max-width: 576px) {
+.carousel-caption h1{
+  font-size: 40px;
+}
 
 }
 
