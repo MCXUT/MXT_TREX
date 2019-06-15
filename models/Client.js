@@ -31,7 +31,7 @@ var ClientSchema = mongoose.Schema({
     facebookID: String,
     googleID: String,
     naverID: String,
-    //For test
+    // pic stores the 'filename' of the profile picture
     pic: String
 }, {minimize: false});
 
