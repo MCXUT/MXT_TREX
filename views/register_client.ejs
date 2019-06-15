@@ -23,6 +23,7 @@
             <% if (error) { %>
               <span style="color:red"><%= error %></span>
             <% } %>
+              <form action="/auth/register/client" method="post" id="myform" onsubmit="return validateCaptcha()">
 
               <form action="/auth/register/client" method="post">
                   <p>성함</p>
@@ -35,12 +36,15 @@
                   <input class="form-control" type="password" name="password2" id="confirm_password" onkeyup='check();' required>
 
                   <div id="captcha"></div>
-                  <input class="form-control" type="text" placeholder="자동 가입 방지 글" id="cpatchaTextBox">
+                  <input class="form-control" type="text" placeholder="자동 가입 방지 글" id="captchaTextBox" required>
 
 
                   <div class="form-control-flat"><label class="checkbox">
                       <input type="checkbox" id="5cf81abcec9b5_rememberme" class="rememberme"
-                      name="rememberme" value="forever" required><i></i>
+                      name="rememberme" onclick="
+                      $(this).click((e)=> {
+                        console.log(this)
+                      })" required>
                       서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label></div>
 
                       <input class="form-control btn btn-primary" type="submit" value="무료 가입">
@@ -50,13 +54,13 @@
                 <div class="form-group">
                     <p class="secondchoice">OR</p>
                     <div class="facebook">
-                        <a href="/auth/facebook" class='btn btn-info'>
+                        <a href="/auth/facebook/client" class='btn btn-info'>
                             <img src="/static/icons/facebook-app-logo.svg" width="25" height="25"></img>
                             <span id="socialText">페이스북으로 로그인하기</span>
                         </a>
                     </div>
                     <div class="google">
-                        <a href="/auth/google" class='btn btn-info'>
+                        <a href="/auth/google/client" class='btn btn-info'>
                             <img src="/static/icons/google.svg" width="25" height="25"></img>
                             <span id="socialText">Google+로 로그인하기</span>
 
@@ -64,14 +68,14 @@
                     </div>
 
                     <div class="naver">
-                        <a href="/auth/facebook" class='btn btn-info'>
+                        <a href="/auth/naver/client" class='btn btn-info'>
                             <img src="/static/icons/naver-logo.png" width="25" height="25"></img>
                             <span id="socialText">네이버로 로그인하기</span>
                         </a>
                     </div>
 
                     <div class="kakaotalk">
-                        <a href="/auth/kakao" class='btn btn-info'>
+                        <a href="/auth/kakao/client" class='btn btn-info'>
                             <img src="/static/icons/kakaotalk.svg" width="25" height="25"></img>
                             <span id="socialText">카카오 계정으로 로그인하기</span>
                         </a>
@@ -115,12 +119,15 @@
   }
   function validateCaptcha() {
   event.preventDefault();
-  debugger
-  if (document.getElementById("cpatchaTextBox").value == code) {
-    alert("Valid Captcha")
+
+  if (document.getElementById("captchaTextBox").value == code) {
+    document.getElementById("myform").submit();
+    return true;
+
   }else{
     alert("Invalid Captcha. try Again");
     createCaptcha();
+    return false;
   }
   }
 

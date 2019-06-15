@@ -7,6 +7,8 @@ var ClientSchema = mongoose.Schema({
     email: { type: String, unique: true},//, required: true},
     isVerified: {type: Boolean, default: false},
     password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     dateOfBirth: String,
     // address: {
     //   unit: String,
@@ -28,7 +30,8 @@ var ClientSchema = mongoose.Schema({
     kakaoID: String,
     facebookID: String,
     googleID: String,
-    //For test
+    naverID: String,
+    // pic stores the 'filename' of the profile picture
     pic: String
 }, {minimize: false});
 

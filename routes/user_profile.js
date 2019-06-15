@@ -1,5 +1,6 @@
-const express = require("express");
-const moment = require("moment");
+const express = require("express"),
+      moment = require("moment");
+
 const router = express.Router();
 
 const keys = require("../config/keys");
@@ -23,8 +24,14 @@ router.get("/user_profile", (req, res) => {
     } else {
       type = "Client";
     }
-    var birthday = moment(res.locals.currentUser.dateOfBirth).format('YYYY-MM-DD');
-    var displayBirthday = moment(birthday).format('MMMM DD, YYYY');
+    var birthday;
+    var displayBirthday;
+    if (res.locals.currentUser.dateOfBirth) {
+      birthday = moment(res.locals.currentUser.dateOfBirth).format('YYYY-MM-DD');
+      displayBirthday = moment(birthday).format('MMMM DD, YYYY');
+    } else {
+      birthday = res.locals.currentUser.dateOfBirth;
+    }
     var userInfo = {
       name: res.locals.currentUser.name,
       type: type,
@@ -32,7 +39,7 @@ router.get("/user_profile", (req, res) => {
       displayBirthday: displayBirthday,
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
-    }
+    };
     var langinfo = res.locals.currentUser.languages;
     res.render("userprofile", {userInfo: userInfo, langinfo: langinfo});
   }
@@ -40,7 +47,7 @@ router.get("/user_profile", (req, res) => {
 
 
 // POST route for updating user information
-router.post("/user_profile", (req, res) => {
+router.post("/user_profile/basicInfo", (req, res) => {
   // var newInfo = req.body;
   // console.log(newInfo);
 
@@ -50,7 +57,16 @@ router.post("/user_profile", (req, res) => {
     googleMapsClient.geocode({
       address: req.body.address
     }, function(err, response) {
-      if (!err) {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+        return res.redirect("/user_profile");
+      } else {
+        // Make sure we are able to get the coordinates of the given address, else throw error
+        if (!response.json.results[0]) {
+          req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+          return res.redirect("/user_profile");
+        }
         var newCoordinates = {
           lat: response.json.results[0].geometry.location.lat,
           lng: response.json.results[0].geometry.location.lng
@@ -61,7 +77,7 @@ router.post("/user_profile", (req, res) => {
             console.log(err);
             return res.redirect("/user_profile");
           };
-          foundUser.dateOfBirth = req.body.birthday;
+          foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
           foundUser.address = req.body.address;
           foundUser.coordinates = newCoordinates;
           foundUser.phoneNumber = req.body.phoneNumber;
@@ -82,7 +98,16 @@ router.post("/user_profile", (req, res) => {
     googleMapsClient.geocode({
       address: req.body.address
     }, function(err, response) {
-      if (!err) {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+        return res.redirect("/user_profile");
+      } else {
+        // Make sure we are able to get the coordinates of the given address, else throw error
+        if (!response.json.results[0]) {
+          req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+          return res.redirect("/user_profile");
+        }
         var newCoordinates = {
           lat: response.json.results[0].geometry.location.lat,
           lng: response.json.results[0].geometry.location.lng
@@ -113,27 +138,57 @@ router.post("/user_profile", (req, res) => {
 
 });
 
+
+// POST route for changing language profile info for language
 router.post("/user_profile/language", (req, res) => {
-    var type;
-    if (res.locals.currentUser.type === "p") {
-      type = "Partner";
-    } else {
-      type = "Client";
+  // Changing language profile info of a client
+  if (res.locals.currentUser.type === "c") {
+    var newLanguageInfo = {
+      langchoice: req.body.langchoice,
+      langproficiency: req.body.langproficiency
     }
-    var newinfo = {
-        langchoice: req.body.langchoice,
-        langproficiency: req.body.langproficiency
+    // Find and update client profile
+    Client.findById(req.user._id, function(err, foundUser) {
+      if (err) {
+        console.log(err);
+        return res.redirect("/user_profile");
+      };
+      foundUser.languages = newLanguageInfo;
+      foundUser.save((err) => {
+        if (err) {
+          console.log(err);
+          return res.redirect("/user_profile");
+        }
+        console.log("Profile Update Successful");
+        return res.redirect("/user_profile");
+      });
+
+    });
+  } else {// Changing language profile of a partner
+    var newLanguageInfo = {
+      langchoice: req.body.langchoice,
+      langproficiency: req.body.langproficiency
     }
-    console.log(newinfo);
-    var userInfo = {
-      name: res.locals.currentUser.name,
-      type: type,
-      birthday: res.locals.currentUser.dateOfBirth,
-      address: res.locals.currentUser.address,
-      phoneNumber: res.locals.currentUser.phoneNumber
-    }
-    res.render("userprofile", {userInfo: userInfo, langinfo: newinfo});
+    // Find and update client profile
+    Partner.findById(req.user._id, function(err, foundUser) {
+      if (err) {
+        console.log(err);
+        return res.redirect("/user_profile");
+      };
+      foundUser.languages = newLanguageInfo;
+      foundUser.save((err) => {
+        if (err) {
+          console.log(err);
+          return res.redirect("/user_profile");
+        }
+        console.log("Profile Update Successful");
+        return res.redirect("/user_profile");
+      });
+
+    });
+  }
 });
+
 
 router.post("/user_profile/security", (req, res) => {
     console.log(req.body);

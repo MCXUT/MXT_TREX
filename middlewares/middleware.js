@@ -29,21 +29,3 @@ module.exports.searchTypeById = (id, callback) => {
     }
   });
 }
-
-
-module.exports.matchUserEmail = (req,res,next) => {
-  Client.findOne({email: req.body.email}).then((foundClient) => {
-    if(foundClient) {
-      return next;
-    } else {
-      Partner.findOne({email:req.body.email}).then((foundPartner) => {
-        if(foundPartner) {
-          return next;
-        } else {
-          req.flash("error_reset", "No user exists with such email");
-          return res.redirect("/");
-        }
-      });
-    }
-  });
-}

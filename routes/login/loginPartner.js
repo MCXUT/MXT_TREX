@@ -37,9 +37,17 @@ router.get("/kakao/callback/partner", thirdPartyPartner.authenticate("partner-ka
 router.get("/google/partner", thirdPartyPartner.authenticate('partner-google', {
     scope: ['email', 'profile']
 }));
-router.get("/google/callback", thirdPartyPartner.authenticate('partner-google'), (req, res) => {
+router.get("/google/callback/partner", thirdPartyPartner.authenticate('partner-google'), (req, res) => {
     res.redirect("/");
 });
+
+// Naver Login for Partner
+router.get("/naver/partner", thirdPartyPartner.authenticate('partner-naver'));
+
+router.get("/naver/callback/partner", thirdPartyPartner.authenticate('partner-naver', {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
 
 
 module.exports = router;

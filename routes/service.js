@@ -19,4 +19,8 @@ router.get("/refund", (req, res) => {
     res.render("refund");
 });
 
+router.get("/about_us", (req,res) => {
+    res.render("about_us");
+});
+
 module.exports = router;
