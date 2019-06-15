@@ -7,5 +7,9 @@ router.get("/seetask", (req, res) => {
   res.render("seetask");
 });
 
+router.get("/city_list", (req, res) => {
+  res.render("city");
+});
+
 
 module.exports = router;

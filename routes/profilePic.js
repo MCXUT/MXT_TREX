@@ -52,35 +52,46 @@ const storage = new GridFsStorage({
   }
 });
 const upload = multer({ storage });
-////////////////////////////////////////////////////////////////
+
+////////////////////////////ROUTES////////////////////////////////////
 
 
-// POST route for changing profile picture
-router.post("/user_profile/profilePicUpload", upload.single("profilePic"), (req, res) => {
+// POST route for changing profile picture for client
+router.post("/user_profile/profilePicUpload_client", upload.single("profilePic"), (req, res) => {
   if (req.file) { // if a new profile picture was posted
-    if (res.locals.currentUser.type === "c") { // if the current user is a client
-      // Find and update client profile picture
-      Client.findById(req.user._id, function(err, foundUser) {
+    // if the current user is a client
+    // Find and update client profile picture
+    Client.findById(req.user._id, function(err, foundUser) {
+      if (err) {
+        console.log(err);
+        return res.redirect("/user_profile");
+      };
+      if (foundUser.pic) {
+        gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
+          if (err) { throw err; }
+        });
+      }
+      foundUser.pic = req.file.filename;
+      foundUser.save((err) => {
         if (err) {
           console.log(err);
           return res.redirect("/user_profile");
-        };
-        if (foundUser.pic) {
-          gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
-            if (err) { throw err; }
-          });
         }
-        foundUser.pic = req.file.filename;
-        foundUser.save((err) => {
-          if (err) {
-            console.log(err);
-            return res.redirect("/user_profile");
-          }
-          console.log("Profile Update Successful");
-          return res.redirect("/user_profile");
-        });
+        console.log("Client Profile Picture Update Successful");
+        return res.redirect("/user_profile");
       });
-    } else { // if the current user is a partner
+    });
+  } else { // if no new picture is selected
+    res.redirect("/user_profile");
+  }
+});
+
+
+
+// POST route for changing profile picture for partner
+router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"), (req, res) => {
+  if (req.file) { // if a new profile picture was posted
+      // if the current user is a partner
       // Find and update client profile picture
       Partner.findById(req.user._id, function(err, foundUser) {
         if (err) {
@@ -98,13 +109,15 @@ router.post("/user_profile/profilePicUpload", upload.single("profilePic"), (req,
             console.log(err);
             return res.redirect("/user_profile");
           }
-          console.log("Profile Picture Update Successful");
+          console.log("Partner Profile Picture Update Successful");
           return res.redirect("/user_profile");
         });
       });
-    }
+  } else { // if no new picture is selected
+    res.redirect("/user_profile");
   }
 });
+
 
 
 // @route GET /image/:filename
@@ -123,107 +136,60 @@ router.get("/image/:filename", (req, res) => {
 });
 
 
-// @route DELETE /files/:filename
-// @desc Delete the current profile picture of the current user
-router.delete("/user_profile/deleteProfilePic", (req, res) => {
-  if (res.locals.currentUser.type === "c") { // if the current user is a client
-    // Find and delete client profile picture
-    Client.findById(req.user._id, function(err, foundUser) {
+// @route DELETE /user_profile/deleteClientProfilePic
+// @desc Delete the current profile picture of the current client
+router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
+  // if the current user is a client
+  // Find and delete client profile picture
+  Client.findById(req.user._id, function(err, foundUser) {
+    if (err) {
+      console.log(err);
+      return res.redirect("/user_profile");
+    };
+    if (foundUser.pic) {
+      gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
+        if (err) { throw err; }
+      });
+    }
+    foundUser.pic = "";
+    foundUser.save((err) => {
       if (err) {
         console.log(err);
         return res.redirect("/user_profile");
-      };
-      if (foundUser.pic) {
-        gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
-          if (err) { throw err; }
-        });
       }
-      foundUser.pic = "";
-      foundUser.save((err) => {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        }
-        console.log("Profile Update Successful");
-        return res.redirect("/user_profile");
-      });
+      console.log("Client Profile Picture Delete Successful");
+      return res.redirect("/user_profile");
     });
-  } else { // if the current user is a partner
-    // Find and delete client profile picture
-    Partner.findById(req.user._id, function(err, foundUser) {
-      if (err) {
-        console.log(err);
-        return res.redirect("/user_profile");
-      };
-      if (foundUser.pic) {
-        gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
-          if (err) { throw err; }
-        });
-      }
-      foundUser.pic = "";
-      foundUser.save((err) => {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        }
-        console.log("Profile Picture Update Successful");
-        return res.redirect("/user_profile");
-      });
-    });
-  }
+  });
 });
 
 
-// // DELETE route for deleting profile picture
-// router.delete("/user_profile/profile_pic", (req, res) => {
-//   // Deleting the picture from the database
-//   gfs.remove({_id: req.params.id, root: "uploads"}, (err, gridStore) => {
-//     if (err) {
-//       return res.status(404).json({ err: err });
-//     }
-//     res.redirect("/user_profile");
-//   });
-// 
-//   // Emptying the user's profile picture field
-//   if (res.locals.currentUser.type === "c") { // if the current user is a client
-//    // Find and update client profile picture to be empty
-//    Client.findById(req.user._id, function(err, foundUser) {
-//      if (err) {
-//        console.log(err);
-//        return res.redirect("/user_profile");
-//      };
-//      foundUser.pic = "";
-//      foundUser.save((err) => {
-//        if (err) {
-//          console.log(err);
-//          return res.redirect("/user_profile");
-//        }
-//        console.log("Profile Update Successful");
-//        return res.redirect("/user_profile");
-//      });
-// 
-//    });
-//   } else { // if the current user is a partner
-//    // Find and update client profile picture to be empty
-//    Partner.findById(req.user._id, function(err, foundUser) {
-//      if (err) {
-//        console.log(err);
-//        return res.redirect("/user_profile");
-//      };
-//      foundUser.pic = "";
-//      foundUser.save((err) => {
-//        if (err) {
-//          console.log(err);
-//          return res.redirect("/user_profile");
-//        }
-//        console.log("Profile Update Successful");
-//        return res.redirect("/user_profile");
-//      });
-// 
-//    });
-//   }
-// 
-// });
 
+// @route DELETE /user_profile/deletePartnerProfilePic
+// @desc Delete the current profile picture of the current partner
+router.delete("/user_profile/deletePartnerProfilePic", (req, res) => {
+  // if the current user is a partner
+  // Find and delete partner profile picture
+  Partner.findById(req.user._id, function(err, foundUser) {
+    if (err) {
+      console.log(err);
+      return res.redirect("/user_profile");
+    };
+    if (foundUser.pic) {
+      gfs.remove({filename: foundUser.pic, root: "profilePics"}, (err, gridStore) => {
+        if (err) { throw err; }
+      });
+    }
+    foundUser.pic = "";
+    foundUser.save((err) => {
+      if (err) {
+        console.log(err);
+        return res.redirect("/user_profile");
+      }
+      console.log("Partner Profile Picture Delete Successful");
+      return res.redirect("/user_profile");
+    });
+  });
+});
 
 module.exports = router;
