@@ -27,7 +27,7 @@ var ClientSchema = mongoose.Schema({
     phoneNumber: String,
     kakaoID: String,
     facebookID: String,
-    //For test
+    // pic stores the 'filename' of the profile picture
     pic: String
 }, {minimize: false});
 

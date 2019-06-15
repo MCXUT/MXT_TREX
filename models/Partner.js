@@ -24,14 +24,14 @@ var PartnerSchema = mongoose.Schema({
       lng: Number,
       default: {}
     },
-    languages: {
-      langchoice: String,
-      langproficiency: String
+    languages: { // only for partners?
+      langchoice: [String],
+      langproficiency: [String]
     },
     phoneNumber: String,
     kakaoID: String,
     facebookID: String,
-    //For test
+    // pic stores the 'filename' of the profile picture
     pic: String
 }, {minimize: false});
 

@@ -25,14 +25,27 @@
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4">
+                      <% if (currentUser.pic) { %>
+                        <img class="profileimg" src="image/<%= currentUser.pic %>">
+                      <% } else { %>
                         <img class="profileimg" src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
+                      <% } %>
                         <p class="userName"><%= userInfo.name %>, (<%= userInfo.type %>)</p>
-                        <a class="btn btn-primary form-control" href="#">사진 교체하기</a>
+                        <form action="/user_profile/profilePicUpload" method="post" enctype="multipart/form-data">
+                          <input type="file" name="profilePic" accept="image/*">
+                          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                        </form>
+                        <form action="/user_profile/deleteProfilePic?_method=DELETE" method="post">
+                          <button class="btn btn-danger btn-block">Use Default</button>
+                        </form>
                     </div>
                     <div class="col-md-8">
+                      <% if (error) { %>
+                        <span style="color:red"><%= error %></span>
+                      <% } %>
                             <div class="row sections basic">
                                 <p class="basictitle"><b>기본 정보</b></p>
-                                <form id="basicinfoform" action="/user_profile" method="post">
+                                <form id="basicinfoform" action="/user_profile/basicInfo" method="post">
                                 </form>
                                 <div class="buttons basicinfo">
                                     <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
@@ -76,6 +89,7 @@
                                         <span class="switch"><input form="basicinfoform" class="form-control" name="major" value="<%= userInfo.major %>"></span>
                                 </div> -->
                         </div>
+                        
 
                         <div class="row sections">
                             <p class="basictitle"><b>서비스</b></p>
@@ -102,6 +116,9 @@
                                     <p class="title">현지 기관 서비스<span class="exit">x</span></p>
                                 </div>
                         </div>
+                        
+                        
+                        
                         <div class="row sections lang">
                             <p class="basictitle"><b>언어</b></p>
                             <form id="languageform" action="/user_profile/language" method="post"></form>

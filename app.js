@@ -8,6 +8,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
+const methodOverride = require("method-override");
 
 
 const lcPassport = require("./config/passportStrategies/localClient");
@@ -26,6 +27,7 @@ const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
 const servicePages = require("./routes/service");
 const taskRoutes = require("./routes/tasks");
+const profilePicRoutes = require("./routes/profilePic");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb.user + ":" + keys.mongodb.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -40,7 +42,7 @@ app.engine("html", ejs.renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-
+app.use(methodOverride("_method"));
 
 // session setting
 app.use(session({
@@ -97,6 +99,7 @@ app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
+app.use("/", profilePicRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
