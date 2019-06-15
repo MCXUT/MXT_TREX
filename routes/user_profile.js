@@ -15,6 +15,7 @@ const googleMapsClient = require('@google/maps').createClient({
 router.get("/user_profile", (req, res) => {
   if (!res.locals.currentUser) {
     res.redirect("/");
+    // res.render("userprofile", {userInfo: {}, langinfo: {}});
   } else {
     var type;
     if (res.locals.currentUser.type === "p") {
@@ -32,10 +33,8 @@ router.get("/user_profile", (req, res) => {
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
     }
-    res.render("userprofile", {userInfo: userInfo, langinfo: {
-        // langchoice: [],
-        // langproficiency: []
-    }});
+    var langinfo = res.locals.currentUser.languages;
+    res.render("userprofile", {userInfo: userInfo, langinfo: langinfo});
   }
 });
 

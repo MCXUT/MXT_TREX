@@ -8,6 +8,10 @@ var PartnerSchema = mongoose.Schema({
     isVerified: {type: Boolean, default: false},
     password: String,
     dateOfBirth: Date,
+    languages: {
+        langchoice: [String],
+        langproficiency: [String]
+    },
     // address: {
     //   unit: String,
     //   street: String,

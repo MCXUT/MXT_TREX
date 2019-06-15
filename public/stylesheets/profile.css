@@ -252,6 +252,10 @@
 .bottom .sections .language.languageinput {
     padding: 20px 0px 0px;
 }
+.bottom .sections.lang a {
+    width: 100%;
+    text-align: right;
+}
 
 @media (max-width: 768px) {
     .bottom .col-md-8 .sections {
@@ -325,4 +329,8 @@
     .switch .form-control {
         font-size: 12px;
     }
+}
+
+body.disabled {
+    overflow-y: hidden;
 }

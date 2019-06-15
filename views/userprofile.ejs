@@ -8,6 +8,46 @@
     </head>
     <body>
 
+        <link rel="stylesheet" href="/static/stylesheets/viewproficiency.css">
+        <div class="pum">
+            <div class="pum-container">
+                <div class="maincontent">
+                    <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                    <h1>HOHOH</h1>
+                </div>
+            </div>
+        </div>
+
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
@@ -25,7 +65,7 @@
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
-                        <img class="profileimg" src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png">
+                        <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <p class="userName"><%= userInfo.name %><br/> (<%= userInfo.type %>)</p>
                         <a class="btn btn-primary form-control" href="#">사진 교체하기</a>
                     </div>
@@ -106,6 +146,7 @@
                                     <button form="languageform" class="btn btn-info editbuttons" id="confirm">확인</a>
                                 </div>
                                 <div class="divider"></div>
+                                <a href="#" class="proficiencychart">구사 능력 기준 보기</a>
                                 <% if(typeof langinfo.langchoice == "string") { %>
                                     <div class="row language">
                                         <span><b><%= langinfo.langchoice %></b></span>
