@@ -1,0 +1,30 @@
+.pum.pumactive {
+    display: block;
+}
+.pum {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 8000;
+    overflow-y: scroll;
+    display: none;
+}
+.pum .pum-container {
+    left: 10%;
+    top: 100px;
+    position: relative;
+    background-color: white;
+    max-width: 80%;
+    min-width: 0%;
+    margin-bottom: 200px;
+}
+.pum .pum-container .maincontent .exittable {
+    float: right;
+    font-size: 25px;
+    padding: 5px 8px 0 0;
+}
+.pum .pum-container .maincontent .exittable:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+}

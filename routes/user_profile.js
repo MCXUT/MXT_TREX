@@ -16,6 +16,7 @@ const googleMapsClient = require('@google/maps').createClient({
 router.get("/user_profile", (req, res) => {
   if (!res.locals.currentUser) {
     res.redirect("/");
+    // res.render("userprofile", {userInfo: {}, langinfo: {}});
   } else {
     var type;
     if (res.locals.currentUser.type === "p") {
@@ -161,7 +162,7 @@ router.post("/user_profile/language", (req, res) => {
         console.log("Profile Update Successful");
         return res.redirect("/user_profile");
       });
-      
+
     });
   } else {// Changing language profile of a partner
     var newLanguageInfo = {
@@ -183,7 +184,7 @@ router.post("/user_profile/language", (req, res) => {
         console.log("Profile Update Successful");
         return res.redirect("/user_profile");
       });
-      
+
     });
   }
 });

@@ -153,6 +153,34 @@ $(document).ready(() => {
     })
 });
 
+
+var viewproficiency = () => {
+    document.querySelector(".proficiencychart").addEventListener("click", (e) => {
+        e.preventDefault();
+        $(".pum").toggleClass("pumactive");
+        $("body").toggleClass("disabled");
+    });
+}
+viewproficiency();
+
+var clickoutside = () => {
+    document.querySelector(".pum").addEventListener("click", (e) => {
+        if(e.target.className === "pum pumactive") {
+            $(".pum").toggleClass("pumactive");
+            $("body").toggleClass("disabled");
+        }
+    });
+}
+clickoutside();
+
+var clickex = () => {
+    $(".exittable").click((e) => {
+        $(".pum").toggleClass("pumactive");
+        $("body").toggleClass("disabled");
+    });
+}
+clickex();
+
 var manipulateAdd = () => {
     return '<div class="row language languageinput">' +
              '<span class="langexit">x</span>' +

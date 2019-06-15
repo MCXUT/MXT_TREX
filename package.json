@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MCXUT/MXT_TREX#readme",
   "dependencies": {
     "@google/maps": "^0.5.5",
+    "async": "^3.0.1",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
@@ -31,6 +32,7 @@
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.5.13",
+    "nodemailer": "^6.2.1",
     "multer": "^1.4.1",
     "multer-gridfs-storage": "^3.2.3",
     "passport": "^0.4.0",
