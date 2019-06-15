@@ -1,18 +1,20 @@
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
-// const NaverStrategy = require("passport-naver").Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const NaverStrategy = require("passport-naver").Strategy;
 
 const Client = require("../../models/Client");
 const keys = require("../keys");
 
-passport.use("login-facebook", new FacebookStrategy({
+passport.use("client-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
-      callbackURL: keys.facebookClientInfo.callback,
+      callbackURL: keys.facebookClientInfo.callback + "/client",
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log("Client: accessToken");
       Client.findOne({
         facebookID: profile.id
       }).then((foundUser) => {
@@ -34,9 +36,9 @@ passport.use("login-facebook", new FacebookStrategy({
     }
 ));
 
-passport.use("login-kakao", new KakaoStrategy({
+passport.use("client-kakao", new KakaoStrategy({
     clientID: keys.kakao.clientID, // The REST API Key goes here
-    callbackURL: "/auth/kakao/callback" // The "redirect path" that we set in the developer setting in Kakao
+    callbackURL: keys.kakao.callback + "/client" // The "redirect path" that we set in the developer setting in Kakao
   },
   function(accessToken, refreshToken, profile, done) {
     // The user info is in profile
@@ -72,14 +74,53 @@ passport.use("login-kakao", new KakaoStrategy({
   }
 ));
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  Client.findById(id, (err, user) => {
-    done(err, user);
+passport.use("client-google", new GoogleStrategy({
+  clientID: keys.googleClientInfo.clientID,
+  clientSecret: keys.googleClientInfo.clientSecret,
+  callbackURL: keys.googleClientInfo.callback + "/client"
+}, function(accessToken, refreshToken, profile, done) {
+  Client.findOne({
+    googleID: profile.id
+  }).then((foundUser)=> {
+    if(foundUser) {
+      done(null, foundUser);
+    } else {
+      new Client({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        googleID: profile.id
+      }).save().then((newUser) => {
+        console.log("new User Created: " + newUser);
+        done(null, newUser);
+      });
+    }
   });
-});
+  }
+));
+
+passport.use("client-naver", new NaverStrategy({
+    clientID: keys.naverClientInfo.clientID,
+    clientSecret: keys.naverClientInfo.clientSecret,
+    callbackURL: keys.naverClientInfo.callback + "/client"
+    },
+  function(accessToken, refreshToken, profile, done) {
+    Client.findOne({
+      naverID: profile.id
+    }).then((foundUser)=> {
+      if(foundUser) {
+        done(null, foundUser)
+      } else {
+        new Client({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          naverID: profile.id
+        }).save().then((newUser) => {
+          console.log("new User Created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  }
+));
 
 module.exports = passport;

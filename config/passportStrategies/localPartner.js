@@ -5,11 +5,11 @@ const Partner = require("../../models/Partner");
 const keys = require("../keys");
 
 // Local Strategy
-passport.use("local-client", new LocalStrategy({
+passport.use("local-partner", new LocalStrategy({
   usernameField: "email",
   passwordField: "password"
 }, (username, password, done) => {
-  Partner.getClientByUsername(username, function(err,user) {
+  Partner.getPartnerByUsername(username, function(err,user) {
     if(err) throw err;
     if(!user) {
       return done(null, false, {message: "Invalid Username"});
@@ -29,14 +29,14 @@ passport.use("local-client", new LocalStrategy({
 }));
 
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-    Partner.findById(id, (err, user) => {
-        done(err, user);
-    });
-});
+// passport.serializeUser((user, done) => {
+//     done(null, user.id);
+// });
+//
+// passport.deserializeUser((id, done) => {
+//     Partner.findById(id, (err, user) => {
+//         done(err, user);
+//     });
+// });
 
 module.exports = passport;

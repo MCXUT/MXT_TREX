@@ -3,10 +3,9 @@ const express = require("express"),
 
 const router = express.Router();
 
+const keys = require("../config/keys");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
-
-const keys = require("../config/keys");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -50,7 +49,7 @@ router.get("/user_profile", (req, res) => {
 router.post("/user_profile/basicInfo", (req, res) => {
   // var newInfo = req.body;
   // console.log(newInfo);
-  
+
   // Changing profile info of a client
   if (res.locals.currentUser.type === "c") {
     // Get coordinates of the new address
@@ -89,7 +88,7 @@ router.post("/user_profile/basicInfo", (req, res) => {
             console.log("Profile Update Successful");
             return res.redirect("/user_profile");
           });
-          
+
         });
       }
     });
@@ -130,12 +129,12 @@ router.post("/user_profile/basicInfo", (req, res) => {
             console.log("Profile Update Successful");
             return res.redirect("/user_profile");
           });
-    
+
         });
       }
     });
   }
-  
+
 });
 
 
@@ -189,5 +188,10 @@ router.post("/user_profile/language", (req, res) => {
   }
 });
 
+
+router.post("/user_profile/security", (req, res) => {
+    console.log(req.body);
+    res.redirect("/user_profile");
+});
 
 module.exports = router;

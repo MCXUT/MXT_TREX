@@ -17,7 +17,6 @@ module.exports.searchTypebyEmail = (email, callback) => {
   });
 }
 
-
 module.exports.searchTypeById = (id, callback) => {
   Client.findOne({_id: id}, function(err,user){
     if (user) {
