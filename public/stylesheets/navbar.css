@@ -70,6 +70,7 @@ body
 }
 .nav-item a:hover {
     background-color: rgba(151, 156, 200, 0.3);
+    background-color: #f8ba00;
     border-radius: 4px;
     transition: 0.1s;
 }
