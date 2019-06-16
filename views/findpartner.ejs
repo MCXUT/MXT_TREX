@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My airbnb</title>
+    <title>파트너 찾기</title>
 
 
 
@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
+
+    <!-- jquery slide selector -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- glyphicon 꺼임 -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -102,7 +109,7 @@
   background-color: #fff;
   color: black;
 
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
@@ -143,6 +150,7 @@
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
+  z-index: 2;
 }
 
 #avatar{
@@ -157,6 +165,10 @@
 
 }
 
+#sliders a{
+  text-decoration: none;
+  color:black;
+}
 #kokoman{
   width: 100%;
   height: 55%;
@@ -168,6 +180,7 @@
   width: 300px;
   height: 300px;
   align-items: center;
+  display: none;
 }
 
 
@@ -175,20 +188,22 @@
     /* z-index: 11; */
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0);
     position: absolute;
-    top: 0;
-    justify-content: center;
-    align-items: center;
+    top: 100px;
+    right: 100px;
+    /* justify-content: center;
+    align-items: center; */
     display: none;
     /* top: -400px; */
 }
 
 .modal-dialog{
   display: absolute;
-  justify-content: center;
-  left: 0%;
+  /* justify-content: center; */
+  left: 14% !important;
   width: 40%;
+  margin: 0;
 }
 
 .row{
@@ -198,16 +213,16 @@
   color: rgba(0, 0, 0, 0.6)
 }
 
-/* .daterangepicker td .active, .daterangepicker td.active:hover{
-  background-color: #236298;
-} */
+.daterangepicker td.active{
+  background-color:rgb(0, 166, 153) !important;
+}
 /* .daterangepicker td .in-range .end-date{
   background-color: #236298;
 } */
 
-/* .daterangepicker td.in-range{
-  background-color: #bfdffa;
-} */
+.daterangepicker td.in-range{
+  background-color: rgb(102, 226, 218);
+}
 
 
 
@@ -266,7 +281,7 @@
 
   /* margin-left: 249px;
   height: 75px; */
-  background-color: #9fd44e;
+  background-color:#3CA2F0;
   border: none;
   /* width: 113px; */
   border-radius: 0px;
@@ -277,27 +292,103 @@
   background-repeat: no-repeat;
   background-position: 45px 51px;
 }
+#registercontent{
+  width: 50%;
+  transform: translate3d(-20%, 10%, 0);
+}
+
+
+
+.is-active .dropdown-menu {
+  display: block;
+}
+
+
 
 
   </style>
   </head>
-  <body style="margin: 0 10%">
-
-
+  <body onload="dontdoit()">
+  <% include ./partials/navbar %>
+  <div style="margin: 0 10%">
     <div style="display:block; border-bottom: 1px solid black; padding-bottom: 10px;
-    padding-top: 20px;">
+    padding-top: 20px">
 
 
-    <input type="button" name="daterange" value="날짜"
-    placeholder="날짜" class="dropbtn datepicker" style="margin: 5px;">
-    <!-- <button type="button" name="daterange" class="dropbtn datepicker btn-cal" style="margin: 5px;"
-    onclick="kimochi()">날짜</button> -->
 
-
+    <span>
     <button aria-haspopup="true" aria-expanded=
     "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
     style="margin: 5px;" id="login">
-      <div>인원<span id="inwon"></span></div></button>
+      <div>
+        인원<span id="inwon"></span>
+      </div>
+    </button>
+
+        <div id="registerModal" role="dialog" aria-hidden="true"
+          class="modal in modal_site_login ui-draggable" data-backdrop="true"
+          data-keyboard="true">
+          <div class="modal-dialog">
+            <div class="modal-content" id="registercontent">
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" disabled="disabled"
+                      data-type="minus" data-field="quant[1]">
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </span>
+                <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+
+
+    <input type="button" name="daterange" value="날짜" id="nal"
+    placeholder="날짜" class="dropbtn datepicker" style="margin: 5px;">
+    <!-- <button type="button" name="daterange" class="dropbtn datepicker btn-cal" style="margin: 5px;"
+    onclick="kimochi()">날짜</button> -->
+    <!-- <span>
+    <button aria-haspopup="true" aria-expanded=
+    "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
+    style="margin: 5px;" id="login">
+      <div>
+        인원<span id="inwon"></span>
+      </div>
+    </button>
+
+        <div id="registerModal" role="dialog" aria-hidden="true"
+          class="modal in modal_site_login ui-draggable" data-backdrop="true"
+          data-keyboard="true">
+          <div class="modal-dialog">
+            <div class="modal-content" id="registercontent">
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" disabled="disabled"
+                      data-type="minus" data-field="quant[1]">
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </span>
+                <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span> -->
+
+
+
 
 
 
@@ -308,23 +399,47 @@
 
 
   <div class="dropdown" style="margin: 5px;">
-    <button onclick="myFunction()" class="dropbtn">업종/전공</button>
+    <button onclick="myFunction()" class="dropbtn" id="monsta">업종/전공</button>
     <div id="myDropdown" class="dropdown-content">
-      <input type="checkbox" name="koko">IT/기술<br>
-      <input type="checkbox" name="koko">과학<br>
-      <input type="checkbox" name="koko">교육<br>
-      <input type="checkbox" name="koko">금융/회계<br>
+      <input type="checkbox">IT/기술<br>
+      <input type="checkbox">과학<br>
+      <input type="checkbox">교육<br>
+      <input type="checkbox">금융/회계<br>
     </div>
   </div>
 
   <div class="dropdown" style="margin: 5px;">
     <button onclick="myFunction2()" class="dropbtn">서비스</button>
     <div id="myDropdown2" class="dropdown-content">
-      <input type="checkbox" name="koko">통역<br>
-      <input type="checkbox" name="koko">차량<br>
-      <input type="checkbox" name="koko">등등<br>
+      <input type="checkbox">통역<br>
+      <input type="checkbox">차량<br>
+      <input type="checkbox">등등<br>
     </div>
   </div>
+
+
+    <div class="dropdown" style="margin: 5px;z-index: 6; position: absolute"><button class="dropbtn moneybar">
+      시급<span id="paymentis" class="money"></span></button><br><br><div id="money" class="money" style="padding: 20px; background-color: #fff;
+      border: 0.5px solid rgba(0, 0, 0, 0.4);display: none;">
+      <div class="header">
+        평균 시급은 23,400원 입니다.
+      </div>
+      <br>
+      <!-- <input type="text" id="amount" class="money"readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
+      <div id="slider-range" class="money"></div>
+
+      <!-- <input type="range" onclick=""
+      min="1" max="100" value="50" class="dropbtn money range"
+      style="margin: 5px;"> -->
+      <br><br>
+      <input class="money" type="text" id="least" placeholder="최소"> - <input class="money" type="text" id="max"
+      placeholder="최대"></div></div>
+
+
+
+      <!-- <input type="range" onclick=""
+      min="1" max="100" value="50" class="dropbtn money"
+      style="margin: 5px;"> -->
 
   <label class="switch" style="float: right;">
     <input type="checkbox" id="roundswitch" onclick="myFunction5()" checked>
@@ -334,16 +449,34 @@
 
   <br><br><br>
 
+<!-- price range selector -->
+<script>
+$( function() {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [ 0, 500 ],
+    slide: function( event, ui ) {
+      $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+      $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+    }
+  });
+  // $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+  // $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+
+} );
+</script>
 
   <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
-      <div id="slider4">
+      <div id="sliders">
 
           <div class="row">
             <div class="col">
               <div class="leftside">
-          <a href="" class="slide-img" style="text-decoration: none; color:black;">
+          <a href="" class="slide-img">
 
             <div id="kokoman"></div>
               <center>
@@ -359,7 +492,7 @@
 
       <div class="col">
         <div class="rightside">
-          <a href="" class="slide-img" style="text-decoration: none; color:black;">
+          <a href="" class="slide-img">
 
             <div id="kokoman"></div>
               <center>
@@ -540,8 +673,8 @@
       <div id="map" style="width:40%;height:550px;"></div>
 
       <!-- register popup -->
-      <center>
-      <div id="registerModal" role="dialog" aria-hidden="true"
+
+      <!-- <div id="registerModal" role="dialog" aria-hidden="true"
       class="modal in modal_site_login ui-draggable sticky-top" data-backdrop="true"
       data-keyboard="true" display="none">
         <div class="modal-dialog">
@@ -562,11 +695,27 @@
           </div>
           </div>
         </div>
-      </div>
-    </center>
-
+      </div> -->
+</div>
+<br><br><br><br><br>
+<% include ./partials/footer %>
 
 <script>
+// If it has value, change the color of button
+
+
+// function myFunction123(){
+//   var drop = document.getElementById("monsta");
+//   if(drop.value){
+//     drop.style.backgroundColor = "green";
+//   } else {
+//     drop.style.backgroundColor = "blue";
+//   }
+// }
+
+
+
+ // Map button on and off
 function myFunction5(){
 
   var checkbox = document.getElementById("roundswitch");
@@ -581,8 +730,27 @@ function myFunction5(){
   }
 }
 
+//
+// function moneyFunction(){
+//   document.getElementById("money").style.display="block";
+// }
 
-
+document.querySelector("body").addEventListener("click", (e) => {
+  if(e.target.className == "dropbtn moneybar"){
+    if(document.getElementById("money").style.display=="none"){
+      document.getElementById("money").style.display="block";
+    } else{
+      document.getElementById("money").style.display="none";
+    }
+  } else if($(e.target).hasClass("money")) {
+    document.getElementById("money").style.display="block";
+  } else {
+    if($("#slider-range").slider("values", 0) != "0"){
+      document.getElementById("money").style.display="none";
+      $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
+      $("#slider-range").slider("values", 1) + "원");
+    }}
+  });
 
 
 
@@ -611,7 +779,7 @@ $(function(e) {
   $('input[name="daterange"]').daterangepicker({
     minDate : minDate,
     opens: 'right',
-    showOn: "both"
+    showOn: "both",
 
 
 
@@ -630,9 +798,16 @@ $(function(e) {
 
 });
 
+
+document.getElementById("myDropdown").addEventListener("close", (e) => {
+    document.querySelector("#registerModal").style.display = "block";
+
+});
+
+
+
+
 // document.getElementsByClassName("datepicker").defaultValue = "날짜";
-
-
 
 document.getElementById("login").addEventListener("click", (e) => {
     document.querySelector("#registerModal").style.display = "block";
@@ -641,16 +816,64 @@ document.getElementById("login").addEventListener("click", (e) => {
 
 
 document.getElementById("registerModal").addEventListener("click", (e) => {
-    if(e.target.className == "modal in modal_site_login ui-draggable sticky-top") {
+  console.log(e);
+    if(e.target.className == "modal in modal_site_login ui-draggable") {
       var memi = document.getElementById("memi").value;
       var inwon = document.getElementsByClassName("inwon");
       document.getElementById("registerModal").style.display = "none";
-      document.getElementById("inwon").innerHTML = " : " + document.getElementById("memi").value + "명";
+      document.getElementById("inwon").innerHTML = " : " +
+      document.getElementById("memi").value + "명";
+
+      // document.getElementById("nal").style.backgroundColor="blue";
+      // document.getElementById("login").style.backgroundColor="blue";
+      // document.getElementById("monsta").style.backgroundColor="blue";
     }
 });
 
+
+//
+// document.getElementById("myDropdown").addEventListener("click", (e) => {
+//     if(e.target.className !== "dropdown-content") {
+//       document.getElementById("myDropdown").style.display="none";
+//     }
+// });
+
+
+const $menu = $('#myDropdown');
+
+$(document).mouseup(function (e) {
+   if (!$menu.is(e.target) // if the target of the click isn't the container...
+   && $menu.has(e.target).length === 0) // ... nor a descendant of the container
+   {
+     $menu.removeClass('is-active');
+  }
+ });
+
+$('.toggle').on('click', () => {
+  $menu.toggleClass('is-active');
+});
+
+
+
+
+<!-- calendar styling -->
+
+document.getElementById("nal").addEventListener("click", (e) => {
+  document.querySelector(".applyBtn").innerHTML = "적용";
+  document.querySelector(".cancelBtn").innerHTML = "취소";
+  // document.getElementById("nal").value="날짜"
+})
+
+// document.getElementById("nal").addEventListener("close", (e) => {
+//   document.getElementById("nal").value="날짜"
+// })
+
+
 // $(".inwon").text() = document.getElementById("memi").value;
 
+function dontdoit(){
+  document.getElementById("nal").value="날짜"
+}
 
 $('.btn-number').click(function(e){
     e.preventDefault();
