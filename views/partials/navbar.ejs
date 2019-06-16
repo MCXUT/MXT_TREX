@@ -18,11 +18,18 @@
                     </li>
                     <li class="nav-item dropdown" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <%= currentUser.name %>
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px;">
+                            <% if (currentUser.pic) { %>
+                              <img class="profileimg" src="image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
+                            <% } else { %>
+                              <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                            <% } %>
                         </a>
-                        <div class="dropdown-menu profile-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/user_profile">프로필</a>
+                        <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/user_profile">계정 정보</a>
+                            <% if (currentUser.type === "p") { %>
+                              <a class="dropdown-item" href="#">내 서비스 관리</a>
+                            <% } %>
                             <a class="dropdown-item" href="/auth/logout">로그아웃</a>
                         </div>
                     </li>
