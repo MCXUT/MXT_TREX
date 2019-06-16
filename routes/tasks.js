@@ -8,7 +8,7 @@ router.get("/seetask", (req, res) => {
 });
 
 router.get("/city_list", (req, res) => {
-  res.render("city");
+  res.render("citylist");
 });
 
 
