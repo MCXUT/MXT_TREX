@@ -28,3 +28,14 @@
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
 }
+
+.maincontent table {
+    margin: 0 5% 0 5%;
+    text-align: center;
+}
+.maincontent table tr {
+    height: 50px;
+}
+.maincontent table tr td {
+    border: 1px solid black;
+}
