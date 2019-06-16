@@ -25,8 +25,7 @@ passport.use("partner-facebook", new FacebookStrategy({
           new Partner({
             name: profile.name.givenName + " " + profile.name.familyName,
             email: profile.emails[0].value,
-            facebookID: profile.id,
-            pic: "https://graph.facebook.com/" + profile.id + "/picture?height=250&width=250"
+            facebookID: profile.id
           }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
             done(null, newUser);

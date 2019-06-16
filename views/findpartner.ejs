@@ -12,12 +12,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <!-- <link href="/public/stylesheets/datepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="/public/scripts/datepicker.js"></script> -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -25,13 +25,18 @@
 
     <!-- jquery slide selector -->
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- glyphicon 꺼임 -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- glyphicon -->
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../static/stylesheets/findpartner.css">
+
+
+
 
 
 
@@ -44,118 +49,16 @@
     });
     </script> -->
     <% include ./partials/navbar %>
-    
-    <style>
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
 
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  input:checked + .slider {
-    background-color: #2ecc71;
-  }
-
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-  }
-
-
-  .dropbtn {
-  background-color: #fff;
-  color: black;
-
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: rgba(0.2, 0.3, 0.4, 0.5);
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-
-
-.leftside, .rightside{
+  <style>
+  #kokoman {
   width: 100%;
-  height: 300px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
-  z-index: 2;
-}
-
-#avatar{
+  height: 55%;
+  background-image: url("../static/images/slider/slider-2-london.jpg");
+  background-size: cover;
+  }
+  
+  #avatar {
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -165,153 +68,12 @@
   margin-bottom: 15px;
   transform: translate3d(0, -50%, 0);
 
-}
-
-#sliders a{
-  text-decoration: none;
-  color:black;
-}
-#kokoman{
-  width: 100%;
-  height: 55%;
-  background-image: url("static/images/slider/slider-2-london.jpg");
-  background-size: cover;
-}
-
-.modal_article{
-  width: 300px;
-  height: 300px;
-  align-items: center;
-  display: none;
-}
-
-
-.modal{
-    /* z-index: 11; */
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    position: absolute;
-    top: 100px;
-    right: 100px;
-    /* justify-content: center;
-    align-items: center; */
-    display: none;
-    /* top: -400px; */
-}
-
-.modal-dialog{
-  display: absolute;
-  /* justify-content: center; */
-  left: 14% !important;
-  width: 40%;
-  margin: 0;
-}
-
-.row{
-  text-align: center;
-}
-.row h7{
-  color: rgba(0, 0, 0, 0.6)
-}
-
-.daterangepicker td.active{
-  background-color:rgb(0, 166, 153) !important;
-}
-/* .daterangepicker td .in-range .end-date{
-  background-color: #236298;
-} */
-
-.daterangepicker td.in-range{
-  background-color: rgb(102, 226, 218);
-}
-
-
-
-
-.daterangepicker {
-  flex-direction: row;
-  width: 531px !important;
-  border: 1px solid #e3e3e3;
-  border-radius: 0px;
-}
-
-.ranges {
-  height: 35px;
-  display: inline-flex;
-  flex-direction: row;
-  padding: 0px;
-  margin: 4px;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-.ranges ul {
-  margin: 0px;
-  padding: 0px;
-  display: -webkit-box;
-  font-weight: bold;
-}
-/*
-.ranges li {
-  padding: 3px 16px !important;
-  font-size: 12px;
-  background-color: #ffffff;
-  color: rgba(13, 37, 50, 0.6);
-  border-radius: 0;
-  border: none;
-}
-
-.ranges li.active {
-  background-color: #ffffff;
-  border-bottom: 2px solid #9fd44e;
-  color: #9fd44e;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-}
-
-.ranges li:hover {
-  background-color: #ffffff;
-  border-bottom: 2px solid #9fd44e;
-  color: #9fd44e;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-}
-*/
-.applyBtn {
-
-  /* margin-left: 249px;
-  height: 75px; */
-  background-color:#3CA2F0;
-  border: none;
-  /* width: 113px; */
-  border-radius: 0px;
-  border-left: 1px solid #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  background-image: url("assets/images/apply-arrow.svg");
-  background-repeat: no-repeat;
-  background-position: 45px 51px;
-}
-#registercontent{
-  width: 50%;
-  transform: translate3d(-20%, 10%, 0);
-}
-
-
-
-.is-active .dropdown-menu {
-  display: block;
-}
-
-
-
-
+  }
   </style>
+
   </head>
   <body onload="dontdoit()">
-  
+
   <div style="margin: 0 10%">
     <div style="display:block; border-bottom: 1px solid black; padding-bottom: 10px;
     padding-top: 20px">
@@ -336,13 +98,13 @@
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default btn-number" disabled="disabled"
                       data-type="minus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-minus"></span>
+                      <i class="fa fa-minus"></i>
                     </button>
                 </span>
                 <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <i class="fa fa-plus"></i>
                     </button>
                 </span>
             </div>
@@ -701,359 +463,8 @@ $( function() {
 </div>
 <br><br><br><br><br>
 <% include ./partials/footer %>
+<script src="/static/scripts/findpartner.js"></script>
 
-<script>
-// If it has value, change the color of button
-
-
-// function myFunction123(){
-//   var drop = document.getElementById("monsta");
-//   if(drop.value){
-//     drop.style.backgroundColor = "green";
-//   } else {
-//     drop.style.backgroundColor = "blue";
-//   }
-// }
-
-
-
- // Map button on and off
-function myFunction5(){
-
-  var checkbox = document.getElementById("roundswitch");
-  var map = document.getElementById("map");
-  var wrapper = document.getElementById("wrapper");
-  if(checkbox.checked == true){
-    map.style.width= "40%";
-    wrapper.style.width = "60%";
-  } else {
-    map.style.width= "0%";
-    wrapper.style.width = "100%";
-  }
-}
-
-//
-// function moneyFunction(){
-//   document.getElementById("money").style.display="block";
-// }
-
-document.querySelector("body").addEventListener("click", (e) => {
-  if(e.target.className == "dropbtn moneybar"){
-    if(document.getElementById("money").style.display=="none"){
-      document.getElementById("money").style.display="block";
-    } else{
-      document.getElementById("money").style.display="none";
-    }
-  } else if($(e.target).hasClass("money")) {
-    document.getElementById("money").style.display="block";
-  } else {
-    if($("#slider-range").slider("values", 0) != "0"){
-      document.getElementById("money").style.display="none";
-      $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
-      $("#slider-range").slider("values", 1) + "원");
-    }}
-  });
-
-
-
-function myFunction(){
-  var element = document.getElementsByClassName("end-date");
-  element.classList.remove("in-range");
-}
-
-
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function myFunction2() {
-  document.getElementById("myDropdown2").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-
-
-$(function(e) {
-  var minDate = new Date();
-  $('input[name="daterange"]').daterangepicker({
-    minDate : minDate,
-    opens: 'right',
-    showOn: "both",
-
-
-
-    // buttonClasses: ['btn btn-default'],
-    //       applyClass: 'btn-small btn-primary',
-    //       cancelClass: 'btn-small'
-
-
-    // buttonImageOnly: true,
-    // buttonText: "선택",
-    // today: "날짜"
-  }
-  , function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-
-});
-
-
-document.getElementById("myDropdown").addEventListener("close", (e) => {
-    document.querySelector("#registerModal").style.display = "block";
-
-});
-
-
-
-
-// document.getElementsByClassName("datepicker").defaultValue = "날짜";
-
-document.getElementById("login").addEventListener("click", (e) => {
-    document.querySelector("#registerModal").style.display = "block";
-
-});
-
-
-document.getElementById("registerModal").addEventListener("click", (e) => {
-  console.log(e);
-    if(e.target.className == "modal in modal_site_login ui-draggable") {
-      var memi = document.getElementById("memi").value;
-      var inwon = document.getElementsByClassName("inwon");
-      document.getElementById("registerModal").style.display = "none";
-      document.getElementById("inwon").innerHTML = " : " +
-      document.getElementById("memi").value + "명";
-
-      // document.getElementById("nal").style.backgroundColor="blue";
-      // document.getElementById("login").style.backgroundColor="blue";
-      // document.getElementById("monsta").style.backgroundColor="blue";
-    }
-});
-
-
-//
-// document.getElementById("myDropdown").addEventListener("click", (e) => {
-//     if(e.target.className !== "dropdown-content") {
-//       document.getElementById("myDropdown").style.display="none";
-//     }
-// });
-
-
-const $menu = $('#myDropdown');
-
-$(document).mouseup(function (e) {
-   if (!$menu.is(e.target) // if the target of the click isn't the container...
-   && $menu.has(e.target).length === 0) // ... nor a descendant of the container
-   {
-     $menu.removeClass('is-active');
-  }
- });
-
-$('.toggle').on('click', () => {
-  $menu.toggleClass('is-active');
-});
-
-
-
-
-<!-- calendar styling -->
-
-document.getElementById("nal").addEventListener("click", (e) => {
-  document.querySelector(".applyBtn").innerHTML = "적용";
-  document.querySelector(".cancelBtn").innerHTML = "취소";
-  // document.getElementById("nal").value="날짜"
-})
-
-// document.getElementById("nal").addEventListener("close", (e) => {
-//   document.getElementById("nal").value="날짜"
-// })
-
-
-// $(".inwon").text() = document.getElementById("memi").value;
-
-function dontdoit(){
-  document.getElementById("nal").value="날짜"
-}
-
-$('.btn-number').click(function(e){
-    e.preventDefault();
-
-    fieldName = $(this).attr('data-field');
-    type      = $(this).attr('data-type');
-    var input = $("input[name='"+fieldName+"']");
-    var currentVal = parseInt(input.val());
-    if (!isNaN(currentVal)) {
-        if(type == 'minus') {
-
-            if(currentVal > input.attr('min')) {
-                input.val(currentVal - 1).change();
-            }
-            if(parseInt(input.val()) == input.attr('min')) {
-                $(this).attr('disabled', true);
-            }
-
-        } else if(type == 'plus') {
-
-            if(currentVal < input.attr('max')) {
-                input.val(currentVal + 1).change();
-            }
-            if(parseInt(input.val()) == input.attr('max')) {
-                $(this).attr('disabled', true);
-            }
-
-        }
-    } else {
-        input.val(0);
-    }
-});
-$('.input-number').focusin(function(){
-   $(this).data('oldValue', $(this).val());
-});
-$('.input-number').change(function() {
-
-    minValue =  parseInt($(this).attr('min'));
-    maxValue =  parseInt($(this).attr('max'));
-    valueCurrent = parseInt($(this).val());
-
-    name = $(this).attr('name');
-    if(valueCurrent >= minValue) {
-        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
-    } else {
-        alert('Sorry, the minimum value was reached');
-        $(this).val($(this).data('oldValue'));
-    }
-    if(valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
-    } else {
-        alert('Sorry, the maximum value was reached');
-        $(this).val($(this).data('oldValue'));
-    }
-
-
-});
-$(".input-number").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) ||
-             // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39)) {
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-
-
-    function initMap() {
-      //Map options
-      // var mapProp= {
-      //   center:new google.maps.LatLng(45.510191,-73.575735),
-      //   zoom:14,
-      // };
-      //
-      // function initMap(){
-        var options = {
-          zoom: 13,
-          center: {lat:42.4668, lng: -70.9495}
-        }
-
-      //New map
-      var map = new google.maps.Map(document.getElementById('map'), options);
-
-      //Listen for click on map
-      // google.maps.event.addListener(map,'click',
-      // function(event){
-      //   //Add marker
-      //   addMarker({coords:event.latLng});
-      // });
-
-
-
-
-      // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-      // //Add marker
-      // var marker = new google.maps.Marker({
-      //   position:{lat: 42.4668, lng: -70.9495},
-      //   map: map
-      // })
-      // var infoWindow = new google.maps.InfoWindow({
-      //   content:'<h1>Lynn MA</h1>'
-      // });
-      //
-      // marker.addListener('click', function(){
-      //   infoWindow.open(map, marker);
-      // });
-
-
-      //Array of markers
-      var markers = [
-        {
-        coords:{lat:42.4668, lng:-70.9495},
-        // iconImage:"https://developers.google.com/maps/documentation/
-        // javascript/examples/full/images/beachflag.png",
-        content:'<h1>kokokoko</h1>'
-        },
-
-        {
-          coords:{lat:42.7762, lng:-71.0773},
-          content:'<h1>Ameesbury MA</h1>'
-        },
-        {
-          coords:{lat:42.4762, lng:-71.0773},
-          content:'<h1>AasdadaMA</h1><br><h2>aksdlakdlakdla</h2>'
-        }
-      ];
-
-      // Loop through markers
-      for(var i = 0; i < markers.length; i++){
-        addMarker(markers[i]);
-      }
-        // addMarker({
-        //   coords:{lat:42.4668, lng:-70.9495},
-        //   // iconImage:"https://developers.google.com/maps/documentation/
-        //   // javascript/examples/full/images/beachflag.png",
-        //   content:'<h1>kokokoko</h1>'
-        // });
-        // addMarker({
-        //   coords:{lat:42.7762, lng:-71.0773},
-        //   content:'<h1>Ameesbury MA</h1>'
-        // });
-
-        function addMarker(props){
-          var marker = new google.maps.Marker({
-            position: props.coords,
-            map:map,
-            //icon: props.iconImage
-          });
-
-          // Check for customicon
-          if(props.iconImage){
-            // Set icon image
-            marker.setIcon(props.iconImage);
-          }
-
-          //Check contents
-          if(props.content){
-            var infoWindow = new google.maps.InfoWindow({
-              content:props.content
-            });
-
-            marker.addListener('click', function(){
-              infoWindow.open(map, marker);
-            });
-
-          }
-        }
-      }
-
-</script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=
 AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
