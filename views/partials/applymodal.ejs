@@ -1,4 +1,19 @@
-<link rel="stylesheet" href="../static/stylesheets/applymodal.css">
+
+<style>
+#button11{
+  border:none;
+  background-color: transparent;
+  color:#595959;
+  font-size: 25px;
+}
+#button11:hover{
+  color:#f8ba00;
+}
+#button-apply:hover{
+  background-color:#f8ba00;
+  border:#f8ba00;
+}
+</style>
 <!-- The Modal -->
     <div class="modal fade" id="myModal">
       <div class="modal-dialog modal-lg">
@@ -30,9 +45,10 @@
         <td>
           <select id="service" name="service" required onchange="calculateTotal()">
             <option selected>서비스를 선택 해주세요.</option>
-            <option value="service1">서비스1</option>
-            <option value="service2">서비스2</option>
-            <option value="service3">서비스3</option>
+            <option value="service1">현지 통역</option>
+            <option value="service2">현지 차랑</option>
+            <option value="service3">번역 </option>
+            <option value="service4">현지 기관 섭외 </option>
           </select>
         </td>
         <!-- <form oninput="x.value=parseFloat(a.value)*parseFloat(b.value)" > -->
@@ -207,9 +223,7 @@
                 </TR>
              </table>
 
-               <!-- <div >
-               <input type="button" onclick="addRow('dataTable')" value="+" style="display:inline;width:30px;"> 추가 비용 청구하기
-               </div> -->
+
 
                <div >
                <input id="button11" type="button" onclick="document.getElementById('dataTable3').style.display='inline';document.getElementById('button11').style.display='none';document.getElementById('button2').style.display='inline';" value="+" style="display:inline;width:30px;">
@@ -250,7 +264,7 @@
 
       <hr style="width:100%">
         <div class="text-center" >
-          <a type="button" class="btn btn-outline-dark" href="#" \>지원하기</a>
+          <a href="#"><button id="button-apply" type="button" class="btn btn-dark">지원하기</button></a>
         </div><br>
 
 

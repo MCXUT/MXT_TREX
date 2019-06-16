@@ -5,6 +5,8 @@
 html, body{
 
 }
+
+
 .container-fluid{
   padding-left: 0px;
   padding-right: 0px;
@@ -25,11 +27,12 @@ html, body{
   height:1px;
   display:inline-block;
 }
-
+.heada{
+  color:#333333;
+}
 .heada:hover{
   color:#999999;
   text-decoration: none;
-
 }
 /* carousel section */
 
@@ -60,7 +63,7 @@ html, body{
   right:16px;
 }
 .carousel-caption{
-  padding-bottom:7%;
+  padding-bottom:13%;
 }
 /* end of carousel section */
 
