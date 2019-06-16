@@ -34,32 +34,33 @@
             <% } %>
 
             <form class="clientform active" action="/auth/login/client" method="POST">
+              <p style="text-align:center;color:black;">클라이언트로 로그인하기</p><br>
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
                     <input type="password" class="pwd form-control" name="password" required>
                     <div class="login-form-links">
                         <span><a href="/auth/reset/client"><i class="fa fa-question-circle"></i>
-                        <span style="color:#F9C700;">비밀번호 찾기</span>
+                        <span style="color:#F9C700;">클라이언트 비밀번호 찾기</span>
                     </a></span>
                     </div>
 
-                    <input class="btn btn-primary form-control" type="submit" value="로그인">
+                    <input class="btn btn-primary form-control" type="submit" value="클라이언트로 로그인">
             </form>
 
             <form class="partnerform" action="/auth/login/partner" method="POST">
-
+              <p style="text-align:center;color:black;">파트너로 로그인하기</p><br>
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
                     <input type="password" class="pwd form-control" name="password" required>
                     <div class="login-form-links">
                         <span><a href="/auth/reset/partner"><i class="fa fa-question-circle"></i>
-                        <span style="color:#F9C700;">비밀번호 찾기</span>
+                        <span style="color:#F9C700;">파트너 비밀번호 찾기</span>
                     </a></span>
                     </div>
 
-                    <input class="btn btn-primary form-control" type="submit" value="로그인">
+                    <input class="btn btn-primary form-control" type="submit" value="파트너로 로그인">
             </form>
 
 
@@ -68,13 +69,13 @@
                 <div class="facebook">
                     <a href="/auth/facebook/client" class='btn btn-info'>
                         <img src="/static/icons/facebook-app-logo.svg" width="25" height="25"></img>
-                        <span id="socialText">페이스북으로 로그인하기</span>
+                        <span id="socialText" style="margin-left:15px;">페이스북으로 클라이언트 로그인하기</span>
                     </a>
                 </div>
                 <div class="google">
                     <a href="/auth/google/client" class='btn btn-info'>
                         <img src="/static/icons/google.svg" width="25" height="25"></img>
-                        <span id="socialText">Google+로 로그인하기</span>
+                        <span id="socialText" style="margin-left:15px;">Google+로 클라이언트 로그인하기</span>
 
                     </a>
                 </div>
@@ -82,14 +83,14 @@
                 <div class="naver">
                     <a href="/auth/naver/client" class='btn btn-info'>
                         <img src="/static/icons/naver-logo.png" width="25" height="25"></img>
-                        <span id="socialText">네이버로 로그인하기</span>
+                        <span id="socialText" style="margin-left:20px;">네이버로 클라이언트 로그인하기</span>
                     </a>
                 </div>
 
                 <div class="kakaotalk">
                     <a href="/auth/kakao/client" class='btn btn-info'>
                         <img src="/static/icons/kakaotalk.svg" width="25" height="25"></img>
-                        <span id="socialText">카카오 계정으로 로그인하기</span>
+                        <span id="socialText" style="margin-left:20px;">카카오로 클라이언트 로그인하기</span>
                     </a>
                 </div>
 
@@ -102,13 +103,13 @@
                 <div class="facebook">
                     <a href="/auth/facebook/partner" class='btn btn-info'>
                         <img src="/static/icons/facebook-app-logo.svg" width="25" height="25"></img>
-                        <span id="socialText">페이스북으로 로그인하기</span>
+                        <span id="socialText" style="margin-left:25px;">페이스북으로 파트너 로그인하기</span>
                     </a>
                 </div>
                 <div class="google">
                     <a href="/auth/google/partner" class='btn btn-info'>
                         <img src="/static/icons/google.svg" width="25" height="25"></img>
-                        <span id="socialText">Google+로 로그인하기</span>
+                        <span id="socialText" style="margin-left:25px;">Google+로 파트너 로그인하기</span>
 
                     </a>
                 </div>
@@ -116,14 +117,14 @@
                 <div class="naver">
                     <a href="/auth/naver/partner" class='btn btn-info'>
                         <img src="/static/icons/naver-logo.png" width="25" height="25"></img>
-                        <span id="socialText">네이버로 로그인하기</span>
+                        <span id="socialText" style="margin-left:35px;">네이버로 파트너 로그인하기</span>
                     </a>
                 </div>
 
                 <div class="kakaotalk">
                     <a href="/auth/kakao/partner" class='btn btn-info'>
                         <img src="/static/icons/kakaotalk.svg" width="25" height="25"></img>
-                        <span id="socialText">카카오 계정으로 로그인하기</span>
+                        <span id="socialText" style="margin-left:35px;">카카오로 파트너 로그인하기</span>
                     </a>
                 </div>
 
