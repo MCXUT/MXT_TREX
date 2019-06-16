@@ -33,7 +33,7 @@ const taskRoutes = require("./routes/tasks");
 const profilePicRoutes = require("./routes/profilePic");
 
 // Connect to mongodb
-mongoose.connect("mongodb+srv://" + keys.mongodb.user + ":" + keys.mongodb.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
+mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
 const db = mongoose.connection;
 
 // Set view engines
