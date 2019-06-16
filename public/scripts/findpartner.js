@@ -3,16 +3,25 @@
 $( function() {
   $( "#slider-range" ).slider({
     range: true,
+    animate: "slowFade",
     min: 0,
-    max: 500,
-    values: [ 0, 500 ],
+    max: 50000,
+    values: [ 0, 50000 ],
+    step: 500,
     slide: function( event, ui ) {
-      $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-      $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+      // $( "#leasts" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+
+      $( "#leasts" ).val(ui.values[0] + "원");
+      $( "#maxs" ).val(ui.values[1] +"원");
+
+      // $( "#maxs" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+      $("#paymentis").html(" : " + ui.values[0] + "원 - " + ui.values[1] + "원")
+      // $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
+      // $("#slider-range").slider("values", 1) + "원");
     }
   });
-  // $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-  // $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+  // $( "#leasts" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+  // $( "#maxs" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
 
 } );
 
@@ -43,11 +52,11 @@ document.querySelector("body").addEventListener("click", (e) => {
   } else if($(e.target).hasClass("money")) {
     document.getElementById("money").style.display="block";
   } else {
-    if($("#slider-range").slider("values", 0) != "0"){
+
       document.getElementById("money").style.display="none";
       $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
       $("#slider-range").slider("values", 1) + "원");
-    }}
+    }
 });
 
 
