@@ -38,7 +38,6 @@ router.post("/register/client", function(req, res) {
   }
 
   Client.getClientByUsername(newClient.email, function(err,user){
-    console.log("fuck")
     if(err) throw err;
     if(user) {
       req.flash("error", "Email is already taken!");

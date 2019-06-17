@@ -1,0 +1,51 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>트렉스 - 이메일 재전송</title>
+
+  <% include ./partials/header %>
+
+  <style media="screen">
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+    <% include ./partials/navbar %>
+    <link rel="stylesheet" href="/static/stylesheets/auth.css">
+
+<center>
+  <div class="modal-body">
+      <div class="auth_content">
+        <h3>
+          <p>이메일 재전송</p>
+        </h3>
+        <p style="font-weight: 500;">인증 링크가 만료 되었습니다. 이메일 주소를 입력하시면 인증 이메일을 재전송 해드리겠습니다.</p>
+
+        <div class="loginform resetform">
+            <% if (error) { %>
+              <span style="color: red"><%= error %></span>
+            <% } %>
+
+            <form action="/auth/reset/client" method="POST">
+
+                <p>이메일</p>
+                    <input type="text" class="log form-control" name="email" required>
+
+
+                    <input class="btn btn-primary form-control" type="submit" value="이메일 보내기">
+            </form>
+        </div>
+
+    </div>
+</div>
+</center>
+
+<script src="/static/scripts/auth.js"></script>
+
+</body>
+
+
+</html>

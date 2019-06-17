@@ -14,7 +14,29 @@
   border:#f8ba00;
 }
 </style>
+
+  <script type="text/javascript">
+    function calculate() {
+
+    var USERINPUT1 = document.TESTING.INPUT1.value;
+    var USERINPUT2 = document.TESTING.INPUT2.value;
+    var USERINPUT3 = document.TESTING.INPUT3.value;
+    var USERINPUT4 = document.TESTING.INPUT4.value;
+    var USERINPUT5 = document.TESTING.INPUT5.value;
+    var CALC0 = USERINPUT1*USERINPUT2;
+    var CALC1 = CALC0.toFixed(2);
+    var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5;
+    var CALC3 = CALC2.toFixed(2);
+    document.TESTING.OUTPUT1.value = CALC1;
+    document.TESTING.OUTPUT2.value = CALC3;
+    }
+  </script>
+<!-- /form calculation script -->
+
 <!-- The Modal -->
+<form name="TESTING" action="/action_page.php" target="_blank" method="POST">
+  <div class="input-group">
+
     <div class="modal fade" id="myModal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -39,7 +61,7 @@
         <div style="height:14px;"></div>
     <!-- 서비스선택,시급&시간 -->
 
-<form name="TESTING">
+
       <TABLE id="dataTable2"  border="0">
         <TR>
         <td>
@@ -239,37 +261,18 @@
               합계:$<output name="OUTPUT2" id="output2"></output>
               </b></div>
           </div>
-        </form>
-
-      <!-- form calculation script -->
-        <script type="text/javascript">
-          function calculate() {
-
-          var USERINPUT1 = document.TESTING.INPUT1.value;
-          var USERINPUT2 = document.TESTING.INPUT2.value;
-          var USERINPUT3 = document.TESTING.INPUT3.value;
-          var USERINPUT4 = document.TESTING.INPUT4.value;
-          var USERINPUT5 = document.TESTING.INPUT5.value;
-          var CALC0 = USERINPUT1*USERINPUT2;
-          var CALC1 = CALC0.toFixed(2);
-          var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5;
-          var CALC3 = CALC2.toFixed(2);
-          document.TESTING.OUTPUT1.value = CALC1;
-          document.TESTING.OUTPUT2.value = CALC3;
-          }
-        </script>
-      <!-- /form calculation script -->
-
 
 
       <hr style="width:100%">
         <div class="text-center" >
-          <a href="#"><button id="button-apply" type="button" class="btn btn-dark">지원하기</button></a>
+          <a href="#"><button id="button-apply" type="submit" class="btn btn-dark">지원하기</button></a>
         </div><br>
 
 
         </div>
+  </div>
+    </div>
+    </div>
+  </form>
 
-    </div>
-    </div>
   <!-- /The Modal -->

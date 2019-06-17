@@ -10,7 +10,7 @@ const keys = require("../keys");
 passport.use("client-facebook", new FacebookStrategy({
       clientID: keys.facebookClientInfo.clientID,
       clientSecret: keys.facebookClientInfo.clientSecret,
-      callbackURL: keys.facebookClientInfo.callback + "/client",
+      callbackURL: "/auth/facebook/callback/client",
       profileFields: ['id', 'email', 'name', 'photos']
     },
     (accessToken, refreshToken, profile, done) => {
@@ -38,7 +38,7 @@ passport.use("client-facebook", new FacebookStrategy({
 
 passport.use("client-kakao", new KakaoStrategy({
     clientID: keys.kakao.clientID, // The REST API Key goes here
-    callbackURL: keys.kakao.callback + "/client" // The "redirect path" that we set in the developer setting in Kakao
+    callbackURL: "/auth/kakao/callback/client" // The "redirect path" that we set in the developer setting in Kakao
   },
   function(accessToken, refreshToken, profile, done) {
     // The user info is in profile
@@ -74,34 +74,39 @@ passport.use("client-kakao", new KakaoStrategy({
   }
 ));
 
-passport.use("client-google", new GoogleStrategy({
-  clientID: keys.googleClientInfo.clientID,
-  clientSecret: keys.googleClientInfo.clientSecret,
-  callbackURL: keys.googleClientInfo.callback + "/client"
-}, function(accessToken, refreshToken, profile, done) {
-  Client.findOne({
-    googleID: profile.id
-  }).then((foundUser)=> {
-    if(foundUser) {
-      done(null, foundUser);
-    } else {
-      new Client({
-        name: profile.displayName,
-        email: profile.emails[0].value,
-        googleID: profile.id
-      }).save().then((newUser) => {
-        console.log("new User Created: " + newUser);
-        done(null, newUser);
-      });
-    }
-  });
-  }
-));
+
+passport.use("client-google",
+    new GoogleStrategy({
+        // options for the google strategy
+        callbackURL: "/auth/google/callback/client",
+        clientID: keys.googleClientInfo.clientID,
+        clientSecret: keys.googleClientInfo.clientSecret
+    }, function(accessToken, refreshToken, profile, done) {
+        // accessToken: what we receive from Google
+        // refreshToken: refreshes the access token
+        // profile: information that passport comes back with
+        // done: call when we are done with the callback function
+        Client.findOne({googleID: profile.id}).then((foundUser) => {
+            if(foundUser) {
+                done(null, foundUser);
+            } else {
+                new Client({
+                    name: profile.displayName,
+                    email: profile.emails[0].value,
+                    googleID: profile.id
+                }).save().then((newUser) => {
+                    console.log("new User Created: " + newUser);
+                    done(null, newUser);
+                });
+            }
+        })
+    })
+);
 
 passport.use("client-naver", new NaverStrategy({
     clientID: keys.naverClientInfo.clientID,
     clientSecret: keys.naverClientInfo.clientSecret,
-    callbackURL: keys.naverClientInfo.callback + "/client"
+    callbackURL: "/auth/naver/callback/client"
     },
   function(accessToken, refreshToken, profile, done) {
     Client.findOne({

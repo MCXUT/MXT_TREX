@@ -30,7 +30,8 @@
   <!-- glyphicon -->
   <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="../static/stylesheets/findpartner.css">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.css">
 
 
   <!-- toggle active link button -->
@@ -57,13 +58,18 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  background-image: url("static/images/nibbler.jpeg");
   background-size: cover;
 
   margin-bottom: 15px;
   transform: translate3d(0, -50%, 0);
 
   }
+
+  #slider-range .ui-slider-handle { border-color: #ef2929; }
+  #slider-range .ui-slider-range { background: #ef2929; }
+  /* #slider-range .ui-widget-content{
+    background: #ef2929;
+  } */
   </style>
 
   </head>
@@ -91,6 +97,8 @@
             <div class="modal-content" id="registercontent">
               <div class="input-group">
                 <span class="input-group-btn">
+
+
                     <button type="button" class="btn btn-default btn-number" disabled="disabled"
                       data-type="minus" data-field="quant[1]">
                       <i class="fa fa-minus"></i>
@@ -132,7 +140,7 @@
     </div>
   </div>
 
-  <div class="dropdown" style="margin: 5px;">
+  <div class="dropdown" style="margin: 5px; margin-right: 10px;">
     <button onclick="myFunction2()" class="dropbtn">서비스</button>
     <div id="myDropdown2" class="dropdown-content">
       <input type="checkbox">통역<br>
@@ -143,7 +151,8 @@
 
 
     <div class="dropdown" style="margin: 5px;z-index: 6; position: absolute"><button class="dropbtn moneybar">
-      시급<span id="paymentis" class="money"></span></button><br><br><div id="money" class="money" style="padding: 20px; background-color: #fff;
+      시급<span id="paymentis" class="money"></span></button><br><br>
+      <div id="money" class="money" style="padding: 20px; background-color: #fff;
       border: 0.5px solid rgba(0, 0, 0, 0.4);display: none;">
       <div class="header">
         평균 시급은 23,400원 입니다.
@@ -156,8 +165,9 @@
       min="1" max="100" value="50" class="dropbtn money range"
       style="margin: 5px;"> -->
       <br><br>
-      <input class="money" type="text" id="least" placeholder="최소"> - <input class="money" type="text" id="max"
-      placeholder="최대"></div></div>
+      <input class="money" type="text" id="leasts" placeholder="최소"> - <input class="money" type="text" id="maxs"
+      placeholder="최대">
+    </div></div>
 
 
 
@@ -169,225 +179,96 @@
 
   <br><br><br>
 
-<!-- price range selector -->
-<script>
-$( function() {
-  $( "#slider-range" ).slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [ 0, 500 ],
-    slide: function( event, ui ) {
-      $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-      $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
-    }
-  });
-  // $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-  // $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
-
-} );
-</script>
-
   <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
-      <div id="sliders">
 
-          <div class="row">
-            <div class="col">
-              <div class="leftside">
-          <a href="" class="slide-img">
+    <div id="sliders">
+      <% var i; %>
+      <% for (i = 0; i < allPartners.length; i++) { %>
+          <!-- If i is even put the card on the leftside-->
+          <% if (i%2 == 0) { %>
+            <div class="row">
+              <div class="col">
+                <div class="leftside">
+                  <a href="/partner_profile" class="slide-img">
+                    <div id="kokoman"></div>
+                    <center>
+                      <% if (allPartners[i].pic) { %>
+                        <img id="avatar" src="image/<%= allPartners[i].pic %>">
+                      <% } else { %>
+                        <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                      <% } %>
+                    </center>
+                    <h5><%= allPartners[i].name %></h5>
+                    <h7><%= allPartners[i].email %></h7>
+                  </a>
+                </div>
+              </div>
+          <% } else { %> <!-- if i is odd put it on the right side -->
+              <div class="col">
+                <div class="rightside">
+                  <a href="/partner_profile" class="slide-img">
+                    <div id="kokoman"></div>
+                    <center>
+                      <% if (allPartners[i].pic) { %>
+                        <img id="avatar" src="image/<%= allPartners[i].pic %>">
+                      <% } else { %>
+                        <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                      <% } %>
+                    </center>
+                    <h5><%= allPartners[i].name %></h5>
+                    <h7><%= allPartners[i].email %></h7>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% } %>
+      <% } %>
 
-            <div id="kokoman"></div>
-              <center>
-                <div id="avatar"></div>
-              </center>
-              <!-- <p style="font-weight: bold;">누구누구</p> -->
-              <h5>최선을 다해 열심히하겠습니다!</h5>
-              <h7>평점, 위치, 타지역 가능</h7>
-          </a>
-
+      <% if (i%2 == 1) { %>
+        <!-- if the total number of cards is even, insert empty card on the rightside and close row tag -->
+          <div class="col">
+            <div class="rightside" style="border:none;">
+            </div>
+          </div>
         </div>
-      </div>
+      <% } %>
 
-      <div class="col">
-        <div class="rightside">
-          <a href="" class="slide-img">
-
-            <div id="kokoman"></div>
-              <center>
-                <div id="avatar"></div>
-              </center>
-              <!-- <p style="font-weight: bold;">누구누구</p> -->
-              <h5>최선을 다해 열심히하겠습니다!</h5>
-              <h7>평점, 위치, 타지역 가능</h7>
-          </a>
-        </div>
-      </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="leftside">
-    <a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-      <div id="kokoman"></div>
-        <center>
-          <div id="avatar"></div>
-        </center>
-        <!-- <p style="font-weight: bold;">누구누구</p> -->
-        <h5>최선을 다해 열심히하겠습니다!</h5>
-        <h7>평점, 위치, 타지역 가능</h7>
-    </a>
-
   </div>
-</div>
 
-<div class="col">
-  <div class="rightside">
-    <a href="" class="slide-img" style="text-decoration: none; color:black;">
+    <!-- <div id="sliders">
+      <div class="row">
+          <div class="col">
+            <div class="leftside">
+              <a href="/partner_profile" class="slide-img">
+                <div id="kokoman"></div>
+                <center>
+                  <div id="avatar"></div>
+                </center>
+                <h5>최선을 다해 열심히하겠습니다!</h5>
+                <h7>평점, 위치, 타지역 가능</h7>
+              </a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="rightside">
+              <a href="/partner_profile" class="slide-img">
+                <div id="kokoman"></div>
+                <center>
+                  <div id="avatar"></div>
+                </center>
+                <h5>최선을 다해 열심히하겠습니다!</h5>
+                <h7>평점, 위치, 타지역 가능</h7>
+              </a>
+            </div>
+          </div>
+      </div>
 
-      <div id="kokoman"></div>
-        <center>
-          <div id="avatar"></div>
-        </center>
-        <!-- <p style="font-weight: bold;">누구누구</p> -->
-        <h5>최선을 다해 열심히하겠습니다!</h5>
-        <h7>평점, 위치, 타지역 가능</h7>
-    </a>
-  </div>
-</div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="leftside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
 
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-
-</div>
-</div>
-
-<div class="col">
-<div class="rightside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-</div>
-</div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="leftside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-
-</div>
-</div>
-
-<div class="col">
-<div class="rightside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-</div>
-</div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="leftside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-
-</div>
-</div>
-
-<div class="col">
-<div class="rightside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-</div>
-</div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="leftside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-
-</div>
-</div>
-
-<div class="col">
-<div class="rightside">
-<a href="" class="slide-img" style="text-decoration: none; color:black;">
-
-  <div id="kokoman"></div>
-    <center>
-      <div id="avatar"></div>
-    </center>
-    <!-- <p style="font-weight: bold;">누구누구</p> -->
-    <h5>최선을 다해 열심히하겠습니다!</h5>
-    <h7>평점, 위치, 타지역 가능</h7>
-</a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
+    </div>
+  </div> -->
 
 
       <div id="map" style="width:40%;height:550px;"></div>
@@ -416,14 +297,14 @@ $( function() {
           </div>
         </div>
       </div> -->
-</div>
-<br><br><br><br><br>
-<% include ./partials/footer %>
-<script src="/static/scripts/findpartner.js"></script>
+<!-- </div> -->
+    <br><br><br><br><br>
+    <% include ./partials/footer %>
+    <script src="/static/scripts/findpartner.js"></script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=
-AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
 
 </script>
 
