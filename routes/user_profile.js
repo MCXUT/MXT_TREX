@@ -16,7 +16,6 @@ const googleMapsClient = require('@google/maps').createClient({
 router.get("/user_profile", (req, res) => {
   if (!res.locals.currentUser) {
     res.redirect("/");
-    // res.render("userprofile", {userInfo: {}, langinfo: {}});
   } else {
     var type;
     if (res.locals.currentUser.type === "p") {
@@ -40,7 +39,7 @@ router.get("/user_profile", (req, res) => {
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
     };
-    
+
     if (type === "Client") {
       res.render("userprofile_client", {userInfo: userInfo});
     } else {
@@ -59,12 +58,12 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
   }, function(err, response) {
     if (err) {
       console.log(err);
-      req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+      req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
       return res.redirect("/user_profile");
     } else {
       // Make sure we are able to get the coordinates of the given address, else throw error
       if (!response.json.results[0]) {
-        req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+        req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
         return res.redirect("/user_profile");
       }
       var newCoordinates = {
@@ -76,7 +75,11 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
         if (err) {
           console.log(err);
           return res.redirect("/user_profile");
-        };
+        }
+        if (!moment(req.body.birthday).isValid()) {
+          req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
+          return res.redirect("/user_profile");
+        }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
         foundUser.address = req.body.address;
         foundUser.coordinates = newCoordinates;
@@ -105,12 +108,12 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
   }, function(err, response) {
     if (err) {
       console.log(err);
-      req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+      req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
       return res.redirect("/user_profile");
     } else {
       // Make sure we are able to get the coordinates of the given address, else throw error
       if (!response.json.results[0]) {
-        req.flash("error", "Couldn't update profile. Please make sure you have put your correct address.");
+        req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
         return res.redirect("/user_profile");
       }
       var newCoordinates = {
@@ -122,7 +125,11 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
         if (err) {
           console.log(err);
           return res.redirect("/user_profile");
-        };
+        }
+        if (!moment(req.body.birthday).isValid()) {
+          req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
+          return res.redirect("/user_profile");
+        }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
         foundUser.address = req.body.address;
         foundUser.coordinates = newCoordinates;

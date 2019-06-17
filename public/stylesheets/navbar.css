@@ -5,6 +5,7 @@ body
     font-family: "Poppins", sans-serif;
 }
 /* scroll to top button & kakaotalk svg */
+
 #scroll {
     border: 1px solid #999;
     background-color: transparent;
@@ -66,13 +67,21 @@ body
     font-size: 14px;
 }
 .navbar-expand-md .navbar-nav .nav-link {
-    padding: 20px 30px;
+    padding: 20px 25px;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    margin: 0 5px;
 }
 .nav-item a:hover {
     background-color: rgba(151, 156, 200, 0.3);
     background-color: #f8ba00;
     border-radius: 4px;
     transition: 0.1s;
+}
+.nav-item a.navactive {
+    background-color: rgba(151, 156, 200, 0.3);
+    background-color: #f8ba00;
+    border-radius: 4px;
 }
 
 
@@ -94,11 +103,14 @@ body
     text-decoration: none;
 }
 
+.verticaldivider {
+    height: 30px;
+    margin: 15px 5px 0 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
-@media (max-width: 768px) {
-    .navbar {
-        margin: 0;
-    }
+
+@media (max-width: 767px) {
     .logo {
         margin-left: 0px;
     }
@@ -122,4 +134,16 @@ body
     .navbar-toggler-icon {
         background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png") !important;
     }
+    [data-toggle="collapse"]::after {
+        content: none !important;
+    }
+    .verticaldivider {
+        border: none;
+        height: 0px;
+        margin-top: 0px;
+    }
+}
+
+nav {
+    z-index: 1;
 }

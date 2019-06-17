@@ -11,6 +11,16 @@
 
 <body>
     <% include ./partials/navbar %>
+
+    <!-- toggle active link button -->
+    <script>
+        $(document).ready(() => {
+            // $(".navactive").toggleClass("navactive");
+            $("#pplink").toggleClass("navactive");
+        });
+    </script>
+    <!-- end -->
+
 <!-- Carousel Section -->
 <div class="container-fluid padding" id="mainDiv">
 <div id="slides" class="carousel slide" data-ride="carousel">
@@ -24,7 +34,7 @@
       <h1><b>트렉스 파트너로</b></h1>
       <h1>수익을 창출하세요</h1>
       <br><br>
-        <button  id="button1" type="button">파트너 등록하기</button>
+        <a href="/auth/register/partner"><button  id="button1" type="button">파트너 등록하기</button></a>
     </div>
 
   </div>
@@ -95,7 +105,7 @@
 <div class="sectionContent">
 <div class="row">
 
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-12 col-lg-6">
     <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
@@ -109,7 +119,7 @@
 </div>
   </div>
 
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-12 col-lg-6">
     <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
@@ -123,7 +133,7 @@
 </div>
   </div>
 
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-12 col-lg-6">
     <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
@@ -137,7 +147,7 @@
 </div>
   </div>
 
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-12 col-lg-6">
     <div class="card card1" >
   <div class="card-body">
     <h2 style="color:grey;">Confirm</h2>
@@ -155,7 +165,7 @@
 </div>
 </div>
 <br>
-<button type="button" class="btn btn-dark text-center">모든 업무 보기</button>
+<a href="/find_task"><button type="button" class="btn btn-dark text-center">모든 업무 보기</button></a>
 </div>
 <!-- /업무에 지원 해 보세요! -->
 <br><br>
@@ -245,7 +255,7 @@ transform: rotate(0deg) ;
 </div>
 </ol>
 
-<button type="button" id="button1">파트너 질문 더 보기</button>
+<a href="/partner_faq"><button type="button" id="button1">파트너 질문 더 보기</button></a>
 <br><br>
 </div>
 

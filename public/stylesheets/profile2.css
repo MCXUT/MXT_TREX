@@ -133,3 +133,7 @@
     background-color: rgba(200, 200, 200, 0.6);
     border-radius: 15px;
 }
+
+html.disabled {
+    overflow-y: hidden;
+}
