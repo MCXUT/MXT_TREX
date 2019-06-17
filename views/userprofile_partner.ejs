@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Profile Page</title>
+        <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
 
@@ -73,8 +73,8 @@
                         <p class="userName"><%= userInfo.name %></p>
                     </div>
                     <div class="col-md-8">
-                      <% if (error) { %>
-                        <span style="color:red"><%= error %></span>
+                      <% if (error.length > 0) { %>
+                        <span style="color:red;margin-left:70px;"><%= error %></span>
                       <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>기본 정보</b></p>
@@ -119,13 +119,13 @@
                                 <div class="divider"></div>
                                 <div class="row element">
                                     <span class="switch">
-                                      <input form="changePic" type="file" name="profilePic" accept="image/*" required>
+                                      <input form="changePic" type="file" name="profilePic" accept="image/*" required />
                                       <!-- <button form="defaultPic" class="switch btn btn-secondary">기본 사진 사용하기</button> -->
                                     </span>
                                 </div>
                                 <div class="row element">
                                   <span class="switch">
-                                    <font size=2>이미지 사이즈는 160x160px로 맞춰주세요.<br></font>
+                                    <font size=2>이미지 사이즈는 150x150px로 맞춰주세요.<br></font>
                                     <font size=2 style="margin-left:52px;">웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
                                   </span>
                                 </div>
@@ -332,5 +332,6 @@
     });
     </script>
     <script src="/static/scripts/profileedit.js"></script>
+    <% include ./partials/footer %>
     </body>
 </html>
