@@ -159,8 +159,14 @@ $(document).ready(() => {
 var viewproficiency = () => {
     document.querySelector(".proficiencychart").addEventListener("click", (e) => {
         e.preventDefault();
-        $(".pum").toggleClass("pumactive");
-        $("body").toggleClass("disabled");
+        $(".pum").animate({
+            opacity: 1,
+            top: "0"
+        }, 0, () => {
+            $(".pum").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
+        });
+
     });
 }
 viewproficiency();
@@ -168,8 +174,13 @@ viewproficiency();
 var clickoutside = () => {
     document.querySelector(".pum").addEventListener("click", (e) => {
         if(e.target.className === "pum pumactive") {
-            $(".pum").toggleClass("pumactive");
-            $("body").toggleClass("disabled");
+            $(".pum").animate({
+                opacity: 0.1,
+                top: "-50px"
+            }, 500, () => {
+                $(".pum").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
+            });
         }
     });
 }
@@ -177,8 +188,13 @@ clickoutside();
 
 var clickex = () => {
     $(".exittable").click((e) => {
-        $(".pum").toggleClass("pumactive");
-        $("body").toggleClass("disabled");
+        $(".pum").animate({
+            opacity: 0.1,
+            top: "-50px"
+        }, 500, () => {
+            $(".pum").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
+        });
     });
 }
 clickex();

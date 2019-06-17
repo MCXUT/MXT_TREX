@@ -13,11 +13,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <!-- <link href="/public/stylesheets/datepicker.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="/public/scripts/datepicker.js"></script> -->
-    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -38,17 +34,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.css">
 
 
-
-
-
-    <!-- <script>
-    $(function(){
-      $('.dates #user1').datepicker({
-        'format' : 'yyyy-mm-dd',
-        'autoclose': true
+  <!-- toggle active link button -->
+  <script>
+      $(document).ready(() => {
+          // $(".navactive").toggleClass("navactive");
+          $("#fplink").toggleClass("navactive");
       });
-    });
-    </script> -->
+  </script>
+  <!-- end -->
+
+
     <% include ./partials/navbar %>
 
   <style>
@@ -124,41 +119,6 @@
 
     <input type="button" name="daterange" value="날짜" id="nal"
     placeholder="날짜" class="dropbtn datepicker" style="margin: 5px;">
-    <!-- <button type="button" name="daterange" class="dropbtn datepicker btn-cal" style="margin: 5px;"
-    onclick="kimochi()">날짜</button> -->
-    <!-- <span>
-    <button aria-haspopup="true" aria-expanded=
-    "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
-    style="margin: 5px;" id="login">
-      <div>
-        인원<span id="inwon"></span>
-      </div>
-    </button>
-
-        <div id="registerModal" role="dialog" aria-hidden="true"
-          class="modal in modal_site_login ui-draggable" data-backdrop="true"
-          data-keyboard="true">
-          <div class="modal-dialog">
-            <div class="modal-content" id="registercontent">
-              <div class="input-group">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" disabled="disabled"
-                      data-type="minus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-minus"></span>
-                    </button>
-                </span>
-                <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </span> -->
-
 
 
 
@@ -211,10 +171,6 @@
 
 
 
-      <!-- <input type="range" onclick=""
-      min="1" max="100" value="50" class="dropbtn money"
-      style="margin: 5px;"> -->
-
   <label class="switch" style="float: right;">
     <input type="checkbox" id="roundswitch" onclick="myFunction5()" checked>
     <span class="slider round"></span>
@@ -226,7 +182,7 @@
   <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
-  
+
     <div id="sliders">
       <% var i; %>
       <% for (i = 0; i < allPartners.length; i++) { %>
@@ -269,7 +225,7 @@
             </div>
           <% } %>
       <% } %>
-      
+
       <% if (i%2 == 1) { %>
         <!-- if the total number of cards is even, insert empty card on the rightside and close row tag -->
           <div class="col">
@@ -278,10 +234,10 @@
           </div>
         </div>
       <% } %>
-      
+
     </div>
   </div>
-    
+
     <!-- <div id="sliders">
       <div class="row">
           <div class="col">
@@ -309,7 +265,7 @@
             </div>
           </div>
       </div>
-      
+
 
     </div>
   </div> -->
@@ -350,6 +306,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=
     AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
 
-    </script>
+</script>
+
+    <% include ./partials/footer %>
+
   </body>
 </html>

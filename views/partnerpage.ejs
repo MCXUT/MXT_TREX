@@ -11,6 +11,16 @@
 
 <body>
     <% include ./partials/navbar %>
+
+    <!-- toggle active link button -->
+    <script>
+        $(document).ready(() => {
+            // $(".navactive").toggleClass("navactive");
+            $("#pplink").toggleClass("navactive");
+        });
+    </script>
+    <!-- end -->
+
 <!-- Carousel Section -->
 <div class="container-fluid padding" id="mainDiv">
 <div id="slides" class="carousel slide" data-ride="carousel">
