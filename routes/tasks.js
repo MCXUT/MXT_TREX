@@ -11,5 +11,8 @@ router.get("/city_list", (req, res) => {
   res.render("citylist");
 });
 
+router.get("/find_task", (req, res) => {
+  res.render("findtask");
+});
 
 module.exports = router;
