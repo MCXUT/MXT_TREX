@@ -27,38 +27,38 @@
 
   <div class="carousel-inner" >
     <div class="carousel-item active">
-      <img src="/static/images/slider/slider-1-newyork.jpg" class="center responsive" style="filter:brightness(80%);height: 600px; -o-object-fit: contain;" >
+      <img id="slider-images" src="/static/images/slider/slider-1-newyork.jpg" class="center responsive" style="filter:brightness(80%);" >
 
         <div class="bottom-right">NEW YORK</div>
     </div>
 
     <div class="carousel-item">
-      <img src="/static/images/slider/slider-2-london.jpg" class="center responsive" style="height: 600px; -o-object-fit: contain;">
+      <img id="slider-images" src="/static/images/slider/slider-2-london.jpg" class="center responsive" >
 
       <div class="bottom-right">LONDON</div>
     </div>
 
     <div class="carousel-item">
-      <img src="/static/images/slider/slider-3-tokyo.jpg" class="center responsive" style="height: 600px; -o-object-fit: contain;">
+      <img id="slider-images" src="/static/images/slider/slider-3-tokyo.jpg" class="center responsive" >
 
       <div class="bottom-right">TOKYO</div>
     </div>
 
     <div class="carousel-item">
-      <img src="/static/images/slider/slider-4-montreal.jpg" class="center responsive" style="height: 600px; -o-object-fit: contain;">
+      <img id="slider-images" src="/static/images/slider/slider-4-montreal.jpg" class="center responsive" >
 
       <div class="bottom-right">MONTREAL</div>
     </div>
 
   </div>
 </div>
-<div class="centered">
+<div id="caption-carousel" class="centered" style="display:block;width:100%;">
 
     <h1 class="display-4">어디로 출장 가시나요?</h1>
 
-    <h3 class="text-center">현지 파트너를 검색 해보세요.</h3>
+    <h3 class="text-center">출장지나 파트너를 검색 해보세요!</h3>
     <br><br>
-    <form action="/action_page.php" target="_blank" method="POST" style="width:80%;padding-left:20%;">
+    <form id="searchbox" action="/action_page.php" target="_blank" method="POST" >
       <div class="input-group">
          <input type="text" class="form-control" placeholder="Search" name="search" >
          <button class="btn btn-warning" type="submit">
@@ -70,20 +70,7 @@
 </div>
 </div>
   <!-- End of Carousel Section -->
-  <!-- Jumbotron Section -->
-  <!-- <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <div class="col-xs-12 col-md-7"
-      <h5 class="lead"">검색 할 시간이 없으신가요? 3분이면 충분합니다!</h5>
-      <p>업무를 요청하고 지원자를 받아보세요.</p>
-    </div>
-    <div class="col-xs-12 col-md-5">
-      <a href="#"><button type="button" class="btn btn-warning">업무 요청하기  <i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</div> -->
 
-<!-- End of Jumbotron Section -->
 <!-- 기업 섭외 견적 요청 -->
 <div class="divider3"></div>
 <div class="container-fluid text-center">
@@ -92,22 +79,22 @@
     <div class="sectionContent">
       <div class="row">
         <div class="container2 col-md-3 col-sm-6">
-          <a href="#"><img src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" style="height: 150px; width: 230px;-o-object-fit: contain;">
+          <a href="#"><img id="request-service" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
           <div class="centered">현지 통역</div></a>
         </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" style="height: 150px; width: 230px;-o-object-fit: contain;">
+  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
   <div class="centered">현지 차량</div></a>
   </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/request-service-estimate/3.translationservice2.jpg" class="center" style="height: 150px; width: 230px;-o-object-fit: contain;">
+  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
   <div class="centered">번역</div></a>
   </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/request-service-estimate/4.castagency.jpg" class="center" style="height: 150px; width: 230px;-o-object-fit: contain;">
+  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
   <div class="centered">현지 기관 섭외</div></a>
   </div>
 
@@ -152,7 +139,7 @@
 <!-- 통역 그 이상의 서비스를 경험 해 보세요-->
 <div class="container-fluid padding text-center" style="background-color:#e6e6e6;">
 
-  <h2 style="margin-bottom:0px;">통역 그 이상의 서비스를 경험 해 보세요</h2>
+  <h2 id="heading" style="margin-bottom:0px;">통역 그 이상의 서비스를 경험 해 보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
   <br><br>
   <div class="container">
@@ -197,7 +184,7 @@
 
 
 <div id="first-slide"class="container-fluid text-center">
-<h2>국가/지역 별 파트너를 만나보세요</h2>
+<h2 id="heading">국가/지역 별 파트너를 만나보세요</h2>
 <hr style="width:100px;border:1px #595959 solid;">
   <div class="container">
      <div class="sectionContent" >
@@ -469,7 +456,7 @@ transform: rotate(0deg) ;
 <br><br>
 <!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
 <div class="container-fluid padding text-center">
-  <h3>기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
+  <h3 id="heading2">기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
 <div class="container">
 
 </div>
