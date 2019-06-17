@@ -32,16 +32,17 @@
   <link rel="stylesheet" href="../static/stylesheets/findpartner.css">
 
 
-  <!-- toggle active link button -->
-  <script>
-      $(document).ready(() => {
-          // $(".navactive").toggleClass("navactive");
-          $("#fplink").toggleClass("navactive");
+
+
+
+    <!-- <script>
+    $(function(){
+      $('.dates #user1').datepicker({
+        'format' : 'yyyy-mm-dd',
+        'autoclose': true
       });
-  </script>
-  <!-- end -->
-
-
+    });
+    </script> -->
     <% include ./partials/navbar %>
 
   <style>
@@ -56,6 +57,7 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  background-image: url("static/images/nibbler.jpeg");
   background-size: cover;
 
   margin-bottom: 15px;
@@ -182,14 +184,9 @@
 
 
 
-<<<<<<< HEAD
   <label class="switch" style="float: right; ">
     <input type="checkbox" id="roundswitch" onclick="myFunction5()"
     style="margin-left: 5px;" checked>
-=======
-  <label class="switch" style="float: right;">
-    <input type="checkbox" id="roundswitch" onclick="myFunction5()" checked>
->>>>>>> 3c84c9527eddeceff87ee550ce282ad1d5cdc30c
     <span class="slider round"></span>
   </label>
 </div>
@@ -218,7 +215,6 @@ $( function() {
   <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
-<<<<<<< HEAD
       <div id="sliders">
 
           <div class="row">
@@ -234,53 +230,10 @@ $( function() {
               <h5>최선을 다해 열심히하겠습니다!</h5>
               <h7>평점, 위치, 타지역 가능</h7>
           </a>
-=======
->>>>>>> 3c84c9527eddeceff87ee550ce282ad1d5cdc30c
 
-    <div id="sliders">
-      <% var i; %>
-      <% for (i = 0; i < allPartners.length; i++) { %>
-          <!-- If i is even put the card on the leftside-->
-          <% if (i%2 == 0) { %>
-            <div class="row">
-              <div class="col">
-                <div class="leftside">
-                  <a href="/partner_profile" class="slide-img">
-                    <div id="kokoman"></div>
-                    <center>
-                      <% if (allPartners[i].pic) { %>
-                        <img id="avatar" src="image/<%= allPartners[i].pic %>">
-                      <% } else { %>
-                        <img id="avatar" src="/static/images/noprofilepic.jpeg">
-                      <% } %>
-                    </center>
-                    <h5><%= allPartners[i].name %></h5>
-                    <h7><%= allPartners[i].email %></h7>
-                  </a>
-                </div>
-              </div>
-          <% } else { %> <!-- if i is odd put it on the right side -->
-              <div class="col">
-                <div class="rightside">
-                  <a href="/partner_profile" class="slide-img">
-                    <div id="kokoman"></div>
-                    <center>
-                      <% if (allPartners[i].pic) { %>
-                        <img id="avatar" src="image/<%= allPartners[i].pic %>">
-                      <% } else { %>
-                        <img id="avatar" src="/static/images/noprofilepic.jpeg">
-                      <% } %>
-                    </center>
-                    <h5><%= allPartners[i].name %></h5>
-                    <h7><%= allPartners[i].email %></h7>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <% } %>
-      <% } %>
+        </div>
+      </div>
 
-<<<<<<< HEAD
       <div class="col">
         <div class="rightside">
           <a href="" class="slide-img">
@@ -309,20 +262,8 @@ $( function() {
         <h5>최선을 다해 열심히하겠습니다!</h5>
         <h7>평점, 위치, 타지역 가능</h7>
     </a>
-=======
-      <% if (i%2 == 1) { %>
-        <!-- if the total number of cards is even, insert empty card on the rightside and close row tag -->
-          <div class="col">
-            <div class="rightside" style="border:none;">
-            </div>
-          </div>
-        </div>
-      <% } %>
->>>>>>> 3c84c9527eddeceff87ee550ce282ad1d5cdc30c
 
-    </div>
   </div>
-<<<<<<< HEAD
 </div>
 
 <div class="col">
@@ -468,40 +409,9 @@ $( function() {
 </div>
 </div>
 </div>
-=======
 
-    <!-- <div id="sliders">
-      <div class="row">
-          <div class="col">
-            <div class="leftside">
-              <a href="/partner_profile" class="slide-img">
-                <div id="kokoman"></div>
-                <center>
-                  <div id="avatar"></div>
-                </center>
-                <h5>최선을 다해 열심히하겠습니다!</h5>
-                <h7>평점, 위치, 타지역 가능</h7>
-              </a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="rightside">
-              <a href="/partner_profile" class="slide-img">
-                <div id="kokoman"></div>
-                <center>
-                  <div id="avatar"></div>
-                </center>
-                <h5>최선을 다해 열심히하겠습니다!</h5>
-                <h7>평점, 위치, 타지역 가능</h7>
-              </a>
-            </div>
-          </div>
-      </div>
-
->>>>>>> 3c84c9527eddeceff87ee550ce282ad1d5cdc30c
-
-    </div>
-  </div> -->
+</div>
+</div>
 
 
       <div id="map" style="width:40%;height:550px;"></div>
@@ -530,18 +440,15 @@ $( function() {
           </div>
         </div>
       </div> -->
-<!-- </div> -->
-    <br><br><br><br><br>
-    <% include ./partials/footer %>
-    <script src="/static/scripts/findpartner.js"></script>
+</div>
+<br><br><br><br><br>
+<% include ./partials/footer %>
+<script src="/static/scripts/findpartner.js"></script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=
-    AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
+<script src="https://maps.googleapis.com/maps/api/js?key=
+AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
 
 </script>
-
-    <% include ./partials/footer %>
-
   </body>
 </html>
