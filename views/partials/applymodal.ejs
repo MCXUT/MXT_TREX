@@ -13,6 +13,23 @@
   background-color:#f8ba00;
   border:#f8ba00;
 }
+@media(max-width: 576px) {
+  td {
+    display: table-row;
+  }
+  #myModal{
+    width:95%;
+    padding-left:1%;
+  }
+}
+@media(max-width: 768px) {
+  td {
+    display: table-row;
+  }
+  #myModal{
+  }
+}
+
 </style>
 
   <script type="text/javascript">
@@ -35,9 +52,9 @@
 
 <!-- The Modal -->
 <form name="TESTING" action="/action_page.php" target="_blank" method="POST">
-  <div class="input-group">
+  <div class="input-group" >
 
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="myModal" >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -63,7 +80,7 @@
 
 
       <TABLE id="dataTable2"  border="0">
-        <TR>
+        <TR >
         <td>
           <select id="service" name="service" required onchange="calculateTotal()">
             <option selected>서비스를 선택 해주세요.</option>
