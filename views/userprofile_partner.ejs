@@ -8,60 +8,7 @@
     </head>
     <body>
 
-        <link rel="stylesheet" href="/static/stylesheets/viewproficiency.css">
-        <div class="pum">
-            <div class="pum-container">
-                <div class="maincontent">
-                    <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
-                    <p>언어 레벨 기준</p>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>레벨</td>
-                                <td>수준</td>
-                                <td>설명</td>
-                            </tr>
-                            <tr>
-                                <td>60</td>
-                                <td>의사 소통 가능</td>
-                                <td>일반 생활에서 자주 사용되는 간단한 언어적 표현을 이해하고, 구사할 수 있으며,
-                                스스로 또는 타인을 소개하고, 그에 관한 기초적인 질문 및 대답을 할 수 있다.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                    <h1>HOHOH</h1>
-                </div>
-            </div>
-        </div>
+        <% include ./partials/proficiencychart %>
 
         <% include ./partials/navbar %>
 
@@ -71,7 +18,7 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-md-4 col-12">
-                        <p class="setting">파트너 계정 정보</p>
+                        <p class="setting">파트너 계정 관리</p>
                         <div class="menu">
                             <a class="publicinfo active" href="#">일반</a>
                             <a class="privateinfo" href="#">보안</a>
@@ -182,7 +129,7 @@
                                         <button form="languageform" class="btn btn-info editbuttons" id="confirm">확인</a>
                                     </div>
                                     <div class="divider"></div>
-                                    <a href="#" class="proficiencychart">구사 능력 기준 보기</a>
+                                    <a href="#" id="chartdisplay" class="proficiencychart" style="color:#f8ba00;">구사 능력 기준 보기</a>
                                     <% if(typeof langinfo.langchoice == "string") { %>
                                         <div class="row language">
                                             <span><b><%= langinfo.langchoice %></b></span>
@@ -349,5 +296,7 @@
     });
     </script>
     <script src="/static/scripts/profileedit.js"></script>
+
+    <% include ./partials/footer %>
     </body>
 </html>

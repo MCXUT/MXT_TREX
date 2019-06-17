@@ -9,24 +9,49 @@
     z-index: 8000;
     overflow-y: scroll;
     display: none;
+
 }
 .pum .pum-container {
-    left: 10%;
-    top: 100px;
+    opacity: 1;
+    border-radius: 6px;
+    left: 15%;
+    top: 50px;
     position: relative;
     background-color: white;
-    max-width: 80%;
+    max-width: 70%;
     min-width: 0%;
     margin-bottom: 200px;
+    box-sizing: border-box;
+    animation: drop 0.8s ease forwards;
+    /* animation: rollup 0.8s ease; */
+}
+@keyframes drop {
+    0% {opacity: 0.2;}
+    100% { transform: translateY(50px);
+            opacity: 1;}
+}
+@keyframes rollup {
+    0% { transform: translateY(100px);
+            opacity: 1;}
+    100% {opacity: 0.2;}
+}
+
+.pum .pum-container .maincontent {
+    padding-bottom: 30px;
 }
 .pum .pum-container .maincontent .exittable {
     float: right;
     font-size: 25px;
-    padding: 5px 8px 0 0;
+    padding: 15px 10px 0 0;
 }
 .pum .pum-container .maincontent .exittable:hover {
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
+}
+.pum .pum-container .maincontent p {
+    font-size: 30px;
+    font-weight: 500;
+    padding: 10px 0 0 10px;
 }
 
 .maincontent table {
@@ -34,8 +59,44 @@
     text-align: center;
 }
 .maincontent table tr {
-    height: 50px;
+    height: 80px;
 }
 .maincontent table tr td {
     border: 1px solid black;
+}
+.maincontent .titles {
+    background-color: silver;
+    height: 50px;
+}
+.maincontent .scale {
+    width: 80px;
+    min-width: 40px;
+    background-color:
+}
+.maincontent .level {
+    width: 110px;
+    min-width: 70px;
+}
+.maincontent .description {
+    width: 700px;
+}
+
+@media (max-width:992px) {
+    .pum .pum-container {
+        left: 10%;
+        max-width: 80%;
+    }
+}
+@media (max-width:768px) {
+    .pum .pum-container {
+        left: 5%;
+        max-width: 90%;
+    }
+}
+
+#chartdisplay {
+    color: #f8ba00;
+}
+#chartdisplay:hover {
+    color: rgb(198, 136, 0) !important;
 }

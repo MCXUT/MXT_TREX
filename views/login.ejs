@@ -14,6 +14,16 @@
 <body>
 
     <% include ./partials/navbar %>
+
+    <!-- toggle active link button -->
+    <script>
+        $(document).ready(() => {
+            // $(".navactive").toggleClass("navactive");
+            $("#loginlink").toggleClass("navactive");
+        });
+    </script>
+    <!-- end -->
+
     <link rel="stylesheet" href="/static/stylesheets/auth.css">
 
 <center>
@@ -140,6 +150,7 @@
 
 <script src="/static/scripts/auth.js"></script>
 
+    <% include ./partials/footer %>
 </body>
 
 

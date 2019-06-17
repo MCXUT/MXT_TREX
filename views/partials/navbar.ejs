@@ -11,14 +11,19 @@
               <% if (currentUser) { %>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/find_partner">파트너 찾기</a>
+                        <a class="nav-link" href="/find_partner" id="fplink">
+                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                            파트너 찾기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/partner_page">파트너 페이지</a>
+                        <a class="nav-link" href="/partner_page" id="pplink">
+                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
+                            파트너 페이지</a>
                     </li>
+                    <div class="verticaldivider"></div>
                     <li class="nav-item dropdown" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px;">
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.pic) { %>
                               <img class="profileimg" src="image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
                             <% } else { %>
@@ -26,27 +31,42 @@
                             <% } %>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/user_profile">계정 정보</a>
+                            <a class="dropdown-item" href="/user_profile">
+                                <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                계정 관리</a>
                             <% if (currentUser.type === "p") { %>
-                              <a class="dropdown-item" href="#">내 서비스 관리</a>
+                              <a class="dropdown-item" href="#">
+                                  <img src="/static/icons/service.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                  내 서비스 관리</a>
                             <% } %>
-                            <a class="dropdown-item" href="/auth/logout">로그아웃</a>
+                            <a class="dropdown-item" href="/auth/logout">
+                                <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                로그아웃</a>
                         </div>
                     </li>
                 </ul>
               <% }  else { %>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/find_partner">파트너 찾기</a>
+                        <a class="nav-link" href="/find_partner" id="fplink">
+                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                            파트너 찾기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/partner_page">파트너 페이지</a>
+                        <a class="nav-link" href="/partner_page" id="pplink">
+                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
+                            파트너 페이지</a>
+                    </li>
+                    <div class="verticaldivider"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login" id="loginlink">
+                            <img src="/static/icons/signin.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                            로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/auth/login">로그인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/register">회원가입</a>
+                        <a class="nav-link" href="/auth/register" id="registerlink">
+                            <img src="/static/icons/signup.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                            회원가입</a>
                     </li>
                 </ul>
               <% } %>
