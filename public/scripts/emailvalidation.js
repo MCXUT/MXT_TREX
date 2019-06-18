@@ -45,3 +45,18 @@ viewproficiency();
 //     });
 // }
 // clicksubmit();
+
+var clickoutside = () => {
+    document.querySelector(".pum").addEventListener("click", (e) => {
+        if(e.target.className === "pum pumactive") {
+            $(".pum").animate({
+                opacity: 0.1,
+                top: "-50px"
+            }, 500, () => {
+                $(".pum").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
+            });
+        }
+    });
+}
+clickoutside();
