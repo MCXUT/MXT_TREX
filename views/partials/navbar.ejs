@@ -24,7 +24,7 @@
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.pic) { %>
-                              <img class="profileimg" src="image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
+                              <img class="profileimg" src="/image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
                             <% } else { %>
                               <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
                             <% } %>
