@@ -3,22 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>회사소개</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
-    <meta name="google" content="notranslate" />
-    <!-- css cdn -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- cdn for jQuery must be before that of JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="../static/stylesheets/style.css">
-
-
+<% include ./partials/header %>
     <style>
       #mainintro{
 
@@ -146,6 +132,31 @@
       #slideshow .text{
         transform: translate3d(0, -60%, 0);
       }
+      .carousel-item{
+        background-color: white;
+      }
+      #media-trex{
+        max-width: 40%;
+        background-color:#e6e6e6;
+        border-radius: 8px;
+        height:150px;
+      }
+      #media-trex .header-trex{
+        margin-left: 7%;
+        color:#1a8cff;
+        padding-top: 27px;
+      }
+      #media-trex .body-trex{
+        font-size: 28px;color:
+        #333333;
+        padding-top:22px;
+      }
+
+
+      #media-trex .body-trex:hover{
+        color:#b3b3b3;
+      }
+
     </style>
   </head>
   <body>
@@ -275,13 +286,9 @@
 
     <br><br><br>
 
-    <center>
-      <h2><span style="color:#F4CC00;">트렉스</span> 이용후기</h2>
-      <h6>언제나 클라이언트와 파트너의 목소리에 귀기울이겠습니다</h6>
-    </center>
 
 
-    <div class="slideshow-container" id="slideshow">
+    <!-- <div class="slideshow-container" id="slideshow">
 
     <div class="mySlides fade">
       <div class="numbertext">1 / 3</div>
@@ -303,50 +310,69 @@
 
     </div>
 
-    <div style="text-align:center" id="dots">
+    <div style="text-align:center;" id="dots">
       <span class="dot" onclick="currentSlide(1)"></span>
       <span class="dot" onclick="currentSlide(2)"></span>
       <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
+    </div> -->
 
+    <div class="container-fluid padding text-center" >
+      <br><br>
+    <div class="container" style="width:40%;">
+      <center>
+        <h2><span style="color:#F4CC00;">트렉스</span> 이용후기</h2>
+        <h6>언제나 클라이언트와 파트너의 목소리에 귀기울이겠습니다</h6>
+      </center>
 
-
-    <div id="slides2" class="carousel slide carousel-slides" data-ride="carousel">
+    <div id="slides22" class="carousel slide carousel-slides" data-ride="carousel" data-interval="2300">
       <!--Indicators-->
       <ul class="carousel-indicators">
-        <li data-target="#slides2" data-slide-to="0" class="active"></li>
-        <li data-target="#slides2" data-slide-to="1"></li>
-        <li data-target="#slides2" data-slide-to="2"></li>
+        <li data-target="#slides22" data-slide-to="0" class="active"></li>
+        <li data-target="#slides22" data-slide-to="1"></li>
+        <li data-target="#slides22" data-slide-to="2"></li>
+        <li data-target="#slides22" data-slide-to="3"></li>
       </ul>
       <!--/.Indicators-->
       <!--Slides-->
       <div class="carousel-inner" > <!-- add role="listbox" if needed-->
-         <div class="carousel-item active">
+         <div class="carousel-item active" >
            <div class="grid-container">
              <div class="grid-item item4 text-center" ><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
-             <div class="grid-item item5 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
-             <div class="grid-item item6 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+             <div class="grid-item item5 text-left"><br><h6 >G***사</h6><span>Chief Financial Officer</span></div>
+             <div class="grid-item item6 text-center">"트렉스를 통해 지난번 통역 해주신 일과 관련해서 좋은 결과가 있어 다시 방문하게 될 듯 합니다. ...항상 응원합니다"<br><br><br></div>
            </div>
         </div>
 
         <div class="carousel-item">
           <div class="grid-container">
             <div class="grid-item item4 text-center" ><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
-            <div class="grid-item item5 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
-            <div class="grid-item item6 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+            <div class="grid-item item5 text-left"><br><h6 >K***기관</h6><span>Senior Researcher</span></div>
+            <div class="grid-item item6 text-center">트렉스 덕분에 독일 행사 잘 마무리 되었습니다. 매년 감사 드립니다.<br><br><br></div>
           </div>
        </div>
        <div class="carousel-item">
          <div class="grid-container">
            <div class="grid-item item4 text-center" ><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
-           <div class="grid-item item5 text-left"><br><h6 >John Woo</h6><span>파트너 (유럽)</span></div>
-           <div class="grid-item item6 text-center">다른 알바와 다르게 제 전공분야 경험도 키우고, 수익도 훨씬 많이 올릴 수 있어서 좋습니다.<br><br><br></div>
+           <div class="grid-item item5 text-left"><br><h6 >C***사</h6><span>Chief Executive Director</span></div>
+           <div class="grid-item item6 text-center">다음번 캐나다 여정 때 다시 한번 도움 부탁 드리도록 하겠습니다^^ 감사합니다.<br><br><br></div>
          </div>
       </div>
+
+      <div class="carousel-item" >
+        <div class="grid-container">
+          <div class="grid-item item4 text-center" ><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+          <div class="grid-item item5 text-left"><br><h6 >겟리펀드</h6><span>Executive Director Getrefund.io</span></div>
+          <div class="grid-item item6 text-center">"트렉스 덕분에 지난 미국 출장을 너무 편하게 다녀올 수 있었습니다. 다음번에도 같은 통역원님과 꼭 같이 하고 싶습니다."<br><br><br></div>
+        </div>
+     </div>
       </div>
       <!--/.Slides-->
 
     </div>
+
+
+</div>
+</div>
 
 
 
@@ -383,27 +409,25 @@
   <center>
 
     <h2>미디어 속의 <span style="color:#F4CC00;">트렉스</span></h2>
-    <br><br><br>
-    <a href="https://platum.kr/archives/115769">
-      <div style="max-width: 40%">
-      <div class="header text-left" style="margin-left: 13%;">
-        플래텀<br><br>
+    <br>
+    <a href="https://platum.kr/archives/115769" target="_blank">
+      <div id="media-trex" >
+      <div class="header-trex text-left">
+        플래텀
       </div>
       <div>
-        <span style="font-size: 24px;">한인 인재 매칭 플랫폼, '트렉스'런칭</span>
-        <span style="font-size: 30px;"><i class="fas fa-angle-right"></i></span>
+        <span class="body-trex" >한인 인재 매칭 플랫폼, '트렉스'런칭 <i class="fas fa-angle-right"></i></span>
       </div>
     </div>
     </a>
-    <br><br><br>
-    <a href="https://www.venturesquare.net/774332">
-    <div style="max-width: 40%">
-      <div class="header text-left" style="margin-left: 8.5%;">
+    <div class="divider2"></div>
+    <a href="https://www.venturesquare.net/774332" target="_blank">
+    <div id="media-trex">
+      <div class="header-trex text-left" >
         벤처스퀘어
       </div>
       <div>
-        <span style="font-size: 24px;">현지 한인 인재 매칭 플랫폼 '트렉스'출시</span>
-        <span style="font-size: 30px;"><i class="fas fa-angle-right"></i></span>
+        <span class="body-trex" >현지 한인 인재 매칭 플랫폼 '트렉스'출시 <i class="fas fa-angle-right" size="font-size:30px;"></i></span>
       </div>
     </div>
     </a>
@@ -419,14 +443,15 @@
       <div class="col">
         <div style="color:#F4CC00; font-size: 40px;"><i class="fa fa fa-envelope"></i></div><br>
           <h3>이메일</h3>
-          서비스 문의: info@trexservice.com<br><br>
+
+          서비스 문의:<br> <a id="social-media-link-footer" href="mailto:info@trexservice.com" target="_blank">info@trexservice.com</a><br><br>
           파트너 & 제휴 문의:<br>
-          partnership@trexservice.com
+          <a id="social-media-link-footer" href="mailto:partnership@trexservice.com" target="_blank">partnership@trexservice.com</a>
       </div>
       <div class="col">
         <div style="color:#F4CC00; font-size: 40px;"><i class="fa fa fa-phone"></i></div><br>
           <h3>카카오톡 상담</h3>
-          <a href="">트렉스 카카오톡</a>
+          <a id="social-media-link-footer" href="https://accounts.kakao.com/login?continue=http%3A%2F%2Fpf.kakao.com%2F_dCzvj%2Fchat" target="_blank">트렉스 카카오톡</a>
       </div>
     </div>
 

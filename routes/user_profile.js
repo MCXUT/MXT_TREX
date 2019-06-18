@@ -39,7 +39,7 @@ router.get("/user_profile", (req, res) => {
       address: res.locals.currentUser.address,
       phoneNumber: res.locals.currentUser.phoneNumber
     };
-    
+
     if (type === "Client") {
       res.render("userprofile_client", {userInfo: userInfo});
     } else {

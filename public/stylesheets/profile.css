@@ -331,6 +331,6 @@
     }
 }
 
-body.disabled {
+html.disabled {
     overflow-y: hidden;
 }

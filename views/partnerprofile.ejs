@@ -2,23 +2,6 @@
     <head>
         <meta charset="utf-8">
         <title>파트너 프로필</title>
-
-        <!-- HEADER -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
-        <meta name="google" content="notranslate" />
-        <!-- css cdn -->
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <!-- cdn for jQuery must be before that of JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  
-        <link rel="stylesheet" href="/static/stylesheets/style.css">
         
         <style>
           #avatar {
@@ -31,10 +14,15 @@
             transform: translate3d(0, -50%, 0);
           }
         </style>
-        <!-- END OF HEADER -->
+
+        <% include ./partials/header %>
 
     </head>
     <body>
+
+
+        <% include ./partials/proficiencychart %>
+
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile2.css">
@@ -144,6 +132,8 @@
                                                     border-radius: 10px;"></div>
                                     </span>
                                 </div>
+
+                                <a href="#" id="chartdisplay" style="float:right; color: #f8ba00;" class="proficiencychart">구사 능력 기준 보기</a>
                             </div>
                         </div>
                     </div>
@@ -151,6 +141,8 @@
             </div>
         </div>
 
+        <script src="/static/scripts/profileedit.js"></script>
+        <% include ./partials/footer %>
 
     </body>
 </html>

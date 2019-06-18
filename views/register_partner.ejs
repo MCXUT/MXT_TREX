@@ -10,6 +10,16 @@
   <body onload="createCaptcha()">
 
       <% include ./partials/navbar %>
+
+      <!-- toggle active link button -->
+      <script>
+          $(document).ready(() => {
+              // $(".navactive").toggleClass("navactive");
+              $("#registerlink").toggleClass("navactive");
+          });
+      </script>
+      <!-- end -->
+
       <link rel="stylesheet" href="/static/stylesheets/auth.css">
 
 <center>
@@ -83,6 +93,7 @@
       </div>
     </div>
 </center>
+    <% include ./partials/footer %>
 
 </body>
 <script>
