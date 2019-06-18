@@ -17,8 +17,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
+  
         <link rel="stylesheet" href="/static/stylesheets/style.css">
+        
+        <style>
+          #avatar {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+
+            margin-bottom: 15px;
+            transform: translate3d(0, -50%, 0);
+          }
+        </style>
         <!-- END OF HEADER -->
 
     </head>
@@ -34,14 +46,14 @@
                     <div class="row rowdivider">
                         <div class="col-md-6 ml-auto mr-auto">
                             <div class="profile">
-                                <div class="avatar">
-                                    <img class="img-raised rounded-circle img-fluid"
-                                        src=""
-                                        alt="Circle Image">
-                                </div>
+                                <% if (thisPartner.pic) { %>
+                                  <img id="avatar" src="/image/<%= thisPartner.pic %>">
+                                <% } else { %>
+                                  <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                                <% } %>
                                 <div class="name">
-                                    <p>John Doe</p>
-                                    <h6>비지니스 업무 전문 파트너입니다!</h6>
+                                    <p><%= thisPartner.name %></p>
+                                    <h6><%= thisPartner.email %></h6>
                                 </div>
                             </div>
                             <div class="appointment">

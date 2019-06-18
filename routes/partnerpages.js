@@ -9,8 +9,10 @@ router.get("/partner_page", function(req,res){
   res.render("partnerpage");
 });
 
-router.get("/partner_profile", function(req, res) {
-  res.render("partnerprofile");
+router.get("/partner_profile/:id", function(req, res) {
+  Partner.findById(req.params.id, function(err, foundUser) {
+    res.render("partnerprofile", { thisPartner: foundUser });
+  });
 });
 
 router.get("/find_partner", function(req,res){
