@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<% if(error_code.length > 0) { %>
+    <html class="disabled" lang="en" dir="ltr">
+<% } else { %>
+    <html lang="en" dir="ltr">
+<% } %>
   <head>
     <meta charset="utf-8">
     <title>트렉스 - 가입하기</title>
@@ -9,6 +13,7 @@
   </head>
   <body onload="createCaptcha()">
 
+      <% include ./partials/emailvalidation %>
       <% include ./partials/navbar %>
 
       <!-- toggle active link button -->
@@ -38,7 +43,12 @@
                   <p>성함</p>
                   <input class="form-control" type="text" name="name" required>
                   <p>이메일</p>
-                  <input class="form-control" type="email" name="email" required>
+                  <% if(email && email.length > 0) { %>
+                      <input class="form-control validate" type="email" name="email" value="<%= email %>" required>
+                  <% } else { %>
+                      <input class="form-control validate" type="email" name="email" required>
+                  <% } %>
+                  <button class="btn btn-primary validate validatepopup">인증받기</button>
                   <p>비밀번호</p>
                   <input class="form-control" type="password" name="password" id="confirm_password" onkeyup='check();' required>
                   <p>비밀번호 확인</p>
@@ -51,9 +61,10 @@
                   <div class="form-control-flat"><label class="checkbox">
                       <input type="checkbox" id="5cf81abcec9b5_rememberme" class="rememberme"
                       name="rememberme" value="forever" required><i></i>
-                      서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label></div>
+                      서비스 이용약관 및 개인정보 수집 정책에 동의합니다.</label>
+                  </div>
 
-                      <input class="form-control btn btn-primary" type="submit" value="무료 가입" required>
+                      <input class="form-control btn btn-primary disabled" type="submit" value="무료 가입" required>
                 </form>
 
                 <div class="form-group">
@@ -93,6 +104,7 @@
       </div>
     </div>
 </center>
+    <script src="/static/scripts/emailvalidation.js"></script>
     <% include ./partials/footer %>
 
 </body>
@@ -135,6 +147,16 @@
   }
   }
 
+</script>
+
+<script>
+    $(document).ready(() => {
+        $(".registerform .btn-primary").click((e) => {
+            if(e.target.classList.contains("disabled")) {
+                e.preventDefault();
+            }
+        });
+    });
 </script>
 
 </html>
