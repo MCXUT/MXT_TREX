@@ -7,7 +7,7 @@ $( function() {
     min: 0,
     max: 50000,
     values: [ 0, 50000 ],
-    step: 500,
+    step: 1000,
     slide: function( event, ui ) {
       // $( "#leasts" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
 
@@ -26,6 +26,22 @@ $( function() {
   // $( "#maxs" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
 
 } );
+
+
+
+// responsive value change of text box in cost
+$("#leasts").change(function(){
+
+  $("#slider-range").slider("values", 0, $(this).val().replace(/\D/g,''));
+});
+
+$("#maxs").change(function(){
+
+  $("#slider-range").slider("values", 1, $(this).val().replace(/\D/g,''));
+});
+
+
+
 
 
 // Map button on and off
@@ -63,6 +79,40 @@ document.querySelector("body").addEventListener("click", (e) => {
     }}
 });
 
+// 업종/전공 바깥클릭하면 없어지게 //
+document.querySelector("body").addEventListener("click", (e) => {
+  if(e.target.id != "myDropdown"){
+    if(e.target.id == "monsta") {
+      $("#.myDropdown.dropdown-content.checkbox").toggleClass("show");
+    }else{
+    if($("#myDropdown.dropdown-content.checkbox.show").hasClass("show")){
+      if(e.target.id == "myDropdown"){
+
+      }else{
+        if(e.target.tagName != "INPUT" && e.target.tagName !== "LABEL")
+          $("#myDropdown.dropdown-content.checkbox").toggleClass("show");
+  }}
+  }
+}
+});
+
+
+
+document.querySelector("body").addEventListener("click", (e) => {
+  if(e.target.id != "myDropdown2"){
+    if(e.target.id == "monsta") {
+      $("#.myDropdown2.dropdown-content.checkbox").toggleClass("show");
+    }else{
+    if($("#myDropdown2.dropdown-content.checkbox.show").hasClass("show")){
+      if(e.target.id == "myDropdown"){
+
+      }else{
+        if(e.target.tagName != "INPUT" && e.target.tagName !== "LABEL")
+          $("#myDropdown2.dropdown-content.checkbox").toggleClass("show");
+  }}
+  }
+}
+});
 
 
 
@@ -128,7 +178,6 @@ document.getElementById("login").addEventListener("click", (e) => {
 
 
 document.getElementById("registerModal").addEventListener("click", (e) => {
-  console.log(e);
     if(e.target.className == "modal in modal_site_login ui-draggable") {
       var memi = document.getElementById("memi").value;
       var inwon = document.getElementsByClassName("inwon");
