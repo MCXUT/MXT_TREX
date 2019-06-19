@@ -69,8 +69,9 @@ app.use(flash());
 app.use(function (req, res, next) {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  // res.locals.error_code = req.flash("error_code");
   res.locals.currentUser = req.user;
-
+  // res.locals.email = req.body.email;
   next();
 });
 
@@ -102,6 +103,8 @@ app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
 
 app.set('port', process.env.PORT || 8080);
+
+
 
 app.listen(app.get('port'), () => {
     console.log("Server started on port " + app.get('port'));
