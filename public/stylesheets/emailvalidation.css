@@ -12,13 +12,13 @@
 
 }
 .pum .pum-container {
+    text-align: left;
     opacity: 1;
     border-radius: 6px;
-    left: 35%;
     top: 180px;
     position: relative;
     background-color: white;
-    max-width: 30%;
+    width: 350px;
     min-width: 0%;
     margin-bottom: 200px;
     box-sizing: border-box;
@@ -36,8 +36,8 @@
 }
 .pum .pum-container .maincontent .exittable {
     float: right;
-    font-size: 25px;
-    padding: 15px 10px 0 0;
+    font-size: 20px;
+    padding: 10px 5px 0 0;
 }
 .pum .pum-container .maincontent .exittable:hover {
     cursor: pointer;
@@ -46,7 +46,7 @@
 .pum .pum-container .maincontent p {
     font-size: 19px;
     font-weight: 500;
-    padding: 10px 0 0 10px;
+    padding-top: 10px;
 }
 
 
@@ -65,4 +65,23 @@ button.validationform {
 }
 .maincontent a:hover {
     color:#f8ba00;
+}
+.resend {
+    padding-top: 15px;
+}
+
+@media (max-width:768px) {
+    .pum .pum-container .maincontent p {
+        font-size: 16px;
+    }
+    .pum .pum-container .maincontent .exittable {
+        font-size: 18px;
+        padding: 10px 0 0 0;
+    }
+    .pum .pum-container {
+        width: 300px;
+    }
+    .resend {
+        font-size: 14px;
+    }
 }
