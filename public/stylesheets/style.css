@@ -364,7 +364,19 @@ figure {
     text-align:
 }
 
-
+.container2 {
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+}
+.container2 img {
+    transition: transform 0.5s, filter 2s ease-in-out;
+    filter: blur(0);
+    transform: scale(1);
+}
+.container2 img:hover {
+    filter: blur(1px);
+    transform: scale(1.1);
+}
 
 
 
