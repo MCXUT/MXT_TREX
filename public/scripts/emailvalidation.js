@@ -4,7 +4,7 @@ var viewproficiency = () => {
         var email = $(".form-control.validate").val();
         $.ajax({
             type: "post",
-            url: "/validate",
+            url: "/auth/register/partner/emailVerify",
             data: {
                 email: email
             }
