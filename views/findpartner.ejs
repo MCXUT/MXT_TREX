@@ -235,7 +235,7 @@
             <div class="row">
               <div class="col">
                 <div class="leftside">
-                  <a href="/partner_profile" class="slide-img">
+                  <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
                       <% if (allPartners[i].pic) { %>
@@ -256,7 +256,7 @@
           <% } else { %> <!-- if i is odd put it on the right side -->
               <div class="col">
                 <div class="rightside">
-                  <a href="/partner_profile" class="slide-img">
+                  <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
                       <% if (allPartners[i].pic) { %>
