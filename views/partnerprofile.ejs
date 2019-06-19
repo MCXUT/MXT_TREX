@@ -2,6 +2,18 @@
     <head>
         <meta charset="utf-8">
         <title>파트너 프로필</title>
+        
+        <style>
+          #avatar {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+
+            margin-bottom: 15px;
+            transform: translate3d(0, -50%, 0);
+          }
+        </style>
 
         <% include ./partials/header %>
 
@@ -22,14 +34,18 @@
                     <div class="row rowdivider">
                         <div class="col-md-6 ml-auto mr-auto">
                             <div class="profile">
-                                <div class="avatar">
-                                    <img class="img-raised rounded-circle img-fluid"
-                                        src="/static/images/nibbler.jpeg"
-                                        alt="Circle Image">
-                                </div>
+                                <% if (thisPartner.pic) { %>
+                                  <img id="avatar" src="/image/<%= thisPartner.pic %>">
+                                <% } else { %>
+                                  <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                                <% } %>
                                 <div class="name">
-                                    <p>John Doe</p>
-                                    <h6>비지니스 업무 전문 파트너입니다!</h6>
+                                    <p><%= thisPartner.name %></p>
+                                    <h6>
+                                      <% if (thisPartner.address.city) { %>
+                                          <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
+                                      <% } %>
+                                    </h6>
                                 </div>
                             </div>
                             <div class="appointment">
@@ -100,7 +116,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="language-contents">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <span><b>영어</b></span>
                                     <span>
                                         <div class="percentage"
@@ -119,7 +135,36 @@
                                                     background-color: rgb(208, 255, 151);
                                                     border-radius: 10px;"></div>
                                     </span>
-                                </div>
+                                </div> -->
+                                <% if(typeof thisPartner.languages.langchoice == "string") { %>
+                                    <div class="row language">
+                                        <span><b><%= thisPartner.languages.langchoice %></b></span>
+                                        <span>
+                                            <div class="percentage"
+                                                style="width: <%= thisPartner.languages.langproficiency %>;
+                                                        max-width: 100%;
+                                                        height: 100%;
+                                                        background-color: rgb(208, 255, 151);
+                                                        border-radius: 10px;"></div>
+                                                        <%= thisPartner.languages.langproficiency %>
+                                        </span>
+                                    </div>
+                                <% } else if(Array.isArray(thisPartner.languages.langchoice)) { %>
+                                    <% for(var i = 0; i < thisPartner.languages.langchoice.length; i++) { %>
+                                        <div class="row language">
+                                            <span><b><%= thisPartner.languages.langchoice[i] %></b></span>
+                                            <span>
+                                                <div class="percentage"
+                                                    style="width: <%= thisPartner.languages.langproficiency[i] %>;
+                                                            max-width: 100%;
+                                                            height: 100%;
+                                                            background-color: rgb(208, 255, 151);
+                                                            border-radius: 10px;"></div>
+                                                            <%= thisPartner.languages.langproficiency[i] %>
+                                            </span>
+                                        </div>
+                                    <% } %>
+                                <% } %>
 
                                 <a href="#" id="chartdisplay" style="float:right; color: #f8ba00;" class="proficiencychart">구사 능력 기준 보기</a>
                             </div>

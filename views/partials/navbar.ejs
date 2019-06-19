@@ -2,7 +2,6 @@
 
 <div class="myNav">
     <nav class="navbar navbar-expand-md navbar-light">
-        <!-- <div class="container"> -->
             <a class="logo" href="/"><img src="/static/images/0.jpg" height="60" width="100"></img></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
@@ -25,7 +24,7 @@
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.pic) { %>
-                              <img class="profileimg" src="image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
+                              <img class="profileimg" src="/image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
                             <% } else { %>
                               <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
                             <% } %>
@@ -75,7 +74,6 @@
                 </ul>
               <% } %>
             </div>
-        <!-- </div> -->
     </nav>
 </div>
 
@@ -97,13 +95,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 $(document).ready(function(){
   $(window).scroll(function(){
       if ($(this).scrollTop() > 100) {
-          $('#scroll').fadeIn().css("z-index","1");
+          $('#scroll').fadeIn().css("z-index","4");
       } else {
           $('#scroll').fadeOut();
       }
 
   });
-  $('#scroll').click(function(){
+  $('#scroll').click(function(e){
       $("html, body").animate({ scrollTop: 0 }, 600);
       return false;
   });

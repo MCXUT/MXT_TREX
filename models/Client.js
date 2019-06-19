@@ -5,7 +5,6 @@ var ClientSchema = mongoose.Schema({
     type: {type: String, default: "c"},
     name: { type: String, required: true},
     email: { type: String, unique: true},//, required: true},
-    isVerified: {type: Boolean, default: false},
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,

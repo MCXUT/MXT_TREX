@@ -1,0 +1,87 @@
+.pum.pumactive {
+    display: block;
+}
+.pum {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 8000;
+    overflow-y: scroll;
+    display: none;
+
+}
+.pum .pum-container {
+    text-align: left;
+    opacity: 1;
+    border-radius: 6px;
+    top: 180px;
+    position: relative;
+    background-color: white;
+    width: 350px;
+    min-width: 0%;
+    margin-bottom: 200px;
+    box-sizing: border-box;
+    animation: drop 0.4s ease forwards;
+    /* animation: rollup 0.8s ease; */
+}
+@keyframes drop {
+    0% {opacity: 0.2;}
+    100% { transform: translateY(20px);
+            opacity: 1;}
+}
+
+.pum .pum-container .maincontent {
+    padding: 0 20px 30px;
+}
+.pum .pum-container .maincontent .exittable {
+    float: right;
+    font-size: 20px;
+    padding: 10px 5px 0 0;
+}
+.pum .pum-container .maincontent .exittable:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+}
+.pum .pum-container .maincontent p {
+    font-size: 19px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+
+.validationform {
+    display: inline-block;
+    width: 50%;
+}
+button.validationform {
+    font-size: 14px;
+    width: 70px;
+    float: right;
+}
+
+.maincontent a {
+    color: grey;
+}
+.maincontent a:hover {
+    color:#f8ba00;
+}
+.resend {
+    padding-top: 15px;
+}
+
+@media (max-width:768px) {
+    .pum .pum-container .maincontent p {
+        font-size: 16px;
+    }
+    .pum .pum-container .maincontent .exittable {
+        font-size: 18px;
+        padding: 10px 0 0 0;
+    }
+    .pum .pum-container {
+        width: 300px;
+    }
+    .resend {
+        font-size: 14px;
+    }
+}

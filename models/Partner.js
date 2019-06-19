@@ -5,7 +5,6 @@ var PartnerSchema = mongoose.Schema({
     type: {type: String, default: "p"},
     name: { type: String, required: true},
     email: { type: String, unique: true},//, required: true},
-    isVerified: {type: Boolean, default: false},
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
@@ -22,14 +21,28 @@ var PartnerSchema = mongoose.Schema({
     //   country: String
     // },
     address: {
-      type: String,
-      default: ""
+      streetAddress: {
+        type: String,
+        default: ""
+      },
+      city: String,
+      country: String,
+      postalCode: String,
+      coordinates: {
+        lat: Number,
+        lng: Number,
+        default: {}
+      }
     },
-    coordinates: {
-      lat: Number,
-      lng: Number,
-      default: {}
-    },
+    // address: {
+    //   type: String,
+    //   default: ""
+    // },
+    // coordinates: {
+    //   lat: Number,
+    //   lng: Number,
+    //   default: {}
+    // },
     languages: { // only for partners?
       langchoice: [String],
       langproficiency: [String]
