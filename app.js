@@ -104,21 +104,7 @@ app.use("/", profilePicRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
-// app.post("/validate", (req, res) => {
-//     console.log(req.body.email);
-// });
-// app.post("/validate/code", (req, res) => {
-//     console.log(req.body.code);
-//     console.log(res.locals.email);
-//     if(req.body.code === "1234") {
-//
-//         // return res.render("register_partner");
-//         return res.redirect("/auth/login")
-//     } else {
-//         req.flash("error_code", "Invalid Code");
-//         return res.redirect("/auth/register/partner")
-//     }
-// });
+
 
 app.listen(app.get('port'), () => {
     console.log("Server started on port " + app.get('port'));
