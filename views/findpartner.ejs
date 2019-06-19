@@ -245,7 +245,11 @@
                       <% } %>
                     </center>
                     <h5><%= allPartners[i].name %></h5>
-                    <h7><%= allPartners[i].email %></h7>
+                    <h7>
+                      <% if (allPartners[i].address.city) { %>
+                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
+                      <% } %>
+                    </h7>
                   </a>
                 </div>
               </div>
@@ -273,10 +277,9 @@
       <% if (i%2 == 1) { %>
         <!-- if the total number of cards is even, insert empty card on the rightside and close row tag -->
           <div class="col">
-            <div class="rightside" style="border:none;">
-            </div>
+            <div class="rightside" style="border:none;"></div>
           </div>
-        </div>
+        </div> <!-- close the row tag -->
       <% } %>
 
     </div>
@@ -341,15 +344,84 @@
           </div>
         </div>
       </div> -->
-<!-- </div> -->
+    </div>
     <br><br><br><br><br>
-    <% include ./partials/footer %>
-    <script src="/static/scripts/findpartner.js"></script>
+    
+    <script>
+      function initMap() {
+          //Map options
+          var options = {
+            zoom: 12,
+            center: {lat: 45.510260, lng: -73.575745}
+          }
 
+          //New map
+          var map = new google.maps.Map(document.getElementById("map"), options);
+          
+          var markers = [];
+          // Iterate through all loaded partners and push markers
+          <% for (var i = 0; i < allPartners.length; i++) { %>
+            // only for partners with correct address registered
+            <% if (allPartners[i].address.coordinates.lat) { %>
+              var place = {
+                coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
+                content: "<%= allPartners[i].name %>"
+              };
+              markers.push(place);
+            <% } %>
+          <% } %>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=
-    AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
+          // Loop through and add markers
+          for(var i = 0; i < markers.length; i++){
+            addMarker(markers[i]);
+          }
+          
+          var lastInfoWindow = false;
+          
+          function addMarker(props){
+            var marker = new google.maps.Marker({
+              position: props.coords,
+              map:map
+            });
 
+            // Check for customicon
+            if(props.iconImage){
+              // Set icon image
+              marker.setIcon(props.iconImage);
+            }
+
+            //Check contents
+            if(props.content){
+              var infoWindow = new google.maps.InfoWindow({
+                content:props.content
+              });
+
+              marker.addListener('click', function(){
+                // Close last opened infowindow so that only one is open
+                if (lastInfoWindow) {
+                  lastInfoWindow.close();
+                }
+                lastInfoWindow = infoWindow;
+                infoWindow.open(map, marker);
+              });
+              
+              // Add event listener for closing the infowindow when clicked on map
+              google.maps.event.addListener(map, "click", function(event) {
+                infoWindow.close();
+              });
+              
+            }
+            
+          }
+          
+      }
+      
     </script>
+    
+    <script src="/static/scripts/findpartner.js"></script>
+    
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&callback=initMap" async defer></script>
+
   </body>
 </html>

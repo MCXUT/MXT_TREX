@@ -244,121 +244,75 @@ $('.input-number').change(function() {
 
 });
 $(".input-number").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) ||
-             // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39)) {
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
+    // Allow: backspace, delete, tab, escape, enter and .
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+         // Allow: Ctrl+A
+        (e.keyCode == 65 && e.ctrlKey === true) ||
+         // Allow: home, end, left, right
+        (e.keyCode >= 35 && e.keyCode <= 39)) {
+             // let it happen, don't do anything
+             return;
+    }
+    // Ensure that it is a number and stop the keypress
+    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+        e.preventDefault();
+    }
+});
 
 
-    function initMap() {
-      //Map options
-      // var mapProp= {
-      //   center:new google.maps.LatLng(45.510191,-73.575735),
-      //   zoom:14,
-      // };
-      //
-      // function initMap(){
-        var options = {
-          zoom: 13,
-          center: {lat:42.4668, lng: -70.9495}
-        }
-
-      //New map
-      var map = new google.maps.Map(document.getElementById('map'), options);
-
-      //Listen for click on map
-      // google.maps.event.addListener(map,'click',
-      // function(event){
-      //   //Add marker
-      //   addMarker({coords:event.latLng});
-      // });
-
-
-
-
-      // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-      // //Add marker
-      // var marker = new google.maps.Marker({
-      //   position:{lat: 42.4668, lng: -70.9495},
-      //   map: map
-      // })
-      // var infoWindow = new google.maps.InfoWindow({
-      //   content:'<h1>Lynn MA</h1>'
-      // });
-      //
-      // marker.addListener('click', function(){
-      //   infoWindow.open(map, marker);
-      // });
-
-
-      //Array of markers
-      var markers = [
-        {
-        coords:{lat:42.4668, lng:-70.9495},
-        // iconImage:"https://developers.google.com/maps/documentation/
-        // javascript/examples/full/images/beachflag.png",
-        content:'<h1>kokokoko</h1>'
-        },
-
-        {
-          coords:{lat:42.7762, lng:-71.0773},
-          content:'<h1>Ameesbury MA</h1>'
-        },
-        {
-          coords:{lat:42.4762, lng:-71.0773},
-          content:'<h1>AasdadaMA</h1><br><h2>aksdlakdlakdla</h2>'
-        }
-      ];
-
-      // Loop through markers
-      for(var i = 0; i < markers.length; i++){
-        addMarker(markers[i]);
-      }
-        // addMarker({
-        //   coords:{lat:42.4668, lng:-70.9495},
-        //   // iconImage:"https://developers.google.com/maps/documentation/
-        //   // javascript/examples/full/images/beachflag.png",
-        //   content:'<h1>kokokoko</h1>'
-        // });
-        // addMarker({
-        //   coords:{lat:42.7762, lng:-71.0773},
-        //   content:'<h1>Ameesbury MA</h1>'
-        // });
-
-        function addMarker(props){
-          var marker = new google.maps.Marker({
-            position: props.coords,
-            map:map,
-            //icon: props.iconImage
-          });
-
-          // Check for customicon
-          if(props.iconImage){
-            // Set icon image
-            marker.setIcon(props.iconImage);
-          }
-
-          //Check contents
-          if(props.content){
-            var infoWindow = new google.maps.InfoWindow({
-              content:props.content
-            });
-
-            marker.addListener('click', function(){
-              infoWindow.open(map, marker);
-            });
-
-          }
-        }
-      }
+    // function initMap() {
+    //     //Map options
+    //     var options = {
+    //       zoom: 1,
+    //       center: {lat:42.4668, lng: -70.9495}
+    //     }
+    // 
+    //     //New map
+    //     var map = new google.maps.Map(document.getElementById("map"), options);
+    // 
+    //     var markers = [];
+    //     // Iterate through all loaded partners and push markers
+    //     <% for (var i = 0; i < allPartners.length; i++) { %>
+    //       console.log("1111");
+    //       // only for partners with correct address registered
+    //       <% if (allPartners[i].coordinates) { %>
+    //         var place = {
+    //           coords: { lat: <%= allPartners[i].coordinates.lat %>, lng: <%= allPartners[i].coordinates.lng %> },
+    //           content: "<%= allPartners[i].name %>"
+    //         };
+    //         markers.push(place);
+    //       <% } %>
+    //     <% } %>
+    // 
+    //     // Loop through and add markers
+    //     for(var i = 0; i < markers.length; i++){
+    //       addMarker(markers[i]);
+    //     }
+    // 
+    // 
+    //     function addMarker(props){
+    //       var marker = new google.maps.Marker({
+    //         position: props.coords,
+    //         map:map
+    //       });
+    // 
+    //       // Check for customicon
+    //       if(props.iconImage){
+    //         // Set icon image
+    //         marker.setIcon(props.iconImage);
+    //       }
+    // 
+    //       //Check contents
+    //       if(props.content){
+    //         var infoWindow = new google.maps.InfoWindow({
+    //           content:props.content
+    //         });
+    // 
+    //         marker.addListener('click', function(){
+    //           infoWindow.open(map, marker);
+    //         });
+    //       }
+    // 
+    //     }
+    // 
+    // }

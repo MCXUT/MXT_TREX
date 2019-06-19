@@ -16,9 +16,6 @@ passport.use("local-client", new LocalStrategy({
     if(!user) {
       return done(null, false, {message: "Invalid Username"});
     }
-    if(!user.isVerified) {
-      return done(null, false, {message: "Your email has not been verified yet"});
-    }
     Client.comparePassword(password, user.password, function (err, isMatch){
       if(err) throw err;
       if(!isMatch) {
