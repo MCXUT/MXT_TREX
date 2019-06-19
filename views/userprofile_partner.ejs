@@ -1,6 +1,13 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <style>
+            .btn-primary:hover {
+                cursor: pointer;
+                background-color: #00b3db !important;
+                border-color: #00b3db !important;
+            }
+        </style>
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -20,78 +27,27 @@
                     <div class="col-md-4 col-12">
                         <p class="setting">파트너 계정 관리</p>
                         <div class="menu">
-                            <a class="publicinfo active" href="#">일반</a>
-                            <a class="privateinfo" href="#">보안</a>
+                            <a class="partnerProfileInfo active" href="#">프로필 관리</a>
+                            <!-- <a class="taskRequestInfo" href="#">업무 예약 관리</a>
+                            <a class="scheduleInfo" href="#">일정 관리</a>
+                            <a class="messages" href="#">메세지</a>
+                            <a class="paymentInfo" href="#">정산 계좌 등록</a> -->
+                            <a class="accountInfo" href="#">계정관리</a>
+                            <!-- <a class="privateinfo" href="#">보안</a> -->
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
                         <% if (currentUser.pic) { %>
-                          <img class="profileimg" src="image/<%= currentUser.pic %>">
+                          <img class="profileimg" src="/image/<%= currentUser.pic %>">
                         <% } else { %>
                           <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
-                        <p class="userName"><%= userInfo.name %></p>
+                        <p class="userName"><%= accountInfo.name %></p>
                     </div>
                     <div class="col-md-8">
-                        <div class="todisplay publicinfo profileactive">
-                          <% if (error.length > 0) { %>
-                            <span style="color:red;margin-left:70px;"><%= error %></span>
-                          <% } %>
-                            <div class="row sections basic" id="basic">
-                                <p class="basictitle"><b>기본 정보</b></p>
-                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
-                                <div class="buttons basicinfo">
-                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
-                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
-                                </div>
-                                <div class="divider"></div>
-
-                                <div class="row element">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>생일</b></span>
-                                        <span class="answer switch active"><%= userInfo.displayBirthday %></span>
-                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= userInfo.birthday %>"></span>
-
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-flag" aria-hidden="true"></i><b>주소</b></span>
-                                        <span class="answer switch active"><%= userInfo.address %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="address" value="<%= userInfo.address %>"></span>
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-laptop" aria-hidden="true"></i><b>전화번호</b></span>
-                                        <span class="answer switch active"><%= userInfo.phoneNumber %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= userInfo.phoneNumber %>"></span>
-                                </div>
-                            </div>
-
-                            <div class="row sections photo" id="photo">
-                                <p class="basictitle"><b>프로필 사진</b></p>
-                                <form id="changePic" action="/user_profile/profilePicUpload_partner" method="post" enctype="multipart/form-data"></form>
-                                <form id="defaultPic" action="/user_profile/deletePartnerProfilePic?_method=DELETE" method="post"></form>
-                                <div class="buttons photoinfo">
-                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
-                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                    <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</a>
-                                    <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="row element">
-                                    <span class="switch">
-                                      <input form="changePic" type="file" name="profilePic" accept="image/*" required />
-                                      <!-- <button form="defaultPic" class="switch btn btn-secondary">기본 사진 사용하기</button> -->
-                                    </span>
-                                </div>
-                                <div class="row element">
-                                  <span class="switch">
-                                    <font size=2>이미지 사이즈는 150x150px로 맞춰주세요.<br></font>
-                                    <font size=2 style="margin-left:52px;">웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
-                                  </span>
-                                </div>
-                            </div>
-
+                        <div class="todisplay partnerProfileInfo profileactive">
                             <div class="row sections">
                                 <p class="basictitle"><b>서비스</b></p>
                                 <form id="serviceform" action="/user_profile/language" method="post"></form>
@@ -161,9 +117,94 @@
                                 <button class="btn btn-info addbutton">+ 언어 추가</button>
                             </div>
                         </div>
+                      
+                      
+                      
+                      
+                        <div class="todisplay accountInfo">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>기본 정보</b></p>
+                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
+                                <div class="buttons basicinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
 
+                                <div class="row element">
+                                        <span><i class="fa fa-birthday-cake" aria-hidden="true"></i><b>생일</b></span>
+                                        <span class="answer switch active"><%= accountInfo.displayBirthday %></span>
+                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span>
 
-                        <div class="todisplay privateinfo">
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-building" aria-hidden="true"></i><b>주소</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.streetAddress %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-map" aria-hidden="true"></i><b>도시</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.city %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="city" value="<%= accountInfo.address.city %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>나라</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.country %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="country" value="<%= accountInfo.address.country %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i><b>우편번호</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.postalCode %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="postalCode" value="<%= accountInfo.address.postalCode %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-phone" aria-hidden="true"></i><b>전화번호</b></span>
+                                        <span class="answer switch active"><%= accountInfo.phoneNumber %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= accountInfo.phoneNumber %>"></span>
+                                </div>
+                            </div>
+
+                            <div class="row sections photo" id="photo">
+                                <p class="basictitle"><b>프로필 사진</b></p>
+                                <form id="changePic" action="/user_profile/profilePicUpload_partner" method="post" enctype="multipart/form-data"></form>
+                                <form id="defaultPic" action="/user_profile/deletePartnerProfilePic?_method=DELETE" method="post"></form>
+                                <div class="buttons photoinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</a>
+                                    <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row element" style="margin-left:15px;">
+                                    
+                                      <span class="switch">
+                                          <div class="input-group">
+                                              <label class="input-group-btn">
+                                                  <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                                                      Browse&hellip; <input form="changePic" type="file" name="profilePic" accept="image/*" style="display:none;" required />
+                                                  </span>
+                                              </label>
+                                              <input type="text" class="form-control" style="max-width:400px!important;" readonly>
+                                          </div>
+                                      </span>
+                                      
+                                      <span class="switch">
+                                        <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
+                                      </span>
+                                      
+                                </div>
+                                <!-- <div class="row element">
+                                  <span class="switch" style="padding-left:5%;">
+                                    <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
+                                  </span>
+                                </div> -->
+                            </div>
+                            
+                            
                             <div class="row sections security" id="security">
                                 <p class="basictitle"><b>보안 정보</b></p>
                                 <form id="privateinfoform" action="/user_profile/security" method="post">
@@ -190,6 +231,35 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- <div class="todisplay privateinfo">
+                            <div class="row sections security" id="security">
+                                <p class="basictitle"><b>보안 정보</b></p>
+                                <form id="privateinfoform" action="/user_profile/security" method="post">
+                                </form>
+                                <div class="buttons privateinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row element">
+                                        <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
+                                        <span class="answer switch active">********</span>
+                                        <span class="currentpassword switch"><i class="fa fa-lock" aria-hidden="true"></i><b>현재 비밀번호</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                                <div class="row element">
+                                        <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                                <div class="row element">
+                                        <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -201,24 +271,99 @@
                 e.preventDefault();
 
 
-                if($(e.target).hasClass("publicinfo") && !$(e.target).hasClass("active")) {
+                if($(e.target).hasClass("partnerProfileInfo") && !$(e.target).hasClass("active")) {
                     var menu = document.querySelector(".menu");
                     var currentActive = menu.querySelector(".active");
                     $(currentActive).toggleClass("active");
                     $(e.target).toggleClass("active");
 
-                    $(".publicinfo").toggleClass("profileactive");
-                    $(".privateinfo").toggleClass("profileactive");
+                    $(".partnerProfileInfo").toggleClass("profileactive");
+                    // $(".taskRequestInfo").toggleClass("profileactive");
+                    // $(".scheduleInfo").toggleClass("profileactive");
+                    // $(".messages").toggleClass("profileactive");
+                    // $(".paymentInfo").toggleClass("profileactive");
+                    $(".accountInfo").toggleClass("profileactive");
+                    // $(".privateinfo").toggleClass("profileactive");
                 }
-                else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){
+                // else if($(e.target).hasClass("taskRequestInfo") && !$(e.target).hasClass("active")) {
+                //     var menu = document.querySelector(".menu");
+                //     var currentActive = menu.querySelector(".active");
+                //     $(currentActive).toggleClass("active");
+                //     $(e.target).toggleClass("active");
+                // 
+                //     $(".partnerProfileInfo").toggleClass("profileactive");
+                //     $(".taskRequestInfo").toggleClass("profileactive");
+                //     $(".scheduleInfo").toggleClass("profileactive");
+                //     $(".messages").toggleClass("profileactive");
+                //     $(".paymentInfo").toggleClass("profileactive");
+                //     $(".accountInfo").toggleClass("profileactive");
+                //     // $(".privateinfo").toggleClass("profileactive");
+                // }
+                // else if($(e.target).hasClass("scheduleInfo") && !$(e.target).hasClass("active")) {
+                //     var menu = document.querySelector(".menu");
+                //     var currentActive = menu.querySelector(".active");
+                //     $(currentActive).toggleClass("active");
+                //     $(e.target).toggleClass("active");
+                // 
+                //     $(".partnerProfileInfo").toggleClass("profileactive");
+                //     $(".taskRequestInfo").toggleClass("profileactive");
+                //     $(".scheduleInfo").toggleClass("profileactive");
+                //     $(".messages").toggleClass("profileactive");
+                //     $(".paymentInfo").toggleClass("profileactive");
+                //     $(".accountInfo").toggleClass("profileactive");
+                //     // $(".privateinfo").toggleClass("profileactive");
+                // }
+                // else if($(e.target).hasClass("messages") && !$(e.target).hasClass("active")) {
+                //     var menu = document.querySelector(".menu");
+                //     var currentActive = menu.querySelector(".active");
+                //     $(currentActive).toggleClass("active");
+                //     $(e.target).toggleClass("active");
+                // 
+                //     $(".partnerProfileInfo").toggleClass("profileactive");
+                //     $(".taskRequestInfo").toggleClass("profileactive");
+                //     $(".scheduleInfo").toggleClass("profileactive");
+                //     $(".messages").toggleClass("profileactive");
+                //     $(".paymentInfo").toggleClass("profileactive");
+                //     $(".accountInfo").toggleClass("profileactive");
+                //     // $(".privateinfo").toggleClass("profileactive");
+                // }
+                // else if($(e.target).hasClass("paymentInfo") && !$(e.target).hasClass("active")) {
+                //     var menu = document.querySelector(".menu");
+                //     var currentActive = menu.querySelector(".active");
+                //     $(currentActive).toggleClass("active");
+                //     $(e.target).toggleClass("active");
+                // 
+                //     $(".partnerProfileInfo").toggleClass("profileactive");
+                //     $(".taskRequestInfo").toggleClass("profileactive");
+                //     $(".scheduleInfo").toggleClass("profileactive");
+                //     $(".messages").toggleClass("profileactive");
+                //     $(".paymentInfo").toggleClass("profileactive");
+                //     $(".accountInfo").toggleClass("profileactive");
+                //     // $(".privateinfo").toggleClass("profileactive");
+                // }
+                else if($(e.target).hasClass("accountInfo") && !$(e.target).hasClass("active")) {
                     var menu = document.querySelector(".menu");
                     var currentActive = menu.querySelector(".active");
                     $(currentActive).toggleClass("active");
                     $(e.target).toggleClass("active");
 
-                    $(".publicinfo").toggleClass("profileactive");
-                    $(".privateinfo").toggleClass("profileactive");
+                    $(".partnerProfileInfo").toggleClass("profileactive");
+                    // $(".taskRequestInfo").toggleClass("profileactive");
+                    // $(".scheduleInfo").toggleClass("profileactive");
+                    // $(".messages").toggleClass("profileactive");
+                    // $(".paymentInfo").toggleClass("profileactive");
+                    $(".accountInfo").toggleClass("profileactive");
+                    // $(".privateinfo").toggleClass("profileactive");
                 }
+                // else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){
+                //     var menu = document.querySelector(".menu");
+                //     var currentActive = menu.querySelector(".active");
+                //     $(currentActive).toggleClass("active");
+                //     $(e.target).toggleClass("active");
+                // 
+                //     $(".accountInfo").toggleClass("profileactive");
+                //     $(".privateinfo").toggleClass("profileactive");
+                // }
             });
         });
     </script>
@@ -293,6 +438,35 @@
             });
     });
     </script>
+    
+    <script>
+        // Script for file input (profile picture in this case) button and displaying the file name
+        $(function() {
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready( function() {
+                $(':file').on('fileselect', function(event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if( input.length ) {
+                      input.val(log);
+                    } else {
+                      if( log ) alert(log);
+                    }
+                });
+            });
+        });
+    </script>
+    
     <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>

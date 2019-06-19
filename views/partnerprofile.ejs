@@ -41,7 +41,11 @@
                                 <% } %>
                                 <div class="name">
                                     <p><%= thisPartner.name %></p>
-                                    <h6><%= thisPartner.email %></h6>
+                                    <h6>
+                                      <% if (thisPartner.address.city) { %>
+                                          <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
+                                      <% } %>
+                                    </h6>
                                 </div>
                             </div>
                             <div class="appointment">
@@ -112,7 +116,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="language-contents">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <span><b>영어</b></span>
                                     <span>
                                         <div class="percentage"
@@ -131,7 +135,36 @@
                                                     background-color: rgb(208, 255, 151);
                                                     border-radius: 10px;"></div>
                                     </span>
-                                </div>
+                                </div> -->
+                                <% if(typeof thisPartner.languages.langchoice == "string") { %>
+                                    <div class="row language">
+                                        <span><b><%= thisPartner.languages.langchoice %></b></span>
+                                        <span>
+                                            <div class="percentage"
+                                                style="width: <%= thisPartner.languages.langproficiency %>;
+                                                        max-width: 100%;
+                                                        height: 100%;
+                                                        background-color: rgb(208, 255, 151);
+                                                        border-radius: 10px;"></div>
+                                                        <%= thisPartner.languages.langproficiency %>
+                                        </span>
+                                    </div>
+                                <% } else if(Array.isArray(thisPartner.languages.langchoice)) { %>
+                                    <% for(var i = 0; i < thisPartner.languages.langchoice.length; i++) { %>
+                                        <div class="row language">
+                                            <span><b><%= thisPartner.languages.langchoice[i] %></b></span>
+                                            <span>
+                                                <div class="percentage"
+                                                    style="width: <%= thisPartner.languages.langproficiency[i] %>;
+                                                            max-width: 100%;
+                                                            height: 100%;
+                                                            background-color: rgb(208, 255, 151);
+                                                            border-radius: 10px;"></div>
+                                                            <%= thisPartner.languages.langproficiency[i] %>
+                                            </span>
+                                        </div>
+                                    <% } %>
+                                <% } %>
 
                                 <a href="#" id="chartdisplay" style="float:right; color: #f8ba00;" class="proficiencychart">구사 능력 기준 보기</a>
                             </div>
