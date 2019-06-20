@@ -21,6 +21,7 @@ const keys = require("./config/keys");
 
 const clientRegisterRoutes = require("./routes/register/registerClient");
 const partnerRegisterRoutes = require("./routes/register/registerPartner");
+const emailVerificationRoutes = require("./routes/register/emailVerification");
 const loginRoutes = require("./routes/login/login");
 const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
@@ -94,6 +95,7 @@ app.get('/', function(req,res){
 
 app.use('/auth', clientRegisterRoutes);
 app.use('/auth', partnerRegisterRoutes);
+app.use('/auth', emailVerificationRoutes);
 app.use('/auth', loginRoutes);
 app.use('/auth', clientLoginRoutes);
 app.use('/auth', partnerLoginRoutes);
