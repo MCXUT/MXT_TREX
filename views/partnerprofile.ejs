@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>파트너 프로필</title>
-        
+
         <style>
           #avatar {
             border-radius: 50%;
@@ -24,6 +24,39 @@
         <% include ./partials/proficiencychart %>
 
         <% include ./partials/navbar %>
+        <style>
+            .sectionbar {
+                display: block;
+                overflow: hidden;
+                background-color: #333;
+            }
+            .sticky {
+                display: block;
+                position: sticky;
+                top: 0;
+                width: 100%;
+            }
+        </style>
+        <div class="sectionbar">
+            <a style="color:black;" href="#">파트너소개</a>
+            <a style="color:black;" href="#">파트너소개</a>
+            <a style="color:black;" href="#">파트너소개</a>
+            <a style="color:black;" href="#">파트너소개</a>
+        </div>
+        <script type="text/javascript">
+            window.onscroll = () => {myFunction()};
+            var navbar = document.querySelector(".sectionbar");
+            var sticky = navbar.offsetTop;
+
+            var myFunction = () => {
+                console.log("navbaroffset: " + sticky + ", windowOffset: " + window.pageYOffset);
+                if(window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky");
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
+        </script>
 
         <link rel="stylesheet" href="/static/stylesheets/profile2.css">
 

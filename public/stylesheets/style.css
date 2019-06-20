@@ -81,12 +81,7 @@ html {
 
 
 /* 서비스 견적 */
-.container2 {
-  position: relative;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-}
+
 .centered{
 position: absolute;
 top: 50%;
@@ -96,7 +91,7 @@ color:white;
 }
 #request-service{
   height: 150px;
-  width: 230px;
+  width: 210px;
   -o-object-fit: contain;
 }
 /* /서비스 견적 */
@@ -116,11 +111,7 @@ color:white;
   color: white;
   background-color: pink;
 }
-.container2:hover{
-  font-size: 25px;
-  opacity: 0.8;
-  filter: alpha(opacity=80);
-}
+
 #button2{
   border:none;
   background-color: transparent;
@@ -365,17 +356,22 @@ figure {
 }
 
 .container2 {
-    /* overflow-x: hidden;
-    overflow-y: hidden; */
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+.container2:hover{
+  transform: scale(1.1);
+  filter: alpha(opacity=80);
 }
 .container2 img {
-    transition: transform 0.5s, filter 2s ease-in-out;
+    transition: filter 0.5s ease-in-out;
     filter: blur(0);
-    transform: scale(1);
 }
 .container2 img:hover {
-    filter: blur(1px);
-    transform: scale(1.1);
+    filter: blur(0);
 }
 
 
