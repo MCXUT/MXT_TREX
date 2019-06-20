@@ -25,19 +25,15 @@ router.post("/register/partner/emailVerify", function(req,res) {
   async.waterfall([
     (done) => {
       var randomNum = Math.floor(1000 + Math.random() * 9000);
-      console.log("Random Number created!");
       done(null, randomNum)
     },
     (randomNum, done) => {
-      console.log("1");
       var tmpCode = new EmailVerifyCode({
         ranNum: randomNum,
         numExpires: Date.now() + 300000, //5 mins
         email: userEmail
       });
-      console.log("2");
       tmpCode.save((err) => {
-        console.log("Email Verify Code created" + tmpCode);
         done(err, tmpCode);
       });
     },
@@ -52,7 +48,6 @@ router.post("/register/partner/emailVerify", function(req,res) {
           ciphers: "SSLv3"
         }
       });
-      console.log("Transporter: "+transporter);
       const mailOption = {
         from : keys.gmailInfo.user,
         to : userEmail,
@@ -61,13 +56,11 @@ router.post("/register/partner/emailVerify", function(req,res) {
         html: '<p>Email Verify Code</p>' +
               '<h3>Code: </h3>' + tmpCode.ranNum
       };
-      console.log("MailOption: "+mailOption);
       transporter.sendMail(mailOption, (err) => {
           if(err) {
               req.flash("error", "Error Occured when sending the email");
               return res.redirect("/");
           }
-          console.log("SendMail Successfull");
           req.flash("success", "Check your email for email verify code");
       });
     }
@@ -77,9 +70,48 @@ router.post("/register/partner/emailVerify", function(req,res) {
   });
 });
 
-router.post("/register/partner/codeVerify", (req,res) => {
-
-})
+router.post("/register/validate/code", (req,res) => {
+  var userEmail = req.body.email;
+  var userInput = req.body.code;
+  console.log("UserEmail: " + userEmail);
+  console.log("UserInput: " + userInput);
+  EmailVerifyCode.findOne({email: userEmail, numExpires: {$gt: Date.now()}}).then((foundData) => {
+    if(!foundData){
+      req.flash("error", "Code has been expired.")
+      return res.status(204).send();
+    }
+    else {
+      var code = foundData.ranNum;
+      console.log("code: " + code);
+      if(code == userInput) {
+        console.log("Code is matched");
+        EmailVerifyCode.findByIdAndRemove(foundData._id, (err) => {
+          if(err) {
+            req.flash("error_db", "Unknown Error Occurred");
+            return res.redirect("/");
+          }
+        })
+        req.flash("success", "Code is matched");
+        return res.status(204).send();
+      }
+      else {
+        console.log("Code error");
+        req.flash("fail", "Code is not matched.");
+        return res.status(204).send();
+      }
+    }
+  });
+  // EmailVerifyCode.compareCode(userEmail, userInput, (isVerified) => {
+  //   if (isVerified) {
+  //     req.flash("success", "Code is matched");
+  //     return res.status(204).send();
+  //   }
+  //   else {
+  //     req.flash("fail", "Code is not matched");
+  //     return res.status(204).send();
+  //   }
+  // });
+});
 
 
 // POST route for registering partner

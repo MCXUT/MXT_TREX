@@ -32,7 +32,8 @@ var ClientSchema = mongoose.Schema({
     googleID: String,
     naverID: String,
     // pic stores the 'filename' of the profile picture
-    pic: String
+    pic: String,
+    isExistingMember: {type: Boolean, default: false}
 }, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);
