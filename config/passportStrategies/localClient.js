@@ -17,18 +17,6 @@ passport.use("local-client", new LocalStrategy({
     if(!user) {
       return done(null, false, {message: "Invalid Username"});
     }
-    if(!user.isVerified) {
-      return done(null, false, {message: "Your email has not been verified yet"});
-    }
-
-    //Test for wordpress hasher
-    // if(user.isExistingMember) {
-    //   console.log("This user is Existing member");
-    //   console.log(hasher.HashPassword(password));
-    //   if(hasher.CheckPassword(password, user.password)) {return done(null,user);}
-    //   else {return done(null,false, {message: "Invalid Password"});}
-    // }
-
     Client.comparePassword(password, user.password, function (err, isMatch){
       if(err) throw err;
       if(!isMatch) {

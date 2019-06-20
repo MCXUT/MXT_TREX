@@ -7,17 +7,20 @@
     <title>파트너 찾기</title>
 
 
+    <!-- dropdown 스타일링   -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="tail.select-bootstrap4.css" rel="stylesheet"/> -->
+
+
+
+
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <!-- <link href="/public/stylesheets/datepicker.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="/public/scripts/datepicker.js"></script> -->
-    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -34,8 +37,6 @@
   <!-- glyphicon -->
   <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="../static/stylesheets/findpartner.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.css">
 
 
 
@@ -63,26 +64,23 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  background-image: url("static/images/nibbler.jpeg");
   background-size: cover;
 
   margin-bottom: 15px;
   transform: translate3d(0, -50%, 0);
 
   }
-
-  #slider-range .ui-slider-handle { border-color: #ef2929; }
-  #slider-range .ui-slider-range { background: #ef2929; }
-  /* #slider-range .ui-widget-content{
-    background: #ef2929;
-  } */
+  #slider-range .ui-slider-handle { border-color: rgb(0, 132, 137); }
+  #slider-range .ui-slider-range { background: rgb(0, 132, 137); }
   </style>
 
   </head>
   <body onload="dontdoit()">
 
-  <div style="margin: 0 10%">
+  <div id="momtong" style="margin: 0 5%">
     <div style="display:block; border-bottom: 1px solid black; padding-bottom: 10px;
-    padding-top: 20px">
+    padding-top: 20px" id="bbak">
 
 
 
@@ -102,8 +100,6 @@
             <div class="modal-content" id="registercontent">
               <div class="input-group">
                 <span class="input-group-btn">
-
-
                     <button type="button" class="btn btn-default btn-number" disabled="disabled"
                       data-type="minus" data-field="quant[1]">
                       <i class="fa fa-minus"></i>
@@ -124,80 +120,81 @@
 
     <input type="button" name="daterange" value="날짜" id="nal"
     placeholder="날짜" class="dropbtn datepicker" style="margin: 5px;">
-    <!-- <button type="button" name="daterange" class="dropbtn datepicker btn-cal" style="margin: 5px;"
-    onclick="kimochi()">날짜</button> -->
-    <!-- <span>
-    <button aria-haspopup="true" aria-expanded=
-    "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
-    style="margin: 5px;" id="login">
-      <div>
-        인원<span id="inwon"></span>
-      </div>
-    </button>
 
-        <div id="registerModal" role="dialog" aria-hidden="true"
-          class="modal in modal_site_login ui-draggable" data-backdrop="true"
-          data-keyboard="true">
-          <div class="modal-dialog">
-            <div class="modal-content" id="registercontent">
-              <div class="input-group">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" disabled="disabled"
-                      data-type="minus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-minus"></span>
-                    </button>
-                </span>
-                <input type="text" id="memi" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </span>
-            </div>
+
+
+
+
+
+<!--
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-6 text-right">
+            <select id="select1">
+              <option selected="selected">업종/전공</option>
+              <option>ㅏㅎ미나히</option>
+              <option>ㅣ해많냄ㅎ</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+
+            </select>
+
+          </div>
+          <div class="col-md-6">
+            <select multiple id="select2">
+              <option selected="selected">업종/전공</option>
+              <option>ㅏㅎ미나히</option>
+              <option>ㅣ해많냄ㅎ</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+              <option>업종/전공</option>
+            </select>
           </div>
         </div>
-      </div>
-    </span> -->
-
-
-
-
-
-
-
-
+      </div> -->
 
 
 
 
   <div class="dropdown" style="margin: 5px;">
     <button onclick="myFunction()" class="dropbtn" id="monsta">업종/전공</button>
-    <div id="myDropdown" class="dropdown-content">
-      <input type="checkbox">IT/기술<br>
-      <input type="checkbox">과학<br>
-      <input type="checkbox">교육<br>
-      <input type="checkbox">금융/회계<br>
+    <div id="myDropdown" class="dropdown-content checkbox">
+      <input type="checkbox" id="checkbox_1"><label for="checkbox_1">과학</label><br>
+      <input type="checkbox" id="checkbox_2"><label for="checkbox_2">IT/기술</label><br>
+      <input type="checkbox" id="checkbox_3"><label for="checkbox_3">교육</label><br>
+      <input type="checkbox" id="checkbox_4"><label for="checkbox_4">금융/회계</label><br>
     </div>
   </div>
 
-  <div class="dropdown" style="margin: 5px; margin-right: 10px;">
-    <button onclick="myFunction2()" class="dropbtn">서비스</button>
-    <div id="myDropdown2" class="dropdown-content">
-      <input type="checkbox">통역<br>
-      <input type="checkbox">차량<br>
-      <input type="checkbox">등등<br>
+  <div class="dropdown" style="margin: 5px;">
+    <button onclick="myFunction2()" class="dropbtn" style="margin-right: 5px;"
+    id="monsta">서비스</button>
+    <div id="myDropdown2" class="dropdown-content checkbox">
+      <input id="checkbox_5" type="checkbox"><label for="checkbox_5">통역</label>
+      <input id="cha" type="checkbox"><label for="cha">차량</label>
+      <input type="checkbox" id="elsee"><label for="elsee">등등</label>
     </div>
   </div>
 
 
-    <div class="dropdown" style="margin: 5px;z-index: 6; position: absolute"><button class="dropbtn moneybar">
-      시급<span id="paymentis" class="money"></span></button><br><br>
-      <div id="money" class="money" style="padding: 20px; background-color: #fff;
-      border: 0.5px solid rgba(0, 0, 0, 0.4);display: none;">
-      <div class="header">
+    <div class="dropdown" style="margin: 5px;z-index: 6; position: absolute">
+      <button class="dropbtn moneybar">
+      시급
+      <span id="paymentis" class="money">
+      </span>
+    </button>
+
+      <div id="money" class="money w3-display-left" style="padding: 20px; background-color: #fff;
+      border: 0.5px solid rgba(0, 0, 0, 0.4);display: none; margin-top: 7px;">
+      <div class="header money">
         평균 시급은 23,400원 입니다.
       </div>
       <br>
+      <div style="margin-bottom: 30px;"><span class="money" style="float: left;">0원</span>
+        <span class="money" style="float: right;">50000원</span></div>
       <!-- <input type="text" id="amount" class="money"readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
       <div id="slider-range" class="money"></div>
 
@@ -205,25 +202,42 @@
       min="1" max="100" value="50" class="dropbtn money range"
       style="margin: 5px;"> -->
       <br><br>
-      <input class="money" type="text" id="leasts" placeholder="최소"> - <input class="money" type="text" id="maxs"
-      placeholder="최대">
-    </div></div>
+      <input class="money js-input" type="text" id="leasts" placeholder="최소"> -
+      <input class="money js-input" type="text" id="maxs"
+      placeholder="최대"></div></div>
 
 
 
-      <!-- <input type="range" onclick=""
-      min="1" max="100" value="50" class="dropbtn money"
-      style="margin: 5px;"> -->
-
-  <label class="switch" style="float: right;">
-    <input type="checkbox" id="roundswitch" onclick="myFunction5()" checked>
+  <label class="switch" style="float: right;" id="switch">
+    <input type="checkbox" id="roundswitch" onclick="myFunction5()"
+    style="margin-left: 5px;" checked>
     <span class="slider round"></span>
   </label>
+  <span id="gdo" style="float: right; transform: translate3d(-15%, 15%, 0)">지도보기   </span>
 </div>
 
-  <br><br><br>
+  <br>
 
-  <div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
+<!-- price range selector -->
+<script>
+$( function() {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [ 0, 500 ],
+    slide: function( event, ui ) {
+      $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+      $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+    }
+  });
+  // $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+  // $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+
+} );
+</script>
+
+<div class="wrapper" id="wrapper" style="width: 60%; height: 550px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
 
@@ -235,7 +249,7 @@
             <div class="row">
               <div class="col">
                 <div class="leftside">
-                  <a href="/partner_profile" class="slide-img">
+                  <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
                       <% if (allPartners[i].pic) { %>
@@ -245,14 +259,18 @@
                       <% } %>
                     </center>
                     <h5><%= allPartners[i].name %></h5>
-                    <h7><%= allPartners[i].email %></h7>
+                    <h7>
+                      <% if (allPartners[i].address.city) { %>
+                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
+                      <% } %>
+                    </h7>
                   </a>
                 </div>
               </div>
           <% } else { %> <!-- if i is odd put it on the right side -->
               <div class="col">
                 <div class="rightside">
-                  <a href="/partner_profile" class="slide-img">
+                  <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
                       <% if (allPartners[i].pic) { %>
@@ -271,51 +289,19 @@
       <% } %>
 
       <% if (i%2 == 1) { %>
-        <!-- if the total number of cards is even, insert empty card on the rightside and close row tag -->
+        <!-- if the total number of cards is even, insert empty card on the rightside and close row tag-->
           <div class="col">
-            <div class="rightside" style="border:none;">
-            </div>
+            <div class="rightside" style="border:none;"></div>
           </div>
-        </div>
+        </div> <!-- close the row tag -->
       <% } %>
 
     </div>
-  </div>
 
-    <!-- <div id="sliders">
-      <div class="row">
-          <div class="col">
-            <div class="leftside">
-              <a href="/partner_profile" class="slide-img">
-                <div id="kokoman"></div>
-                <center>
-                  <div id="avatar"></div>
-                </center>
-                <h5>최선을 다해 열심히하겠습니다!</h5>
-                <h7>평점, 위치, 타지역 가능</h7>
-              </a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="rightside">
-              <a href="/partner_profile" class="slide-img">
-                <div id="kokoman"></div>
-                <center>
-                  <div id="avatar"></div>
-                </center>
-                <h5>최선을 다해 열심히하겠습니다!</h5>
-                <h7>평점, 위치, 타지역 가능</h7>
-              </a>
-            </div>
-          </div>
-      </div>
+</div>
 
 
-    </div>
-  </div> -->
-
-
-      <div id="map" style="width:40%;height:550px;"></div>
+      <div id="map"></div>
 
       <!-- register popup -->
 
@@ -341,15 +327,85 @@
           </div>
         </div>
       </div> -->
-<!-- </div> -->
-    <br><br><br><br><br>
-    <% include ./partials/footer %>
-    <script src="/static/scripts/findpartner.js"></script>
+    </div>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=
-    AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap">
+    <script>
+      function initMap() {
+          //Map options
+          var options = {
+            zoom: 12,
+            center: {lat: 45.510260, lng: -73.575745}
+          }
+
+          //New map
+          var map = new google.maps.Map(document.getElementById("map"), options);
+
+          var markers = [];
+          // Iterate through all loaded partners and push markers
+          <% for (var i = 0; i < allPartners.length; i++) { %>
+            // only for partners with correct address registered
+            <% if (allPartners[i].address.coordinates.lat) { %>
+              var place = {
+                coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
+                content: "<%= allPartners[i].name %>"
+              };
+              markers.push(place);
+            <% } %>
+          <% } %>
+
+          // Loop through and add markers
+          for(var i = 0; i < markers.length; i++){
+            addMarker(markers[i]);
+          }
+
+          var lastInfoWindow = false;
+
+          function addMarker(props){
+            var marker = new google.maps.Marker({
+              position: props.coords,
+              map:map
+            });
+
+            // Check for customicon
+            if(props.iconImage){
+              // Set icon image
+              marker.setIcon(props.iconImage);
+            }
+
+            //Check contents
+            if(props.content){
+              var infoWindow = new google.maps.InfoWindow({
+                content:props.content
+              });
+
+              marker.addListener('click', function(){
+                // Close last opened infowindow so that only one is open
+                if (lastInfoWindow) {
+                  lastInfoWindow.close();
+                }
+                lastInfoWindow = infoWindow;
+                infoWindow.open(map, marker);
+              });
+
+              // Add event listener for closing the infowindow when clicked on map
+              google.maps.event.addListener(map, "click", function(event) {
+                infoWindow.close();
+              });
+
+            }
+
+          }
+
+      }
 
     </script>
+
+    <script src="/static/scripts/findpartner.js"></script>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&callback=initMap" async defer></script>
+
+</script>
   </body>
 </html>
