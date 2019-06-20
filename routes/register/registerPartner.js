@@ -20,7 +20,6 @@ router.get("/register/partner", function(req, res) {
 router.post("/register/partner/emailVerify", function(req,res) {
   // Post 받고 이메일 전송 (4 - digits)
   var userEmail = req.body.email;
-  console.log(userEmail);
 
   async.waterfall([
     (done) => {
@@ -28,11 +27,15 @@ router.post("/register/partner/emailVerify", function(req,res) {
       done(null, randomNum)
     },
     (randomNum, done) => {
+      EmailVerifyCode.findOneAndRemove({email: userEmail}).then((deletedCode) => {
+          console.log(deletedCode);
+      });
       var tmpCode = new EmailVerifyCode({
         ranNum: randomNum,
         numExpires: Date.now() + 300000, //5 mins
         email: userEmail
       });
+
       tmpCode.save((err) => {
         done(err, tmpCode);
       });
@@ -73,12 +76,17 @@ router.post("/register/partner/emailVerify", function(req,res) {
 router.post("/register/validate/code", (req,res) => {
   var userEmail = req.body.email;
   var userInput = req.body.code;
+  console.log(req.body)
   console.log("UserEmail: " + userEmail);
   console.log("UserInput: " + userInput);
   EmailVerifyCode.findOne({email: userEmail, numExpires: {$gt: Date.now()}}).then((foundData) => {
     if(!foundData){
-      req.flash("error", "Code has been expired.")
-      return res.status(204).send();
+        req.flash("fail", {
+            email: req.body.email,
+            name: "req.body.name",
+            password: "req.body.password",
+            message: "Code has been expired"});
+      return res.redirect("back");
     }
     else {
       var code = foundData.ranNum;
@@ -96,8 +104,12 @@ router.post("/register/validate/code", (req,res) => {
       }
       else {
         console.log("Code error");
-        req.flash("fail", "Code is not matched.");
-        return res.status(204).send();
+        req.flash("fail", {
+            email: req.body.email,
+            name: req.body.name,
+            password: req.body.password,
+            message: "The code does not match"});
+        return res.redirect("back");
       }
     }
   });
