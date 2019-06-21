@@ -4,11 +4,12 @@
   margin: 0.2em;
 }
 
-input[type=checkbox]{
+#myDropdown input[type=checkbox]{
   display: none;
+  opacity: 0;
 }
 
-input[type=checkbox] + label:before{
+ input[type=checkbox] + label:before{
   content: "\2714";
   border: 0.1em solid #000;
   border-radius: 0.2em;
@@ -16,23 +17,236 @@ input[type=checkbox] + label:before{
   display: inline-block;
   height: 1em;
   padding-bottom: 0.5em;
-  /* padding-bottom: 1.3em; */
-  /* padding-left: 0.1em;
+  padding-bottom: 1.3em;
+   padding-left: 0.1em;
   padding-bottom: 0.3em;
-  margin-right: 0.2em; */
-  /*vertical-align: bottom;
+  margin-right: 0.2em;
+  vertical-align: bottom;
   color: transparent;
 }
 
 input[type=checkbox]:checked + label:before{
   background-color: MediuSeaGreen;
-} */
+ } */
 
+
+
+
+@media (max-width: 500px) {
+  #roundswitch{
+    display: none !important;
+  }
+  .slider.round{
+    display: none;
+  }
+  #map {
+    width: 0% !important;
+  }
+  #wrapper {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  #momtong {
+    margin: 0 4% !important;
+  }
+  /* .input-group{
+    width: 200px !important;
+  } */
+  #gdo{
+    display: none;
+  }
+
+  .modal-content{
+    width: 200px !important;
+    margin-left: 15%;
+  }
+  .wrapper .col{
+    padding: 1%;
+  }
+  .wrapper .leftside{
+    height: 170px;
+  }
+  .wrapper .rightside{
+    height: 170px;
+  }
+  #kokoman {
+    height: 30%;
+  }
+  #avatar{
+    width: 35px !important;
+    height: 35px !important;
+    margin-bottom: 0 !important;
+  }
+  .wrapper h5{
+    font-size: 8px !important;
+    margin-bottom: 0!important;
+  }
+  .wrapper h7{
+    font-size: 8px !important;
+  }
+  #money {
+    /* transform: translate3d(-100%, 0, 0)!important; */
+    top: 50%;
+    left: 50%;
+  }
+  .daterangepicker{
+    width: 280px !important;
+  }
+}
+
+@media (max-width:800px){
+  #kokoman {
+    height: 30%;
+  }
+  #avatar{
+    width: 40px !important;
+    height: 40px !important;
+    margin-bottom: 0 !important;
+  }
+  .wrapper h5{
+    font-size: 12px !important;
+    margin-bottom: 0!important;
+  }
+  .wrapper h7{
+    font-size: 12px !important;
+  }
+  .wrapper .col{
+    padding: 1%;
+  }
+  .wrapper .leftside{
+    height: 185px;
+  }
+  .wrapper .rightside{
+    height: 185px;
+  }
+  #momtong{
+    margin: 0 5%;
+  }
+}
+
+
+#map{
+  width: 40%;
+  height: 550px;
+}
+
+
+ .checkbox input[type="checkbox"] {
+     opacity: 0;
+ }
+
+ .checkbox label {
+     position: relative;
+     display: inline-block;
+
+     /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
+     padding-left: 22px;
+ }
+
+ .checkbox label::before,
+ .checkbox label::after {
+     position: absolute;
+     content: "";
+
+     /*Needed for the line-height to take effect*/
+     display: inline-block;
+ }
+
+ /*Outer box of the fake checkbox*/
+ .checkbox label::before{
+     height: 16px;
+     width: 16px;
+     border: 1px solid rgb(235, 235, 235);;
+     left: 0px;
+
+     /*(24px line-height - 16px height of fake checkbox) / 2 - 1px for the border
+      *to vertically center it.
+      */
+     top: 3px;
+ }
+
+ /*Checkmark of the fake checkbox*/
+ .checkbox label::after {
+     height: 5px;
+     width: 9px;
+     border-left: 2px solid;
+     border-bottom: 2px solid;
+
+     transform: rotate(-45deg);
+
+     left: 4px;
+     top: 7px;
+ }
+
+ /*Hide the checkmark by default*/
+ .checkbox input[type="checkbox"] + label::after {
+     content: none;
+ }
+
+ /*Unhide on the checked state*/
+ .checkbox input[type="checkbox"]:checked + label::after {
+     content: "";
+     color: #fff;
+ }
+ .checkbox input[type="checkbox"]:checked + label::before {
+     background-color: #008489;
+ }
+
+ /*Adding focus styles on the outer-box of the fake checkbox*/
+ .checkbox input[type="checkbox"]:focus + label::before {
+     outline: rgb(59, 153, 252) auto 5px;
+
+ }
+
+.checkbox label:hover {
+  cursor: pointer;
+}
+
+.checkbox label{
+  width: 90%;
+}
+
+#myDropdown{
+  margin-top: 6px;
+  background-color: #fff;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border: 0.5px solid rgba(0, 0, 0, 0.4)
+}
+
+#myDropdown2{
+  margin-top: 6px;
+  background-color: #fff;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border: 0.5px solid rgba(0, 0, 0, 0.4)
+}
+
+
+/*
+#myDropdown{
+  background-color: #fff;
+}
+#myDropdown label{
+  margin: 5%;
+  width: 90%;
+}
+#myDropdown input[type=checkbox]:checked{
+
+  background-color: #008489;
+}
+#myDropdown input[type=checkbox] + label:before{
+  margin: 5%;
+  background-color: #008489;
+  padding: 10px;
+} */
 
 
 .switch {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   width: 60px;
   height: 34px;
 }
@@ -145,6 +359,7 @@ z-index: 2;
 border-radius: 50%;
 width: 60px;
 height: 60px;
+background-image: url("static/images/nibbler.jpeg");
 background-size: cover;
 
 margin-bottom: 15px;
@@ -198,6 +413,10 @@ margin: 0;
 
 }
 
+#registerModal{
+  height: 80%;
+}
+
 .row{
 text-align: center;
 }
@@ -228,10 +447,11 @@ background-color: rgb(102, 226, 218);
 
 
 .daterangepicker {
-flex-direction: row;
-width: 531px !important;
-border: 1px solid #e3e3e3;
-border-radius: 0px;
+  flex-direction: row;
+  width: 520px;
+  border: 1px solid #e3e3e3;
+  border-radius: 0px;
+  padding: 15px;
 }
 
 .ranges {
@@ -294,7 +514,7 @@ background-position: 45px 51px;
 }
 #registercontent{
 width: 50%;
-transform: translate3d(-20%, 10%, 0);
+transform: translate3d(-29%, 10%, 0);
 }
 
 

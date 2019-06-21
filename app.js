@@ -19,7 +19,9 @@ const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
 const app = express();
 const keys = require("./config/keys");
 
-const registerRoutes = require("./routes/register");
+const clientRegisterRoutes = require("./routes/register/registerClient");
+const partnerRegisterRoutes = require("./routes/register/registerPartner");
+const emailVerificationRoutes = require("./routes/register/emailVerification");
 const loginRoutes = require("./routes/login/login");
 const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
@@ -69,8 +71,10 @@ app.use(flash());
 app.use(function (req, res, next) {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.fail = req.flash("fail");
+  // res.locals.error_code = req.flash("error_code");
   res.locals.currentUser = req.user;
-
+  // res.locals.email = req.body.email;
   next();
 });
 
@@ -89,7 +93,9 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
-app.use('/auth', registerRoutes);
+app.use('/auth', clientRegisterRoutes);
+app.use('/auth', partnerRegisterRoutes);
+app.use('/auth', emailVerificationRoutes);
 app.use('/auth', loginRoutes);
 app.use('/auth', clientLoginRoutes);
 app.use('/auth', partnerLoginRoutes);
@@ -101,7 +107,10 @@ app.use("/", servicePages);
 app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
 
+
 app.set('port', process.env.PORT || 8080);
+
+
 
 app.listen(app.get('port'), () => {
     console.log("Server started on port " + app.get('port'));

@@ -82,16 +82,16 @@
 }
 
 /* display selector */
-.bottom .todisplay.publicinfo {
+.bottom .todisplay.accountInfo {
     display: none;
 }
-.bottom .todisplay.publicinfo.profileactive {
+.bottom .todisplay.accountInfo.profileactive {
     display: block;
 }
-.bottom .todisplay.privateinfo {
+.bottom .todisplay.partnerProfileInfo {
     display: none;
 }
-.bottom .todisplay.privateinfo.profileactive {
+.bottom .todisplay.partnerProfileInfo.profileactive {
     display: block;
 }
 

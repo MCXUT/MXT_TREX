@@ -5,7 +5,6 @@ var ClientSchema = mongoose.Schema({
     type: {type: String, default: "c"},
     name: { type: String, required: true},
     email: { type: String, unique: true},//, required: true},
-    isVerified: {type: Boolean, default: false},
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
@@ -32,7 +31,8 @@ var ClientSchema = mongoose.Schema({
     googleID: String,
     naverID: String,
     // pic stores the 'filename' of the profile picture
-    pic: String
+    pic: String,
+    isExistingMember: {type: Boolean, default: false}
 }, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);

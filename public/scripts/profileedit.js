@@ -49,9 +49,9 @@ $(document).ready(() => {
     //         allButtons.forEach((button) => {
     //             $(button).toggleClass("activebutton");
     //         });
-    // 
+    //
     //         if(parentDivisionClass[1] === "basicinfo") {
-    // 
+    //
     //             var basicinfoform = $("#basicinfoform");
     //             // console.log($(basicinfoform).serialize());
     //             $.ajax({
@@ -59,9 +59,9 @@ $(document).ready(() => {
     //                 url: basicinfoform.attr("action"),
     //                 data: basicinfoform.serialize()
     //             });
-    // 
+    //
     //             basicinfoform.reset();
-    // 
+    //
     //             var spans = document.getElementById("basic").querySelectorAll(".switch");
     //             spans.forEach((span) => {
     //                 $(span).toggleClass("active");
@@ -85,14 +85,14 @@ $(document).ready(() => {
     //         url: languageform.attr("action"),
     //         data: languageform.serialize()
     //     });
-    // 
+    //
     //     languageform.reset();
-    // 
+    //
     //     var addbutton = $(".lang").find(".addbutton");
     //     $(addbutton).toggleClass("addactive");
-    // 
+    //
     //     $(".languageinput").remove();
-    // 
+    //
     //     var spans = document.querySelectorAll(".switch");
     //     spans.forEach((span) => {
     //         $(span).toggleClass("active");

@@ -31,7 +31,7 @@ router.get("/user_profile", (req, res) => {
     } else {
       birthday = res.locals.currentUser.dateOfBirth;
     }
-    var userInfo = {
+    var accountInfo = {
       name: res.locals.currentUser.name,
       type: type,
       birthday: birthday,
@@ -41,9 +41,9 @@ router.get("/user_profile", (req, res) => {
     };
 
     if (type === "Client") {
-      res.render("userprofile_client", {userInfo: userInfo});
+      res.render("userprofile_client", {accountInfo: accountInfo});
     } else {
-      res.render("userprofile_partner", {userInfo: userInfo, langinfo: res.locals.currentUser.languages});
+      res.render("userprofile_partner", {accountInfo: accountInfo, langinfo: res.locals.currentUser.languages});
     }
   }
 });
@@ -52,9 +52,14 @@ router.get("/user_profile", (req, res) => {
 // POST route for updating client user information
 router.post("/user_profile/basicClientInfo", (req, res) => {
   // Changing profile info of a client
+  if (!req.body.streetAddress || !req.body.city || !req.body.country || !req.body.postalCode) {
+    req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+    return res.redirect("/user_profile");
+  }
+  var fullAddress = req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
   // Get coordinates of the new address
   googleMapsClient.geocode({
-    address: req.body.address
+    address: fullAddress
   }, function(err, response) {
     if (err) {
       console.log(err);
@@ -81,15 +86,18 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
           return res.redirect("/user_profile");
         }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
-        foundUser.address = req.body.address;
-        foundUser.coordinates = newCoordinates;
+        foundUser.address.streetAddress = req.body.streetAddress;
+        foundUser.address.city = req.body.city;
+        foundUser.address.country = req.body.country;
+        foundUser.address.postalCode = req.body.postalCode;
+        foundUser.address.coordinates = newCoordinates;
         foundUser.phoneNumber = req.body.phoneNumber;
         foundUser.save((err) => {
           if (err) {
             console.log(err);
             return res.redirect("/user_profile");
           }
-          console.log("Client Profile Update Successful");
+          console.log("Client Profile Update Successful for " + foundUser.name);
           return res.redirect("/user_profile");
         });
 
@@ -102,9 +110,14 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
 // POST route for updating client user information
 router.post("/user_profile/basicPartnerInfo", (req, res) => {
   // Changing profile of a partner
+  if (!req.body.streetAddress || !req.body.city || !req.body.country || !req.body.postalCode) {
+    req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+    return res.redirect("/user_profile");
+  }
+  var fullAddress = req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
   // Get coordinates of the new address
   googleMapsClient.geocode({
-    address: req.body.address
+    address: fullAddress
   }, function(err, response) {
     if (err) {
       console.log(err);
@@ -131,15 +144,18 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
           return res.redirect("/user_profile");
         }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
-        foundUser.address = req.body.address;
-        foundUser.coordinates = newCoordinates;
+        foundUser.address.streetAddress = req.body.streetAddress;
+        foundUser.address.city = req.body.city;
+        foundUser.address.country = req.body.country;
+        foundUser.address.postalCode = req.body.postalCode;
+        foundUser.address.coordinates = newCoordinates;
         foundUser.phoneNumber = req.body.phoneNumber;
         foundUser.save((err) => {
           if (err) {
             console.log(err);
             return res.redirect("/user_profile");
           }
-          console.log("Partner Profile Update Successful");
+          console.log("Partner Profile Update Successful for " + foundUser.name);
           return res.redirect("/user_profile");
         });
 
@@ -169,7 +185,7 @@ router.post("/user_profile/language", (req, res) => {
           console.log(err);
           return res.redirect("/user_profile");
         }
-        console.log("Partner Profile Update Successful (Language)");
+        console.log("Partner Profile Update Successful (Language) for " + foundUser.name);
         return res.redirect("/user_profile");
       });
 
