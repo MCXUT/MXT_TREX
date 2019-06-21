@@ -10,14 +10,28 @@ html, body{
 }
 
 /* carousel section */
-.carousel-inner > .carousel-item >img{
-  padding-left:3%;
-  padding-right:3%;
+#carousel-caption-partner{
+  color:white;
+  padding-bottom:10%;
+}
+.carousel-inner > .carousel-item > img {
+  margin-left: 0 auto;
+  margin-right: 0 auto;
   width:100%;
   height:650px;
-}
 
+}
+#slider-images{
+  height: 600px;
+  -o-object-fit: contain;
+}
+.divider-vertical{
+  height:20px;
+  width:100%;
+}
 /* end of carousel section */
+
+
 
 /* Jumbotron Section */
 .Jumbotron{
@@ -60,7 +74,7 @@ html, body{
   grid-column: 1;
   grid-row: 2 /span 2;
   text-align: center;
-  font-size:70px;
+  font-size:60px;
   padding-top:0;
   color:#00b3b3;
 }
@@ -118,6 +132,7 @@ html, body{
 #button1:hover{
   color:white;
 }
+
 .carousel-indicators li {
     display: inline-block;
     width: 10px;
@@ -166,6 +181,30 @@ html, body{
 
 }
 @media (max-width: 576px) {
+  #carousel-caption-partner{
+    color:white;
+    padding-bottom:9%;
+  }
+  #carousel-caption-partner h1{
+    font-size:35px;
+  }
+  #carousel-caption-partner h2{
+    font-size:20px;
+  }
+  #slider-images{
+    height: 300px;
+    -o-object-fit: contain;
+  }
+  .divider-vertical{
+    height:5px;
+    width:100%;
+  }
+
+  #carousel-caption-partner button{
+    height:30px;
+    font-size: 15px;
+  }
+
 
 }
 
