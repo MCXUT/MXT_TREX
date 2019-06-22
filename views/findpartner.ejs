@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -55,7 +55,7 @@
   <style>
   #kokoman {
   width: 100%;
-  height: 55%;
+  height: 35%;
   background-image: url("../static/images/slider/slider-2-london.jpg");
   background-size: cover;
   }
@@ -64,7 +64,6 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  background-image: url("static/images/nibbler.jpeg");
   background-size: cover;
 
   margin-bottom: 15px;
@@ -79,7 +78,7 @@
   <body onload="dontdoit()">
 
   <div id="momtong" style="margin: 0 5%">
-    <div style="display:block; border-bottom: 1px solid black; padding-bottom: 10px;
+    <div style="display:block; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px;
     padding-top: 20px" id="bbak">
 
 
@@ -171,7 +170,7 @@
 
   <div class="dropdown" style="margin: 5px;">
     <button onclick="myFunction2()" class="dropbtn" style="margin-right: 5px;"
-    id="monsta">서비스</button>
+    id="monsta2">서비스</button>
     <div id="myDropdown2" class="dropdown-content checkbox">
       <input id="checkbox_5" type="checkbox"><label for="checkbox_5">통역</label>
       <input id="cha" type="checkbox"><label for="cha">차량</label>
@@ -181,7 +180,7 @@
 
 
     <div class="dropdown" style="margin: 5px;z-index: 6; position: absolute">
-      <button class="dropbtn moneybar">
+      <button class="dropbtn moneybar" id="moneybar">
       시급
       <span id="paymentis" class="money">
       </span>
@@ -194,7 +193,7 @@
       </div>
       <br>
       <div style="margin-bottom: 30px;"><span class="money" style="float: left;">0원</span>
-        <span class="money" style="float: right;">50000원</span></div>
+        <span class="money" style="float: right;">100,000원</span></div>
       <!-- <input type="text" id="amount" class="money"readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
       <div id="slider-range" class="money"></div>
 
@@ -259,6 +258,7 @@ $( function() {
                       <% } %>
                     </center>
                     <h5><%= allPartners[i].name %></h5>
+                    <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
                     <h7>
                       <% if (allPartners[i].address.city) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>

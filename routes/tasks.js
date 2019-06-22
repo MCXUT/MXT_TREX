@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const keys = require("../config/keys");
+
 //////// 업무 관련 routes /////////
 
 router.get("/seetask", (req, res) => {
@@ -12,7 +14,7 @@ router.get("/city_list", (req, res) => {
 });
 
 router.get("/find_task", (req, res) => {
-  res.render("findtask");
+  res.render("findtask", { googleMapAPI: keys.googleMapAPI.key });
 });
 
 module.exports = router;
