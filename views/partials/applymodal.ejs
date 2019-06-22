@@ -1,12 +1,12 @@
 
 <style>
-#button11{
+#button11,#button2,#button222,#button33{
   border:none;
   background-color: transparent;
   color:#595959;
   font-size: 25px;
 }
-#button11:hover{
+#button11:hover,#button2:hover,#button222:hover,#button33:hover{
   color:#f8ba00;
 }
 #button-apply:hover{
@@ -40,9 +40,11 @@
     var USERINPUT3 = document.TESTING.INPUT3.value;
     var USERINPUT4 = document.TESTING.INPUT4.value;
     var USERINPUT5 = document.TESTING.INPUT5.value;
+    var USERINPUT6 = document.TESTING.INPUT6.value;
+    var USERINPUT7 = document.TESTING.INPUT7.value;
     var CALC0 = USERINPUT1*USERINPUT2;
     var CALC1 = CALC0.toFixed(2);
-    var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5;
+    var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5+ +USERINPUT6+ +USERINPUT7;
     var CALC3 = CALC2.toFixed(2);
     document.TESTING.OUTPUT1.value = CALC1;
     document.TESTING.OUTPUT2.value = CALC3;
@@ -191,6 +193,8 @@
                          <option value="service1">추가 비용1</option>
                          <option value="service2">추가 비용2</option>
                          <option value="service3">추가 비용3</option>
+                         <option value="service4">추가 비용4</option>
+                         <option value="service5">추가 비용5</option>
                        </select>
                        <a1></a1>
                      </td>
@@ -218,6 +222,8 @@
                         <option value="service1">추가 비용1</option>
                         <option value="service2">추가 비용2</option>
                         <option value="service3">추가 비용3</option>
+                        <option value="service4">추가 비용4</option>
+                        <option value="service5">추가 비용5</option>
                       </select>
                       <a1></a1>
                     </td>
@@ -244,6 +250,8 @@
                        <option value="service1">추가 비용1</option>
                        <option value="service2">추가 비용2</option>
                        <option value="service3">추가 비용3</option>
+                       <option value="service4">추가 비용4</option>
+                       <option value="service5">추가 비용5</option>
                      </select>
                      <a1></a1>
                    </td>
@@ -262,12 +270,72 @@
                 </TR>
              </table>
 
+             <TABLE id="dataTable5"  border="0" style="display:none;">
+               <TR>
+                  <td id="extra">
+                    <select  name="extra" required>
+                      <option selected>추가 비용을 선택 해주세요.</option>
+                      <option value="service1">추가 비용1</option>
+                      <option value="service2">추가 비용2</option>
+                      <option value="service3">추가 비용3</option>
+                      <option value="service4">추가 비용4</option>
+                      <option value="service5">추가 비용5</option>
+                    </select>
+                    <a1></a1>
+                  </td>
+
+                  <td>
+                     <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+                  </td>
+
+                  <td>
+                    <div>추가비용: $</div>
+                  </td>
+
+                  <td>
+                     <input type="number" name="INPUT6" id="input6"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00" onchange="calculate();"/>
+                  </td>
+               </TR>
+            </table>
+
+            <TABLE id="dataTable6"  border="0" style="display:none;">
+              <TR>
+                 <td id="extra">
+                   <select  name="extra" required>
+                     <option selected>추가 비용을 선택 해주세요.</option>
+                     <option value="service1">추가 비용1</option>
+                     <option value="service2">추가 비용2</option>
+                     <option value="service3">추가 비용3</option>
+                     <option value="service4">추가 비용4</option>
+                     <option value="service5">추가 비용5</option>
+                   </select>
+                   <a1></a1>
+                 </td>
+
+                 <td>
+                    <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
+                 </td>
+
+                 <td>
+                   <div>추가비용: $</div>
+                 </td>
+
+                 <td>
+                    <input type="number" name="INPUT7" id="input7"  placeholder="추가 비용을 입력 해주세요." step="0.01" min="0.00" onchange="calculate();"/>
+                 </td>
+              </TR>
+           </table>
+
 
 
                <div >
                <input id="button11" type="button" onclick="document.getElementById('dataTable3').style.display='inline';document.getElementById('button11').style.display='none';document.getElementById('button2').style.display='inline';" value="+" style="display:inline;width:30px;">
-               <input id="button2" type="button" onclick="document.getElementById('dataTable4').style.display='inline';" value="+" style="display:none;width:30px;"> 추가 비용 청구하기
+               <input id="button2" type="button" onclick="document.getElementById('dataTable4').style.display='inline';document.getElementById('button2').style.display='none';document.getElementById('button222').style.display='inline';" value="+" style="display:none;width:30px;">
+               <input id="button222" type="button" onclick="document.getElementById('dataTable5').style.display='inline';document.getElementById('button222').style.display='none';document.getElementById('button33').style.display='inline';" value="+" style="display:none;width:30px;">
+               <input id="button33" type="button" onclick="document.getElementById('dataTable6').style.display='inline';" value="+" style="display:none;width:30px;"> 추가 비용 청구하기
+
                </div>
+
                <!-- <div>
                 <INPUT type="button" value="-" onclick="deleteRow('dataTable')" style="display:inline;width:30px;"> 추가 비용 취소하기
               </div> -->

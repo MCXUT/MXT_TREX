@@ -58,6 +58,10 @@ html {
     height:auto;
     display:inline-block;
 }
+.divider4{
+    height:1px;
+    display:inline-block;
+}
 .bottom-right{
   color:white;
   position:absolute;
@@ -71,6 +75,10 @@ html {
 #searchbox{
   width:80%;
   padding-left:20%;
+}
+
+.form-control2{
+ width:25%;
 }
 #slider-images{
   height: 600px;
@@ -98,7 +106,7 @@ color:white;
 /* 통역 그 이상의 서비스 */
 .font1{
   font-family: 'Black Han Sans', sans-serif;
-  font-size: 60px;
+  font-size: 55px;
 
   text-shadow: #f8ba00 1px 0 10px;
   text-shadow: 5px 5px #8C8C8C;
@@ -120,6 +128,11 @@ color:white;
 }
 #button2:hover{
   color:#f8ba00;
+}
+#countries{
+  height: 300px;
+  width: 200px;
+  -o-object-fit: contain;
 }
 /* #button3{
   background-color:#4d4d4d;
@@ -245,7 +258,14 @@ color:white;
 #social-media-link-footer:hover{
   color:#b3b3b3;
 }
-
+#searchbox{
+  width:50%;
+  margin-left:15%;
+}
+#footer-menu{
+  line-height:28px;
+  font-size:15px;
+}
 /*end of footer section*/
 /*---Media Queries --*/
 @media (max-width: 1024px) {
@@ -260,7 +280,13 @@ color:white;
   #caption-carousel h3{
     font-size: 25px;
   }
+
   /* end of carousel section */
+  #request-service{
+    height: 130px;
+    width: 200px;
+    -o-object-fit: contain;
+  }
   }
 @media (max-width: 768px) {
   .bottom-right{
@@ -275,7 +301,7 @@ color:white;
 
   #request-service{
     height: 100px;
-    width: 180px;
+    width: 155px;
     -o-object-fit: contain;
   }
   .centered{
@@ -286,18 +312,31 @@ color:white;
   }
   #searchbox{
     width:80%;
-    padding-left:20%;
+    padding-left:0%;
+  }
+  #countries{
+    height: 230px;
+    width: 150px;
+    -o-object-fit: contain;
+  }
+  #footer-menu{
+    line-height:25px;
+    font-size:12px;
   }
 }
 @media (max-width: 576px) {
-#caption-carousel{
-  padding-bottom: 55%;
-}
+
 #caption-carousel h1{
   font-size: 28px;
 }
 #caption-carousel h3{
   font-size: 18px;
+}
+#searchbox{
+  width:250px;
+}
+#searchbox input{
+  font-size:12px;
 }
 #slider-images{
   height: 300px;
@@ -308,6 +347,16 @@ color:white;
 }
 #heading2{
   font-size:15px;
+}
+#countries{
+  height: 300px;
+  width: 200px;
+  -o-object-fit: contain;
+}
+.divider2{
+  width:25px;
+  height:auto;
+  display:inline-block;
 }
 }
 

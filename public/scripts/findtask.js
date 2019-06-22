@@ -27,16 +27,44 @@ $( function() {
 
 } );
 
+// 드롭다운 리스트 체크되어있을때 색깔변하게
+$("input[type=checkbox]").change(function(e){
+  if($(this).hasClass("rebut")){
+    if($("input[class=rebut]:checked").length > 0){
+      console.log($("input:checked").length);
+      $("#monsta").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta").css("color", "#fff");
+
+
+    } else{
+      $("#monsta").css("backgroundColor", "#fff");
+      $("#monsta").css("color", "rgb(72, 72, 72)");
+
+    }
+  } else if($(this).hasClass("rebut2")) {
+    if($("input[class=rebut2]:checked").length > 0){
+      $("#monsta2").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta2").css("color", "#fff");
+
+    } else{
+      $("#monsta2").css("backgroundColor", "#fff");
+      $("#monsta2").css("color", "rgb(72, 72, 72)");
+    }
+  }
+});
+
+
+
+
+
 
 
 // responsive value change of text box in cost
 $("#leasts").change(function(){
-
   $("#slider-range").slider("values", 0, $(this).val().replace(/\D/g,''));
 });
 
 $("#maxs").change(function(){
-
   $("#slider-range").slider("values", 1, $(this).val().replace(/\D/g,''));
 });
 
@@ -56,8 +84,8 @@ function myFunction5(){
  var map = document.getElementById("map");
  var wrapper = document.getElementById("wrapper");
  if(checkbox.checked == true){
-   map.style.width= "40%";
-   wrapper.style.width = "60%";
+   map.style.width= "50%";
+   wrapper.style.width = "50%";
  } else {
    map.style.width= "0%";
    wrapper.style.width = "100%";
@@ -162,9 +190,15 @@ $(function(e) {
     // buttonImageOnly: true,
     // buttonText: "선택",
     // today: "날짜"
-  }
+  },
+  $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
+    $('#nal').css("backgroundColor","rgb(0, 132, 137)");
+    $('#nal').css("color","#fff");
+
+  })
   , function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+
   });
 
 });
@@ -175,7 +209,10 @@ document.getElementById("myDropdown").addEventListener("close", (e) => {
 
 });
 
-
+document.querySelector(".close").addEventListener("click", (e) => {
+    document.querySelector("#sliderss").style.display = "none";
+    document.querySelector("#map").style.display = "block";
+});
 
 
 // document.getElementsByClassName("datepicker").defaultValue = "날짜";
@@ -184,17 +221,30 @@ document.getElementById("login").addEventListener("click", (e) => {
     document.querySelector("#registerModal").style.display = "block";
 
 });
+document.getElementById("formore").addEventListener("click", (e) => {
+    document.querySelector("#sliderss").style.display = "block";
+    document.querySelector("#map").style.display = "none";
+});
+
+
 
 
 document.getElementById("registerModal").addEventListener("click", (e) => {
     if(e.target.className == "modal in modal_site_login ui-draggable") {
       var memi = document.getElementById("memi").value;
       var inwon = document.getElementsByClassName("inwon");
+      if(memi != 0){
       document.getElementById("registerModal").style.display = "none";
       document.getElementById("inwon").innerHTML = " : " +
       document.getElementById("memi").value + "명";
       document.getElementById("login").style.background="rgb(0, 132, 137)";
       document.getElementById("login").style.color="#fff";
+      } else{
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("inwon").innerHTML = "";
+        document.getElementById("login").style.background="#fff";
+        document.getElementById("login").style.color="rgb(72, 72, 72)";
+      }
 
       // document.getElementById("nal").style.backgroundColor="blue";
       // document.getElementById("login").style.backgroundColor="blue";
@@ -236,6 +286,8 @@ document.getElementById("nal").addEventListener("click", (e) => {
   // document.getElementById("nal").value="날짜"
 })
 
+
+
 // document.getElementById("nal").addEventListener("close", (e) => {
 //   document.getElementById("nal").value="날짜"
 // })
@@ -244,7 +296,7 @@ document.getElementById("nal").addEventListener("click", (e) => {
 // $(".inwon").text() = document.getElementById("memi").value;
 
 function dontdoit(){
-  document.getElementById("nal").value="날짜"
+  document.getElementById("nal").value="업무날짜"
 }
 
 $('.btn-number').click(function(e){
