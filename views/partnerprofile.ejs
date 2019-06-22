@@ -24,158 +24,112 @@
         <% include ./partials/proficiencychart %>
 
         <% include ./partials/navbar %>
-        <% include ./partials/subbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile2.css">
 
-        <div class="background"></div>
-        <div class="main main-raised">
-            <div class="profile-content">
-                <div class="container">
-                    <div class="row rowdivider">
-                        <div class="col-md-6 ml-auto mr-auto">
-                            <div class="profile">
-                                <% if (thisPartner.pic) { %>
-                                  <img id="avatar" src="/image/<%= thisPartner.pic %>">
-                                <% } else { %>
-                                  <img id="avatar" src="/static/images/noprofilepic.jpeg">
-                                <% } %>
-                                <div class="name">
-                                    <p><%= thisPartner.name %></p>
-                                    <h6>
-                                      <% if (thisPartner.address.city) { %>
-                                          <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
-                                      <% } %>
-                                    </h6>
-                                </div>
-                            </div>
-                            <div class="appointment">
-                                <a class="btn btn-primary form-control" href="#">예약 문의하기</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row rowdivider">
-                        <div class="col-md-4">
-                            <div class="description-title">
-                                <p>서비스</p>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row services">
-                                <div class="elements" id="translate">
-                                    <p class="title">현지 통역 서비스</p>
-                                    <p class="wage">파트너 예상 시급 $</p>
-                                </div>
-                                <div class="elements" id="cars">
-                                    <p class="title">현지 차량 서비스</p>
-                                    <p class="wage">파트너 예상 시급 $</p>
-                                </div>
-                                <div class="elements" id="agency">
-                                    <p class="title">현지 기관 서비스</p>
-                                    <p class="wage">파트너 예상 시급 $</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row rowdivider">
-                        <div class="col-md-4">
-                            <div class="description-title">
-                                <p>기본 정보</p>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="description-contents">
-                                <div class="row">
-                                        <span><i class="fa fa-venus-mars" aria-hidden="true"></i><b>성별</b></span>
-                                        <span>남자</span>
-                                </div>
-                                <div class="row">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>지역</b></span>
-                                        <span>몬트리올</span>
-                                </div>
-                                <div class="row">
-                                        <span><i class="fa fa-flag" aria-hidden="true"></i><b>타 지역 업무 가능 여부</b></span>
-                                        <span>타지역 업무 가능</span>
-                                </div>
-                                <div class="row">
-                                        <span><i class="fa fa-laptop" aria-hidden="true"></i><b>직업</b></span>
-                                        <span>직장인</span>
-                                </div>
-                                <div class="row">
-                                        <span><i class="fa fa-certificate" aria-hidden="true"></i><b>업종/전공</b></span>
-                                        <span>회계/금융</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                    <div class="row rowdivider">
-                        <div class="col-md-4">
-                            <div class="language-title">
-                                <p>언어</p>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="language-contents">
-                                <!-- <div class="row">
-                                    <span><b>영어</b></span>
-                                    <span>
-                                        <div class="percentage"
-                                            style="width: 40%;
-                                                    height: 100%;
-                                                    background-color: rgb(208, 255, 151);
-                                                    border-radius: 10px;"></div>
-                                    </span>
-                                </div>
-                                <div class="row">
-                                    <span><b>한국어</b></span>
-                                    <span>
-                                        <div class="percentage"
-                                            style="width: 70%;
-                                                    height: 100%;
-                                                    background-color: rgb(208, 255, 151);
-                                                    border-radius: 10px;"></div>
-                                    </span>
-                                </div> -->
-                                <% if(typeof thisPartner.languages.langchoice == "string") { %>
-                                    <div class="row language">
-                                        <span><b><%= thisPartner.languages.langchoice %></b></span>
-                                        <span>
-                                            <div class="percentage"
-                                                style="width: <%= thisPartner.languages.langproficiency %>;
-                                                        max-width: 100%;
-                                                        height: 100%;
-                                                        background-color: rgb(208, 255, 151);
-                                                        border-radius: 10px;"></div>
-                                                        <%= thisPartner.languages.langproficiency %>
-                                        </span>
-                                    </div>
-                                <% } else if(Array.isArray(thisPartner.languages.langchoice)) { %>
-                                    <% for(var i = 0; i < thisPartner.languages.langchoice.length; i++) { %>
-                                        <div class="row language">
-                                            <span><b><%= thisPartner.languages.langchoice[i] %></b></span>
-                                            <span>
-                                                <div class="percentage"
-                                                    style="width: <%= thisPartner.languages.langproficiency[i] %>;
-                                                            max-width: 100%;
-                                                            height: 100%;
-                                                            background-color: rgb(208, 255, 151);
-                                                            border-radius: 10px;"></div>
-                                                            <%= thisPartner.languages.langproficiency[i] %>
-                                            </span>
-                                        </div>
-                                    <% } %>
-                                <% } %>
 
-                                <a href="#" id="chartdisplay" style="float:right; color: #f8ba00;" class="proficiencychart">구사 능력 기준 보기</a>
+        <div class="flexbox">
+            <div class="main">
+                <% include ./partials/subbar %>
+                <div class="main-raised">
+
+                    <div class="profile-content">
+                        <div class="background"></div>
+                        <div class="container">
+
+                            <!-- <div class="row rowdivider"> -->
+                            <div class="col-8 ml-auto mr-auto">
+                                <div class="profile">
+                                    <% if (thisPartner.pic) { %>
+                                      <img class="profilpic" src="/image/<%= thisPartner.pic %>">
+                                    <% } else { %>
+                                      <img class="profilpic" src="/static/images/noprofilepic.jpeg">
+                                    <% } %>
+                                    <div class="name">
+                                        <p><%= thisPartner.name %></p>
+                                        <h6>
+                                          <% if (thisPartner.address.city) { %>
+                                              <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
+                                          <% } %>
+                                        </h6>
+                                    </div>
+                                    <p class="onelinedesc">비지니스 업무 전문 파트너입니다!</p>
+                                    <div class="row">
+                                            <span><img src="/static/icons/location.svg" style="width: 17px; height: 17px"></img><b>지역</b></span>
+                                            <span>몬트리올</span>
+                                    </div>
+                                    <div class="row">
+                                            <span><img src="/static/icons/flag.svg" style="width: 17px; height: 17px"></img><b>타 지역 업무 가능 여부</b></span>
+                                            <span>타지역 업무 가능</span>
+                                    </div>
+                                    <div class="row">
+                                            <span><img src="/static/icons/service.svg" style="width: 17px; height: 17px"></img><b>언어</b></span>
+                                            <span>영어, 한국어, 프랑스어</span>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- </div> -->
+
                         </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="rowdivider">
+                    <div class="description-title">
+                        <p>기본 정보</p>
+                    </div>
+                    <p id="basicContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <span class="readmore"><a id="expand" href="#">Read More</a></span>
+                    <span class="readless"><a id="collapse" href="#">Collapse</a></span>
+                </div>
+                <div class="divider"></div>
+                <div class="rowdivider">
+                    <div class="description-title">
+                        <p>사진/동영상</p>
+                    </div>
+                    <img src="/static/icons/google.svg" width=150 height=150>
+                    <img src="/static/images/nibbler.jpeg" width=150 height=150>
+                </div>
+                <div class="divider"></div>
+                <div class="rowdivider">
+                    <div class="description-title">
+                        <p>서비스 후기</p>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="divider"></div>
+                <div class="rowdivider">
+                    <div class="description-title">
+                        <p>자격증/사업자 등록</p>
+                    </div>
+                    <img src="/static/icons/kakaotalk.svg" width=150 height=150>
+                    <img src="/static/icons/manage.svg" width=150 height=150>
+                </div>
+                <div class="divider"></div>
+                <div class="rowdivider refund">
+                    <div class="description-title">
+                        <p>최소 및 환불 규정</p>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+            <div class="subcol">
+                <div class="subbox">
+                    <p><%= thisPartner.name %> 파트너님께<br/> 견적 요청 가능한 서비스</p>
+                    <div class="availablelist">
+                        <button class="btn btn-primary" name="button">통역</button>
+                        <button class="btn btn-info" name="button">현지 차량</button>
+                        <button class="btn btn-info" name="button">번역</button>
+                        <button class="btn btn-info" name="button">기업/기관 섭외</button>
+                        <button class="btn btn-info" name="button">투어 가이드</button>
+                        <button class="btn btn-info" name="button">현지 시장 조사</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="/static/scripts/profileedit.js"></script>
+
+        <script src="/static/scripts/partnerprofile.js"></script>
         <% include ./partials/footer %>
 
     </body>
