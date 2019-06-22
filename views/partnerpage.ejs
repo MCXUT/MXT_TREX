@@ -7,6 +7,16 @@
   <% include ./partials/header %>
     <link rel="stylesheet" href="../static/stylesheets/style.css">
     <link rel="stylesheet" href="../static/stylesheets/1partnerpage.css">
+
+<script>
+function checkLogin(){
+  <% if(currentUser && currentUser.type === "c"){ %>
+    window.location.href='/seetask';
+  <% } else { %>
+    window.location.href='/auth/register/client';
+  <% }  %>
+}
+</script>
 </head>
 
 <body>
@@ -106,58 +116,54 @@
 <div class="row">
 
   <div class="col-sm-12 col-md-12 col-lg-6">
-    <div class="card card1" >
-  <div class="card-body">
-    <h2 style="color:grey;">Confirm</h2>
-    <div >Do you wish to continue?</div>
-  </div>
-  <br><br>
-  <div class="text-right">
-  <button type="button" class="btn " >CANCEL</button>
-  <button type="button" onclick="location.href = '/seetask';" class="btn" style="color:#00b3b3;" >OK</button>
-</div>
-</div>
-  </div>
-
-  <div class="col-sm-12 col-md-12 col-lg-6">
-    <div class="card card1" >
-  <div class="card-body">
-    <h2 style="color:grey;">Confirm</h2>
-    <div >Do you wish to continue?</div>
-  </div>
-  <br><br>
-  <div class="text-right">
-  <button type="button" class="btn " >CANCEL</button>
-  <button type="button" onclick="location.href = '/seetask';" class="btn" style="color:#00b3b3;" >OK</button>
-</div>
+    <div class="card card1 padding2" onclick="checkLogin();">
+      <div class="grid-container">
+        <div class="grid-item item01"></div>
+        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
+        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
+        <div class="grid-item item05"></div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+      </div>
 </div>
   </div>
 
   <div class="col-sm-12 col-md-12 col-lg-6">
-    <div class="card card1" >
-  <div class="card-body">
-    <h2 style="color:grey;">Confirm</h2>
-    <div >Do you wish to continue?</div>
-  </div>
-  <br><br>
-  <div class="text-right">
-  <button type="button" class="btn " >CANCEL</button>
-  <button type="button" onclick="location.href = '/seetask';" class="btn" style="color:#00b3b3;" >OK</button>
-</div>
+    <div class="card card1 padding2" onclick="checkLogin();">
+      <div class="grid-container">
+        <div class="grid-item item01"></div>
+        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
+        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
+        <div class="grid-item item05"></div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+      </div>
 </div>
   </div>
 
   <div class="col-sm-12 col-md-12 col-lg-6">
-    <div class="card card1" >
-  <div class="card-body">
-    <h2 style="color:grey;">Confirm</h2>
-    <div >Do you wish to continue?</div>
-  </div>
-  <br><br>
-  <div class="text-right">
-  <button type="button" class="btn " >CANCEL</button>
-  <button type="button" onclick="location.href = '/seetask';" class="btn" style="color:#00b3b3;" >OK</button>
+    <div class="card card1 padding2" onclick="checkLogin();">
+      <div class="grid-container">
+        <div class="grid-item item01"></div>
+        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
+        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
+        <div class="grid-item item05"></div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+      </div>
 </div>
+  </div>
+
+  <div class="col-sm-12 col-md-12 col-lg-6">
+    <div class="card card1 padding2" onclick="checkLogin();">
+      <div class="grid-container">
+        <div class="grid-item item01"></div>
+        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
+        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
+        <div class="grid-item item05"></div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+      </div>
 </div>
   </div>
 

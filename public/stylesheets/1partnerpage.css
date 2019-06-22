@@ -94,6 +94,38 @@ html, body{
   text-align: left;
   color:#999999;
 }
+.card1:hover{
+  cursor: pointer;
+}
+.item01 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.item02 {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+.item03 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.item04 {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+}
+
+.item05 {
+  grid-column: 1 ;
+  grid-row: 3;
+}
+
+.item06 {
+  grid-column: 2 / span 2;
+  grid-row: 3 ;
+}
 
 
 /* /업무에 지원 해 보세요.*/
