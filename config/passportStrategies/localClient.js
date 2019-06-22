@@ -1,5 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+// var hasher = require("wordpress-hash-node");
 
 const Client = require("../../models/Client");
 const Partner = require("../../models/Partner");

@@ -1,0 +1,11 @@
+.sectionbar {
+    display: block;
+    overflow: hidden;
+    background-color: #fff;
+}
+.sticky {
+    display: block;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
