@@ -3,15 +3,14 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: #f1f1f1;
-}
 
 #regForm {
   background-color: #ffffff;
-  margin: 100px auto;
+  margin-left: 100px ;
+  margin-right: 100px ;
+  margin-top: 50px ;
+  margin-bottom: 50px ;
   font-family: Raleway;
-  padding: 40px;
   width: 70%;
   min-width: 300px;
 }
@@ -29,7 +28,8 @@ input {
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-  background-color: #ffdddd;
+//  background-color:#e60000;
+border:2px solid #e60000;
 }
 
 /* Hide all steps by default: */
@@ -37,8 +37,8 @@ input.invalid {
   display: none;
 }
 
-button {
-  background-color: #4CAF50;
+#nextBtn{
+  background-color: #f8ba00;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -47,12 +47,23 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#nextBtn:hover {
   opacity: 0.8;
+  color:black;
 }
 
-#prevBtn {
+
+#prevBtn{
   background-color: #bbbbbb;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+#prevBtn:hover{
+  color: black;
 }
 
 /* Make circles that indicate the steps of the form: */
@@ -64,23 +75,27 @@ button:hover {
   border: none;
 //  border-radius: 50%;
   display: inline-block;
-  opacity: 0.5;
+//  opacity: 0.5;
   margin-bottom:50px;
 }
 
 .step.active {
-  opacity: 1;
+//  opacity: 1;
 }
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-  background-color: #4CAF50;
+  background-color: #f8ba00;
 }
 </style>
 
 <div class="modal fade" id="myModal2">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
+      <div class="modal-header text-center" >
+        <h3 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
+        <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+      </div>
          <div class="modal-body">
 <form id="regForm" action="/action_page.php">
 
@@ -91,7 +106,7 @@ button:hover {
     <span class="step"></span>
     <span class="step"></span>
   </div>
-  <h1>Register:</h1>
+
   <!-- Circles which indicates the steps of the form: -->
 
   <!-- One "tab" for each step in the form: -->
