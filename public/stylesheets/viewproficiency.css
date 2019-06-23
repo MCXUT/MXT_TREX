@@ -9,21 +9,18 @@
     z-index: 8000;
     overflow-y: scroll;
     display: none;
-
 }
 .pum .pum-container {
     opacity: 1;
     border-radius: 6px;
-    left: 15%;
-    top: 50px;
+    margin: 50px auto 200px;
+    width: 600px;
     position: relative;
     background-color: white;
-    max-width: 70%;
-    min-width: 0%;
-    margin-bottom: 200px;
-    box-sizing: border-box;
-    animation: drop 0.8s ease forwards;
-    /* animation: rollup 0.8s ease; */
+}
+.pum .pum-container .maincontent img {
+    margin: 30px 20px 0;
+    max-width: 85%;
 }
 @keyframes drop {
     0% {opacity: 0.2;}
