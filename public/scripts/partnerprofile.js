@@ -32,3 +32,31 @@ $(document).ready(() => {
     onexpand(toPut, toHide);
     oncollapse(toPut);
 });
+
+var photopicker = () => {
+    var imagesection = document.querySelectorAll(".largeview");
+    imagesection.forEach((image) => {
+        image.addEventListener("click", (e) => {
+            e.preventDefault();
+            var zoomedimage = document.querySelector(".zoomedimage");
+            zoomedimage.src = e.target.src;
+            $(".pum").fadeIn(400, () => {
+                $(".pum").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
+            })
+        });
+    });
+}
+photopicker();
+
+var clickoutside = () => {
+    document.querySelector(".pum").addEventListener("click", (e) => {
+        if(e.target.className === "pum pumactive") {
+            $(".pum").fadeOut(400, () => {
+                $(".pum").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
+            })
+        }
+    });
+}
+clickoutside();
