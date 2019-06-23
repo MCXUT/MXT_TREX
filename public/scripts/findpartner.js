@@ -49,6 +49,36 @@ $("#maxs").change(function(){
 
 
 
+// 드롭다운 리스트 체크되어있을때 색깔변하게
+$("input[type=checkbox]").change(function(e){
+  if($(this).hasClass("rebut")){
+    if($("input[class=rebut]:checked").length > 0){
+      console.log($("input:checked").length);
+      $("#monsta").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta").css("color", "#fff");
+
+
+    } else{
+      $("#monsta").css("backgroundColor", "#fff");
+      $("#monsta").css("color", "rgb(72, 72, 72)");
+
+    }
+  } else if($(this).hasClass("rebut2")) {
+    if($("input[class=rebut2]:checked").length > 0){
+      $("#monsta2").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta2").css("color", "#fff");
+
+    } else{
+      $("#monsta2").css("backgroundColor", "#fff");
+      $("#monsta2").css("color", "rgb(72, 72, 72)");
+    }
+  }
+});
+
+
+
+
+
 // Map button on and off
 function myFunction5(){
 
@@ -162,7 +192,12 @@ $(function(e) {
     // buttonImageOnly: true,
     // buttonText: "선택",
     // today: "날짜"
-  }
+  },
+  $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
+    $('#nal').css("backgroundColor","rgb(0, 132, 137)");
+    $('#nal').css("color","#fff");
+
+  })
   , function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
@@ -190,11 +225,18 @@ document.getElementById("registerModal").addEventListener("click", (e) => {
     if(e.target.className == "modal in modal_site_login ui-draggable") {
       var memi = document.getElementById("memi").value;
       var inwon = document.getElementsByClassName("inwon");
+      if(memi != 0){
       document.getElementById("registerModal").style.display = "none";
       document.getElementById("inwon").innerHTML = " : " +
       document.getElementById("memi").value + "명";
       document.getElementById("login").style.background="rgb(0, 132, 137)";
       document.getElementById("login").style.color="#fff";
+      } else{
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("inwon").innerHTML = "";
+        document.getElementById("login").style.background="#fff";
+        document.getElementById("login").style.color="rgb(72, 72, 72)";
+      }
 
       // document.getElementById("nal").style.backgroundColor="blue";
       // document.getElementById("login").style.backgroundColor="blue";
