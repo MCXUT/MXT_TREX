@@ -5,8 +5,38 @@
   <meta charset="utf-8">
 
   <% include ./partials/header %>
-    <link rel="stylesheet" href="../static/stylesheets/style.css">
+  <!-- scroll to top button -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     // type();
+     movingBackgroundImage();
+  });
+  </script>
+  <div class="container-fluid">
+  <button href="#" id="scroll" style="display: none;">&uarr;<br>top</button>
+  </div>
+
+  <script>
+
+  $(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > -1) {
+            $('#scroll').fadeIn().css("z-index","4");
+        } else {
+            $('#scroll').fadeOut();
+        }
+
+    });
+    $('#scroll').click(function(e){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+  });
+  </script>
+  <!-- /scroll to top button -->
     <link rel="stylesheet" href="../static/stylesheets/adminpage.css">
+
+
 </head>
 <body>
   <script>
@@ -41,9 +71,10 @@
   }
   </script>
 
-  <div class="topnav sticky-top" style="background-color:white;z-index:500;">
-    <a class="logo " href="/"><img class="margin" src="0.jpg" height="60" width="100"></img></a>
+  <div class="topnav" style="background-color:white;position:fixed;width:100%;"> <!-- z-index:500; -->
+    <a class="logo " href="/"><img class="margin" src="/static/images/0.jpg" height="60" width="100"></img></a>
   </div>
+
 
 <div id="myDIV">
   <div class="sidebar sticky-top sticky-offset">
@@ -103,9 +134,8 @@ for (var i = 0; i < btns.length; i++) {
 </script>
 
 <div id="dashBoard" style="display:inline;">
-<div class="content" >
-<p>dashboard text</p>
-
+<div class="content" style="padding-top:80px;">
+<h3>dashboard content for Steven<3</h3>
 </div>
 </div>
 
@@ -180,7 +210,36 @@ for (var i = 0; i < btns.length; i++) {
 
 <div id="adminList" style="display:none;">
   <div class="content">
- adminlist text
+    <table class="table table-bordered margin2" >
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Object_id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Region</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i = 0; i < 100; i++) { %>
+      <tr>
+        <th scope="row"> <%= i+1 %> </th>
+        <td>777777777777</td>
+        <td>Yona Naughty Joeng</td>
+        <td>bwkim96@gmail.com</td>
+        <td>1234</td>
+        <td>08/29</td>
+        <td>Montreal, CA</td>
+        <td><a href="#"><i class="far fa-edit"></i></a></td>
+        <td><a href="#"><i class="fas fa-trash"></i></a></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
 </div>
 </div>
 </body>

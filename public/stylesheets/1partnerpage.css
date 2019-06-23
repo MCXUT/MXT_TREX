@@ -125,6 +125,10 @@ html, body{
 .item06 {
   grid-column: 2 / span 2;
   grid-row: 3 ;
+  width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 

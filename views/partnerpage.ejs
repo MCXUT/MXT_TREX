@@ -10,10 +10,19 @@
 
 <script>
 function checkLogin(){
-  <% if(currentUser && currentUser.type === "c"){ %>
+  <% if(currentUser && currentUser.type === "p"){ %>
     window.location.href='/seetask';
   <% } else { %>
-    window.location.href='/auth/register/client';
+    window.location.href='/auth/login';
+  <% }  %>
+}
+
+function checkLogin2(){
+
+  <% if(currentUser && currentUser.type === "p"){ %>
+    window.location.href='/find_task';
+  <% } else { %>
+    window.location.href='/auth/login';
   <% }  %>
 }
 </script>
@@ -123,7 +132,21 @@ function checkLogin(){
         <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
         <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
         <div class="grid-item item05"></div>
-        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여 블라블라블라블라블라블랍릅라ㅡ라름ㄴㅇㄹㅁㄴㅇㄹㄴㅇㄹㄴ
+          ㅇㅎㄴㅁㅇ륾ㄴㅇㄹㅁㄴ이ㅏㅓㄹㅁ니아ㅓㅜㅊㄴ웊ㅁㄴㅇㄴ우춘ㅇㄹㅇㄴ룸ㄴㅇ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-12 col-lg-6">
+    <div class="card card1 padding2" onclick="checkLogin();">
+      <div class="grid-container">
+        <div class="grid-item item01"></div>
+        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
+        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
+        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
+        <div class="grid-item item05"></div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여 히히히</div>
       </div>
 </div>
   </div>
@@ -136,7 +159,7 @@ function checkLogin(){
         <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
         <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
         <div class="grid-item item05"></div>
-        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여 꺄르르르ㅡ르르ㅡㅡ르르르르으으 으으ㅡㅡ</div>
       </div>
 </div>
   </div>
@@ -149,20 +172,7 @@ function checkLogin(){
         <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
         <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
         <div class="grid-item item05"></div>
-        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
-      </div>
-</div>
-  </div>
-
-  <div class="col-sm-12 col-md-12 col-lg-6">
-    <div class="card card1 padding2" onclick="checkLogin();">
-      <div class="grid-container">
-        <div class="grid-item item01"></div>
-        <div class="grid-item item02"><h5>트렉스 #통역업무 @영국</h5></div>
-        <div class="grid-item item03"><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
-        <div class="grid-item item04">9월 7일날 스케줄 어떠세요?</div>
-        <div class="grid-item item05"></div>
-        <div class="grid-item item06">자동차 전시회 함께 참관하여...</div>
+        <div class="grid-item item06">자동차 전시회 함께 참관하여 헿ㅎ헤ㅔㅔㅔ헤헿ㅎㅎㅎ</div>
       </div>
 </div>
   </div>
@@ -171,7 +181,7 @@ function checkLogin(){
 </div>
 </div>
 <br>
-<a href="/find_task"><button type="button" class="btn btn-dark text-center">모든 업무 보기</button></a>
+<a href="#"><button type="button" class="btn btn-dark text-center" onclick="checkLogin2();">모든 업무 보기</button></a>
 </div>
 <!-- /업무에 지원 해 보세요! -->
 <br><br>

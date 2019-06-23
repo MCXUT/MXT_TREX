@@ -5,11 +5,16 @@
   <meta charset="utf-8">
   <% include ./partials/header %>
   <link rel="stylesheet" href="../static/stylesheets/style.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/static/scripts/autocomplete.js"></script>
+
+
 </head>
 
 <body id="bodyfont">
     <% include ./partials/navbar %>
-
 
 <div class="">
 </div>
@@ -58,15 +63,20 @@
 
     <h3 class="text-center">출장지나 파트너를 검색 해보세요!</h3>
     <br><br>
-    <form id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
+    <form autocomplete="off" id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
       <div class="input-group">
-         <input type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" >
-         <input type="text" class="form-control2" placeholder="국가" name="search" >
+
+
+         <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" >
+
+
+         <input id="tags2" type="text" class="form-control2" placeholder="국가" name="search" >
          <button class="btn btn-warning" type="submit">
          <i class="fas fa-search"></i></button>
          <!-- <input type="submit" value="Submit"> -->
       </div>
     </form>
+
 
 </div>
 </div>
