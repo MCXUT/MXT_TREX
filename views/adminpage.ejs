@@ -5,8 +5,38 @@
   <meta charset="utf-8">
 
   <% include ./partials/header %>
-    <link rel="stylesheet" href="../static/stylesheets/style.css">
+  <!-- scroll to top button -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     // type();
+     movingBackgroundImage();
+  });
+  </script>
+  <div class="container-fluid">
+  <button href="#" id="scroll" style="display: none;">&uarr;<br>top</button>
+  </div>
+
+  <script>
+
+  $(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > -1) {
+            $('#scroll').fadeIn().css("z-index","4");
+        } else {
+            $('#scroll').fadeOut();
+        }
+
+    });
+    $('#scroll').click(function(e){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+  });
+  </script>
+  <!-- /scroll to top button -->
     <link rel="stylesheet" href="../static/stylesheets/adminpage.css">
+
+
 </head>
 <body>
   <script>
@@ -40,11 +70,11 @@
 
   }
   </script>
-<!--
-  <div class="topnav sticky-top" style="background-color:white;z-index:500;">
-    <a class="logo " href="/"><img class="margin" src="0.jpg" height="60" width="100"></img></a>
-  </div> -->
-   <% include ./partials/navbar %>
+
+  <div class="topnav" style="background-color:white;position:fixed;width:100%;"> <!-- z-index:500; -->
+    <a class="logo " href="/"><img class="margin" src="/static/images/0.jpg" height="60" width="100"></img></a>
+  </div>
+
 
 <div id="myDIV">
   <div class="sidebar sticky-top sticky-offset">
@@ -104,9 +134,8 @@ for (var i = 0; i < btns.length; i++) {
 </script>
 
 <div id="dashBoard" style="display:inline;">
-<div class="content" >
-<p>dashboard text</p>
-
+<div class="content" style="padding-top:80px;">
+<h3>dashboard content for Steven<3</h3>
 </div>
 </div>
 
