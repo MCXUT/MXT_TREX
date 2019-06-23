@@ -27,6 +27,7 @@ const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
 const clientPwResetRoutes = require("./routes/passwordReset/passwordResetClient");
 const partnerPwResetRoutes = require("./routes/passwordReset/passwordResetPartner");
+const adminPanelRoutes = require("./routes/adminPanel");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -106,6 +107,7 @@ app.use("/", userProfile);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
+app.use("/", adminPanelRoutes);
 
 
 app.set('port', process.env.PORT || 8080);
