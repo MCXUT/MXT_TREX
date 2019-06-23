@@ -13,7 +13,7 @@ function checkLogin(){
   <% if(currentUser && currentUser.type === "p"){ %>
     window.location.href='/seetask';
   <% } else { %>
-    window.location.href='/auth/login?index=2';
+    window.location.href='/auth/login';
   <% }  %>
 }
 
@@ -22,7 +22,7 @@ function checkLogin2(){
   <% if(currentUser && currentUser.type === "p"){ %>
     window.location.href='/find_task';
   <% } else { %>
-    window.location.href='/auth/login?index=2';
+    window.location.href='/auth/login';
   <% }  %>
 }
 </script>
