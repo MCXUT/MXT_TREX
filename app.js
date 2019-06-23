@@ -86,6 +86,14 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
+app.get("/test", (req, res) => {
+  res.render("message");
+});
+app.get("/message_second", (req, res) => {
+  res.render("message_second");
+});
+
+
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
