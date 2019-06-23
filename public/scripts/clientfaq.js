@@ -7,7 +7,9 @@ $( document ).ready(function() {
   $('center').not('#div' + index).hide()
   $('#div'+ index).show();
 //    $('#target' + index).addClass('active');
-  $('#tag' +index).css({"color": "#f8ba00", "borderBottom": "1px solid #f8ba00"});
+  $('#tag' +index).css({"color": "#f8ba00", "borderBottom": "1px solid "});
+
+  // , "borderBottom": "1px solid #f8ba00"
 return false;
 });
 
@@ -27,11 +29,9 @@ function changeTag(item){
     document.getElementById('div2').style.display='none';
     document.getElementById('div3').style.display='none';
     item.style.color='#f8ba00';
-    item.style.borderBottom='1px solid #f8ba00';
+    item.style.borderBottom='1px solid';
     document.getElementById('tag2').style.color='black';
-    document.getElementById('tag2').borderBottom='1px solid black';
     document.getElementById('tag3').style.color='black';
-    document.getElementById('tag3').borderBottom='1px solid black';
 
 }
 function changeTag2(item){
@@ -39,20 +39,16 @@ function changeTag2(item){
   document.getElementById('div2').style.display='inline';
   document.getElementById('div3').style.display='none';
   item.style.color='#f8ba00';
-  item.style.borderBottom='1px solid #f8ba00';
+  item.style.borderBottom='1px solid';
   document.getElementById('tag3').style.color='black';
-  document.getElementById('tag3').borderBottom='1px solid white';
   document.getElementById('tag1').style.color='black';
-  document.getElementById('tag1').borderBottom='1px solid white';
 }
 function changeTag3(item){
   document.getElementById('div1').style.display='none';
   document.getElementById('div2').style.display='none';
   document.getElementById('div3').style.display='inline';
   item.style.color='#f8ba00';
-  item.style.borderBottom='1px solid #f8ba00';
+  item.style.borderBottom='1px solid';
   document.getElementById('tag2').style.color='black';
-  document.getElementById('tag2').borderBottom='1px solid white';
   document.getElementById('tag1').style.color='black';
-  document.getElementById('tag1').borderBottom='1px solid white';
 }
