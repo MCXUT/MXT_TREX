@@ -35,6 +35,10 @@ body
   position: fixed;
   z-index: 99;
 }
+navbar{
+  padding:.8rem; /*16px*/
+  overflow: hidden;
+}
 @media (max-width: 768px) {
     #scroll {
         padding: 5px 12px;
@@ -56,9 +60,13 @@ body
 
 /* end of scroll to top button*/
 .navbar {
-    margin: 0 0% 0 4%;
+    padding-left: 5%;
     border-bottom: 1px solid #f2f2f2;
 }
+/* .navbar.navbar-expand.navbar-light {
+    margin-left: none;
+    padding-left: 30px;
+} */
 .nav-item {
     text-align: center;
     letter-spacing: 1px;
@@ -114,7 +122,6 @@ body
     margin: 15px 5px 0 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 
 @media (max-width: 767px) {
     .logo {

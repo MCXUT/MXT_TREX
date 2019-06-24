@@ -4,6 +4,24 @@
   <title>고객센터 - 트렉스</title>
   <meta charset="utf-8">
   <% include ./partials/header %>
+  <style>
+  [data-toggle="collapse"]:after {
+  display: inline-block;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  content: "\f078";
+  transform: rotate(-180deg) ;
+  transition: all linear 0.25s;
+  }
+  [data-toggle="collapse"].collapsed:after {
+  transform: rotate(0deg) ;
+  }
+  </style>
+<script src="/static/scripts/clientfaq.js"></script>
 </head>
 
 <body>
@@ -13,7 +31,9 @@
       color:black;
 
     }
+
   </style>
+
   <!-- Carousel Section -->
   <div class="container-fluid padding2" id="mainDiv">
   <div id="slides" class="carousel slide" data-ride="carousel">
@@ -34,12 +54,17 @@
   <!-- End of Carousel Section -->
 
 
-<!-- 클라이언트/파트너/취소및환불 -->
+<!-- 클라이언트/파트너/취소및환불  -->
 <div class="container-fluid padding2 text-center" >
 
-<h5>  <a class="heada" href="#" style="color:#f8ba00;border-bottom:4px solid #f8ba00;padding-bottom:3px;">클라이언트</a><div class="divider2"></div>
-  <a class="heada" href="partner_faq">파트너</a><div class="divider2"></div>
-  <a class="heada" href="refund">취소 및 환불 </a></h5>
+  <h5>
+
+  <a href="#1client" id="tag1" class="targetDiv heada" onclick="changeTag(this);" style="border-bottom:1px solid black;">클라이언트</a><div class="divider2"></div>
+  <!-- href="partner_faq" -->
+    <a  href="#2partner" id="tag2" class="targetDiv heada" onclick="changeTag2(this);" style="border-bottom:1px solid black;">파트너</a><div class="divider2"></div>
+  <!-- href="refund" -->
+    <a  href="#3refund" id="tag3" class="targetDiv heada" onclick="changeTag3(this);" style="border-bottom:1px solid black;">취소 및 환불</a> <!--class="heada"-->
+  </h5>
 </div>
 
 <hr style="width:100%;">
@@ -47,26 +72,12 @@
 <!-- /클라이언트/파트너/취소및환불 -->
 
 <!-- 클라이언트님들께서 자주 묻는 질문 -->
-<div class="container-fluid padding2 text-center">
+<center center id="div1" class="targetDiv">
+<div id="client-faq" >
+<div  class="container-fluid padding2 text-center">
 <h4>클라이언트님들께서 자주 묻는 질문</h4>
 </div>
-<style>
-[data-toggle="collapse"]:after {
-display: inline-block;
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-content: "\f078";
-transform: rotate(-180deg) ;
-transition: all linear 0.25s;
-}
-[data-toggle="collapse"].collapsed:after {
-transform: rotate(0deg) ;
-}
-</style>
+
 <!-- /클라이언트님들께서 자주 묻는 질문 -->
 
 <!-- do not delete this section-->
@@ -375,7 +386,463 @@ transform: rotate(0deg) ;
 
 </div>
 </div>
+</div>
+</center>
 <!-- /기타 -->
+<!-- 클라이언트 -->
+
+
+
+
+
+
+
+
+<!-- 파트너 -->
+<center id="div2" class="targetDiv">
+<div id="partner-faq" > <!-- class="targetDiv" -->
+  <div class="container-fluid padding2 text-center">
+  <h4>파트너님들께서 자주 묻는 질문</h4>
+  </div>
+  <!-- do not delete this section-->
+  <div class="container-fluid padding2 text-left" style="display:none;">
+    <br><br>
+
+  <div>
+  <ol id="qlist" >
+    <div id="accordion" >
+    </div>
+  </ol>
+
+  </div>
+  </div>
+  <!-- /do not delete this section -->
+
+
+<!-- 회원 가입 관련 -->
+<div class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
+  <br><br>
+
+<div>
+  <h4 style="color:#f8ba00;">파트너 등록 관련</h4>
+
+<ol id="qlist" >
+  <div id="accordion" >
+    <div class="card" >
+      <div class="card-header" id="heading-01" >
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-01" aria-expanded="false" aria-controls="collapse-01" >
+            트렉스 회원가입은 유료인가요?   </a>
+        </div>
+      </div>
+      <div id="collapse-01" class="collapse" data-parent="#accordion" aria-labelledby="heading-01">
+        <div class="card-body">
+          아닙니다. 트렉스는 무료 회원가입이며 추가적인 회비는 없습니다.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-02">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-02" aria-expanded="false" aria-controls="collapse-02">
+            가입만 하면 트렉스 파트너로 등록되나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-02" class="collapse" data-parent="#accordion" aria-labelledby="heading-02">
+        <div class="card-body">
+          아닙니다. 트렉스 파트너로 등록 되기 위해선 [파트너 페이지] 또는 프로필 아이콘을 클릭하셔서 파트너 프로필 (이력)을 등록해 주셔야 합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" >
+      <div class="card-header" id="heading-03" >
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-03" aria-expanded="false" aria-controls="collapse-03" >
+            파트너 등록은 어떻게 하나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-03" class="collapse" data-parent="#accordion" aria-labelledby="heading-03">
+        <div class="card-body">
+          [파트너 페이지] 또는 본인 아이콘을 클릭하셔서 파트너 프로필 등록을 해주시면 됩니다. 트렉스 파트너팀이 등록해주신 프로필을 검수 하고 게시하며 이 과정은 평균 1-3일 정도 소요됩니다.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-04">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-04" aria-expanded="false" aria-controls="collapse-04">
+            파트너가 되기 위한 자격요건이 있나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-04" class="collapse" data-parent="#accordion" aria-labelledby="heading-04">
+        <div class="card-body">
+          Make Business Boundless라는 트렉스의 가치와 함께 할 수 있는 능력을 갖고 있는 누구나 파트너 등록이 가능합니다. 현지 언어가 가능하고 자신만의 분야가 있다면 대학생부터 교수님, 직장인, 전문 통역사까지 파트너 등록이 가능합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-05">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-05" aria-expanded="false" aria-controls="collapse-05">
+            파트너로 등록된 뒤 업무를 수행까지 어느정도의 시간이 걸리나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-05" class="collapse" data-parent="#accordion" aria-labelledby="heading-05">
+        <div class="card-body">
+          파트너로 등록되시면 바로 활동 가능하십니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-06">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-06" aria-expanded="false" aria-controls="collapse-06">
+            파트너 인터뷰는 어떻게 진행되나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-06" class="collapse" data-parent="#accordion" aria-labelledby="heading-06">
+        <div class="card-body">
+          모든 트렉스 파트너는 프로필 등록 후, 업무 진행에 앞서 필수적으로 인터뷰를 진행해야 합니다. 업무 예약 접수시, 트렉스 파트너팀에서 인터뷰 일정 안내를 이메일로 보내드립니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-07">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-07" aria-expanded="false" aria-controls="collapse-07">
+            프로필 등록 후 수정 가능한가요?  </a>
+        </div>
+      </div>
+      <div id="collapse-07" class="collapse" data-parent="#accordion" aria-labelledby="heading-07">
+        <div class="card-body">
+          사이트 오른쪽 상단에 있는 개인 아이콘을 클릭하신후 프로필 수정 (연필 아이콘)을 클릭하신 후 수정 가능합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</ol>
+
+</div>
+</div>
+
+<!-- /회원 가입 관련 -->
+
+<!-- 업무 관련 -->
+<div class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
+  <br><br>
+
+<div>
+  <h4 style="color:#f8ba00;">업무 관련</h4>
+
+<ol id="qlist" >
+  <div id="accordion" >
+    <div class="card" >
+      <div class="card-header" id="heading-08" >
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-08" aria-expanded="false" aria-controls="collapse-08" >
+            파트너로 활동 하는 방법은 무엇인가요?   </a>
+        </div>
+      </div>
+      <div id="collapse-08" class="collapse" data-parent="#accordion" aria-labelledby="heading-08">
+        <div class="card-body">
+          [업무 지원하기] 페이지에서 업무에 지원하시거나 클라이언트님으로부터 오는 예약 문의를 통해 활동 하실 수 있습니다.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-09">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-09" aria-expanded="false" aria-controls="collapse-09">
+            업무에 어떻게 지원하나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-09" class="collapse" data-parent="#accordion" aria-labelledby="heading-09">
+        <div class="card-body">
+          [업무 지원하기] 페이지에서 파트너님의 해당 지역에 있는 업무들을 확인하고 가능하신 업무에 지원하시면 됩니다. 지원 후 클라이언트님이 직접 지원 합격 여부에 대해서 메세지를 보냅니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-010">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-010" aria-expanded="false" aria-controls="collapse-010">
+            지원하기 말고 다른 활동방법이 있나요? </a>
+        </div>
+      </div>
+      <div id="collapse-010" class="collapse" data-parent="#accordion" aria-labelledby="heading-010">
+        <div class="card-body">
+          클라이언트께서 현지 파트너 찾기를 통해 파트너님께 직접 예약 문의를 하시면 업무에 대해 상의하고 업무를 진행 하실 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-011">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-011" aria-expanded="false" aria-controls="collapse-011">
+            예약 문의 및 신청을 거절 할 수 있나요? </a>
+        </div>
+      </div>
+      <div id="collapse-011" class="collapse" data-parent="#accordion" aria-labelledby="heading-011">
+        <div class="card-body">
+          물론입니다. 클라이언트님과 업무에 대해 상의를 통해 파트너님의 스케줄, 분야, 혹은 다른 사유로 맞지 않다고 판단 되시면 정중히 거절해 주세요.
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</ol>
+
+</div>
+</div>
+<!-- /업무 관련 -->
+
+<!-- 급여 관련 -->
+<div class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
+  <br><br>
+
+<div>
+  <h4 style="color:#f8ba00;">급여 관련</h4>
+
+<ol id="qlist" >
+  <div id="accordion" >
+    <div class="card">
+      <div class="card-header" id="heading-012">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-012" aria-expanded="false" aria-controls="collapse-012">
+            급여는 언제 지급 받나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-012" class="collapse" data-parent="#accordion" aria-labelledby="heading-012">
+        <div class="card-body">
+          클라이언트님이 예약 결제시 바로 파트너님에게 바로 급여가 지급되는 것이 아니라 트렉스 파이낸스팀에서 보류한 뒤, 업무 종료 당일 트렉스 파트너팀과 업무 내용 확인 후 파트너님의 페이팔 계정으로 송금됩니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-013">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-013" aria-expanded="false" aria-controls="collapse-013">
+            급여는 어떻게 지급 받나요? </a>
+        </div>
+      </div>
+      <div id="collapse-013" class="collapse" data-parent="#accordion" aria-labelledby="heading-013">
+        <div class="card-body">
+          파트너님의 개인 페이팔 계정으로 송금해 드립니다. 업무 예약이 확정되면 partnership@trexservice.com으로 파트너님의 개인 페이팔 계정을 알려주세요.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-014">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-014" aria-expanded="false" aria-controls="collapse-014">
+            추가 교통 및 숙박비는 어떻게 지급 받나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-014" class="collapse" data-parent="#accordion" aria-labelledby="heading-014">
+        <div class="card-body">
+          추가 교통 및 숙박비는 예약 문의 단계에서 클라이언트님과 협의 후 결정해주세요. 협의 내용에 따라 업무 당일 클라이언트께 영수증을 증빙하시면 현금으로 받으실 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ol>
+
+</div>
+</div>
+<!-- /결제 관련 -->
+
+<!-- 기타 -->
+<div class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
+  <br><br>
+
+<div>
+  <h4 style="color:#f8ba00;">기타</h4>
+
+<ol id="qlist" >
+  <div id="accordion" >
+
+
+        <div class="card">
+          <div class="card-header" id="heading-015">
+            <div class="mb-0" >
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-015" aria-expanded="false" aria-controls="collapse-015">
+                트렉스 수수료는 어디에 사용되나요? </a>
+            </div>
+          </div>
+          <div id="collapse-015" class="collapse" data-parent="#accordion" aria-labelledby="heading-015">
+            <div class="card-body">
+              트렉스는 클라이언트의 성공적인 업무를 위해 최고의 파트너님들을 선별합니다. 업무에 매칭되는 파트너님은 본인 확인 - 이력 확인 - 인터뷰 절차를 걸쳐 선별된 인재입니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" >
+          <div class="card-header" id="heading-016" >
+            <div class="mb-0" >
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-016" aria-expanded="false" aria-controls="collapse-016" >
+                출장지 인근에 검색 되는 파트너가 없습니다. 어떻게 해야 하나요?   </a>
+            </div>
+          </div>
+          <div id="collapse-016" class="collapse" data-parent="#accordion" aria-labelledby="heading-016">
+            <div class="card-body">
+              트렉스 파트너 모두가 플랫폼에 노출되지는 않습니다. 검색되는 파트너가 없을시, 고객센터로 예약 요청을 해주시면 빠르게 도움 드리고 있습니다.
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="heading-017">
+            <div class="mb-0" >
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-017" aria-expanded="false" aria-controls="collapse-017">
+                파트너 급여 지급은 어떻게 하나요?  </a>
+            </div>
+          </div>
+          <div id="collapse-017" class="collapse" data-parent="#accordion" aria-labelledby="heading-017">
+            <div class="card-body">
+              파트너 비용 지급을 위해 많은 현금을 가져가실 필요가 없습니다. 간편한 송금으로 파트너 예약을 확정하고, 업무에만 집중하세요!
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="heading-018">
+            <div class="mb-0" >
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-018" aria-expanded="false" aria-controls="collapse-018">
+                트렉스 검증 프로세스가 무엇 인가요?  </a>
+            </div>
+          </div>
+          <div id="collapse-018" class="collapse" data-parent="#accordion" aria-labelledby="heading-018">
+            <div class="card-body">
+              트렉스는 클라이언트의 성공적인 업무를 위해 최고의 파트너님들을 선별합니다. 업무에 매칭되는 파트너님은 본인 확인 - 이력 확인 - 인터뷰 절차를 걸쳐 선별된 인재입니다.
+            </div>
+          </div>
+        </div>
+    <div class="card" >
+      <div class="card-header" id="heading-019" >
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-019" aria-expanded="false" aria-controls="collapse-019" >
+            출장지 인근에 검색 되는 파트너가 없습니다. 어떻게 해야 하나요?   </a>
+        </div>
+      </div>
+      <div id="collapse-019" class="collapse" data-parent="#accordion" aria-labelledby="heading-019">
+        <div class="card-body">
+          트렉스 파트너 모두가 플랫폼에 노출되지는 않습니다. 검색되는 파트너가 없을시, 고객센터로 예약 요청을 해주시면 빠르게 도움 드리고 있습니다.
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="heading-020">
+        <div class="mb-0" >
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-020" aria-expanded="false" aria-controls="collapse-020">
+            파트너 급여 지급은 어떻게 하나요?  </a>
+        </div>
+      </div>
+      <div id="collapse-020" class="collapse" data-parent="#accordion" aria-labelledby="heading-020">
+        <div class="card-body">
+          파트너 비용 지급을 위해 많은 현금을 가져가실 필요가 없습니다. 간편한 송금으로 파트너 예약을 확정하고, 업무에만 집중하세요!
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</ol>
+
+</div>
+</div>
+</div>
+</center>
+<!-- /기타 -->
+
+
+
+<!-- refund 내용 -->
+<center id="div3" class="targetDiv"> <!--padding-left:8%;padding-right:8%;-->
+<div id="refund-faq" class="container-fluid padding2 text-left" >
+  <div  class="container-fluid padding2 text-center">
+  <h4>취소 및 환불</h4>
+  </div>
+  <div  class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
+    <br><br>
+<div >
+  <h5 style="color:#f8ba00;">가.업무 진행 전 규정</h5>
+  <div  >업무 급여 지급이 이루어진 후 업무 진행 전일 경우 해제 통보 시점에 관한 다음 가이드라인에 따라 클라이언트 혹은 파트너 양측 중 업무 계약을 해제하는 측에서 요금을 부담합니다.</div>
+</div>
+<div  class="linespace"></div>
+
+<div  >
+  <h5 style="color:#f8ba00;">[클라이언트 측 해제시 환불 가이드라인]</h5>
+  <div  >1. 업무일 21일 전 계약 해제: 업무 급여 전액 환불. <br>
+      2. 업무일 14일 전 계약 해제: 업무 급여에서 트렉스 수수료 공제 후 환불.<br>
+      3. 업무일 7일 전 계약 해제: 업무 급여에서 파트너 급여의 15%와 트렉스 수수료 공제 후 환불.<br>
+      4. 업무일 7일 이내 계약 해제: 업무 급여에서 파트너 급여의 25%와 트렉스 수수료 공제 후 환불.<br>
+      5. 업무일 24간 이내 계약 해제: 업무 급여에서 파트너 급여의 50%와 트렉스 수수료 공제 후 환불.<br>
+      6. 해제 통보 시점과 무관하게 양측의 협의가 된 파트너의 추가 교통 및 숙박비는 클라이언트가 부담.</div>
+</div>
+<div class="linespace"></div>
+
+<div >
+  <h5 style="color:#f8ba00;">[파트너 측 해제시 환불 가이드라인]</h5>
+  <div >1. 업무일 21일 전 계약 해제: 업무 급여 전액을 클라이언트에게 환불. 파트너 부담 없음.<br>
+      2. 업무일 14일 전 계약 해제: 업무 급여에서 트렉스 수수료를 파트너가 부담.<br>
+      3. 업무일 7일 전 계약 해제: 업무 급여에서 파트너 급여의 15%와 트렉스 수수료를 파트너가 부담.<br>
+      4. 업무일 7일 이내 계약 해제: 업무 급여에서 파트너 급여의 25%와 트렉스 수수료를 파트너가 부담.<br>
+      5. 업무일 24간 이내 계약 해제: 업무 급여에서 파트너 급여의 50%와 트렉스 수수료를 파트너가 부담.<br>
+      6. 해제 통보 시점과 무관하게 클라이언트가 만족하는 대체 근무자가 생길시 파트너 부담 없음.</div>
+</div>
+<div  class="linespace"></div>
+
+<div >
+  <h5 style="color:#f8ba00;">나. 업무 진행 후 규정</h5>
+</div>
+<div  class="linespace"></div>
+
+<div >
+  <h5 style="color:#f8ba00;">[파트너 책임 사유]</h5>
+  <div >1. 파트너의 귀책사유로 당초 계약했던 서비스 미이행 혹은 보편적인 관점에서 심각하게 잘못 이행한 경우 트렉스 안전결제를 통해 결제 금액 전체 환불이 가능합니다.</div>
+</div>
+<div  class="linespace"></div>
+
+<div  >
+  <h5 style="color:#f8ba00;">[클라이언트 책임 사유]</h5>
+  <div  >1. 업무 진행 중 클라이언트의 폭언, 욕설 등이 있을 경우 작업은 종료될 수 있으며 트렉스 안전 결제를 통해 환불이 제한될 수 있습니다.<br>
+      2. 통역이 시작되면 단순 변심 또는 클라이언트 책임 사유로 인한 트렉스 안전결제를 통해 전액 환불이 불가능합니다.</div>
+</div>
+<div  class="linespace"></div>
+
+<div  >
+  <h5 style="color:#f8ba00;">[트렉스 안전결제란?]</h5>
+  <div  >업무 급여를 결제시 바로 파트너에게 급여가 지급되는것이 아니라 트렉스 파이낸스팀에서 보류한 뒤, 업무가 끝나면 트렉스 파트너팀과 업무 내용을 검수 한뒤 급여를 지급 또는 환불 해 드립니다.</div>
+</div>
+<div  class="linespace"></div>
+
+
+</div>
+</div>
+</center>
+
+<!-- /내용 -->
+
+
 
 <!-- 도움이 더 필요 하신가요? -->
 <br>

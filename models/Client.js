@@ -31,6 +31,7 @@ var ClientSchema = mongoose.Schema({
     // pic stores the 'filename' of the profile picture
     // 회사 로고
     companyLogo: String
+    isExistingMember: {type: Boolean, default: false}
 }, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);

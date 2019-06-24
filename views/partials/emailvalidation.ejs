@@ -1,12 +1,21 @@
 <link rel="stylesheet" href="/static/stylesheets/emailvalidation.css">
+<% if(fail.length > 0) { %>
+<div class="pum pumactive">
+<% } else { %>
 <div class="pum">
+<% } %>
     <center>
         <div class="pum-container">
             <div class="maincontent">
                 <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
-                <form id="formvalidation" class="" action="/validate/code" method="post">
+                <form id="formvalidation" class="" action="/auth/register/validate/code" method="post">
                     <p>이메일로 전송된 코드를 입력하시오</p>
-                    <input class="hiddeninput" type="hidden" name="email" value="">
+                    <% if(fail.length > 0) { %>
+                        <span style="color:red"><%= fail[0].message %></span>
+                    <% } %>
+                    <input class="hiddenemail" type="hidden" name="email" value="">
+                    <input class="hiddenname" type="hidden" name="name" value="">
+                    <input class="hiddenpassword" type="hidden" name="password" value="">
                     <input class="form-control validationform" type="text" name="code" required>
                     <button class="btn btn-primary validationform">확인</button>
                 </form>

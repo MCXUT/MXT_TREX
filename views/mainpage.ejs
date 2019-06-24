@@ -5,11 +5,17 @@
   <meta charset="utf-8">
   <% include ./partials/header %>
   <link rel="stylesheet" href="../static/stylesheets/style.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/static/scripts/autocomplete.js"></script>
+
+
 </head>
 
 <body id="bodyfont">
     <% include ./partials/navbar %>
-
+    <% include ./partials/task_request_form %>
 
 <div class="">
 </div>
@@ -27,7 +33,7 @@
 
   <div class="carousel-inner" >
     <div class="carousel-item active">
-      <img id="slider-images" src="/static/images/slider/slider-1-newyork.jpg" class="center responsive" style="filter:brightness(80%);" >
+      <img id="slider-images" src="/static/images/slider/slider-1-newyork.jpg" class="center responsive"  >
 
         <div class="bottom-right">NEW YORK</div>
     </div>
@@ -51,22 +57,29 @@
     </div>
 
   </div>
-</div>
+
 <div id="caption-carousel" class="centered" style="display:block;width:100%;">
 
     <h1 class="display-4">어디로 출장 가시나요?</h1>
 
     <h3 class="text-center">출장지나 파트너를 검색 해보세요!</h3>
     <br><br>
-    <form id="searchbox" action="/action_page.php" target="_blank" method="POST" >
+    <form autocomplete="off" id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
       <div class="input-group">
-         <input type="text" class="form-control" placeholder="Search" name="search" >
+
+
+         <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" >
+
+
+         <input id="tags2" type="text" class="form-control2" placeholder="국가" name="search" >
          <button class="btn btn-warning" type="submit">
          <i class="fas fa-search"></i></button>
          <!-- <input type="submit" value="Submit"> -->
       </div>
     </form>
 
+
+</div>
 </div>
 </div>
   <!-- End of Carousel Section -->
@@ -75,26 +88,27 @@
 <div class="divider3"></div>
 <div class="container-fluid text-center">
 
+
   <div class="container">
     <div class="sectionContent">
       <div class="row">
         <div class="container2 col-md-3 col-sm-6">
-          <a href="#"><img id="request-service" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
+          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
           <div class="centered">현지 통역</div></a>
         </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
+  <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
   <div class="centered">현지 차량</div></a>
   </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
+  <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
   <div class="centered">번역</div></a>
   </div>
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+  <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
   <div class="centered">현지 기관 섭외</div></a>
   </div>
 
@@ -114,19 +128,19 @@
 <div class="sectionContent">
 <div class="row">
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
+    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
     <h3>1.파트너 검색</h3>
     <div>출장지를 검색하고 알맞는 파트너에게 업무를 문의하세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
+    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
     <h3>2.예약 결제</h3>
     <div>업무일자를 입력하고 예약을 확정지으세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 150px; width: 150px;-o-object-fit: contain;">
+    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
     <h3>3.업무 진행</h3>
     <div>성공적으로 업무를 진행하고 파트너 리뷰를 작성해주세요.</div>
   </div>
@@ -141,7 +155,7 @@
 
   <h2 id="heading" style="margin-bottom:0px;">통역 그 이상의 서비스를 경험 해 보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
-  <br><br>
+  <br>
   <div class="container">
 <div class="sectionContent">
 <div class="row">
@@ -191,25 +205,25 @@
       <div class="row text-center" >
 
         <div class="container2 col-md-3 col-sm-6 ">
-          <a href="#"><img src="/static/images/countries/0germany.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
+          <a href="#"><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
           <div class="centered">GERMANY</div></a>
         </div>
 
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img src="/static/images/countries/1toronto.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
+  <a href="#"><img id="countries" src="/static/images/countries/1toronto.jpeg" class="center" >
   <div class="centered">TORONTO</div></a>
   </div>
 
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img src="/static/images/countries/2newyork.jpg" class="center" style=" height: 300px; width: 200px;-o-object-fit: contain;">
+  <a href="#"><img id="countries" src="/static/images/countries/2newyork.jpg" class="center">
   <div class="centered">NEW YORK</div></a>
   </div>
 
 <!-- <div class="divider2"></div> -->
   <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img src="/static/images/countries/3london.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
+  <a href="#"><img id="countries" src="/static/images/countries/3london.jpg" class="center">
   <div class="centered">LONDON</div></a>
   </div>
 
@@ -236,7 +250,7 @@
       <div class="row text-center">
 
         <div class="container2 col-md-3 col-sm-6">
-          <a href="#"><img src="/static/images/countries/1toronto.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
+          <a href="#"><img src="/static/images/countries/1toronto.jpeg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
           <div class="centered">TORONTO</div></a>
         </div>
 
@@ -393,7 +407,7 @@ transform: rotate(0deg) ;
   </div>
 </ol>
 
-<a href="/client_faq"><button type="button" id="button1">모든 질문 보기</button></a>
+<a href="/client_faq?index=1"><button type="button" id="button1">모든 질문 보기</button></a> <!-- href="/client_faq"> -->
 <br><br>
 </div>
 

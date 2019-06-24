@@ -75,31 +75,16 @@
         <div class="profile">
             <div class="tab">
                 <div class="row top">
-                    <div class="col-md-4 col-12">
+                    <div class="col-12">
                         <p class="setting">파트너 계정 관리</p>
-                        <% if (error_account.length > 0) { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
-                                <a class="messages" href="#">메세지</a>
-                                <a class="accountInfoManage active" href="#">계정관리</a>
-                            </div>
-                        <% } else if (error_messages.length > 0) { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
-                                <a class="messages active" href="#">메세지</a>
-                                <a class="accountInfoManage" href="#">계정관리</a>
-                            </div>
-                        <% } else { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo active" href="#">프로필 관리</a>
-                                <!-- <a class="taskRequestInfo" href="#">업무 예약 관리</a>
-                                <a class="scheduleInfo" href="#">일정 관리</a> -->
-                                <a class="messages" href="#">메세지</a>
-                                <!-- <a class="paymentInfo" href="#">정산 계좌 등록</a> -->
-                                <a class="accountInfoManage" href="#">계정관리</a>
-                                <!-- <a class="privateinfo" href="#">보안</a> -->
-                            </div>
-                        <% } %>
+                        <div class="menu">
+                            <a class="partnerprofileinfo profileactive" href="#partnerprofileinfo">프로필 관리</a>
+                            <a class="taskrequestinfo" href="#taskrequestinfo">업무 예약 관리</a>
+                            <a class="scheduleinfo" href="#scheduleinfo">일정 관리</a>
+                            <a class="messages" href="#messages">메세지</a>
+                            <a class="paymentinfo" href="#paymentinfo">정산 계좌 등록</a>
+                            <a class="accountinfo" href="#accountinfo">계정관리</a>
+                        </div>
                     </div>
                 </div>
                 <div class="row bottom">
@@ -114,11 +99,7 @@
                     
                     <div class="col-md-8">
                         <!-- 프로필 관리 -->
-                        <% if (error_account.length > 0) { %>
-                            <div class="todisplay partnerProfileInfo">
-                        <% } else { %>
-                            <div class="todisplay partnerProfileInfo profileactive">
-                        <% } %>
+                        <div class="todisplay" id="partnerprofileinfo">
                         
                             <% if (error_profile.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error_profile %></span>
@@ -252,13 +233,10 @@
                         
                         
                         
-                        <!-- 메세지 -->
-                        <% if (error_messages.length > 0) { %>
-                            <div class="todisplay messages profileactive">
-                        <% } else { %>
-                            <div class="todisplay messages">
-                        <% } %>
-                        
+                        <div class="todisplay" id="messages">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
                             <% if (error_messages.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error_messages %></span>
                             <% } %>
@@ -266,20 +244,12 @@
                             
                             
                         </div>
-                        
-                        
-                        
-                      
-                      
-                        <!-- 계정 관리 -->
-                        <% if (error_account.length > 0) { %>
-                            <div class="todisplay accountInfoManage profileactive">
-                        <% } else { %>
-                            <div class="todisplay accountInfoManage">
-                        <% }%>
-                        
-                          <% if (error_account.length > 0) { %>
-                            <span style="color:red;margin-left:70px;"><%= error_account %></span>
+
+
+
+                        <div class="todisplay" id="accountinfo">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>기본 정보</b></p>
@@ -341,7 +311,7 @@
                                 </div>
                                 <div class="divider"></div>
                                 <div class="row element" style="margin-left:15px;">
-                                    
+
                                       <span class="switch">
                                           <div class="input-group">
                                               <label class="input-group-btn">
@@ -352,11 +322,11 @@
                                               <input type="text" class="form-control" style="max-width:400px!important;" readonly>
                                           </div>
                                       </span>
-                                      
+
                                       <span class="switch">
                                         <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
                                       </span>
-                                      
+
                                 </div>
                                 <!-- <div class="row element">
                                   <span class="switch" style="padding-left:5%;">
@@ -364,8 +334,8 @@
                                   </span>
                                 </div> -->
                             </div>
-                            
-                            
+
+
                             <div class="row sections security" id="security">
                                 <p class="basictitle"><b>보안 정보</b></p>
                                 <form id="privateinfoform" action="/user_profile/security" method="post">
@@ -389,6 +359,120 @@
                                 <div class="row element">
                                         <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
                                         <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="todisplay" id="taskrequestinfo">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>예약 정보</b></p>
+                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
+                                <div class="buttons basicinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+
+                                <div class="row element">
+                                        <span><i class="fa fa-birthday-cake" aria-hidden="true"></i><b>생일</b></span>
+                                        <span class="answer switch active"><%= accountInfo.displayBirthday %></span>
+                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span>
+
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-building" aria-hidden="true"></i><b>주소</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.streetAddress %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-map" aria-hidden="true"></i><b>도시</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.city %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="city" value="<%= accountInfo.address.city %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>나라</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.country %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="country" value="<%= accountInfo.address.country %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i><b>우편번호</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.postalCode %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="postalCode" value="<%= accountInfo.address.postalCode %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fa fa-phone" aria-hidden="true"></i><b>전화번호</b></span>
+                                        <span class="answer switch active"><%= accountInfo.phoneNumber %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= accountInfo.phoneNumber %>"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="todisplay" id="scheduleinfo">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>스케쥴 정보</b></p>
+                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
+                                <div class="buttons basicinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+
+                                <div class="row element">
+                                        <span><i class="fa fa-building" aria-hidden="true"></i><b>주소</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.streetAddress %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="todisplay" id="messages">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>메세지 정보</b></p>
+                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
+                                <div class="buttons basicinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+
+                                <div class="row element">
+                                        <span><i class="fa fa-map" aria-hidden="true"></i><b>도시</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.city %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="city" value="<%= accountInfo.address.city %>"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="todisplay" id="paymentinfo">
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                          <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>페이먼트 정보</b></p>
+                                <form id="basicinfoform" action="/user_profile/basicPartnerInfo" method="post"></form>
+                                <div class="buttons basicinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                                </div>
+                                <div class="divider"></div>
+
+                                <div class="row element">
+                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>나라</b></span>
+                                        <span class="answer switch active"><%= accountInfo.address.country %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="country" value="<%= accountInfo.address.country %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -426,108 +510,7 @@
             </div>
         </div>
 
-    <script>
-        $(document).ready(() => {
-            $(".menu").click((e) => {
-                e.preventDefault();
 
-
-                if($(e.target).hasClass("partnerProfileInfo") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("taskRequestInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                // else if($(e.target).hasClass("scheduleInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                else if($(e.target).hasClass("messages") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-                
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("paymentInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                else if($(e.target).hasClass("accountInfoManage") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".accountInfo").toggleClass("profileactive");
-                //     $(".privateinfo").toggleClass("profileactive");
-                // }
-            });
-        });
-    </script>
     <script>
     $(document).ready(() => {
         var editbuttons = document.querySelectorAll("#edit");
@@ -599,7 +582,7 @@
             });
     });
     </script>
-    
+
     <script>
         // Script for file input (profile picture in this case) button and displaying the file name
         $(function() {
@@ -627,7 +610,7 @@
             });
         });
     </script>
-    
+
     <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>

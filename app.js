@@ -19,12 +19,15 @@ const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
 const app = express();
 const keys = require("./config/keys");
 
-const registerRoutes = require("./routes/register");
+const clientRegisterRoutes = require("./routes/register/registerClient");
+const partnerRegisterRoutes = require("./routes/register/registerPartner");
+const emailVerificationRoutes = require("./routes/register/emailVerification");
 const loginRoutes = require("./routes/login/login");
 const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
 const clientPwResetRoutes = require("./routes/passwordReset/passwordResetClient");
 const partnerPwResetRoutes = require("./routes/passwordReset/passwordResetPartner");
+const adminPanelRoutes = require("./routes/adminPanel");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -72,6 +75,7 @@ app.use(flash());
 app.use(function (req, res, next) {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.fail = req.flash("fail");
     res.locals.error_profile = req.flash("error_profile");
     res.locals.error_messages = req.flash("error_messages");
     res.locals.error_account = req.flash("error_account");
@@ -89,6 +93,14 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
+app.get("/test", (req, res) => {
+  res.render("message");
+});
+app.get("/message_second", (req, res) => {
+  res.render("message_second");
+});
+
+
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
@@ -96,7 +108,9 @@ app.get('/', function(req,res){
   res.render("mainpage");
 });
 
-app.use('/auth', registerRoutes);
+app.use('/auth', clientRegisterRoutes);
+app.use('/auth', partnerRegisterRoutes);
+app.use('/auth', emailVerificationRoutes);
 app.use('/auth', loginRoutes);
 app.use('/auth', clientLoginRoutes);
 app.use('/auth', partnerLoginRoutes);
@@ -110,6 +124,7 @@ app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
 app.use("/", companyLogoRoutes);
 app.use("/", messageRoutes);
+app.use("/", adminPanelRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
