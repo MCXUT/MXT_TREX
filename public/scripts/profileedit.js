@@ -219,3 +219,28 @@ $(document).ready(() => {
         e.target.parentElement.parentElement.remove();
     });
 });
+
+
+$(document).ready(() => {
+    $(".menu a").click((e) => {
+        e.preventDefault();
+        window.location.hash = e.target.hash;
+
+        var currentHash = window.location.hash.slice(1);
+        $(".profileactive").toggleClass("profileactive");
+
+        $("#" + currentHash).toggleClass("profileactive");
+        $("." + currentHash).toggleClass("profileactive");
+    });
+
+});
+
+$(document).ready(() => {
+    if(window.location.hash !== "") {
+        var currentHash = window.location.hash.slice(1);
+        $(".profileactive").toggleClass("profileactive");
+
+        $("#" + currentHash).toggleClass("profileactive");
+        $("." + currentHash).toggleClass("profileactive");
+    }
+});
