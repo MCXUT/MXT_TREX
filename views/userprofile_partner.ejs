@@ -7,7 +7,58 @@
                 background-color: #00b3db !important;
                 border-color: #00b3db !important;
             }
+            #avatar{
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-size: cover;
+                margin: 0;
+                 position: absolute;
+                 top: 50%;
+                 -ms-transform: translateY(-50%);
+                 transform: translate3d(-50%,-50%,0);
+        
+            }
+            .leftside, .rightside{
+                width: 100%;
+                /* border: 1px solid rgba(0, 0, 0, 0.5); */
+                margin-bottom: 10px;
+                z-index: 2;
+        
+            }
+            #left{
+              max-width: 25%;
+            }
+            #left, #right{
+              height: 80px;
+              padding: 10px;
+            }
+            #sliders a{
+                text-decoration: none;
+                color:black;
+            }
+            #wrapper{
+              width: 50%;
+              height: 550px;
+              overflow-y:scroll;
+              overflow-x: hidden;
+              float:left;
+              position: relative;
+              margin:0;
+              padding-left: 2.5%;
+              padding-right: 2.5%;
+        
+            }
+            #wrapper .row{
+              border: 1px solid rgba(0, 0, 0, 0.3);
+              width: 500px;
+            }
+            #wrapper h4{
+              font-size: 20px;
+        
+            }
         </style>
+        
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -26,29 +77,110 @@
                 <div class="row top">
                     <div class="col-md-4 col-12">
                         <p class="setting">파트너 계정 관리</p>
-                        <div class="menu">
-                            <a class="partnerProfileInfo active" href="#">프로필 관리</a>
-                            <!-- <a class="taskRequestInfo" href="#">업무 예약 관리</a>
-                            <a class="scheduleInfo" href="#">일정 관리</a>
-                            <a class="messages" href="#">메세지</a>
-                            <a class="paymentInfo" href="#">정산 계좌 등록</a> -->
-                            <a class="accountInfo" href="#">계정관리</a>
-                            <!-- <a class="privateinfo" href="#">보안</a> -->
-                        </div>
+                        <% if (error_account.length > 0) { %>
+                            <div class="menu" style="width:250%;">
+                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
+                                <a class="messages" href="#">메세지</a>
+                                <a class="accountInfoManage active" href="#">계정관리</a>
+                            </div>
+                        <% } else if (error_messages.length > 0) { %>
+                            <div class="menu" style="width:250%;">
+                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
+                                <a class="messages active" href="#">메세지</a>
+                                <a class="accountInfoManage" href="#">계정관리</a>
+                            </div>
+                        <% } else { %>
+                            <div class="menu" style="width:250%;">
+                                <a class="partnerProfileInfo active" href="#">프로필 관리</a>
+                                <!-- <a class="taskRequestInfo" href="#">업무 예약 관리</a>
+                                <a class="scheduleInfo" href="#">일정 관리</a> -->
+                                <a class="messages" href="#">메세지</a>
+                                <!-- <a class="paymentInfo" href="#">정산 계좌 등록</a> -->
+                                <a class="accountInfoManage" href="#">계정관리</a>
+                                <!-- <a class="privateinfo" href="#">보안</a> -->
+                            </div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
-                        <% if (currentUser.pic) { %>
-                          <img class="profileimg" src="/image/<%= currentUser.pic %>">
+                        <% if (currentUser.profilePic) { %>
+                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
                           <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
                         <p class="userName"><%= accountInfo.name %></p>
                     </div>
+                    
                     <div class="col-md-8">
-                        <div class="todisplay partnerProfileInfo profileactive">
-                            <div class="row sections">
+                        <!-- 프로필 관리 -->
+                        <% if (error_account.length > 0) { %>
+                            <div class="todisplay partnerProfileInfo">
+                        <% } else { %>
+                            <div class="todisplay partnerProfileInfo profileactive">
+                        <% } %>
+                        
+                            <% if (error_profile.length > 0) { %>
+                              <span style="color:red;margin-left:70px;"><%= error_profile %></span>
+                            <% } %>
+                            
+                            <% if (currentUser.partnerProfile === "") { %>
+                                <div class="text-right">
+                                    <a href="edit_partner_resume"class="btn btn-primary" role="button">프로필 등록</a>
+                                </div>
+                            <% } else { %>
+                                <div class="text-right">
+                                    <a href="edit_partner_resume"class="btn btn-primary" role="button">프로필 수정</a>
+                                </div>
+                            <% } %>
+                            
+                            
+                            <!-- /////////////////////////////////// -->
+                            
+                            <div class="wrapper" id="wrapper" style="width: 100%; height: 550px; overflow-y:scroll;
+                              overflow-x: hidden; float:left; position: relative; margin:0;
+                              padding-left: 2.5%; padding-right: 2.5%;">
+                                <div id="sliders">
+                                    <% for (var i = 0; i < messages.length; i++) { %>
+                                            <a href="/message_room/<%=messages[i].id%>">
+                                                <div class="row" id="formore" style="margin-bottom: 10px; margin-top: 50px; cursor: pointer;">
+                                                    <div class="col" id="left">
+                                                        <div class="leftside">
+                                                            <center>
+                                                                <% if (messages[i].clientPic) { %>
+                                                                  <img id="avatar" src="/logo/<%= messages[i].clientPic %>">
+                                                                <% } else { %>
+                                                                  <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col" id="right">
+                                                        <div class="rightside">
+                                                            <div class="text-left">
+                                                                <h4><%= messages[i].clientName %></h4>
+                                                            </div>
+                                                            <div class="text-left">
+                                                                <span class="body-trex">
+                                                                    <%= messages[i].detail[[messages[i].detail.length-1]].content %><br>
+                                                                    <font size=1><%= messages[i].detail[[messages[i].detail.length-1]].time %></font>
+                                                                    <span style="font-size: 35px; float: right; transform: translate3d(0, -50% ,0)">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                    <%  } %>
+                                </div>
+                            </div>
+                            
+                            <!-- /////////////////////////////////// -->
+                            
+                            
+                            <!-- <div class="row sections">
                                 <p class="basictitle"><b>서비스</b></p>
                                 <form id="serviceform" action="/user_profile/language" method="post"></form>
                                 <div class="buttons serviceinfo">
@@ -72,9 +204,9 @@
                                     <div class="choice" id="agency">
                                         <p class="title">현지 기관 서비스<span class="exit">x</span></p>
                                     </div>
-                            </div>
+                            </div> -->
 
-                            <div class="row sections lang">
+                            <!-- <div class="row sections lang">
                                 <p class="basictitle"><b>언어</b></p>
                                 <form id="languageform" action="/user_profile/language" method="post"></form>
                                 <div class="buttons languageinfo">
@@ -115,15 +247,39 @@
                                 <% } %>
 
                                 <button class="btn btn-info addbutton">+ 언어 추가</button>
-                            </div>
+                            </div> -->
                         </div>
+                        
+                        
+                        
+                        <!-- 메세지 -->
+                        <% if (error_messages.length > 0) { %>
+                            <div class="todisplay messages profileactive">
+                        <% } else { %>
+                            <div class="todisplay messages">
+                        <% } %>
+                        
+                            <% if (error_messages.length > 0) { %>
+                              <span style="color:red;margin-left:70px;"><%= error_messages %></span>
+                            <% } %>
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
                       
                       
-                      
-                      
-                        <div class="todisplay accountInfo">
-                          <% if (error.length > 0) { %>
-                            <span style="color:red;margin-left:70px;"><%= error %></span>
+                        <!-- 계정 관리 -->
+                        <% if (error_account.length > 0) { %>
+                            <div class="todisplay accountInfoManage profileactive">
+                        <% } else { %>
+                            <div class="todisplay accountInfoManage">
+                        <% }%>
+                        
+                          <% if (error_account.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error_account %></span>
                           <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>기본 정보</b></p>
@@ -165,6 +321,11 @@
                                         <span><i class="fa fa-phone" aria-hidden="true"></i><b>전화번호</b></span>
                                         <span class="answer switch active"><%= accountInfo.phoneNumber %></span>
                                         <span class="switch"><input form="basicinfoform" class="form-control" name="phoneNumber" value="<%= accountInfo.phoneNumber %>"></span>
+                                </div>
+                                <div class="row element">
+                                        <span><i class="fas fa-mobile-alt" aria-hidden="true"></i><b>카카오톡 ID</b></span>
+                                        <span class="answer switch active"><%= accountInfo.kakaoID %></span>
+                                        <span class="switch"><input form="basicinfoform" class="form-control" name="kakaoID" value="<%= accountInfo.kakaoID %>"></span>
                                 </div>
                             </div>
 
@@ -280,9 +441,9 @@
                     $(".partnerProfileInfo").toggleClass("profileactive");
                     // $(".taskRequestInfo").toggleClass("profileactive");
                     // $(".scheduleInfo").toggleClass("profileactive");
-                    // $(".messages").toggleClass("profileactive");
+                    $(".messages").toggleClass("profileactive");
                     // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfo").toggleClass("profileactive");
+                    $(".accountInfoManage").toggleClass("profileactive");
                     // $(".privateinfo").toggleClass("profileactive");
                 }
                 // else if($(e.target).hasClass("taskRequestInfo") && !$(e.target).hasClass("active")) {
@@ -296,7 +457,7 @@
                 //     $(".scheduleInfo").toggleClass("profileactive");
                 //     $(".messages").toggleClass("profileactive");
                 //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfo").toggleClass("profileactive");
+                //     $(".accountInfoManage").toggleClass("profileactive");
                 //     // $(".privateinfo").toggleClass("profileactive");
                 // }
                 // else if($(e.target).hasClass("scheduleInfo") && !$(e.target).hasClass("active")) {
@@ -310,23 +471,23 @@
                 //     $(".scheduleInfo").toggleClass("profileactive");
                 //     $(".messages").toggleClass("profileactive");
                 //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfo").toggleClass("profileactive");
+                //     $(".accountInfoManage").toggleClass("profileactive");
                 //     // $(".privateinfo").toggleClass("profileactive");
                 // }
-                // else if($(e.target).hasClass("messages") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfo").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
+                else if($(e.target).hasClass("messages") && !$(e.target).hasClass("active")) {
+                    var menu = document.querySelector(".menu");
+                    var currentActive = menu.querySelector(".active");
+                    $(currentActive).toggleClass("active");
+                    $(e.target).toggleClass("active");
+                
+                    $(".partnerProfileInfo").toggleClass("profileactive");
+                    // $(".taskRequestInfo").toggleClass("profileactive");
+                    // $(".scheduleInfo").toggleClass("profileactive");
+                    $(".messages").toggleClass("profileactive");
+                    // $(".paymentInfo").toggleClass("profileactive");
+                    $(".accountInfoManage").toggleClass("profileactive");
+                    // $(".privateinfo").toggleClass("profileactive");
+                }
                 // else if($(e.target).hasClass("paymentInfo") && !$(e.target).hasClass("active")) {
                 //     var menu = document.querySelector(".menu");
                 //     var currentActive = menu.querySelector(".active");
@@ -338,10 +499,10 @@
                 //     $(".scheduleInfo").toggleClass("profileactive");
                 //     $(".messages").toggleClass("profileactive");
                 //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfo").toggleClass("profileactive");
+                //     $(".accountInfoManage").toggleClass("profileactive");
                 //     // $(".privateinfo").toggleClass("profileactive");
                 // }
-                else if($(e.target).hasClass("accountInfo") && !$(e.target).hasClass("active")) {
+                else if($(e.target).hasClass("accountInfoManage") && !$(e.target).hasClass("active")) {
                     var menu = document.querySelector(".menu");
                     var currentActive = menu.querySelector(".active");
                     $(currentActive).toggleClass("active");
@@ -350,9 +511,9 @@
                     $(".partnerProfileInfo").toggleClass("profileactive");
                     // $(".taskRequestInfo").toggleClass("profileactive");
                     // $(".scheduleInfo").toggleClass("profileactive");
-                    // $(".messages").toggleClass("profileactive");
+                    $(".messages").toggleClass("profileactive");
                     // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfo").toggleClass("profileactive");
+                    $(".accountInfoManage").toggleClass("profileactive");
                     // $(".privateinfo").toggleClass("profileactive");
                 }
                 // else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){

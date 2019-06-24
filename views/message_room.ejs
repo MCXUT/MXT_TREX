@@ -1,0 +1,502 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .btn-primary:hover {
+                cursor: pointer;
+            }
+          .chatContainer{
+            width: 400px;
+            height: 500px;
+            border: 2px solid #ddd;
+          }
+          .chatContainer > .chatHeader {
+            width: 95%;
+            background: white;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            height: 60px;
+          }
+          .chatContainer > .chatHeader h3 {
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            color: #333
+          }
+          .chatContainer > .chatMessages{
+            height: 420px;
+            border-bottom: 1px solid #dddd;
+            overflow-y: scroll;
+    
+          }
+          .chatBottom {
+            transform: translate3d(0, 415px, 0);
+            position: fixed;
+    
+          }
+          .chatBottom form input[type="submit"]{
+            padding: 5px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+    
+            font-size: 14px;
+          }
+          .chatBottom form input[type="text"]{
+            width: 335px;
+            padding: 3px;
+            padding-left: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            margin-right: 0px;
+            height: 30px;
+          }
+          .speech-bubble {
+      filter: drop-shadow(-1px -1px 2px rgba(0, 0, 0, .10)) drop-shadow(1px 2px 2px rgba(0, 0, 0, .15));
+      margin: 1rem;
+      margin-bottom: 40px;
+      padding: 1.5rem 2rem;
+      position: relative;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      background: #8ca8d8;
+      color: white;
+    }
+    .speech-bubble::before {
+      border: 12.5px solid transparent;
+      border-top: 12.5px solid #8ca8d8;
+      border-bottom: 0;
+      height: 0;
+      width: 0;
+      border-top-width: 25px;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 3rem;
+      bottom: -25px;
+      transform-origin: center;
+      transform: rotate(90deg) skew(-25deg) translateY(16.66667px);
+    }
+    
+    
+        .speech-bubble cite {
+          position: absolute;
+          bottom: -2rem;
+          left: 4.5rem;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+          color: black;
+        }
+        #avatar{
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          background-image: url("static/images/nibbler.jpeg");
+          background-size: cover;
+          margin: 0;
+          position: relative;
+        }
+        .container{
+            margin: 0px;
+            padding: 0px;
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+            margin-right: none !important;
+            margin-left: none !important;
+            letter-spacing: 0.5px;
+        }
+        img{
+          max-width: 100%;
+          border-radius: 50%;
+        }
+    
+        .msg-header{
+          border: 1px solid #ccc;
+          width: 100%;
+          height: 70px;
+          border-bottom: none;
+          display: inline-block;
+          background-color: #007bff;
+        }
+        .msg-header-img{
+          border-radius: 50%;
+          width: 40px;
+          margin-left: 5%;
+          float: left;
+          margin-top: 15px;
+        }
+        .active{
+          width: 120px;
+          float: left;
+          margin-top: 23px;
+        }
+        .active h4{
+          font-size: 14px;
+          margin-left: 10px;
+          color: #fff;
+        }
+        .active h6{
+          font-size: 10px;
+          margin-left: 10px;
+          line-height: 2px;
+          color: #fff;
+        }
+        .chat-page{
+          padding: 0 0 50px 0;
+    
+        }
+        .msg-inbox{
+          border: 1px solid #ccc;
+          ooverflow: hidden;
+          padding-bottom: 30px;
+        }
+        .chats{
+          padding: 30px 15px 0 25px;
+        }
+        .msg-page{
+          height: 516px;
+          overflow-y: auto;
+        }
+        .received-chats-img{
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          float: left;
+        }
+        .received-msg{
+          display; inline-block;
+          padding: 0 0 0 15px;
+          vertical-align: top;
+          /* width: 92%; */
+          max-width: 60%;
+        }
+        .received-msg-inbox{
+          max-width: 30%;
+          margin-left: 4%;
+        }
+        .received-msg-inbox p{
+          background: #efefef none repeat scroll 0 0;
+          border-radius: 10px;
+          color: #646464;
+          font-size: 14px;
+          margin: 0;
+          padding: 5px 10px 5px 12px;
+          max-width: 100%;
+        }
+        .time{
+          color: rgb(72, 72, 72);
+          display: block;
+          font-size: 12px;
+          margin: 8px 0 0;
+        }
+        .outgoing-chats{
+          overflow: hidden;
+          margin: 26px 20px;
+        }
+        .outgoing-chats-msg p{
+          background: #007bff none repeat scroll 0 0;
+          color: #fff;
+          border-radius: 10px;
+          font-size: 14px;
+          margin: 0;
+          padding: 5px 10px 5px 12px;
+          max-width: 100%;
+        }
+        .outgoing-chats-msg{
+          float: right;
+          max-width: 30%;
+          /* margin-left: 80%; */
+    
+        }
+        .outgoing-chats-img{
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          float: right;
+        }
+    
+    
+        </style>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    
+    
+        <!-- jquery slide selector -->
+    
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
+      
+      
+        <title>Member - 트렉스</title>
+
+        <% include ./partials/header %>
+        
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+        
+        
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        </head>
+        <body>
+            <% include ./partials/navbar %>
+
+
+        <div class="profile">
+            <div class="tab">
+                <div class="row top">
+                    <div class="col-md-4 col-12">
+                        <p class="setting">파트너 프로필 관리</p>
+                            <div class="menu" style="width:250%;">
+                                <a class="partnerProfileInfo" href="/user_profile">프로필 관리</a>
+                                <a class="messages active" href="/user_message">메세지</a>
+                                <a class="accountInfo" href="/user_account">계정관리</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col-md-4 col-12">
+                        <% if (currentUser.companyLogo) { %>
+                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                        <% } %>
+                        <p class="userName"><%= currentUser.name %></p>
+                    </div>
+                    
+                    
+                    <div class="col-md-8" style="padding:0px;">
+                        
+                        
+                        <div class="container">
+                    
+                            <div class="msg-header">
+                                
+                                  <div class="msg-header-img">
+                                      <% if(currentUser.type === "c") { %>
+                                          <% if (thisMessage.partnerPic) { %>
+                                            <img src="/profilePic/<%= thisMessage.partnerPic %>" style="width:40px; height:40px;">
+                                          <% } else { %>
+                                            <img src="/static/images/noprofilepic.jpeg" style="width:40px; height:40px;">
+                                          <% } %>
+                                      <% } else if (currentUser.type === "p") { %>
+                                          <% if (thisMessage.clientPic) { %>
+                                            <img src="/logo/<%= thisMessage.clientPic %>" style="width:40px; height:40px;">
+                                          <% } else { %>
+                                            <img src="/static/images/noprofilepic.jpeg" style="width:40px; height:40px;">
+                                          <% } %>
+                                      <% } %>
+                                  </div>
+                                  <div class="active">
+                                    <% if(currentUser.type === "c") { %>
+                                        <h4 style="width:150%;"><%= thisMessage.partnerName %></h4>
+                                    <% } else if (currentUser.type === "p") { %>
+                                        <h4 style="width:150%;"><%= thisMessage.clientName %></h4>
+                                    <% } %>
+                                    <h6 style="width:500px;"><%= thisMessage.detail[[thisMessage.detail.length-1]].time %></h6>
+                                 </div>
+                            
+                            </div>
+                            
+                            
+                            
+                            <div class="chat-page">
+                                <div class="msg-inbox">
+                                    <div class="chats">
+                                        <div class="msg-page">
+                                            <% if(currentUser.type === "c") { %>
+                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
+                                                    <% if (thisMessage.detail[i].author === "c") { %>
+                                                        <div class="outgoing-chats">
+                                                            <div class="outgoing-chats-msg">
+                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                                <span class="time"><%= thisMessage.detail[i].time %></span>
+                                                            </div>
+                                                            <div class="outgoing-chats-img">
+                                                                <% if (thisMessage.clientPic) { %>
+                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <% if (thisMessage.detail[i].author === "p") { %>
+                                                        <div class="received-chats">
+                                                            <div class="received-chats-img">
+                                                                <% if (thisMessage.partnerPic) { %>
+                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="received-msg">
+                                                                <div class="received-msg-inbox">
+                                                                    <p><%= thisMessage.detail[i].content %></p>
+                                                                    <span class="time"><%= thisMessage.detail[i].time %></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } else if (currentUser.type === "p") { %>
+                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
+                                                    <% if (thisMessage.detail[i].author === "c") { %>
+                                                        <div class="received-chats">
+                                                            <div class="received-chats-img">
+                                                                <% if (thisMessage.clientPic) { %>
+                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="received-msg">
+                                                                <div class="received-msg-inbox">
+                                                                    <p><%= thisMessage.detail[i].content %></p>
+                                                                    <span class="time"><%= thisMessage.detail[i].time %></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <% if (thisMessage.detail[i].author === "p") { %>
+                                                        <div class="outgoing-chats">
+                                                            <div class="outgoing-chats-msg">
+                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                                <span class="time"><%= thisMessage.detail[i].time %></span>
+                                                            </div>
+                                                            <div class="outgoing-chats-img">
+                                                                <% if (thisMessage.partnerPic) { %>
+                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="msg-bottom">
+                                <div class="input-group">
+                                    <% if(currentUser.type === "c") { %>
+                                        <form id="sendMessageform" action="/send_message_client" method="post"></form>
+                                    <% } else if (currentUser.type === "p") { %>
+                                        <form id="sendMessageform" action="/send_message_partner" method="post"></form>
+                                    <% } %>
+                                        <input type="hidden" form="sendMessageform" id="message" name="message" value="<%= thisMessage.id %>">
+                                        <input type="text" form="sendMessageform" class="form-control" name="content" placeholder="메세지쓰기" value="">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <button form="sendMessageform" type="submit">
+                                                    <i class="fa fa-paper-plane"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    
+                                </div>
+                              </div>
+                              
+                              
+                            </div>
+                    
+                    
+                            <div class="chatBottom">
+                              <form action="#" onSubmit="return false;" id="chatForm" method="post">
+                                <input type="hidden" id="name" name="" value="<?php echo $user; ?>">
+                                <input type="text" name="text" id="text" value="" placeholder="Type your message">
+                                <input type="submit" name="submit" value="보내기">
+                              </form>
+                            </div>
+                    
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <script>
+        $('#datepicker2').datepicker({
+            multidate: true
+        });
+        
+        $('.date').datepicker({
+            multidate: true
+        });
+        
+    </script>
+    
+    <script>
+        // Script for file input (profile picture in this case) button and displaying the file name
+        $(function() {
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready( function() {
+                $(':file').on('fileselect', function(event, numFiles, label) {
+                    
+                    if (numFiles > 3){
+                        alert("최대 3개의 파일까지만 업로드 해주세요.");
+                    } else {
+                        var input = $(this).parents('.input-group').find(':text'),
+                            log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+
+                        if( input.length ) {
+                            input.val(log);
+                        } else {
+                            if( log ) alert(log);
+                        }
+                    }
+                    
+                    // var input = $(this).parents('.input-group').find(':text'),
+                    //   log = numFiles > 1 ? numFiles + ' files selected' : label;
+                    // 
+                    // if( input.length ) {
+                    //   input.val(log);
+                    // } else {
+                    //   if( log ) alert(log);
+                    // }
+                });
+            });
+        });
+    </script>
+    
+    <script src="/static/scripts/profileedit.js"></script>
+
+    <% include ./partials/footer %>
+
+    </body>
+</html>

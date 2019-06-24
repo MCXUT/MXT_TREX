@@ -4,17 +4,16 @@ const router = express.Router();
 const keys = require("../config/keys");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
+const PartnerProfile = require("../models/PartnerProfile");
 
-
-router.get("/partner_page", function(req,res){
-  res.render("partnerpage");
-});
 
 router.get("/partner_profile/:id", function(req, res) {
   Partner.findById(req.params.id, function(err, foundUser) {
+      // PartnerProfile.findById(foundUser.partnerProfile, function(err, foundProfile) { ... })
     res.render("partnerprofile", { thisPartner: foundUser });
   });
 });
+
 
 router.get("/find_partner", function(req,res){
   Partner.find({}, function(err, allPartners) {
@@ -26,6 +25,11 @@ router.get("/find_partner", function(req,res){
     res.render("findpartner", { allPartners : allPartners , googleMapAPI: keys.googleMapAPI.key });
   });
   // res.render("findpartner");
+});
+
+
+router.get("/partner_page", function(req,res){
+  res.render("partnerpage");
 });
 
 module.exports = router;

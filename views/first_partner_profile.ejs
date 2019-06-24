@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .card:hover {
+                background-color: #00b3db !important;
+                border-color: #00b3db !important;
+            }
+        </style>
+        <title>Member - 트렉스</title>
+
+        <% include ./partials/header %>
+        <!-- <link rel="stylesheet" href="../static/stylesheets/style.css"> -->
+
+    </head>
+    <body>
+        <% include ./partials/navbar %>
+
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        <div class="profile">
+            <div class="tab">
+                <div class="row top">
+                    <div class="col-md-4 col-12">
+                        <p class="setting">파트너 프로필 관리</p>
+                            <div class="menu">
+                                <a class="partnerProfileInfo active" href="/user_profile">프로필 관리</a>
+                                <a class="accountInfo" href="/user_account">계정관리</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col-md-4 col-12">
+                        <% if (currentUser.profilePic) { %>
+                          <img class="profileimg" src="/image/<%= currentUser.profilePic %>">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                        <% } %>
+                        <p class="userName"><%= currentUser.name %></p>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <p class="h3">파트너 프로필 생성</p><br><br>
+                        <!-- <form style="margin-bottom:100px;"> -->
+                            <!-- <div class="form-group">
+                                <label for="exampleFormControlSelect1">프리랜서 / 에이전시</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>프리랜서</option>
+                                  <option>에이전시</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2">프리랜서 / 에이전시</label>
+                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                  <option>프리랜서</option>
+                                  <option>에이전시</option>
+                                </select>
+                            </div> -->
+                            <!-- <div class="form-group">
+                                프리랜서 / 에이전시:<br>
+                                <div class="form-check form-check-inline" style="padding-left:30px;">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">프리랜서</label>
+                                </div>
+                                <div class="form-check form-check-inline" style="padding-left:10px;">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">에이전시</label>
+                                </div>
+                            </div> -->
+                            
+                            <form id="createProfile" action="/create_new_profile" method="post"></form>
+                            <div class="container" style="margin-left:7%;margin-top:50px;margin-bottom:100px;>
+                                <div class="sectionContent">
+                                    <div class="row text-center">
+                                        <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
+                                            <!-- <a href="/create_freelancer_profile"> -->
+                                            <button type="submit" form="createProfile" name="type" value="freelancer">
+                                                <div class="centered">
+                                                    <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
+                                                </div>
+                                                <div class="centered" style="width:100%;">프리랜서</div>
+                                            </button>
+                                            <!-- </a> -->
+                                        </div>
+                                        <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
+                                            <!-- <a href="/create_agency_profile"> -->
+                                            <button type="submit" form="createProfile" name="type" value="agency">
+                                                <div class="centered">
+                                                    <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
+                                                </div>
+                                                <div class="centered" style="width:100%;">에이전시</div>
+                                            </button>
+                                            <!-- </a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        <!-- </form> -->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    
+    <script src="/static/scripts/profileedit.js"></script>
+
+    <% include ./partials/footer %>
+
+    </body>
+</html>

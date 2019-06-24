@@ -53,7 +53,17 @@ var PartnerSchema = mongoose.Schema({
     googleID: String,
     naverID: String,
     // pic stores the 'filename' of the profile picture
-    pic: String
+    profilePic: String,
+    coverPhoto: String,
+    partnerProfile: {
+        type: String,
+        default: ""
+    },
+    // 가입일자
+    registeredDate: {
+        type: Date,
+        default: Date.now()
+    },
 }, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);

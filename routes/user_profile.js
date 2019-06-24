@@ -6,6 +6,8 @@ const router = express.Router();
 const keys = require("../config/keys");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
+const PartnerProfile = require("../models/PartnerProfile");
+const Message = require("../models/Message");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -14,188 +16,183 @@ const googleMapsClient = require('@google/maps').createClient({
 
 // GET route for viewing user profile
 router.get("/user_profile", (req, res) => {
-  if (!res.locals.currentUser) {
+  if (!req.user) {
     res.redirect("/");
   } else {
     var type;
-    if (res.locals.currentUser.type === "p") {
+    if (req.user.type === "p") {
       type = "Partner";
     } else {
       type = "Client";
     }
     var birthday;
     var displayBirthday;
-    if (res.locals.currentUser.dateOfBirth) {
-      birthday = moment(res.locals.currentUser.dateOfBirth).format('YYYY-MM-DD');
+    if (req.user.dateOfBirth) {
+      birthday = moment(req.user.dateOfBirth).format('YYYY-MM-DD');
       displayBirthday = moment(birthday).format('MMMM DD, YYYY');
     } else {
-      birthday = res.locals.currentUser.dateOfBirth;
+      birthday = req.user.dateOfBirth;
     }
-    var accountInfo = {
-      name: res.locals.currentUser.name,
-      type: type,
-      birthday: birthday,
-      displayBirthday: displayBirthday,
-      address: res.locals.currentUser.address,
-      phoneNumber: res.locals.currentUser.phoneNumber
-    };
+    
 
     if (type === "Client") {
-      res.render("userprofile_client", {accountInfo: accountInfo});
-    } else {
-      res.render("userprofile_partner", {accountInfo: accountInfo, langinfo: res.locals.currentUser.languages});
-    }
-  }
-});
-
-
-// POST route for updating client user information
-router.post("/user_profile/basicClientInfo", (req, res) => {
-  // Changing profile info of a client
-  if (!req.body.streetAddress || !req.body.city || !req.body.country || !req.body.postalCode) {
-    req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-    return res.redirect("/user_profile");
-  }
-  var fullAddress = req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
-  // Get coordinates of the new address
-  googleMapsClient.geocode({
-    address: fullAddress
-  }, function(err, response) {
-    if (err) {
-      console.log(err);
-      req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-      return res.redirect("/user_profile");
-    } else {
-      // Make sure we are able to get the coordinates of the given address, else throw error
-      if (!response.json.results[0]) {
-        req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-        return res.redirect("/user_profile");
-      }
-      var newCoordinates = {
-        lat: response.json.results[0].geometry.location.lat,
-        lng: response.json.results[0].geometry.location.lng
-      }
-      // Find and update client profile
-      Client.findById(req.user._id, function(err, foundUser) {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        }
-        if (!moment(req.body.birthday).isValid()) {
-          req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
-          return res.redirect("/user_profile");
-        }
-        foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
-        foundUser.address.streetAddress = req.body.streetAddress;
-        foundUser.address.city = req.body.city;
-        foundUser.address.country = req.body.country;
-        foundUser.address.postalCode = req.body.postalCode;
-        foundUser.address.coordinates = newCoordinates;
-        foundUser.phoneNumber = req.body.phoneNumber;
-        foundUser.save((err) => {
-          if (err) {
-            console.log(err);
-            return res.redirect("/user_profile");
-          }
-          console.log("Client Profile Update Successful for " + foundUser.name);
-          return res.redirect("/user_profile");
+        var accountInfo = {
+            birthday: birthday,
+            displayBirthday: displayBirthday,
+            category: req.user.category,
+            managerNamePosition: req.user.managerNamePosition,
+            managerPhoneNumber: req.user.managerPhoneNumber,
+            companyWebsite: req.user.companyWebsite,
+            companySNS: req.user.companySNS,
+            companyDescription: req.user.companyDescription,
+            kakaoID: req.user.kakaoID
+        };
+        Message.find({client: req.user.id}, function(err, foundMessages) {
+            res.render("userprofile_client", {accountInfo: accountInfo, messages: foundMessages});
         });
-
-      });
-    }
-  });
-});
-
-
-// POST route for updating client user information
-router.post("/user_profile/basicPartnerInfo", (req, res) => {
-  // Changing profile of a partner
-  if (!req.body.streetAddress || !req.body.city || !req.body.country || !req.body.postalCode) {
-    req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-    return res.redirect("/user_profile");
-  }
-  var fullAddress = req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
-  // Get coordinates of the new address
-  googleMapsClient.geocode({
-    address: fullAddress
-  }, function(err, response) {
-    if (err) {
-      console.log(err);
-      req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-      return res.redirect("/user_profile");
     } else {
-      // Make sure we are able to get the coordinates of the given address, else throw error
-      if (!response.json.results[0]) {
-        req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
-        return res.redirect("/user_profile");
-      }
-      var newCoordinates = {
-        lat: response.json.results[0].geometry.location.lat,
-        lng: response.json.results[0].geometry.location.lng
-      }
-      // Find and update client profile
-      Partner.findById(req.user._id, function(err, foundUser) {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        }
-        if (!moment(req.body.birthday).isValid()) {
-          req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
-          return res.redirect("/user_profile");
-        }
-        foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
-        foundUser.address.streetAddress = req.body.streetAddress;
-        foundUser.address.city = req.body.city;
-        foundUser.address.country = req.body.country;
-        foundUser.address.postalCode = req.body.postalCode;
-        foundUser.address.coordinates = newCoordinates;
-        foundUser.phoneNumber = req.body.phoneNumber;
-        foundUser.save((err) => {
-          if (err) {
-            console.log(err);
-            return res.redirect("/user_profile");
-          }
-          console.log("Partner Profile Update Successful for " + foundUser.name);
-          return res.redirect("/user_profile");
+        var accountInfo = {
+            name: req.user.name,
+            type: type,
+            birthday: birthday,
+            displayBirthday: displayBirthday,
+            address: req.user.address,
+            phoneNumber: req.user.phoneNumber,
+            kakaoID: req.user.kakaoID
+        };
+        Message.find({partner: req.user.id}, function(err, foundMessages) {
+            res.render("userprofile_partner", {accountInfo: accountInfo, langinfo: req.user.languages, messages: foundMessages});
         });
-
-      });
     }
-  });
+  }
 });
 
 
-
-// POST route for changing language profile info for language
-router.post("/user_profile/language", (req, res) => {
-    // Changing language profile of a partner
-    var newLanguageInfo = {
-      langchoice: req.body.langchoice,
-      langproficiency: req.body.langproficiency
-    }
-    // Find and update client profile
-    Partner.findById(req.user._id, function(err, foundUser) {
-      if (err) {
-        console.log(err);
-        return res.redirect("/user_profile");
-      };
-      foundUser.languages = newLanguageInfo;
-      foundUser.save((err) => {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        }
-        console.log("Partner Profile Update Successful (Language) for " + foundUser.name);
-        return res.redirect("/user_profile");
-      });
-
-    });
-});
-
-
-router.post("/user_profile/security", (req, res) => {
-    console.log(req.body);
+router.get("/user_account", (req, res) => {
+    req.flash("error_account", " ");
     res.redirect("/user_profile");
 });
+
+
+router.get("/edit_partner_resume", function(req, res) {
+    if (!req.user) {
+      res.redirect("/");
+    } else {
+        // create new profile if it is the first time for the partner
+        if (req.user.partnerProfile === "") {
+            return res.render("first_partner_profile");
+        } else {
+            PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+                if (err) {
+                  console.log(err);
+                  return res.redirect("/user_profile");
+                };
+                res.render("edit_partner_resume", { profileInfo: foundProfile });
+            });
+        }
+    }
+});
+
+
+// Create a profile for partner
+router.post("/create_new_profile", function(req, res) {
+    if (req.body.type == "freelancer") {
+        var newProfile = new PartnerProfile({
+            type: "freelancer",
+            gender: "M"
+        });
+        newProfile.save((err, createdProfile) => {
+            if(err) {
+                console.log(err);
+                req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
+                return res.redirect("/user_profile");
+            }
+            // Save the profile id in the current partner db
+            Partner.findById(req.user._id, function(err, foundUser) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                foundUser.partnerProfile = createdProfile._id;
+                foundUser.save((err) => {
+                      if (err) {
+                          console.log(err);
+                          return res.redirect("/user_profile");
+                      }
+                      console.log("Partner Freelancer Profile Creation Successful for " + foundUser.name);
+                      return res.redirect("/edit_partner_resume");
+                });
+            });
+        });
+    } else if (req.body.type == "agency") {
+        var newProfile = new PartnerProfile({
+            type: "agency",
+            gender: "N/A"
+        });
+        newProfile.save((err, createdProfile) => {
+            if(err) {
+                console.log(err);
+                req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
+                return res.redirect("/user_profile");
+            }
+            // Save the profile id in the current partner db
+            Partner.findById(req.user._id, function(err, foundUser) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                foundUser.partnerProfile = createdProfile._id;
+                foundUser.save((err) => {
+                      if (err) {
+                          console.log(err);
+                          return res.redirect("/user_profile");
+                      }
+                      console.log("Partner Agency Profile Creation Successful for " + foundUser.name);
+                      return res.redirect("/edit_partner_resume");
+                });
+            });
+        });
+    } else {
+        req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
+        return res.redirect("/user_profile");
+    }
+});
+
+
+router.post("/convert_partnerProfile_type", function(req, res) {
+    if (req.user.type === "p") {
+        PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/user_profile");
+            }
+            // if the current profile is a freelancer, change to agency
+            if (foundProfile.type === "freelancer") {
+                foundProfile.type = "agency";
+                foundProfile.gender = "N/A";
+                foundProfile.lastEditedDate = Date.now()
+            } else {
+                foundProfile.type = "freelancer";
+                foundProfile.gender = "M";
+                foundProfile.lastEditedDate = Date.now()
+            }
+            ///////// 사업자 등록증 삭제도 해야함!!! ////////
+            foundProfile.save((err) => {
+                  if (err) {
+                      console.log(err);
+                      req.flash("error_profile", "파트너 프로필을 저장하는데 문제가 발생 했습니다. 다시 시도해주세요.");
+                      return res.redirect("/user_profile");
+                  }
+                  console.log("Partner Profile Convert Successful for " + req.user.name);
+                  return res.redirect("/edit_partner_resume");
+            });
+        });
+    } else {
+        req.flash("error_profile", "클라이언트는 파트너 프로필을 생성 할수 없습니다.");
+        return res.redirect("/user_profile");
+    }
+});
+
+
 
 module.exports = router;
