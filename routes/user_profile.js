@@ -14,8 +14,107 @@ const googleMapsClient = require('@google/maps').createClient({
 });
 
 
-// GET route for viewing user profile
+
+
 router.get("/user_profile", (req, res) => {
+  if (!req.user) {
+    return res.redirect("/");
+  } else {
+    if (req.user.type === "c") {
+        return res.redirect("/user_profile/taskRequestInfo");
+    } else {
+        return res.redirect("/user_profile/partnerProfile");
+    }
+  }
+});
+
+
+
+// GET route for viewing partner profile info
+router.get("/user_profile/partnerProfile", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "c") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_partner_profile");
+    }
+  }
+});
+
+
+// GET route for viewing partner task reservation info
+router.get("/user_profile/tasks", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "c") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_partner_task");
+    }
+  }
+});
+
+
+// GET route for viewing partner schedule info
+router.get("/user_profile/schedule", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    if (req.user.type === "c") {
+        res.redirect("/user_profile");
+    } else {
+        res.render("userprofile_partner_schedule");
+    }
+  }
+});
+
+
+
+
+// GET route for viewing user profile messages
+router.get("/user_profile/messages", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    var type;
+    if (req.user.type === "p") {
+      type = "Partner";
+    } else {
+      type = "Client";
+    }
+
+    if (type === "Client") {
+        Message.find({client: req.user.id}, function(err, foundMessages) {
+            res.render("userprofile_client", {messages: foundMessages});
+        });
+    } else {
+        Message.find({partner: req.user.id}, function(err, foundMessages) {
+            res.render("userprofile_partner_message", {messages: foundMessages});
+        });
+    }
+  }
+});
+
+
+
+// GET route for viewing user profile payment info
+router.get("/user_profile/payment_info", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    res.render("userprofile_partner_paymentInfo");
+  }
+});
+
+
+
+
+
+// GET route for viewing user profile account info
+router.get("/user_profile/account_info", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   } else {
@@ -47,9 +146,7 @@ router.get("/user_profile", (req, res) => {
             companyDescription: req.user.companyDescription,
             kakaoID: req.user.kakaoID
         };
-        Message.find({client: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_client", {accountInfo: accountInfo, messages: foundMessages});
-        });
+        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, messages: foundMessages});
     } else {
         var accountInfo = {
             name: req.user.name,
@@ -60,21 +157,16 @@ router.get("/user_profile", (req, res) => {
             phoneNumber: req.user.phoneNumber,
             kakaoID: req.user.kakaoID
         };
-        Message.find({partner: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_partner", {accountInfo: accountInfo, langinfo: req.user.languages, messages: foundMessages});
-        });
+        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo});
     }
   }
 });
 
 
-router.get("/user_account", (req, res) => {
-    req.flash("error_account", " ");
-    res.redirect("/user_profile");
-});
 
 
-router.get("/edit_partner_resume", function(req, res) {
+
+router.get("/user_profile/edit_partner_resume", function(req, res) {
     if (!req.user) {
       res.redirect("/");
     } else {
@@ -157,6 +249,7 @@ router.post("/create_new_profile", function(req, res) {
         return res.redirect("/user_profile");
     }
 });
+
 
 
 router.post("/convert_partnerProfile_type", function(req, res) {

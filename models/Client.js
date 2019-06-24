@@ -30,7 +30,7 @@ var ClientSchema = mongoose.Schema({
     naverID: String,
     // pic stores the 'filename' of the profile picture
     // 회사 로고
-    companyLogo: String
+    companyLogo: String,
     isExistingMember: {type: Boolean, default: false}
 }, {minimize: false});
 

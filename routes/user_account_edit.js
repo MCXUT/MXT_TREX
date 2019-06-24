@@ -21,7 +21,7 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
           return res.redirect("/user_profile");
         }
         if (!moment(req.body.birthday).isValid()) {
-          req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
+          req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
           return res.redirect("/user_profile");
         }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
@@ -38,7 +38,7 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
             return res.redirect("/user_profile");
           }
           console.log("Client Profile Update Successful for " + foundUser.name);
-          return res.redirect("/user_profile");
+          return res.redirect("/user_profile/account_info");
         });
 
       });
@@ -50,7 +50,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
     // Changing profile of a partner
     // Check that the user has input all the fields
     if (!req.body.streetAddress || !req.body.city || !req.body.country || !req.body.postalCode) {
-        req.flash("error_account", "정보를 업데이트 할수 없습니다. 모든 정보를 입력했는지 확인해주세요.");
+        req.flash("error", "정보를 업데이트 할수 없습니다. 모든 정보를 입력했는지 확인해주세요.");
         return res.redirect("/user_profile");
     }
     
@@ -68,12 +68,12 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
     }, function(err, response) {
         if (err) {
             console.log(err);
-            req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+            req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
             return res.redirect("/user_profile");
         } else {
             // Make sure we are able to get the coordinates of the given address, else throw error
             if (!response.json.results[0]) {
-                req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+                req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
                 return res.redirect("/user_profile");
             }
             var newCoordinates = {
@@ -87,7 +87,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                   return res.redirect("/user_profile");
                 }
                 if (!moment(req.body.birthday).isValid()) {
-                  req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
+                  req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
                   return res.redirect("/user_profile");
                 }
                 foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
@@ -101,11 +101,11 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                 foundUser.save((err) => {
                       if (err) {
                         console.log(err);
-                        req.flash("error_account", "정보를 업데이트 할수 없습니다. 다시 시도해 주세요.");
+                        req.flash("error", "정보를 업데이트 할수 없습니다. 다시 시도해 주세요.");
                         return res.redirect("/user_profile");
                       }
                       console.log("Partner Profile Update Successful for " + foundUser.name);
-                      return res.redirect("/user_account");
+                      return res.redirect("/user_profile/account_info");
                 });
 
             });
@@ -116,7 +116,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
 
 router.post("/user_profile/security", (req, res) => {
     console.log(req.body);
-    res.redirect("/user_profile");
+    res.redirect("/user_profile/account_info");
 });
 
 
@@ -128,12 +128,12 @@ function validateAddress(address) {
     }, function(err, response) {
         if (err) {
             console.log(err);
-            req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+            req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
             return res.redirect("/user_profile");
         }
         // Make sure we are able to get the coordinates of the given address, else throw error
         if (!response.json.results[0]) {
-            req.flash("error_account", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
+            req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 주소를 입력했는지 확인해주세요.");
             return res.redirect("/user_profile");
         }
     });

@@ -81,29 +81,13 @@
     border: 1px solid rgb(166, 80, 110);
 }
 
+.bottom .todisplay {
+    display: none;
+}
 /* display selector */
-/* 프로필 관리 */
-.bottom .todisplay.partnerProfileInfo {
-    display: none;
-}
-.bottom .todisplay.partnerProfileInfo.profileactive {
+.bottom .todisplay.profileactive {
     display: block;
 }
-/* 메세지 */
-.bottom .todisplay.messages {
-    display: none;
-}
-.bottom .todisplay.messages.profileactive {
-    display: block;
-}
-/* 계정 관리 */
-.bottom .todisplay.accountInfoManage {
-    display: none;
-}
-.bottom .todisplay.accountInfoManage.profileactive {
-    display: block;
-}
-
 
 .bottom .col-md-8 .sections {
     margin: 5% 10% 7%;

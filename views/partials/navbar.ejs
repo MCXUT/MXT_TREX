@@ -41,14 +41,11 @@
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
 
                             <% if (currentUser.type === "p") { %>
-                              <a class="dropdown-item" href="/user_profile">
+                              <a class="dropdown-item" href="/user_profile/partnerProfile">
                                   <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                   프로필 관리</a>
-                              <!-- <a class="dropdown-item" href="#">
-                                  <img src="/static/icons/service.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                  내 서비스 관리</a> -->
                             <% } %>
-                            <a class="dropdown-item" href="/user_account">
+                            <a class="dropdown-item" href="/user_profile/account_info">
                                 <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                 계정 관리</a>
                             <a class="dropdown-item" href="/auth/logout">

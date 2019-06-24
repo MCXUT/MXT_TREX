@@ -76,9 +76,6 @@ app.use(function (req, res, next) {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.fail = req.flash("fail");
-    res.locals.error_profile = req.flash("error_profile");
-    res.locals.error_messages = req.flash("error_messages");
-    res.locals.error_account = req.flash("error_account");
     // res.locals.error_code = req.flash("error_code");
     res.locals.currentUser = req.user;
     // res.locals.email = req.body.email;

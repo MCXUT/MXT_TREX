@@ -27,9 +27,9 @@ const db = mongoose.connection;
 let gfs;
 
 db.once('open', () => {
-  // Initialize stream
-  gfs = Grid(db.db, mongoose.mongo);
-  gfs.collection("profilePics");
+    // Initialize stream
+    gfs = Grid(db.db, mongoose.mongo);
+    gfs.collection("profilePics");
 });
 
 // Create storage engine
@@ -78,7 +78,7 @@ router.post("/user_profile/profilePicUpload_client", upload.single("profilePic")
           return res.redirect("/user_profile");
         }
         console.log("Client Profile Picture Update Successful");
-        return res.redirect("/user_profile");
+        return res.redirect("/user_profile/account_info");
       });
     });
   } else { // if no new picture is selected
@@ -110,7 +110,7 @@ router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"
             return res.redirect("/user_profile");
           }
           console.log("Partner Profile Picture Update Successful");
-          return res.redirect("/user_profile");
+          return res.redirect("/user_profile/account_info");
         });
       });
   } else { // if no new picture is selected
@@ -158,7 +158,7 @@ router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
         return res.redirect("/user_profile");
       }
       console.log("Client Profile Picture Delete Successful");
-      return res.redirect("/user_profile");
+      return res.redirect("/user_profile/account_info");
     });
   });
 });
@@ -187,7 +187,7 @@ router.delete("/user_profile/deletePartnerProfilePic", (req, res) => {
         return res.redirect("/user_profile");
       }
       console.log("Partner Profile Picture Delete Successful");
-      return res.redirect("/user_profile");
+      return res.redirect("/user_profile/account_info");
     });
   });
 });

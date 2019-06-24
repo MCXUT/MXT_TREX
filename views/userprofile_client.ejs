@@ -76,29 +76,13 @@
                 <div class="row top">
                     <div class="col-md-4 col-12">
                         <p class="setting">클라이언트 계정 관리</p>
-                        <% if (error_account.length > 0) { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
-                                <a class="messages" href="#">메세지</a>
-                                <a class="accountInfoManage active" href="#">계정관리</a>
-                            </div>
-                        <% } else if (error_messages.length > 0) { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo" href="#">프로필 관리</a>
-                                <a class="messages active" href="#">메세지</a>
-                                <a class="accountInfoManage" href="#">계정관리</a>
-                            </div>
-                        <% } else { %>
-                            <div class="menu" style="width:250%;">
-                                <a class="partnerProfileInfo active" href="#">프로필 관리</a>
-                                <!-- <a class="taskRequestInfo" href="#">업무 예약 관리</a>
-                                <a class="scheduleInfo" href="#">일정 관리</a> -->
-                                <a class="messages" href="#">메세지</a>
-                                <!-- <a class="paymentInfo" href="#">정산 계좌 등록</a> -->
-                                <a class="accountInfoManage" href="#">계정관리</a>
-                                <!-- <a class="privateinfo" href="#">보안</a> -->
-                            </div>
-                        <% } %>
+                        <div class="menu">
+                            <a class="taskrequestinfo profileactive" href="#taskrequestinfo">견적 요청 관리</a>
+                            <a class="seeapplicants" href="#seeapplicants">지원자 보기</a>
+                            <a class="messages" href="#messages">메세지</a>
+                            <a class="savespartners" href="#savespartners">저장된 파트너</a>
+                            <a class="accountinfo" href="#accountinfo">계정관리</a>
+                        </div>
                     </div>
                 </div>
                 <div class="row bottom">
@@ -112,14 +96,10 @@
                     </div>
                     
                     <div class="col-md-8">
-                        <!-- 프로필 관리 -->
-                        <% if (error_account.length > 0) { %>
-                            <div class="todisplay partnerProfileInfo">
-                        <% } else { %>
-                            <div class="todisplay partnerProfileInfo profileactive">
-                        <% } %>
+                        <!-- 메세지 -->
+                        <div class="todisplay" id="messages">
                         
-                            <% if (error_profile.length > 0) { %>
+                            <% if (error.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error_profile %></span>
                             <% } %>
                             
@@ -209,36 +189,13 @@
                             
                         </div>
                         
-                        
-                        
-                        <!-- 메세지 -->
-                        <% if (error_messages.length > 0) { %>
-                            <div class="todisplay messages profileactive">
-                        <% } else { %>
-                            <div class="todisplay messages">
-                        <% } %>
-                        
-                            <% if (error_messages.length > 0) { %>
-                              <span style="color:red;margin-left:70px;"><%= error_messages %></span>
-                            <% } %>
-                            
-                            
-                            
-                        </div>
-                        
-                        
-                        
                       
                       
                         <!-- 계정 관리 -->
-                        <% if (error_account.length > 0) { %>
-                            <div class="todisplay accountInfoManage profileactive">
-                        <% } else { %>
-                            <div class="todisplay accountInfoManage">
-                        <% }%>
+                        <div class="todisplay" id="accountinfo">
                         
-                          <% if (error_account.length > 0) { %>
-                            <span style="color:red;margin-left:70px;"><%= error_account %></span>
+                          <% if (error.length > 0) { %>
+                            <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>기본 정보</b></p>
@@ -358,108 +315,6 @@
             </div>
         </div>
 
-    <script>
-        $(document).ready(() => {
-            $(".menu").click((e) => {
-                e.preventDefault();
-
-
-                if($(e.target).hasClass("partnerProfileInfo") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("taskRequestInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                // else if($(e.target).hasClass("scheduleInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                else if($(e.target).hasClass("messages") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-                
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("paymentInfo") && !$(e.target).hasClass("active")) {
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".partnerProfileInfo").toggleClass("profileactive");
-                //     $(".taskRequestInfo").toggleClass("profileactive");
-                //     $(".scheduleInfo").toggleClass("profileactive");
-                //     $(".messages").toggleClass("profileactive");
-                //     $(".paymentInfo").toggleClass("profileactive");
-                //     $(".accountInfoManage").toggleClass("profileactive");
-                //     // $(".privateinfo").toggleClass("profileactive");
-                // }
-                else if($(e.target).hasClass("accountInfoManage") && !$(e.target).hasClass("active")) {
-                    var menu = document.querySelector(".menu");
-                    var currentActive = menu.querySelector(".active");
-                    $(currentActive).toggleClass("active");
-                    $(e.target).toggleClass("active");
-
-                    $(".partnerProfileInfo").toggleClass("profileactive");
-                    // $(".taskRequestInfo").toggleClass("profileactive");
-                    // $(".scheduleInfo").toggleClass("profileactive");
-                    $(".messages").toggleClass("profileactive");
-                    // $(".paymentInfo").toggleClass("profileactive");
-                    $(".accountInfoManage").toggleClass("profileactive");
-                    // $(".privateinfo").toggleClass("profileactive");
-                }
-                // else if($(e.target).hasClass("privateinfo") && !$(e.target).hasClass("active")){
-                //     var menu = document.querySelector(".menu");
-                //     var currentActive = menu.querySelector(".active");
-                //     $(currentActive).toggleClass("active");
-                //     $(e.target).toggleClass("active");
-                // 
-                //     $(".accountInfo").toggleClass("profileactive");
-                //     $(".privateinfo").toggleClass("profileactive");
-                // }
-            });
-        });
-    </script>
     <script>
     $(document).ready(() => {
         var editbuttons = document.querySelectorAll("#edit");
