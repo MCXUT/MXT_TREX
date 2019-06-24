@@ -2,30 +2,30 @@
     margin: 0 4%;
     border-bottom: 2px solid rgba(100, 100, 100, 0.2);
 }
-.tab .top .col-md-4 {
+.tab .top .col-12 {
     margin: 0 100px;
     padding: 0 0 10px !important;
 }
-.tab .top .col-md-4 p.setting {
+.tab .top .col-12 p.setting {
     margin-bottom: 0;
     padding: 30px 5px;
     font-size: 30px;
     color: rgba(0, 0, 0, 0.7);
 }
-.tab .top .col-md-4 .menu a {
+.tab .top .col-12 .menu a {
     font-size: 20px;
     margin-right: 40px;
     padding: 10px 10px;
     width: auto;
     color: rgba(0, 0, 0, 0.7);
 }
-.tab .top .col-md-4 .menu a:hover {
+.tab .top .col-12 .menu a:hover {
     color: rgb(0, 127, 205);
     text-decoration: none;
     border-bottom: 2px solid rgb(0, 127, 205);
     transition: 0.1s;
 }
-.tab .top .col-md-4 .menu a.active{
+.tab .top .col-12 .menu a.profileactive{
     color: rgb(0, 167, 235);
     border-bottom: 2px solid rgb(0, 127, 205);
 }
@@ -35,7 +35,7 @@
         margin: 0;
         text-align: left;
     }
-    .tab .top .col-md-4 p.setting {
+    .tab .top .col-12 p.setting {
         font-size: 24px;
         margin-left: 70px;
     }
@@ -81,17 +81,11 @@
     border: 1px solid rgb(166, 80, 110);
 }
 
+.bottom .todisplay {
+    display: none;
+}
 /* display selector */
-.bottom .todisplay.accountInfo {
-    display: none;
-}
-.bottom .todisplay.accountInfo.profileactive {
-    display: block;
-}
-.bottom .todisplay.partnerProfileInfo {
-    display: none;
-}
-.bottom .todisplay.partnerProfileInfo.profileactive {
+.bottom .todisplay.profileactive {
     display: block;
 }
 
