@@ -1,4 +1,3 @@
-
 $( function() {
 var availableTags1 = [
   "현지 통역",

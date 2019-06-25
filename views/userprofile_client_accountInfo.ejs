@@ -1,0 +1,303 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .btn-primary:hover {
+                cursor: pointer;
+                background-color: #00b3db !important;
+                border-color: #00b3db !important;
+            }
+            #avatar{
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-size: cover;
+                margin: 0;
+                 position: absolute;
+                 top: 50%;
+                 -ms-transform: translateY(-50%);
+                 transform: translate3d(-50%,-50%,0);
+        
+            }
+            .leftside, .rightside{
+                width: 100%;
+                /* border: 1px solid rgba(0, 0, 0, 0.5); */
+                margin-bottom: 10px;
+                z-index: 2;
+        
+            }
+            #left{
+              max-width: 25%;
+            }
+            #left, #right{
+              height: 80px;
+              padding: 10px;
+            }
+            #sliders a{
+                text-decoration: none;
+                color:black;
+            }
+            #wrapper{
+              width: 50%;
+              height: 550px;
+              overflow-y:scroll;
+              overflow-x: hidden;
+              float:left;
+              position: relative;
+              margin:0;
+              padding-left: 2.5%;
+              padding-right: 2.5%;
+        
+            }
+            #wrapper .row{
+              border: 1px solid rgba(0, 0, 0, 0.3);
+              width: 500px;
+            }
+            #wrapper h4{
+              font-size: 20px;
+        
+            }
+        </style>
+        
+        <title>Member - 트렉스</title>
+
+        <% include ./partials/header %>
+
+    </head>
+    <body>
+
+        <% include ./partials/proficiencychart %>
+
+        <% include ./partials/navbar %>
+
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        <div class="profile">
+            <div class="tab">
+                <div class="row top">
+                    <div class="col-12">
+                        <p class="setting">클라이언트 계정 관리</p>
+                        <div class="menu">
+                            <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
+                            <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <a class="saved_partners" href="/user_profile/saved_partners">저장된 파트너</a>
+                            <a class="accountinfo profileactive" href="/user_profile/account_info">계정관리</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col-md-4 col-12">
+                        <% if (currentUser.companyLogo) { %>
+                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                        <% } %>
+                        <p class="userName"><%= currentUser.name %></p>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        
+                        
+                        <!--  계정 관리  -->
+                        <% if (error.length > 0) { %>
+                          <span style="color:red;margin-left:70px;"><%= error %></span>
+                        <% } %>
+                          <div class="row sections basic" id="basic">
+                              <p class="basictitle"><b>기본 정보</b></p>
+                              <form id="basicinfoform" action="/user_profile/basicClientInfo" method="post"></form>
+                              <div class="buttons basicinfo">
+                                  <button class="btn btn-info editbuttons activebutton" id="edit">편집</a>
+                                  <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                  <button class="btn btn-info editbuttons" id="confirm" form="basicinfoform">확인</a>
+                              </div>
+                              <div class="divider"></div>
+
+                              <div class="row element">
+                                      <span><i class="fa fa-birthday-cake" aria-hidden="true"></i><b>생일</b></span>
+                                      <span class="answer switch active"><%= accountInfo.displayBirthday %></span>
+                                      <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span>
+
+                              </div>
+                              <div class="row element">
+                                      <span><i class="fas fa-table" aria-hidden="true"></i><b>업종</b></span>
+                                      <span class="answer switch active"><%= accountInfo.category %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="category" value="<%= accountInfo.category %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <!-- <i class="far fa-id-card"></i> -->
+                                      <span><i class="fas fa-id-badge" aria-hidden="true"></i><b>담당자 직급</b></span>
+                                      <span class="answer switch active"><%= accountInfo.managerPosition %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="managerPosition" placeholder="직급" value="<%= accountInfo.managerPosition %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="fa fa-phone" aria-hidden="true"></i><b>담당자 전화번호</b></span>
+                                      <span class="answer switch active"><%= accountInfo.managerPhoneNumber %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="managerPhoneNumber" value="<%= accountInfo.managerPhoneNumber %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="far fa-window-maximize" aria-hidden="true"></i><b>회사 이름</b></span>
+                                      <span class="answer switch active"><%= accountInfo.companyName %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="companyName" value="<%= accountInfo.companyName %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="far fa-window-maximize" aria-hidden="true"></i><b>회사 웹사이트</b></span>
+                                      <span class="answer switch active"><%= accountInfo.companyWebsite %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="companyWebsite" value="<%= accountInfo.companyWebsite %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="fas fa-share-alt-square" aria-hidden="true"></i><b>회사 SNS</b></span>
+                                      <span class="answer switch active"><%= accountInfo.companySNS %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="companySNS" value="<%= accountInfo.companySNS %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="fas fa-briefcase" aria-hidden="true"></i><b>회사 소개</b></span>
+                                      <span class="answer switch active"><%= accountInfo.companyDescription %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="companyDescription" value="<%= accountInfo.companyDescription %>"></span>
+                              </div>
+                              <div class="row element">
+                                      <span><i class="fas fa-mobile-alt" aria-hidden="true"></i><b>카카오톡 ID</b></span>
+                                      <span class="answer switch active"><%= accountInfo.kakaoID %></span>
+                                      <span class="switch"><input form="basicinfoform" class="form-control" name="kakaoID" value="<%= accountInfo.kakaoID %>"></span>
+                              </div>
+                          </div>
+
+                          <div class="row sections photo" id="photo">
+                              <p class="basictitle"><b>회사 로고</b></p>
+                              <form id="changePic" action="/user_profile/companyLogoUpload" method="post" enctype="multipart/form-data"></form>
+                              <form id="defaultPic" action="/user_profile/deleteCompanyLogo?_method=DELETE" method="post"></form>
+                              <div class="buttons photoinfo">
+                                  <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
+                                  <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                  <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</a>
+                                  <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+                              </div>
+                              <div class="divider"></div>
+                              <div class="row element" style="margin-left:15px;">
+                                  
+                                    <span class="switch">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                                                    Browse&hellip; <input form="changePic" type="file" name="companyLogo" accept="image/*" style="display:none;" required />
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" style="max-width:400px!important;" readonly>
+                                        </div>
+                                    </span>
+                                    
+                                    <span class="switch">
+                                      <font size=2>로고 사이즈는 150x150px로 맞춰주세요.</font>
+                                    </span>
+                                    
+                              </div>
+                          </div>
+                          
+                          
+                          <div class="row sections security" id="security">
+                              <p class="basictitle"><b>보안 정보</b></p>
+                              <form id="privateinfoform" action="/user_profile/security" method="post">
+                              </form>
+                              <div class="buttons privateinfo">
+                                  <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
+                                  <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                  <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
+                              </div>
+                              <div class="divider"></div>
+                              <div class="row element">
+                                      <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
+                                      <span class="answer switch active">********</span>
+                                      <span class="currentpassword switch"><i class="fa fa-lock" aria-hidden="true"></i><b>현재 비밀번호</b></span>
+                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                              </div>
+                              <div class="row element">
+                                      <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
+                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                              </div>
+                              <div class="row element">
+                                      <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
+                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                              </div>
+                          </div>
+
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+    $(document).ready(() => {
+        var editbuttons = document.querySelectorAll("#edit");
+        var confirmbuttons = document.querySelectorAll("#confirm");
+        var cancelbuttons = document.querySelectorAll("#cancel");
+
+        editbuttons.forEach((editbutton) => {
+                $(editbutton).click((e) => {
+                    // e.preventDefault();
+
+                    var parentDivision = editbutton.parentElement;
+                    var parentDivisionClass = parentDivision.className.split(" ");
+                    var allButtons = parentDivision.querySelectorAll("button");
+                    allButtons.forEach((button) => {
+                        $(button).toggleClass("activebutton");
+                    });
+
+                    if(parentDivisionClass[1] === "basicinfo") {
+                        var spans = document.getElementById("basic").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "photoinfo") {
+                        var spans = document.getElementById("photo").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "privateinfo") {
+                        var spans = document.getElementById("security").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    }
+                });
+            });
+    });
+    </script>
+
+    <script>
+        // Script for file input (profile picture in this case) button and displaying the file name
+        $(function() {
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready( function() {
+                $(':file').on('fileselect', function(event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if( input.length ) {
+                      input.val(log);
+                    } else {
+                      if( log ) alert(log);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="/static/scripts/profileedit.js"></script>
+
+    <% include ./partials/footer %>
+
+    </body>
+</html>

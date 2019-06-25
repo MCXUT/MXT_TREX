@@ -76,21 +76,20 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
+                        <p class="setting">클라이언트 계정 관리</p>
                         <div class="menu">
-                            <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
-                            <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
-                            <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages profileactive" href="/user_profile/messages">메세지</a>
-                            <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
+                            <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
+                            <a class="applicants_info profileactive" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <a class="saved_partners" href="/user_profile/saved_partners">저장된 파트너</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
-                        <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                        <% if (currentUser.companyLogo) { %>
+                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                         <% } else { %>
                           <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
@@ -100,55 +99,17 @@
                     <div class="col-md-8">
                         
                         
+                        <!--  지원자 보기  -->
+                        <% if (error.length > 0) { %>
+                          <span style="color:red;margin-left:70px;"><%= error %></span>
+                        <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>지원자 보기</b></p>
+                              
                         
                         
-                        <!-- 메세지 정보  -->
-                          <% if (error.length > 0) { %>
-                            <span style="color:red;margin-left:70px;"><%= error %></span>
-                          <% } %>
-                                <p class="basictitle"><b>메세지 정보</b></p>
-                                
-                                <div class="wrapper" id="wrapper" style="width: 100%; height: 550px; overflow-y:scroll;
-                                  overflow-x: hidden; float:left; position: relative; margin:0;
-                                  padding-left: 2.5%; padding-right: 2.5%;">
-                                    <div id="sliders">
-                                        <% for (var i = 0; i < messages.length; i++) { %>
-                                                <a href="/message_room/<%=messages[i].id%>">
-                                                    <div class="row" id="formore" style="margin-bottom: 10px; margin-top: 50px; cursor: pointer;">
-                                                        <div class="col" id="left">
-                                                            <div class="leftside">
-                                                                <center>
-                                                                    <% if (messages[i].clientPic) { %>
-                                                                        <img id="avatar" src="/logo/<%= clientPic %>">
-                                                                    <% } else { %>
-                                                                        <img id="avatar" src="/static/images/noprofilepic.jpeg">
-                                                                    <% } %>
-                                                                </center>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col" id="right">
-                                                            <div class="rightside">
-                                                                <div class="text-left">
-                                                                    <h4><%= messages[i].clientName %></h4>
-                                                                </div>
-                                                                <div class="text-left">
-                                                                    <span class="body-trex">
-                                                                        <%= messages[i].detail[[messages[i].detail.length-1]].content %><br>
-                                                                        <font size=1><%= messages[i].detail[[messages[i].detail.length-1]].time %></font>
-                                                                        <span style="font-size: 35px; float: right; transform: translate3d(0, -50% ,0)">
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                        <%  } %>
-                                    </div>
-                                </div>
-                        </div>
-
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
