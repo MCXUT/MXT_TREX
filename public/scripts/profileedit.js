@@ -232,6 +232,7 @@ $(document).ready(() => {
 
         $("#" + currentHash).toggleClass("profileactive");
         $("." + currentHash).toggleClass("profileactive");
+        e.preventDefault();
     });
 
 });
