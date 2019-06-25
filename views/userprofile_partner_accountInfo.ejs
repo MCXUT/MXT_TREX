@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-        
+
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-        
+
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-        
+
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,14 +55,17 @@
             }
             #wrapper h4{
               font-size: 20px;
-        
+
             }
         </style>
-        
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     </head>
     <body>
 
@@ -96,10 +99,10 @@
                         <% } %>
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
-                        
-                        
+
+
                         <!--  계정 관리  -->
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
@@ -117,7 +120,11 @@
                                 <div class="row element">
                                         <span><i class="fa fa-birthday-cake" aria-hidden="true"></i><b>생일</b></span>
                                         <span class="answer switch active"><%= accountInfo.displayBirthday %></span>
-                                        <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span>
+                                        <span class="switch">
+                                          <!-- <input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"> -->
+
+                                        <input type="text" class="form-control" name="birthday" value="<%= accountInfo.birthday %>" />
+                                        </span>
 
                                 </div>
                                 <div class="row element">
@@ -216,9 +223,9 @@
                             </div>
                         </div>
 
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
@@ -292,7 +299,18 @@
     </script>
 
     <script src="/static/scripts/profileedit.js"></script>
-
+    <script>
+    $(function() {
+      $('input[name="birthday"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxYear: parseInt(moment().format('YYYY'),10)
+      }, function(start, end, label) {
+        var years = moment().diff(start, 'years');
+      });
+    });
+    </script>
     <% include ./partials/footer %>
 
     </body>
