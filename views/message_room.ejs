@@ -163,6 +163,9 @@
           height: 516px;
           overflow-y: auto;
         }
+        .received-chats{
+          overflow: hidden;
+        }
         .received-chats-img{
           display: inline-block;
           width: 30px;
@@ -196,7 +199,7 @@
           font-size: 12px;
           margin: 8px 0 0;
           float: right;
-          
+
           /* transform: translate3d(0, -20px, 0); */
         }
         .received-time{
@@ -369,6 +372,7 @@
                                                                 </div>
   <!-- <br><br> -->
                                                                 <div class="received-time"><%= thisMessage.detail[i].time %></div>
+
                                                             </div>
                                                             <br>
                                                         </div>
@@ -403,8 +407,9 @@
   <!-- <br><br> -->
                                                                 <div class="received-time"><%= thisMessage.detail[i].time %></div>
                                                             </div>
-                                                            <br>
+                                                            <!-- <br> -->
                                                         </div>
+                                                        <br>
                                                     <% } %>
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="outgoing-chats">
