@@ -68,16 +68,25 @@ border:2px solid #e60000;
 }
 
 /* Make circles that indicate the steps of the form: */
+.stepbar {
+    font-size: 0;
+}
 .step {
   height: 10px;
-  width: 100%;
+  width: 100px;
   margin: 0 0px;
   background-color: #bbbbbb;
   border: none;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   display: inline-block;
 //  opacity: 0.5;
   margin-bottom:50px;
+}
+.step.firststep {
+    border-radius: 10px 0px 0px 10px;
+}
+.step.laststep {
+    border-radius: 0px 10px 10px 0px;
 }
 
 .step.active {
@@ -107,23 +116,14 @@ border:2px solid #e60000;
       </div>
          <div class="modal-body">
 <form id="regForm" action="/action_page.php" target="_blank">
-  <div style="text-align:center;">
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-  </div>
 
-  <!-- <div style="text-align:center;">
-    <span class="step">
-        <div class="percentage" style="
-            width: 25%;
-            height: 100%;
-            background-color: rgb(208, 255, 151);
-            border-radius: 10px">
-        </div>
-    </span>
-  </div> -->
+
+  <div class="stepbar" style="text-align:center;">
+    <span class="step firststep"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step laststep"></span>
+  </div>
 
   <!-- Circles which indicates the steps of the form: -->
 
@@ -248,7 +248,7 @@ function fixStepIndicator(n) {
   // This function removes the "active" class of all steps...
   var i, x = document.getElementsByClassName("step");
   for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
+    x[i].className = x[i].className.replace("active", "");
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
