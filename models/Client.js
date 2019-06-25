@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 var ClientSchema = mongoose.Schema({
     type: {type: String, default: "c"},
-    // 회사 또는 기관명
+    // 담당자 성함
     name: { type: String, required: true},
     email: { type: String, unique: true},//, required: true},
     password: String,
@@ -13,10 +13,12 @@ var ClientSchema = mongoose.Schema({
     dateOfBirth: String,
     // 업종
     category: String,
-    // 담당자 성함 및 직급
-    managerNamePosition: String,
+    // 담당자 직급
+    managerPosition: String,
     // 담당자 전화번호
     managerPhoneNumber: String,
+    // 화사 또는 기관명 
+    companyName: String,
     // 회사 웹사이트
     companyWebsite: String,
     // 회사 SNS
@@ -30,8 +32,16 @@ var ClientSchema = mongoose.Schema({
     naverID: String,
     // pic stores the 'filename' of the profile picture
     // 회사 로고
-    companyLogo: String,
-    isExistingMember: {type: Boolean, default: false}
+    companyLogo: {
+        type: String,
+        default: ""
+    },
+    isExistingMember: {type: Boolean, default: false},
+    // 가입일자
+    registeredDate: {
+        type: Date,
+        default: Date.now()
+    }
 }, {minimize: false});
 
 var Client = module.exports = mongoose.model('Client', ClientSchema);

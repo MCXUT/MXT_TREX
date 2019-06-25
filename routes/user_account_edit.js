@@ -26,8 +26,9 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
         }
         foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
         foundUser.category = req.body.category;
-        foundUser.managerNamePosition = req.body.managerNamePosition;
+        foundUser.managerPosition = req.body.managerPosition;
         foundUser.managerPhoneNumber = req.body.managerPhoneNumber;
+        foundUser.companyName = req.body.companyName;
         foundUser.companyWebsite = req.body.companyWebsite;
         foundUser.companySNS = req.body.companySNS;
         foundUser.companyDescription = req.body.companyDescription;

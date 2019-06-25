@@ -21,7 +21,7 @@ router.get("/user_profile", (req, res) => {
     return res.redirect("/");
   } else {
     if (req.user.type === "c") {
-        return res.redirect("/user_profile/taskRequestInfo");
+        return res.redirect("/user_profile/task_request_info");
     } else {
         return res.redirect("/user_profile/partnerProfile");
     }
@@ -44,6 +44,20 @@ router.get("/user_profile/partnerProfile", (req, res) => {
 });
 
 
+// GET route for viewing client task request info
+router.get("/user_profile/task_request_info", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_taskRequestInfo");
+    }
+  }
+});
+
+
 // GET route for viewing partner task reservation info
 router.get("/user_profile/tasks", (req, res) => {
   if (!req.user) {
@@ -53,6 +67,20 @@ router.get("/user_profile/tasks", (req, res) => {
           res.redirect("/user_profile");
       } else {
           res.render("userprofile_partner_task");
+    }
+  }
+});
+
+
+// GET route for viewing client applicants info
+router.get("/user_profile/applicants_info", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_applicantsInfo");
     }
   }
 });
@@ -87,12 +115,43 @@ router.get("/user_profile/messages", (req, res) => {
     }
 
     if (type === "Client") {
+        var partnerPic = [];
         Message.find({client: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_client", {messages: foundMessages});
+            Partner.find({}, function(err, partnerList) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                for (var i = 0; i < foundMessages.length; i++) {
+                    for (var j = 0; j < partnerList.length; j++) {
+                        if (partnerList[j].id == foundMessages[i].partner) {
+                            partnerPic.push(partnerList[j].profilePic);
+                            j = partnerList.length;
+                        }
+                    }
+                }
+                return res.render("userprofile_client_message", {messages: foundMessages, partnerPic: partnerPic});
+            });
+            
         });
     } else {
+        var clientPic = [];
         Message.find({partner: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_partner_message", {messages: foundMessages});
+            Client.find({}, function(err, clientList) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                for (var i = 0; i < foundMessages.length; i++) {
+                    for (var j = 0; j < clientList.length; j++) {
+                        if (clientList[j].id == foundMessages[i].client) {
+                            clientPic.push(clientList[j].companyLogo);
+                            j = clientList.length;
+                        }
+                    }
+                }
+                return res.render("userprofile_partner_message", {messages: foundMessages, clientPic: clientPic});
+            });
         });
     }
   }
@@ -109,6 +168,20 @@ router.get("/user_profile/payment_info", (req, res) => {
   }
 });
 
+
+
+// GET route for viewing client saved partners
+router.get("/user_profile/saved_partners", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_savedPartners");
+    }
+  }
+});
 
 
 
@@ -139,14 +212,15 @@ router.get("/user_profile/account_info", (req, res) => {
             birthday: birthday,
             displayBirthday: displayBirthday,
             category: req.user.category,
-            managerNamePosition: req.user.managerNamePosition,
+            managerPosition: req.user.managerPosition,
             managerPhoneNumber: req.user.managerPhoneNumber,
+            companyName: req.user.companyName,
             companyWebsite: req.user.companyWebsite,
             companySNS: req.user.companySNS,
             companyDescription: req.user.companyDescription,
             kakaoID: req.user.kakaoID
         };
-        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, messages: foundMessages});
+        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo});
     } else {
         var accountInfo = {
             name: req.user.name,

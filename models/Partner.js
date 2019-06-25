@@ -53,8 +53,14 @@ var PartnerSchema = mongoose.Schema({
     googleID: String,
     naverID: String,
     // pic stores the 'filename' of the profile picture
-    profilePic: String,
-    coverPhoto: String,
+    profilePic: {
+        type: String,
+        default: ""
+    },
+    coverPhoto: {
+        type: String,
+        default: ""
+    },
     partnerProfile: {
         type: String,
         default: ""
@@ -63,7 +69,7 @@ var PartnerSchema = mongoose.Schema({
     registeredDate: {
         type: Date,
         default: Date.now()
-    },
+    }
 }, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
