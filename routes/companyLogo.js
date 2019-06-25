@@ -27,9 +27,9 @@ const db = mongoose.connection;
 let gfs;
 
 db.once('open', () => {
-    // Initialize stream
-    gfs = Grid(db.db, mongoose.mongo);
-    gfs.collection("profilePics");
+  // Initialize stream
+  gfs = Grid(db.db, mongoose.mongo);
+  gfs.collection("companyLogos");
 });
 
 // Create storage engine
@@ -44,7 +44,7 @@ const storage = new GridFsStorage({
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketName: "profilePics"
+          bucketName: "companyLogos"
         };
         resolve(fileInfo);
       });
@@ -56,29 +56,29 @@ const upload = multer({ storage });
 ////////////////////////////ROUTES////////////////////////////////////
 
 
-// POST route for changing profile picture for client
-router.post("/user_profile/profilePicUpload_client", upload.single("profilePic"), (req, res) => {
-  if (req.file) { // if a new profile picture was posted
-    // if the current user is a client
-    // Find and update client profile picture
+// POST route for changing company logo for client
+router.post("/user_profile/companyLogoUpload", upload.single("companyLogo"), (req, res) => {
+  if (req.file) {
+    // Find and update client company logo
     Client.findById(req.user._id, function(err, foundUser) {
       if (err) {
         console.log(err);
         return res.redirect("/user_profile");
       };
-      if (foundUser.profilePic) {
-        gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
+      // if logo already exists, delete it
+      if (foundUser.companyLogo) {
+        gfs.remove({filename: foundUser.companyLogo, root: "companyLogos"}, (err, gridStore) => {
           if (err) { throw err; }
         });
       }
-      foundUser.profilePic = req.file.filename;
+      foundUser.companyLogo = req.file.filename;
       foundUser.save((err) => {
         if (err) {
           console.log(err);
           return res.redirect("/user_profile");
         }
-        console.log("Client Profile Picture Update Successful");
-        return res.redirect("/user_profile/account_info");
+        console.log("Client Company Logo Update Successful");
+        return res.redirect("/user_profile");
       });
     });
   } else { // if no new picture is selected
@@ -87,42 +87,9 @@ router.post("/user_profile/profilePicUpload_client", upload.single("profilePic")
 });
 
 
-
-// POST route for changing profile picture for partner
-router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"), (req, res) => {
-  if (req.file) { // if a new profile picture was posted
-      // if the current user is a partner
-      // Find and update client profile picture
-      Partner.findById(req.user._id, function(err, foundUser) {
-        if (err) {
-          console.log(err);
-          return res.redirect("/user_profile");
-        };
-        if (foundUser.profilePic) {
-          gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
-            if (err) { throw err; }
-          });
-        }
-        foundUser.profilePic = req.file.filename;
-        foundUser.save((err) => {
-          if (err) {
-            console.log(err);
-            return res.redirect("/user_profile");
-          }
-          console.log("Partner Profile Picture Update Successful");
-          return res.redirect("/user_profile/account_info");
-        });
-      });
-  } else { // if no new picture is selected
-    res.redirect("/user_profile");
-  }
-});
-
-
-
-// @route GET /profilePic/:filename
-// @desc Display profilePic
-router.get("/profilePic/:filename", (req, res) => {
+// @route GET /logo/:filename
+// @desc Display logo
+router.get("/logo/:filename", (req, res) => {
   gfs.files.findOne({filename: req.params.filename}, (err, file) => {
     // Check if file
     if (!file || file.length ==0) {
@@ -138,7 +105,7 @@ router.get("/profilePic/:filename", (req, res) => {
 
 // @route DELETE /user_profile/deleteClientProfilePic
 // @desc Delete the current profile picture of the current client
-router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
+router.delete("/user_profile/deleteCompanyLogo", (req, res) => {
   // if the current user is a client
   // Find and delete client profile picture
   Client.findById(req.user._id, function(err, foundUser) {
@@ -146,50 +113,23 @@ router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
       console.log(err);
       return res.redirect("/user_profile");
     };
-    if (foundUser.profilePic) {
-      gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
+    // if a logo exists, delete
+    if (foundUser.companyLogo) {
+      gfs.remove({filename: foundUser.companyLogo, root: "companyLogos"}, (err, gridStore) => {
         if (err) { throw err; }
       });
     }
-    foundUser.profilePic = "";
+    foundUser.companyLogo = "";
     foundUser.save((err) => {
       if (err) {
         console.log(err);
         return res.redirect("/user_profile");
       }
-      console.log("Client Profile Picture Delete Successful");
-      return res.redirect("/user_profile/account_info");
-    });
-  });
-});
-
-
-
-// @route DELETE /user_profile/deletePartnerProfilePic
-// @desc Delete the current profile picture of the current partner
-router.delete("/user_profile/deletePartnerProfilePic", (req, res) => {
-  // if the current user is a partner
-  // Find and delete partner profile picture
-  Partner.findById(req.user._id, function(err, foundUser) {
-    if (err) {
-      console.log(err);
+      console.log("Client Company Logo Delete Successful");
       return res.redirect("/user_profile");
-    };
-    if (foundUser.profilePic) {
-      gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
-        if (err) { throw err; }
-      });
-    }
-    foundUser.profilePic = "";
-    foundUser.save((err) => {
-      if (err) {
-        console.log(err);
-        return res.redirect("/user_profile");
-      }
-      console.log("Partner Profile Picture Delete Successful");
-      return res.redirect("/user_profile/account_info");
     });
   });
 });
+
 
 module.exports = router;

@@ -31,9 +31,12 @@ const adminPanelRoutes = require("./routes/adminPanel");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
+const userAccountEdit = require("./routes/user_account_edit");
 const servicePages = require("./routes/service");
 const taskRoutes = require("./routes/tasks");
 const profilePicRoutes = require("./routes/profilePic");
+const companyLogoRoutes = require("./routes/companyLogo");
+const messageRoutes = require("./routes/messages");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -70,13 +73,13 @@ app.use(tpPassport.session());
 
 app.use(flash());
 app.use(function (req, res, next) {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  res.locals.fail = req.flash("fail");
-  // res.locals.error_code = req.flash("error_code");
-  res.locals.currentUser = req.user;
-  // res.locals.email = req.body.email;
-  next();
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.fail = req.flash("fail");
+    // res.locals.error_code = req.flash("error_code");
+    res.locals.currentUser = req.user;
+    // res.locals.email = req.body.email;
+    next();
 });
 
 
@@ -112,11 +115,13 @@ app.use("/auth", clientPwResetRoutes);
 app.use("/auth", partnerPwResetRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
+app.use("/", userAccountEdit);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
+app.use("/", companyLogoRoutes);
+app.use("/", messageRoutes);
 app.use("/", adminPanelRoutes);
-
 
 app.set('port', process.env.PORT || 8080);
 

@@ -1,4 +1,4 @@
-<!-- price range selector -->
+// price range selector
 
 $( function() {
   $( "#slider-range" ).slider({
