@@ -36,8 +36,7 @@ border:2px solid #e60000;
 .tab {
   display: none;
 }
-.modal-dialog{
-}
+
 #nextBtn{
   background-color: #f8ba00;
   color: #ffffff;
@@ -68,25 +67,16 @@ border:2px solid #e60000;
 }
 
 /* Make circles that indicate the steps of the form: */
-.stepbar {
-    font-size: 0;
-}
 .step {
-  height: 10px;
+  height: 15px;
   width: 100px;
   margin: 0 0px;
   background-color: #bbbbbb;
   border: none;
-  /* border-radius: 10px; */
+//  border-radius: 50%;
   display: inline-block;
 //  opacity: 0.5;
   margin-bottom:50px;
-}
-.step.firststep {
-    border-radius: 10px 0px 0px 10px;
-}
-.step.laststep {
-    border-radius: 0px 10px 10px 0px;
 }
 
 .step.active {
@@ -97,25 +87,24 @@ border:2px solid #e60000;
 .step.finish {
   background-color: #f8ba00;
 }
-
 </style>
 
-<div class="modal fade text-center" id="myModal2" >
-  <div class="modal-dialog modal-lg" style="width:650px;">
+<div class="modal fade" id="myModal2">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center" >
         <h3 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
         <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
       </div>
          <div class="modal-body">
-<form id="regForm" action="/action_page.php" target="_blank">
+<form id="regForm" action="/action_page.php">
 
 
-  <div class="stepbar" style="text-align:center;">
-    <span class="step firststep"></span>
+  <div style="text-align:center;">
     <span class="step"></span>
     <span class="step"></span>
-    <span class="step laststep"></span>
+    <span class="step"></span>
+    <span class="step"></span>
   </div>
 
   <!-- Circles which indicates the steps of the form: -->
@@ -219,7 +208,7 @@ function fixStepIndicator(n) {
   // This function removes the "active" class of all steps...
   var i, x = document.getElementsByClassName("step");
   for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace("active", "");
+    x[i].className = x[i].className.replace(" active", "");
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
