@@ -1,3 +1,4 @@
+
 <style>
 * {
   box-sizing: border-box;
@@ -98,21 +99,26 @@ border:2px solid #e60000;
   background-color: #f8ba00;
 }
 
+
+
 </style>
 
-<div class="modal fade text-center" id="myModal2" >
+<script>
+function closeAllModal(){
+  document.getElementById('closeAll').click();
+  document.getElementById('closeAll2').click();
+  document.getElementById('myModal2').style.opacity='1.0'
+}
+</script>
+
+<div class="modal fade text-center" id="myModal2">
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
       <div class="modal-header text-center" >
-        <h3 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
-          <button type="button" class="close" data-toggle="modal" data-target="#myModal3">&times;</button></h3>
-
-
-        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
-          <a href="#" data-toggle="modal" data-target="#myModal2"> -->
-
-
-
+        <h4 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
+          <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999;"></div>
+        </h4>
+          <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
       </div>
          <div class="modal-body">
 <form id="regForm" action="/action_page.php" target="_blank">
@@ -158,27 +164,32 @@ border:2px solid #e60000;
 </div>
 </div>
 
-
 <!-- Modal -->
+
 <div class="modal fade" id="myModal3" role="dialog">
-<div class="modal-dialog modal-sm">
-<div class="modal-content">
-<div class="modal-header">
-<br>
-</div>
-<div class="modal-body">
-<p>정말 그만두시겠어요?</p>
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="modal-dialog modal-sm" style="margin-top:12%;">
+    <div class="modal-content">
+      <div class="modal-header" style="display:none;">
+        <br>
+      </div>
+      <div class="modal-body text-center">
+        <br><br>
+        <p style="font-size:23px;">정말 그만두시겠어요?</p>
+      </div>
+      <hr style="width:100%;">
+      <div  class="text-center"> <!-- class="modal-footer " -->
+        <button type="button" class="btn btn-default " onclick="closeAllModal();" style="height:50px;color:#999999;">그만 두기</button>
+        <button type="button" id="button1" class="btn btn-default" onclick="document.getElementById('myModal2').style.opacity='1.0'" data-dismiss="modal">계속 하기</button>
 
+        <br>
+        <button id="closeAll2" type="button" data-dismiss="modal" style="display:none;"></button>
+        <br>
+      </div>
 
+    </div>
+  </div>
 </div>
-<div class="modal-footer">
 
-</div>
-</div>
-</div>
-</div>
 
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
