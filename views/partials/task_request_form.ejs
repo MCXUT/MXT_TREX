@@ -36,7 +36,8 @@ border:2px solid #e60000;
 .tab {
   display: none;
 }
-
+.modal-dialog{
+}
 #nextBtn{
   background-color: #f8ba00;
   color: #ffffff;
@@ -87,17 +88,18 @@ border:2px solid #e60000;
 .step.finish {
   background-color: #f8ba00;
 }
+
 </style>
 
-<div class="modal fade" id="myModal2">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade text-center" id="myModal2" >
+  <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
       <div class="modal-header text-center" >
         <h3 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
         <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
       </div>
          <div class="modal-body">
-<form id="regForm" action="/action_page.php">
+<form id="regForm" action="/action_page.php" target="_blank">
 
 
   <div style="text-align:center;">

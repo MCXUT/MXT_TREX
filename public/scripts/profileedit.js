@@ -224,6 +224,7 @@ $(document).ready(() => {
 $(document).ready(() => {
     $(".menu a").click((e) => {
         e.preventDefault();
+        console.log(e);
         window.location.hash = e.target.hash;
 
         var currentHash = window.location.hash.slice(1);

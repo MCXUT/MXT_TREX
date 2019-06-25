@@ -24,23 +24,28 @@
                     <li class="nav-item dropdown" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
-                            <% if (currentUser.pic) { %>
-                              <img class="profileimg" src="/image/<%= currentUser.pic %>" style="max-height:40px;border-radius:25px;">
+                            <% if (currentUser.type === "p") { %>
+                                <% if (currentUser.profilePic) { %>
+                                  <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>" style="max-height:40px;border-radius:25px;">
+                                <% } else { %>
+                                  <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                                <% } %>
                             <% } else { %>
-                              <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                                <% if (currentUser.companyLogo) { %>
+                                  <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>" style="max-height:40px;border-radius:25px;">
+                                <% } else { %>
+                                  <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                                <% } %>
                             <% } %>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
 
                             <% if (currentUser.type === "p") { %>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="/user_profile/partnerProfile">
                                   <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                   프로필 관리</a>
-                              <a class="dropdown-item" href="#">
-                                  <img src="/static/icons/service.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                  내 서비스 관리</a>
                             <% } %>
-                            <a class="dropdown-item" href="/user_profile">
+                            <a class="dropdown-item" href="/user_profile/account_info">
                                 <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                 계정 관리</a>
                             <a class="dropdown-item" href="/auth/logout">
