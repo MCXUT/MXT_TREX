@@ -36,7 +36,7 @@ var ClientSchema = mongoose.Schema({
         type: String,
         default: ""
     },
-    isExistingMember: {type: Boolean, default: false},
+    // isExistingMember: {type: Boolean, default: false},
     // 가입일자
     registeredDate: {
         type: Date,

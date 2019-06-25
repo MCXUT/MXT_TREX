@@ -41,16 +41,71 @@
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
 
                             <% if (currentUser.type === "p") { %>
-                              <a class="dropdown-item" href="/user_profile/partnerProfile">
-                                  <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                  프로필 관리</a>
+                                <!-- dropdown for partners -->
+                                <a class="dropdown-item" href="/user_profile/partnerProfile">
+                                    <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    프로필 관리
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/tasks">
+                                    <!-- <img src="/static/icons/partner_tasks.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    <i class="fas fa-tasks" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    업무 예약 관리
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/schedule">
+                                    <!-- <img src="/static/icons/partner_schedule.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    <i class="far fa-calendar-alt" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    일정 관리
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/messages">
+                                    <!-- <img src="/static/icons/messages.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    메세지
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/payment_info">
+                                    <!-- <img src="/static/icons/.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    <i class="far fa-credit-card" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    정산 계좌 등록
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/account_info">
+                                    <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    계정 관리
+                                </a>
+                                <a class="dropdown-item" href="/auth/logout">
+                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    로그아웃
+                                </a>
+                            <% } else if (currentUser.type === "c") { %>
+                                <!-- dropdown for clients -->
+                                <a class="dropdown-item" href="/user_profile/task_request_info">
+                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    
+                                    견적 요청 관리
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/applicants_info">
+                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    
+                                    지원자 보기
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/messages">
+                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    메세지
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/saved_partners">
+                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
+                                    
+                                    저장된 파트너
+                                </a>
+                                <a class="dropdown-item" href="/user_profile/account_info">
+                                    <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    계정 관리
+                                </a>
+                                <a class="dropdown-item" href="/auth/logout">
+                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    로그아웃
+                                </a>
                             <% } %>
-                            <a class="dropdown-item" href="/user_profile/account_info">
-                                <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                계정 관리</a>
-                            <a class="dropdown-item" href="/auth/logout">
-                                <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                로그아웃</a>
+                            
                         </div>
                     </li>
                 </ul>

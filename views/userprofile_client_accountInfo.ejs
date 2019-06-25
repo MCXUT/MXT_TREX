@@ -62,6 +62,11 @@
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     </head>
     <body>
@@ -71,6 +76,10 @@
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
+        
+        <script src="js/jquery.js"></script> 
+        <script src="js/moment.min.js"></script> 
+        <script src="js/combodate.js"></script>
 
         <div class="profile">
             <div class="tab">
@@ -116,8 +125,10 @@
                               <div class="row element">
                                       <span><i class="fa fa-birthday-cake" aria-hidden="true"></i><b>생일</b></span>
                                       <span class="answer switch active"><%= accountInfo.displayBirthday %></span>
-                                      <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span>
-
+                                      <!-- <span class="switch"><input type="date" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"></span> -->
+                                      <span class="switch">
+                                          <input type="text" form="basicinfoform" class="form-control" name="birthday" value="<%= accountInfo.birthday %>"/>
+                                      </span>
                               </div>
                               <div class="row element">
                                       <span><i class="fas fa-table" aria-hidden="true"></i><b>업종</b></span>
@@ -294,8 +305,30 @@
             });
         });
     </script>
-
+    
+    <script>
+        $(function(){
+            $('pickBirthday').combodate({
+                minYear: 1975,
+                maxYear: 2013
+            });
+        });
+    </script>
+    
     <script src="/static/scripts/profileedit.js"></script>
+    
+    <script>
+    $(function() {
+      $('input[name="birthday"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxYear: parseInt(moment().format('YYYY'),10)
+      }, function(start, end, label) {
+        var years = moment().diff(start, 'years');
+      });
+    });
+    </script>
 
     <% include ./partials/footer %>
 

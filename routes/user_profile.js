@@ -200,10 +200,11 @@ router.get("/user_profile/account_info", (req, res) => {
     var birthday;
     var displayBirthday;
     if (req.user.dateOfBirth) {
-      birthday = moment(req.user.dateOfBirth).format('YYYY-MM-DD');
-      displayBirthday = moment(birthday).format('MMMM DD, YYYY');
+        displayBirthday = req.user.dateOfBirth;
+        birthday = moment(req.user.dateOfBirth).format('MM/DD/YYYY');
+        // displayBirthday = moment(birthday).format('MMMM DD, YYYY');
     } else {
-      birthday = req.user.dateOfBirth;
+        birthday = req.user.dateOfBirth;
     }
     
 

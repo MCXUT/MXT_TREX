@@ -8,7 +8,7 @@ var PartnerSchema = mongoose.Schema({
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    dateOfBirth: Date,
+    dateOfBirth: String,
     languages: {
         langchoice: [String],
         langproficiency: [String]

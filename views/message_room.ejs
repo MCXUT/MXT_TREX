@@ -354,23 +354,6 @@
                                         <div class="msg-page">
                                             <% if(currentUser.type === "c") { %>
                                                 <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
-                                                    <% if (thisMessage.detail[i].author === "c") { %>
-                                                        <div class="outgoing-chats">
-                                                            <div class="outgoing-chats-msg">
-                                                                <p><%= thisMessage.detail[i].content %></p>
-                                                                <!-- <span class="outgoing-time"><%= thisMessage.detail[i].time %></span> -->
-                                                            </div>
-
-                                                            <div class="outgoing-chats-img">
-                                                                <% if (thisMessage.clientPic) { %>
-                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
-                                                                <% } else { %>
-                                                                  <img src="/static/images/noprofilepic.jpeg">
-                                                                <% } %>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <div class="outgoing-time"><%= thisMessage.detail[i].time %></div> -->
-                                                    <% } %>
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="received-chats">
                                                             <div class="received-chats-img">
@@ -383,12 +366,21 @@
                                                             <div class="received-msg">
                                                                 <div class="received-msg-inbox">
                                                                     <p><%= thisMessage.detail[i].content %></p>
-                                                                    <!-- <span class="received-time"><%= thisMessage.detail[i].time %></span> -->
                                                                 </div>
-
+  <!-- <br><br> -->
                                                                 <div class="received-time"><%= thisMessage.detail[i].time %></div>
                                                             </div>
+                                                            <br>
                                                         </div>
+                                                    <% } %>
+                                                    <% if (thisMessage.detail[i].author === "c") { %>
+                                                        <div class="outgoing-chats">
+                                                            <div class="outgoing-chats-msg">
+                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                            </div>
+                                                            <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
+                                                        </div>
+                                                        <br>
                                                     <% } %>
                                                 <% } %>
                                             <% } else if (currentUser.type === "p") { %>
