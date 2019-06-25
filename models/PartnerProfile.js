@@ -17,10 +17,16 @@ const bcrypt = require("bcryptjs");
 // });
 
 var ServiceSchema = mongoose.Schema({
-    serviceName: String,
-    hourlyRate: Number,
+    serviceName: {
+        type: String
+    },
+    hourlyRate: {
+        type: Number
+    },
     // 서비스 소개
-    aboutService: String
+    aboutService: {
+        type: String
+    }
 });
 
 
@@ -42,7 +48,9 @@ var PartnerProfileSchema = mongoose.Schema({
         type: String
     },
     // 사업자 등록증 (에이전시일때만)
-    businessRegistration: String,
+    businessRegistration: {
+        type: String
+    },
     // // 직업
     // occupation: [String],
     // // 학력
@@ -64,7 +72,9 @@ var PartnerProfileSchema = mongoose.Schema({
         default: false
     },
     // 미디어 (자격증, 면허증, 포트폴리오)
-    media: String,
+    media: {
+        type: String
+    },
     // 등록일자
     registeredDate: {
         type: Date,

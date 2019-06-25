@@ -2,18 +2,36 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 var IndividualMessage = mongoose.Schema({
-    content: String,
-    author: String, // "c" or "p"
-    time: String
+    content: {
+        type: String
+    },
+    author: {
+        type: String // "c" or "p"
+    },
+    time: {
+        type: String
+    }
 });
 
 var MessageSchema = mongoose.Schema({
-    client: String,
-    clientName: String,
-    clientPic: String,
-    partner: String,
-    partnerName: String,
-    partnerPic: String,
+    client: {
+        type: String
+    },
+    clientName: {
+        type: String
+    },
+    clientPic: {
+        type: String
+    },
+    partner: {
+        type: String
+    },
+    partnerName: {
+        type: String
+    },
+    partnerPic: {
+        type: String
+    },
     detail: [IndividualMessage]
 }, {minimize: false});
 
