@@ -279,12 +279,21 @@
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
-                        <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                        <% if (currentUser.type === "c") { %>
+                            <% if (currentUser.companyLogo) { %>
+                              <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                            <% } else { %>
+                              <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <% } %>
+                            <p class="userName"><%= currentUser.name %></p>
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <% if (currentUser.profilePic) { %>
+                              <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <% } else { %>
+                              <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <% } %>
+                            <p class="userName"><%= currentUser.name %></p>
                         <% } %>
-                        <p class="userName"><%= currentUser.name %></p>
                     </div>
                     
                     
