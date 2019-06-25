@@ -223,7 +223,7 @@ $(document).ready(() => {
 
 $(document).ready(() => {
     $(".menu a").click((e) => {
-        e.preventDefault();
+
         window.location.hash = e.target.hash;
 
         var currentHash = window.location.hash.slice(1);
@@ -231,6 +231,7 @@ $(document).ready(() => {
 
         $("#" + currentHash).toggleClass("profileactive");
         $("." + currentHash).toggleClass("profileactive");
+        e.preventDefault();
     });
 
 });
