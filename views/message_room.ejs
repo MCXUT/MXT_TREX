@@ -101,7 +101,8 @@
           position: relative;
         }
         .container{
-            margin: 0px !important;
+            /* margin: 0px !important; */
+            /* margin-bottom: 50px; */
             padding: 0px;
             padding-right: 0px !important;
             padding-left: 0px !important;
@@ -147,7 +148,7 @@
           color: #fff;
         }
         .chat-page{
-          padding: 0 0 50px 0;
+          /* padding: 0 0 50px 0; */
 
         }
         .msg-inbox{
@@ -456,8 +457,9 @@
                                         <input type="text" form="sendMessageform" class="form-control" name="content" placeholder="메세지쓰기" value="">
                                         <div class="input-group-append" style="width: 40px;">
                                             <span class="input-group-text" style="padding: 0;width: 100%;height: 100%;">
-                                                <button form="sendMessageform" style="padding:0; width:100%;height:100%" type="submit">
-                                                    <i class="fa fa-paper-plane"></i>
+                                                <button form="sendMessageform" style="padding:0; width:100%;height:100%;
+                                                background-color: #007bff; border: none;" type="submit">
+                                                    <i class="fa fa-paper-plane" style="color: #fff"></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -486,6 +488,8 @@
                 </div>
             </div>
         </div>
+
+        <br><br><br><br><br><br>
 
     <script>
         $('#datepicker2').datepicker({
