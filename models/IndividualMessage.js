@@ -10,6 +10,9 @@ var IndividualMessage = mongoose.Schema({
     }, 
     time: {
         type: String
+    },
+    date: {
+        type: String
     }
 });
 
