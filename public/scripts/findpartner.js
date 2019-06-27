@@ -221,28 +221,28 @@ document.getElementById("login").addEventListener("click", (e) => {
 });
 
 
-document.getElementById("registerModal").addEventListener("click", (e) => {
-    if(e.target.className == "modal in modal_site_login ui-draggable") {
-      var memi = document.getElementById("memi").value;
-      var inwon = document.getElementsByClassName("inwon");
-      if(memi != 0){
-      document.getElementById("registerModal").style.display = "none";
-      document.getElementById("inwon").innerHTML = " : " +
-      document.getElementById("memi").value + "명";
-      document.getElementById("login").style.background="rgb(0, 132, 137)";
-      document.getElementById("login").style.color="#fff";
-      } else{
-        document.getElementById("registerModal").style.display = "none";
-        document.getElementById("inwon").innerHTML = "";
-        document.getElementById("login").style.background="#fff";
-        document.getElementById("login").style.color="rgb(72, 72, 72)";
-      }
-
-      // document.getElementById("nal").style.backgroundColor="blue";
-      // document.getElementById("login").style.backgroundColor="blue";
-      // document.getElementById("monsta").style.backgroundColor="blue";
-    }
-});
+// document.getElementById("registerModal").addEventListener("click", (e) => {
+//     if(e.target.className == "modal in modal_site_login ui-draggable") {
+//       var memi = document.getElementById("memi").value;
+//       var inwon = document.getElementsByClassName("inwon");
+//       if(memi != 0){
+//       document.getElementById("registerModal").style.display = "none";
+//       document.getElementById("inwon").innerHTML = " : " +
+//       document.getElementById("memi").value + "명";
+//       document.getElementById("login").style.background="rgb(0, 132, 137)";
+//       document.getElementById("login").style.color="#fff";
+//       } else{
+//         document.getElementById("registerModal").style.display = "none";
+//         document.getElementById("inwon").innerHTML = "";
+//         document.getElementById("login").style.background="#fff";
+//         document.getElementById("login").style.color="rgb(72, 72, 72)";
+//       }
+//
+//       // document.getElementById("nal").style.backgroundColor="blue";
+//       // document.getElementById("login").style.backgroundColor="blue";
+//       // document.getElementById("monsta").style.backgroundColor="blue";
+//     }
+// });
 
 
 //
