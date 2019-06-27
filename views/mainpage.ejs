@@ -122,38 +122,37 @@
 <!-- 트렉스 간편 이용 방법 section-->
 <div class="container-fluid padding text-center">
 
-  <h2 style="margin-bottom:0px;">트렉스 간편 이용 방법</h2>
-   <hr style="width:100px;border:1px #595959 solid;">
+  <h2 id="heading" >트렉스 간편 이용 방법</h2><hr style="width:100px;border:1px #595959 solid;">
   <div class="container">
 <div class="sectionContent">
 <div class="row">
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
-    <h3>1.파트너 검색</h3>
-    <div>출장지를 검색하고 알맞는 파트너에게 업무를 문의하세요.</div>
+    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 100px; width: 100px; margin-bottom:10px;-o-object-fit: contain;">
+    <h3 class="steptitle">1.파트너 검색</h3>
+    <div class="stepdesc">출장지를 검색하고 알맞는 파트너에게 업무를 문의하세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
-    <h3>2.예약 결제</h3>
-    <div>업무일자를 입력하고 예약을 확정지으세요.</div>
+    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 100px; width: 100px;margin-bottom:10px;-o-object-fit: contain;">
+    <h3 class="steptitle">2.예약 결제</h3>
+    <div class="stepdesc">업무일자를 입력하고 예약을 확정지으세요.</div>
   </div>
 
   <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 100px; width: 100px;-o-object-fit: contain;">
-    <h3>3.업무 진행</h3>
-    <div>성공적으로 업무를 진행하고 파트너 리뷰를 작성해주세요.</div>
+    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 100px; width: 100px;margin-bottom:10px;-o-object-fit: contain;">
+    <h3 class="steptitle">3.업무 진행</h3>
+    <div class="stepdesc">성공적으로 업무를 진행하고 파트너 리뷰를 작성해주세요.</div>
   </div>
 </div>
 </div>
 </div>
 </div>
 <!-- end of 트렉스 간편 이용 방법 section -->
-<br><br>
-<!-- 통역 그 이상의 서비스를 경험 해 보세요-->
-<div class="container-fluid padding text-center" style="background-color:#e6e6e6;">
 
-  <h2 id="heading" style="margin-bottom:0px;">통역 그 이상의 서비스를 경험 해 보세요</h2>
+<!-- 통역 그 이상의 서비스를 경험 해 보세요-->
+<div class="container-fluid padding text-center" style="background-color:#fafafa;">
+
+  <h2 id="heading">통역 그 이상의 서비스를 경험 해 보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
   <br>
   <div class="container">
@@ -163,7 +162,7 @@
 
     <h2 class="font1">품질 보장</h2>
     <br>
-    <div>트렉스 파트너는 본인 및 이력 확인,
+    <div class="subdesc">트렉스 파트너는 본인 및 이력 확인,
 통역 업무 여부 확인을 거친 뒤 등록되며,
 인터뷰 후 활동할 수 있습니다.</div>
   </div>
@@ -172,7 +171,7 @@
 
     <h2 class="font1">간편 보장</h2>
     <br>
-    <div>복잡한 고용 과정이 간편해집니다. 전 세계
+    <div class="subdesc">복잡한 고용 과정이 간편해집니다. 전 세계
 어디로 출장 가시던 간편하게 파트너
 매칭, 결제, 업무 검수까지 해결하세요.</div>
   </div>
@@ -181,7 +180,7 @@
 
     <h2 class="font1">특화 된 분야</h2>
     <br>
-    <div>트렉스 파트너는 다양한 분야의 인재들로
+    <div class="subdesc">트렉스 파트너는 다양한 분야의 인재들로
 구성되어 있습니다. 출장 업무와 유사한
 분야에 특화된 파트너에게 업무를 맡기세요.</div>
   </div>
@@ -192,12 +191,10 @@
 
 <!-- /통역 그 이상의 서비스를 경험 해 보세요-->
 
-<br><br>
-
 <!-- 국가/지역 별 파트너를 만나보세요. -->
 
 
-<div id="first-slide"class="container-fluid text-center">
+<div id="first-slide"class="container-fluid padding text-center">
 <h2 id="heading">국가/지역 별 파트너를 만나보세요</h2>
 <hr style="width:100px;border:1px #595959 solid;">
   <div class="container">
@@ -228,11 +225,11 @@
   </div>
 
 </div>
-<br>
+
  <button type="button" name="button" onclick="document.getElementById('third-slide').style.display='block';document.getElementById('first-slide').style.display='none';"id="button2"><i class="fas fa-chevron-left"></i></button>
 <div class="divider2"></div>
 <a href="/city_list">
-  <button type="button" name="button" style="text-align:center;" id="button1">모든 도시 보기</button>
+  <button type="button" name="button" style="text-align:center; font-size: 16px;" id="button1">모든 도시 보기</button>
 </a>
 <div class="divider2"></div>
  <button type="button" name="button" onclick="document.getElementById('first-slide').style.display='none';document.getElementById('second-slide').style.display='block';"id="button2"><i class="fas fa-chevron-right"></i></button>
@@ -243,7 +240,7 @@
 
 
 <div id="second-slide"class="container-fluid text-center" style="display:none;">
-  <h2>국가/지역 별 파트너를 만나보세요</h2>
+  <h2 id="heading">국가/지역 별 파트너를 만나보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
   <div class="container">
     <div class="sectionContent">
@@ -316,11 +313,8 @@
   <a href="/city_list"><img src="/static/images/countries/5seeall.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
   <div class="centered">SEE ALL COUNTRIES</div></a>
   </div>
-
-
-
 </div>
-<br>
+
 <button type="button" name="button" onclick="document.getElementById('second-slide').style.display='block';document.getElementById('third-slide').style.display='none';" id="button2"><i class="fas fa-chevron-left"></i></button>
 <div class="divider2"></div>
 <a href="/city_list">
@@ -333,16 +327,15 @@
 </div>
 
 <!-- /국가/지역 별 파트너를 만나보세요. -->
-<br><br>
+
 <!-- 자주 묻는 질문 & 이용후기-->
-<div class="container-fluid padding text-center" style="background-color:#efefef">
-  <br><br>
+<div class="container-fluid padding text-center" style="background-color:#fafafa;">
 <div class="container">
 <div class="sectionContent">
 <div class="row">
 
 <div class="col-md-12 col-lg-7">
-  <h2 style="color:#f8ba00;">자주 묻는 질문</h2>
+  <h2 class="qna">자주 묻는 질문</h2>
 <style>
 [data-toggle="collapse"]:after {
 display: inline-block;
@@ -355,6 +348,7 @@ display: inline-block;
 content: "\f078";
 transform: rotate(-180deg) ;
 transition: all linear 0.25s;
+font-size: 20px;
 }
 [data-toggle="collapse"].collapsed:after {
 transform: rotate(0deg) ;
@@ -408,11 +402,11 @@ transform: rotate(0deg) ;
 </ol>
 
 <a href="/client_faq?index=1"><button type="button" id="button1">모든 질문 보기</button></a> <!-- href="/client_faq"> -->
-<br><br>
+
 </div>
 
 <div class="col-md-12 col-lg-5">
-<h2><span style='color:#f8ba00'>이용자 </span> 후기</h2>
+<h2 class="qna">이용자 후기</h2>
 <!--Carousel Wrapper-->
 <div id="slides2" class="carousel slide " data-ride="carousel" data-interval="2300">
   <!--Indicators-->
@@ -467,10 +461,9 @@ transform: rotate(0deg) ;
 </div>
 </div>
 <!-- /자주 묻는 질문 & 이용후기 -->
-<br><br>
 <!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
 <div class="container-fluid padding text-center">
-  <h3 id="heading2">기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
+  <h3 id="heading">기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h3>
 <div class="container">
 
 </div>
