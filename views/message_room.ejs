@@ -101,7 +101,8 @@
           position: relative;
         }
         .container{
-            margin: 0px !important;
+            /* margin: 0px !important; */
+            /* margin-bottom: 50px; */
             padding: 0px;
             padding-right: 0px !important;
             padding-left: 0px !important;
@@ -110,7 +111,7 @@
             letter-spacing: 0.5px;
             display: block;
         }
-        img{
+        .container img{
           max-width: 100%;
           border-radius: 50%;
         }
@@ -147,7 +148,7 @@
           color: #fff;
         }
         .chat-page{
-          padding: 0 0 50px 0;
+          /* padding: 0 0 50px 0; */
 
         }
         .msg-inbox{
@@ -162,6 +163,7 @@
         .msg-page{
           height: 516px;
           overflow-y: auto;
+
         }
         .received-chats{
           overflow: hidden;
@@ -237,6 +239,11 @@
 
         }
 
+        .prettyDate{
+          text-align: center;
+          margin-bottom: 20px;
+          color: rgba(0, 0, 0, 0.5);
+        }
 
 
         </style>
@@ -346,111 +353,19 @@
                                     <% } %>
                                     <h6 style="width:500px;"><%= thisMessage.detail[[thisMessage.detail.length-1]].date %>, <%= thisMessage.detail[[thisMessage.detail.length-1]].time %></h6>
                                  </div>
+                                 
+                                 
+                                 
 
                             </div>
 
 
 
-                            <div class="chat-page">
-                                <div class="msg-inbox">
-                                    <div class="chats">
-                                        <div class="msg-page">
-                                            <% if(currentUser.type === "c") { %>
-                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
-                                                    <!-- Display date at first -->
-                                                    <% if (i === 0) { %>
-                                                        <%= thisMessage.detail[i].date %>
-                                                    <% } %>
-                                                    <!-- Display messages -->
-                                                    <% if (thisMessage.detail[i].author === "p") { %>
-                                                        <div class="received-chats">
-                                                            <div class="received-chats-img">
-                                                                <% if (thisMessage.partnerPic) { %>
-                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
-                                                                <% } else { %>
-                                                                  <img src="/static/images/noprofilepic.jpeg">
-                                                                <% } %>
-                                                            </div>
-                                                            <div class="received-msg">
-                                                                <div class="received-msg-inbox">
-                                                                    <p><%= thisMessage.detail[i].content %></p>
-                                                                </div>
-                                                                <div class="received-time"><%= thisMessage.detail[i].time %></div>
-
-                                                            </div>
-                                                            <br>
-                                                        </div>
-                                                    <% } %>
-                                                    <% if (thisMessage.detail[i].author === "c") { %>
-                                                        <div class="outgoing-chats">
-                                                            <div class="outgoing-chats-msg">
-                                                                <p><%= thisMessage.detail[i].content %></p>
-                                                            </div>
-                                                            <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
-                                                        </div>
-                                                        <br>
-                                                    <% } %>
-                                                    <!-- Display date whenever date changes -->
-                                                    <% if (i+1 < thisMessage.detail.length) { %>
-                                                        <% if (thisMessage.detail[i].date !== thisMessage.detail[i+1].date) { %>
-                                                            <%= thisMessage.detail[i+1].date %>
-                                                        <% } %>
-                                                    <% } %>
-                                                <% } %>
-                                            <% } else if (currentUser.type === "p") { %>
-                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
-                                                    <!-- Display date at first -->
-                                                    <% if (i === 0) { %>
-                                                        <%= thisMessage.detail[i].date %>
-                                                    <% } %>
-                                                    <!-- Display messages -->
-                                                    <% if (thisMessage.detail[i].author === "c") { %>
-                                                        <div class="received-chats">
-                                                            <div class="received-chats-img">
-                                                                <% if (thisMessage.clientPic) { %>
-                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
-                                                                <% } else { %>
-                                                                  <img src="/static/images/noprofilepic.jpeg">
-                                                                <% } %>
-                                                            </div>
-                                                            <div class="received-msg">
-                                                                <div class="received-msg-inbox">
-                                                                    <p><%= thisMessage.detail[i].content %></p>
-
-                                                                    <!-- <span class="received-time"><%= thisMessage.detail[i].time %></span> -->
-                                                                </div>
-                                                                <div class="received-time"><%= thisMessage.detail[i].time %></div>
-                                                            </div>
-                                                            <!-- <br> -->
-                                                        </div>
-                                                        <br>
-                                                    <% } %>
-                                                    <% if (thisMessage.detail[i].author === "p") { %>
-                                                        <div class="outgoing-chats">
-                                                            <div class="outgoing-chats-msg">
-                                                                <p><%= thisMessage.detail[i].content %></p>
-
-                                                                <!-- <span class="outgoing-time"><%= thisMessage.detail[i].time %></span> -->
-                                                            </div>
-                                                            <!-- <br><br> -->
-                                                            <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
-                                                        </div>
-                                                        <br>
-                                                    <% } %>
-                                                    <!-- Display date whenever date changes -->
-                                                    <% if (i+1 < thisMessage.detail.length) { %>
-                                                        <% if (thisMessage.detail[i].date !== thisMessage.detail[i+1].date) { %>
-                                                            <%= thisMessage.detail[i+1].date %>
-                                                        <% } %>
-                                                    <% } %>
-                                                <% } %>
-                                            <% } %>
-                                  </div>
-                                </div>
-                              </div>
-
-
-                              <div class="msg-bottom">
+                            <iframe id="frame" src="/message_room_box/<%=thisMessage.id%>" frameborder="0" height="500" width="100%" scrolling="yes"></iframe>
+                            
+                            
+                            
+                            <div class="msg-bottom">
                                 <div class="input-group">
                                     <% if(currentUser.type === "c") { %>
                                         <form id="sendMessageform" action="/send_message_client" method="post"></form>
@@ -462,19 +377,19 @@
                                         <!-- <textarea form="sendMessageform" class="form-control" name="content" placeholder="메세지쓰기" value=""></textarea> -->
                                         <div class="input-group-append" style="width: 40px;">
                                             <span class="input-group-text" style="padding: 0;width: 100%;height: 100%;">
-                                                <button form="sendMessageform" style="padding:0; width:100%;height:100%" type="submit">
-                                                    <i class="fa fa-paper-plane"></i>
+                                                <button form="sendMessageform" style="padding:0; width:100%;height:100%;
+                                                background-color: #007bff; border: none;" type="submit">
+                                                    <i class="fa fa-paper-plane" style="color: #fff"></i>
                                                 </button>
                                             </span>
                                         </div>
 
                                 </div>
                               </div>
-
-
-                            </div>
-
-
+                            
+                            
+                            
+                            
                             <div class="chatBottom">
                               <form action="#" onSubmit="return false;" id="chatForm" method="post">
                                 <input type="hidden" id="name" name="" value="<?php echo $user; ?>">
@@ -493,6 +408,8 @@
             </div>
         </div>
 
+        <br><br><br><br><br><br>
+
     <script>
         $('#datepicker2').datepicker({
             multidate: true
@@ -505,48 +422,13 @@
     </script>
 
     <script>
-        // Script for file input (profile picture in this case) button and displaying the file name
-        $(function() {
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function() {
-                var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            // We can watch for our custom `fileselect` event like this
-            $(document).ready( function() {
-                $(':file').on('fileselect', function(event, numFiles, label) {
-
-                    if (numFiles > 3){
-                        alert("최대 3개의 파일까지만 업로드 해주세요.");
-                    } else {
-                        var input = $(this).parents('.input-group').find(':text'),
-                            log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-
-                        if( input.length ) {
-                            input.val(log);
-                        } else {
-                            if( log ) alert(log);
-                        }
-                    }
-
-                    // var input = $(this).parents('.input-group').find(':text'),
-                    //   log = numFiles > 1 ? numFiles + ' files selected' : label;
-                    //
-                    // if( input.length ) {
-                    //   input.val(log);
-                    // } else {
-                    //   if( log ) alert(log);
-                    // }
-                });
-            });
-        });
+        // reload될때 메세지 아래에서 시작하기
+        // $("#frame").scrollTop($("#frame")[0].scrollHeight);
+        // window.scroll(0, document.documentElement.scrollHeight);
+        
     </script>
 
     <script src="/static/scripts/profileedit.js"></script>
-
     <% include ./partials/footer %>
 
     </body>
