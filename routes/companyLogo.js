@@ -78,7 +78,7 @@ router.post("/user_profile/companyLogoUpload", upload.single("companyLogo"), (re
           return res.redirect("/user_profile");
         }
         console.log("Client Company Logo Update Successful");
-        return res.redirect("/user_profile");
+        return res.redirect("/user_profile/account_info");
       });
     });
   } else { // if no new picture is selected
@@ -126,7 +126,7 @@ router.delete("/user_profile/deleteCompanyLogo", (req, res) => {
         return res.redirect("/user_profile");
       }
       console.log("Client Company Logo Delete Successful");
-      return res.redirect("/user_profile");
+      return res.redirect("/user_profile/account_info");
     });
   });
 });

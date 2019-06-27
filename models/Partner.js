@@ -2,13 +2,30 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 var PartnerSchema = mongoose.Schema({
-    type: {type: String, default: "p"},
-    name: { type: String, required: true},
-    email: { type: String, unique: true},//, required: true},
-    password: String,
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
-    dateOfBirth: Date,
+    type: {
+        type: String,
+        default: "p"
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true
+    },//, required: true},
+    password: {
+        type: String
+    },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: {
+        type: Date
+    },
+    dateOfBirth: {
+        type: String
+    },
     languages: {
         langchoice: [String],
         langproficiency: [String]
@@ -25,9 +42,15 @@ var PartnerSchema = mongoose.Schema({
         type: String,
         default: ""
       },
-      city: String,
-      country: String,
-      postalCode: String,
+      city: {
+          type: String
+      },
+      country: {
+          type: String
+      },
+      postalCode: {
+          type: String
+      },
       coordinates: {
         lat: Number,
         lng: Number,
@@ -47,14 +70,30 @@ var PartnerSchema = mongoose.Schema({
       langchoice: [String],
       langproficiency: [String]
     },
-    phoneNumber: String,
-    kakaoID: String,
-    facebookID: String,
-    googleID: String,
-    naverID: String,
+    phoneNumber: {
+        type: String
+    },
+    kakaoID: {
+        type: String
+    },
+    facebookID: {
+        type: String
+    },
+    googleID: {
+        type: String
+    },
+    naverID: {
+        type: String
+    },
     // pic stores the 'filename' of the profile picture
-    profilePic: String,
-    coverPhoto: String,
+    profilePic: {
+        type: String,
+        default: ""
+    },
+    coverPhoto: {
+        type: String,
+        default: ""
+    },
     partnerProfile: {
         type: String,
         default: ""
@@ -63,7 +102,7 @@ var PartnerSchema = mongoose.Schema({
     registeredDate: {
         type: Date,
         default: Date.now()
-    },
+    }
 }, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);

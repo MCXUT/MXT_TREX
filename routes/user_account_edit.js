@@ -8,7 +8,7 @@ const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 
 const googleMapsClient = require('@google/maps').createClient({
-  key: keys.googleMapAPI.key
+    key: keys.googleMapAPI.key
 });
 
 
@@ -24,10 +24,12 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
           req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
           return res.redirect("/user_profile");
         }
-        foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
+        foundUser.dateOfBirth = moment(req.body.birthday).format("MMMM DD, YYYY");
         foundUser.category = req.body.category;
-        foundUser.managerNamePosition = req.body.managerNamePosition;
+        foundUser.managerPosition = req.body.managerPosition;
         foundUser.managerPhoneNumber = req.body.managerPhoneNumber;
+        foundUser.companyName = req.body.companyName;
+        foundUser.companyAddress = req.body.companyAddress;
         foundUser.companyWebsite = req.body.companyWebsite;
         foundUser.companySNS = req.body.companySNS;
         foundUser.companyDescription = req.body.companyDescription;
@@ -90,7 +92,8 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                   req.flash("error", "정보를 업데이트 할수 없습니다. 올바른 생일을 입력했는지 확인해주세요.");
                   return res.redirect("/user_profile");
                 }
-                foundUser.dateOfBirth = new Date(moment(req.body.birthday).format("YYYY-MMMM-DD"));
+                foundUser.dateOfBirth = moment(req.body.birthday).format("MMMM DD, YYYY");
+                console.log(foundUser.dateOfBirth);
                 foundUser.address.streetAddress = req.body.streetAddress;
                 foundUser.address.city = req.body.city;
                 foundUser.address.country = req.body.country;

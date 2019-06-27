@@ -15,13 +15,13 @@ const googleMapsClient = require('@google/maps').createClient({
 
 
 
-
+// GET route for user_profile home route
 router.get("/user_profile", (req, res) => {
   if (!req.user) {
     return res.redirect("/");
   } else {
     if (req.user.type === "c") {
-        return res.redirect("/user_profile/taskRequestInfo");
+        return res.redirect("/user_profile/task_request_info");
     } else {
         return res.redirect("/user_profile/partnerProfile");
     }
@@ -31,6 +31,7 @@ router.get("/user_profile", (req, res) => {
 
 
 // GET route for viewing partner profile info
+// 프로필 관리 (파트너)
 router.get("/user_profile/partnerProfile", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -44,7 +45,23 @@ router.get("/user_profile/partnerProfile", (req, res) => {
 });
 
 
+// GET route for viewing client task request info
+// 견적 요청 관리 (클라이언트)
+router.get("/user_profile/task_request_info", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_taskRequestInfo");
+    }
+  }
+});
+
+
 // GET route for viewing partner task reservation info
+// 업무 예약 관리 (파트너)
 router.get("/user_profile/tasks", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -58,7 +75,23 @@ router.get("/user_profile/tasks", (req, res) => {
 });
 
 
+// GET route for viewing client applicants info
+// 지원자 보기 (클라이언트)
+router.get("/user_profile/applicants_info", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_applicantsInfo");
+    }
+  }
+});
+
+
 // GET route for viewing partner schedule info
+// 일정 관리 (파트너)
 router.get("/user_profile/schedule", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -75,6 +108,7 @@ router.get("/user_profile/schedule", (req, res) => {
 
 
 // GET route for viewing user profile messages
+// 메세지 (파트너, 클라이언트)
 router.get("/user_profile/messages", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -87,12 +121,43 @@ router.get("/user_profile/messages", (req, res) => {
     }
 
     if (type === "Client") {
+        var partnerPic = [];
         Message.find({client: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_client", {messages: foundMessages});
+            Partner.find({}, function(err, partnerList) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                for (var i = 0; i < foundMessages.length; i++) {
+                    for (var j = 0; j < partnerList.length; j++) {
+                        if (partnerList[j].id == foundMessages[i].partner) {
+                            partnerPic.push(partnerList[j].profilePic);
+                            j = partnerList.length;
+                        }
+                    }
+                }
+                return res.render("userprofile_client_message", {messages: foundMessages, partnerPic: partnerPic});
+            });
+            
         });
     } else {
+        var clientPic = [];
         Message.find({partner: req.user.id}, function(err, foundMessages) {
-            res.render("userprofile_partner_message", {messages: foundMessages});
+            Client.find({}, function(err, clientList) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                for (var i = 0; i < foundMessages.length; i++) {
+                    for (var j = 0; j < clientList.length; j++) {
+                        if (clientList[j].id == foundMessages[i].client) {
+                            clientPic.push(clientList[j].companyLogo);
+                            j = clientList.length;
+                        }
+                    }
+                }
+                return res.render("userprofile_partner_message", {messages: foundMessages, clientPic: clientPic});
+            });
         });
     }
   }
@@ -101,6 +166,7 @@ router.get("/user_profile/messages", (req, res) => {
 
 
 // GET route for viewing user profile payment info
+// 정산 계좌 등록 (파트너)
 router.get("/user_profile/payment_info", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -111,9 +177,25 @@ router.get("/user_profile/payment_info", (req, res) => {
 
 
 
+// GET route for viewing client saved partners
+// 저장된 파트너 (클라이언트)
+router.get("/user_profile/saved_partners", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+      if (req.user.type === "p") {
+          res.redirect("/user_profile");
+      } else {
+          res.render("userprofile_client_savedPartners");
+    }
+  }
+});
+
+
 
 
 // GET route for viewing user profile account info
+// 계정 관리 (파트너, 클라이언트)
 router.get("/user_profile/account_info", (req, res) => {
   if (!req.user) {
     res.redirect("/");
@@ -127,10 +209,11 @@ router.get("/user_profile/account_info", (req, res) => {
     var birthday;
     var displayBirthday;
     if (req.user.dateOfBirth) {
-      birthday = moment(req.user.dateOfBirth).format('YYYY-MM-DD');
-      displayBirthday = moment(birthday).format('MMMM DD, YYYY');
+        displayBirthday = req.user.dateOfBirth;
+        birthday = moment(req.user.dateOfBirth).format('MM/DD/YYYY');
+        // displayBirthday = moment(birthday).format('MMMM DD, YYYY');
     } else {
-      birthday = req.user.dateOfBirth;
+        birthday = req.user.dateOfBirth;
     }
     
 
@@ -139,14 +222,16 @@ router.get("/user_profile/account_info", (req, res) => {
             birthday: birthday,
             displayBirthday: displayBirthday,
             category: req.user.category,
-            managerNamePosition: req.user.managerNamePosition,
+            managerPosition: req.user.managerPosition,
             managerPhoneNumber: req.user.managerPhoneNumber,
+            companyName: req.user.companyName,
+            companyAddress: req.user.companyAddress,
             companyWebsite: req.user.companyWebsite,
             companySNS: req.user.companySNS,
             companyDescription: req.user.companyDescription,
             kakaoID: req.user.kakaoID
         };
-        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, messages: foundMessages});
+        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
     } else {
         var accountInfo = {
             name: req.user.name,
@@ -157,7 +242,7 @@ router.get("/user_profile/account_info", (req, res) => {
             phoneNumber: req.user.phoneNumber,
             kakaoID: req.user.kakaoID
         };
-        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo});
+        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
     }
   }
 });
@@ -165,7 +250,7 @@ router.get("/user_profile/account_info", (req, res) => {
 
 
 
-
+// 파트너 프로필 수정
 router.get("/user_profile/edit_partner_resume", function(req, res) {
     if (!req.user) {
       res.redirect("/");
@@ -187,6 +272,7 @@ router.get("/user_profile/edit_partner_resume", function(req, res) {
 
 
 // Create a profile for partner
+// 파트너 프로필 생성
 router.post("/create_new_profile", function(req, res) {
     if (req.body.type == "freelancer") {
         var newProfile = new PartnerProfile({
@@ -251,7 +337,7 @@ router.post("/create_new_profile", function(req, res) {
 });
 
 
-
+// 파트너 프로필 전환 (프리랜서 <-> 에이전시)
 router.post("/convert_partnerProfile_type", function(req, res) {
     if (req.user.type === "p") {
         PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
