@@ -17,7 +17,7 @@ router.post("/start_message", (req, res) => {
             req.flash("error", "파트너를 찾을수 없습니다. 다시 시도해주세요.");
             return res.redirect("/user_profile");
         }
-        
+
         var newMessage = new Message({
             client: req.user.id,
             clientName: req.user.name,
@@ -41,7 +41,7 @@ router.post("/start_message", (req, res) => {
               console.log("Message created between " + req.user.name + " and " + foundPartner.name);
               return res.redirect("/user_profile/messages");
         });
-        
+
     });
 });
 
@@ -59,7 +59,7 @@ router.get("/message_room/:messageID", (req, res) => {
                 });
             } else {
                 Client.findById(foundMessage.client, function(err, foundClient) {
-                    return res.render("message_room", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
+                    return res.render("message_room_2", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
                 });
             }
             // return res.render("message_room", { thisMessage: foundMessage });
@@ -77,7 +77,7 @@ router.post("/send_message_client", (req, res) => {
         time: moment(Date.now()).format("HH:mm"),
         date: moment(Date.now()).format("YYYY-MM-DD")
     });
-  
+
     Message.findOneAndUpdate({_id : req.body.message}, { $push: { detail : newMessage } }, function(err, message) {
         if (err) {
             console.log(err);
@@ -97,7 +97,7 @@ router.post("/send_message_partner", (req, res) => {
         time: moment(Date.now()).format("HH:mm"),
         date: moment(Date.now()).format("YYYY-MM-DD")
     });
-  
+
     Message.findOneAndUpdate({_id : req.body.message}, { $push: { detail : newMessage } }, function(err, message) {
         if (err) {
             console.log(err);
