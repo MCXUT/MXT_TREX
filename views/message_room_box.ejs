@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="refresh" content="60">
         <style>
             .btn-primary:hover {
                 cursor: pointer;
@@ -243,7 +244,14 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
-
+        
+        
+        div.sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 96%;
+          font-size: 12px;
+        }
 
         </style>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -283,7 +291,7 @@
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
 
         </head>
-        <body>
+        <body onload="goDown()">
 
 
         <div class="profile">
@@ -292,15 +300,12 @@
 
 
                         <div class="container">
-
-
-
-
-
+                            <!-- Display refresh time -->
+                            <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div>
                             <div class="chat-page">
                                 <div class="msg-inbox">
                                     <div class="chats">
-                                        <div class="msg-page" id="message" onload="scrollToBottom()">
+                                        <div class="msg-page" id="message">
                                             <% if(currentUser.type === "c") { %>
                                                 <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
                                                     <!-- Display date at first -->
@@ -399,19 +404,29 @@
                                                     </div>
                                                 <% } %>
                                             <% } %>
+                                            
+                                            
+                                            <!-- Display the countdown timer in an element -->
+                                            <!-- <p id="countdown" align="right" style="color:darkgrey;"></p> -->
+                                            
+
+                                            <script>
+                                                var timeleft = 60;
+                                                var downloadTimer = setInterval(function(){
+                                                    
+                                                        document.getElementById("countdown").innerHTML = "Reloading in " + timeleft + " seconds.";
+                                                        timeleft -= 1;
+                                                        if(timeleft <= 0){
+                                                            clearInterval(downloadTimer);
+                                                            document.getElementById("countdown").innerHTML = "Reloading..."
+                                                        }
+                                                    
+                                                }, 1000);
+                                            </script>
                                   </div>
                                 </div>
                               </div>
-
-
-
-
-
                             </div>
-
-
-
-
                         </div>
 
 
@@ -436,47 +451,15 @@
     </script>
 
     <script>
-        // Script for file input (profile picture in this case) button and displaying the file name
-        $(function() {
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function() {
-                var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            // We can watch for our custom `fileselect` event like this
-            $(document).ready( function() {
-                $(':file').on('fileselect', function(event, numFiles, label) {
-
-                    if (numFiles > 3){
-                        alert("최대 3개의 파일까지만 업로드 해주세요.");
-                    } else {
-                        var input = $(this).parents('.input-group').find(':text'),
-                            log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-
-                        if( input.length ) {
-                            input.val(log);
-                        } else {
-                            if( log ) alert(log);
-                        }
-                    }
-
-                    // var input = $(this).parents('.input-group').find(':text'),
-                    //   log = numFiles > 1 ? numFiles + ' files selected' : label;
-                    //
-                    // if( input.length ) {
-                    //   input.val(log);
-                    // } else {
-                    //   if( log ) alert(log);
-                    // }
-                });
-            });
-        });
-    // reload될때 메세지 아래에서 시작하기
-    $("#message").scrollTop($("#message")[0].scrollHeight);
-
+        // reload될때 메세지 아래에서 시작하기
+        // $("#message").scrollTop($("#message")[0].scrollHeight);
+        // window.scroll(0, document.documentElement.scrollHeight);
+        function goDown() {
+           $('body').animate({
+              scrollTop: document.body.scrollHeight
+          }, 1);
+        }
+        
     </script>
 
     <script src="/static/scripts/profileedit.js"></script>
