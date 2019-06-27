@@ -192,6 +192,38 @@ function closeAllModal(){
 
 
 <script>
+  document.getElementById("myModal3").addEventListener("click",(e) => {
+      if(e.target.className != "modal-dialog modal-sm"){
+        document.getElementById("myModal2").style.opacity="1.0";
+      }
+
+  });
+
+
+  // document.getElementById("myModal2").addEventListener("click",(e) => {
+  //     console.log(e);
+  //     // e.preventDefault();
+  //     if(e.target.className != "modal-dialog modal-lg"){
+  //       document.getElementById("myModal3").style.display="block";
+  //       document.getElementById("myModal2").style.display="block";
+  //
+  //       // document.getElementById("myModal3").style.z-index="5";
+  //
+  //       // document.querySelector("modal-sm").style.display="block";
+  //       // document.querySelector("modal-content").style.display="block";
+  //
+  //     }
+  //
+  // });
+
+
+
+
+
+
+
+
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 

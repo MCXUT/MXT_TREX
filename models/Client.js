@@ -2,41 +2,84 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 var ClientSchema = mongoose.Schema({
-    type: {type: String, default: "c"},
+    type: {
+        type: String,
+        default: "c"
+    },
     // 담당자 성함
-    name: { type: String, required: true},
-    email: { type: String, unique: true},//, required: true},
-    password: String,
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true
+    },//, required: true},
+    password: {
+        type: String
+    },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: {
+        type: Date
+    },
     // 생년월일
-    dateOfBirth: String,
+    dateOfBirth: {
+        type: String
+    },
     // 업종
-    category: String,
+    category: {
+        type: String
+    },
     // 담당자 직급
-    managerPosition: String,
+    managerPosition: {
+        type: String
+    },
     // 담당자 전화번호
-    managerPhoneNumber: String,
+    managerPhoneNumber: {
+        type: String
+    },
     // 화사 또는 기관명 
-    companyName: String,
+    companyName: {
+        type: String
+    },
+    // 화사 주소 
+    companyAddress: {
+        type: String
+    },
     // 회사 웹사이트
-    companyWebsite: String,
+    companyWebsite: {
+        type: String
+    },
     // 회사 SNS
-    companySNS: String,
+    companySNS: {
+        type: String
+    },
     // 회사 소개
-    companyDescription: String,
+    companyDescription: {
+        type: String
+    },
     // 카카오톡 ID
-    kakaoID: String,
-    facebookID: String,
-    googleID: String,
-    naverID: String,
+    kakaoID: {
+        type: String
+    },
+    facebookID: {
+        type: String
+    },
+    googleID: {
+        type: String
+    },
+    naverID: {
+        type: String
+    },
     // pic stores the 'filename' of the profile picture
     // 회사 로고
     companyLogo: {
         type: String,
         default: ""
     },
-    isExistingMember: {type: Boolean, default: false},
+    // isExistingMember: {type: Boolean, default: false},
     // 가입일자
     registeredDate: {
         type: Date,
