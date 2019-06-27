@@ -225,12 +225,13 @@ router.get("/user_profile/account_info", (req, res) => {
             managerPosition: req.user.managerPosition,
             managerPhoneNumber: req.user.managerPhoneNumber,
             companyName: req.user.companyName,
+            companyAddress: req.user.companyAddress,
             companyWebsite: req.user.companyWebsite,
             companySNS: req.user.companySNS,
             companyDescription: req.user.companyDescription,
             kakaoID: req.user.kakaoID
         };
-        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo});
+        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
     } else {
         var accountInfo = {
             name: req.user.name,
@@ -241,7 +242,7 @@ router.get("/user_profile/account_info", (req, res) => {
             phoneNumber: req.user.phoneNumber,
             kakaoID: req.user.kakaoID
         };
-        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo});
+        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
     }
   }
 });

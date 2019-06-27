@@ -44,6 +44,10 @@ var ClientSchema = mongoose.Schema({
     companyName: {
         type: String
     },
+    // 화사 주소 
+    companyAddress: {
+        type: String
+    },
     // 회사 웹사이트
     companyWebsite: {
         type: String

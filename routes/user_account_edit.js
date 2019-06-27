@@ -8,7 +8,7 @@ const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 
 const googleMapsClient = require('@google/maps').createClient({
-  key: keys.googleMapAPI.key
+    key: keys.googleMapAPI.key
 });
 
 
@@ -29,6 +29,7 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
         foundUser.managerPosition = req.body.managerPosition;
         foundUser.managerPhoneNumber = req.body.managerPhoneNumber;
         foundUser.companyName = req.body.companyName;
+        foundUser.companyAddress = req.body.companyAddress;
         foundUser.companyWebsite = req.body.companyWebsite;
         foundUser.companySNS = req.body.companySNS;
         foundUser.companyDescription = req.body.companyDescription;
