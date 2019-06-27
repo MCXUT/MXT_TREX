@@ -23,4 +23,9 @@ router.get("/about_us", (req,res) => {
     res.render("about_us");
 });
 
+router.get("/howto_clients", (req, res) => {
+    res.render("howto_clients");
+});
+
+
 module.exports = router;
