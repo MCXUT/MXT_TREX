@@ -106,6 +106,17 @@
                                     <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                     로그아웃
                                 </a>
+                            <% } else if (currentUser.type === "a") { %>
+                                <!-- dropdown for admins -->
+                                <a class="dropdown-item" href="/trex-admin">
+                                    <i class="fas fa-user-secret" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    관리자 페이지
+                                </a>
+                                <hr style="margin:5px auto;width:85%;text-align:center;">
+                                <a class="dropdown-item" href="/auth/logout">
+                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    로그아웃
+                                </a>
                             <% } %>
 
                         </div>

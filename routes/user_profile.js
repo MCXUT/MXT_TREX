@@ -180,15 +180,30 @@ router.get("/user_profile/payment_info", (req, res) => {
 // GET route for viewing client saved partners
 // 저장된 파트너 (클라이언트)
 router.get("/user_profile/saved_partners", (req, res) => {
-  if (!req.user) {
-    res.redirect("/");
-  } else {
-      if (req.user.type === "p") {
-          res.redirect("/user_profile");
-      } else {
-          res.render("userprofile_client_savedPartners");
+    if (!req.user) {
+        res.redirect("/");
+    } else {
+        if (req.user.type === "p") {
+            res.redirect("/user_profile");
+        } else {
+            var savedPartners = [];
+            Partner.find({}, function(err, foundPartners) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile/saved_partners");
+                }
+                for (var i = 0; i < foundPartners.length; i++) {
+                    for (var j = 0; j < req.user.savedPartners.length; j++) {
+                        if (foundPartners[i].id == req.user.savedPartners[j]) {
+                            savedPartners.push(foundPartners[i]);
+                        }
+                    }
+                }
+                res.render("userprofile_client_savedPartners", { savedPartners: savedPartners });
+                
+            });
+        }
     }
-  }
 });
 
 
@@ -197,54 +212,53 @@ router.get("/user_profile/saved_partners", (req, res) => {
 // GET route for viewing user profile account info
 // 계정 관리 (파트너, 클라이언트)
 router.get("/user_profile/account_info", (req, res) => {
-  if (!req.user) {
-    res.redirect("/");
-  } else {
-    var type;
-    if (req.user.type === "p") {
-      type = "Partner";
+    if (!req.user) {
+        res.redirect("/");
     } else {
-      type = "Client";
-    }
-    var birthday;
-    var displayBirthday;
-    if (req.user.dateOfBirth) {
-        displayBirthday = req.user.dateOfBirth;
-        birthday = moment(req.user.dateOfBirth).format('MM/DD/YYYY');
-        // displayBirthday = moment(birthday).format('MMMM DD, YYYY');
-    } else {
-        birthday = req.user.dateOfBirth;
-    }
+        var type;
+        if (req.user.type === "p") {
+            type = "Partner";
+        } else {
+            type = "Client";
+        }
+        var birthday;
+        var displayBirthday;
+        if (req.user.dateOfBirth) {
+            displayBirthday = req.user.dateOfBirth;
+            birthday = moment(req.user.dateOfBirth).format('MM/DD/YYYY');
+            // displayBirthday = moment(birthday).format('MMMM DD, YYYY');
+        } else {
+            birthday = req.user.dateOfBirth;
+        }
     
-
-    if (type === "Client") {
-        var accountInfo = {
-            birthday: birthday,
-            displayBirthday: displayBirthday,
-            category: req.user.category,
-            managerPosition: req.user.managerPosition,
-            managerPhoneNumber: req.user.managerPhoneNumber,
-            companyName: req.user.companyName,
-            companyAddress: req.user.companyAddress,
-            companyWebsite: req.user.companyWebsite,
-            companySNS: req.user.companySNS,
-            companyDescription: req.user.companyDescription,
-            kakaoID: req.user.kakaoID
-        };
-        res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
-    } else {
-        var accountInfo = {
-            name: req.user.name,
-            type: type,
-            birthday: birthday,
-            displayBirthday: displayBirthday,
-            address: req.user.address,
-            phoneNumber: req.user.phoneNumber,
-            kakaoID: req.user.kakaoID
-        };
-        res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
+        if (type === "Client") {
+            var accountInfo = {
+                birthday: birthday,
+                displayBirthday: displayBirthday,
+                category: req.user.category,
+                managerPosition: req.user.managerPosition,
+                managerPhoneNumber: req.user.managerPhoneNumber,
+                companyName: req.user.companyName,
+                companyAddress: req.user.companyAddress,
+                companyWebsite: req.user.companyWebsite,
+                companySNS: req.user.companySNS,
+                companyDescription: req.user.companyDescription,
+                kakaoID: req.user.kakaoID
+            };
+            res.render("userprofile_client_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
+        } else {
+            var accountInfo = {
+                name: req.user.name,
+                type: type,
+                birthday: birthday,
+                displayBirthday: displayBirthday,
+                address: req.user.address,
+                phoneNumber: req.user.phoneNumber,
+                kakaoID: req.user.kakaoID
+            };
+            res.render("userprofile_partner_accountInfo", {accountInfo: accountInfo, googleMapAPI: keys.googleMapAPI.key});
+        }
     }
-  }
 });
 
 

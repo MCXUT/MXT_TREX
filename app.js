@@ -10,7 +10,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 
-
+const laPassport = require("./config/passportStrategies/localAdmin");
 const lcPassport = require("./config/passportStrategies/localClient");
 const lpPassport = require("./config/passportStrategies/localPartner");
 const tcPassport = require("./config/passportStrategies/thirdPartyClient");
@@ -69,6 +69,8 @@ app.use(tcPassport.initialize());
 app.use(tcPassport.session());
 app.use(tpPassport.initialize());
 app.use(tpPassport.session());
+app.use(laPassport.initialize());
+app.use(laPassport.session());
 
 
 app.use(flash());

@@ -104,10 +104,17 @@
                           <span style="color:red;margin-left:70px;"><%= error %></span>
                         <% } %>
                             <div class="row sections basic" id="basic">
-                                <p class="basictitle"><b>저장된 파트너</b></p>
-                              
-                        
-                        
+                                <p class="basictitle" style="width:100%;"><b>저장된 파트너</b></p>
+                                
+                                <div class="divider"></div>
+                                
+                                <% for (var i = 0; i < savedPartners.length; i ++) { %>
+                                    <a href="/partner_profile/<%= savedPartners[i]._id %>" style="color:black;">
+                                        <%= savedPartners[i].name %>
+                                    </a>
+                                <% } %>
+                                
+                                
                             </div>
                     </div>
                 </div>

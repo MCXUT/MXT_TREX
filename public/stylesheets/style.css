@@ -5,26 +5,8 @@ html {
     overflow-x: hidden;
 }
 
-/* modal thin exit('x') button */
-.close1 {
-  position: absolute;
-  right: 8px;
-  top: 11px;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-}
-.close1:hover {
-  opacity: 1;
-  cursor:pointer;
-}
-.close1:before, .close1:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 33px;
-  width: 2px;
-  background-color: #333;
+html.disabled {
+    overflow-y: hidden;
 }
 .close1:before {
   transform: rotate(45deg);
@@ -33,6 +15,17 @@ html {
   transform: rotate(-45deg);
 }
 /* end of thin exit button */
+
+#heading {
+    font-size: 30px;
+}
+
+.steptitle {
+    font-size: 24px;
+}
+.stepdesc {
+    font-size: 20px;
+}
 
 .container-fluid{
   padding-left: 0px;
@@ -120,7 +113,6 @@ html {
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
 /* end of carousel section */
 
 

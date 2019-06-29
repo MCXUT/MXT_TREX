@@ -83,7 +83,7 @@
 
 
 
-    <span>
+    <!-- <span>
     <button aria-haspopup="true" aria-expanded=
     "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
     style="margin: 5px;" id="login">
@@ -114,7 +114,7 @@
           </div>
         </div>
       </div>
-    </span>
+    </span> -->
 
 
     <input type="button" name="daterange" value="날짜" id="nal"
@@ -247,7 +247,7 @@ $( function() {
           <% if (i%2 == 0) { %>
             <div class="row">
               <div class="col">
-                <div class="leftside">
+                <!-- <div class="leftside"> -->
                   <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
@@ -265,11 +265,11 @@ $( function() {
                       <% } %>
                     </h7>
                   </a>
-                </div>
+                <!-- </div> -->
               </div>
           <% } else { %> <!-- if i is odd put it on the right side -->
               <div class="col">
-                <div class="rightside">
+                <!-- <div class="rightside"> -->
                   <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <div id="kokoman"></div>
                     <center>
@@ -282,7 +282,7 @@ $( function() {
                     <h5><%= allPartners[i].name %></h5>
                     <h7><%= allPartners[i].email %></h7>
                   </a>
-                </div>
+                <!-- </div> -->
               </div>
             </div>
           <% } %>
@@ -290,8 +290,8 @@ $( function() {
 
       <% if (i%2 == 1) { %>
         <!-- if the total number of cards is even, insert empty card on the rightside and close row tag-->
-          <div class="col">
-            <div class="rightside" style="border:none;"></div>
+          <div class="col" style="border:none;">
+            <!-- <div class="rightside" style="border:none;"></div> -->
           </div>
         </div> <!-- close the row tag -->
       <% } %>

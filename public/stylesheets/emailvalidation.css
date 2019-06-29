@@ -1,32 +1,3 @@
-/* modal thin exit('x') button */
-.close1 {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  width: 20px;
-  height: 20px;
-  opacity: 0.3;
-}
-.close1:hover {
-  opacity: 1;
-  cursor:pointer;
-}
-.close1:before, .close1:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 23px;
-  width: 2px;
-  background-color: #333;
-}
-.close1:before {
-  transform: rotate(45deg);
-}
-.close1:after {
-  transform: rotate(-45deg);
-}
-/* end of thin exit button */
-
 .pum.pumactive {
     display: block;
 }
@@ -52,7 +23,6 @@
     margin-bottom: 200px;
     box-sizing: border-box;
     animation: drop 0.4s ease forwards;
-    /* animation: rollup 0.8s ease; */
 }
 @keyframes drop {
     0% {opacity: 0.2;}

@@ -32,6 +32,10 @@ var ClientSchema = mongoose.Schema({
     category: {
         type: String
     },
+    // 저장된 파트너
+    savedPartners: {
+        type: [String]
+    },
     // 담당자 직급
     managerPosition: {
         type: String
