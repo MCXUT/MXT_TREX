@@ -77,6 +77,28 @@ $(document).ready(() => {
     //     });
     // });
 
+    // $("#languageform").unbind().submit((e) => {
+    //     var languageform = $("#languageform");
+    //     // console.log(languageform.serialize());
+    //     $.ajax({
+    //         type: languageform.attr("method"),
+    //         url: languageform.attr("action"),
+    //         data: languageform.serialize()
+    //     });
+    //
+    //     languageform.reset();
+    //
+    //     var addbutton = $(".lang").find(".addbutton");
+    //     $(addbutton).toggleClass("addactive");
+    //
+    //     $(".languageinput").remove();
+    //
+    //     var spans = document.querySelectorAll(".switch");
+    //     spans.forEach((span) => {
+    //         $(span).toggleClass("active");
+    //     });
+    // });
+
     $("#privateinfoform").unbind().submit((e) => {
         var privateinfoform = $("#privateinfoform");
         // e.preventDefault();
@@ -134,6 +156,49 @@ $(document).ready(() => {
 });
 
 
+var viewproficiency = () => {
+    document.querySelector(".proficiencychart").addEventListener("click", (e) => {
+        e.preventDefault();
+        $(".pum").animate({
+            opacity: 1,
+            top: "0"
+        }, 0, () => {
+            $(".pum").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
+        });
+
+    });
+}
+viewproficiency();
+
+var clickoutside = () => {
+    document.querySelector(".pum").addEventListener("click", (e) => {
+        if(e.target.className === "pum pumactive") {
+            $(".pum").animate({
+                opacity: 0.1,
+                top: "-50px"
+            }, 500, () => {
+                $(".pum").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
+            });
+        }
+    });
+}
+clickoutside();
+
+var clickex = () => {
+    $(".exittable").click((e) => {
+        $(".pum").animate({
+            opacity: 0.1,
+            top: "-50px"
+        }, 500, () => {
+            $(".pum").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
+        });
+    });
+}
+clickex();
+
 var manipulateAdd = () => {
     return '<div class="row language languageinput">' +
              '<span class="langexit">x</span>' +
@@ -156,114 +221,28 @@ $(document).ready(() => {
 });
 
 
-var taskpagination = () => {
-    var numoftasks = $(".appointmentlist2 .appointmentcard").length;
-    var limitperpage = 3;
-    $(".appointmentlist2 .appointmentcard:gt(" + (limitperpage - 1) + ")").hide();
-    var totalPages = Math.round(numoftasks / limitperpage);
-    $(".pagination").append('<li class="page-item active"><a class="page-link" href="javascript:void(0)">' + 1 + '</a></li>');
-
-    for(var i = 2; i <= totalPages; i++) {
-        $(".pagination").append('<li class="page-item"><a class="page-link" href="javascript:void(0)">' + i + '</a></li>');
-    }
-
-    $(".pagination").append('<li class="nextshow"><a class="page-link" href="javascript:void(0)">Next</a></li>');
-
-
-    $(".pagination li.page-item").on("click", function() {
-        if($(this).hasClass("active")) {
-            return false;
-        } else {
-            var currentPage = $(this).index();
-            $(".pagination li").removeClass("active");
-            $(this).addClass("active");
-
-            $(".appointmentlist2 .appointmentcard").hide();
-            var pivot = limitperpage * (currentPage - 1);
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-        }
-    });
-
-    $(".pagination li.nextshow").on("click", function() {
-        var currentPage = $(".pagination li.active").index();
-        if(currentPage === totalPages) {
-            return false;
-        } else {
-            currentPage++;
-            $(".pagination li").removeClass("active");
-            $(".appointmentlist2 .appointmentcard").hide();
-
-            var pivot = limitperpage * (currentPage - 1);
-
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-            $(".pagination li.page-item:eq(" + (currentPage - 1) + ")").addClass("active");
-        }
-    });
-
-    $(".pagination li.prevshow").on("click", function() {
-        var currentPage = $(".pagination li.active").index();
-        if(currentPage === 1) {
-            return false;
-        } else {
-            currentPage--;
-            $(".pagination li").removeClass("active");
-            $(".appointmentlist2 .appointmentcard").hide();
-
-            var pivot = limitperpage * (currentPage - 1);
-
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-            $(".pagination li.page-item:eq(" + (currentPage - 1) + ")").addClass("active");
-        }
-    });
-}
-taskpagination();
-
-var ratingpage = () => {
-    $(".subcontainer a").on("click", function(e) {
-        $(".pum").fadeIn(400, () => {
-            $(".pum").toggleClass("pumactive");
-            $("html").toggleClass("disabled");
-        });
-        var partnername = $(this).parent().children(".taskcontent").text();
-        $(".nameofpartner").html(partnername);
-    });
-}
-ratingpage();
-
-var clickoutside = () => {
-    document.querySelector(".pum").addEventListener("click", (e) => {
-        if(e.target.className === "pum pumactive") {
-            $(".pum").fadeOut(400, () => {
-                $(".pum").toggleClass("pumactive");
-                $("html").toggleClass("disabled");
-                $("#ratingform").trigger("reset");
-            });
-        }
-    });
-}
-clickoutside();
-
-var clickex = () => {
-    $(".exittable").click((e) => {
-        $(".pum").fadeOut(400, () => {
-            $(".pum").toggleClass("pumactive");
-            $("html").toggleClass("disabled");
-            $("#ratingform").trigger("reset");
-        });
-    });
-}
-clickex();
-
-var formsubmit = () => {
-    $("#ratingform").submit(function(e) {
+$(document).ready(() => {
+    $(".menu a").click((e) => {
         e.preventDefault();
-        console.log($(this).serialize());
+        console.log(e);
+        window.location.hash = e.target.hash;
+
+        var currentHash = window.location.hash.slice(1);
+        $(".profileactive").toggleClass("profileactive");
+
+        $("#" + currentHash).toggleClass("profileactive");
+        $("." + currentHash).toggleClass("profileactive");
+        e.preventDefault();
     });
-}
-formsubmit();
+
+});
+
+$(document).ready(() => {
+    if(window.location.hash !== "") {
+        var currentHash = window.location.hash.slice(1);
+        $(".profileactive").toggleClass("profileactive");
+
+        $("#" + currentHash).toggleClass("profileactive");
+        $("." + currentHash).toggleClass("profileactive");
+    }
+});

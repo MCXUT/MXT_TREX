@@ -153,8 +153,7 @@
         }
         .chat-page{
           /* padding: 0 0 50px 0; */
-          /* padding-left: 10px;
-          padding-right: 10px; */
+
         }
         .msg-inbox{
           border: 1px solid #ccc;
@@ -165,10 +164,6 @@
         }
         .chats{
             min-height: 100% !important;
-            padding: 0;
-            padding-left: 10px;
-            padding-right: 10px;
-
         }
         .msg-page{
             min-height: 100% !important;
@@ -192,7 +187,7 @@
           max-width: 50%;
         }
         .received-msg-inbox{
-          max-width: 80%;
+          max-width: 50%;
           margin-left: 4%;
           float: left;
         }
@@ -216,11 +211,10 @@
         }
         .received-time{
           color: rgb(72, 72, 72);
-          display: inline-block;
-          position: absolute;
+          display: block;
           font-size: 12px;
           margin: 8px 0 0;
-          /* transform: translate3d(0, 7px, 0); */
+          transform: translate3d(0, 7px, 0);
         }
 
         .outgoing-chats{
@@ -245,7 +239,7 @@
         }
         .outgoing-chats-msg{
           float: right;
-          max-width: 40%;
+          max-width: 50%;
           /* margin-left: 80%; */
 
         }
@@ -255,23 +249,17 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
-
-
+        
+        
         div.sticky {
           position: -webkit-sticky;
-          position: fixed;
-          bottom: 0;
-          /* top: 96%; */
+          position: sticky;
+          top: 96%;
           font-size: 12px;
-          right: 0;
-        }
-
-        #trexContent{
-          word-wrap: break-word;
-          width: 100%;
         }
 
         </style>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -318,7 +306,7 @@
 
                         <div class="container">
                             <!-- Display refresh time -->
-                            <!-- <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div> -->
+                            <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div>
                             <div class="chat-page">
                                 <div class="msg-inbox">
                                     <div class="chats">
@@ -335,8 +323,8 @@
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="received-chats">
                                                             <div class="received-chats-img">
-                                                                <% if (partnerPic) { %>
-                                                                  <img src="/profilePic/<%= partnerPic %>">
+                                                                <% if (thisMessage.partnerPic) { %>
+                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
                                                                 <% } else { %>
                                                                   <img src="/static/images/noprofilepic.jpeg">
                                                                 <% } %>
@@ -381,15 +369,15 @@
                                                     <% if (thisMessage.detail[i].author === "c") { %>
                                                         <div class="received-chats">
                                                             <div class="received-chats-img">
-                                                                <% if (clientPic) { %>
-                                                                  <img src="/logo/<%= clientPic %>">
+                                                                <% if (thisMessage.clientPic) { %>
+                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
                                                                 <% } else { %>
                                                                   <img src="/static/images/noprofilepic.jpeg">
                                                                 <% } %>
                                                             </div>
                                                             <div class="received-msg">
                                                                 <div class="received-msg-inbox">
-                                                                    <p id="trexContent"><%= thisMessage.detail[i].content %></p>
+                                                                    <p><%= thisMessage.detail[i].content %></p>
 
                                                                     <!-- <span class="received-time"><%= thisMessage.detail[i].time %></span> -->
                                                                 </div>
@@ -402,7 +390,7 @@
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="outgoing-chats">
                                                             <div class="outgoing-chats-msg">
-                                                                <p id="trexContent"><%= thisMessage.detail[i].content %></p>
+                                                                <p><%= thisMessage.detail[i].content %></p>
 
                                                                 <!-- <span class="outgoing-time"><%= thisMessage.detail[i].time %></span> -->
                                                             </div>
@@ -421,34 +409,40 @@
                                                     </div>
                                                 <% } %>
                                             <% } %>
-
-
+                                            
+                                            
                                             <!-- Display the countdown timer in an element -->
                                             <!-- <p id="countdown" align="right" style="color:darkgrey;"></p> -->
-
+                                            
 
                                             <script>
                                                 var timeleft = 60;
                                                 var downloadTimer = setInterval(function(){
-
+                                                    
                                                         document.getElementById("countdown").innerHTML = "Reloading in " + timeleft + " seconds.";
                                                         timeleft -= 1;
                                                         if(timeleft <= 0){
                                                             clearInterval(downloadTimer);
                                                             document.getElementById("countdown").innerHTML = "Reloading..."
                                                         }
-
+                                                    
                                                 }, 1000);
                                             </script>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="sticky" id="countdown" align="right" style="color:darkgrey;"></div>
-
                         </div>
+
+
+
+                    <!-- </div> -->
+
+
             </div>
         </div>
+
+        <!-- <br><br><br><br><br><br> -->
 
     <script>
         $('#datepicker2').datepicker({
@@ -463,18 +457,17 @@
 
     <script>
         // reload될때 메세지 아래에서 시작하기
+        // $("#message").scrollTop($("#message")[0].scrollHeight);
+        // window.scroll(0, document.documentElement.scrollHeight);
         function goDown() {
            $('body').animate({
               scrollTop: document.body.scrollHeight
           }, 1);
-        };
-
-        function addEnterFunction(){
-          var words = document.getElementById("trexContent").textcontent;
         }
-
+        
     </script>
 
+    <script src="/static/scripts/profileedit.js"></script>
 
 
     </body>

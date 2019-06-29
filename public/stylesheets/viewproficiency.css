@@ -17,7 +17,6 @@
     width: 600px;
     position: relative;
     background-color: white;
-    /* animation: drop 0.4s ease forwards; */
 }
 .pum .pum-container .maincontent img {
     margin: 30px 20px 0;
@@ -41,7 +40,6 @@
     float: right;
     font-size: 25px;
     padding: 15px 10px 0 0;
-    /* z-index: 9000; */
 }
 .pum .pum-container .maincontent .exittable:hover {
     cursor: pointer;
@@ -80,7 +78,6 @@
     width: 700px;
 }
 
-
 @media (max-width:992px) {
     .pum .pum-container {
         left: 10%;
@@ -99,53 +96,4 @@
 }
 #chartdisplay:hover {
     color: rgb(198, 136, 0) !important;
-}
-
-.rating {
-    position: relative;
-    width: 100%;
-    transform: rotateY(180deg);;
-    display: flex;
-    justify-content: center;
-}
-.rating input {
-    display: none;
-}
-.rating label {
-    display: block;
-    cursor: pointer;
-    width: 50px;
-}
-.rating label:before {
-    content: '\f005';
-    font-family: fontAwesome;
-    position: relative;
-    display: block;
-    font-size: 50px;
-    color: #101010;
-}
-.rating label:after {
-    content: '\f005';
-    font-family: fontAwesome;
-    position: absolute;
-    display: block;
-    font-size: 50px;
-    color: #1f9cff;
-    top: 0;
-    opacity: 0;
-    transition: 0.5s;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-.rating label:hover:after,
-.rating label:hover ~ label:after,
-.rating input:checked ~ label:after {
-    opacity: 1;
-}
-.maincontent .form-group {
-    width: 80%;
-    margin: 0 auto;
-}
-.maincontent .btn {
-    margin: 20px 0 0 10%;
-
 }

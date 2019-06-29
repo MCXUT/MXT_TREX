@@ -13,9 +13,6 @@
                 margin-bottom: 15px;
                 transform: translate3d(0, -50%, 0);
             }
-            html.disabled {
-                overflow-y: hidden;
-            }
             .heart {
                 /* color: red !important; */
                 opacity: 0;
@@ -33,7 +30,6 @@
 
 
         <% include ./partials/proficiencychart %>
-        <% include ./partials/task_request_form %>
 
         <% include ./partials/navbar %>
 
@@ -124,7 +120,7 @@
                 <div class="divider"></div>
                 <div class="rowdivider" id="introduction">
                     <div class="description-title">
-                        <p class="divtitle">파트너 소개</p>
+                        <p>파트너 소개</p>
                     </div>
                     <p id="basicContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <span class="readmore"><a id="expand" href="#">Read More</a></span>
@@ -133,7 +129,7 @@
                 <div class="divider"></div>
                 <div class="rowdivider" id="photovideo">
                     <div class="description-title">
-                        <p class="divtitle">사진/동영상</p>
+                        <p>사진/동영상</p>
                     </div>
                     <a class="largeview" href=""><img src="/static/images/countries/2newyork.jpg" width=150 height=150></a>
                     <a class="largeview" href=""><img src="/static/images/countries/4la.jpg" width=150 height=150></a>
@@ -141,14 +137,14 @@
                 <div class="divider"></div>
                 <div class="rowdivider" id="reviews">
                     <div class="description-title">
-                        <p class="divtitle">서비스 후기</p>
+                        <p>서비스 후기</p>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
                 <div class="divider"></div>
                 <div class="rowdivider" id="certificates">
                     <div class="description-title">
-                        <p class="divtitle">자격증/사업자 등록</p>
+                        <p>자격증/사업자 등록</p>
                     </div>
                     <img src="/static/icons/kakaotalk.svg" width=150 height=150>
                     <img src="/static/icons/manage.svg" width=150 height=150>
@@ -156,7 +152,7 @@
                 <div class="divider"></div>
                 <div class="rowdivider refund">
                     <div class="description-title">
-                        <p class="divtitle">최소 및 환불 규정</p>
+                        <p>최소 및 환불 규정</p>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <a href="#" class="proficiencychart">언어보기</a>
@@ -166,12 +162,12 @@
                 <div class="subbox">
                     <p><%= thisPartner.name %> 파트너님께<br/> 견적 요청 가능한 서비스</p>
                     <div class="availablelist">
-                        <button class="btn btn-primary" name="button" data-toggle="modal" data-target="#myModal2">통역</button>
-                        <button class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal2">현지 차량</button>
-                        <button class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal2">번역</button>
-                        <button class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal2">기업/기관 섭외</button>
-                        <button class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal2">투어 가이드</button>
-                        <button class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal2">현지 시장 조사</button>
+                        <button class="btn btn-primary" name="button">통역</button>
+                        <button class="btn btn-info" name="button">현지 차량</button>
+                        <button class="btn btn-info" name="button">번역</button>
+                        <button class="btn btn-info" name="button">기업/기관 섭외</button>
+                        <button class="btn btn-info" name="button">투어 가이드</button>
+                        <button class="btn btn-info" name="button">현지 시장 조사</button>
                     </div>
                 </div>
             </div>
