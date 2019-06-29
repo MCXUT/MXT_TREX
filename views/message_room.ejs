@@ -244,10 +244,13 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
+        .bottom{
+          min-height: 600px;
+        }
 
 
         </style>
-        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>  -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -304,7 +307,7 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="height: 80%">
                         <% if (currentUser.type === "c") { %>
                             <% if (currentUser.companyLogo) { %>
                               <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
@@ -323,7 +326,7 @@
                     </div>
 
 
-                    <div class="col-md-6" style="padding:0px;">
+                    <div class="col-md-6" style="padding:0px; height: 80%">
 
 
                         <div class="container">

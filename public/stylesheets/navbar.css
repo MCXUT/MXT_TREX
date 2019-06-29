@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap');
+
+
 body
 {
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nanum Gothic KR", sans-serif;
+    color: #2f3033;
 }
 /* scroll to top button & kakaotalk svg */
 
@@ -21,7 +25,11 @@ body
     width:50px;
 }
 #scroll:hover {
-    background-color: #e7e7e7;
+    background-color:  #fafafa;
+}
+
+.subdesc {
+    font-size: 20px;
 }
 
 .bottom-fixed svg{
@@ -69,10 +77,10 @@ navbar{
 } */
 .nav-item {
     text-align: center;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     width: auto;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 .navbar-expand-md .navbar-nav .nav-link {
     padding: 20px 25px;
@@ -80,15 +88,23 @@ navbar{
 .navbar-expand-md .navbar-nav .nav-link {
     margin: 0 5px;
 }
+.nav-item {
+    box-sizing: border-box;
+}
 .nav-item a:hover {
-    background-color: rgba(151, 156, 200, 0.3);
-    background-color: #f8ba00;
+    box-shadow: inset 0px 0px 0px 2px rgba( 90, 97, 117, 0.2 );
     border-radius: 4px;
     transition: 0.1s;
 }
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link {
+    font-weight: 400;
+    color: #676d73;
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #2f3033;
+}
 .nav-item a.navactive {
-    background-color: rgba(151, 156, 200, 0.3);
-    background-color: #f8ba00;
+    box-shadow: inset 0px 0px 0px 2px rgba( 90, 97, 117, 0.2 );
     border-radius: 4px;
 }
 

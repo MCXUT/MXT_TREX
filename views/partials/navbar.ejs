@@ -3,7 +3,7 @@
 <div class="myNav">
     <nav class="navbar navbar-expand-md navbar-light">
         <!-- <div class="container"> -->
-            <a class="logo" href="/"><img src="/static/images/0.jpg" height="60" width="100"></img></a>
+            <a class="logo" href="/"><img src="/static/images/trexlogo.png" height="60" width="100"></img></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -12,12 +12,10 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/find_partner" id="fplink">
-                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             파트너 찾기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/partner_page" id="pplink">
-                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
@@ -41,73 +39,13 @@
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
 
                             <% if (currentUser.type === "p") { %>
-                                <!-- dropdown for partners -->
-                                <a class="dropdown-item" href="/user_profile/partnerProfile">
-                                    <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                    프로필 관리
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/tasks">
-                                    <!-- <img src="/static/icons/partner_tasks.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="fas fa-tasks" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    업무 예약 관리
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/schedule">
-                                    <!-- <img src="/static/icons/partner_schedule.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="far fa-calendar-alt" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    일정 관리
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/messages">
-                                    <!-- <img src="/static/icons/messages.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/payment_info">
-                                    <!-- <img src="/static/icons/.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="far fa-credit-card" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    정산 계좌 등록
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/account_info">
-                                    <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                    계정 관리
-                                </a>
-                                <hr style="margin:5px auto;width:85%;text-align:center;">
-                                <a class="dropdown-item" href="/auth/logout">
-                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                    로그아웃
-                                </a>
-                            <% } else if (currentUser.type === "c") { %>
-                                <!-- dropdown for clients -->
-                                <a class="dropdown-item" href="/user_profile/task_request_info">
-                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="fas fa-tasks" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    견적 요청 관리
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/applicants_info">
-                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="fas fa-users" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    지원자 보기
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/messages">
-                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/saved_partners">
-                                    <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
-                                    <i class="far fa-bookmark" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    저장된 파트너
-                                </a>
-                                <a class="dropdown-item" href="/user_profile/account_info">
-                                    <img src="/static/icons/manage.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                    계정 관리
-                                </a>
-                                <hr style="margin:5px auto;width:85%;text-align:center;">
-                                <a class="dropdown-item" href="/auth/logout">
-                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
-                                    로그아웃
-                                </a>
+                              <a class="dropdown-item" href="/user_profile/partnerProfile">
+                                  프로필 관리</a>
                             <% } %>
-                            
+                            <a class="dropdown-item" href="/user_profile/account_info">
+                                계정 관리</a>
+                            <a class="dropdown-item" href="/auth/logout">
+                                로그아웃</a>
                         </div>
                     </li>
                 </ul>
@@ -115,23 +53,19 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/find_partner" id="fplink">
-                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             파트너 찾기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/partner_page" id="pplink">
-                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/login" id="loginlink">
-                            <img src="/static/icons/signin.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             로그인</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/register" id="registerlink">
-                            <img src="/static/icons/signup.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             회원가입</a>
                     </li>
                 </ul>
