@@ -6,6 +6,8 @@
 .choicetabs {
     width: 330px;
     font-size: 0;
+    border: none;
+    border-radius: 4px 4px 0 0;
 }
 .choicetabs p {
     margin-bottom: 0;
@@ -18,32 +20,37 @@
     cursor: pointer;
     color: rgb(80, 80, 80);
     padding: 25px 5%;
-    /* background-color: rgba(130, 130, 130, 0.3); */
-    border: 1px solid rgba(30, 30, 30, 0.3);
-    border-bottom: none;
+    border-bottom: 1px solid rgb(0, 113, 191);
 }
 .choicetabs .loginasclient {
-    /* box-shadow: -13px -13px 15px inset rgba(0, 0, 0, 0.3); */
     border-right: none;
     border-radius: 4px 0 0 0;
 }
 .choicetabs .loginaspartner {
-    /* box-shadow: 13px -13px 15px inset rgba(0, 0, 0, 0.3); */
     border-left: none;
     border-radius: 0 4px 0 0;
 }
-.choicetabs .loginasclient:hover, .choicetabs .loginaspartner:hover {
-    /* background-color: rgba(130, 130, 130, 0.2); */
+.choicetabs .loginasclient:hover {
     color: rgb(0, 113, 191);
-    border-bottom: 1px solid rgb(0, 113, 191);
+    border-top: 1px solid rgb(0, 113, 191);
+    border-left: 1px solid rgb(0, 113, 191);
 }
-.choicetabs .loginasclient.active, .choicetabs .loginaspartner.active {
-    border-bottom: 1px solid rgb(0, 113, 191);
+.choicetabs .loginasclient.active{
     color: rgb(0, 113, 191);
-    cursor: default;
-    background-color: white;
-    /* width: 80%; */
+    border: 1px solid rgb(0, 113, 191);
+    border-bottom: none;
 }
+.choicetabs .loginaspartner:hover {
+    color: rgb(0, 113, 191);
+    border-top: 1px solid rgb(0, 113, 191);
+    border-right: 1px solid rgb(0, 113, 191);
+}
+.choicetabs .loginaspartner.active {
+    color: rgb(0, 113, 191);
+    border: 1px solid rgb(0, 113, 191);
+    border-bottom: none;
+}
+
 .loginform {
     color: rgba(30, 30, 30, 0.5);
     font-size: 16px;
@@ -55,6 +62,10 @@
     border-color: rgba(30, 30, 30, 0.3);
     border-radius: 0 0 4px 4px;
     margin-bottom: 15px;
+}
+.loginform.activeborder {
+    border-color: rgb(0, 113, 191);
+    border-top: none;
 }
 .loginform p {
     margin-bottom: 0;
@@ -235,6 +246,7 @@ button.validate {
 .clientform.active,.partnerform.active {
     display:block;
 }
+
 
 html.disabled {
     overflow-y: hidden;
