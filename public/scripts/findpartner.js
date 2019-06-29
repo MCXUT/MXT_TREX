@@ -105,7 +105,7 @@ document.querySelector("body").addEventListener("click", (e) => {
   } else if($(e.target).hasClass("money")) {
     document.getElementById("money").style.display="block";
   } else {
-    if($("#slider-range").slider("values", 0) != "0"){
+    if($("#slider-range").slider("values", 0) != "0" || $("#slider-range").slider("values", 1) != "100000"){
       document.getElementById("money").style.display="none";
       $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
       $("#slider-range").slider("values", 1) + "원");

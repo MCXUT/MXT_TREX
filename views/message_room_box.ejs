@@ -24,7 +24,12 @@
             font-weight: 400;
             color: #333
           }
+          .chatContainer > .chatMessages{
+            height: 420px;
+            border-bottom: 1px solid #dddd;
+            overflow-y: scroll;
 
+          }
           .chatBottom {
             transform: translate3d(0, 415px, 0);
             position: fixed;
@@ -148,21 +153,26 @@
         }
         .chat-page{
           /* padding: 0 0 50px 0; */
-
+          /* padding-left: 10px;
+          padding-right: 10px; */
         }
         .msg-inbox{
           border: 1px solid #ccc;
-          /* overflow: hidden; */
+          overflow: hidden;
           /* padding-bottom: 30px; */
           /* display: flex; */
           min-height: 100% !important;
         }
         .chats{
             min-height: 100% !important;
+            padding: 0;
+            padding-left: 10px;
+            padding-right: 10px;
+
         }
         .msg-page{
             min-height: 100% !important;
-          /* overflow-y: auto; */
+          overflow-y: auto;
 
         }
         .received-chats{
@@ -182,7 +192,7 @@
           max-width: 50%;
         }
         .received-msg-inbox{
-          max-width: 50%;
+          max-width: 80%;
           margin-left: 4%;
           float: left;
         }
@@ -206,14 +216,15 @@
         }
         .received-time{
           color: rgb(72, 72, 72);
-          display: block;
+          display: inline-block;
+          position: absolute;
           font-size: 12px;
           margin: 8px 0 0;
-          transform: translate3d(0, 7px, 0);
+          /* transform: translate3d(0, 7px, 0); */
         }
 
         .outgoing-chats{
-          /* overflow: hidden; */
+          overflow: hidden;
           /* margin: 26px 20px; */
         }
         .outgoing-chats-msg p{
@@ -234,7 +245,7 @@
         }
         .outgoing-chats-msg{
           float: right;
-          max-width: 50%;
+          max-width: 40%;
           /* margin-left: 80%; */
 
         }
@@ -244,13 +255,20 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
-        
-        
+
+
         div.sticky {
           position: -webkit-sticky;
-          position: sticky;
-          top: 96%;
+          position: fixed;
+          bottom: 0;
+          /* top: 96%; */
           font-size: 12px;
+          right: 0;
+        }
+
+        #trexContent{
+          word-wrap: break-word;
+          width: 100%;
         }
 
         </style>
@@ -301,7 +319,7 @@
 
                         <div class="container">
                             <!-- Display refresh time -->
-                            <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div>
+                            <!-- <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div> -->
                             <div class="chat-page">
                                 <div class="msg-inbox">
                                     <div class="chats">
@@ -372,7 +390,7 @@
                                                             </div>
                                                             <div class="received-msg">
                                                                 <div class="received-msg-inbox">
-                                                                    <p><%= thisMessage.detail[i].content %></p>
+                                                                    <p id="trexContent"><%= thisMessage.detail[i].content %></p>
 
                                                                     <!-- <span class="received-time"><%= thisMessage.detail[i].time %></span> -->
                                                                 </div>
@@ -385,7 +403,7 @@
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="outgoing-chats">
                                                             <div class="outgoing-chats-msg">
-                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                                <p id="trexContent"><%= thisMessage.detail[i].content %></p>
 
                                                                 <!-- <span class="outgoing-time"><%= thisMessage.detail[i].time %></span> -->
                                                             </div>
@@ -404,29 +422,31 @@
                                                     </div>
                                                 <% } %>
                                             <% } %>
-                                            
-                                            
+
+
                                             <!-- Display the countdown timer in an element -->
                                             <!-- <p id="countdown" align="right" style="color:darkgrey;"></p> -->
-                                            
+
 
                                             <script>
                                                 var timeleft = 60;
                                                 var downloadTimer = setInterval(function(){
-                                                    
+
                                                         document.getElementById("countdown").innerHTML = "Reloading in " + timeleft + " seconds.";
                                                         timeleft -= 1;
                                                         if(timeleft <= 0){
                                                             clearInterval(downloadTimer);
                                                             document.getElementById("countdown").innerHTML = "Reloading..."
                                                         }
-                                                    
+
                                                 }, 1000);
                                             </script>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                            <div class="sticky" id="countdown" align="right" style="color:darkgrey;"></div>
+
                         </div>
 
 
@@ -458,8 +478,36 @@
            $('body').animate({
               scrollTop: document.body.scrollHeight
           }, 1);
+        };
+        // document.getElementById("trextContent").textContent.onload = function(){
+        //   var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
+        //   if(words.length > 40) {
+        //       words[39] += "\n";
+        //       document.getElementById("trexContent").textContent = words.join("");
+        //   }
+        // };
+        // var filter = () => {
+        //   var words = document.querySelectorAll("#trexContent");
+        //   words.forEach((word) => {
+        //     var letters = word.textContent.split("");
+        //     if(letters.length > 40) {
+        //         letters[39] += "\n";
+        //         // var toPut = words.slice(0, 5);
+        //         // var toHide = words.slice(5);
+        //
+        //         document.getElementById("trexContent").textContent = letters.join("");
+        //         $(".readmore").toggleClass("readactive");
+        //     }
+        //   });
+        //   // var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
+        //
+        // }
+        // filter();
+
+        function addEnterFunction(){
+          var words = document.getElementById("trexContent").textcontent;
         }
-        
+
     </script>
 
     <script src="/static/scripts/profileedit.js"></script>

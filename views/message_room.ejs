@@ -247,7 +247,7 @@
 
 
         </style>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -353,18 +353,18 @@
                                     <% } %>
                                     <h6 style="width:500px;"><%= thisMessage.detail[[thisMessage.detail.length-1]].date %>, <%= thisMessage.detail[[thisMessage.detail.length-1]].time %></h6>
                                  </div>
-                                 
-                                 
-                                 
+
+
+
 
                             </div>
 
 
 
                             <iframe id="frame" src="/message_room_box/<%=thisMessage.id%>" frameborder="0" height="500" width="100%" scrolling="yes"></iframe>
-                            
-                            
-                            
+
+
+
                             <div class="msg-bottom">
                                 <div class="input-group">
                                     <% if(currentUser.type === "c") { %>
@@ -386,18 +386,6 @@
 
                                 </div>
                               </div>
-                            
-                            
-                            
-                            
-                            <div class="chatBottom">
-                              <form action="#" onSubmit="return false;" id="chatForm" method="post">
-                                <input type="hidden" id="name" name="" value="<?php echo $user; ?>">
-                                <input type="text" name="text" id="text" value="" placeholder="Type your message">
-                                <input type="submit" name="submit" value="보내기">
-                              </form>
-                            </div>
-
                         </div>
 
 
@@ -410,7 +398,7 @@
 
         <br><br><br><br><br><br>
 
-    <script>
+    <!-- <script>
         $('#datepicker2').datepicker({
             multidate: true
         });
@@ -419,14 +407,7 @@
             multidate: true
         });
 
-    </script>
-
-    <script>
-        // reload될때 메세지 아래에서 시작하기
-        // $("#frame").scrollTop($("#frame")[0].scrollHeight);
-        // window.scroll(0, document.documentElement.scrollHeight);
-        
-    </script>
+    </script> -->
 
     <script src="/static/scripts/profileedit.js"></script>
     <% include ./partials/footer %>

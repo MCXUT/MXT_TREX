@@ -1,6 +1,31 @@
 <!-- price range selector -->
-
-
+//
+// $( function() {
+//   $( "#slider-range" ).slider({
+//     range: true,
+//     animate: "slowFade",
+//     min: 0,
+//     max: 100000,
+//     values: [ 0, 100000 ],
+//     step: 1000,
+//     slide: function( event, ui ) {
+//       // $( "#leasts" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+//
+//       $( "#leasts" ).val(ui.values[0] + "원");
+//       $( "#maxs" ).val(ui.values[1] +"원");
+//
+//       // $( "#maxs" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+//       $("#paymentis").html(" : " + ui.values[0] + "원 - " + ui.values[1] + "원")
+//
+//       // $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
+//       // $("#slider-range").slider("values", 1) + "원");
+//     }
+//   });
+//
+//   // $( "#leasts" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+//   // $( "#maxs" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+//
+// } );
 
 // 드롭다운 리스트 체크되어있을때 색깔변하게
 $("input[type=checkbox]").change(function(e){
@@ -34,7 +59,14 @@ $("input[type=checkbox]").change(function(e){
 
 
 
-
+// responsive value change of text box in cost
+// $("#leasts").change(function(){
+//   $("#slider-range").slider("values", 0, $(this).val().replace(/\D/g,''));
+// });
+//
+// $("#maxs").change(function(){
+//   $("#slider-range").slider("values", 1, $(this).val().replace(/\D/g,''));
+// });
 
 
 // document.querySelector(".dateragepicker").addEventListener("close", function(e){
@@ -59,6 +91,7 @@ function myFunction5(){
    wrapper.style.width = "100%";
  }
 }
+
 
 
 
@@ -150,10 +183,10 @@ $(function(e) {
 });
 
 
-document.getElementById("myDropdown").addEventListener("close", (e) => {
-    document.querySelector("#registerModal").style.display = "block";
-
-});
+// document.getElementById("myDropdown").addEventListener("close", (e) => {
+//     document.querySelector("#registerModal").style.display = "block";
+//
+// });
 
 document.querySelector(".close").addEventListener("click", (e) => {
     document.querySelector("#sliderss").style.display = "none";
@@ -163,11 +196,12 @@ document.querySelector(".close").addEventListener("click", (e) => {
 
 // document.getElementsByClassName("datepicker").defaultValue = "날짜";
 
-document.getElementById("login").addEventListener("click", (e) => {
-    document.querySelector("#registerModal").style.display = "block";
-
-});
+// document.getElementById("login").addEventListener("click", (e) => {
+//     document.querySelector("#registerModal").style.display = "block";
+//
+// });
 document.getElementById("formore").addEventListener("click", (e) => {
+    console.log("eeee");
     document.querySelector("#sliderss").style.display = "block";
     document.querySelector("#map").style.display = "none";
 });
