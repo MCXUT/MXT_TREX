@@ -23,7 +23,6 @@
     margin-bottom: 200px;
     box-sizing: border-box;
     animation: drop 0.4s ease forwards;
-    /* animation: rollup 0.8s ease; */
 }
 @keyframes drop {
     0% {opacity: 0.2;}

@@ -217,7 +217,7 @@
         .received-time{
           color: rgb(72, 72, 72);
           display: inline-block;
-          /* position: absolute; */
+          position: absolute;
           font-size: 12px;
           margin: 8px 0 0;
           /* transform: translate3d(0, 7px, 0); */
@@ -272,7 +272,6 @@
         }
 
         </style>
-        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -448,16 +447,8 @@
                             <div class="sticky" id="countdown" align="right" style="color:darkgrey;"></div>
 
                         </div>
-
-
-
-                    <!-- </div> -->
-
-
             </div>
         </div>
-
-        <!-- <br><br><br><br><br><br> -->
 
     <script>
         $('#datepicker2').datepicker({
@@ -472,37 +463,11 @@
 
     <script>
         // reload될때 메세지 아래에서 시작하기
-        // $("#message").scrollTop($("#message")[0].scrollHeight);
-        // window.scroll(0, document.documentElement.scrollHeight);
         function goDown() {
            $('body').animate({
               scrollTop: document.body.scrollHeight
           }, 1);
         };
-        // document.getElementById("trextContent").textContent.onload = function(){
-        //   var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
-        //   if(words.length > 40) {
-        //       words[39] += "\n";
-        //       document.getElementById("trexContent").textContent = words.join("");
-        //   }
-        // };
-        // var filter = () => {
-        //   var words = document.querySelectorAll("#trexContent");
-        //   words.forEach((word) => {
-        //     var letters = word.textContent.split("");
-        //     if(letters.length > 40) {
-        //         letters[39] += "\n";
-        //         // var toPut = words.slice(0, 5);
-        //         // var toHide = words.slice(5);
-        //
-        //         document.getElementById("trexContent").textContent = letters.join("");
-        //         $(".readmore").toggleClass("readactive");
-        //     }
-        //   });
-        //   // var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
-        //
-        // }
-        // filter();
 
         function addEnterFunction(){
           var words = document.getElementById("trexContent").textcontent;
@@ -510,7 +475,6 @@
 
     </script>
 
-    <script src="/static/scripts/profileedit.js"></script>
 
 
     </body>

@@ -357,6 +357,10 @@
     font-size: 16px;
     margin-bottom: 0;
 }
+.appointmentcard .container .subcontainer a {
+    text-align: right;
+    margin: auto;
+}
 
 html.disabled {
     overflow-y: hidden;
