@@ -18,6 +18,15 @@ input[type=number]::-webkit-outer-spin-button {
   background-color:#f8ba00;
   border:#f8ba00;
 }
+#add_file{
+  height: 130px;
+  width: 190px;
+  -o-object-fit: contain;
+  margin-right:10px;
+}
+#add_file:hover{
+  cursor:pointer;
+}
 @media(max-width: 576px) {
   td {
     display: table-row;
@@ -52,6 +61,10 @@ input[type=number]::-webkit-outer-spin-button {
     var CALC2 = CALC1.toFixed(2);
     document.TESTING.OUTPUT1.value = CALC2;
     }
+
+    function myAlert(){
+      alert("I am an alert box!");
+    }
   </script>
 
 <!-- /form calculation script -->
@@ -81,6 +94,85 @@ input[type=number]::-webkit-outer-spin-button {
         <div style="height:14px;"></div>
         <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
         <div style="height:17px;"></div>
+
+        <!-- 첨부파일 추가(추가 할 파일이 없으면 '파일이 없습니다'' 문구나타내기) -->
+
+        <!-- <form action="/action_page.php">
+          <input type="file" name="pic" accept="image/*">
+          <input type="submit">
+        </form> -->
+
+              <div id="dataTable44" style="display:none;">
+                <div class="container">
+                  <div class="sectionContent">
+                    <div class="row text-center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                 <div style="height:17px;"></div>
+                 </div>
+                </div>
+              </div>
+            </div>
+
+              <div id="dataTable55" style="display:none;color:red;">
+                <div style="height:17px;"></div>
+                 * 첨부하실 파일이 없습니다! 파트너 프로필에서 파일을 추가 해주세요.
+                </div>
+
+    <div id="dataTable66" style="display:none;">
+                <TABLE  border="0" >
+                  <TR>
+                     <td id="extra">
+                       <select>
+                         <option selected>첨부파일을 선택 해주세요.</option>
+                         <option value="upload3-1">첨부파일1</option>
+                         <option value="upload3-2">첨부파일2</option>
+                         <option value="upload3-3">첨부파일3</option>
+                       </select>
+                       <a1></a1>
+                     </td>
+
+                  </TR>
+               </table>
+               <div style="height:17px;"></div>
+               </div>
+
+
+
+                   <div >
+
+
+                   <input id="button02" type="button"
+                   onclick="document.getElementById('dataTable44').style.display='inline';
+                            document.getElementById('button02').style.display='none';
+                            document.getElementById('button0222').style.display='inline';"
+                            value="+" style="display:inline;width:30px;"/>
+
+                   <input id="button0222" type="button"
+                   onclick="document.getElementById('dataTable55').style.display='inline';
+                   document.getElementById('button0222').style.display='none';
+                   document.getElementById('button033').style.display='inline';"
+                   value="+" style="display:none;width:30px;"/>
+
+                   <input id="button033" type="button"
+                   onclick="document.getElementById('dataTable66').style.display='inline';"
+                            value="+" style="display:none;width:30px;"/> 첨부파일 추가하기
+
+                   </div>
+
+                   <!-- /첨부파일 추가 -->
+
+
+
+
+               <!-- 서비스선택,시급&시간 -->
+
+
+
+                   <div style="height:17px;"></div>
+                   <div><b>견적서 제출 하기</b></div>
+                   <div style="height:14px;"></div>
 
         <!-- 첨부파일 추가(추가 할 파일이 없으면 '파일이 없습니다'' 문구나타내기) -->
 
@@ -204,9 +296,17 @@ input[type=number]::-webkit-outer-spin-button {
             <div>시급:</div>
         </td>
         <td>
-            $ <input type="number" name="INPUT1" id="input" step="0.01" placeholder="시급을 입력 해주세요." min="0.00" onchange="calculate();"/>
+            $ <input type="number" name="INPUT1" id="input" step="0.01" placeholder="급여를 입력 해주세요." min="0.00" onchange="calculate();"/>
 
         </td>
+        <!-- <td>
+          <div class="bs-example" style="margin-top: 10%;">
+              <button type="button" class="btn btn-primary" data-toggle="popover" data-content="시간당 급여가 아닌 전체 일정 동안의 총 급여를 입력 해주세요."><i class="far fa-question-circle"></i></button>
+          </div>
+
+        <td>
+            <div>시간:</div>
+        </td> -->
         <td>
           <div class="bs-example" style="margin-top: 10%;">
               <button type="button" class="btn btn-primary" data-toggle="popover" title="설명?" data-content="설명."><i class="far fa-question-circle"></i></button>

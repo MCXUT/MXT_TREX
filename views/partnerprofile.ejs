@@ -39,16 +39,16 @@
         <div class="flexbox">
             <div class="main">
                 <% include ./partials/subbar %>
-                
+
                 <% if (error.length > 0) { %>
                   <span style="color:red;margin-left:70px;"><%= error %></span>
                 <% } %>
-                
+
                 <div class="main-raised">
                     <div class="profile-content">
                         <div class="background"></div>
                         <div class="container">
-                            
+
                             <!-- <div class="row rowdivider"> -->
                             <div class="col-8 ml-auto mr-auto">
                                 <form id="savePartner" action="/save_current_partner" method="post"></form>
@@ -90,7 +90,7 @@
                                                 <% } %>
                                             <% } %>
                                         </p>
-                                        
+
                                         <h6>
                                           <% if (thisPartner.address.city) { %>
                                               <%= thisPartner.address.city %>, <%= thisPartner.address.country %>

@@ -17,6 +17,17 @@ html {
 .close1:hover {
   opacity: 1;
   cursor:pointer;
+  )
+.close1:before {
+  transform: rotate(45deg);
+}
+.close1:after {
+  transform: rotate(-45deg);
+}
+/* end of thin exit button */
+
+#heading {
+    font-size: 30px;
 }
 .close1:before, .close1:after {
   position: absolute;
