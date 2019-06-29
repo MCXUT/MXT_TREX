@@ -4,6 +4,7 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const Client = require("../../models/Client");
 const Partner = require("../../models/Partner");
+const Admin = require("../../models/Admin");
 const middleware = require("../../middlewares/middleware");
 const keys = require("../keys");
 
@@ -38,10 +39,14 @@ passport.deserializeUser((id, done) => {
       Client.findById(id, (err, user) => {
           done(err, user);
       });
-    } else {
+    } else if(type === "p") {
       Partner.findById(id, (err, user) => {
           done(err, user);
       });
+    } else {
+      Admin.findById(id, (err, user) => {
+        done(err, user);
+      })
     }
   });
 });

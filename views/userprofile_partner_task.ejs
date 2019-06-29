@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-        
+
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-        
+
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-        
+
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,10 +55,10 @@
             }
             #wrapper h4{
               font-size: 20px;
-        
+
             }
         </style>
-        
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -66,7 +66,29 @@
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <link rel="stylesheet" href="/static/stylesheets/viewproficiency.css">
+        <div class="pum">
+            <div class="pum-container">
+                <div class="maincontent">
+                    <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    <p><span class="nameofpartner"></span>님에게 리뷰 남기기</p>
+                    <form id="ratingform">
+                        <div class="rating">
+                            <input type="radio" name="star" id="star5" value="five"><label for="star5"></label>
+                            <input type="radio" name="star" id="star4" value="four"><label for="star4"></label>
+                            <input type="radio" name="star" id="star3" value="three"><label for="star3"></label>
+                            <input type="radio" name="star" id="star2" value="two"><label for="star2"></label>
+                            <input type="radio" name="star" id="star1" value="one"><label for="star1"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea form="ratingform" class="form-control" rows="3" id="comment" name="comment"></textarea>
+                        </div>
+                        <input type="submit" name="submit" value="확인" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <% include ./partials/navbar %>
 
@@ -96,22 +118,183 @@
                         <% } %>
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
-                        
-                        
-                        
+
+
+
                         <!--  업무 예약 관리  -->
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
                             <div class="row sections basic" id="basic">
-                                <p class="basictitle"><b>예약 정보</b></p>
-                                
+                                <p class="basictitle"><b>지정된 업무</b></p>
+                                <div class="divider"></div>
+                                <div class="appointmentlist">
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>진행중인 업무</b></p>
+                                <div class="divider"></div>
+                                <div class="appointmentlist2">
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무1</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">정오</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무2</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">병우</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무3</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">승원</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무4</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">승연</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무5</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무6</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무7</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무8</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무9</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무10</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무11</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무12</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent">날짜</p>
+                                                <a href="javascript:void(0)">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <nav aria-label="Page navigation example">
+                                  <ul class="pagination">
+                                    <li class="prevshow"><a class="page-link" href="javascript:void(0)">Previous</a></li>
+                                  </ul>
+                                </nav>
+                            </div>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>확정된 업무</b></p>
+                                <div class="divider"></div>
+                            </div>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>완료된 업무</b></p>
+                                <div class="divider"></div>
                             </div>
                         </div>
-                        
-                        
+
+
 
                 </div>
             </div>

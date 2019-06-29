@@ -244,10 +244,12 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
+        .bottom{
+          min-height: 600px;
+        }
 
 
         </style>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -255,14 +257,9 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-
-
-        <!-- jquery slide selector -->
 
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/demos/style.css">
-      <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -292,19 +289,30 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
-                        <div class="menu">
-                            <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
-                            <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
-                            <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages profileactive" href="/user_profile/messages">메세지</a>
-                            <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
-                            <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
-                        </div>
+                        <% if (currentUser.type === "c") { %>
+                            <p class="setting">클라이언트 계정 관리</p>
+                            <div class="menu">
+                                <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
+                                <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
+                                <a class="messages profileactive" href="/user_profile/messages">메세지</a>
+                                <a class="saved_partners" href="/user_profile/saved_partners">저장된 파트너</a>
+                                <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
+                            </div>
+                        <% } else if (currentUser.type === "p") { %>
+                            <p class="setting">파트너 계정 관리</p>
+                            <div class="menu">
+                                <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
+                                <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
+                                <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
+                                <a class="messages profileactive" href="/user_profile/messages">메세지</a>
+                                <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
+                                <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
+                            </div>
+                        <% }%>
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="height: 80%">
                         <% if (currentUser.type === "c") { %>
                             <% if (currentUser.companyLogo) { %>
                               <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
@@ -323,7 +331,7 @@
                     </div>
 
 
-                    <div class="col-md-6" style="padding:0px;">
+                    <div class="col-md-6" style="padding:0px; height: 80%">
 
 
                         <div class="container">
@@ -332,14 +340,14 @@
 
                                   <div class="msg-header-img">
                                       <% if(currentUser.type === "c") { %>
-                                          <% if (thisMessage.partnerPic) { %>
-                                            <img src="/profilePic/<%= thisMessage.partnerPic %>" style="width:40px; height:40px;">
+                                          <% if (partnerPic) { %>
+                                            <img src="/profilePic/<%= partnerPic %>" style="width:40px; height:40px;">
                                           <% } else { %>
                                             <img src="/static/images/noprofilepic.jpeg" style="width:40px; height:40px;">
                                           <% } %>
                                       <% } else if (currentUser.type === "p") { %>
-                                          <% if (thisMessage.clientPic) { %>
-                                            <img src="/logo/<%= thisMessage.clientPic %>" style="width:40px; height:40px;">
+                                          <% if (clientPic) { %>
+                                            <img src="/logo/<%= clientPic %>" style="width:40px; height:40px;">
                                           <% } else { %>
                                             <img src="/static/images/noprofilepic.jpeg" style="width:40px; height:40px;">
                                           <% } %>
@@ -353,18 +361,18 @@
                                     <% } %>
                                     <h6 style="width:500px;"><%= thisMessage.detail[[thisMessage.detail.length-1]].date %>, <%= thisMessage.detail[[thisMessage.detail.length-1]].time %></h6>
                                  </div>
-                                 
-                                 
-                                 
+
+
+
 
                             </div>
 
 
 
                             <iframe id="frame" src="/message_room_box/<%=thisMessage.id%>" frameborder="0" height="500" width="100%" scrolling="yes"></iframe>
-                            
-                            
-                            
+
+
+
                             <div class="msg-bottom">
                                 <div class="input-group">
                                     <% if(currentUser.type === "c") { %>
@@ -386,18 +394,6 @@
 
                                 </div>
                               </div>
-                            
-                            
-                            
-                            
-                            <div class="chatBottom">
-                              <form action="#" onSubmit="return false;" id="chatForm" method="post">
-                                <input type="hidden" id="name" name="" value="<?php echo $user; ?>">
-                                <input type="text" name="text" id="text" value="" placeholder="Type your message">
-                                <input type="submit" name="submit" value="보내기">
-                              </form>
-                            </div>
-
                         </div>
 
 
@@ -410,23 +406,6 @@
 
         <br><br><br><br><br><br>
 
-    <script>
-        $('#datepicker2').datepicker({
-            multidate: true
-        });
-
-        $('.date').datepicker({
-            multidate: true
-        });
-
-    </script>
-
-    <script>
-        // reload될때 메세지 아래에서 시작하기
-        // $("#frame").scrollTop($("#frame")[0].scrollHeight);
-        // window.scroll(0, document.documentElement.scrollHeight);
-        
-    </script>
 
     <script src="/static/scripts/profileedit.js"></script>
     <% include ./partials/footer %>

@@ -21,7 +21,7 @@
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
-                    <li class="nav-item dropdown dropdown-bubble" id="hov2">
+                    <li class="nav-item dropdown" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.type === "p") { %>
@@ -106,8 +106,19 @@
                                     <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                                     로그아웃
                                 </a>
+                            <% } else if (currentUser.type === "a") { %>
+                                <!-- dropdown for admins -->
+                                <a class="dropdown-item" href="/trex-admin">
+                                    <i class="fas fa-user-secret" style="width: 15px; height: 15px; margin-right: 3px;"></i>
+                                    관리자 페이지
+                                </a>
+                                <hr style="margin:5px auto;width:85%;text-align:center;">
+                                <a class="dropdown-item" href="/auth/logout">
+                                    <img src="/static/icons/signout.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
+                                    로그아웃
+                                </a>
                             <% } %>
-
+                            
                         </div>
                     </li>
                 </ul>

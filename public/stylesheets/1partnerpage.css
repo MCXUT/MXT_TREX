@@ -29,9 +29,6 @@ html, body{
   height:20px;
   width:100%;
 }
-h1{
-  font-size: 50px;
-}
 /* end of carousel section */
 
 
@@ -89,47 +86,6 @@ h1{
   padding-top:5%;
 
 }
-
-
-.item001 {
-  grid-column: 1 / span 3;
-  grid-row: 1 / span 4;
-  padding-top: 0px;
-  margin-top: 0px;
-
-}
-
-.item002 {
-  grid-column: 4 /span 2;
-  grid-row: 1 ;
-  text-align: left;
-  color:#999999;
-  font-size: 35px;
-  padding-top: 0px;
-  margin-top: 0px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-
-}
-
-.item003 {
-  grid-column: 4 / span 2;
-  grid-row: 2;
-  text-align: left;
-  font-size: 35px;
-  font-weight: 800;
-  padding-top: 0px;
-  margin-top: 0px;
-}
-.item004 {
-  grid-column: 4 / span 2;
-  grid-row: 3 / span 2;
-  text-align: left;
-  overflow-wrap: break-word;
-  max-width: 330px !important;
-  padding-top: 0px;
-  margin-top: 0px;
-}
 /*/파트너 활동은 어떻게 하나요? */
 /* 업무에 지원 해 보세요*/
 .card1{
@@ -137,7 +93,6 @@ h1{
   box-shadow: 4px 4px 8px #cccccc;
   text-align: left;
   color:#999999;
-  width:responsive;
 }
 .card1:hover{
   cursor: pointer;
@@ -150,30 +105,16 @@ h1{
 .item02 {
   grid-column: 2 / span 2;
   grid-row: 1;
-  font-size: 20px;
-  font-weight: 600;
-  padding-top: 20px;
-  padding-right: 20px;
 }
 
 .item03 {
   grid-column: 1;
-  grid-row: 2 / span 2;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
-
-}
-.item03 img{
-  width:70px;
-  height:70px;
+  grid-row: 2;
 }
 
 .item04 {
   grid-column: 2 / span 2;
   grid-row: 2;
-  font-size: 16px;
-  font-weight: 500;
 }
 
 .item05 {
@@ -188,12 +129,9 @@ h1{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-bottom: 30px;
 }
 
-.container{
-  width:60%;
-}
+
 /* /업무에 지원 해 보세요.*/
 /* 자주 묻는 질문 &트렉스 파트너의 후기*/
 #qlist{
@@ -272,19 +210,11 @@ h1{
 }
 /* /자주 묻는 질문 &트렉스 파트너의 후기*/
 /*---Media Queries --*/
-@media(max-width:1024px){
-  .container{
-    width:80%;
-  }
-}
+@media (max-width: 992px) {
 
+  }
 @media (max-width: 768px) {
-  .container{
-    width:65%;
-  }
-  .item03{
-    padding-left: 40px;
-  }
+
 }
 @media (max-width: 576px) {
   #carousel-caption-partner{
@@ -292,15 +222,11 @@ h1{
     padding-bottom:9%;
   }
   #carousel-caption-partner h1{
-    font-size:21px;
+    font-size:35px;
   }
   #carousel-caption-partner h2{
-    font-size:18px;
+    font-size:20px;
   }
-  .carousel-caption{
-    padding-bottom: 10%;
-  }
-
   #slider-images{
     height: 300px;
     -o-object-fit: contain;
@@ -315,43 +241,7 @@ h1{
     font-size: 15px;
   }
 
-  .container{
-    width:100%;
-  }
-  .item03{
-    padding-left: 20px;
-  }
-  .item03 img{
-    width:50px;
-    height:50px;
-  }
-  .item02{
-    font-size: 16px;
-  }
-  .item04{
-    font-size: 15px;
-  }
-  .item06{
-    font-size: 13px;
-    width: 190px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .item002{
-    font-size: 25px;
-  }
-  .item003{
-    font-size: 20px;
-  }
-  h2{
-    font-size: 25px;
-    font-weight: 600;
-  }
-  h4{
-    font-size: 20px;
-    font-weight: 450;
-  }
+
 }
 
 

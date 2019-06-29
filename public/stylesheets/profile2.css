@@ -18,7 +18,7 @@
     height: auto;
 }
 .main-raised .background {
-    height: 100px;
+    height: 150px;
     background-color: green;
 }
 .avatar {
@@ -47,7 +47,7 @@
 }
 .onelinedesc {
     color: rgba(0, 0, 0, 0.5);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 .profile .row span img {
@@ -74,9 +74,9 @@
     border-radius: 4px;
     text-align: center;
     padding: 5%;
+    margin-bottom: 30px;
 }
 .subbox p {
-    /* padding: 20px 10% 0 10%; */
     font-size: 18px;
     font-weight: 600;
 }
@@ -85,6 +85,11 @@
 }
 .subbox .availablelist .btn {
     margin: 5px;
+    background-color: #559ad1;
+}
+.subbox .availablelist .btn:hover {
+    margin: 5px;
+    background-color: rgb(45, 114, 169);
 }
 
 
@@ -106,12 +111,19 @@
     font-weight: 500;
     color: rgb(101, 101, 164);
 }
-.rowdivider.refund .description-title p {
-    font-size: 20px;
-    font-weight: 400;
+.rowdivider.refund .description-title .divtitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2f3033;
+}
+.rowdivider .divtitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2f3033;
 }
 .rowdivider.refund p {
-    font-size: 12px;
+    font-size: 16px;
+    color:  #676d73;
 }
 
 .rowdivider img {
@@ -131,7 +143,7 @@
     display: block;
 }
 #expand,#collapse {
-    color: #f8ba00;
+    color: #f58b44;
 }
 #expand:hover,#collapse:hover {
     text-decoration: underline;
@@ -142,6 +154,9 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     width: 100%;
 }
+
+
+
 
 html.disabled {
     overflow-y: hidden;
