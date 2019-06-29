@@ -244,6 +244,9 @@
           margin-bottom: 20px;
           color: rgba(0, 0, 0, 0.5);
         }
+        .bottom{
+          min-height: 600px;
+        }
 
 
         </style>
@@ -254,6 +257,7 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/demos/style.css">
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -297,7 +301,7 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="height: 80%">
                         <% if (currentUser.type === "c") { %>
                             <% if (currentUser.companyLogo) { %>
                               <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
@@ -316,7 +320,7 @@
                     </div>
 
 
-                    <div class="col-md-6" style="padding:0px;">
+                    <div class="col-md-6" style="padding:0px; height: 80%">
 
 
                         <div class="container">
@@ -367,6 +371,7 @@
                                     <% } %>
                                         <input type="hidden" form="sendMessageform" name="message" value="<%= thisMessage.id %>">
                                         <input type="text" form="sendMessageform" class="form-control" name="content" placeholder="메세지쓰기" value="">
+                                        <!-- <textarea form="sendMessageform" class="form-control" name="content" placeholder="메세지쓰기" value=""></textarea> -->
                                         <div class="input-group-append" style="width: 40px;">
                                             <span class="input-group-text" style="padding: 0;width: 100%;height: 100%;">
                                                 <button form="sendMessageform" style="padding:0; width:100%;height:100%;
@@ -378,7 +383,6 @@
 
                                 </div>
                               </div>
-
                         </div>
 
 
@@ -391,18 +395,8 @@
 
         <br><br><br><br><br><br>
 
-    <script>
-        $('#datepicker2').datepicker({
-            multidate: true
-        });
 
-        $('.date').datepicker({
-            multidate: true
-        });
-
-    </script>
-
-
+    <script src="/static/scripts/profileedit.js"></script>
     <% include ./partials/footer %>
 
     </body>
