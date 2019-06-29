@@ -1,0 +1,517 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="60">
+        <style>
+            .btn-primary:hover {
+                cursor: pointer;
+            }
+          .chatContainer{
+            width: 400px;
+            height: 500px;
+            border: 2px solid #ddd;
+          }
+          .chatContainer > .chatHeader {
+            width: 95%;
+            background: white;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            height: 60px;
+          }
+          .chatContainer > .chatHeader h3 {
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            color: #333
+          }
+          .chatContainer > .chatMessages{
+            height: 420px;
+            border-bottom: 1px solid #dddd;
+            overflow-y: scroll;
+
+          }
+          .chatBottom {
+            transform: translate3d(0, 415px, 0);
+            position: fixed;
+
+          }
+          .chatBottom form input[type="submit"]{
+            padding: 5px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+
+            font-size: 14px;
+          }
+          .chatBottom form input[type="text"]{
+            width: 335px;
+            padding: 3px;
+            padding-left: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            margin-right: 0px;
+            height: 30px;
+          }
+          .speech-bubble {
+      filter: drop-shadow(-1px -1px 2px rgba(0, 0, 0, .10)) drop-shadow(1px 2px 2px rgba(0, 0, 0, .15));
+      margin: 1rem;
+      margin-bottom: 40px;
+      padding: 1.5rem 2rem;
+      position: relative;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      background: #8ca8d8;
+      color: white;
+    }
+    .speech-bubble::before {
+      border: 12.5px solid transparent;
+      border-top: 12.5px solid #8ca8d8;
+      border-bottom: 0;
+      height: 0;
+      width: 0;
+      border-top-width: 25px;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 3rem;
+      bottom: -25px;
+      transform-origin: center;
+      transform: rotate(90deg) skew(-25deg) translateY(16.66667px);
+    }
+
+
+        .speech-bubble cite {
+          position: absolute;
+          bottom: -2rem;
+          left: 4.5rem;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+          color: black;
+        }
+        #avatar{
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          background-image: url("static/images/nibbler.jpeg");
+          background-size: cover;
+          margin: 0;
+          position: relative;
+        }
+        .container{
+            /* margin: 0px !important; */
+            /* margin-bottom: 50px; */
+            padding: 0px;
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+            margin-right: none !important;
+            margin-left: none !important;
+            letter-spacing: 0.5px;
+            display: block;
+            margin: 0 !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+        }
+        .container img{
+          max-width: 100%;
+          border-radius: 50%;
+        }
+
+        .msg-header{
+          border: 1px solid #ccc;
+          width: 100%;
+          height: 70px;
+          border-bottom: none;
+          display: inline-block;
+          background-color: #007bff;
+        }
+        .msg-header-img{
+          border-radius: 50%;
+          width: 40px;
+          margin-left: 5%;
+          float: left;
+          margin-top: 15px;
+        }
+        .active{
+          width: 120px;
+          float: left;
+          margin-top: 23px;
+        }
+        .active h4{
+          font-size: 14px;
+          margin-left: 10px;
+          color: #fff;
+        }
+        .active h6{
+          font-size: 10px;
+          margin-left: 10px;
+          line-height: 2px;
+          color: #fff;
+        }
+        .chat-page{
+          /* padding: 0 0 50px 0; */
+          /* padding-left: 10px;
+          padding-right: 10px; */
+        }
+        .msg-inbox{
+          border: 1px solid #ccc;
+          overflow: hidden;
+          /* padding-bottom: 30px; */
+          /* display: flex; */
+          min-height: 100% !important;
+        }
+        .chats{
+            min-height: 100% !important;
+            padding: 0;
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+        .msg-page{
+            min-height: 100% !important;
+          overflow-y: auto;
+
+        }
+        .received-chats{
+          overflow: hidden;
+        }
+        .received-chats-img{
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          float: left;
+        }
+        .received-msg{
+          /* display: flex; */
+          padding: 0 0 0 15px;
+          vertical-align: top;
+          /* width: 92%; */
+          max-width: 50%;
+        }
+        .received-msg-inbox{
+          max-width: 80%;
+          margin-left: 4%;
+          float: left;
+        }
+        .received-msg-inbox p{
+          background: #efefef none repeat scroll 0 0;
+          border-radius: 10px;
+          color: #646464;
+          font-size: 14px;
+          margin: 0;
+          padding: 5px 10px 5px 12px;
+          max-width: 100%;
+        }
+        .outgoing-time{
+          color: rgb(72, 72, 72);
+          display: block;
+          font-size: 12px;
+          margin: 8px 0 0;
+          float: right;
+
+          /* transform: translate3d(0, -20px, 0); */
+        }
+        .received-time{
+          color: rgb(72, 72, 72);
+          display: inline-block;
+          position: absolute;
+          font-size: 12px;
+          margin: 8px 0 0;
+          /* transform: translate3d(0, 7px, 0); */
+        }
+
+        .outgoing-chats{
+          overflow: hidden;
+          /* margin: 26px 20px; */
+        }
+        .outgoing-chats-msg p{
+          background: #007bff none repeat scroll 0 0;
+          color: #fff;
+          border-radius: 10px;
+          font-size: 14px;
+          margin: 0;
+          padding: 5px 10px 5px 12px;
+          max-width: 100%;
+          /* min-width: 1px;   */
+        }
+        .outgoing-chats-img{
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          float: right;
+        }
+        .outgoing-chats-msg{
+          float: right;
+          max-width: 40%;
+          /* margin-left: 80%; */
+
+        }
+
+        .prettyDate{
+          text-align: center;
+          margin-bottom: 20px;
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+
+        div.sticky {
+          position: -webkit-sticky;
+          position: fixed;
+          bottom: 0;
+          /* top: 96%; */
+          font-size: 12px;
+          right: 0;
+        }
+
+        #trexContent{
+          word-wrap: break-word;
+          width: 100%;
+        }
+
+        </style>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+
+        <!-- jquery slide selector -->
+
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+        <title>Member - 트렉스</title>
+
+        <% include ./partials/header %>
+
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
+
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        </head>
+        <body onload="goDown()">
+
+
+        <div class="profile">
+            <div class="tab">
+
+
+
+                        <div class="container">
+                            <!-- Display refresh time -->
+                            <!-- <div class="sticky" id="countdown" align="right" style="color:darkgrey; display:fixed;"></div> -->
+                            <div class="chat-page">
+                                <div class="msg-inbox">
+                                    <div class="chats">
+                                        <div class="msg-page" id="message">
+                                            <% if(currentUser.type === "c") { %>
+                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
+                                                    <!-- Display date at first -->
+                                                    <div class="prettyDate">
+                                                    <% if (i === 0) { %>
+                                                        <%= thisMessage.detail[i].date %>
+                                                    <% } %>
+                                                    </div>
+                                                    <!-- Display messages -->
+                                                    <% if (thisMessage.detail[i].author === "p") { %>
+                                                        <div class="received-chats">
+                                                            <div class="received-chats-img">
+                                                                <% if (thisMessage.partnerPic) { %>
+                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="received-msg">
+                                                                <div class="received-msg-inbox">
+                                                                    <p><%= thisMessage.detail[i].content %></p>
+                                                                </div>
+                                                                <div class="received-time"><%= thisMessage.detail[i].time %></div>
+
+                                                            </div>
+                                                            <br>
+                                                        </div>
+                                                    <% } %>
+                                                    <% if (thisMessage.detail[i].author === "c") { %>
+                                                        <div class="outgoing-chats">
+                                                            <div class="outgoing-chats-msg">
+                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                            </div>
+                                                            <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
+                                                        </div>
+                                                        <br>
+                                                    <% } %>
+                                                    <!-- Display date whenever date changes -->
+                                                    <div class="prettyDate">
+                                                    <% if (i+1 < thisMessage.detail.length) { %>
+                                                        <% if (thisMessage.detail[i].date !== thisMessage.detail[i+1].date) { %>
+                                                            <%= thisMessage.detail[i+1].date %>
+                                                        <% } %>
+                                                    <% } %>
+                                                    </div>
+                                                <% } %>
+                                            <% } else if (currentUser.type === "p") { %>
+                                                <% for (var i = 0; i < thisMessage.detail.length; i++) { %>
+                                                    <!-- Display date at first -->
+                                                    <div class="prettyDate">
+                                                    <% if (i === 0) { %>
+                                                        <%= thisMessage.detail[i].date %>
+                                                    <% } %>
+                                                    </div>
+                                                    <!-- Display messages -->
+                                                    <% if (thisMessage.detail[i].author === "c") { %>
+                                                        <div class="received-chats">
+                                                            <div class="received-chats-img">
+                                                                <% if (thisMessage.clientPic) { %>
+                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
+                                                                <% } else { %>
+                                                                  <img src="/static/images/noprofilepic.jpeg">
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="received-msg">
+                                                                <div class="received-msg-inbox">
+                                                                    <p id="trexContent"><%= thisMessage.detail[i].content %></p>
+
+                                                                    <!-- <span class="received-time"><%= thisMessage.detail[i].time %></span> -->
+                                                                </div>
+                                                                <div class="received-time"><%= thisMessage.detail[i].time %></div>
+                                                            </div>
+                                                            <!-- <br> -->
+                                                        </div>
+                                                        <br>
+                                                    <% } %>
+                                                    <% if (thisMessage.detail[i].author === "p") { %>
+                                                        <div class="outgoing-chats">
+                                                            <div class="outgoing-chats-msg">
+                                                                <p id="trexContent"><%= thisMessage.detail[i].content %></p>
+
+                                                                <!-- <span class="outgoing-time"><%= thisMessage.detail[i].time %></span> -->
+                                                            </div>
+                                                            <!-- <br><br> -->
+                                                            <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
+                                                        </div>
+                                                        <br>
+                                                    <% } %>
+                                                    <!-- Display date whenever date changes -->
+                                                    <div class="prettyDate">
+                                                    <% if (i+1 < thisMessage.detail.length) { %>
+                                                        <% if (thisMessage.detail[i].date !== thisMessage.detail[i+1].date) { %>
+                                                            <%= thisMessage.detail[i+1].date %>
+                                                        <% } %>
+                                                    <% } %>
+                                                    </div>
+                                                <% } %>
+                                            <% } %>
+
+
+                                            <!-- Display the countdown timer in an element -->
+                                            <!-- <p id="countdown" align="right" style="color:darkgrey;"></p> -->
+
+
+                                            <script>
+                                                var timeleft = 60;
+                                                var downloadTimer = setInterval(function(){
+
+                                                        document.getElementById("countdown").innerHTML = "Reloading in " + timeleft + " seconds.";
+                                                        timeleft -= 1;
+                                                        if(timeleft <= 0){
+                                                            clearInterval(downloadTimer);
+                                                            document.getElementById("countdown").innerHTML = "Reloading..."
+                                                        }
+
+                                                }, 1000);
+                                            </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="sticky" id="countdown" align="right" style="color:darkgrey;"></div>
+
+                        </div>
+
+
+
+                    <!-- </div> -->
+
+
+            </div>
+        </div>
+
+        <!-- <br><br><br><br><br><br> -->
+
+    <script>
+        $('#datepicker2').datepicker({
+            multidate: true
+        });
+
+        $('.date').datepicker({
+            multidate: true
+        });
+
+    </script>
+
+    <script>
+        // reload될때 메세지 아래에서 시작하기
+        // $("#message").scrollTop($("#message")[0].scrollHeight);
+        // window.scroll(0, document.documentElement.scrollHeight);
+        function goDown() {
+           $('body').animate({
+              scrollTop: document.body.scrollHeight
+          }, 1);
+        };
+        // document.getElementById("trextContent").textContent.onload = function(){
+        //   var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
+        //   if(words.length > 40) {
+        //       words[39] += "\n";
+        //       document.getElementById("trexContent").textContent = words.join("");
+        //   }
+        // };
+        // var filter = () => {
+        //   var words = document.querySelectorAll("#trexContent");
+        //   words.forEach((word) => {
+        //     var letters = word.textContent.split("");
+        //     if(letters.length > 40) {
+        //         letters[39] += "\n";
+        //         // var toPut = words.slice(0, 5);
+        //         // var toHide = words.slice(5);
+        //
+        //         document.getElementById("trexContent").textContent = letters.join("");
+        //         $(".readmore").toggleClass("readactive");
+        //     }
+        //   });
+        //   // var words = document.getElementById("trexContent").textContent.split("").filter(function(e) { return e.length != 0 });
+        //
+        // }
+        // filter();
+
+        function addEnterFunction(){
+          var words = document.getElementById("trexContent").textcontent;
+        }
+
+    </script>
+
+    <!-- <script src="/static/scripts/profileedit.js"></script> -->
+
+
+    </body>
+</html>
