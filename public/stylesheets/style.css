@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
 
 html {
@@ -33,18 +33,6 @@ html {
   transform: rotate(-45deg);
 }
 /* end of thin exit button */
-
-
-#heading {
-    font-size: 30px;
-}
-
-.steptitle {
-    font-size: 24px;
-}
-.stepdesc {
-    font-size: 20px;
-}
 
 .container-fluid{
   padding-left: 0px;
@@ -135,20 +123,7 @@ html {
 .dropdown a:hover {background-color: #ddd;}
 /* end of carousel section */
 
-.display-4 {
-    font-size: 40px;
-}
-.text-center {
-    font-size: 24px;
-    font-weight: 400;
-}
 
-.col-md-4.col-sm-4 {
-    padding-bottom: 0;
-}
-.padding.text-center {
-    padding: 70px 0;
-}
 
 /* 서비스 견적 */
 
@@ -158,7 +133,6 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 color:white;
-font-weight: 200;
 }
 #request-service{
   height: 150px;
@@ -214,7 +188,6 @@ font-weight: 200;
   /* .card:first-of-type:not(:last-of-type) { */
 #qlist{
   padding:0;
-  margin-bottom: 30px;
 }
 #accordion .card, #accordion {
   background-color:transparent;
@@ -223,11 +196,9 @@ font-weight: 200;
   border-bottom:none;
   border-radius:0;
   padding: 0;
-  text-align:left;
 }
 #accordion a{
   color:#4d4d4d;
-  font-size: 20px;
 }
 #accordion a:hover, #accordion a:after{
   color:black;
@@ -241,10 +212,7 @@ font-weight: 200;
   padding-bottom: 0.7%;
 }
 #accordion .collapse{
-  /* background-color: rgba(255, 255, 255, 0.8); */
-}
-.collapse.show {
-    background-color: rgba(255, 255, 255, 0);
+  background-color: #f2f2f2;
 }
 #button1{
   background-color:#f8ba00;
@@ -281,7 +249,6 @@ font-weight: 200;
   display: grid;
   grid-gap: 0;
   background-color: transparent;
-  min-height: 270px;
 }
 
 .grid-item {
@@ -334,6 +301,7 @@ font-weight: 200;
 }
 #footer-menu{
   line-height:28px;
+  font-size:15px;
 }
 /*end of footer section*/
 /*---Media Queries --*/
@@ -492,43 +460,6 @@ figure {
     filter: blur(0);
 }
 
-.qna {
-    font-size: 30px;
-    color: #2f3033;
-}
-.collapsed, .card-body {
-    font-size: 16px;
-}
-
-#button1 {
-    font-size: 16px;
-    color: white;
-    background-color: #559ad1;
-}
-#button1:hover {
-    background-color: rgb( 45, 114, 169 );
-}
-.grid-item.text-center {
-    font-size: 16px;
-}
-.grid-item.text-left {
-    line-height: 1;
-}
-.grid-item.text-left span {
-    font-size: 20px;
-}
-.grid-item.text-left h6 {
-    font-size: 16px;
-}
-.col-md-12.col-lg-7 {
-    padding-bottom: 0;
-}
-.row.text-center {
-    padding-bottom: 10px;
-}
-.grid-container {
-    background-color: rgba( 255, 255, 255, 0.5 );
-}
 
 
 /*

@@ -3,7 +3,7 @@
 <div class="myNav">
     <nav class="navbar navbar-expand-md navbar-light">
         <!-- <div class="container"> -->
-            <a class="logo" href="/"><img src="/static/images/trexlogo.png" height="60" width="100"></img></a>
+            <a class="logo" href="/"><img src="/static/images/0.jpg" height="60" width="100"></img></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -12,14 +12,16 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/find_partner" id="fplink">
+                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             파트너 찾기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/partner_page" id="pplink">
+                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
-                    <li class="nav-item dropdown" id="hov2">
+                    <li class="nav-item dropdown dropdown-bubble" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.type === "p") { %>
@@ -39,15 +41,6 @@
                         <div class="dropdown-menu dropdown-menu-right profile-menu" aria-labelledby="navbarDropdown">
 
                             <% if (currentUser.type === "p") { %>
-<<<<<<< HEAD
-                              <a class="dropdown-item" href="/user_profile/partnerProfile">
-                                  프로필 관리</a>
-                            <% } %>
-                            <a class="dropdown-item" href="/user_profile/account_info">
-                                계정 관리</a>
-                            <a class="dropdown-item" href="/auth/logout">
-                                로그아웃</a>
-=======
                                 <!-- dropdown for partners -->
                                 <a class="dropdown-item" href="/user_profile/partnerProfile">
                                     <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
@@ -114,8 +107,7 @@
                                     로그아웃
                                 </a>
                             <% } %>
-                            
->>>>>>> cd11df7e7f4185de339ca2a7a3666ef73480bdaa
+
                         </div>
                     </li>
                 </ul>
@@ -123,19 +115,23 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/find_partner" id="fplink">
+                            <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             파트너 찾기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/partner_page" id="pplink">
+                            <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img>
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/login" id="loginlink">
+                            <img src="/static/icons/signin.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             로그인</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/register" id="registerlink">
+                            <img src="/static/icons/signup.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img>
                             회원가입</a>
                     </li>
                 </ul>

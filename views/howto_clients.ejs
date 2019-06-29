@@ -4,22 +4,10 @@
   <meta charset="utf-8">
    <% include ./partials/header %>
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--for mobile websites-->
-  <meta name="google" content="notranslate" />
-  <!-- css cdn -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- cdn for jQuery must be before that of JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link rel="stylesheet" href="../static/stylesheets/style.css">
   <script src="/static/scripts/autocomplete.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
+
 
   <style >
     /* 파트너 활동은 어떻게 하나요?*/
@@ -66,20 +54,91 @@
     }
 
     /*/파트너 활동은 어떻게 하나요? */
+    #slider_img{
+      height: 600px;
+      width: 100%;
+      -o-object-fit: contain;
+    }
+    .carousel-caption{
+      padding-bottom:20%;
+    }
+    .btn-dark{
+      height:55px;
+      font-size: 19px;
+    }
+    @media (max-width: 1024px){
+      #searchbox{
+        width: 400px !important;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 0px;
+      }
+    }
+    @media (max-width: 576px) {
+      #slider_img{
+        height: 300px;
+        width: 100%;
+        -o-object-fit: contain;
+
+      }
+      .carousel-caption h1{
+        font-size: 27px;
+        font-weight: 700;
+      }
+      .carousel-caption{
+        padding-bottom: 30%;
+      }
+      .item002{
+        font-size: 20px;
+      }
+      .item003{
+        max-width: 170px !important;
+      }
+      h2{
+        font-size: 23px;
+        font-weight: 500;
+      }
+      #searchbox{
+        width: 300px !important;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      #searchbox button{
+        height:32px;
+        font-size: 12px;
+      }
+      .btn-dark{
+        height:45px;
+        font-size: 15px;
+      }
+    }
+    @media (max-width: 350px){
+      .carousel-caption h1{
+        font-size: 24px;
+        font-weight: 700;
+      }
+      h2{
+        font-size:20px;
+      }
+      #more_questions{
+        font-size: 23px;
+      }
+
+    }
   </style>
 </head>
 <body>
   <% include ./partials/navbar %>
 
   <!-- Carousel Section -->
-  <div class="container-fluid padding2" id="mainDiv">
+  <div class="container-fluid " id="mainDiv">
   <div id="slides" class="carousel slide" data-ride="carousel">
 
 
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="desk.jpg" class="center" style="width:100%;height:300px;">
-      <div class="carousel-caption" style="color:black;">
+      <img id="slider_img" src="/static/images/howto_clients.jpg" class="center responsive" style="width:100%;">
+      <div class="carousel-caption text-center" style="color:white;">
         <h1 >트렉스를 통해 간편하게</h1>
         <h1>현지 팀원을 찾아보세요.</h1>
       </div>
@@ -137,17 +196,17 @@
   </div>
   </div>
   <!-- /파트너 활동은 어떻게 하나요?-->
-<br><br>
+
 
   <!-- 더 궁금한 점이 있으신가요? -->
-  <div class="container-fluid padding text-center" >
+  <div class="container-fluid text-center" >
   <div class="container" style="">
   <div class="sectionContent">
 
     <div>
-      <h2>더 궁금한 점이 있으신가요?</h2>
+      <h2 id="more_questions">더 궁금한 점이 있으신가요?</h2>
       <br><br>
-      <a href="/client_faq?index=1"><button type="button" class="btn btn-dark btn-lg text-center" onclick="checkLogin2();">자주 묻는 질문 보러가기</button></a>
+      <a href="/client_faq?index=1"><button type="button" class="btn btn-dark btn text-center" onclick="checkLogin2();">자주 묻는 질문 보러가기</button></a>
     </div>
     <br><br>
     <hr style="width:80%;background-color:#999999;"><br>
@@ -156,8 +215,6 @@
   </div>
   </div>
   <!-- /더 궁금한 점이 있으신가요? -->
-  <br><br>
-
   <!-- 검색창 섹션 -->
   <div class="container-fluid padding text-center" >
   <div class="container" style="">

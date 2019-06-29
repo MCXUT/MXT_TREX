@@ -1,38 +1,7 @@
-.container-fluid.foot {
-    margin-top: 50px;
+a{
+  color:white;
 }
-.foot {
-    background-color: white;
-    color: #2f3033;
-    border-top: 1px solid rgba(60, 65, 52, 0.2);
-}
-.foot .social {
-    font-size: 25px;
-}
-.social a {
-    margin: 10px;
-}
-
-.foot .copyright, .foot .credit {
-    color: #788387;
-}
-.foot .copyright {
-    font-size: 15px;
-}
-.foot .credit {
-    font-size: 12px;
-}
-.foot a{
-  color: #676d73;
-}
-.foot a:hover{
-  color: #f58b44;
+a:hover{
+  color:#f8ba00;
   text-decoration:none;
-}
-
-.col-sm-12.col-md-2 h5, .col-sm-12.col-md-2 p {
-    font-size: 16px;
-}
-.col-sm-12.col-md-2 {
-    margin-top: 3px;
 }

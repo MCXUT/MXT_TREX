@@ -246,9 +246,3 @@ $(document).ready(() => {
         $("." + currentHash).toggleClass("profileactive");
     }
 });
-
-
-var taskpagination = () => {
-    var numoftasks = $(".appointmentlist2 .appointmentcard").length;
-    alert(numoftasks)
-}

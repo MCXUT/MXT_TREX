@@ -13,11 +13,11 @@
     color: rgba(0, 0, 0, 0.7);
 }
 .tab .top .col-12 .menu a {
-    font-size: 16px;
+    font-size: 20px;
     margin-right: 40px;
     padding: 10px 10px;
     width: auto;
-    color: #2f3033;
+    color: rgba(0, 0, 0, 0.7);
 }
 .tab .top .col-12 .menu a:hover {
     color: rgb(0, 127, 205);
@@ -52,9 +52,9 @@
 }
 
 
-.bottom {
-    min-height: 800px;
-}
+/* .bottom {
+    margin: 50px 4%;
+} */
 .bottom .col-md-4 {
     text-align: center;
     border-right: 2px solid rgba(100, 100, 100, 0.2);
@@ -98,8 +98,7 @@
     margin-bottom: 20px;
 }
 .bottom .col-md-8 .sections .basictitle {
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 24px;
     width: 20%;
 }
 
@@ -324,38 +323,6 @@
     .switch .form-control {
         font-size: 12px;
     }
-}
-
-/* appointment section */
-.appointmentlist {
-    width: 100%;
-    overflow-y: scroll;
-    max-height: 200px;
-}
-.appointmentlist2 {
-    width: 100%;
-}
-.appointmentcard {
-    min-height: 80px;
-    border: 1px solid  #676d73;
-    border-radius: 4px;
-    width: 80%;
-    margin: 15px auto;
-}
-.appointmentcard .container {
-    padding: 5px 15px;
-}
-.appointmentcard .subcontainer {
-    padding: 0 15px;
-}
-.appointmentcard .container .tasktitle {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 0;
-}
-.appointmentcard .container .taskcontent {
-    font-size: 16px;
-    margin-bottom: 0;
 }
 
 html.disabled {

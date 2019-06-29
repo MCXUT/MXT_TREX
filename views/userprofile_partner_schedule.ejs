@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-
+        
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-
+        
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-
+        
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,10 +55,10 @@
             }
             #wrapper h4{
               font-size: 20px;
-
+        
             }
         </style>
-
+        
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -96,22 +96,21 @@
                         <% } %>
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-
+                    
                     <div class="col-md-8">
-
-
+                        
+                        
                         <!--  스케줄 정보  -->
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>스케쥴 정보</b></p>
-                                <div class="divider"></div>
-                                
+
                             </div>
                         </div>
-
-                    </div>
+                        
+                    </div>    
                 </div>
             </div>
         </div>
