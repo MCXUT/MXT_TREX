@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const Admin = require("../models/Admin");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
+const Message = require("../models/Message");
 const localAdmin = require("../config/passportStrategies/localAdmin");
 
 router.get("/trex-admin/login", function(req,res){
@@ -35,25 +36,17 @@ router.get("/trex-admin", function(req,res) {
         Client.find({}, function(err, clients) {
           Partner.find({}, function(err, partners) {
             Admin.find({}, function(err, admins) {
-              return res.render("trexAdminpage", {
-                partnerList : partners,
-                clientList: clients,
-                adminList: admins
+              Message.find({}, function(err, messages) {
+                return res.render("trexAdminpage", {
+                  partnerList : partners,
+                  clientList: clients,
+                  adminList: admins,
+                  messageList: messages
+                });
               });
             });
           });
         });
-        // Client.find({}).toArray(function(err, clients) {
-        //   Partner.find({}).toArray(function(err, partners){
-        //     Admin.find({}).toArray(function(err, admins){
-        //       return res.render("trexAdminpage", {
-        //         partnerList : partners,
-        //         clientList: clients,
-        //         adminList: admins
-        //       });
-        //     });
-        //   });
-        // });
       }
     });
   }
