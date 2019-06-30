@@ -148,7 +148,7 @@
   </div>
 
 
-    
+
 
 
 
@@ -179,24 +179,6 @@
 
   <br>
 
-<!-- price range selector -->
-<script>
-$( function() {
-  $( "#slider-range" ).slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [ 0, 500 ],
-    slide: function( event, ui ) {
-      $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-      $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
-    }
-  });
-  // $( "#least" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
-  // $( "#max" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
-
-} );
-</script>
 
   <div class="wrapper" id="wrapper" style="width: 50%; height: 550px; overflow-y:scroll;
     overflow-x: hidden; float:left; position: relative; margin:0;

@@ -121,7 +121,7 @@ router.get("/user_profile/messages", (req, res) => {
     }
 
     if (type === "Client") {
-        var partnerPic = [];
+        // var partnerPic = [];
         Message.find({client: req.user.id}, function(err, foundMessages) {
             Partner.find({}, function(err, partnerList) {
                 if (err) {
@@ -131,17 +131,18 @@ router.get("/user_profile/messages", (req, res) => {
                 for (var i = 0; i < foundMessages.length; i++) {
                     for (var j = 0; j < partnerList.length; j++) {
                         if (partnerList[j].id == foundMessages[i].partner) {
-                            partnerPic.push(partnerList[j].profilePic);
-                            j = partnerList.length;
+                            // partnerPic.push(partnerList[j].profilePic);
+                            // j = partnerList.length;
+                            foundMessages[i].pic = partnerList[j].profilePic;
                         }
                     }
                 }
-                return res.render("userprofile_client_message", {messages: foundMessages, partnerPic: partnerPic});
+                return res.render("userprofile_client_message", {messages: foundMessages});
             });
             
         });
     } else {
-        var clientPic = [];
+        // var clientPic = [];
         Message.find({partner: req.user.id}, function(err, foundMessages) {
             Client.find({}, function(err, clientList) {
                 if (err) {
@@ -151,12 +152,13 @@ router.get("/user_profile/messages", (req, res) => {
                 for (var i = 0; i < foundMessages.length; i++) {
                     for (var j = 0; j < clientList.length; j++) {
                         if (clientList[j].id == foundMessages[i].client) {
-                            clientPic.push(clientList[j].companyLogo);
-                            j = clientList.length;
+                            // clientPic.push(clientList[j].companyLogo);
+                            // j = clientList.length;
+                            foundMessages[i].pic = clientList[j].companyLogo;
                         }
                     }
                 }
-                return res.render("userprofile_partner_message", {messages: foundMessages, clientPic: clientPic});
+                return res.render("userprofile_partner_message", {messages: foundMessages});
             });
         });
     }
@@ -271,7 +273,7 @@ router.get("/user_profile/edit_partner_resume", function(req, res) {
     } else {
         // create new profile if it is the first time for the partner
         if (req.user.partnerProfile === "") {
-            return res.render("first_partner_profile");
+            return res.render("create_partner_profile");
         } else {
             PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
                 if (err) {

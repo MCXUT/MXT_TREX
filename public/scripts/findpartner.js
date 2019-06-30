@@ -28,6 +28,10 @@ $( function() {
 } );
 
 
+function givemenumber(n) {
+  return n;
+}
+
 
 // responsive value change of text box in cost
 $("#leasts").change(function(){
@@ -85,12 +89,20 @@ function myFunction5(){
  var checkbox = document.getElementById("roundswitch");
  var map = document.getElementById("map");
  var wrapper = document.getElementById("wrapper");
+ var wrapper2 = document.getElementById("wrapper2");
  if(checkbox.checked == true){
    map.style.width= "40%";
-   wrapper.style.width = "60%";
+   // wrapper.style.width = "60%";
+   wrapper.style.display= "block";
+   wrapper2.style.display= "none";
+   // wrapper2.style.width = "0%";
  } else {
    map.style.width= "0%";
-   wrapper.style.width = "100%";
+   // wrapper2.style.width = "100%";
+   // wrapper.style.width="0%";
+   wrapper2.style.display = "block";
+   // wrapper2.style.z-index = "6";
+   wrapper.style.display = "none";
  }
 }
 

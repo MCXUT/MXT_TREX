@@ -343,7 +343,7 @@
                                                             </div>
                                                             <div class="received-msg">
                                                                 <div class="received-msg-inbox">
-                                                                    <p><%= thisMessage.detail[i].content %></p>
+                                                                    <pid="trexContent"><%= thisMessage.detail[i].content %></p>
                                                                 </div>
                                                                 <div class="received-time"><%= thisMessage.detail[i].time %></div>
 
@@ -354,7 +354,7 @@
                                                     <% if (thisMessage.detail[i].author === "c") { %>
                                                         <div class="outgoing-chats">
                                                             <div class="outgoing-chats-msg">
-                                                                <p><%= thisMessage.detail[i].content %></p>
+                                                                <p id="trexContent"><%= thisMessage.detail[i].content %></p>
                                                             </div>
                                                             <div class="outgoing-time"><%= thisMessage.detail[i].time %></div>
                                                         </div>
