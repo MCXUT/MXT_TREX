@@ -6,6 +6,10 @@ var PartnerSchema = mongoose.Schema({
         type: String,
         default: "p"
     },
+    messageNotification: {
+        type: Boolean,
+        default: false
+    },
     name: {
         type: String,
         required: true

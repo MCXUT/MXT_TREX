@@ -21,10 +21,10 @@ router.post("/start_message", (req, res) => {
         var newMessage = new Message({
             client: req.user.id,
             clientName: req.user.name,
-            clientPic: req.user.companyLogo,
             partner: foundPartner._id,
             partnerName: foundPartner.name,
-            partnerPic: foundPartner.profilePic,
+            clientNotification: false,
+            partnerNotification: true,
             detail: {
                 content: req.body.content,
                 author: "c",
@@ -38,8 +38,18 @@ router.post("/start_message", (req, res) => {
                   req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
                   return res.redirect("/user_profile");
               }
-              console.log("Message created between " + req.user.name + " and " + foundPartner.name);
-              return res.redirect("/user_profile/messages");
+              // Notification
+              foundPartner.messageNotification = true;
+              foundPartner.save((err) => {
+                  if (err) {
+                      console.log(err);
+                      req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
+                      return res.redirect("/user_profile");
+                  }
+                  console.log("Message created between " + req.user.name + " and " + foundPartner.name);
+                  return res.redirect("/user_profile/messages");
+              });
+              
         });
 
     });
@@ -58,21 +68,57 @@ router.get("/message_room/:messageID", (req, res) => {
                     req.flash("error", "메세지를 볼수 없습니다. 다시 시도해주세요.");
                     return res.redirect("/user_profile");
                 } else {
-                    Partner.findById(foundMessage.partner, function(err, foundPartner) {
-                        return res.render("message_room", { thisMessage: foundMessage, partnerPic: foundPartner.profilePic});
+                    foundMessage.clientNotification = false;
+                    foundMessage.save((err) => {
+                        if (err) {
+                            console.log(err);
+                            return res.redirect("/user_profile");
+                        }
+                        Client.findById(req.user.id, function(err, foundClient) {
+                            foundClient.messageNotification = false;
+                            foundClient.save((err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.redirect("/user_profile");
+                                }
+                                Partner.findById(foundMessage.partner, function(err, foundPartner) {
+                                    return res.render("message_room", { thisMessage: foundMessage, partnerPic: foundPartner.profilePic});
+                                });
+                            });
+                                
+                        });
+                        
                     });
+                        
                 }
             } else {
                 if (req.user.id != foundMessage.partner) {
                     req.flash("error", "메세지를 볼수 없습니다. 다시 시도해주세요.");
                     return res.redirect("/user_profile");
                 } else {
-                    Client.findById(foundMessage.client, function(err, foundClient) {
-                        return res.render("message_room", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
+                    foundMessage.clientNotification = false;
+                    foundMessage.save((err) => {
+                        if (err) {
+                            console.log(err);
+                            return res.redirect("/user_profile");
+                        }
+                        Partner.findById(req.user.id, function(err, foundPartner) {
+                            foundPartner.messageNotification = false;
+                            foundPartner.save((err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.redirect("/user_profile");
+                                }
+                                Client.findById(foundMessage.client, function(err, foundClient) {
+                                    return res.render("message_room", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
+                                });
+                            });
+                                
+                        });
+                        
                     });
                 }
             }
-            // return res.render("message_room", { thisMessage: foundMessage });
         });
     } else {
         res.redirect("/");
@@ -93,8 +139,34 @@ router.get("/message_room_box/:messageID", (req, res) => {
                     req.flash("error", "메세지를 볼수 없습니다. 다시 시도해주세요.");
                     return res.redirect("/user_profile");
                 } else {
-                    Partner.findById(foundMessage.partner, function(err, foundPartner) {
-                        return res.render("message_room_box", { thisMessage: foundMessage, partnerPic: foundPartner.profilePic});
+                    foundMessage.clientNotification = false;
+                    foundMessage.save((err) => {
+                        if (err) {
+                            console.log(err);
+                            req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
+                            return res.redirect("/user_profile");
+                        }
+                        Client.findById(req.user.id, function(err, foundClient) {
+                            if (err) {
+                                console.log(err);
+                                return res.redirect("/user_profile");
+                            }
+                            foundClient.messageNotification = false;
+                            foundClient.save((err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.redirect("/user_profile");
+                                }
+                                Partner.findById(foundMessage.partner, function(err, foundPartner) {
+                                    if (err) {
+                                        console.log(err);
+                                        return res.redirect("/user_profile");
+                                    }
+                                    return res.render("message_room_box", { thisMessage: foundMessage, partnerPic: foundPartner.profilePic});
+                                });
+                            });
+                        });
+                        
                     });
                 }
             } else {
@@ -102,8 +174,38 @@ router.get("/message_room_box/:messageID", (req, res) => {
                     req.flash("error", "메세지를 볼수 없습니다. 다시 시도해주세요.");
                     return res.redirect("/user_profile");
                 } else {
-                    Client.findById(foundMessage.client, function(err, foundClient) {
-                        return res.render("message_room_box", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
+                    foundMessage.clientNotification = false;
+                    foundMessage.save((err) => {
+                        if (err) {
+                            console.log(err);
+                            req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
+                            return res.redirect("/user_profile");
+                        }
+                        Partner.findById(req.user.id, function(err, foundPartner) {
+                            if (err) {
+                                console.log(err);
+                                return res.redirect("/user_profile");
+                            }
+                            foundPartner.messageNotification = false;
+                            foundPartner.save((err) => {
+                                if (err) {
+                                    console.log(err);
+                                    return res.redirect("/user_profile");
+                                }
+                                Client.findById(foundMessage.client, function(err, foundClient) {
+                                    foundClient.messageNotification = false;
+                                    foundClient.save((err) => {
+                                        if (err) {
+                                            console.log(err);
+                                            req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
+                                            return res.redirect("/user_profile");
+                                        }
+                                        return res.render("message_room_box", { thisMessage: foundMessage, clientPic: foundClient.companyLogo});
+                                    });
+                                    
+                                });
+                            });
+                        });
                     });
                 }
             }
@@ -130,7 +232,27 @@ router.post("/send_message_client", (req, res) => {
             return res.redirect("/user_profile");
         };
         console.log("Message successfully sent.");
-        return res.redirect("/message_room/" + req.body.message);
+        message.partnerNotification = true;
+        message.save((err) => {
+            if (err) {
+                console.log(err);
+                return res.redirect("/user_profile");
+            }
+            Partner.findById(message.partner, function (err, foundPartner) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                foundPartner.messageNotification = true;
+                foundPartner.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/user_profile");
+                    }
+                    return res.redirect("/message_room/" + req.body.message);
+                });
+            });
+        });
     });
 });
 
@@ -150,7 +272,28 @@ router.post("/send_message_partner", (req, res) => {
             return res.redirect("/user_profile");
         };
         console.log("Message successfully sent.");
-        return res.redirect("/message_room/" + req.body.message);
+        message.partnerNotification = true;
+        message.save((err) => {
+            if (err) {
+                console.log(err);
+                return res.redirect("/user_profile");
+            }
+            Client.findById(message.client, function(err, foundClient) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                console.log(foundClient);
+                foundClient.messageNotification = true;
+                foundClient.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/user_profile");
+                    }
+                    return res.redirect("/message_room/" + req.body.message);
+                });
+            });
+        });
     });
 });
 

@@ -59,7 +59,11 @@
                                 <a class="dropdown-item" href="/user_profile/messages">
                                     <!-- <img src="/static/icons/messages.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
                                     <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
+                                    <% if (currentUser.messageNotification) { %>
+                                        뉴 메세지
+                                    <% } else { %>
+                                        메세지
+                                    <% } %>
                                 </a>
                                 <a class="dropdown-item" href="/user_profile/payment_info">
                                     <!-- <img src="/static/icons/.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
@@ -90,7 +94,11 @@
                                 <a class="dropdown-item" href="/user_profile/messages">
                                     <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
                                     <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
+                                    <% if (currentUser.messageNotification) { %>
+                                        뉴 메세지
+                                    <% } else { %>
+                                        메세지
+                                    <% } %>
                                 </a>
                                 <a class="dropdown-item" href="/user_profile/saved_partners">
                                     <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->

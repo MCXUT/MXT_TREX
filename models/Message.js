@@ -23,17 +23,22 @@ var MessageSchema = mongoose.Schema({
     clientName: {
         type: String
     },
-    clientPic: {
-        type: String
-    },
     partner: {
         type: String
     },
     partnerName: {
         type: String
     },
-    partnerPic: {
+    pic: {
         type: String
+    },
+    clientNotification: {
+        type: Boolean,
+        default: false
+    },
+    partnerNotification: {
+        type: Boolean,
+        default: false
     },
     detail: [IndividualMessage]
 }, {minimize: false});
