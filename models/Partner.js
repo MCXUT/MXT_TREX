@@ -42,7 +42,14 @@ var PartnerSchema = mongoose.Schema({
         type: String,
         default: ""
       },
+      detailedAddress: {
+        type: String,
+        default: ""  
+      },
       city: {
+          type: String
+      },
+      state: {
           type: String
       },
       country: {

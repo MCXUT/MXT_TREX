@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .btn-primary:hover {
+                cursor: pointer;
+                background-color: #00b3db !important;
+                border-color: #00b3db !important;
+            }
+            #avatar{
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-size: cover;
+                margin: 0;
+                 position: absolute;
+                 top: 50%;
+                 -ms-transform: translateY(-50%);
+                 transform: translate3d(-50%,-50%,0);
+        
+            }
+            .leftside, .rightside{
+                width: 100%;
+                /* border: 1px solid rgba(0, 0, 0, 0.5); */
+                margin-bottom: 10px;
+                z-index: 2;
+        
+            }
+            #left{
+              max-width: 25%;
+            }
+            #left, #right{
+              height: 80px;
+              padding: 10px;
+            }
+            #sliders a{
+                text-decoration: none;
+                color:black;
+            }
+            #wrapper{
+              width: 50%;
+              height: 550px;
+              overflow-y:scroll;
+              overflow-x: hidden;
+              float:left;
+              position: relative;
+              margin:0;
+              padding-left: 2.5%;
+              padding-right: 2.5%;
+        
+            }
+            #wrapper .row{
+              border: 1px solid rgba(0, 0, 0, 0.3);
+              width: 500px;
+            }
+            #wrapper h4{
+              font-size: 20px;
+        
+            }
+        </style>
+        
+        <title>Member - 트렉스</title>
+
+        <% include ./partials/header %>
+
+    </head>
+    <body>
+
+        <% include ./partials/proficiencychart %>
+
+        <% include ./partials/navbar %>
+
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        <div class="profile">
+            <div class="tab">
+                <div class="row top">
+                    <div class="col-12">
+                        <p class="setting">클라이언트 계정 관리</p>
+                        <div class="menu">
+                            <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
+                            <a class="applicants_info profileactive" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <a class="saved_partners" href="/user_profile/saved_partners">저장된 파트너</a>
+                            <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom">
+                    <div class="col-md-4 col-12">
+                        <% if (currentUser.companyLogo) { %>
+                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                        <% } %>
+                        <p class="userName"><%= currentUser.name %></p>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        
+                        
+                        <!--  지원자 보기  -->
+                        <% if (error.length > 0) { %>
+                          <span style="color:red;margin-left:70px;"><%= error %></span>
+                        <% } %>
+                            <div class="row sections basic" id="basic">
+                                <p class="basictitle"><b>지원자 보기</b></p>
+                              
+                        
+                        
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+    $(document).ready(() => {
+        var editbuttons = document.querySelectorAll("#edit");
+        var confirmbuttons = document.querySelectorAll("#confirm");
+        var cancelbuttons = document.querySelectorAll("#cancel");
+
+        editbuttons.forEach((editbutton) => {
+                $(editbutton).click((e) => {
+                    // e.preventDefault();
+
+                    var parentDivision = editbutton.parentElement;
+                    var parentDivisionClass = parentDivision.className.split(" ");
+                    var allButtons = parentDivision.querySelectorAll("button");
+                    allButtons.forEach((button) => {
+                        $(button).toggleClass("activebutton");
+                    });
+
+                    if(parentDivisionClass[1] === "basicinfo") {
+                        var spans = document.getElementById("basic").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "photoinfo") {
+                        var spans = document.getElementById("photo").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "privateinfo") {
+                        var spans = document.getElementById("security").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    }
+                });
+            });
+    });
+    </script>
+
+    <script>
+        // Script for file input (profile picture in this case) button and displaying the file name
+        $(function() {
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready( function() {
+                $(':file').on('fileselect', function(event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if( input.length ) {
+                      input.val(log);
+                    } else {
+                      if( log ) alert(log);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="/static/scripts/profileedit.js"></script>
+
+    <% include ./partials/footer %>
+
+    </body>
+</html>

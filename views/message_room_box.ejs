@@ -335,8 +335,8 @@
                                                     <% if (thisMessage.detail[i].author === "p") { %>
                                                         <div class="received-chats">
                                                             <div class="received-chats-img">
-                                                                <% if (thisMessage.partnerPic) { %>
-                                                                  <img src="/profilePic/<%= thisMessage.partnerPic %>">
+                                                                <% if (partnerPic) { %>
+                                                                  <img src="/profilePic/<%= partnerPic %>">
                                                                 <% } else { %>
                                                                   <img src="/static/images/noprofilepic.jpeg">
                                                                 <% } %>
@@ -381,8 +381,8 @@
                                                     <% if (thisMessage.detail[i].author === "c") { %>
                                                         <div class="received-chats">
                                                             <div class="received-chats-img">
-                                                                <% if (thisMessage.clientPic) { %>
-                                                                  <img src="/logo/<%= thisMessage.clientPic %>">
+                                                                <% if (clientPic) { %>
+                                                                  <img src="/logo/<%= clientPic %>">
                                                                 <% } else { %>
                                                                   <img src="/static/images/noprofilepic.jpeg">
                                                                 <% } %>

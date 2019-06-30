@@ -2,8 +2,27 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 var AdminSchema = mongoose.Schema({
-  email: String,
-  pw: String
+  type: {
+    type: String,
+    default: "a"
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  registeredDate: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 var Admin = module.exports = mongoose.model('Admin', AdminSchema);
@@ -17,9 +36,9 @@ module.exports.createAdmin = (newUser, done) => {
     });
 };
 
-module.exports.getClientByUsername = (username, done) => {
+module.exports.getAdminByEmail = (username, done) => {
     var query = {email: username};
-    Client.findOne(query, done);
+    Admin.findOne(query, done);
 };
 
 module.exports.comparePassword = (candidatePassword, hash, done) => {

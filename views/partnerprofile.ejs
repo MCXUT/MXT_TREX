@@ -4,19 +4,26 @@
         <title>파트너 프로필</title>
 
         <style>
-          #avatar {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            background-size: cover;
+            #avatar {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                background-size: cover;
 
-            margin-bottom: 15px;
-            transform: translate3d(0, -50%, 0);
-          }
-
-          html.disabled {
-              overflow-y: hidden;
-          }
+                margin-bottom: 15px;
+                transform: translate3d(0, -50%, 0);
+            }
+            html.disabled {
+                overflow-y: hidden;
+            }
+            .heart {
+                /* color: red !important; */
+                opacity: 0;
+            }
+            .heart:hover {
+                /* color: red !important; */
+                opacity: 0.5;
+            }
         </style>
 
         <% include ./partials/header %>
@@ -36,14 +43,19 @@
         <div class="flexbox">
             <div class="main">
                 <% include ./partials/subbar %>
+                
+                <% if (error.length > 0) { %>
+                  <span style="color:red;margin-left:70px;"><%= error %></span>
+                <% } %>
+                
                 <div class="main-raised">
-
                     <div class="profile-content">
                         <div class="background"></div>
                         <div class="container">
-
+                            
                             <!-- <div class="row rowdivider"> -->
                             <div class="col-8 ml-auto mr-auto">
+                                <form id="savePartner" action="/save_current_partner" method="post"></form>
                                 <div class="profile">
                                     <% if (thisPartner.pic) { %>
                                       <img class="profilpic" src="/image/<%= thisPartner.pic %>">
@@ -51,7 +63,38 @@
                                       <img class="profilpic" src="/static/images/noprofilepic.jpeg">
                                     <% } %>
                                     <div class="name">
-                                        <p><%= thisPartner.name %></p>
+                                        <p>
+                                            <%= thisPartner.name %>
+                                            <% if (currentUser) { %>
+                                                <% if (currentUser.type === "c") { %>
+                                                    <% var isSaved = 0; %>
+                                                    <% for (var i = 0; i < currentUser.savedPartners.length; i++) { %>
+                                                        <% if (thisPartner.id == currentUser.savedPartners[i]) { %>
+                                                            <% isSaved = 1; %>
+                                                        <% } %>
+                                                    <% } %>
+                                                    <% if (isSaved == 0) { %>
+                                                        <input form="savePartner" type="hidden" name="partnerID" value=<%= thisPartner.id %> />
+                                                        <input form="savePartner" type="hidden" name="saveOrDelete" value="save" />
+                                                        <button type="submit" form="savePartner" title="파트너 저장" style="background-color:Transparent; border:none; outline:none">
+                                                            <span class="fa-stack fa-sm">
+                                                                <i class="far fa-heart fa-stack-1x shade" style="color:grey;"></i>
+                                                                <i class="fas fa-heart fa-stack-1x heart" style="color:red;"></i>
+                                                            </span>
+                                                        </button>
+                                                    <% } else { %>
+                                                        <input form="savePartner" type="hidden" name="partnerID" value=<%= thisPartner.id %> />
+                                                        <input form="savePartner" type="hidden" name="saveOrDelete" value="delete" />
+                                                        <button type="submit" form="savePartner" title="파트너 저장 취소" style="background-color:Transparent; border:none; outline:none">
+                                                            <span class="fa-stack fa-sm">
+                                                                <i class="fas fa-heart fa-stack-1x" style="color:red;"></i>
+                                                            </span>
+                                                        </button>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                        </p>
+                                        
                                         <h6>
                                           <% if (thisPartner.address.city) { %>
                                               <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
