@@ -1,17 +1,31 @@
 
 <style>
-#button11,#button2,#button222,#button33{
+#button11,#button2,#button222,#button33,#button111,#button02,#button0222,#button033{
   border:none;
   background-color: transparent;
   color:#595959;
   font-size: 25px;
 }
-#button11:hover,#button2:hover,#button222:hover,#button33:hover{
+#button11:hover,#button2:hover,#button222:hover,#button33:hover,#button111:hover,#button02:hover,#button0222:hover,#button033:hover{
   color:#f8ba00;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 #button-apply:hover{
   background-color:#f8ba00;
   border:#f8ba00;
+}
+#add_file{
+  height: 130px;
+  width: 190px;
+  -o-object-fit: contain;
+  margin-right:10px;
+}
+#add_file:hover{
+  cursor:pointer;
 }
 @media(max-width: 576px) {
   td {
@@ -36,20 +50,23 @@
     function calculate() {
 
     var USERINPUT1 = document.TESTING.INPUT1.value;
-    var USERINPUT2 = document.TESTING.INPUT2.value;
     var USERINPUT3 = document.TESTING.INPUT3.value;
     var USERINPUT4 = document.TESTING.INPUT4.value;
     var USERINPUT5 = document.TESTING.INPUT5.value;
     var USERINPUT6 = document.TESTING.INPUT6.value;
     var USERINPUT7 = document.TESTING.INPUT7.value;
-    var CALC0 = USERINPUT1*USERINPUT2;
-    var CALC1 = CALC0.toFixed(2);
-    var CALC2 = +CALC1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5+ +USERINPUT6+ +USERINPUT7;
-    var CALC3 = CALC2.toFixed(2);
-    document.TESTING.OUTPUT1.value = CALC1;
-    document.TESTING.OUTPUT2.value = CALC3;
+
+
+    var CALC1 = +USERINPUT1+ +USERINPUT3+ +USERINPUT4+ +USERINPUT5+ +USERINPUT6+ +USERINPUT7;
+    var CALC2 = CALC1.toFixed(2);
+    document.TESTING.OUTPUT1.value = CALC2;
+    }
+
+    function myAlert(){
+      alert("I am an alert box!");
     }
   </script>
+
 <!-- /form calculation script -->
 
 <!-- The Modal -->
@@ -63,7 +80,8 @@
     <!-- Modal Header -->
       <div class="modal-header text-center" >
         <h3 class="col-12 modal-title text-cente"><b>업무 지원 하기</b>
-        <button type="button" class="close" data-dismiss="modal">&times;</button></h3>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button></h3> -->
+        <a class="close1" data-dismiss="modal" ></a></h3>
       </div>
 
 
@@ -76,13 +94,112 @@
         <div style="height:14px;"></div>
         <textarea id="subject" name="subject" placeholder="클라이언트님께 업무 관련해서 지원 메세지를 적어주세요." style="height:200px;width:90%"></textarea>
         <div style="height:17px;"></div>
-        <div><b>견적서 제출 하기</b></div>
-        <div style="height:14px;"></div>
-    <!-- 서비스선택,시급&시간 -->
+
+        <!-- 첨부파일 추가(추가 할 파일이 없으면 '파일이 없습니다'' 문구나타내기) -->
+
+        <!-- <form action="/action_page.php">
+          <input type="file" name="pic" accept="image/*">
+          <input type="submit">
+        </form> -->
+
+              <div id="dataTable44" style="display:none;">
+                <!-- <div class="container">
+                  <div class="sectionContent">
+                    <div class="row text-center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                      <img type="image" onclick="myAlert()" name="imgbtn"  id="add_file" src="/static/images/request-service-estimate/4.castagency.jpg" class="center">
+                 <div style="height:17px;"></div>
+                 </div>
+                </div>
+              </div> -->
+
+              <TABLE  border="0" >
+                <TR>
+                   <td id="extra">
+                     <select>
+                       <option selected>첨부파일을 선택 해주세요.</option>
+                       <option value="upload3-1">첨부파일1</option>
+                       <option value="upload3-2">첨부파일2</option>
+                       <option value="upload3-3">첨부파일3</option>
+                     </select>
+                     <a1></a1>
+                   </td>
+
+                </TR>
+             </table>
+            </div>
+
+              <div id="dataTable55" style="display:none;color:red;">
+                <div style="height:17px;"></div>
+                 * 첨부하실 파일이 없습니다! 파트너 프로필에서 파일을 추가 해주세요.
+                </div>
+
+    <div id="dataTable66" style="display:none;">
+                <TABLE  border="0" >
+                  <TR>
+                     <td id="extra">
+                       <select>
+                         <option selected>첨부파일을 선택 해주세요.</option>
+                         <option value="upload3-1">첨부파일1</option>
+                         <option value="upload3-2">첨부파일2</option>
+                         <option value="upload3-3">첨부파일3</option>
+                       </select>
+                       <a1></a1>
+                     </td>
+
+                  </TR>
+               </table>
+               <div style="height:17px;"></div>
+               </div>
 
 
-      <TABLE id="dataTable2"  border="0">
-        <TR >
+
+                   <div >
+
+
+                   <input id="button02" type="button"
+                   onclick="document.getElementById('dataTable44').style.display='inline';
+                            document.getElementById('button02').style.display='none';
+                            document.getElementById('button0222').style.display='inline';"
+                            value="+" style="display:inline;width:30px;"/>
+
+                   <input id="button0222" type="button"
+                   onclick="document.getElementById('dataTable55').style.display='inline';
+                   document.getElementById('button0222').style.display='none';
+                   document.getElementById('button033').style.display='inline';"
+                   value="+" style="display:none;width:30px;"/>
+
+                   <input id="button033" type="button"
+                   onclick="document.getElementById('dataTable66').style.display='inline';"
+                            value="+" style="display:none;width:30px;"/> 첨부파일 추가하기
+
+                   </div>
+
+                   <!-- /첨부파일 추가 -->
+
+
+
+
+               <!-- 서비스선택,시급&시간 -->
+
+
+
+                   <div style="height:17px;"></div>
+                   <div><b>견적서 제출 하기</b></div>
+                   <div style="height:14px;"></div>
+
+
+<script>
+  $(document).ready(function() {
+   $('[data-toggle="popover"]').popover({
+      placement: 'top',
+      trigger: 'hover'
+   });
+});
+</script>
+      <table id="dataTable2"  border="0">
+        <TR>
         <td>
           <select id="service" name="service" required onchange="calculateTotal()">
             <option selected>서비스를 선택 해주세요.</option>
@@ -97,95 +214,38 @@
 
 
         <td>
-            <div>시급:</div>
-        </td>
-        <td>
-            $ <input type="number" name="INPUT1" id="input" step="0.01" placeholder="시급을 입력 해주세요." min="0.00" onchange="calculate();"/>
-
+            <div> 시급:</div>
         </td>
 
         <td>
-            <div>시간:</div>
+            $ <input type="number" name="INPUT1" id="input" step="0.01" placeholder="급여를 입력 해주세요." min="0.00" onchange="calculate();"/>
+
         </td>
         <td>
-            <input type="number" name="INPUT2" id="input2" step="0.5" placeholder="시간을 입력 해주세요." min="0.00" onchange="calculate();" />
+          <div class="bs-example" style="margin-top: 10%;">
+              <button type="button" class="btn" data-toggle="popover" data-content="시간당 급여가 아닌 전체 일정 동안의 총 급여를 입력 해주세요." style="height:70%;background-color:transparent;"><i class="far fa-question-circle"></i></button>
+          </div>
+
         </td>
 
-        <td>
-            $ <output name="OUTPUT1" id="output" ></output>
-        </td>
         </TR>
+
     </table>
+    <div style="height:14px;"></div>
+    <textarea id="subject" name="subject" placeholder="희망 급여에 대해서 설명해주세요. " style="height:100px;width:90%"></textarea>
+    <div style="height:17px;"></div>
+
+
     <div style="height:8px;"></div>
   <!-- /서비스선택,시급&시간 -->
 
 
 
   <!-- 추가비용 선택하기 -->
-  <!-- js for adding row onclick -->
-  <SCRIPT language="javascript">
-    function addRow(tableID) {
-
-    var table = document.getElementById(tableID);
-
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-
-    var colCount = table.rows[0].cells.length;
-
-    for(var i=0; i<colCount; i++) {
-      // if(i>=3){
-      //   document.getElementById('input3').name="INPUT4";
-      //   document.getElementById('input3').id="input4";
-      // }
-
-    var newcell	= row.insertCell(i);
-
-    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-    //alert(newcell.childNodes);
-    switch(newcell.childNodes[0].type) {
-    case "text":
-        newcell.childNodes[0].value = "";
-        break;
-    case "checkbox":
-        newcell.childNodes[0].checked = false;
-        break;
-    case "select-one":
-        newcell.childNodes[0].selectedIndex = 0;
-        break;
-    }
-    }
-    }
-
-    function deleteRow(tableID) {
-    try {
-    var table = document.getElementById(tableID);
-    var rowCount = table.rows.length;
-
-    for(var i=0; i<rowCount; i++) {
-    var row = table.rows[i];
-    var chkbox = row.cells[0].childNodes[0];
-    if(null != chkbox && true == chkbox.checked) {
-    if(rowCount <= 1) {
-      alert("Cannot delete all the rows.");
-      break;
-    }
-    table.deleteRow(i);
-    rowCount--;
-    i--;
-    }
 
 
-    }
-    }catch(e) {
-    alert(e);
-    }
-    }
-
-  </SCRIPT>
-  <!-- /js for adding row onclick -->
-
-                <TABLE id="dataTable"  border="0">
+              <div id="dataTable" style="display:none;">
+                <TABLE border="0">
                   <TR>
                      <td id="extra">
                        <select  name="extra" required>
@@ -196,15 +256,11 @@
                          <option value="service4">추가 비용4</option>
                          <option value="service5">추가 비용5</option>
                        </select>
-                       <a1></a1>
                      </td>
 
-                     <td>
-                        <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
-                     </td>
 
                      <td>
-                       <div>추가비용: $</div>
+                       <div> 추가비용: $</div>
                      </td>
 
                      <td>
@@ -212,9 +268,13 @@
                      </td>
                   </TR>
                </TABLE>
-               <div style="height:8px;"></div>
+               <div style="height:14px;"></div>
+               <textarea id="subject" name="subject" placeholder="추가 비용에 대해서 설명해주세요. " style="height:100px;width:90%;"></textarea>
+               <div style="height:17px;"></div>
+               </div>
 
-               <TABLE id="dataTable3"  border="0" style="display:none;">
+            <div id="dataTable3" style="display:none;">
+               <TABLE  border="0">
                  <TR>
                     <td id="extra">
                       <select  name="extra" required>
@@ -228,12 +288,9 @@
                       <a1></a1>
                     </td>
 
-                    <td>
-                       <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
-                    </td>
 
                     <td>
-                      <div>추가비용: $</div>
+                      <div> 추가비용: $</div>
                     </td>
 
                     <td>
@@ -241,8 +298,13 @@
                     </td>
                  </TR>
               </table>
+              <div style="height:14px;"></div>
+              <textarea id="subject" name="subject" placeholder="추가 비용에 대해서 설명해주세요. " style="height:100px;width:90%;"></textarea>
+              <div style="height:17px;"></div>
+              </div>
 
-              <TABLE id="dataTable4"  border="0" style="display:none;">
+          <div id="dataTable4" style="display:none;">
+              <TABLE  border="0">
                 <TR>
                    <td id="extra">
                      <select  name="extra" required>
@@ -256,12 +318,9 @@
                      <a1></a1>
                    </td>
 
-                   <td>
-                      <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
-                   </td>
 
                    <td>
-                     <div>추가비용: $</div>
+                     <div> 추가비용: $</div>
                    </td>
 
                    <td>
@@ -269,8 +328,13 @@
                    </td>
                 </TR>
              </table>
+             <div style="height:14px;"></div>
+             <textarea id="subject" name="subject" placeholder="추가 비용에 대해서 설명해주세요. " style="height:100px;width:90%;"></textarea>
+             <div style="height:17px;"></div>
+             </div>
 
-             <TABLE id="dataTable5"  border="0" style="display:none;">
+          <div id="dataTable5" style="display:none;">
+             <TABLE  border="0">
                <TR>
                   <td id="extra">
                     <select  name="extra" required>
@@ -284,9 +348,6 @@
                     <a1></a1>
                   </td>
 
-                  <td>
-                     <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
-                  </td>
 
                   <td>
                     <div>추가비용: $</div>
@@ -297,8 +358,13 @@
                   </td>
                </TR>
             </table>
+            <div style="height:14px;"></div>
+            <textarea id="subject" name="subject" placeholder="추가 비용에 대해서 설명해주세요. " style="height:100px;width:90%;"></textarea>
+            <div style="height:17px;"></div>
+            </div>
 
-            <TABLE id="dataTable6"  border="0" style="display:none;">
+<div id="dataTable6" style="display:none;">
+            <TABLE  border="0" >
               <TR>
                  <td id="extra">
                    <select  name="extra" required>
@@ -312,9 +378,6 @@
                    <a1></a1>
                  </td>
 
-                 <td>
-                    <input type="text" id="wage" name="wage" placeholder="추가 비용에 대해서 설명 해주세요." style="width:280px;">
-                 </td>
 
                  <td>
                    <div>추가비용: $</div>
@@ -325,14 +388,41 @@
                  </td>
               </TR>
            </table>
+           <div style="height:14px;"></div>
+           <textarea id="subject" name="subject" placeholder="추가 비용에 대해서 설명해주세요. " style="height:100px;width:90%;"></textarea>
+           <div style="height:17px;"></div>
+           </div>
 
 
 
                <div >
-               <input id="button11" type="button" onclick="document.getElementById('dataTable3').style.display='inline';document.getElementById('button11').style.display='none';document.getElementById('button2').style.display='inline';" value="+" style="display:inline;width:30px;">
-               <input id="button2" type="button" onclick="document.getElementById('dataTable4').style.display='inline';document.getElementById('button2').style.display='none';document.getElementById('button222').style.display='inline';" value="+" style="display:none;width:30px;">
-               <input id="button222" type="button" onclick="document.getElementById('dataTable5').style.display='inline';document.getElementById('button222').style.display='none';document.getElementById('button33').style.display='inline';" value="+" style="display:none;width:30px;">
-               <input id="button33" type="button" onclick="document.getElementById('dataTable6').style.display='inline';" value="+" style="display:none;width:30px;"> 추가 비용 청구하기
+                 <input id="button111" type="button"
+                 onclick="document.getElementById('dataTable').style.display='inline';
+                          document.getElementById('button111').style.display='none';
+                          document.getElementById('button11').style.display='inline';"
+                          value="+" style="display:inline;width:30px;"/>
+
+               <input id="button11" type="button"
+               onclick="document.getElementById('dataTable3').style.display='inline';
+                        document.getElementById('button11').style.display='none';
+                        document.getElementById('button2').style.display='inline';"
+                        value="+" style="display:none;width:30px;"/>
+
+               <input id="button2" type="button"
+               onclick="document.getElementById('dataTable4').style.display='inline';
+                        document.getElementById('button2').style.display='none';
+                        document.getElementById('button222').style.display='inline';"
+                        value="+" style="display:none;width:30px;"/>
+
+               <input id="button222" type="button"
+               onclick="document.getElementById('dataTable5').style.display='inline';
+               document.getElementById('button222').style.display='none';
+               document.getElementById('button33').style.display='inline';"
+               value="+" style="display:none;width:30px;"/>
+
+               <input id="button33" type="button"
+               onclick="document.getElementById('dataTable6').style.display='inline';"
+                        value="+" style="display:none;width:30px;"/> 추가 비용 청구하기
 
                </div>
 
@@ -343,7 +433,7 @@
               <hr style="width:30%">
 
               <div class="text-center"><b>
-              합계:$<output name="OUTPUT2" id="output2"></output>
+              합계:$<output name="OUTPUT1" id="output1"></output>
               </b></div>
           </div>
 
