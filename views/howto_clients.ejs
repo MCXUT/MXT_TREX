@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<head>
+  <title>해외 업무에 현지 팀원이 필요할 때 - 트렉스</title>
+  <meta charset="utf-8">
+   <% include ./partials/header %>
+
+
+  <link rel="stylesheet" href="../static/stylesheets/style.css">
+  <script src="/static/scripts/autocomplete.js"></script>
+
+
+  <style >
+    /* 파트너 활동은 어떻게 하나요?*/
+    .grid-container {
+      display: grid;
+      grid-gap: 0;
+      background-color: transparent;
+    }
+
+    .grid-item {
+      background-color: transparent;
+      padding: 10px;
+    }
+
+
+    .item001 {
+      grid-column: 1 / span 3;
+      grid-row: 1 / span 3;
+      padding-top: 0px;
+      margin-top: 0px;
+
+    }
+
+    .item002 {
+      grid-column: 4 /span 2;
+      grid-row: 1 ;
+      text-align: left;
+      text-align: left;
+      font-size: 30px;
+      font-weight: 800;
+      padding-top: 0px;
+      margin-top: 0px;
+
+    }
+
+    .item003 {
+      grid-column: 4 / span 2;
+      grid-row: 2 / span 2;
+      text-align: left;
+      padding-top: 0px;
+      margin-top: 0px;
+      overflow-wrap: break-word;
+      max-width: 330px !important;
+    }
+
+    /*/파트너 활동은 어떻게 하나요? */
+    #slider_img{
+      height: 600px;
+      width: 100%;
+      -o-object-fit: contain;
+    }
+    .carousel-caption{
+      padding-bottom:20%;
+    }
+    .btn-dark{
+      height:55px;
+      font-size: 19px;
+    }
+    @media (max-width: 1024px){
+      #searchbox{
+        width: 400px !important;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 0px;
+      }
+    }
+    @media (max-width: 576px) {
+      #slider_img{
+        height: 300px;
+        width: 100%;
+        -o-object-fit: contain;
+
+      }
+      .carousel-caption h1{
+        font-size: 27px;
+        font-weight: 700;
+      }
+      .carousel-caption{
+        padding-bottom: 30%;
+      }
+      .item002{
+        font-size: 20px;
+      }
+      .item003{
+        max-width: 170px !important;
+      }
+      h2{
+        font-size: 23px;
+        font-weight: 500;
+      }
+      #searchbox{
+        width: 300px !important;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      #searchbox button{
+        height:32px;
+        font-size: 12px;
+      }
+      .btn-dark{
+        height:45px;
+        font-size: 15px;
+      }
+    }
+    @media (max-width: 350px){
+      .carousel-caption h1{
+        font-size: 24px;
+        font-weight: 700;
+      }
+      h2{
+        font-size:20px;
+      }
+      #more_questions{
+        font-size: 23px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <% include ./partials/navbar %>
+
+  <!-- Carousel Section -->
+  <div class="container-fluid " id="mainDiv">
+  <div id="slides" class="carousel slide" data-ride="carousel">
+
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img id="slider_img" src="/static/images/howto_clients.jpg" class="center responsive" style="width:100%;">
+      <div class="carousel-caption text-center" style="color:white;">
+        <h1 >트렉스를 통해 간편하게</h1>
+        <h1>현지 팀원을 찾아보세요.</h1>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+  </div>
+  <!-- End of Carousel Section -->
+
+
+  <!-- 파트너 활동은 어떻게 하나요? -->
+  <div class="container-fluid padding text-center" >
+  <div class="container" style="">
+  <div class="sectionContent">
+
+
+  <br><br>
+
+    <div class="grid-container ">
+      <div class="grid-item item001" ><b>(image)</b></div>
+      <div class="grid-item item002" ><b>1. 견적서 요청</b></div>
+      <div class="grid-item item003" >검색 또는 서비스 선택을 통해 필요하신 서비스를 선택하시고 몇가지 질문을 통해 업무에 알맞는 파트너님들의 견적서를 무료로 받아보세요.</div>
+    </div>
+    <br><br>
+    <hr style="width:80%;background-color:#999999;"><br>
+
+    <div class="grid-container ">
+      <div class="grid-item item001" ><b>(image)</b></div>
+      <div class="grid-item item002" ><b>2. 견적서 비교</b></div>
+      <div class="grid-item item003" >업무에 지원한 파트너님들의 프로필, 지원 메세지, 견적서를 비교해보세요. </div>
+    </div>
+    <br><br>
+    <hr style="width:80%;background-color:#999999;"><br>
+
+      <div class="grid-container ">
+        <div class="grid-item item001" ><b>(image)</b></div>
+        <div class="grid-item item002" ><b>3. 파트너 선택</b></div>
+        <div class="grid-item item003" >지원자들 중 업무를 함께 진행하실 파트너님께 합격 메세지를 보내주세요. (합격 메세지를 보내시면 결재 방법 안내 이메일이 발송됩니다.)</div>
+      </div>
+      <br><br>
+      <hr style="width:80%;background-color:#999999;"><br>
+
+      <div class="grid-container ">
+        <div class="grid-item item001" ><b>(image)</b></div>
+        <div class="grid-item item002" ><b>4. 파트너 결제</b></div>
+        <div class="grid-item item003" >함께 업무를 진행하실 파트너님의 견적서를 결제하신 뒤 연락처를 받으시고 업무를 진행해보세요. </div>
+      </div>
+      <br><br>
+      <hr style="width:80%;background-color:#999999;"><br>
+
+  <!-- </div> -->
+  </div>
+  </div>
+  </div>
+  <!-- /파트너 활동은 어떻게 하나요?-->
+
+
+  <!-- 더 궁금한 점이 있으신가요? -->
+  <div class="container-fluid text-center" >
+  <div class="container" style="">
+  <div class="sectionContent">
+
+    <div>
+      <h2 id="more_questions">더 궁금한 점이 있으신가요?</h2>
+      <br><br>
+      <a href="/client_faq?index=1"><button type="button" class="btn btn-dark btn text-center" onclick="checkLogin2();">자주 묻는 질문 보러가기</button></a>
+    </div>
+    <br><br>
+    <hr style="width:80%;background-color:#999999;"><br>
+
+  </div>
+  </div>
+  </div>
+  <!-- /더 궁금한 점이 있으신가요? -->
+  <!-- 검색창 섹션 -->
+  <div class="container-fluid padding text-center" >
+  <div class="container" style="">
+  <div class="sectionContent">
+
+      <h2>어느 지역에 일손이 필요 하신가요?</h2>
+      <br><br>
+      <div>
+      <form autocomplete="off" id="searchbox"  action="/action_page.php" target="_blank" method="POST" >
+        <div class="input-group" >
+
+
+           <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" style="width:66%;">
+           <input id="tags2" type="text" class="form-control" placeholder="국가" name="search" style="width:20%;" >
+
+           <button class="btn btn-warning" type="submit">
+           <i class="fas fa-search"></i></button>
+           <!-- <input type="submit" value="Submit"> -->
+        </div>
+      </form>
+      </div>
+      <br><br><br>
+
+
+
+  </div>
+  </div>
+  </div>
+  <!-- /검색창 섹션 -->
+        <hr style="width:73%;background-color:#999999;"><br>
+  <br><br>
+
+  <% include ./partials/footer %>
+
+</body>
+</html>
