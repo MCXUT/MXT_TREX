@@ -63,11 +63,14 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin: 30px;
+    margin: 0 30px;
     padding: 4px;
     border: 2px solid rgba(110, 110, 110, 0.6);
+    background-color: white;
+    transform: translate3d(0, -50%, 0);
 }
 .bottom .col-md-4 .userName {
+    margin-top: -50px;
     color: rgb(0, 127, 205);
     font-size: 28px;
     font-weight: 600;

@@ -232,6 +232,7 @@ var ratingpage = () => {
         });
         var partnername = $(this).parent().children(".taskcontent").text();
         $(".nameofpartner").html(partnername);
+        $("#ratingform").attr("action", "/user_profile/tasks/rating/" + $(this).attr("id"));
     });
 }
 ratingpage();
@@ -262,8 +263,8 @@ clickex();
 
 var formsubmit = () => {
     $("#ratingform").submit(function(e) {
-        e.preventDefault();
-        console.log($(this).serialize());
+        // e.preventDefault();
+        $(this).submit();
     });
 }
 formsubmit();

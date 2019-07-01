@@ -92,6 +92,11 @@
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12">
+                        <div class="container">
+                            <div class="backimg" style="margin-left: 5%;width: 90%; height: 150px; background-color: green;">
+
+                            </div>
+                        </div>
                         <% if (currentUser.profilePic) { %>
                           <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
@@ -130,7 +135,7 @@
                                         <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i><b>주소</b></span>
                                         <!-- <span class="answer switch active"><%= accountInfo.address.streetAddress %></span> -->
                                         <!-- <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span> -->
-                                        
+
                                         <span class="switch">
                                             <input form="basicinfoform" id="autocomplete" class="form-control"
                                                  placeholder="한국 주소일 경우 도로명 주소로 기제 부탁드립니다."
@@ -138,8 +143,8 @@
                                                  type="text"/>
                                          </span>
                                 </div>
-                                
-                                
+
+
                                 <div class="row element">
                                     <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.streetAddress %></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="street_number" name="numberAddress" value="<%= accountInfo.address.streetAddress %>" readonly/></span>
@@ -172,8 +177,8 @@
                                     <span class="switch"><b style="margin-left:25px;">우편번호</b></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="postal_code" name="postalCode" value="<%= accountInfo.address.postalCode %>" disabled="true"/></span>
                                 </div>
-                                
-                                
+
+
                                 <!-- <div class="row element">
                                         <span><i class="fa fa-map" aria-hidden="true"></i><b>도시</b></span>
                                         <span class="answer switch active"><%= accountInfo.address.city %></span>
@@ -353,7 +358,7 @@
       });
     });
     </script>
-    
+
     <script>
         // This sample uses the Autocomplete widget to help the user select a
         // place, then it retrieves the address components associated with that
@@ -427,9 +432,9 @@
             }
         }
     </script>
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&libraries=places&callback=initAutocomplete&language=ko" async defer></script>
-    
+
     <% include ./partials/footer %>
 
     </body>
