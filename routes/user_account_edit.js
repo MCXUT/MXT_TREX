@@ -97,7 +97,8 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                 }
                 foundUser.dateOfBirth = moment(req.body.birthday).format("MMMM DD, YYYY");
                 console.log(foundUser.dateOfBirth);
-                foundUser.address.streetAddress = req.body.numberAddress + " " + req.body.streetAddress;
+                foundUser.address.numberAddress = req.body.numberAddress;
+                foundUser.address.streetAddress = req.body.streetAddress;
                 foundUser.address.detailedAddress = req.body.detailedAddress;
                 foundUser.address.city = req.body.city;
                 foundUser.address.state = req.body.state;

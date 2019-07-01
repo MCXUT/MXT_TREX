@@ -122,6 +122,12 @@ $(document).ready(() => {
                     $(span).toggleClass("active");
                 });
 
+            } else if(parentDivisionClass[1] === "coverphotoinfo") {
+                var spans = document.getElementById("coverphoto").querySelectorAll(".switch");
+                spans.forEach((span) => {
+                    $(span).toggleClass("active");
+                });
+
             } else if(parentDivisionClass[1] === "privateinfo") {
                 var spans = document.getElementById("security").querySelectorAll(".switch");
                 spans.forEach((span) => {
