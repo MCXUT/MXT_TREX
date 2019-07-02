@@ -14,6 +14,9 @@ passport.use("local-partner", new LocalStrategy({
     if(!user) {
       return done(null, false, {message: "Invalid Username"});
     }
+    if(!user.password) {
+        return done(null, false, {message: "Third Party Partner. Try with your server"})
+    }
     Partner.comparePassword(password, user.password, function (err, isMatch){
       if(err) throw err;
       if(!isMatch) {
