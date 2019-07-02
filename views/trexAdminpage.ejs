@@ -13,6 +13,7 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/static/stylesheets/auth.css">
+  <script src="/static/scripts/adminpage.js"></script>
 
   <!-- scroll to top button -->
   <script>
@@ -156,7 +157,7 @@
   <div class="sidebar sticky-top sticky-offset">
   <a class="nav-item active" href="#?dashboard" onclick="dashBoard();"><i class="fas fa-chart-line"></i> Dashboard</a>
 
-  <a class="nav-item dropdown-btn" href="#?users "><i class="fas fa-users"></i> Users
+  <a class=" dropdown-btn" href="#?users "><i class="fas fa-users"></i> Users
       <i class="fa fa-caret-down" style="display:inline;" ></i>
     </a>
 
@@ -165,7 +166,7 @@
       <a class="nav-item" href="#?users-partners" onclick="usersPartners();"><i class="far fa-handshake"></i> Partners</a>
     </div>
 
-    <a class="nav-item dropdown-btn" href="#?services "><i class="fas fa-cogs"></i> Services
+    <a class=" dropdown-btn" href="#?services "><i class="fas fa-cogs"></i> Services
         <i class="fa fa-caret-down" ></i>
       </a>
 
@@ -176,7 +177,7 @@
       </div>
 
 
-    <a class="nav-item dropdown-btn" href="#?admin "><i class="fas fa-user-secret"></i> Admin
+    <a class=" dropdown-btn" href="#?admin "><i class="fas fa-user-secret"></i> Admin
         <i class="fa fa-caret-down" ></i><i class="fas fa-caret-up" style="display:none;"></i>
       </a>
 
@@ -228,7 +229,18 @@ for (var i = 0; i < btns.length; i++) {
 <div id="users-clients" style="display:none;">
   <div class="content" >
 
-  <table class="table table-bordered margin2" >
+
+      <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+
+        <!-- Actual search box -->
+        <div class="form-group has-search">
+          <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+          <input id="myInput" type="text" class="form-control" placeholder="Search" onkeyup="myFunction()" style="position:absolute;width:25%;">
+        </div>
+    </div>
+
+
+  <table class="table table-bordered margin2" id="myTable" style="margin-top:60px;">
   <thead class="thead-dark">
     <tr>
       <th id="adminPanelOrder" scope="col">#</th>
@@ -259,10 +271,20 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 </div>
 
+
+
 <div id="users-partners" style="display:none;">
   <div class="content ">
+      <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
-  <table class="table table-bordered margin2" >
+        <!-- Actual search box -->
+        <div class="form-group has-search">
+          <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+          <input id="myInput2" type="text" class="form-control" placeholder="Search" onkeyup="myFunction2()" style="position:absolute;width:25%;">
+        </div>
+    </div>
+
+  <table class="table table-bordered margin2" id="myTable2" style="margin-top:60px;">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -295,10 +317,19 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 
 
+
 <div id="services_1" style="display:none;">
 <div class="content" >
+    <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
-  <table class="table table-bordered margin2" >
+      <!-- Actual search box -->
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+        <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
+      </div>
+  </div>
+
+  <table class="table table-bordered margin2" id="myTable3" style="margin-top:60px;">
   <thead class="thead-dark">
     <tr >
       <th scope="col">#</th>
@@ -306,7 +337,6 @@ for (var i = 0; i < btns.length; i++) {
       <th scope="col">Last Sent Date</th>
       <th scope="col">Client</th>
       <th scope="col">Partner</th>
-      <th id="edit-delete" scope="col">Details</th>
       <th id="edit-delete" scope="col">Delete</th>
     </tr>
   </thead>
@@ -319,7 +349,6 @@ for (var i = 0; i < btns.length; i++) {
           <td nowrap><%= messageList[i].detail[numDetails].date %></td>
           <td nowrap><%= messageList[i].clientName %></td>
           <td nowrap><%= messageList[i].partnerName %></td>
-          <td nowrap><a href="#"><i class="far fa-edit"></i></a></td>
           <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
         </tr>
         <tr class="message thead-light" id="message_<%= i+1 %>">
@@ -329,12 +358,12 @@ for (var i = 0; i < btns.length; i++) {
             <th>Message for <%= i+1 %></th>
             <th><i class="fas fa-trash"></i></th>
         </tr>
-        <tr class="message">
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr class="message" id="message_<%= i+1 %>">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     <% } %>
   </tbody>
@@ -377,7 +406,16 @@ for (var i = 0; i < btns.length; i++) {
 
 <div id="adminList" style="display:none;" >
   <div class="content">
-    <table class="table table-bordered margin2" >
+      <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+
+        <!-- Actual search box -->
+        <div class="form-group has-search">
+          <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+          <input id="myInput4" type="text" class="form-control" placeholder="Search" onkeyup="myFunction4()" style="position:absolute;width:25%;">
+        </div>
+    </div>
+
+    <table class="table table-bordered margin2" id="myTable4" style="margin-top:60px;">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -403,6 +441,7 @@ for (var i = 0; i < btns.length; i++) {
   </table>
 </div>
 </div>
+
 
 
 <div id="addAdmin" style="display:none;">

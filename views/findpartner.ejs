@@ -75,7 +75,7 @@
 
   </head>
   <body onload="dontdoit()">
-      
+
   <div id="momtong" style="margin: 0 5%">
     <div style="display:block; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px;
     padding-top: 20px" id="bbak">
@@ -334,7 +334,19 @@
 
 
 
+<style >
 
+    #map img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+      width:50px;
+      height:50px;
+      margin-bottom:0px;
+    }
+
+</style>
 
 
      <div id="map"></div>
@@ -361,11 +373,11 @@
               var place = {
                 coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
                 content: <% if (allPartners[i].profilePic) { %>
-                    '<img class="rounded-circle" src="profilePic/<%= allPartners[i].profilePic %>" style="width:50px;height:50px;margin-bottom:10px;">'
+                    '<img class="rounded-circle" src="profilePic/<%= allPartners[i].profilePic %>" >'
                     +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
                     + '<a href="/">파트너 보기</a>'
                 <% } else { %>
-                    '<img class="rounded-circle" src="/static/images/noprofilepic.jpeg" style="width:50px;height:50px;margin-bottom:10px;">'
+                    '<img class="rounded-circle" src="/static/images/noprofilepic.jpeg" >'
                     +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
                     + '<a href="/">파트너 보기</a>'
                 <% } %>
