@@ -32,10 +32,35 @@ input[type=checkbox]:checked + label:before{
   height: 40px;
 }
 
+#searchmap{
+  transform: translate3d(-50px, 0, 0);
+  background: transparent;
+}
 
+#bbak{
+  display:block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
 
 @media (max-width: 500px) {
-  #roundswitch{
+  .form-inline{
+    position: absolute;
+    display: block;
+    /* flex-flow: wrap-reverse; */
+    height: 36px;
+  }
+  #searchmap{
+    transform: translate3d(156px, -38px, 0);
+  }
+  #bbak{
+    /* margin-bottom: 30px; */
+    padding-bottom: 47px;
+  }
+
+
+  .switch{
     display: none !important;
   }
   .slider.round{
@@ -361,14 +386,20 @@ margin-bottom: 10px;
 z-index: 2;
 } */
 
+.card{
+  max-width: 344px;
+}
 .wrapper .col{
-  width: 100%;
+  /* width: 100%; */
+  /* max-width: document.getElementById("wrapper").width/2; */
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
-
   padding: 0;
   margin: 5px;
+  /* max-width: 50%;
+  /* width: 50%;
+  position: relative; */ */
 }
 
 #avatar{
