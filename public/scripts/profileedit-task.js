@@ -68,8 +68,8 @@ taskpagination();
 
 var ratingpage = () => {
     $(".subcontainer a").on("click", function(e) {
-        $(".pum").fadeIn(400, () => {
-            $(".pum").toggleClass("pumactive");
+        $(".pumrate").fadeIn(400, () => {
+            $(".pumrate").toggleClass("pumactive");
             $("html").toggleClass("disabled");
         });
         var partnername = $(this).parent().children(".taskcontent").text();
@@ -79,29 +79,29 @@ var ratingpage = () => {
 }
 ratingpage();
 
-var clickoutside = () => {
-    document.querySelector(".pum").addEventListener("click", (e) => {
-        if(e.target.className === "pum pumactive") {
-            $(".pum").fadeOut(400, () => {
-                $(".pum").toggleClass("pumactive");
+var clickoutsiderate = () => {
+    document.querySelector(".pumrate").addEventListener("click", (e) => {
+        if(e.target.className === "pumrate pumactive") {
+            $(".pumrate").fadeOut(400, () => {
+                $(".pumrate").toggleClass("pumactive");
                 $("html").toggleClass("disabled");
                 $("#ratingform").trigger("reset");
             });
         }
     });
 }
-clickoutside();
+clickoutsiderate();
 
-var clickex = () => {
-    $(".exittable").click((e) => {
-        $(".pum").fadeOut(400, () => {
-            $(".pum").toggleClass("pumactive");
+var clickexrate = () => {
+    $(".maincontent-rate .exittable").click((e) => {
+        $(".pumrate").fadeOut(400, () => {
+            $(".pumrate").toggleClass("pumactive");
             $("html").toggleClass("disabled");
             $("#ratingform").trigger("reset");
         });
     });
 }
-clickex();
+clickexrate();
 
 var formsubmit = () => {
     $("#ratingform").submit(function(e) {
