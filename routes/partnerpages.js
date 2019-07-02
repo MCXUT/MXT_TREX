@@ -5,13 +5,35 @@ const keys = require("../config/keys");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
+const Rating = require("../models/Rating");
+const async = require("async");
 
 
 // GET route for viewing partner profile page
 router.get("/partner_profile/:id", function(req, res) {
-    Partner.findById(req.params.id, function(err, foundUser) {
-        // PartnerProfile.findById(foundUser.partnerProfile, function(err, foundProfile) { ... })
-        res.render("partnerprofile", { thisPartner: foundUser });
+    Partner.findById(req.params.id).populate("ratings").exec(function(err, foundUser) {
+        var avgRating = 0;
+        var allInfos = [];
+
+        async.each(foundUser.ratings, function(rating, done) {
+            avgRating += rating.star;
+            Rating.findById(rating.id).populate("byUser").exec(function(err, info) {
+                allInfos.push(info);
+                done();
+            });
+        }, function(err) {
+            if(err) throw err;
+            else {
+                avgRating /= foundUser.ratings.length;
+                avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
+                if(avgRating == "NaN") avgRating = 0.0;
+                res.render("partnerprofile", {
+                    thisPartner: foundUser,
+                    averageRating: avgRating,
+                    reviews: allInfos
+                });
+            }
+        });
     });
 });
 
@@ -58,9 +80,5 @@ router.get("/find_partner", function(req,res){
   // res.render("findpartner");
 });
 
-
-router.get("/partner_page", function(req,res){
-  res.render("partnerpage");
-});
 
 module.exports = router;

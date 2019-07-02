@@ -55,46 +55,19 @@ router.get("/trex-admin", function(req,res) {
   }
 });
 
-// Test Ver.
-// router.post("/addAdmin", function(req,res) {
-//   var newAdmin = {
-//     name : req.body.name,
-//     email: req.body.email,
-//     password: req.body.password
-//   };
-//   if(!(req.body.name && req.body.email && req.body.password && req.body.password2)) {
-//         req.flash("error_signup", "Some information is missing");
-//         return res.redirect("/trex-admin");
-//   }
-//   Admin.getAdminByEmail(newAdmin.email, (err, user) => {
-//     if(err) throw err;
-//     if(user) {
-//       req.flash("error_signup", "Email is already taken");
-//       return res.redirect("/trex-admin");
-//     } else {
-//       bcrypt.hash(req.body.password2, 10, (err,hash) => {
-//         if(err) throw err;
-//         Admin.comparePassword(newAdmin.password, hash, (err, isMatch) => {
-//           if(err) throw err;
-//           if(!isMatch) {
-//             req.flash("error_signup", "Passwords do not match");
-//             return res.redirect("/trex-admin");
-//           } else {
-//             var admin = new Admin({
-//               email: newAdmin.email,
-//               name: newAdmin.name,
-//               password: newAdmin.password
-//             });
-//             Admin.createAdmin(admin, (err, createdAdmin) => {
-//               if(err) throw err;
-//               res.redirect("/trex-admin");
-//             });
-//           }
-//         });
-//       });
-//     }
-//   });
-// })
+router.get("/deleteClient/:id", function(req,res) {
+    console.log("clientID: " + req.params.id);
+    Client.deleteOne({"_id" : req.params.id}, function(err, obj) {
+        res.redirect("/trex-admin#?users-clients");
+    });
+});
+
+router.get("/deletePartner/:id", function(req,res) {
+    console.log("partnerID: " + req.params.id);
+    Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
+        res.redirect("/trex-admin#?users-partners");
+    });
+});
 
 router.post("/addAdmin", function(req, res) {
   if(!req.user) {

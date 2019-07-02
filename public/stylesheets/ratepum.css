@@ -1,0 +1,148 @@
+.pumrate.pumactive {
+    display: block;
+}
+.pumrate {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 8000;
+    overflow-y: scroll;
+    display: none;
+}
+.pumrate .pumrate-container {
+    opacity: 1;
+    border-radius: 6px;
+    margin: 50px auto 200px;
+    width: 600px;
+    position: relative;
+    background-color: white;
+    /* animation: drop 0.4s ease forwards; */
+}
+
+@keyframes drop {
+    0% {opacity: 0.2;}
+    100% { transform: translateY(50px);
+            opacity: 1;}
+}
+@keyframes rollup {
+    0% { transform: translateY(100px);
+            opacity: 1;}
+    100% {opacity: 0.2;}
+}
+
+.pumrate .pumrate-container .maincontent-rate {
+    padding-bottom: 30px;
+}
+.pumrate .pumrate-container .maincontent-rate .exittable {
+    float: right;
+    font-size: 25px;
+    padding: 15px 10px 0 0;
+    /* z-index: 9000; */
+}
+.pumrate .pumrate-container .maincontent-rate .exittable:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+}
+.pumrate .pumrate-container .maincontent-rate p {
+    font-size: 30px;
+    font-weight: 500;
+    padding: 10px 0 0 10px;
+}
+
+.maincontent-rate table {
+    margin: 0 5% 0 5%;
+    text-align: center;
+}
+.maincontent-rate table tr {
+    height: 80px;
+}
+.maincontent-rate table tr td {
+    border: 1px solid black;
+}
+.maincontent-rate .titles {
+    background-color: silver;
+    height: 50px;
+}
+.maincontent-rate .scale {
+    width: 80px;
+    min-width: 40px;
+    background-color:
+}
+.maincontent-rate .level {
+    width: 110px;
+    min-width: 70px;
+}
+.maincontent-rate .description {
+    width: 700px;
+}
+
+
+@media (max-width:992px) {
+    .pumrate .pumrate-container {
+        left: 10%;
+        max-width: 80%;
+    }
+}
+@media (max-width:768px) {
+    .pumrate .pumrate-container {
+        left: 5%;
+        max-width: 90%;
+    }
+}
+
+#chartdisplay {
+    color: #f8ba00;
+}
+#chartdisplay:hover {
+    color: rgb(198, 136, 0) !important;
+}
+
+.rating {
+    position: relative;
+    width: 100%;
+    transform: rotateY(180deg);;
+    display: flex;
+    justify-content: center;
+}
+.rating input {
+    display: none;
+}
+.rating label {
+    display: block;
+    cursor: pointer;
+    width: 50px;
+}
+.rating label:before {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 50px;
+    color: #101010;
+}
+.rating label:after {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 50px;
+    color: #1f9cff;
+    top: 0;
+    opacity: 0;
+    transition: 0.5s;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after {
+    opacity: 1;
+}
+.maincontent-rate .form-group {
+    width: 80%;
+    margin: 0 auto;
+}
+.maincontent-rate .btn {
+    margin: 20px 0 0 10%;
+
+}

@@ -8,6 +8,7 @@ const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
 const Message = require("../models/Message");
+const Rating = require("../models/Rating");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -69,9 +70,51 @@ router.get("/user_profile/tasks", (req, res) => {
       if (req.user.type === "c") {
           res.redirect("/user_profile");
       } else {
-          res.render("userprofile_partner_task");
+          Partner.find({}, (err, allPartners) => {
+             if(err) {
+                 throw err;
+             } else {
+                 res.render("userprofile_partner_task", {allPartners: allPartners});
+             }
+          });
     }
   }
+});
+
+//별점 포스트
+router.post("/user_profile/tasks/rating/:id", (req, res) => {
+    req.body.star = parseInt(req.body.star);
+    Partner.findById(req.params.id, (err, currentPartner) => {
+        if(err) throw err;
+        if(!currentPartner) {
+            return res.json({error: "No such partner was found"});
+        } else {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth();
+            var yyyy = today.getFullYear();
+            if(dd < 10) {
+                dd = '0' + dd;
+            }
+            if(mm < 10) {
+                mm = '0' + mm;
+            }
+            today = yyyy + "." + mm + "." + dd;
+
+            Rating.create(req.body, (err, newRating) => {
+                if(err) throw err;
+                else {
+                    newRating.byUser = req.user.id;
+                    newRating.date = today;
+                    newRating.save();
+
+                    currentPartner.ratings.push(newRating);
+                    currentPartner.save();
+                    res.redirect("/user_profile/tasks");
+                }
+            });
+        }
+    });
 });
 
 
@@ -139,7 +182,7 @@ router.get("/user_profile/messages", (req, res) => {
                 }
                 return res.render("userprofile_client_message", {messages: foundMessages});
             });
-            
+
         });
     } else {
         // var clientPic = [];
@@ -202,7 +245,7 @@ router.get("/user_profile/saved_partners", (req, res) => {
                     }
                 }
                 res.render("userprofile_client_savedPartners", { savedPartners: savedPartners });
-                
+
             });
         }
     }
@@ -232,7 +275,7 @@ router.get("/user_profile/account_info", (req, res) => {
         } else {
             birthday = req.user.dateOfBirth;
         }
-    
+
         if (type === "Client") {
             var accountInfo = {
                 birthday: birthday,
