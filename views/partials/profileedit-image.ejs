@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/static/stylesheets/changeimg.css">
+<div class="pumimg">
+    <div class="pumimg-container">
+        <div class="maincontent">
+            <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <form id="changePic" action="/user_profile/profilePicUpload_partner" method="post" enctype="multipart/form-data"></form>
+            <form id="defaultPic" action="/user_profile/deletePartnerProfilePic?_method=DELETE" method="post"></form>
+            <span class="switch">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                            Browse&hellip; <input form="changePic" type="file" name="profilePic" accept="image/*" style="display:none;" required />
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" style="max-width:200px!important;" readonly>
+                </div>
+                <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</button>
+                <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+            </span>
+            <br/>
+            <span class="switch">
+              <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    var coverPhotoForm = () => {
+        $("#changePic").on("submit", function() {
+            $(this).attr("action", window.location.href + "/profilePicUpload_partner");
+            $(this).submit();
+        });
+    }
+    coverPhotoForm();
+
+    var defaultPhotoForm = () => {
+        $("#defaultPic").on("submit", function() {
+            $(this).attr("action", window.location.href + "/deletePartnerProfilePic?_method=DELETE");
+            $(this).submit();
+        });
+    }
+    defaultPhotoForm();
+</script>

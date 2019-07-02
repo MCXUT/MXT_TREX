@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-        
+
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-        
+
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-        
+
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,10 +55,10 @@
             }
             #wrapper h4{
               font-size: 20px;
-        
+
             }
         </style>
-        
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -66,7 +66,8 @@
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-background %>
 
         <% include ./partials/navbar %>
 
@@ -76,7 +77,7 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 프로필 관리</p>
+                        <p class="setting">프로필 관리</p>
                         <div class="menu">
                             <a class="partnerprofileinfo profileactive" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
@@ -93,22 +94,41 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimg">
+                            <% if (currentUser.coverPhoto) { %>
+                                <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                            <% } else { %>
+                                <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                            <% } %>
+                            <div class="changefade">
+                                배경 사진 바꾸기
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
                         <!-- 프로필 관리 -->
-                        
+
                             <% if (error.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error %></span>
                             <% } %>
-                            
+
                             <% if (currentUser.partnerProfile === "") { %>
                                 <div class="text-right">
                                     <a href="edit_partner_resume"class="btn btn-primary" role="button">프로필 등록</a>
@@ -118,16 +138,17 @@
                                     <a href="edit_partner_resume"class="btn btn-primary" role="button">프로필 수정</a>
                                 </div>
                             <% } %>
-                            
 
-                        
-                        
-                        
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
 
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -201,5 +222,3 @@
 
     </body>
 </html>
-
-

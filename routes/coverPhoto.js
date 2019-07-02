@@ -5,7 +5,7 @@ const express = require("express"),
       Grid = require("gridfs-stream"),
       path = require("path"),
       crypto = require("crypto"),
-      mongodb = require("mongodb");      
+      mongodb = require("mongodb");
 const app = express();
 const router = express.Router();
 
@@ -58,7 +58,7 @@ const upload = multer({ storage });
 
 
 // POST route for changing cover photo for partner
-router.post("/user_profile/coverPhotoUpload_partner", upload.single("coverPhoto"), (req, res) => {
+router.post("/user_profile/:tab/coverPhotoUpload_partner", upload.single("coverPhoto"), (req, res) => {
     if (req.file) { // if a new cover photo was posted
         // if the current user is a partner
         // Find and update client cover photo
@@ -80,7 +80,7 @@ router.post("/user_profile/coverPhotoUpload_partner", upload.single("coverPhoto"
                     return res.redirect("/user_profile");
                 }
                 console.log("Partner Cover Photo Update Successful");
-                return res.redirect("/user_profile/account_info");
+                return res.redirect("/user_profile/" + req.params.tab);
             });
         });
     } else { // if no new picture is selected
@@ -110,7 +110,7 @@ router.get("/coverPhoto/:filename", (req, res) => {
 
 // @route DELETE /user_profile/deletePartnerCoverPhoto
 // @desc Delete the current cover photo of the current partner
-router.delete("/user_profile/deletePartnerCoverPhoto", (req, res) => {
+router.delete("/user_profile/:tab/deletePartnerCoverPhoto", (req, res) => {
     // Find and delete partner cover photo
     Partner.findById(req.user._id, function(err, foundUser) {
         if (err) {
@@ -132,7 +132,7 @@ router.delete("/user_profile/deletePartnerCoverPhoto", (req, res) => {
                 return res.redirect("/user_profile");
             }
             console.log("Partner Cover Photo Delete Successful");
-            return res.redirect("/user_profile/account_info");
+            return res.redirect("/user_profile/" + req.params.tab);
         });
     });
 });

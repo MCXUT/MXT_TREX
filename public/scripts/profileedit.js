@@ -134,6 +134,12 @@ $(document).ready(() => {
                     $(span).toggleClass("active");
                 });
 
+            } else if(parentDivisionClass[1] === "deleteinfo") {
+                var spans = document.getElementById("deleteAccount").querySelectorAll(".switch");
+                spans.forEach((span) => {
+                    $(span).toggleClass("active");
+                });
+
             }
         });
     })
@@ -160,116 +166,3 @@ $(document).ready(() => {
         e.target.parentElement.parentElement.remove();
     });
 });
-
-
-var taskpagination = () => {
-    var numoftasks = $(".appointmentlist2 .appointmentcard").length;
-    var limitperpage = 3;
-    $(".appointmentlist2 .appointmentcard:gt(" + (limitperpage - 1) + ")").hide();
-    var totalPages = Math.round(numoftasks / limitperpage);
-    $(".pagination").append('<li class="page-item active"><a class="page-link" href="javascript:void(0)">' + 1 + '</a></li>');
-
-    for(var i = 2; i <= totalPages; i++) {
-        $(".pagination").append('<li class="page-item"><a class="page-link" href="javascript:void(0)">' + i + '</a></li>');
-    }
-
-    $(".pagination").append('<li class="nextshow"><a class="page-link" href="javascript:void(0)">Next</a></li>');
-
-
-    $(".pagination li.page-item").on("click", function() {
-        if($(this).hasClass("active")) {
-            return false;
-        } else {
-            var currentPage = $(this).index();
-            $(".pagination li").removeClass("active");
-            $(this).addClass("active");
-
-            $(".appointmentlist2 .appointmentcard").hide();
-            var pivot = limitperpage * (currentPage - 1);
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-        }
-    });
-
-    $(".pagination li.nextshow").on("click", function() {
-        var currentPage = $(".pagination li.active").index();
-        if(currentPage === totalPages) {
-            return false;
-        } else {
-            currentPage++;
-            $(".pagination li").removeClass("active");
-            $(".appointmentlist2 .appointmentcard").hide();
-
-            var pivot = limitperpage * (currentPage - 1);
-
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-            $(".pagination li.page-item:eq(" + (currentPage - 1) + ")").addClass("active");
-        }
-    });
-
-    $(".pagination li.prevshow").on("click", function() {
-        var currentPage = $(".pagination li.active").index();
-        if(currentPage === 1) {
-            return false;
-        } else {
-            currentPage--;
-            $(".pagination li").removeClass("active");
-            $(".appointmentlist2 .appointmentcard").hide();
-
-            var pivot = limitperpage * (currentPage - 1);
-
-            for(var i = pivot; i < pivot + limitperpage; i++) {
-                $(".appointmentlist2 .appointmentcard:eq(" + (i) +")").show();
-            }
-            $(".pagination li.page-item:eq(" + (currentPage - 1) + ")").addClass("active");
-        }
-    });
-}
-taskpagination();
-
-var ratingpage = () => {
-    $(".subcontainer a").on("click", function(e) {
-        $(".pum").fadeIn(400, () => {
-            $(".pum").toggleClass("pumactive");
-            $("html").toggleClass("disabled");
-        });
-        var partnername = $(this).parent().children(".taskcontent").text();
-        $(".nameofpartner").html(partnername);
-    });
-}
-ratingpage();
-
-var clickoutside = () => {
-    document.querySelector(".pum").addEventListener("click", (e) => {
-        if(e.target.className === "pum pumactive") {
-            $(".pum").fadeOut(400, () => {
-                $(".pum").toggleClass("pumactive");
-                $("html").toggleClass("disabled");
-                $("#ratingform").trigger("reset");
-            });
-        }
-    });
-}
-clickoutside();
-
-var clickex = () => {
-    $(".exittable").click((e) => {
-        $(".pum").fadeOut(400, () => {
-            $(".pum").toggleClass("pumactive");
-            $("html").toggleClass("disabled");
-            $("#ratingform").trigger("reset");
-        });
-    });
-}
-clickex();
-
-var formsubmit = () => {
-    $("#ratingform").submit(function(e) {
-        e.preventDefault();
-        console.log($(this).serialize());
-    });
-}
-formsubmit();

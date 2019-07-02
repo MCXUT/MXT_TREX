@@ -74,12 +74,8 @@ router.get("/message_room/:messageID", (req, res) => {
                             console.log(err);
                             return res.redirect("/user_profile");
                         }
-                        Client.update({_id: req.user.id}, {$set:{ messageNotification : false }}, function(err, result) {
-                            if (err) {
-                                console.log(err);
-                                return res.redirect("/user_profile");
-                            }
-                        });
+                        checkNotification("c", req.user.id);
+                        
                         Partner.findById(foundMessage.partner, function(err, foundPartner) {
                             if (err) {
                                 console.log(err);
@@ -91,7 +87,7 @@ router.get("/message_room/:messageID", (req, res) => {
                     });
                         
                 }
-            } else {
+            } else if (req.user.type === "p") {
                 if (req.user.id != foundMessage.partner) {
                     req.flash("error", "메세지를 볼수 없습니다. 다시 시도해주세요.");
                     return res.redirect("/user_profile");
@@ -102,12 +98,8 @@ router.get("/message_room/:messageID", (req, res) => {
                             console.log(err);
                             return res.redirect("/user_profile");
                         }
-                        Partner.update({_id: req.user.id}, {$set:{ messageNotification : false }}, function(err, result) {
-                            if (err) {
-                                console.log(err);
-                                return res.redirect("/user_profile");
-                            }
-                        });
+                        checkNotification("p", req.user.id);
+                        
                         Client.findById(foundMessage.client, function(err, foundClient) {
                             if (err) {
                                 console.log(err);
@@ -159,12 +151,8 @@ router.get("/message_room_box/:messageID", (req, res) => {
                             req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
                             return res.redirect("/user_profile");
                         }
-                        Client.update({_id: req.user.id}, {$set:{ messageNotification : false }}, function(err, result) {
-                            if (err) {
-                                console.log(err);
-                                return res.redirect("/user_profile");
-                            }
-                        });
+                        checkNotification("c", req.user.id);
+                        
                         Partner.findById(foundMessage.partner, function(err, foundPartner) {
                             if (err) {
                                 console.log(err);
@@ -207,12 +195,8 @@ router.get("/message_room_box/:messageID", (req, res) => {
                             req.flash("error", "메세지를 보낼수 없습니다. 다시 시도해주세요.");
                             return res.redirect("/user_profile");
                         }
-                        Partner.update({_id: req.user.id}, {$set:{ messageNotification : false }}, function(err, result) {
-                            if (err) {
-                                console.log(err);
-                                return res.redirect("/user_profile");
-                            }
-                        });
+                        checkNotification("p", req.user.id);
+                        
                         Client.findById(foundMessage.client, function(err, foundClient) {
                             if (err) {
                                 console.log(err);
@@ -252,7 +236,7 @@ router.post("/send_message_client", (req, res) => {
                 console.log(err);
                 return res.redirect("/user_profile");
             }
-            Partner.update({_id: message.partner}, {$set:{"messageNotification" : true}}, function(err, result) {
+            Partner.update({_id: message.partner}, {$set:{messageNotification : true}}, function(err, result) {
                 if (err) {
                     console.log(err);
                     return res.redirect("/user_profile");
@@ -297,6 +281,59 @@ router.post("/send_message_partner", (req, res) => {
     });
 });
 
+
+
+
+
+// Function to check if the client/partner has any notifications remaining
+// Return false if theres still a notification remaining, true if all messages are read
+function checkNotification(type, id) {
+    if (type == "c") {
+        Message.find({}, (err, allMessages) => {
+            if (err) {
+                console.log(err);
+                return res.redirect("/user_profile");
+            }
+            var notification = false;
+            for (var i = 0; i < allMessages.length; i++) {
+                if (allMessages[i].client == id) {
+                    if (allMessages[i].clientNotification) {
+                        notification = true;
+                    }
+                }
+            }
+            if (notification == false) {
+                Client.update({_id: id}, {$set:{ messageNotification : false }}, function(err, result) {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/user_profile");
+                    }
+                });
+            }
+        });
+    } else if (type == "p") {
+        Message.find({}, (err, allMessages) => {
+            if (err) {
+                console.log(err);
+            }
+            var notification = false;
+            for (var i = 0; i < allMessages.length; i++) {
+                if (allMessages[i].partner == id) {
+                    if (allMessages[i].partnerNotification) {
+                        notification = true;
+                    }
+                }
+            }
+            if (notification == false) {
+                Partner.update({_id: id}, {$set:{ messageNotification : false }}, function(err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
+        });
+    }
+}
 
 
 

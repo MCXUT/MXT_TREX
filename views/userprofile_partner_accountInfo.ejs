@@ -69,17 +69,17 @@
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-background %>
 
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
-
         <div class="profile">
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
+                        <p class="setting">계정 관리</p>
                         <div class="menu">
                             <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
@@ -97,17 +97,30 @@
                 </div>
                 <div class="row bottom">
                     <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
-                        <% if (currentUser.coverPhoto) { %>
-                            <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>" style="width:100%;">
-                        <% } else { %>
-                            <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg" style="width:100%;">
-                        <% } %>
-                        
+                        <div class="backgroundimg">
+                            <% if (currentUser.coverPhoto) { %>
+                                <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                            <% } else { %>
+                                <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                            <% } %>
+                            <div class="changefade">
+                                배경 사진 바꾸기
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.profilePic) { %>
-                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>" style="margin:0; transform:translate3d(0,-30%,0);">
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
                             <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
 
@@ -142,7 +155,7 @@
                                         <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.numberAddress %> <%= accountInfo.address.streetAddress %></span>
                                         <!-- <span class="answer switch active"><%= accountInfo.address.streetAddress %></span> -->
                                         <!-- <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span> -->
-                                        
+
                                         <span class="switch">
                                             <input form="basicinfoform" id="autocomplete" class="form-control"
                                                  placeholder="한국 주소일 경우 도로명 주소로 기제 부탁드립니다."
@@ -150,8 +163,8 @@
                                                  type="text"/>
                                          </span>
                                 </div>
-                                
-                                
+
+
                                 <div class="row element">
                                     <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.detailedAddress %></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="route" name="streetAddress" value="<%= accountInfo.address.streetAddress %>" style="width:60%; margin-left:1%;" readonly/>
@@ -159,7 +172,7 @@
                                 </div>
                                 <!-- <div class="row element">
                                     <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.detailedAddress %></span>
-                                    
+
                                 </div> -->
                                 <div class="row element">
                                     <span class="switch"><b style="margin-left:25px;">상세주소</b></span>
@@ -185,23 +198,6 @@
                                     <span class="switch"><b style="margin-left:25px;">우편번호</b></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="postal_code" name="postalCode" value="<%= accountInfo.address.postalCode %>" disabled="true"/></span>
                                 </div>
-                                
-                                
-                                <!-- <div class="row element">
-                                        <span><i class="fa fa-map" aria-hidden="true"></i><b>도시</b></span>
-                                        <span class="answer switch active"><%= accountInfo.address.city %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="city" value="<%= accountInfo.address.city %>"></span>
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-globe" aria-hidden="true"></i><b>나라</b></span>
-                                        <span class="answer switch active"><%= accountInfo.address.country %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="country" value="<%= accountInfo.address.country %>"></span>
-                                </div>
-                                <div class="row element">
-                                        <span><i class="fa fa-envelope" aria-hidden="true"></i><b>우편번호</b></span>
-                                        <span class="answer switch active"><%= accountInfo.address.postalCode %></span>
-                                        <span class="switch"><input form="basicinfoform" class="form-control" name="postalCode" value="<%= accountInfo.address.postalCode %>"></span>
-                                </div> -->
                                 <div class="row element">
                                         <span><i class="fa fa-phone" aria-hidden="true"></i><b>전화번호</b></span>
                                         <span class="answer switch active"><%= accountInfo.phoneNumber %></span>
@@ -214,73 +210,10 @@
                                 </div>
                             </div>
 
-                            <div class="row sections photo" id="photo">
-                                <p class="basictitle"><b>프로필 사진</b></p>
-                                <form id="changePic" action="/user_profile/profilePicUpload_partner" method="post" enctype="multipart/form-data"></form>
-                                <form id="defaultPic" action="/user_profile/deletePartnerProfilePic?_method=DELETE" method="post"></form>
-                                <div class="buttons photoinfo">
-                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
-                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                    <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</a>
-                                    <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="row element" style="margin-left:15px;">
-
-                                      <span class="switch">
-                                          <div class="input-group">
-                                              <label class="input-group-btn">
-                                                  <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
-                                                      Browse&hellip; <input form="changePic" type="file" name="profilePic" accept="image/*" style="display:none;" required />
-                                                  </span>
-                                              </label>
-                                              <input type="text" class="form-control" style="max-width:400px!important;" readonly>
-                                          </div>
-                                      </span>
-
-                                      <span class="switch">
-                                        <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
-                                      </span>
-
-                                </div>
-                            </div>
-                            
-                            
-                            <div class="row sections coverphoto" id="coverphoto">
-                                <p class="basictitle"><b>커버 포토</b></p>
-                                <form id="changeCoverPhoto" action="/user_profile/coverPhotoUpload_partner" method="post" enctype="multipart/form-data"></form>
-                                <form id="defaultCoverPhoto" action="/user_profile/deletePartnerCoverPhoto?_method=DELETE" method="post"></form>
-                                <div class="buttons coverphotoinfo">
-                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
-                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
-                                    <button class="btn btn-info editbuttons" id="confirm" form="changeCoverPhoto">교체</a>
-                                    <button form="defaultCoverPhoto" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="row element" style="margin-left:15px;">
-
-                                      <span class="switch">
-                                          <div class="input-group">
-                                              <label class="input-group-btn">
-                                                  <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
-                                                      Browse&hellip; <input form="changeCoverPhoto" type="file" name="coverPhoto" accept="image/*" style="display:none;" required />
-                                                  </span>
-                                              </label>
-                                              <input type="text" class="form-control" style="max-width:400px!important;" readonly>
-                                          </div>
-                                      </span>
-
-                                      <span class="switch">
-                                        <font size=2>커버포토 사이즈</font>
-                                      </span>
-
-                                </div>
-                            </div>
-
 
                             <div class="row sections security" id="security">
                                 <p class="basictitle"><b>보안 정보</b></p>
-                                <form id="privateinfoform" action="/user_profile/security" method="post">
+                                <form id="privateinfoform" action="/user_profile/account_info/security_partner" method="post">
                                 </form>
                                 <div class="buttons privateinfo">
                                     <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
@@ -288,6 +221,9 @@
                                     <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
                                 </div>
                                 <div class="divider"></div>
+                                <% if (error_password.length > 0) { %>
+                                  <span style="color: red"><%= error_password %></span>
+                                <% } %>
                                 <div class="row element">
                                         <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
                                         <span class="answer switch active">********</span>
@@ -296,11 +232,33 @@
                                 </div>
                                 <div class="row element">
                                         <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
-                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPassword"></span>
                                 </div>
                                 <div class="row element">
                                         <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
-                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPasswordConfirm"></span>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="row sections deleteAccount" id="deleteAccount">
+                                <p class="basictitle"><b>계정 삭제</b></p>
+                                <form id="deleteForm" action="" method="post">
+                                </form>
+                                <div class="buttons deleteinfo">
+                                    <button class="btn btn-secondary editbuttons activebutton" id="edit">삭제하기</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-danger editbuttons" id="confirm" form="deleteForm">삭제</a>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row element">
+                                        <span class="currentpassword switch"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
+                                        <span class="switch"><input form="deleteForm" type="password" class="form-control" name="password"></span>
+                                        <br><br>
+                                        <span class="switch">
+                                          <p align="right" style="font-size:13px;">계정이 삭제되면 복구가 불가능 합니다!</font>
+                                        </span>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -313,6 +271,7 @@
             </div>
         </div>
 
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -348,6 +307,11 @@
                         });
                     } else if(parentDivisionClass[1] === "privateinfo") {
                         var spans = document.getElementById("security").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "deleteinfo") {
+                        var spans = document.getElementById("deleteAccount").querySelectorAll(".switch");
                         spans.forEach((span) => {
                             $(span).toggleClass("active");
                         });
@@ -398,7 +362,7 @@
       });
     });
     </script>
-    
+
     <script>
         // This sample uses the Autocomplete widget to help the user select a
         // place, then it retrieves the address components associated with that
@@ -442,9 +406,9 @@
                 document.getElementById(component).value = '';
                 document.getElementById(component).disabled = false;
             }
-            
+
             // console.log(place.address_components);
-            
+
             // Get each component of the address from the place details,
             // and then fill-in the corresponding field on the form.
             for (var i = 0; i < place.address_components.length; i++) {
@@ -474,9 +438,9 @@
             }
         }
     </script>
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&libraries=places&callback=initAutocomplete&language=ko" async defer></script>
-    
+
     <% include ./partials/footer %>
 
     </body>
