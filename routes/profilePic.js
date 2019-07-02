@@ -5,7 +5,7 @@ const express = require("express"),
       Grid = require("gridfs-stream"),
       path = require("path"),
       crypto = require("crypto"),
-      mongodb = require("mongodb");      
+      mongodb = require("mongodb");
 const app = express();
 const router = express.Router();
 
@@ -55,7 +55,7 @@ const upload = multer({ storage });
 
 ////////////////////////////ROUTES////////////////////////////////////
 
-
+/*
 // POST route for changing profile picture for client
 router.post("/user_profile/profilePicUpload_client", upload.single("profilePic"), (req, res) => {
   if (req.file) { // if a new profile picture was posted
@@ -85,11 +85,11 @@ router.post("/user_profile/profilePicUpload_client", upload.single("profilePic")
     res.redirect("/user_profile");
   }
 });
-
+*/
 
 
 // POST route for changing profile picture for partner
-router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"), (req, res) => {
+router.post("/user_profile/:tab/profilePicUpload_partner", upload.single("profilePic"), (req, res) => {
   if (req.file) { // if a new profile picture was posted
       // if the current user is a partner
       // Find and update client profile picture
@@ -98,6 +98,7 @@ router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"
           console.log(err);
           return res.redirect("/user_profile");
         };
+        // If user already has a profile picture, delete it first
         if (foundUser.profilePic) {
           gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
             if (err) { throw err; }
@@ -110,7 +111,7 @@ router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"
             return res.redirect("/user_profile");
           }
           console.log("Partner Profile Picture Update Successful");
-          return res.redirect("/user_profile/account_info");
+          return res.redirect("/user_profile/" + req.params.tab);
         });
       });
   } else { // if no new picture is selected
@@ -136,6 +137,7 @@ router.get("/profilePic/:filename", (req, res) => {
 });
 
 
+/*
 // @route DELETE /user_profile/deleteClientProfilePic
 // @desc Delete the current profile picture of the current client
 router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
@@ -162,12 +164,12 @@ router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
     });
   });
 });
-
+*/
 
 
 // @route DELETE /user_profile/deletePartnerProfilePic
 // @desc Delete the current profile picture of the current partner
-router.delete("/user_profile/deletePartnerProfilePic", (req, res) => {
+router.delete("/user_profile/:tab/deletePartnerProfilePic", (req, res) => {
   // if the current user is a partner
   // Find and delete partner profile picture
   Partner.findById(req.user._id, function(err, foundUser) {
@@ -187,7 +189,7 @@ router.delete("/user_profile/deletePartnerProfilePic", (req, res) => {
         return res.redirect("/user_profile");
       }
       console.log("Partner Profile Picture Delete Successful");
-      return res.redirect("/user_profile/account_info");
+      return res.redirect("/user_profile/" + req.params.tab);
     });
   });
 });

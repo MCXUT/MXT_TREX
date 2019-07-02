@@ -66,6 +66,9 @@
     </head>
     <body>
 
+        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-background %>
+
         <link rel="stylesheet" href="/static/stylesheets/viewproficiency.css">
         <div class="pum">
             <div class="pum-container">
@@ -99,24 +102,48 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
+                        <p class="setting">파트너 업무 예약 관리</p>
                         <div class="menu">
                             <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo profileactive" href="/user_profile/tasks">업무 예약 관리</a>
                             <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimg">
+                            <% if (currentUser.coverPhoto) { %>
+                                <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                            <% } else { %>
+                                <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                            <% } %>
+                            <div class="changefade">
+                                배경 사진 바꾸기
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
 
@@ -204,6 +231,7 @@
             </div>
         </div>
 
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -272,6 +300,7 @@
     </script>
 
     <script src="/static/scripts/profileedit.js"></script>
+    <script src="/static/scripts/profileedit-task.js"></script>
 
     <% include ./partials/footer %>
 

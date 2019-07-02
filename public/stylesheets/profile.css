@@ -59,16 +59,105 @@
     text-align: center;
     border-right: 2px solid rgba(100, 100, 100, 0.2);
 }
+
+.backgroundimg {
+    width: 100%;
+    cursor: pointer;
+}
+#kokoman {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.bottom .col-md-4 .mainimg {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    margin: 0 auto;
+    transform: translate3d(0, -50%, 0);
+    border-radius: 50%;
+    cursor: pointer;
+}
 .bottom .col-md-4 .profileimg {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin: 0 30px;
     padding: 4px;
     border: 2px solid rgba(110, 110, 110, 0.6);
     background-color: white;
-    transform: translate3d(0, -50%, 0);
 }
+.bottom .col-md-4 .changeslider {
+    position: absolute;
+    line-height: 1.3;
+    margin: 0 auto;
+    bottom: 25%;
+    width: 100px;
+    left: 25px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(60, 60, 60);
+    opacity: 0;
+    cursor: pointer;
+    color: white;
+    padding: auto;
+    font-size: 14px;
+}
+.camera::before {
+    content: '\f030';
+    font-family: fontAwesome;
+    width: 14px;
+    color: white;
+}
+.bottom .col-md-4 .mainimg.down > .changeslider {
+    animation: drop 0.3s ease forwards;
+}
+.bottom .col-md-4 .mainimg.up > .changeslider {
+    animation: up 0.3s ease forwards;
+}
+
+.bottom .col-md-4 .changefade {
+    position: absolute;
+    width: 120px;
+    border-radius: 10px;
+    background-color: rgb(60, 60, 60);
+    cursor: pointer;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    top: 0;
+    line-height: 1.3;
+    margin: 10px;
+    opacity: 0;
+}
+.bottom .col-md-4 .backgroundimg.out > .changefade {
+    animation: fadeout 0.3s ease forwards;
+}
+.bottom .col-md-4 .backgroundimg.in > .changefade {
+    animation: fadein 0.3s ease forwards;
+}
+
+
+@keyframes up {
+    0% { opacity: 0; }
+    100% {
+        opacity: 0.8;
+        transform: translateY(-10px);
+    }
+}
+@keyframes drop {
+    from { opacity: 0.8; transform: translateY(-10px); }
+    to { opacity: 0; transform: translateY(0); }
+}
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 0.8; }
+}
+@keyframes fadeout {
+    from { opacity: 0.8; }
+    to { opacity: 0; }
+}
+
+
 .bottom .col-md-4 .userName {
     margin-top: -50px;
     color: rgb(0, 127, 205);
@@ -298,6 +387,9 @@
         font-size: 15px;
         margin-left: 0;
         margin-top: 5px;
+    }
+    #kokoman {
+        height: 350px;
     }
 }
 @media (max-width: 992px) {

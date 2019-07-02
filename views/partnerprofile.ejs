@@ -50,15 +50,21 @@
 
                 <div class="main-raised">
                     <div class="profile-content">
-                        <div class="background"></div>
+                        <!-- <div class="background"> -->
+                            <% if (thisPartner.coverPhoto) { %>
+                                <img class="background" src="/coverPhoto/<%= thisPartner.coverPhoto %>" style="width:100%;">
+                            <% } else { %>
+                                <img class="background" src="/static/images/slider/slider-4-montreal.jpg" style="width:100%;">
+                            <% } %>
+                        <!-- </div> -->
                         <div class="container">
 
                             <!-- <div class="row rowdivider"> -->
                             <div class="col-8 ml-auto mr-auto">
                                 <form id="savePartner" action="/save_current_partner" method="post"></form>
                                 <div class="profile">
-                                    <% if (thisPartner.pic) { %>
-                                      <img class="profilpic" src="/image/<%= thisPartner.pic %>">
+                                    <% if (thisPartner.profilePic) { %>
+                                      <img class="profilpic" src="/profilePic/<%= thisPartner.profilePic %>">
                                     <% } else { %>
                                       <img class="profilpic" src="/static/images/noprofilepic.jpeg">
                                     <% } %>
