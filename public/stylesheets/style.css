@@ -5,7 +5,7 @@ html {
     overflow-x: hidden;
 }
 
-html.disabled {
+/* html.disabled {
     overflow-y: hidden;
 }
 
@@ -18,8 +18,35 @@ html.disabled {
 }
 .stepdesc {
     font-size: 20px;
+} */
+/* modal thin exit('x') button */
+.close1 {
+  position: absolute;
+  right: 8px;
+  top: 11px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
 }
-
+.close1:hover {
+  opacity: 1;
+  cursor:pointer;
+}
+.close1:before, .close1:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close1:before {
+  transform: rotate(45deg);
+}
+.close1:after {
+  transform: rotate(-45deg);
+}
+/* end of thin exit button */
 .container-fluid{
   padding-left: 0px;
   padding-right: 0px;
@@ -106,9 +133,10 @@ html.disabled {
   display: block;
 }
 
+.dropdown a:hover {background-color: #ddd;}
 /* end of carousel section */
 
-.display-4 {
+/* .display-4 {
     font-size: 40px;
 }
 .text-center {
@@ -121,7 +149,7 @@ html.disabled {
 }
 .padding.text-center {
     padding: 70px 0;
-}
+} */
 
 /* 서비스 견적 */
 
@@ -131,7 +159,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 color:white;
-font-weight: 200;
+/* font-weight: 200; */
 }
 #request-service{
   height: 150px;
@@ -196,11 +224,11 @@ font-weight: 200;
   border-bottom:none;
   border-radius:0;
   padding: 0;
-  text-align:left;
+  /* text-align:left; */
 }
 #accordion a{
   color:#4d4d4d;
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 #accordion a:hover, #accordion a:after{
   color:black;
@@ -254,7 +282,7 @@ font-weight: 200;
   display: grid;
   grid-gap: 0;
   background-color: transparent;
-  min-height: 270px;
+  /* min-height: 270px; */
 }
 
 .grid-item {
@@ -481,7 +509,7 @@ figure {
 #button1:hover {
     background-color: rgb( 45, 114, 169 );
 }
-.grid-item.text-center {
+/* .grid-item.text-center {
     font-size: 16px;
 }
 .grid-item.text-left {
@@ -501,7 +529,7 @@ figure {
 }
 .grid-container {
     background-color: rgba( 255, 255, 255, 0.5 );
-}
+} */
 
 
 /*

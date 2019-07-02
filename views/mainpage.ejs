@@ -10,7 +10,55 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/static/scripts/autocomplete.js"></script>
 
+<style>
+/* Style the form */
+#regForm {
+background-color: #ffffff;
+margin: 100px auto;
+padding: 40px;
+width: 70%;
+min-width: 300px;
+}
 
+/* Style the input fields */
+input {
+
+width: 100%;
+font-size: 17px;
+font-family: Raleway;
+border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+height: 15px;
+width: 15px;
+margin: 0 2px;
+background-color: #bbbbbb;
+border: none;
+display: inline-block;
+opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+background-color: #4CAF50;
+}</style>
 </head>
 
 <body id="bodyfont">
@@ -58,28 +106,27 @@
 
   </div>
 
-<div id="caption-carousel" class="centered" style="display:block;width:100%;">
+  <div id="caption-carousel" class="centered" style="display:block;width:100%;">
 
-    <h1 class="display-4">어디로 출장 가시나요?</h1>
+      <h1 class="display-4">어디로 출장 가시나요?</h1>
 
-    <h3 class="text-center">출장지나 파트너를 검색 해보세요!</h3>
-    <br><br>
-    <form autocomplete="off" id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
-      <div class="input-group">
-
-
-         <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" >
+      <h3 class="text-center">출장지나 파트너를 검색 해보세요!</h3>
+      <br><br>
+      <form autocomplete="off" id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
+        <div class="input-group">
 
 
-         <input id="tags2" type="text" class="form-control2" placeholder="국가" name="search" >
-         <button class="btn btn-warning" type="submit">
-         <i class="fas fa-search"></i></button>
-         <!-- <input type="submit" value="Submit"> -->
-      </div>
-    </form>
+           <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" style="width:65%;">
+           <input id="tags2" type="text" class="form-control" placeholder="국가" name="search" style="width:20%;" >
+
+           <button class="btn btn-warning" type="submit">
+           <i class="fas fa-search"></i></button>
+           <!-- <input type="submit" value="Submit"> -->
+        </div>
+      </form>
 
 
-</div>
+  </div>
 </div>
 </div>
   <!-- End of Carousel Section -->
@@ -239,7 +286,7 @@
 </div>
 
 
-<div id="second-slide"class="container-fluid text-center" style="display:none;">
+<div id="second-slide"class="container-fluid padding text-center" style="display:none;">
   <h2 id="heading">국가/지역 별 파트너를 만나보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
   <div class="container">
@@ -284,7 +331,7 @@
 </div>
 </div>
 
-<div id="third-slide"class="container-fluid text-center" style="display:none;">
+<div id="third-slide"class="container-fluid padding text-center" style="display:none;">
   <h2>국가/지역 별 파트너를 만나보세요</h2>
   <hr style="width:100px;border:1px #595959 solid;">
   <div class="container">

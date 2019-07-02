@@ -6,6 +6,10 @@ var PartnerSchema = mongoose.Schema({
         type: String,
         default: "p"
     },
+    messageNotification: {
+        type: Boolean,
+        default: false
+    },
     name: {
         type: String,
         required: true
@@ -38,31 +42,35 @@ var PartnerSchema = mongoose.Schema({
     //   country: String
     // },
     address: {
-      streetAddress: {
-        type: String,
-        default: ""
-      },
-      detailedAddress: {
-        type: String,
-        default: ""  
-      },
-      city: {
-          type: String
-      },
-      state: {
-          type: String
-      },
-      country: {
-          type: String
-      },
-      postalCode: {
-          type: String
-      },
-      coordinates: {
-        lat: Number,
-        lng: Number,
-        default: {}
-      }
+        numberAddress: {
+            type: String,
+            default: ""
+        },
+        streetAddress: {
+            type: String,
+            default: ""
+        },
+        detailedAddress: {
+            type: String,
+            default: ""  
+        },
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        postalCode: {
+            type: String
+        },
+        coordinates: {
+            lat: Number,
+            lng: Number,
+            default: {}
+        }
     },
     // address: {
     //   type: String,

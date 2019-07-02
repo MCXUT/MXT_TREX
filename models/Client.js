@@ -6,6 +6,10 @@ var ClientSchema = mongoose.Schema({
         type: String,
         default: "c"
     },
+    messageNotification: {
+        type: Boolean,
+        default: false
+    },
     // 담당자 성함
     name: {
         type: String,

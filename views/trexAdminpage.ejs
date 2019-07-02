@@ -288,11 +288,40 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 </div>
 
+
 <div id="services_1" style="display:none;">
 <div class="content" style="padding-top:80px;">
-<h3>Message Lists</h3>
+
+  <table class="table table-bordered margin2" >
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Sent Date</th>
+      <th scope="col">Last Sent Date</th>
+      <th scope="col">Client</th>
+      <th scope="col">Partner</th>
+      <th id="edit-delete" scope="col">Details</th>
+      <th id="edit-delete" scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var i = 0; i < messageList.length; i++) { %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= messageList[i].detail[0].date %></td>
+          <% var numDetails = messageList[i].detail.length - 1; %>
+          <td><%= messageList[i].detail[numDetails].date %></td>
+          <td><%= messageList[i].clientName %></td>
+          <td><%= messageList[i].partnerName %></td>
+          <td ><a href="#"><i class="far fa-edit"></i></a></td>
+          <td ><a href="#"><i class="fas fa-trash"></i></a></td>
+        </tr>
+    <% } %>
+  </tbody>
+  </table>
 </div>
 </div>
+
 
 <div id="services_2" style="display:none;">
 <div class="content" style="padding-top:80px;">

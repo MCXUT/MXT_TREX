@@ -87,12 +87,17 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
+                        <p class="setting">파트너 메세지</p>
                         <div class="menu">
                             <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
                             <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages profileactive" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages profileactive" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages profileactive" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
@@ -128,9 +133,12 @@
                                                     <div class="row" id="formore" style="margin-bottom: 10px; margin-top: 50px; cursor: pointer;">
                                                         <div class="col" id="left">
                                                             <div class="leftside">
+                                                                <% if (messages[i].partnerNotification) { %>
+                                                                    <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;"></i>
+                                                                <% } %>
                                                                 <center>
-                                                                    <% if (messages[i].clientPic) { %>
-                                                                        <img id="avatar" src="/logo/<%= clientPic %>">
+                                                                    <% if (messages[i].pic) { %>
+                                                                        <img id="avatar" src="/logo/<%= messages[i].pic %>">
                                                                     <% } else { %>
                                                                         <img id="avatar" src="/static/images/noprofilepic.jpeg">
                                                                     <% } %>

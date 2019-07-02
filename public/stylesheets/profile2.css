@@ -18,7 +18,8 @@
     height: auto;
 }
 .main-raised .background {
-    height: 150px;
+    /* height: 150px; */
+    height: 200px;
     background-color: green;
 }
 .avatar {

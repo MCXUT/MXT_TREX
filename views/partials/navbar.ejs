@@ -21,7 +21,7 @@
                             파트너 페이지</a>
                     </li>
                     <div class="verticaldivider"></div>
-                    <li class="nav-item dropdown" id="hov2">
+                    <li class="nav-item dropdown dropdown-bubble" id="hov2">
                         <a class="nav-link dropdown-toggle" href="/user_profile" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:10px 30px;">
                             <% if (currentUser.type === "p") { %>
@@ -59,7 +59,15 @@
                                 <a class="dropdown-item" href="/user_profile/messages">
                                     <!-- <img src="/static/icons/messages.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
                                     <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
+                                    <% if (currentUser.messageNotification) { %>
+                                        메세지
+                                        <span class="fa-stack" style="width:10px; height:10px;">
+                                            <i class="fas fa-square fa-stack-1x" style="color:transparent;"></i>
+                                            <i class="fas fa-circle fa-stack-1x" style="color:red; padding-left:5px; padding-bottom:2px;"></i>
+                                        </span>
+                                    <% } else { %>
+                                        메세지
+                                    <% } %>
                                 </a>
                                 <a class="dropdown-item" href="/user_profile/payment_info">
                                     <!-- <img src="/static/icons/.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
@@ -90,7 +98,16 @@
                                 <a class="dropdown-item" href="/user_profile/messages">
                                     <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
                                     <i class="far fa-comments" style="width: 15px; height: 15px; margin-right: 3px;"></i>
-                                    메세지
+                                    <% if (currentUser.messageNotification) { %>
+                                        메세지
+                                        <span class="fa-stack" style="width:10px; height:10px;">
+                                            <i class="fas fa-square fa-stack-1x" style="color:transparent;"></i>
+                                            <i class="fas fa-circle fa-stack-1x" style="color:red; padding-left:5px; padding-bottom:2px;"></i>
+                                        </span>
+                                        <!-- <i class="fas fa-circle" style="color:red;width: 10px; height: 10px;margin-left:3px;"></i> -->
+                                    <% } else { %>
+                                        메세지
+                                    <% } %>
                                 </a>
                                 <a class="dropdown-item" href="/user_profile/saved_partners">
                                     <!-- <img src="/static/icons/document.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
@@ -118,7 +135,7 @@
                                     로그아웃
                                 </a>
                             <% } %>
-                            
+
                         </div>
                     </li>
                 </ul>

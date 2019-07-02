@@ -55,7 +55,7 @@ const upload = multer({ storage });
 
 ////////////////////////////ROUTES////////////////////////////////////
 
-
+/*
 // POST route for changing profile picture for client
 router.post("/user_profile/profilePicUpload_client", upload.single("profilePic"), (req, res) => {
   if (req.file) { // if a new profile picture was posted
@@ -85,7 +85,7 @@ router.post("/user_profile/profilePicUpload_client", upload.single("profilePic")
     res.redirect("/user_profile");
   }
 });
-
+*/
 
 
 // POST route for changing profile picture for partner
@@ -98,6 +98,7 @@ router.post("/user_profile/profilePicUpload_partner", upload.single("profilePic"
           console.log(err);
           return res.redirect("/user_profile");
         };
+        // If user already has a profile picture, delete it first
         if (foundUser.profilePic) {
           gfs.remove({filename: foundUser.profilePic, root: "profilePics"}, (err, gridStore) => {
             if (err) { throw err; }
@@ -136,6 +137,7 @@ router.get("/profilePic/:filename", (req, res) => {
 });
 
 
+/*
 // @route DELETE /user_profile/deleteClientProfilePic
 // @desc Delete the current profile picture of the current client
 router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
@@ -162,7 +164,7 @@ router.delete("/user_profile/deleteClientProfilePic", (req, res) => {
     });
   });
 });
-
+*/
 
 
 // @route DELETE /user_profile/deletePartnerProfilePic
