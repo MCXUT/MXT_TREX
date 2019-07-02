@@ -75,7 +75,7 @@
 
   </head>
   <body onload="dontdoit()">
-      
+
   <div id="momtong" style="margin: 0 5%">
     <div id="bbak">
 
@@ -230,14 +230,14 @@
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%;">
 
-    <div id="sliders" style="display: block;">
+    <div class="card-columns-sm" id="sliders">
       <% var i; %>
       <% for (i = 0; i < allPartners.length; i++) { %>
           <% if (i%2 == 0) { %>
-            <div class="row">
+            <!-- <div class="row"> -->
           <% } %>
 
-              <div class="col card" id="col">
+              <div class="col card" id="col" style="display: inline-block">
                 <!-- <div class="leftside"> -->
                   <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <!-- <div id="kokoman"></div> -->
@@ -252,27 +252,32 @@
                       <% } else { %>
                         <img id="avatar" src="/static/images/noprofilepic.jpeg">
                       <% } %>
-                    </center>
+
                     <h5><%= allPartners[i].name %></h5>
                     <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
                     <h7 class="juso">
-                      <% if (allPartners[i].address.city) { %>
+                      <% if (allPartners[i].address.city && allPartners[i].address.state) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
+                      <% } else if (allPartners[i].address.city) { %>
+                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
+                      <% } else if (allPartners[i].address.state) { %>
+                          <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
                       <% } %>
                     </h7>
+                  </center>
                   </a>
                 <!-- </div> -->
               </div>
 
         <% if (i%2 == 1) { %>
-          </div>
+          <!-- </div> -->
         <% } %>
 
       <% } %>
 
       <% if (i%2 == 1) { %>
-        <div class="col" style="border: none;"></div>
-        </div>
+        <!-- <div class="col" style="border: none; display: none"></div> -->
+        <!-- </div> -->
       <% } %>
 
     </div>
@@ -282,59 +287,60 @@
   overflow-x: hidden; float:left; position: relative; margin:0;
   padding-left: 2.5%; padding-right: 2.5%; display: none;">
 
-  <div id="sliders">
+  <div id="sliders" class="card-columns">
     <% var i; %>
     <% for (i = 0; i < allPartners.length; i++) { %>
         <% if (i%4 == 0) { %>
-          <div class="row">
+          <!-- <div class="row"> -->
         <% } %>
 
-            <div class="col">
+            <div class="col card" style="display: inline-block">
               <!-- <div class="leftside"> -->
                 <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
-                  <div id="kokoman">
+
                       <% if (allPartners[i].coverPhoto) { %>
                           <img id="kokoman" src="/coverPhoto/<%= allPartners[i].coverPhoto %>">
                       <% } else { %>
                           <img id="kokoman" src="/static/images/countries/0germany.jpg">
                       <% } %>
-                  </div>
+
                   <center>
                     <% if (allPartners[i].profilePic) { %>
                       <img id="avatar" src="/profilePic/<%= allPartners[i].profilePic %>">
                     <% } else { %>
                       <img id="avatar" src="/static/images/noprofilepic.jpeg">
                     <% } %>
-                  </center>
+
                   <h5><%= allPartners[i].name %></h5>
                   <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
-                  <h7>
+                  <h7 class="juso">
                     <% if (allPartners[i].address.city) { %>
                         <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
                     <% } %>
                   </h7>
+                  </center>
                 </a>
               <!-- </div> -->
             </div>
 
       <% if (i%4 == 3) { %>
-        </div>
+        <!-- </div> -->
       <% } %>
 
     <% } %>
 
     <% if (i%4 == 1) { %>
+      <!-- <div class="col" style="border: none;"></div>
       <div class="col" style="border: none;"></div>
-      <div class="col" style="border: none;"></div>
-      <div class="col" style="border: none;"></div>
-      </div>
+      <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
     <% } else if (i%4 == 2) { %>
-      <div class="col" style="border: none;"></div>
-      <div class="col" style="border: none;"></div>
-      </div>
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
     <% } else if (i%4 == 3) { %>
-      <div class="col" style="border: none;"></div>
-      </div>
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
     <% } %>
 
   </div>

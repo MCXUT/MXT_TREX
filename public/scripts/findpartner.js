@@ -139,15 +139,16 @@ function jusoFunction(){
   juso = document.getElementsByClassName("juso");
   map = document.getElementById("map");
   // text = juso[0].textContent;
-  // console.log(wrapper);
+  console.log(wrapper);
+  // console.log()
   // console.log(input);
-  // console.log(juso);
+  console.log(juso);
   // console.log(text);
   // console.log(juso[0].textContent.includes(input));
   // console.log(wrapper.length/2);
-  for(i=0; i<wrapper.length/2; i++){
+  for(i=0; i<wrapper.length; i++){
     if(juso[i].textContent.includes(input)){
-      wrapper[i].style.display = "block";
+      wrapper[i].style.display = "inline-block";
     }
     else{
       wrapper[i].style.display = "none";

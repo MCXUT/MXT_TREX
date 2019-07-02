@@ -366,12 +366,21 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 }
 
+
+
 .dropdown-content a {
 color: black;
 
 text-decoration: none;
 display: block;
 }
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+}
+
 
 .dropdown a:hover {background-color: #ddd;}
 
@@ -387,7 +396,7 @@ z-index: 2;
 } */
 
 .card{
-  max-width: 344px;
+  max-width: 350px;
 }
 .wrapper .col{
   /* width: 100%; */
@@ -397,6 +406,7 @@ z-index: 2;
   margin-bottom: 10px;
   padding: 0;
   margin: 5px;
+  /* display: inline; */
   /* max-width: 50%;
   /* width: 50%;
   position: relative; */ */
