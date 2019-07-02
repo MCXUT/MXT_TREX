@@ -69,6 +69,13 @@ router.get("/deletePartner/:id", function(req,res) {
     });
 });
 
+router.get("/deleteAdmin/:id", function(req,res) {
+    console.log("adminID: " + req.params.id);
+    Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {
+        res.redirect("/trex-admin");
+    });
+})
+
 router.post("/addAdmin", function(req, res) {
   if(!req.user) {
     return res.redirect("/");

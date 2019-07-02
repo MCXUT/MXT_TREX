@@ -352,14 +352,28 @@ for (var i = 0; i < btns.length; i++) {
           <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
         </tr>
         <tr class="message thead-light" id="message_<%= i+1 %>">
-            <th ></th>
-            <th>User <%= i+1 %></th>
-            <th>Date for <%= i+1 %></th>
-            <th>Message for <%= i+1 %></th>
-            <th><i class="fas fa-trash"></i></th>
-        </tr>
-        <tr class="message" id="message_<%= i+1 %>">
             <th></th>
+            <th>User</th>
+            <th>Time</th>
+            <th>Content</th>
+            <th>Delete</th>
+        </tr>
+        <% for(var k = 0; k < messageList[i].detail.length; k++) { %>
+            <tr class="message thead-light" id="message_<%= i+1 %>">
+                <th></th>
+                <th style="font-weight:100"><% if (messageList[i].detail[k].author === 'c') { %>
+                        <%= messageList[i].clientName %>
+                    <% } else { %>
+                        <%= messageList[i].partnerName %>
+                    <% } %>
+                </th>
+                <th style="font-weight:100"><%= messageList[i].detail[k].time %>, <%= messageList[i].detail[k].date %></th>
+                <th style="font-weight:100"><%= messageList[i].detail[k].content %></th>
+                <th><i class="fas fa-trash"></i></th>
+            </tr>
+        <% } %>
+        <tr class="message thead-light" id="message_<%= i+1 %>">
+            <th ></th>
             <th></th>
             <th></th>
             <th></th>
@@ -434,7 +448,7 @@ for (var i = 0; i < btns.length; i++) {
             <td nowrap><%= adminList[i].name %></td>
             <td nowrap><%= adminList[i].email %></td>
             <td ><a href="#"><i class="far fa-edit"></i></a></td>
-            <td ><a href="#"><i class="fas fa-trash"></i></a></td>
+            <td ><a href="/deleteAdmin/<%=adminList[i]._id%>"><i class="fas fa-trash"></i></a></td>
           </tr>
       <% } %>
     </tbody>
