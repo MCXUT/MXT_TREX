@@ -76,11 +76,16 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">클라이언트 계정 관리</p>
+                        <p class="setting">클라이언트 견적 요청 관리</p>
                         <div class="menu">
                             <a class="task_request_info profileactive" href="/user_profile/task_request_info">견적 요청 관리</a>
                             <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
-                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="saved_partners" href="/user_profile/saved_partners">저장된 파트너</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
