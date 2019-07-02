@@ -7,7 +7,7 @@
                 background-color: #00b3db !important;
                 border-color: #00b3db !important;
             }
-            #avatar{
+            /* #avatar{
                 border-radius: 50%;
                 width: 45px;
                 height: 45px;
@@ -18,7 +18,7 @@
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
         
-            }
+            } */
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
@@ -52,17 +52,51 @@
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
               width: 500px;
+              text-align: center;
             }
             #wrapper h4{
               font-size: 20px;
         
             }
+            #wrapper .row h7{
+            color: rgba(0, 0, 0, 0.6)
+            }
+            #kokoman {
+                width: 100%;
+                height: 35%;
+                background-size: cover;
+            }
+
+            #avatar {
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                background-size: cover;
+
+                margin-bottom: 15px;
+                transform: translate3d(0, -50%, 0);
+
+            }
+            #wrapper center{
+              height: 40px;
+            }
+            .wrapper .col{
+              width: 100%;
+              height: 300px;
+              border: 1px solid rgba(0, 0, 0, 0.5);
+              margin-bottom: 10px;
+
+              padding: 0;
+              margin: 5px;
+            }
+            
         </style>
+        <!-- <link rel="stylesheet" href="../static/stylesheets/findpartner.css"> -->
         
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-
+        <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     </head>
     <body>
 
@@ -76,17 +110,22 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">클라이언트 계정 관리</p>
+                        <p class="setting">클라이언트 저장된 파트너</p>
                         <div class="menu">
                             <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
                             <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
-                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="saved_partners profileactive" href="/user_profile/saved_partners">저장된 파트너</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
                     </div>
                 </div>
-                <div class="row bottom">
+                <div class="row bottom" style="height:80%;">
                     <div class="col-md-4 col-12">
                         <% if (currentUser.companyLogo) { %>
                           <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
@@ -108,11 +147,65 @@
                                 
                                 <div class="divider"></div>
                                 
-                                <% for (var i = 0; i < savedPartners.length; i ++) { %>
+                                
+                                
+                                <div class="wrapper" id="wrapper" style="width: 100%; height: 620px; overflow-y:scroll;
+                                  overflow-x: hidden; float:left; position: relative; margin:0;
+                                  padding-left: 2.5%; padding-right: 2.5%;">
+
+                                    <div id="sliders" style="display: block;">
+                                        <% var i; %>
+                                        <% for (i = 0; i < savedPartners.length; i++) { %>
+                                            <% if (i%2 == 0) { %>
+                                                <div class="row" style="margin:0; width: 100%; border: none;">
+                                            <% } %>
+                                            
+                                            <div class="col">
+                                                <a href="/partner_profile/<%= savedPartners[i]._id %>" class="slide-img">
+                                                    <!-- <div id="kokoman"></div> -->
+                                                    <% if (savedPartners[i].coverPhoto) { %>
+                                                        <img id="kokoman" src="/coverPhoto/<%= savedPartners[i].coverPhoto %>">
+                                                    <% } else { %>
+                                                        <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                                                    <% } %>
+                                                    <center>
+                                                        <% if (savedPartners[i].profilePic) { %>
+                                                            <img id="avatar" src="/profilePic/<%= savedPartners[i].profilePic %>">
+                                                        <% } else { %>
+                                                            <img id="avatar" src="/static/images/noprofilepic.jpeg">
+                                                        <% } %>
+                                                    </center>
+                                                    <h5><%= savedPartners[i].name %></h5>
+                                                    <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
+                                                    <h7>
+                                                        <% if (savedPartners[i].address.city) { %>
+                                                            <%= savedPartners[i].address.city %>, <%= savedPartners[i].address.country %>
+                                                        <% } %>
+                                                    </h7>
+                                                </a>
+                                            </div>
+
+                                            <% if (i%2 == 1) { %>
+                                                </div>
+                                            <% } %>
+                                        <% } %>
+
+                                        <% if (i%2 == 1) { %>
+                                            <div class="col" style="border: none;"></div>
+                                            </div>
+                                        <% } %>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                                
+                                <!-- <% for (var i = 0; i < savedPartners.length; i ++) { %>
                                     <a href="/partner_profile/<%= savedPartners[i]._id %>" style="color:black;">
                                         <%= savedPartners[i].name %>
                                     </a>
-                                <% } %>
+                                <% } %> -->
                                 
                                 
                             </div>
@@ -120,7 +213,6 @@
                 </div>
             </div>
         </div>
-
 
     <script>
     $(document).ready(() => {

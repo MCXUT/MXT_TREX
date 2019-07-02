@@ -35,6 +35,7 @@ const userAccountEdit = require("./routes/user_account_edit");
 const servicePages = require("./routes/service");
 const taskRoutes = require("./routes/tasks");
 const profilePicRoutes = require("./routes/profilePic");
+const coverPhotoRoutes = require("./routes/coverPhoto");
 const companyLogoRoutes = require("./routes/companyLogo");
 const messageRoutes = require("./routes/messages");
 
@@ -121,6 +122,7 @@ app.use("/", userAccountEdit);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
 app.use("/", profilePicRoutes);
+app.use("/", coverPhotoRoutes);
 app.use("/", companyLogoRoutes);
 app.use("/", messageRoutes);
 app.use("/", adminPanelRoutes);

@@ -84,18 +84,29 @@
                             <a class="partnerprofileinfo" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
                             <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
                             <a class="accountinfo profileactive" href="/user_profile/account_info">계정관리</a>
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
-                        <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <% if (currentUser.coverPhoto) { %>
+                            <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>" style="width:100%;">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg" style="width:100%;">
+                        <% } %>
+                        
+                        <% if (currentUser.profilePic) { %>
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>" style="margin:0; transform:translate3d(0,-30%,0);">
+                        <% } else { %>
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
@@ -128,6 +139,7 @@
                                 </div>
                                 <div class="row element">
                                         <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i><b>주소</b></span>
+                                        <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.numberAddress %> <%= accountInfo.address.streetAddress %></span>
                                         <!-- <span class="answer switch active"><%= accountInfo.address.streetAddress %></span> -->
                                         <!-- <span class="switch"><input form="basicinfoform" class="form-control" name="streetAddress" value="<%= accountInfo.address.streetAddress %>"></span> -->
                                         
@@ -141,13 +153,14 @@
                                 
                                 
                                 <div class="row element">
-                                    <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.streetAddress %></span>
-                                    <span class="switch"><input form="basicinfoform" class="form-control field" id="street_number" name="numberAddress" value="<%= accountInfo.address.streetAddress %>" readonly/></span>
-                                </div>
-                                <div class="row element">
                                     <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.detailedAddress %></span>
-                                    <span class="switch"><input form="basicinfoform" class="form-control field" id="route" name="streetAddress" readonly/>
+                                    <span class="switch"><input form="basicinfoform" class="form-control field" id="route" name="streetAddress" value="<%= accountInfo.address.streetAddress %>" style="width:60%; margin-left:1%;" readonly/>
+                                    <span class="switch"><input form="basicinfoform" class="form-control field" id="street_number" name="numberAddress" value="<%= accountInfo.address.numberAddress %>" style="width:20%;" readonly/></span>
                                 </div>
+                                <!-- <div class="row element">
+                                    <span class="answer switch active" style="padding:0px;"><%= accountInfo.address.detailedAddress %></span>
+                                    
+                                </div> -->
                                 <div class="row element">
                                     <span class="switch"><b style="margin-left:25px;">상세주소</b></span>
                                     <span class="answer switch active"><%= accountInfo.address.city %></span>
@@ -230,11 +243,38 @@
                                       </span>
 
                                 </div>
-                                <!-- <div class="row element">
-                                  <span class="switch" style="padding-left:5%;">
-                                    <font size=2>이미지 사이즈는 150x150px로 맞춰주세요. 웃는 얼굴이 잘 나온 사진일수록 업무 요청이 증가합니다!</font>
-                                  </span>
-                                </div> -->
+                            </div>
+                            
+                            
+                            <div class="row sections coverphoto" id="coverphoto">
+                                <p class="basictitle"><b>커버 포토</b></p>
+                                <form id="changeCoverPhoto" action="/user_profile/coverPhotoUpload_partner" method="post" enctype="multipart/form-data"></form>
+                                <form id="defaultCoverPhoto" action="/user_profile/deletePartnerCoverPhoto?_method=DELETE" method="post"></form>
+                                <div class="buttons coverphotoinfo">
+                                    <button class="btn btn-info editbuttons activebutton" id="edit" style="width:90px;">교체하기</a>
+                                    <button class="btn btn-info editbuttons" id="cancel">취소</a>
+                                    <button class="btn btn-info editbuttons" id="confirm" form="changeCoverPhoto">교체</a>
+                                    <button form="defaultCoverPhoto" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row element" style="margin-left:15px;">
+
+                                      <span class="switch">
+                                          <div class="input-group">
+                                              <label class="input-group-btn">
+                                                  <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                                                      Browse&hellip; <input form="changeCoverPhoto" type="file" name="coverPhoto" accept="image/*" style="display:none;" required />
+                                                  </span>
+                                              </label>
+                                              <input type="text" class="form-control" style="max-width:400px!important;" readonly>
+                                          </div>
+                                      </span>
+
+                                      <span class="switch">
+                                        <font size=2>커버포토 사이즈</font>
+                                      </span>
+
+                                </div>
                             </div>
 
 
@@ -298,6 +338,11 @@
                         });
                     } else if(parentDivisionClass[1] === "photoinfo") {
                         var spans = document.getElementById("photo").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
+                    } else if(parentDivisionClass[1] === "coverphotoinfo") {
+                        var spans = document.getElementById("coverphoto").querySelectorAll(".switch");
                         spans.forEach((span) => {
                             $(span).toggleClass("active");
                         });
@@ -397,7 +442,9 @@
                 document.getElementById(component).value = '';
                 document.getElementById(component).disabled = false;
             }
-            console.log(place.address_components);
+            
+            // console.log(place.address_components);
+            
             // Get each component of the address from the place details,
             // and then fill-in the corresponding field on the form.
             for (var i = 0; i < place.address_components.length; i++) {
