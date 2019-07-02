@@ -213,7 +213,7 @@
 
                             <div class="row sections security" id="security">
                                 <p class="basictitle"><b>보안 정보</b></p>
-                                <form id="privateinfoform" action="/user_profile/security" method="post">
+                                <form id="privateinfoform" action="/user_profile/account_info/security_partner" method="post">
                                 </form>
                                 <div class="buttons privateinfo">
                                     <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
@@ -221,6 +221,9 @@
                                     <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
                                 </div>
                                 <div class="divider"></div>
+                                <% if (error_password.length > 0) { %>
+                                  <span style="color: red"><%= error_password %></span>
+                                <% } %>
                                 <div class="row element">
                                         <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
                                         <span class="answer switch active">********</span>
@@ -229,11 +232,11 @@
                                 </div>
                                 <div class="row element">
                                         <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
-                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPassword"></span>
                                 </div>
                                 <div class="row element">
                                         <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
-                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                        <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPasswordConfirm"></span>
                                 </div>
                             </div>
                         </div>

@@ -21,9 +21,7 @@
     padding-bottom: 20px;
 }
 .main-raised .background {
-    /* height: 150px; */
     height: 200px;
-    background-color: green;
 }
 .col-8.ml-auto.mr-auto {
     padding-top: 0;
