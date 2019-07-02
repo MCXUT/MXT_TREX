@@ -50,97 +50,7 @@
 </head>
 <body>
 
-  <script>
-  function dashBoard(){
-      document.getElementById('dashBoard').style.display='inline';
-      document.getElementById('users-clients').style.display='none';
-      document.getElementById('users-partners').style.display='none';
-      document.getElementById('services_1').style.display="none";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='none';
-      document.getElementById('addAdmin').style.display='none';
-  }
 
-  function usersClients(){
-      document.getElementById('dashBoard').style.display='none';
-      document.getElementById('users-clients').style.display='inline';
-      document.getElementById('users-partners').style.display='none';
-      document.getElementById('services_1').style.display="none";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='none';
-      document.getElementById('addAdmin').style.display='none';
-  }
-
-  function usersPartners(){
-      document.getElementById('dashBoard').style.display='none';
-      document.getElementById('users-clients').style.display='none';
-      document.getElementById('users-partners').style.display='inline';
-      document.getElementById('services_1').style.display="none";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='none';
-      document.getElementById('addAdmin').style.display='none';
-  }
-
-  function services1(){
-      document.getElementById('dashBoard').style.display='none';
-      document.getElementById('users-clients').style.display='none';
-      document.getElementById('users-partners').style.display='none';
-      document.getElementById('services_1').style.display="inline";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='none';
-      document.getElementById('addAdmin').style.display='none';
-  }
-
-  function services2(){
-    document.getElementById('dashBoard').style.display='none';
-    document.getElementById('users-clients').style.display='none';
-    document.getElementById('users-partners').style.display='none';
-    document.getElementById('services_1').style.display="none";
-    document.getElementById('services_2').style.display="inline";
-    document.getElementById('services_3').style.display="none";
-    document.getElementById('adminList').style.display='none';
-    document.getElementById('addAdmin').style.display='none';
-
-  }
-  function services3(){
-    document.getElementById('dashBoard').style.display='none';
-    document.getElementById('users-clients').style.display='none';
-    document.getElementById('users-partners').style.display='none';
-    document.getElementById('services_1').style.display="none";
-    document.getElementById('services_2').style.display="none";
-    document.getElementById('services_3').style.display="inline";
-    document.getElementById('adminList').style.display='none';
-    document.getElementById('addAdmin').style.display='none';
-
-  }
-
-  function adminList(){
-      document.getElementById('dashBoard').style.display='none';
-      document.getElementById('users-clients').style.display='none';
-      document.getElementById('users-partners').style.display='none';
-      document.getElementById('services_1').style.display="none";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='inline';
-      document.getElementById('addAdmin').style.display='none';
-  }
-
-  function addAdmin(){
-      document.getElementById('dashBoard').style.display='none';
-      document.getElementById('users-clients').style.display='none';
-      document.getElementById('users-partners').style.display='none';
-      document.getElementById('services_1').style.display="none";
-      document.getElementById('services_2').style.display="none";
-      document.getElementById('services_3').style.display="none";
-      document.getElementById('adminList').style.display='none';
-      document.getElementById('addAdmin').style.display='inline';
-
-  }
-  </script>
 
   <div class="topnav" style="background-color:white;position:fixed;width:100%;z-index:500;"> <!-- z-index:500; -->
     <a class="logo " href="/"><img class="margin" src="/static/images/0.jpg" height="60" width="100"></img></a>
@@ -155,15 +65,15 @@
 
 <div id="myDIV">
   <div class="sidebar sticky-top sticky-offset">
-  <a class="nav-item active" href="#?dashboard" onclick="dashBoard();"><i class="fas fa-chart-line"></i> Dashboard</a>
+  <a id="nav1" class="nav-item active" href="#?dashboard" onclick="dashBoard();"><i class="fas fa-chart-line"></i> Dashboard</a>
 
   <a class=" dropdown-btn" href="#?users "><i class="fas fa-users"></i> Users
       <i class="fa fa-caret-down" style="display:inline;" ></i>
     </a>
 
     <div class="dropdown-container">
-      <a class="nav-item" href="#?users-clients" onclick="usersClients();"><i class="fas fa-user"></i> Clients</a>
-      <a class="nav-item" href="#?users-partners" onclick="usersPartners();"><i class="far fa-handshake"></i> Partners</a>
+      <a id="nav2" class="nav-item" href="#?users-clients" onclick="usersClients();"><i class="fas fa-user"></i> Clients</a>
+      <a id="nav3" class="nav-item" href="#?users-partners" onclick="usersPartners();"><i class="far fa-handshake"></i> Partners</a>
     </div>
 
     <a class=" dropdown-btn" href="#?services "><i class="fas fa-cogs"></i> Services
@@ -171,9 +81,9 @@
       </a>
 
       <div class="dropdown-container">
-        <a class="nav-item" href="#?services_1" onclick="services1();"><i class="far fa-envelope"></i> Messages </a>
-        <a class="nav-item" href="#?services_2" onclick="services2();"><i class="fas fa-tools"></i> Steven2</a>
-        <a class="nav-item" href="#?services_3" onclick="services3();"><i class="fas fa-hammer"></i> Steven3</a>
+        <a id="nav4" class="nav-item" href="#?services_1" onclick="services1();"><i class="far fa-envelope"></i> Messages </a>
+        <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="fas fa-tools"></i> Steven2</a>
+        <a id="nav6" class="nav-item" href="#?services_3" onclick="services3();"><i class="fas fa-hammer"></i> Steven3</a>
       </div>
 
 
@@ -182,8 +92,8 @@
       </a>
 
   <div class="dropdown-container">
-    <a class="nav-item" href="#?adminList" onclick="adminList();"><i class="fas fa-list"></i> Admin List</a>
-    <a class="nav-item" href="#?addAdmin" onclick="addAdmin();"><i class="fas fa-plus" style="margin-left:0;padding-left:0;"></i> Add Admin</a>
+    <a id="nav7" class="nav-item" href="#?adminList" onclick="adminList();"><i class="fas fa-list"></i> Admin List</a>
+    <a id="nav8" class="nav-item" href="#?addAdmin" onclick="addAdmin();"><i class="fas fa-plus" style="margin-left:0;padding-left:0;"></i> Add Admin</a>
   </div>
   </div>
 </div>
@@ -219,14 +129,14 @@ for (var i = 0; i < btns.length; i++) {
 
 </script>
 
-<div id="dashBoard" style="display:inline;">
+<left id="div1_dashBoard"  style="display:inline;">
 <div class="content" style="padding-top:80px;">
   dashboard content
 
 </div>
-</div>
+</left>
 
-<div id="users-clients" style="display:none;">
+<left id="div2_users-clients"  style="display:none;">
   <div class="content" >
 
 
@@ -269,11 +179,11 @@ for (var i = 0; i < btns.length; i++) {
   </tbody>
 </table>
 </div>
-</div>
+</left>
 
 
 
-<div id="users-partners" style="display:none;">
+<left id="div3_users-partners"  style="display:none;">
   <div class="content ">
       <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
@@ -314,11 +224,11 @@ for (var i = 0; i < btns.length; i++) {
 </table>
 
 </div>
-</div>
+</left>
 
 
 
-<div id="services_1" style="display:none;">
+<left id="div4_services_1"  style="display:none;">
 <div class="content" >
     <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
@@ -402,23 +312,23 @@ for (var i = 0; i < btns.length; i++) {
     </script>
 
 </div>
-</div>
+</left>
 
 
-<div id="services_2" style="display:none;">
+<left id="div5_services_2"  style="display:none;">
 <div class="content" style="padding-top:80px;">
 <h3>Service 2 content</h3>
 </div>
-</div>
+</left>
 
 
-<div id="services_3" style="display:none;">
+<left id="div6_services_3"  style="display:none;">
 <div class="content" style="padding-top:80px;">
 <h3>Service 3 content</h3>
 </div>
-</div>
+</left>
 
-<div id="adminList" style="display:none;" >
+<left id="div7_adminList"  style="display:none;" >
   <div class="content">
       <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
@@ -454,11 +364,11 @@ for (var i = 0; i < btns.length; i++) {
     </tbody>
   </table>
 </div>
-</div>
+</left>
 
 
 
-<div id="addAdmin" style="display:none;">
+<left id="div8_addAdmin"  style="display:none;">
   <div class="content" style="padding-top:80px;">
     <center>
     <div class="modal-body">
@@ -511,7 +421,7 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 </center>
   </div>
-</div>
+</left>
 
 
 <center style="font-weight:700;font-size:13px;padding-left:200px;">COPYRIGHT© 2019 MXT. ALL RIGHTS RESERVED BY CREWMXT.COM</center>
