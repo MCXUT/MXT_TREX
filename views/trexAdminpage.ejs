@@ -245,7 +245,7 @@ for (var i = 0; i < btns.length; i++) {
           <td><%= clientList[i].dateOfBirth %></td>
           <td><%= clientList[i].companyAddress %></td>
           <td ><a href="#"><i class="far fa-edit"></i></a></td>
-          <td ><a href="#"><i class="fas fa-trash"></i></a></td>
+          <td ><a href="/deleteClient/<%= clientList[i]._id %>"><i class="fas fa-trash"></i></a></td>
         </tr>
     <% } %>
   </tbody>
@@ -279,7 +279,7 @@ for (var i = 0; i < btns.length; i++) {
           <td><%= partnerList[i].dateOfBirth %></td>
           <td><%= partnerList[i].city %>,</td>
           <td ><a href="#"><i class="far fa-edit"></i></a></td>
-          <td ><a href="#"><i class="fas fa-trash"></i></a></td>
+          <td ><a href="/deletePartner/<%= partnerList[i]._id %>"><i class="fas fa-trash"></i></a></td>
         </tr>
     <% } %>
   </tbody>
