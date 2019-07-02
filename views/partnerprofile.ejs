@@ -43,11 +43,11 @@
         <div class="flexbox">
             <div class="main">
                 <% include ./partials/subbar %>
-                
+
                 <% if (error.length > 0) { %>
                   <span style="color:red;margin-left:70px;"><%= error %></span>
                 <% } %>
-                
+
                 <div class="main-raised">
                     <div class="profile-content">
                         <!-- <div class="background"> -->
@@ -58,7 +58,7 @@
                             <% } %>
                         <!-- </div> -->
                         <div class="container">
-                            
+
                             <!-- <div class="row rowdivider"> -->
                             <div class="col-8 ml-auto mr-auto">
                                 <form id="savePartner" action="/save_current_partner" method="post"></form>
@@ -100,7 +100,18 @@
                                                 <% } %>
                                             <% } %>
                                         </p>
-                                        
+
+                                        <div class="startotal">
+                                            <div class="stars-outer">
+                                                <div class="stars-inner"></div>
+                                                <span class="number-rating"></span>
+                                            </div>
+                                        </div>
+                                        <% if(averageRating) { %>
+                                            <%= averageRating %> (<%= reviews.length %> 개의 평점)
+                                        <% } else { %>
+                                            0.0 (<%= reviews.length %> 개의 평점)
+                                        <% } %>
                                         <h6>
                                           <% if (thisPartner.address.city) { %>
                                               <%= thisPartner.address.city %>, <%= thisPartner.address.country %>
@@ -133,8 +144,8 @@
                         <p class="divtitle">파트너 소개</p>
                     </div>
                     <p id="basicContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <span class="readmore"><a id="expand" href="#">Read More</a></span>
-                    <span class="readless"><a id="collapse" href="#">Collapse</a></span>
+                    <span class="readmore"><a id="expand" href="#">더보기</a></span>
+                    <span class="readless"><a id="collapse" href="#">접기</a></span>
                 </div>
                 <div class="divider"></div>
                 <div class="rowdivider" id="photovideo">
@@ -149,7 +160,35 @@
                     <div class="description-title">
                         <p class="divtitle">서비스 후기</p>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <% if(reviews.length > 0) { %>
+                        <% reviews.forEach((review) => { %>
+                            <div class="reviewsection">
+                                <div class="content-left">
+                                    <% if (review.byUser.profilePic) { %>
+                                      <img class="clientpic" src="/image/<%= review.byUser.profilePic %>">
+                                    <% } else { %>
+                                      <img class="clientpic" src="/static/images/noprofilepic.jpeg">
+                                    <% } %>
+                                    <div class="leftparagraphs">
+                                        <p class="author"><%= review.byUser.name %></p>
+                                        <p class="writtendate"><%= review.date %></p>
+                                    </div>
+                                </div>
+                                <div class="content-right">
+                                    <div class="rightparagraphs <%= review._id %>">
+                                        <span class="fa fa-star star1"></span>
+                            			<span class="fa fa-star star2"></span>
+                            			<span class="fa fa-star star3"></span>
+                            			<span class="fa fa-star star4"></span>
+                                        <span class="fa fa-star star5"></span>
+                                        <p><%= review.comment %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p id="basicContent">아직 평점이 없습니다 (평점을 남겨주세요!)</p>
+                    <% } %>
                 </div>
                 <div class="divider"></div>
                 <div class="rowdivider" id="certificates">
@@ -183,6 +222,38 @@
             </div>
         </div>
 
+        <!-- star filling script -->
+        <script type="text/javascript">
+            var starfill = () => {
+                var ratingsOnPage = <%- JSON.stringify(reviews) %>;
+                ratingsOnPage.forEach((rate) => {
+                    var className = "." + rate._id;
+                    var star1 = $(className + " .star1");
+                    var star2 = $(className + " .star2");
+                    var star3 = $(className + " .star3");
+                    var star4 = $(className + " .star4");
+                    var star5 = $(className + " .star5");
+
+                    var starlist = [star1, star2, star3, star4, star5];
+
+                    var starValue = rate.star;
+                    for(var i = 0; i < starValue; i++) {
+                        $(starlist[i]).addClass("checked");
+                    }
+                });
+            };
+            starfill();
+
+            var totalstarfill = () => {
+                var starstotal = 5;
+
+                var averagerating = parseFloat("<%= averageRating %>");
+                var starpercentage = ((averagerating / starstotal) * 100) + "%";
+
+                document.querySelector(".stars-inner").style.width = starpercentage;
+            }
+            totalstarfill();
+        </script>
 
         <script src="/static/scripts/partnerprofile.js"></script>
         <% include ./partials/footer %>

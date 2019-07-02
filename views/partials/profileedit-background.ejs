@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/static/stylesheets/changebck.css">
+<div class="pumbck">
+    <div class="pumbck-container">
+        <div class="maincontent">
+            <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <form id="changeCoverPhoto" method="post" enctype="multipart/form-data"></form>
+            <form id="defaultCoverPhoto" method="post"></form>
+            <span class="switch">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                            Browse&hellip; <input form="changeCoverPhoto" type="file" name="coverPhoto" accept="image/*" style="display:none;" required />
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" style="max-width:400px!important;" readonly>
+                </div>
+                <button class="btn btn-info editbuttons" id="confirm" form="changeCoverPhoto">교체</button>
+                <button form="defaultCoverPhoto" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+            </span>
+            <br/>
+            <span class="switch">
+              <font size=2>커버포토 사이즈</font>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    var coverPhotoForm = () => {
+        $("#changeCoverPhoto").on("submit", function() {
+            $(this).attr("action", window.location.href + "/coverPhotoUpload_partner");
+            $(this).submit();
+        });
+    }
+    coverPhotoForm();
+
+    var defaultPhotoForm = () => {
+        $("#defaultCoverPhoto").on("submit", function() {
+            $(this).attr("action", window.location.href + "/deletePartnerCoverPhoto?_method=DELETE");
+            $(this).submit();
+        });
+    }
+    defaultPhotoForm();
+</script>

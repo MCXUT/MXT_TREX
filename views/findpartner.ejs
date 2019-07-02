@@ -374,10 +374,20 @@
           // Iterate through all loaded partners and push markers
           <% for (var i = 0; i < allPartners.length; i++) { %>
             // only for partners with correct address registered
-            <% if (allPartners[i].address.coordinates.lat) { %>
+
+            <% if (allPartners[i].address.coordinates.lat ) { %>
               var place = {
                 coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
-                content: "<%= allPartners[i].name %>"
+                content: <% if (allPartners[i].profilePic) { %>
+                    '<img class="rounded-circle" src="profilePic/<%= allPartners[i].profilePic %>" style="width:50px;height:50px;margin-bottom:10px;">'
+                    +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
+                    + '<a href="/">파트너 보기</a>'
+                <% } else { %>
+                    '<img class="rounded-circle" src="/static/images/noprofilepic.jpeg" style="width:50px;height:50px;margin-bottom:10px;">'
+                    +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
+                    + '<a href="/">파트너 보기</a>'
+                <% } %>
+
               };
               markers.push(place);
             <% } %>
@@ -500,6 +510,12 @@
             });
 
       };
+
+
+
+
+
+
 
     </script>
 

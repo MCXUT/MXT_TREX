@@ -1,0 +1,61 @@
+.pumimg.pumactive {
+    display: block;
+}
+.pumimg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 8000;
+    display: none;
+}
+.pumimg .pumimg-container {
+    border: 2px solid #d3d4d5;
+    opacity: 1;
+    border-radius: 6px;
+    margin: 30% auto 200px;
+    width: 400px;
+    position: relative;
+    background-color: white;
+    /* animation: drop 0.4s ease forwards; */
+}
+.maincontent {
+    padding: 10px;
+}
+@keyframes drop {
+    0% {opacity: 0.2;}
+    100% { transform: translateY(50px);
+            opacity: 1;}
+}
+@keyframes rollup {
+    0% { transform: translateY(100px);
+            opacity: 1;}
+    100% {opacity: 0.2;}
+}
+
+.pumimg .pumimg-container .maincontent {
+    padding-bottom: 30px;
+}
+.pumimg .pumimg-container .maincontent .exittable {
+    float: right;
+    font-size: 25px;
+    padding: 15px 10px 0 0;
+    /* z-index: 9000; */
+}
+.pumimg .pumimg-container .maincontent .exittable:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media (max-width:992px) {
+    .pumimg .pumimg-container {
+        left: 10%;
+        max-width: 80%;
+    }
+}
+@media (max-width:768px) {
+    .pumimg .pumimg-container {
+        left: 5%;
+        max-width: 90%;
+    }
+}

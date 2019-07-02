@@ -52,7 +52,7 @@ var PartnerSchema = mongoose.Schema({
         },
         detailedAddress: {
             type: String,
-            default: ""  
+            default: ""
         },
         city: {
             type: String
@@ -117,7 +117,13 @@ var PartnerSchema = mongoose.Schema({
     registeredDate: {
         type: Date,
         default: Date.now()
-    }
+    },
+    ratings: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Rating"
+        }
+    ]
 }, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);

@@ -17,10 +17,14 @@
     width: 700px;
     height: auto;
 }
+.main-raised .container {
+    padding-bottom: 20px;
+}
 .main-raised .background {
-    /* height: 150px; */
     height: 200px;
-    background-color: green;
+}
+.col-8.ml-auto.mr-auto {
+    padding-top: 0;
 }
 .avatar {
     margin-bottom: 0;
@@ -28,11 +32,12 @@
 .profile {
     text-align: center;
 }
+
 .profile .profilpic {
     max-width: 110px;
     width: 100%;
     margin: 0 auto;
-    transform: translate3d(0, -60%, 0);
+    transform: translate3d(0, -50%, 0);
     border-radius: 50%;
 }
 .rounded-circle {
@@ -45,7 +50,33 @@
 .name p {
     font-size: 35px;
     font-weight: bold;
+    margin-bottom: 0;
 }
+
+.startotal {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+.stars-outer::before {
+    content: '\f005 \f005 \f005 \f005 \f005';
+    font-family: fontAwesome;
+    color: #676d73;
+}
+.stars-inner::before {
+    content: '\f005 \f005 \f005 \f005 \f005';
+    font-family: fontAwesome;
+    color: #f58b44;
+}
+
 .onelinedesc {
     color: rgba(0, 0, 0, 0.5);
     font-size: 16px;
@@ -63,6 +94,52 @@
     padding-left: 10%;
     width: 50% !important;
     text-align: left;
+}
+
+.reviewsection {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid rgba( 211, 212, 213, 0.5 );
+    padding: 20px 10px;
+}
+.content-left {
+    display: flex;
+    width: 30%;
+}
+.content-left .clientpic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.content-left .leftparagraphs {
+    flex-direction: column;
+    padding-top: 10px;
+}
+.content-left .leftparagraphs p {
+    margin-bottom: 0;
+}
+.content-left .leftparagraphs .author {
+    font-size: 16px;
+}
+.content-left .leftparagraphs .writtendate {
+    color: #676d73;
+    font-size: 12px;
+}
+.content-right {
+    width: 70%;
+    padding-top: 10px;
+}
+.content-right .rightparagraphs {
+    /* flex-direction: column; */
+}
+.content-right .rightparagraphs p {
+    margin-bottom: 0;
+}
+.fa-star {
+    color: #676d73;
+}
+.fa-star.checked {
+    color: #f58b44;
 }
 
 .subcol {
@@ -156,7 +233,9 @@
     width: 100%;
 }
 
-
+form {
+    margin: 0;
+}
 
 
 html.disabled {
