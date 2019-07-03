@@ -14,6 +14,9 @@
 
     </head>
     <body>
+        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-background %>
+
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
@@ -34,15 +37,34 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimg">
+                            <% if (currentUser.coverPhoto) { %>
+                                <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                            <% } else { %>
+                                <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                            <% } %>
+                            <div class="changefade">
+                                배경 사진 바꾸기
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
                         <p class="h3">파트너 프로필 생성</p><br><br>
                         <!-- <form style="margin-bottom:100px;"> -->
@@ -71,7 +93,7 @@
                                     <label class="form-check-label" for="inlineRadio2">에이전시</label>
                                 </div>
                             </div> -->
-                            
+
                             <form id="createProfile" action="/create_new_profile" method="post"></form>
                             <div class="container" style="margin-left:7%;margin-top:50px;margin-bottom:100px;>
                                 <div class="sectionContent">
@@ -99,16 +121,16 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         <!-- </form> -->
                     </div>
-                    
+
                 </div>
             </div>
         </div>
 
-    
+        <script src="/static/scripts/changeimg.js"></script>
     <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>
