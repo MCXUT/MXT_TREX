@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="../static/stylesheets/findpartner.css">
 
 
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
     <!-- <script>
@@ -55,7 +55,7 @@
   <style>
       #kokoman {
           width: 100%;
-          height: 35%;
+          height: 135px;
           background-size: cover;
       }
 
@@ -64,8 +64,6 @@
           width: 60px;
           height: 60px;
           background-size: cover;
-
-          margin-bottom: 15px;
           transform: translate3d(0, -50%, 0);
 
       }
@@ -77,8 +75,7 @@
   <body onload="dontdoit()">
 
   <div id="momtong" style="margin: 0 5%">
-    <div style="display:block; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px;
-    padding-top: 20px" id="bbak">
+    <div id="bbak">
 
 
 
@@ -212,31 +209,35 @@
     <span class="slider round"></span>
   </label>
   <span id="gdo" style="float: right; transform: translate3d(-15%, 15%, 0)">지도보기   </span>
-  <form class="form-inline" style="float: right">
-    <input type="text" class="form-control mr-sm-2" paceholder="Search" aria-label="Search">
-    <button style="transform: translate3d(-50px, 0, 0); background: transparent;"
-    class="btn my-sm-0" type="submit"><i class="fas fa-search"></i>
+  <!-- <form class="form-inline" style="float: right"> -->
+  <div class="form-inline" style="float: right">
+    <input type="text" class="form-control mr-sm-2" id="mymyInput" placeholder="지역검색"
+       aria-label="Search">
+    <button
+    class="btn my-sm-0" id="searchmap" onclick="jusoFunction()" type="submit"><i class="fas fa-search"></i>
     </button>
-
-  </form>
+  </div>
+  <!-- </form> -->
 </div>
 
   <br>
 
 
 
-<div class="wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y:scroll;
+<!-- <div class="wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
-  padding-left: 2.5%; padding-right: 2.5%;">
-
-    <div id="sliders" style="display: block;">
+  padding-left: 2.5%; padding-right: 2.5%;"> -->
+<div class="container wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y: scroll;
+    overflow-x: hidden; float: left; position: relative; margin: 0; padding-left: 5%;">
+    <div class="sectionContent" id="sliders">
+      <div class="row">
       <% var i; %>
       <% for (i = 0; i < allPartners.length; i++) { %>
           <% if (i%2 == 0) { %>
-            <div class="row">
+            <!-- <div class="row"> -->
           <% } %>
-
-              <div class="col">
+            <div id="wow" class="wow col-sm-12 col-md-12 col-lg-5">
+              <div class="card" id="col" style="display: inline-block; border: none">
                 <!-- <div class="leftside"> -->
                   <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <!-- <div id="kokoman"></div> -->
@@ -251,85 +252,119 @@
                       <% } else { %>
                         <img id="avatar" src="/static/images/noprofilepic.jpeg">
                       <% } %>
-                    </center>
+
                     <h5><%= allPartners[i].name %></h5>
                     <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
-                    <h7>
-                      <% if (allPartners[i].address.city) { %>
+                    <h7 class="juso">
+                      <% if (allPartners[i].address.city && allPartners[i].address.state) { %>
+                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
+                      <% } else if (allPartners[i].address.city) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
+                      <% } else if (allPartners[i].address.state) { %>
+                          <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
                       <% } %>
                     </h7>
+                  </center>
                   </a>
                 <!-- </div> -->
               </div>
+            </div>
 
         <% if (i%2 == 1) { %>
-          </div>
+          <!-- </div> -->
         <% } %>
 
       <% } %>
 
       <% if (i%2 == 1) { %>
-        <div class="col" style="border: none;"></div>
-        </div>
+        <!-- <div class="col" style="border: none; display: none"></div> -->
+        <!-- </div> -->
       <% } %>
-
+      </div>
     </div>
-
 </div>
-<div class="wrapper" id="wrapper2" style="width: 100%; height: 500px; overflow-y:scroll;
-  overflow-x: hidden; float:left; position: relative; margin:0;
-  padding-left: 2.5%; padding-right: 2.5%; display: none;">
 
-  <div id="sliders">
+
+<!-- </div> -->
+
+
+
+
+
+
+
+
+<!-- <div class="wrapper" id="wrapper2" style="width: 100%; height: 500px; overflow-y:scroll;
+  overflow-x: hidden; float:left; position: relative; margin:0;
+  padding-left: 2.5%; padding-right: 2.5%; display: none;"> -->
+
+
+<div class="container wrapper" id="wrapper2" style="min-width: 100%; height: 500px; overflow-y: scroll;
+    overflow-x: hidden; float: left; position: relative; margin:0; padding-left:5%;
+    padding-right: 2.5%; display: none">
+  <div id="sliders" class="sectionContent">
+    <div class="row" style="width: 100%;">
     <% var i; %>
     <% for (i = 0; i < allPartners.length; i++) { %>
         <% if (i%4 == 0) { %>
-          <div class="row">
+          <!-- <div class="row"> -->
         <% } %>
-
-            <div class="col">
+        <!-- <div style="padding: 5px;"> -->
+          <div class="wow col-lg-3" style="padding: 7px;">
+            <div class="card" style="display: inline-block;" id="wow2" >
               <!-- <div class="leftside"> -->
                 <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
-                  <div id="kokoman">
+
                       <% if (allPartners[i].coverPhoto) { %>
                           <img id="kokoman" src="/coverPhoto/<%= allPartners[i].coverPhoto %>">
                       <% } else { %>
                           <img id="kokoman" src="/static/images/countries/0germany.jpg">
                       <% } %>
-                  </div>
+
                   <center>
                     <% if (allPartners[i].profilePic) { %>
                       <img id="avatar" src="/profilePic/<%= allPartners[i].profilePic %>">
                     <% } else { %>
                       <img id="avatar" src="/static/images/noprofilepic.jpeg">
                     <% } %>
-                  </center>
+
                   <h5><%= allPartners[i].name %></h5>
                   <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
-                  <h7>
+                  <h7 class="juso">
                     <% if (allPartners[i].address.city) { %>
                         <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
                     <% } %>
                   </h7>
+                  </center>
                 </a>
               <!-- </div> -->
             </div>
+          </div>
+        <!-- </div> -->
 
       <% if (i%4 == 3) { %>
-        </div>
+        <!-- </div> -->
       <% } %>
 
     <% } %>
 
-    <% if (i%4 != 0) { %>
+    <% if (i%4 == 1) { %>
+      <!-- <div class="col" style="border: none;"></div>
       <div class="col" style="border: none;"></div>
-      </div>
+      <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
+    <% } else if (i%4 == 2) { %>
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
+    <% } else if (i%4 == 3) { %>
+      <!-- <div class="col" style="border: none;"></div> -->
+      <!-- </div> -->
     <% } %>
-
   </div>
-
+  </div>
 </div>
+<!-- </div> -->
 
 
 
@@ -354,6 +389,8 @@
 
 
     <script>
+      var map;
+
       function initMap() {
           //Map options
           var options = {
@@ -362,14 +399,13 @@
           }
 
           //New map
-          var map = new google.maps.Map(document.getElementById("map"), options);
+          map = new google.maps.Map(document.getElementById("map"), options);
 
           var markers = [];
           // Iterate through all loaded partners and push markers
           <% for (var i = 0; i < allPartners.length; i++) { %>
             // only for partners with correct address registered
-
-            <% if (allPartners[i].address.coordinates.lat ) { %>
+            <% if (allPartners[i].address.coordinates.lat) { %>
               var place = {
                 coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
                 content: <% if (allPartners[i].profilePic) { %>
@@ -428,15 +464,82 @@
 
             }
 
-          }
+          };
+
+
+
+          var searchmap = document.getElementById("searchmap");
+          searchmap.addEventListener('click', function(){
+            var input = document.getElementById("mymyInput").value;
+              var location = input;
+              axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+                params: {
+                  address: location,
+                  key: "<%=googleMapAPI%>"
+                }
+              })
+              .then(function(res) {
+                console.log(res);
+                var la = (res.data.results[0].geometry.location.lat);
+                var lo = (res.data.results[0].geometry.location.lng);
+                // var marker = new google.maps.Marker({
+                //   position: {lat: la, lng: lo},
+                //   map: map
+                // });
+                var center = new google.maps.LatLng(la, lo)
+                map.panTo(center);
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
+          });
+
+          // var centerControlDiv = document.getElementById('searchmap');
+          // var centerControlDiv = document.createElement('div');
+          var centerControl = new CenterControl(centerControlDiv, map);
+          centerControlDiv.index = 1;
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
       }
+      var enter = document.getElementById("mymyInput");
+      enter.addEventListener("keydown", function (e) {
+          if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+              google();
+          }
+      });
+      enter.addEventListener("keydown", function (e) {
+          if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+              jusoFunction();
+          }
+      });
 
+      function google(){
+        var searchmap = document.getElementById("searchmap");
 
+          var input = document.getElementById("mymyInput").value;
+            var location = input;
+            axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+              params: {
+                address: location,
+                key: "<%=googleMapAPI%>"
+              }
+            })
+            .then(function(res) {
+              console.log(res);
+              var la = (res.data.results[0].geometry.location.lat);
+              var lo = (res.data.results[0].geometry.location.lng);
+              // var marker = new google.maps.Marker({
+              //   position: {lat: la, lng: lo},
+              //   map: map
+              // });
+              var center = new google.maps.LatLng(la, lo)
+              map.panTo(center);
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
 
-
-
-
+      };
 
     </script>
 

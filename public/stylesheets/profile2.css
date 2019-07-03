@@ -35,6 +35,7 @@
 
 .profile .profilpic {
     max-width: 110px;
+    height: 110px;
     width: 100%;
     margin: 0 auto;
     transform: translate3d(0, -50%, 0);
