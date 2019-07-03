@@ -18,12 +18,20 @@ router.get("/partner_profile/:id", function(req, res) {
         async.each(foundUser.ratings, function(rating, done) {
             avgRating += rating.star;
             Rating.findById(rating.id).populate("byUser").exec(function(err, info) {
-                allInfos.push(info);
+                if(info.byUser) {
+                    allInfos.push(info);
+                } else { // Case where the rated user is deleted
+                    console.log(info.id);
+                    Rating.findByIdAndRemove(info.id).then(function(deleted) {
+                        console.log(deleted);
+                    });
+                }
                 done();
             });
         }, function(err) {
             if(err) throw err;
             else {
+                console.log(foundUser.ratings);
                 avgRating /= foundUser.ratings.length;
                 avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
                 if(avgRating == "NaN") avgRating = 0.0;
