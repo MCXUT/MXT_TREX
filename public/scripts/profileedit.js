@@ -134,6 +134,12 @@ $(document).ready(() => {
                     $(span).toggleClass("active");
                 });
 
+            } else if(parentDivisionClass[1] === "deleteinfo") {
+                var spans = document.getElementById("deleteAccount").querySelectorAll(".switch");
+                spans.forEach((span) => {
+                    $(span).toggleClass("active");
+                });
+
             }
         });
     })

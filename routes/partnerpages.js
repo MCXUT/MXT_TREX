@@ -8,6 +8,9 @@ const PartnerProfile = require("../models/PartnerProfile");
 const Rating = require("../models/Rating");
 const async = require("async");
 
+router.get("/partner_page", function(req, res) {
+    res.render("partnerpage");
+});
 
 // GET route for viewing partner profile page
 router.get("/partner_profile/:id", function(req, res) {
