@@ -65,14 +65,14 @@ router.get("/deleteClient/:id", function(req,res) {
 router.get("/deletePartner/:id", function(req,res) {
     console.log("partnerID: " + req.params.id);
     Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
-        res.redirect("/trex-admin#?users-partners");
+        res.redirect("/trex-admin?index=3");
     });
 });
 
 router.get("/deleteAdmin/:id", function(req,res) {
     console.log("adminID: " + req.params.id);
     Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {
-        res.redirect("/trex-admin");
+        res.redirect("/trex-admin?index=7");
     });
 })
 
