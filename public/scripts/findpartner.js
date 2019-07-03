@@ -91,13 +91,14 @@ function myFunction5(){
  var wrapper = document.getElementById("wrapper");
  var wrapper2 = document.getElementById("wrapper2");
  if(checkbox.checked == true){
+   map.style.display = "block";
    map.style.width= "40%";
    // wrapper.style.width = "60%";
    wrapper.style.display= "block";
    wrapper2.style.display= "none";
    // wrapper2.style.width = "0%";
  } else {
-   map.style.width= "0%";
+   map.style.display= "none";
    // wrapper2.style.width = "100%";
    // wrapper.style.width="0%";
    wrapper2.style.display = "block";
@@ -129,12 +130,12 @@ function jusoFunction(){
   // console.log(max);
   // console.log(real_max);
 
-    var smallone = document.getElementsByClassName("col");
-    console.log(smallone[2].style.width);
+    // var smallone = document.getElementsByClassName("col");
+    // console.log(smallone[2].style.width);
 
   var i, input, filter, wrapper, col, juso, text, map;
   input = document.getElementById("mymyInput").value;
-  wrapper = document.getElementsByClassName("col");
+  wrapper = document.getElementsByClassName("wow");
   // col = wrapper.document.quarySelector(".col");
   juso = document.getElementsByClassName("juso");
   map = document.getElementById("map");

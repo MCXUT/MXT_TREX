@@ -55,7 +55,7 @@
   <style>
       #kokoman {
           width: 100%;
-          height: 35%;
+          height: 135px;
           background-size: cover;
       }
 
@@ -64,8 +64,6 @@
           width: 60px;
           height: 60px;
           background-size: cover;
-
-          margin-bottom: 15px;
           transform: translate3d(0, -50%, 0);
 
       }
@@ -226,18 +224,20 @@
 
 
 
-<div class="wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y:scroll;
+<!-- <div class="wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y:scroll;
   overflow-x: hidden; float:left; position: relative; margin:0;
-  padding-left: 2.5%; padding-right: 2.5%;">
-
-    <div class="card-columns-sm" id="sliders">
+  padding-left: 2.5%; padding-right: 2.5%;"> -->
+<div class="container wrapper" id="wrapper" style="width: 60%; height: 500px; overflow-y: scroll;
+    overflow-x: hidden; float: left; position: relative; margin: 0; padding-left: 5%;">
+    <div class="sectionContent" id="sliders">
+      <div class="row">
       <% var i; %>
       <% for (i = 0; i < allPartners.length; i++) { %>
           <% if (i%2 == 0) { %>
             <!-- <div class="row"> -->
           <% } %>
-
-              <div class="col card" id="col" style="display: inline-block">
+            <div id="wow" class="wow col-sm-12 col-md-12 col-lg-5">
+              <div class="card" id="col" style="display: inline-block; border: none">
                 <!-- <div class="leftside"> -->
                   <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
                     <!-- <div id="kokoman"></div> -->
@@ -268,6 +268,7 @@
                   </a>
                 <!-- </div> -->
               </div>
+            </div>
 
         <% if (i%2 == 1) { %>
           <!-- </div> -->
@@ -279,22 +280,38 @@
         <!-- <div class="col" style="border: none; display: none"></div> -->
         <!-- </div> -->
       <% } %>
-
+      </div>
     </div>
-
 </div>
-<div class="wrapper" id="wrapper2" style="width: 100%; height: 500px; overflow-y:scroll;
-  overflow-x: hidden; float:left; position: relative; margin:0;
-  padding-left: 2.5%; padding-right: 2.5%; display: none;">
 
-  <div id="sliders" class="card-columns">
+
+<!-- </div> -->
+
+
+
+
+
+
+
+
+<!-- <div class="wrapper" id="wrapper2" style="width: 100%; height: 500px; overflow-y:scroll;
+  overflow-x: hidden; float:left; position: relative; margin:0;
+  padding-left: 2.5%; padding-right: 2.5%; display: none;"> -->
+
+
+<div class="container wrapper" id="wrapper2" style="min-width: 100%; height: 500px; overflow-y: scroll;
+    overflow-x: hidden; float: left; position: relative; margin:0; padding-left:5%;
+    padding-right: 2.5%; display: none">
+  <div id="sliders" class="sectionContent">
+    <div class="row" style="width: 100%;">
     <% var i; %>
     <% for (i = 0; i < allPartners.length; i++) { %>
         <% if (i%4 == 0) { %>
           <!-- <div class="row"> -->
         <% } %>
-
-            <div class="col card" style="display: inline-block">
+        <!-- <div style="padding: 5px;"> -->
+          <div class="wow col-lg-3" style="padding: 7px;">
+            <div class="card" style="display: inline-block;" id="wow2" >
               <!-- <div class="leftside"> -->
                 <a href="/partner_profile/<%= allPartners[i]._id %>" class="slide-img">
 
@@ -322,6 +339,8 @@
                 </a>
               <!-- </div> -->
             </div>
+          </div>
+        <!-- </div> -->
 
       <% if (i%4 == 3) { %>
         <!-- </div> -->
@@ -342,10 +361,10 @@
       <!-- <div class="col" style="border: none;"></div> -->
       <!-- </div> -->
     <% } %>
-
   </div>
-
+  </div>
 </div>
+<!-- </div> -->
 
 
 
@@ -374,20 +393,10 @@
           // Iterate through all loaded partners and push markers
           <% for (var i = 0; i < allPartners.length; i++) { %>
             // only for partners with correct address registered
-
-            <% if (allPartners[i].address.coordinates.lat ) { %>
+            <% if (allPartners[i].address.coordinates.lat) { %>
               var place = {
                 coords: { lat: <%= allPartners[i].address.coordinates.lat %>, lng: <%= allPartners[i].address.coordinates.lng %> },
-                content: <% if (allPartners[i].profilePic) { %>
-                    '<img class="rounded-circle" src="profilePic/<%= allPartners[i].profilePic %>" style="width:50px;height:50px;margin-bottom:10px;">'
-                    +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
-                    + '<a href="/">파트너 보기</a>'
-                <% } else { %>
-                    '<img class="rounded-circle" src="/static/images/noprofilepic.jpeg" style="width:50px;height:50px;margin-bottom:10px;">'
-                    +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
-                    + '<a href="/">파트너 보기</a>'
-                <% } %>
-
+                content: "<%= allPartners[i].name %>"
               };
               markers.push(place);
             <% } %>
@@ -510,12 +519,6 @@
             });
 
       };
-
-
-
-
-
-
 
     </script>
 
