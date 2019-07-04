@@ -1,4 +1,5 @@
 const passport = require("passport");
+const nodemailer = require("nodemailer");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -28,6 +29,34 @@ passport.use("partner-facebook", new FacebookStrategy({
             facebookID: profile.id
           }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
+            
+            // Email Trex about Partner Creation
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+                from : keys.gmailInfo.user,
+                to : keys.trexEmail.email,
+                subject : "트렉스 파트너 가입",
+                html: '<p>트렉스에 새로운 파트너가 페이스북을 통해 가입하였습니다.</p>' +
+                      '<h3>이름: </h3>' + newUser.name +
+                      '<h3>이메일: </h3>' + newUser.email
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    console.log(err);
+                    return res.redirect("/");
+                }
+                console.log("Email successfully sent to Trex about Partner Facebook creation.");
+            });
+            
             done(null, newUser);
           });
         }
@@ -65,6 +94,34 @@ passport.use("partner-kakao", new KakaoStrategy({
             kakaoID: profile.id
           }).save().then((newUser) => {
             console.log("New Client Created: " + newUser);
+            
+            // Email Trex about Partner Creation
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+                from : keys.gmailInfo.user,
+                to : keys.trexEmail.email,
+                subject : "트렉스 파트너 가입",
+                html: '<p>트렉스에 새로운 파트너가 카카오를 통해 가입하였습니다.</p>' +
+                      '<h3>이름: </h3>' + newUser.name +
+                      '<h3>이메일: </h3>' + newUser.email
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    console.log(err);
+                    return res.redirect("/");
+                }
+                console.log("Email successfully sent to Trex about Partner Kakao creation.");
+            });
+            
             done(null, newUser);
           });
         }
@@ -94,6 +151,34 @@ passport.use("partner-google",
                     googleID: profile.id
                 }).save().then((newUser) => {
                     console.log("new User Created: " + newUser);
+                    
+                    // Email Trex about Partner Creation
+                    const transporter = nodemailer.createTransport({
+                        service: "Gmail",
+                        auth: {
+                            user: keys.gmailInfo.user,
+                            pass: keys.gmailInfo.pass
+                        },
+                        tls: {
+                            ciphers: "SSLv3"
+                        }
+                    });
+                    const mailOption = {
+                        from : keys.gmailInfo.user,
+                        to : keys.trexEmail.email,
+                        subject : "트렉스 파트너 가입",
+                        html: '<p>트렉스에 새로운 파트너가 구글을 통해 가입하였습니다.</p>' +
+                              '<h3>이름: </h3>' + newUser.name +
+                              '<h3>이메일: </h3>' + newUser.email
+                    };
+                    transporter.sendMail(mailOption, (err) => {
+                        if(err) {
+                            console.log(err);
+                            return res.redirect("/");
+                        }
+                        console.log("Email successfully sent to Trex about Partner Google creation.");
+                    });
+                    
                     done(null, newUser);
                 });
             }
@@ -121,6 +206,34 @@ passport.use("partner-naver", new NaverStrategy({
           naverID: profile.id
         }).save().then((newUser) => {
           console.log("new User Created: " + newUser);
+          
+          // Email Trex about Partner Creation
+          const transporter = nodemailer.createTransport({
+              service: "Gmail",
+              auth: {
+                  user: keys.gmailInfo.user,
+                  pass: keys.gmailInfo.pass
+              },
+              tls: {
+                  ciphers: "SSLv3"
+              }
+          });
+          const mailOption = {
+              from : keys.gmailInfo.user,
+              to : keys.trexEmail.email,
+              subject : "트렉스 파트너 가입",
+              html: '<p>트렉스에 새로운 파트너가 네이버를 통해 가입하였습니다.</p>' +
+                    '<h3>이름: </h3>' + newUser.name +
+                    '<h3>이메일: </h3>' + newUser.email
+          };
+          transporter.sendMail(mailOption, (err) => {
+              if(err) {
+                  console.log(err);
+                  return res.redirect("/");
+              }
+              console.log("Email successfully sent to Trex about Partner Naver creation.");
+          });
+          
           done(null, newUser);
         });
       }

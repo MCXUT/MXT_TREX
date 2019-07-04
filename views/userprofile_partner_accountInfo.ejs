@@ -73,6 +73,7 @@
         <% include ./partials/profileedit-background %>
 
         <% include ./partials/navbar %>
+        
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
         <div class="profile">
@@ -179,7 +180,7 @@
                                     <span class="answer switch active"><%= accountInfo.address.city %></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" name="detailedAddress" placeholder="예) ㅇㅇ빌딩 203호" value="<%= accountInfo.address.detailedAddress %>"/>
                                 </div>
-                                <div class="row element">
+                                <!-- <div class="row element">
                                     <span class="switch"><b style="margin-left:25px;">도시</b></span>
                                     <span class="answer switch active"><%= accountInfo.address.state %></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="locality" name="city" value="<%= accountInfo.address.city %>" readonly/></span>
@@ -193,7 +194,39 @@
                                     <span class="switch"><b style="margin-left:25px;">나라</b></span>
                                     <span class="answer switch active"><%= accountInfo.address.postalCode %></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="country" name="country" value="<%= accountInfo.address.country %>" readonly/></span>
+                                </div> -->
+                                <div class="row element">
+                                    <span class="switch"><b style="margin-left:25px;">도시</b></span>
+                                    <span class="answer switch active"><%= accountInfo.address.country %></span>
+                                    <span class="switch">
+                                        <select class="selectpicker form-control" id="defaultCity" form="basicinfoform" name="city" id="region"  data-live-search="false">
+                                            <option value="" selected disabled hidden>도시를 선택해주세요</option>
+                                            <option>밴쿠버</option>
+                                            <option>몬트리올</option>
+                                            <option>토론토</option>
+                                            <option>오타와</option>
+                                            <option>뉴욕</option>
+                                            <option>워싱턴</option>
+                                            <option>서울</option>
+                                            <option>부산</option>
+                                            <option>마드리드</option>
+                                        </select>
+                                    </span>
                                 </div>
+                                <div class="row element">
+                                    <span class="switch"><b style="margin-left:25px;">나라</b></span>
+                                    <span class="answer switch active"><%= accountInfo.address.postalCode %></span>
+                                    <span class="switch">
+                                        <select class="selectpicker form-control" id="defaultCountry"  form="basicinfoform" name="country" id="region"  data-live-search="false">
+                                            <option value="" selected disabled hidden>나라를 선택해주세요</option>
+                                            <option>대한민국</option>
+                                            <option>캐나다</option>
+                                            <option>미국</option>
+                                            <option>프랑스</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                
                                 <div class="row element">
                                     <span class="switch"><b style="margin-left:25px;">우편번호</b></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="postal_code" name="postalCode" value="<%= accountInfo.address.postalCode %>" disabled="true"/></span>
@@ -272,6 +305,10 @@
         </div>
 
         <script src="/static/scripts/changeimg.js"></script>
+
+    <script>
+        $('select').selectpicker();
+    </script>
 
     <script>
     $(document).ready(() => {
@@ -377,9 +414,9 @@
         var componentForm = {
             street_number: 'short_name',
             route: 'long_name',
-            locality: 'long_name',
-            administrative_area_level_1: 'long_name',
-            country: 'long_name',
+            // locality: 'long_name',
+            // administrative_area_level_1: 'long_name',
+            // country: 'long_name',
             postal_code: 'short_name'
         };
 
@@ -438,8 +475,30 @@
             }
         }
     </script>
+    
+    <script>
+        // Scripts for setting default selected city/country to the user's data
+        $(function() {
+            var defaultCity = "<%= accountInfo.address.city %>"; 
+            $("#defaultCity").val(defaultCity);
+        });
+        
+        $(function() {
+            var defaultCountry = "<%= accountInfo.address.country %>";
+            $("#defaultCountry").val(defaultCountry);
+        });
+    </script>
+    
+    <script>
+        // Script to prevent submitting form when pressing enter at google autocomplete
+        $("#autocomplete").keypress(function(e) {
+            if (e.which === 13) {
+                return false;
+            }
+        });
+    </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&libraries=places&callback=initAutocomplete&language=ko" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&libraries=places&callback=initAutocomplete&language=en" async defer></script>
 
     <% include ./partials/footer %>
 

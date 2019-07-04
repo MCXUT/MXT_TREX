@@ -417,11 +417,11 @@
                 content: <% if (allPartners[i].profilePic) { %>
                     '<img class="rounded-circle" src="profilePic/<%= allPartners[i].profilePic %>" >'
                     +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
-                    + '<a href="/">파트너 보기</a>'
+                    + '<a href="/partner_profile/<%= allPartners[i]._id %>">파트너 보기</a>'
                 <% } else { %>
                     '<img class="rounded-circle" src="/static/images/noprofilepic.jpeg" >'
                     +"<br><%= allPartners[i].name %><br><%= allPartners[i].address.city %> , <%= allPartners[i].address.country %><br>"
-                    + '<a href="/">파트너 보기</a>'
+                    + '<a href="/partner_profile/<%= allPartners[i]._id %>">파트너 보기</a>'
                 <% } %>
 
               };

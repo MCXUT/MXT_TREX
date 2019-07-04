@@ -150,7 +150,17 @@
                                         
                                     <div class="divider"></div>
                                     
-                                    
+                                    <% if (partnerProfile.isVerified) { %>
+                                        <div class="alert alert-success" role="alert" style="width:100%;">
+                                            이 프로필은 검증된 프로필입니다.
+                                        </div>
+                                        
+                                        
+                                    <% } else { %>
+                                        <div class="alert alert-danger" role="alert" style="width:100%;">
+                                            이 프로필은 아직 검증된 프로필이 아닙니다.
+                                        </div>
+                                    <% } %>
                                     
                                     
                                 </div>
