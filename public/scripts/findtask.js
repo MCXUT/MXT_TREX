@@ -27,6 +27,58 @@
 //
 // } );
 
+
+
+
+function jusoFunction(){
+  // var bigone = document.getElementById("wrapper").style.width;
+  // var max = bigone.slice(0, bigone.length-1);
+  // var real_max = max/2;
+  // // var result = real_max.concat("%");
+  // real_max += "%";
+  // console.log(max);
+  // console.log(real_max);
+
+    var smallone = document.getElementsByClassName("col");
+    console.log(smallone[2].style.width);
+
+  var i, input, filter, wrapper, col, juso, text, map;
+  input = document.getElementById("mymyInput").value;
+  wrapper = document.getElementsByClassName("row");
+  // col = wrapper.document.quarySelector(".col");
+  juso = document.getElementsByClassName("juso");
+  map = document.getElementById("map");
+  // text = juso[0].textContent;
+  // console.log(wrapper);
+  // console.log(input);
+  // console.log(juso);
+  // console.log(text);
+  // console.log(juso[0].textContent.includes(input));
+  // console.log(wrapper.length/2);
+  for(i=0; i<wrapper.length/2; i++){
+    if(juso[i].textContent.includes(input)){
+      wrapper[i].style.display = "flex";
+    }
+    else{
+      wrapper[i].style.display = "none";
+    }
+  }
+  // map.setCenter(lat: 47.510260, lng: -73.575745)
+  // map.setCenter({lat: 41.85, lng: -87.65});
+};
+var enter = document.getElementById("mymyInput");
+enter.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+        jusoFunction();
+    }
+});
+
+
+
+
+
+
+
 // 드롭다운 리스트 체크되어있을때 색깔변하게
 $("input[type=checkbox]").change(function(e){
   if($(this).hasClass("rebut")){
