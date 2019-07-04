@@ -4,15 +4,16 @@
 .pumimg {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 8000;
     display: none;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .pumimg .pumimg-container {
     border: 2px solid #d3d4d5;
     opacity: 1;
     border-radius: 6px;
-    margin: 30% auto 200px;
+    margin: 10% auto 200px;
     width: 400px;
     position: relative;
     background-color: white;

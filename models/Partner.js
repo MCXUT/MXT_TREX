@@ -127,6 +127,12 @@ var PartnerSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Rating"
         }
+    ],
+    payments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Payment"
+        }
     ]
 }, {minimize: false});
 

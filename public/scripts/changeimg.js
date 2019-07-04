@@ -26,6 +26,7 @@ var picClick = () => {
     $(".mainimg").on("click", function(e) {
         $(".pumimg").fadeIn(400, () => {
             $(".pumimg").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
         });
     });
 }
@@ -35,6 +36,7 @@ var bckClick = () => {
     $(".backgroundimg").on("click", function(e) {
         $(".pumbck").fadeIn(400, () => {
             $(".pumbck").toggleClass("pumactive");
+            $("html").toggleClass("disabled");
         });
     });
 }
@@ -45,6 +47,7 @@ var clickoutside = () => {
         if(e.target.className === "pumimg pumactive") {
             $(".pumimg").fadeOut(400, () => {
                 $(".pumimg").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
             });
         }
     });
@@ -56,6 +59,7 @@ var clickoutside2 = () => {
         if(e.target.className === "pumbck pumactive") {
             $(".pumbck").fadeOut(400, () => {
                 $(".pumbck").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
             });
         }
     });
@@ -67,10 +71,12 @@ var clickex = () => {
         if($(".pumimg").hasClass("pumactive")) {
             $(".pumimg").fadeOut(400, () => {
                 $(".pumimg").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
             });
         } else if($(".pumbck").hasClass("pumactive")) {
             $(".pumbck").fadeOut(400, () => {
                 $(".pumbck").toggleClass("pumactive");
+                $("html").toggleClass("disabled");
             });
         }
     });
