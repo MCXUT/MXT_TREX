@@ -4,6 +4,7 @@
   <title>고객센터 - 트렉스</title>
   <meta charset="utf-8">
   <% include ./partials/header %>
+  <script src="/static/scripts/clientfaq.js"></script>
   <style>
   [data-toggle="collapse"]:after {
   display: inline-block;
@@ -20,8 +21,10 @@
   [data-toggle="collapse"].collapsed:after {
   transform: rotate(0deg) ;
   }
+
+
   </style>
-<script src="/static/scripts/clientfaq.js"></script>
+
 </head>
 
 <body>
@@ -35,13 +38,13 @@
   </style>
 
   <!-- Carousel Section -->
-  <div class="container-fluid padding2" id="mainDiv">
-  <div id="slides" class="carousel slide" data-ride="carousel">
+  <div class="container-fluid " id="mainDiv">
+  <div  class="carousel slide" data-ride="carousel">
 
 
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="desk.jpg" class="center" style="width:100%;height:300px;">
+      <img id="slider-images" src="/static/images/faq.jpg" class="center responsive" >
       <div class="carousel-caption" style="color:black;">
         <h1 >고객 센터</h1>
       </div>
@@ -52,19 +55,19 @@
   </div>
   </div>
   <!-- End of Carousel Section -->
-
+<br><br>
 
 <!-- 클라이언트/파트너/취소및환불  -->
 <div class="container-fluid padding2 text-center" >
 
-  <h5>
+  <h2>
 
   <a href="#1client" id="tag1" class="targetDiv heada" onclick="changeTag(this);" style="border-bottom:1px solid black;">클라이언트</a><div class="divider2"></div>
   <!-- href="partner_faq" -->
     <a  href="#2partner" id="tag2" class="targetDiv heada" onclick="changeTag2(this);" style="border-bottom:1px solid black;">파트너</a><div class="divider2"></div>
   <!-- href="refund" -->
     <a  href="#3refund" id="tag3" class="targetDiv heada" onclick="changeTag3(this);" style="border-bottom:1px solid black;">취소 및 환불</a> <!--class="heada"-->
-  </h5>
+</h2>
 </div>
 
 <hr style="width:100%;">
@@ -75,7 +78,7 @@
 <center center id="div1" class="targetDiv">
 <div id="client-faq" >
 <div  class="container-fluid padding2 text-center">
-<h4>클라이언트님들께서 자주 묻는 질문</h4>
+<h2>클라이언트님들께서 자주 묻는 질문</h2>
 </div>
 
 <!-- /클라이언트님들께서 자주 묻는 질문 -->
@@ -98,7 +101,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">회원 가입 관련</h4>
+  <h2 style="color:#f58b44;">회원 가입 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -145,7 +148,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">업무 관련</h4>
+  <h2 style="color:#f58b44;">업무 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -273,7 +276,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">결제 관련</h4>
+  <h2 style="color:#f58b44;">결제 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -346,7 +349,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">기타</h4>
+  <h2 style="color:#f58b44;">기타</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -402,7 +405,7 @@
 <center id="div2" class="targetDiv">
 <div id="partner-faq" > <!-- class="targetDiv" -->
   <div class="container-fluid padding2 text-center">
-  <h4>파트너님들께서 자주 묻는 질문</h4>
+  <h2>파트너님들께서 자주 묻는 질문</h2>
   </div>
   <!-- do not delete this section-->
   <div class="container-fluid padding2 text-left" style="display:none;">
@@ -424,7 +427,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">파트너 등록 관련</h4>
+  <h2 style="color:#f58b44;">파트너 등록 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -540,7 +543,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">업무 관련</h4>
+  <h2 style="color:#f58b44;">업무 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -614,7 +617,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">급여 관련</h4>
+  <h2 style="color:#f58b44;">급여 관련</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -672,7 +675,7 @@
   <br><br>
 
 <div>
-  <h4 style="color:#f8ba00;">기타</h4>
+  <h2 style="color:#f58b44;">기타</h2>
 
 <ol id="qlist" >
   <div id="accordion" >
@@ -779,18 +782,18 @@
 <center id="div3" class="targetDiv"> <!--padding-left:8%;padding-right:8%;-->
 <div id="refund-faq" class="container-fluid padding2 text-left" >
   <div  class="container-fluid padding2 text-center">
-  <h4>취소 및 환불</h4>
+  <h2>취소 및 환불</h2>
   </div>
   <div  class="container-fluid padding2 text-left" style="padding-left:8%;padding-right:8%;">
     <br><br>
 <div >
-  <h5 style="color:#f8ba00;">가.업무 진행 전 규정</h5>
+  <h2 style="color:#f58b44;">가.업무 진행 전 규정</h2>
   <div  >업무 급여 지급이 이루어진 후 업무 진행 전일 경우 해제 통보 시점에 관한 다음 가이드라인에 따라 클라이언트 혹은 파트너 양측 중 업무 계약을 해제하는 측에서 요금을 부담합니다.</div>
 </div>
 <div  class="linespace"></div>
 
 <div  >
-  <h5 style="color:#f8ba00;">[클라이언트 측 해제시 환불 가이드라인]</h5>
+  <div style="color:#f58b44;">[클라이언트 측 해제시 환불 가이드라인]</div>
   <div  >1. 업무일 21일 전 계약 해제: 업무 급여 전액 환불. <br>
       2. 업무일 14일 전 계약 해제: 업무 급여에서 트렉스 수수료 공제 후 환불.<br>
       3. 업무일 7일 전 계약 해제: 업무 급여에서 파트너 급여의 15%와 트렉스 수수료 공제 후 환불.<br>
@@ -801,7 +804,7 @@
 <div class="linespace"></div>
 
 <div >
-  <h5 style="color:#f8ba00;">[파트너 측 해제시 환불 가이드라인]</h5>
+  <div style="color:#f58b44;">[파트너 측 해제시 환불 가이드라인]</div>
   <div >1. 업무일 21일 전 계약 해제: 업무 급여 전액을 클라이언트에게 환불. 파트너 부담 없음.<br>
       2. 업무일 14일 전 계약 해제: 업무 급여에서 트렉스 수수료를 파트너가 부담.<br>
       3. 업무일 7일 전 계약 해제: 업무 급여에서 파트너 급여의 15%와 트렉스 수수료를 파트너가 부담.<br>
@@ -812,25 +815,25 @@
 <div  class="linespace"></div>
 
 <div >
-  <h5 style="color:#f8ba00;">나. 업무 진행 후 규정</h5>
+  <h2 style="color:#f58b44;">나. 업무 진행 후 규정</h2>
 </div>
 <div  class="linespace"></div>
 
 <div >
-  <h5 style="color:#f8ba00;">[파트너 책임 사유]</h5>
+  <div style="color:#f58b44;">[파트너 책임 사유]</div>
   <div >1. 파트너의 귀책사유로 당초 계약했던 서비스 미이행 혹은 보편적인 관점에서 심각하게 잘못 이행한 경우 트렉스 안전결제를 통해 결제 금액 전체 환불이 가능합니다.</div>
 </div>
 <div  class="linespace"></div>
 
 <div  >
-  <h5 style="color:#f8ba00;">[클라이언트 책임 사유]</h5>
+  <div style="color:#f58b44;">[클라이언트 책임 사유]</div>
   <div  >1. 업무 진행 중 클라이언트의 폭언, 욕설 등이 있을 경우 작업은 종료될 수 있으며 트렉스 안전 결제를 통해 환불이 제한될 수 있습니다.<br>
       2. 통역이 시작되면 단순 변심 또는 클라이언트 책임 사유로 인한 트렉스 안전결제를 통해 전액 환불이 불가능합니다.</div>
 </div>
 <div  class="linespace"></div>
 
 <div  >
-  <h5 style="color:#f8ba00;">[트렉스 안전결제란?]</h5>
+  <div style="color:#f58b44;">[트렉스 안전결제란?]</div>
   <div  >업무 급여를 결제시 바로 파트너에게 급여가 지급되는것이 아니라 트렉스 파이낸스팀에서 보류한 뒤, 업무가 끝나면 트렉스 파트너팀과 업무 내용을 검수 한뒤 급여를 지급 또는 환불 해 드립니다.</div>
 </div>
 <div  class="linespace"></div>

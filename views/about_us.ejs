@@ -6,6 +6,10 @@
 
 <% include ./partials/header %>
     <style>
+    a:hover{
+        text-decoration: none;
+    }
+
       #mainintro{
 
         width: 100%;
@@ -139,70 +143,85 @@
         max-width: 40%;
         background-color:#e6e6e6;
         border-radius: 8px;
-        height:150px;
+        height:110px;
+        text-decoration: none;
       }
       #media-trex .header-trex{
         margin-left: 7%;
-        color:#1a8cff;
-        padding-top: 27px;
+        color:#f58b44;
+        padding-top: 20px;
+
       }
       #media-trex .body-trex{
-        font-size: 28px;color:
+        font-size: 22px;color:
         #333333;
-        padding-top:22px;
+        padding-top:20px;
+        padding-bottom: 20px;
       }
-
 
       #media-trex .body-trex:hover{
         color:#b3b3b3;
+        text-decoration: none;
       }
 
     </style>
   </head>
   <body>
     <% include ./partials/navbar %>
-    <div id="mainintro">
-      <!-- <img src="london.jpg" style="width: 500px; height: 500px;
-      background-size: cover;"> -->
-      <div class="introduction">
-        <h2>Make Business Boundless</h2>
-        <br><br>
-        <p>해외 출장 전 익숙하지 않은 언어, 낯선 현지문화, 복잡한 지리...<br>
-          "현지 팀원이 있었으면 좋겠다"라고 생각하신적 있으신가요?<br>
-          현지 파트너와 한 팀이 되어 고민을 끝내보세요.<br>
-          트렉스는 클라이언트와 파트너가 함께 성장하는 플랫폼 입니다.<br><br>
-          클라이언트에게는 막힘없는 해외 업무를,<br>
-          파트너에게는 새로운 경험과 네트워크를.<br>
-          해외 업무, 그 이상의 가치를 찾아보세요.</p>
+    <!-- Carousel Section -->
+    <div class="container-fluid " id="mainDiv">
+    <div  class="carousel slide" data-ride="carousel">
+
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img id="slider-images" src="/static/images/faq.jpg" class="center responsive" >
+        <div class="carousel-caption" style="color:black;">
+          <h1>Make Business Boundless</h1>
+          <br><br>
+          <p style="font-size:22px;">해외 출장 전 익숙하지 않은 언어, 낯선 현지문화, 복잡한 지리...<br>
+            "현지 팀원이 있었으면 좋겠다"라고 생각하신적 있으신가요?<br>
+            현지 파트너와 한 팀이 되어 고민을 끝내보세요.<br>
+            트렉스는 클라이언트와 파트너가 함께 성장하는 플랫폼 입니다.<br><br>
+            클라이언트에게는 막힘없는 해외 업무를,<br>
+            파트너에게는 새로운 경험과 네트워크를.<br>
+            해외 업무, 그 이상의 가치를 찾아보세요.</p>
+        </div>
+
       </div>
     </div>
 
-    <br><br><br><br><br><br>
+    </div>
+    </div>
+    <!-- End of Carousel Section -->
+<br><br>
+
+    <br>
     <center>
-      <h2>왜 <span style="color:#F4CC00;">트렉스</span>일까요?</h2>
-      <br><br><br><br>
-      <h3><span style="color: #F4CC00;"><i class="fa fa-briefcase"></i></span>  For 클라이언트</h3>
+      <h1>왜 <span style="color:#f58b44;">트렉스</span>일까요?</h1>
+
+      <h2><span style="color: #f58b44;"><i class="fa fa-briefcase"></i></span>  For 클라이언트</h2>
     </center>
     <br><br><br>
 
     <div class="row">
       <div class="col text-center">
-        <h3><span style="color:#F4CC00;"><i class="fa fa-clipboard"></i></span>
-        전문성이있습니다</h3>
-        <h5>트렉스 파트너는 다양한 분야의 젊은인재들로<br>
-          구성되어 있습니다.</h5>
+        <h2><span style="color:#f58b44;"><i class="fa fa-clipboard"></i></span>
+        전문성이있습니다</h2>
+        <div>트렉스 파트너는 다양한 분야의 <br>젊은인재들로
+          구성되어 있습니다.</div>
       </div>
       <div class="col text-center">
-        <h3><span style="color:#F4CC00;"><i class="fa fa-star"></i></span>
-        신뢰할 수 있습니다</h3>
-        <h5>트렉스 파트너는 본인 확인, 이력 확인을<br>
-          거친 뒤 등록되며, 인터뷰 후 활동할 수 있습니다.</h5>
+        <h2><span style="color:#f58b44;"><i class="fa fa-star"></i></span>
+        신뢰할 수 있습니다</h2>
+        <div>트렉스 파트너는 본인 확인, 이력 확인을<br>
+          거친 뒤 등록되며, 인터뷰 후 활동할 수 있습니다.</div>
       </div>
       <div class="col text-center">
-        <h3><span style="color:#F4CC00;"><i class="fa fa-mobile"></i></span>
-          간편/신속합니다</h3>
-          <h5>복잡한 고용 과정을 생략하고 언제 어디서나,<br>
-            간편하게 파트너 예약을 진행할수 있습니다.</h5>
+        <h2><span style="color:#f58b44;"><i class="fa fa-mobile"></i></span>
+          간편/신속합니다</h2>
+          <div>복잡한 고용 과정을 생략하고 언제 어디서나,<br>
+            간편하게 파트너 예약을 진행할수 있습니다.</div>
       </div>
     </div>
 
@@ -216,22 +235,22 @@
       <div class="container">
         <div layout="row" class="verticalStretch row">
 
-          <div class="item"><span style="color: #F4CC00;"><i class="far fa-handshake"></i></span>
+          <div class="item"><span style="color: #f58b44;"><i class="far fa-handshake"></i></span>
             <div class="number">150</div>
             <div id="text">트렉스 파트너</div>
           </div>
 
-          <div class="item"><span style="color:#F4CC00;"><i class="fa fa-building"></i></span>
+          <div class="item"><span style="color:#f58b44;"><i class="fa fa-building"></i></span>
             <div class="number">53</div>
             <div id="text">클라이언트</div>
           </div>
 
-          <div class="item"><span style="color: #F4CC00;"><i class="fa fa-building"></i></span>
+          <div class="item"><span style="color: #f58b44;"><i class="fa fa-building"></i></span>
             <div class="number">500</div>
             <div id="text">파트너 업무수</div>
           </div>
 
-          <div class="item"><span style="color: #F4CC00;"><i class="far fa-edit"></i></span>
+          <div class="item"><span style="color: #f58b44;"><i class="far fa-edit"></i></span>
             <div class="number">1500</div>
             <div id="text">누적 업무일수</div>
           </div>
@@ -245,7 +264,7 @@
   $(this).prop('Counter',0).animate({
       Counter: $(this).text()
   }, {
-      duration: 5000,
+      duration: 1500,
       easing: 'swing',
       step: function (now) {
           $(this).text(Math.ceil(now));
@@ -257,34 +276,34 @@
     <br><br><br><br>
 
     <center>
-      <h3><span style="color: #F4CC00;"><i class="fa fa-users"></i></span>  For 파트너</h3>
+      <h2><span style="color:#f58b44;"><i class="fa fa-users"></i></span>  For 파트너</h2>
     </center>
     <br><br><br>
 
     <div class="row">
       <div class="col text-center">
-        <h3><span style="color: #F4CC00;"><i class="fab fa-angellist"></i></span>
-        기회가 있습니다</h3>
-        <h5>파트너님의 전공 또는 전문 분야에 관련된<br>
+        <h2><span style="color: #f58b44;"><i class="fab fa-angellist"></i></span>
+        기회가 있습니다</h2>
+        <div>파트너님의 전공 또는 전문 분야에 관련된<br>
           업무를 받아 진행함으로 경력 발전과<br>
           네트워킹의 기회를 갖을 수 있습니다.
-        </h5>
+      </div>
       </div>
       <div class="col text-center">
-        <h3><span style="color: #F4CC00;"><i class="fa fa-lock"></i></span>
-        합리적 입니다</h3>
-        <h5>희망 급여를 미리 알리고, 트렉스 안전거래를<br>
-          통해 급여가 송금 되므로 체불 등의 걱정이 없습니다.</h5>
+        <h2><span style="color: #f58b44;"><i class="fa fa-lock"></i></span>
+        합리적 입니다</h2>
+        <div>희망 급여를 미리 알리고, 트렉스 안전거래를<br>
+          통해 급여가 송금 되므로 체불 등의 걱정이 없습니다.</div>
       </div>
       <div class="col text-center">
-        <h3><span style="color:#F4CC00;"><i class="fa fa-mobile"></i></span>
-          간편합니다</h3>
-          <h5>파트너님의 직장 또는 학업 일정에 맞추어<br>
-            업무를 간편하게 예약 받을 수 있습니다.</h5>
+        <h2><span style="color:#f58b44;"><i class="fa fa-mobile"></i></span>
+          간편합니다</h2>
+          <div>파트너님의 직장 또는 학업 일정에 맞추어<br>
+            업무를 간편하게 예약 받을 수 있습니다.</div>
       </div>
     </div>
 
-    <br><br><br>
+    <br><br>
 
 
 
@@ -318,10 +337,11 @@
 
     <div class="container-fluid padding text-center" >
       <br><br>
-    <div class="container" style="width:40%;">
+    <div class="container" style="width:45%;">
       <center>
-        <h2><span style="color:#F4CC00;">트렉스</span> 이용후기</h2>
-        <h6>언제나 클라이언트와 파트너의 목소리에 귀기울이겠습니다</h6>
+        <h1><span style="color:#f58b44;">트렉스</span> 이용후기</h1>
+        <h2>언제나 클라이언트와 파트너의 목소리에 귀기울이겠습니다</h2>
+        <br>
       </center>
 
     <div id="slides22" class="carousel slide carousel-slides" data-ride="carousel" data-interval="2300">
@@ -405,10 +425,10 @@
     </script>
 
 
-  <br><br><br><br><br><br>
+  <br><br><br><br>
   <center>
 
-    <h2>미디어 속의 <span style="color:#F4CC00;">트렉스</span></h2>
+    <h1>미디어 속의 <span style="color:#f58b44;">트렉스</span></h1>
     <br>
     <a href="https://platum.kr/archives/115769" target="_blank">
       <div id="media-trex" >
@@ -416,7 +436,7 @@
         플래텀
       </div>
       <div>
-        <span class="body-trex" >한인 인재 매칭 플랫폼, '트렉스'런칭 <i class="fas fa-angle-right"></i></span>
+        <span class="body-trex" style="font-size:22px;">한인 인재 매칭 플랫폼, '트렉스'런칭 <i class="fas fa-angle-right"></i></span>
       </div>
     </div>
     </a>
@@ -432,32 +452,33 @@
     </div>
     </a>
 
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 
     <div class="row">
       <div class="col">
-        <div style="color: #F4CC00; font-size: 40px;"><i class="fa fa fa-map-marker"></i></div><br>
-          <h3>찾아오시는 길</h3>
-          3 Place Ville Marrie, Montreal QC Canada
+        <div style="color: #f58b44; font-size: 30px;"><i class="fa fa fa-map-marker"></i></div><br>
+          <h2>찾아오시는 길</h2>
+          <div>3 Place Ville Marrie,<br> Montreal QC Canada</div>
       </div>
       <div class="col">
-        <div style="color:#F4CC00; font-size: 40px;"><i class="fa fa fa-envelope"></i></div><br>
-          <h3>이메일</h3>
+        <div style="color:#f58b44; font-size: 30px;"><i class="fa fa fa-envelope"></i></div><br>
+          <h2>이메일</h2>
 
-          서비스 문의:<br> <a id="social-media-link-footer" href="mailto:info@trexservice.com" target="_blank">info@trexservice.com</a><br><br>
+          <div>서비스 문의:<br> <a id="social-media-link-footer" href="mailto:info@trexservice.com" target="_blank">info@trexservice.com</a><br><br>
           파트너 & 제휴 문의:<br>
           <a id="social-media-link-footer" href="mailto:partnership@trexservice.com" target="_blank">partnership@trexservice.com</a>
       </div>
+  </div>
       <div class="col">
-        <div style="color:#F4CC00; font-size: 40px;"><i class="fa fa fa-phone"></i></div><br>
-          <h3>카카오톡 상담</h3>
-          <a id="social-media-link-footer" href="https://accounts.kakao.com/login?continue=http%3A%2F%2Fpf.kakao.com%2F_dCzvj%2Fchat" target="_blank">트렉스 카카오톡</a>
+        <div style="color:#f58b44; font-size: 30px;"><i class="fa fa fa-phone"></i></div><br>
+          <h2>카카오톡 상담</h2>
+          <a id="social-media-link-footer" href="https://accounts.kakao.com/login?continue=http%3A%2F%2Fpf.kakao.com%2F_dCzvj%2Fchat" target="_blank" style="font-size:16px;">트렉스 카카오톡</a>
       </div>
     </div>
 
   </center>
 
-  <br><br><br><br><br>
+  <br><br><br>
 <% include ./partials/footer %>
 
   </body>
