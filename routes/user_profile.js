@@ -128,6 +128,11 @@ router.post("/user_profile/tasks/rating/:id", (req, res) => {
     });
 });
 
+router.post("/user_profile/tasks/:id", (req, res) => {
+    console.log(req.params.id);
+    return res.redirect("back");
+});
+
 
 // GET route for viewing client applicants info
 // 지원자 보기 (클라이언트)
@@ -227,7 +232,9 @@ router.get("/user_profile/payment_info", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("userprofile_partner_paymentInfo");
+      Partner.find({}).then((allPartners) => {
+          res.render("userprofile_partner_paymentInfo", {allPartners: allPartners});
+      });
   }
 });
 

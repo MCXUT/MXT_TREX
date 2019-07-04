@@ -69,17 +69,17 @@
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+          <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
           <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
           <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
     </head>
     <body>
         <% include ./partials/profileedit-image %>
         <% include ./partials/profileedit-background %>
 
         <% include ./partials/navbar %>
-
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -147,16 +147,7 @@
                             <% } %>
                         </div>
                         <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form>
-                        <% if (profileInfo.type == "freelancer") { %>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary" form="convertProfile">에이전시 프로필로 전환</button>
-                                <!-- <a href="convert_to_agency" class="btn btn-primary" role="button">에이전시 프로필로 전환</a> -->
-                            </div>
-                        <% } else { %>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary" form="convertProfile">프리랜서 프로필로 전환</button>
-                            </div>
-                        <% } %>
+
 
 
                         <form action="" method="post" enctype="multipart/form-data">
@@ -186,7 +177,21 @@
                                     </div>
                                 </div>
                             <% } %>
-
+                            <div class="form-group row">
+                                <div class="col-sm-5">파일을 업로드해주세요 *<br>(이력서, 자격증 등)</div>
+                                <div class="col-sm-7">
+                                    <!-- <form id="" action="" method="post" enctype="multipart/form-data"></form> -->
+                                          <div class="input-group">
+                                              <label class="input-group-btn">
+                                                  <span class="btn btn-primary">
+                                                      검색<input type="file" name="" accept="image/*" multiple="multiple" style="display:none;" required />
+                                                  </span>
+                                              </label>
+                                              <input type="text" class="form-control" value="파일 업로드" readonly>
+                                          </div>
+                                          <font size=2>업로드 가능 파일 형식: (.png, .jpg, .jpeg)<br>최대 3개까지 업로드 가능합니다.</font>
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-5">
@@ -244,7 +249,7 @@
                                       <option value="">타 지역 업무 불가능</option>
                                     </select> -->
                                     <div class="form-check form-check-inline">
-                                                <input onclick="checkFunction()"id="availability" class="form-check-input" type="radio" name="gender" id="male" value="M">
+                                                <input onclick="checkFunction()" class="form-check-input availability" type="radio" name="gender" id="male" value="M">
                                                 <label class="form-check-label" for="male">가능</label>
                                             </div>
                                             <div class="form-check form-check-inline">
@@ -261,8 +266,7 @@
                                     <label for="region" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <select class="selectpicker" id="region" multiple  data-live-search="false" replace="지역을 선택 해주세요">
-                                        <option>지역을 선택 해주세요</option>
+                                    <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
                                         <option class="nara">과테말라</option>
 
                                         <option class="dosi">과테말라시티</option>
@@ -373,6 +377,8 @@
             multidate: true
         });
 
+        $('select').selectpicker();
+
     </script>
 
     <script>
@@ -385,7 +391,6 @@
                 label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
                 input.trigger('fileselect', [numFiles, label]);
             });
-
             // We can watch for our custom `fileselect` event like this
             $(document).ready( function() {
                 $(':file').on('fileselect', function(event, numFiles, label) {
@@ -395,7 +400,6 @@
                     } else {
                         var input = $(this).parents('.input-group').find(':text'),
                             log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-
                         if( input.length ) {
                             input.val(log);
                         } else {
@@ -422,7 +426,7 @@
 
     <script>
     function checkFunction(){
-        if(document.getElementById("availability").checked){
+        if(document.querySelector(".availability").checked){
             document.getElementById("har").style.display ="flex";
         } else {
             document.getElementById("har").style.display = "none";
