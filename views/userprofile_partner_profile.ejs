@@ -128,48 +128,48 @@
                             <% if (error.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error %></span>
                             <% } %>
-                            
+
                             <% if (!partnerProfile) { %>
                                 <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;"><button class="btn btn-primary">프로필 등록</button></a>
-                                
+
                                 <div class="row sections basic" id="basic">
-                                    
+
                                     <p class="basictitle"><b>파트너 프로필</b></p>
-                                        
+
                                     <div class="divider"></div>
-                                    
+
                                     파트너 프로필이 등록되어 있지 않습니다. 새로운 프로필을 등록해주세요.
-                                    
+
                                 </div>
                             <% } else { %>
                                 <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;"><button class="btn btn-primary">프로필 수정</button></a>
-                                
+
                                 <div class="row sections basic" id="basic">
-                                    
+
                                     <p class="basictitle"><b>파트너 프로필</b></p>
-                                        
+
                                     <div class="divider"></div>
-                                    
+
                                     <% if (partnerProfile.isVerified) { %>
                                         <div class="alert alert-success" role="alert" style="width:100%;">
                                             이 프로필은 검증된 프로필입니다.
                                         </div>
-                                        
-                                        
                                     <% } else { %>
                                         <div class="alert alert-danger" role="alert" style="width:100%;">
                                             이 프로필은 아직 검증된 프로필이 아닙니다.
                                         </div>
                                     <% } %>
+
                                     
-                                    
+
+
                                 </div>
-                                
+
                             <% } %>
-                            
-                            
-                            
-                            
+
+
+
+
                     </div>
                 </div>
             </div>
