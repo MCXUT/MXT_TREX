@@ -251,7 +251,16 @@
                       <% } %>
 
                     <h5><%= allPartners[i].name %></h5>
-                    <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
+                    <% if (allPartners[i].partnerProfile) { %>
+                        (<%= allProfiles[i].type %>)
+                        <%= allProfiles[i].oneLineIntro %>
+                        <%= allProfiles[i].unavailableDates %>
+                    <% } %>
+                    
+                    <% if(allProfiles[i].isInterviewed) { %>
+                        <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
+                    <% } %>
+                    
                     <h7 class="juso">
                       <% if (allPartners[i].address.city && allPartners[i].address.state) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
@@ -326,9 +335,6 @@
                     <% } %>
 
                   <h5><%= allPartners[i].name %></h5>
-                  <!-- <% if (allPartners[i].partnerProfile) { %>
-                      
-                  <% } %> -->
                   <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
                   <h7 class="juso">
                     <% if (allPartners[i].address.city) { %>
