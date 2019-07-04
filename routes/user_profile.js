@@ -1,5 +1,7 @@
 const express = require("express"),
-      moment = require("moment");
+      moment = require("moment"),
+      async = require("async"),
+      nodemailer = require("nodemailer");
 
 const router = express.Router();
 
@@ -51,7 +53,7 @@ router.get("/user_profile/partnerProfile", (req, res) => {
           } else {
               return res.render("userprofile_partner_profile", { partnerProfile: false });
           }
-          
+
     }
   }
 });
@@ -128,9 +130,9 @@ router.post("/user_profile/tasks/rating/:id", (req, res) => {
     });
 });
 
-router.post("/user_profile/tasks/:id", (req, res) => {
-    console.log(req.params.id);
-    return res.redirect("back");
+router.post("/user_profile/tasks/payment/:id", (req, res) => {
+    
+    return res.redirect("/user_profile/tasks");
 });
 
 

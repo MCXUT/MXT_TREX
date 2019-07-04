@@ -431,10 +431,13 @@
     width: 100%;
     min-height: 321px;
 }
-.appointmentlist4 .appointmentcard .subcontainer .btn-info {
+.appointmentlist4 .appointmentcard .subcontainer button {
     background-color: white;
     border: 1px solid transparent;
     color: rgb( 85, 154, 209 );
+}
+.appointmentlist4 .appointmentcard .subcontainer button:hover {
+    color: rgb( 45, 114, 169 );
 }
 
 .appointmentcard {

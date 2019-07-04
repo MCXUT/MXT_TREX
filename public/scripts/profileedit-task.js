@@ -178,3 +178,11 @@ var formsubmit = () => {
     });
 }
 formsubmit();
+
+var sendRequestEmail = () => {
+    $(".subcontainer button").on("click", function(e) {
+        $("#paymentemail").attr("action", "/user_profile/tasks/payment/" + $(this).attr("id"));
+        $("#paymentemail").submit();
+    });
+}
+sendRequestEmail();
