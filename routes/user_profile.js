@@ -40,7 +40,18 @@ router.get("/user_profile/partnerProfile", (req, res) => {
       if (req.user.type === "c") {
           res.redirect("/user_profile");
       } else {
-          res.render("userprofile_partner_profile");
+          if (req.user.partnerProfile) {
+              PartnerProfile.findById(req.user.partnerProfile, (err, foundProfile) => {
+                  if (err) {
+                      console.log(err);
+                      return res.redirect("/user_profile");
+                  }
+                  return res.render("userprofile_partner_profile", { partnerProfile: foundProfile });
+              });
+          } else {
+              return res.render("userprofile_partner_profile", { partnerProfile: false });
+          }
+          
     }
   }
 });
@@ -339,7 +350,7 @@ router.get("/user_profile/edit_partner_resume", function(req, res) {
 
 // Create a profile for partner
 // 파트너 프로필 생성
-router.post("/create_new_profile", function(req, res) {
+router.post("/user_profile/create_new_profile", function(req, res) {
     if (req.body.type == "freelancer") {
         var newProfile = new PartnerProfile({
             type: "freelancer",
@@ -364,7 +375,7 @@ router.post("/create_new_profile", function(req, res) {
                           return res.redirect("/user_profile");
                       }
                       console.log("Partner Freelancer Profile Creation Successful for " + foundUser.name);
-                      return res.redirect("/edit_partner_resume");
+                      return res.redirect("/user_profile/edit_partner_resume");
                 });
             });
         });
@@ -392,7 +403,7 @@ router.post("/create_new_profile", function(req, res) {
                           return res.redirect("/user_profile");
                       }
                       console.log("Partner Agency Profile Creation Successful for " + foundUser.name);
-                      return res.redirect("/edit_partner_resume");
+                      return res.redirect("/user_profile/edit_partner_resume");
                 });
             });
         });
@@ -404,39 +415,39 @@ router.post("/create_new_profile", function(req, res) {
 
 
 // 파트너 프로필 전환 (프리랜서 <-> 에이전시)
-router.post("/convert_partnerProfile_type", function(req, res) {
-    if (req.user.type === "p") {
-        PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
-            if (err) {
-                console.log(err);
-                return res.redirect("/user_profile");
-            }
-            // if the current profile is a freelancer, change to agency
-            if (foundProfile.type === "freelancer") {
-                foundProfile.type = "agency";
-                foundProfile.gender = "N/A";
-                foundProfile.lastEditedDate = Date.now()
-            } else {
-                foundProfile.type = "freelancer";
-                foundProfile.gender = "M";
-                foundProfile.lastEditedDate = Date.now()
-            }
-            ///////// 사업자 등록증 삭제도 해야함!!! ////////
-            foundProfile.save((err) => {
-                  if (err) {
-                      console.log(err);
-                      req.flash("error_profile", "파트너 프로필을 저장하는데 문제가 발생 했습니다. 다시 시도해주세요.");
-                      return res.redirect("/user_profile");
-                  }
-                  console.log("Partner Profile Convert Successful for " + req.user.name);
-                  return res.redirect("/edit_partner_resume");
-            });
-        });
-    } else {
-        req.flash("error_profile", "클라이언트는 파트너 프로필을 생성 할수 없습니다.");
-        return res.redirect("/user_profile");
-    }
-});
+// router.post("/user_profile/convert_partnerProfile_type", function(req, res) {
+//     if (req.user.type === "p") {
+//         PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+//             if (err) {
+//                 console.log(err);
+//                 return res.redirect("/user_profile");
+//             }
+//             // if the current profile is a freelancer, change to agency
+//             if (foundProfile.type === "freelancer") {
+//                 foundProfile.type = "agency";
+//                 foundProfile.gender = "N/A";
+//                 foundProfile.lastEditedDate = Date.now()
+//             } else {
+//                 foundProfile.type = "freelancer";
+//                 foundProfile.gender = "M";
+//                 foundProfile.lastEditedDate = Date.now()
+//             }
+//             ///////// 사업자 등록증 삭제도 해야함!!! ////////
+//             foundProfile.save((err) => {
+//                   if (err) {
+//                       console.log(err);
+//                       req.flash("error_profile", "파트너 프로필을 저장하는데 문제가 발생 했습니다. 다시 시도해주세요.");
+//                       return res.redirect("/user_profile");
+//                   }
+//                   console.log("Partner Profile Convert Successful for " + req.user.name);
+//                   return res.redirect("/user_profile/edit_partner_resume");
+//             });
+//         });
+//     } else {
+//         req.flash("error_profile", "클라이언트는 파트너 프로필을 생성 할수 없습니다.");
+//         return res.redirect("/user_profile");
+//     }
+// });
 
 
 
