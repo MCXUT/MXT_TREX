@@ -91,20 +91,122 @@ function myFunction5(){
  var wrapper = document.getElementById("wrapper");
  var wrapper2 = document.getElementById("wrapper2");
  if(checkbox.checked == true){
+   map.style.display = "block";
    map.style.width= "40%";
    // wrapper.style.width = "60%";
    wrapper.style.display= "block";
    wrapper2.style.display= "none";
    // wrapper2.style.width = "0%";
  } else {
-   map.style.width= "0%";
+   map.style.display= "none";
    // wrapper2.style.width = "100%";
    // wrapper.style.width="0%";
    wrapper2.style.display = "block";
    // wrapper2.style.z-index = "6";
    wrapper.style.display = "none";
  }
-}
+};
+// function halfwidthFunction(){
+//   var bigone = document.getElementById("wrapper").style.width;
+//   var max = bigone.slice(0, bigone.length-1);
+//   var real_max = max/2;
+//   real_max += "%";
+//   var smallone = document.getElementsByClassName("col");
+//   var i;
+//   console.log(smallone);
+//   for(i=0; i<smallone.length; i++){
+//     smallone[i].style.maxWidth= real_max;
+//   }
+//
+//   // smallone.style.max-width =bigone/2;
+// };
+
+function jusoFunction(){
+  // var bigone = document.getElementById("wrapper").style.width;
+  // var max = bigone.slice(0, bigone.length-1);
+  // var real_max = max/2;
+  // // var result = real_max.concat("%");
+  // real_max += "%";
+  // console.log(max);
+  // console.log(real_max);
+
+    // var smallone = document.getElementsByClassName("col");
+    // console.log(smallone[2].style.width);
+
+  var i, input, filter, wrapper, col, juso, text, map;
+  input = document.getElementById("mymyInput").value;
+  wrapper = document.getElementsByClassName("wow");
+  // col = wrapper.document.quarySelector(".col");
+  juso = document.getElementsByClassName("juso");
+  map = document.getElementById("map");
+  // text = juso[0].textContent;
+  console.log(wrapper);
+  // console.log()
+  // console.log(input);
+  console.log(juso);
+  // console.log(text);
+  // console.log(juso[0].textContent.includes(input));
+  // console.log(wrapper.length/2);
+  for(i=0; i<wrapper.length; i++){
+    if(juso[i].textContent.includes(input)){
+      wrapper[i].style.display = "inline-block";
+    }
+    else{
+      wrapper[i].style.display = "none";
+    }
+  }
+  // map.setCenter(lat: 47.510260, lng: -73.575745)
+  // map.setCenter({lat: 41.85, lng: -87.65});
+};
+
+// var searchit = document.getElementById("mymyInput");
+// var map;
+// var chicago = {lat: 41.85, lng: -87.65};
+// function CenterControl(controlDiv, map){
+//   var controlii = document.getElementById("searchmap");
+//   var controlUI = document.createElement('div');
+//   controlUI.style.backgroundColor = '#fff';
+//   controlUI.style.border = '2px solid #fff';
+//   controlUI.style.borderRadius = '3px';
+//   controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+//   controlUI.style.cursor = 'pointer';
+//   controlUI.style.marginBottom = '22px';
+//   controlUI.style.textAlign = 'center';
+//   controlUI.title = 'Click to recenter the map';
+//   controlDiv.appendChild(controlUI);
+//   var controlText = document.createElement('div');
+//   controlText.style.color = 'rgb(25,25,25)';
+//   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+//   controlText.style.fontSize = '16px';
+//   controlText.style.lineHeight = '38px';
+//   controlText.style.paddingLeft = '5px';
+//   controlText.style.paddingRight = '5px';
+//   controlText.innerHTML = 'Center Map';
+//   controlUI.appendChild(controlText);
+//   controlUI.addEventListener('click', function() {
+//     map.setCenter(chicago);
+//   });
+//   controlii.addEventListener('click', function() {
+//     map.setCenter(chicago);
+//   });
+// }
+
+// var enter = document.getElementById("mymyInput");
+// enter.addEventListener("keydown", function (e) {
+//     if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+//         jusoFunction();
+//         google();
+//     }
+// });
+
+
+
+
+
+
+
+
+
 
 
 document.querySelector("body").addEventListener("click", (e) => {
@@ -127,6 +229,7 @@ document.querySelector("body").addEventListener("click", (e) => {
 
     } else {
       document.getElementById("money").style.display="none"
+
     }}
 });
 
