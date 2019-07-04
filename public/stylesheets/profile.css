@@ -427,9 +427,16 @@
     overflow-y: scroll;
     max-height: 200px;
 }
-.appointmentlist2 {
+.appointmentlist2, .appointmentlist4 {
     width: 100%;
+    min-height: 321px;
 }
+.appointmentlist4 .appointmentcard .subcontainer .btn-info {
+    background-color: white;
+    border: 1px solid transparent;
+    color: rgb( 85, 154, 209 );
+}
+
 .appointmentcard {
     min-height: 80px;
     border: 1px solid  #676d73;
