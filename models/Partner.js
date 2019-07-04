@@ -113,6 +113,10 @@ var PartnerSchema = mongoose.Schema({
         type: String,
         default: ""
     },
+    // partnerProfile: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "PartnerProfile"
+    // },
     // 가입일자
     registeredDate: {
         type: Date,
