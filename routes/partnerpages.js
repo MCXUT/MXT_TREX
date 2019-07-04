@@ -86,6 +86,25 @@ router.get("/find_partner", function(req,res){
       req.flash("error", "파트너 목록을 불러오는데 문제가 발생했습니다. 다시 시도해주세요.");
       return res.redirect("/");
     }
+    // // PartnerProfile.find({}, function (err, foundProfiles) {
+    // var partnerProfiles = [];
+    // var allProfiles = PartnerProfile.find.toArray();
+    // for (var i = 0; i < allPartners.length; i++) {
+    //     if (allPartners[i].partnerProfile) {
+    //         // PartnerProfile.findById(allPartners[i].partnerProfile, function(err, foundProfile) {
+    //         //     if (err) {
+    //         //         console.log(err);
+    //         //         req.flash("error", "프로필 목록을 불러오는데 문제가 발생했습니다. 다시 시도해주세요.");
+    //         //         return res.redirect("/");
+    //         //     }
+    //         //     partnerProfiles[i] = foundProfile;
+    //         // });
+    //         // partnerProfiles[i] = PartnerProfile.findById(allPartners[i].partnerProfile).type;
+    // 
+    //     }
+    // 
+    // }
+    // console.log(allProfiles);
     res.render("findpartner", { allPartners : allPartners , googleMapAPI: keys.googleMapAPI.key });
   });
   // res.render("findpartner");

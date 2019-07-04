@@ -6,14 +6,75 @@
                 background-color: #00b3db !important;
                 border-color: #00b3db !important;
             }
+            .btn-primary:hover {
+                cursor: pointer;
+                background-color: #00b3db !important;
+                border-color: #00b3db !important;
+            }
+            #avatar{
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                background-size: cover;
+                margin: 0;
+                 position: absolute;
+                 top: 50%;
+                 -ms-transform: translateY(-50%);
+                 transform: translate3d(-50%,-50%,0);
+
+            }
+            .leftside, .rightside{
+                width: 100%;
+                /* border: 1px solid rgba(0, 0, 0, 0.5); */
+                margin-bottom: 10px;
+                z-index: 2;
+
+            }
+            #left{
+              max-width: 25%;
+            }
+            #left, #right{
+              height: 80px;
+              padding: 10px;
+            }
+            #sliders a{
+                text-decoration: none;
+                color:black;
+            }
+            #wrapper{
+              width: 50%;
+              height: 550px;
+              overflow-y:scroll;
+              overflow-x: hidden;
+              float:left;
+              position: relative;
+              margin:0;
+              padding-left: 2.5%;
+              padding-right: 2.5%;
+
+            }
+            #wrapper .row{
+              border: 1px solid rgba(0, 0, 0, 0.3);
+              width: 500px;
+            }
+            #wrapper h4{
+              font-size: 20px;
+
+            }
         </style>
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-        <!-- <link rel="stylesheet" href="../static/stylesheets/style.css"> -->
-
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     </head>
     <body>
+        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-background %>
+
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
@@ -22,93 +83,94 @@
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">파트너 계정 관리</p>
+                        <p class="setting">계정 관리</p>
                         <div class="menu">
                             <a class="partnerprofileinfo profileactive" href="/user_profile/partnerProfile">프로필 관리</a>
                             <a class="taskreservationinfo" href="/user_profile/tasks">업무 예약 관리</a>
                             <a class="scheduleinfo" href="/user_profile/schedule">일정 관리</a>
-                            <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% if (currentUser.messageNotification) { %>
+                                <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } else { %>
+                                <a class="messages" href="/user_profile/messages">메세지</a>
+                            <% } %>
                             <a class="paymentinfo" href="/user_profile/payment_info">정산 계좌 등록</a>
                             <a class="accountinfo" href="/user_profile/account_info">계정관리</a>
                         </div>
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimg">
+                            <% if (currentUser.coverPhoto) { %>
+                                <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                            <% } else { %>
+                                <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                            <% } %>
+                            <div class="changefade">
+                                배경 사진 바꾸기
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.profilePic) { %>
-                          <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
                     
                     <div class="col-md-8">
-                        <p class="h3">파트너 프로필 생성</p><br><br>
-                        <!-- <form style="margin-bottom:100px;"> -->
-                            <!-- <div class="form-group">
-                                <label for="exampleFormControlSelect1">프리랜서 / 에이전시</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>프리랜서</option>
-                                  <option>에이전시</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect2">프리랜서 / 에이전시</label>
-                                <select multiple class="form-control" id="exampleFormControlSelect2">
-                                  <option>프리랜서</option>
-                                  <option>에이전시</option>
-                                </select>
-                            </div> -->
-                            <!-- <div class="form-group">
-                                프리랜서 / 에이전시:<br>
-                                <div class="form-check form-check-inline" style="padding-left:30px;">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">프리랜서</label>
-                                </div>
-                                <div class="form-check form-check-inline" style="padding-left:10px;">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">에이전시</label>
-                                </div>
-                            </div> -->
+                        <div class="row sections basic" id="basic">
                             
-                            <form id="createProfile" action="/create_new_profile" method="post"></form>
-                            <div class="container" style="margin-left:7%;margin-top:50px;margin-bottom:100px;>
+                            <p class="basictitle" style="width:100%;"><b>파트너 프로필 생성</b></p>
+                                
+                            <div class="divider"></div>
+                            
+                            <form id="createProfile" action="/user_profile/create_new_profile" method="post"></form>
+                            <div class="container" style="margin-left:7%;margin-top:50px;margin-bottom:100px;">
                                 <div class="sectionContent">
                                     <div class="row text-center">
                                         <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
-                                            <!-- <a href="/create_freelancer_profile"> -->
                                             <button type="submit" form="createProfile" name="type" value="freelancer">
                                                 <div class="centered">
                                                     <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">프리랜서</div>
                                             </button>
-                                            <!-- </a> -->
                                         </div>
                                         <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
-                                            <!-- <a href="/create_agency_profile"> -->
                                             <button type="submit" form="createProfile" name="type" value="agency">
                                                 <div class="centered">
                                                     <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">에이전시</div>
                                             </button>
-                                            <!-- </a> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
                             
-                        <!-- </form> -->
+                        </div>
+                        
+                            
+                            
                     </div>
                     
                 </div>
             </div>
         </div>
 
-    
+    <script src="/static/scripts/changeimg.js"></script>
     <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>
