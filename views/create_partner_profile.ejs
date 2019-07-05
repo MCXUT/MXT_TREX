@@ -2,12 +2,21 @@
     <head>
         <meta charset="utf-8">
         <style>
-            .card:hover {
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
+            .showBttn {
+                display: inline !important;
+            }
+            .btn-primary {
+                /* display: inline !important; */
+                background-color:#f58b44 !important;
+                border-color:#f58b44 !important;
             }
             .btn-primary:hover {
                 cursor: pointer;
+                /* background-color: #00b3db !important;
+                border-color: #00b3db !important; */
+                opacity: 0.9;
+            }
+            .card:hover {
                 background-color: #00b3db !important;
                 border-color: #00b3db !important;
             }
@@ -69,11 +78,11 @@
               	-o-transition: 200ms ease-in-out;
               	transition: 200ms ease-in-out;
             }
-            .card:hover{
+            /* .card:hover{
               transform: translate3d(0, -1%, 0);
             	-webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
             	        box-shadow: 0 2px 1px rgba(0,0,0,0.2);
-            }
+            } */
 
         </style>
 
@@ -149,25 +158,82 @@
 
                             <div class="divider"></div>
 
-                            <!-- <form id="createProfile" action="/user_profile/create_new_profile" method="post"></form> -->
+                            <form id="createProfile" action="/user_profile/create_new_profile" method="post"></form>
                             <div class="container" style="margin-left:10%;margin-top:50px;margin-bottom:100px; align-items: center">
                                 <div class="sectionContent">
                                     <div class="row" style="display: absolute; min-height: 250px;">
                                         <div class="container2 col-md-3 col-sm-6 card" style="margin-right:50px !important; margin-left: 90px; width: 400px; height: 250px;">
-                                            <button type="submit" form="createProfile" name="type" value="freelancer" style="width: 177px; height: 250px">
+                                            <!-- <button type="submit" form="createProfile" name="type" value="freelancer" style="width: 177px; height: 250px"> -->
+                                            <button type=button data-toggle="modal" data-target="#confirmFreelancerModal">
                                                 <div class="centered">
                                                     <img src="/static/images/nibbler.jpeg" style="height:250px; width:300px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">프리랜서</div>
                                             </button>
+                                            
+                                            
+                                            <div class="modal fade" id="confirmFreelancerModal" tabindex="-1" role="dialog" aria-labelledby="confirmFreelancerModalTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmFreelancerModalLongTitle">프리랜서 확인</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            프리랜서 프로필을 생성하시겠습니까? 이후에 변경할 수 없습니다.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                                            <!-- <button form="createProfile" class="btn btn-primary showBttn">확인</button> -->
+                                                            <button type="submit" form="createProfile" name="type" class="btn btn-primary showBttn" value="freelancer">확인</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            
                                         </div>
                                         <div class="container2 col-md-3 col-sm-6 card" style="margin-left:50px !important; width: 400px; height: 250px;">
-                                            <button type="submit" form="createProfile" name="type" value="agency" style="width:177px; height: 250px;">
+                                            <!-- <button type="submit" form="createProfile" name="type" value="agency" style="width:177px; height: 250px;">
+                                                <div class="centered">
+                                                    <img src="/static/images/nibbler.jpeg" style="height:250px; width:300px;">
+                                                </div>
+                                                <div class="centered" style="width:100%;">에이전시</div>
+                                            </button> -->
+                                            
+                                            <button type=button data-toggle="modal" data-target="#confirmAgencyModal">
                                                 <div class="centered">
                                                     <img src="/static/images/nibbler.jpeg" style="height:250px; width:300px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">에이전시</div>
                                             </button>
+                                            
+                                            
+                                            <div class="modal fade" id="confirmAgencyModal" tabindex="-1" role="dialog" aria-labelledby="confirmAgencyModalTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmAgencyModalLongTitle">에이전시 확인</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            에이전시 프로필을 생성하시겠습니까? 이후에 변경할 수 없습니다.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                                            <!-- <button form="createProfile" class="btn btn-primary showBttn">확인</button> -->
+                                                            <button type="submit" form="createProfile" name="type" class="btn btn-primary showBttn" value="agency">확인</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
