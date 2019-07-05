@@ -40,7 +40,18 @@ router.get("/user_profile/partnerProfile", (req, res) => {
       if (req.user.type === "c") {
           res.redirect("/user_profile");
       } else {
-          res.render("userprofile_partner_profile");
+          if (req.user.partnerProfile) {
+              PartnerProfile.findById(req.user.partnerProfile, (err, foundProfile) => {
+                  if (err) {
+                      console.log(err);
+                      return res.redirect("/user_profile");
+                  }
+                  return res.render("userprofile_partner_profile", { partnerProfile: foundProfile });
+              });
+          } else {
+              return res.render("userprofile_partner_profile", { partnerProfile: false });
+          }
+          
     }
   }
 });
@@ -115,6 +126,11 @@ router.post("/user_profile/tasks/rating/:id", (req, res) => {
             });
         }
     });
+});
+
+router.post("/user_profile/tasks/:id", (req, res) => {
+    console.log(req.params.id);
+    return res.redirect("back");
 });
 
 
@@ -216,7 +232,9 @@ router.get("/user_profile/payment_info", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("userprofile_partner_paymentInfo");
+      Partner.find({}).then((allPartners) => {
+          res.render("userprofile_partner_paymentInfo", {allPartners: allPartners});
+      });
   }
 });
 
@@ -306,130 +324,6 @@ router.get("/user_profile/account_info", (req, res) => {
     }
 });
 
-
-
-
-// 파트너 프로필 수정
-router.get("/user_profile/edit_partner_resume", function(req, res) {
-    if (!req.user) {
-      res.redirect("/");
-    } else {
-        // create new profile if it is the first time for the partner
-        if (req.user.partnerProfile === "") {
-            return res.render("create_partner_profile");
-        } else {
-            PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
-                if (err) {
-                  console.log(err);
-                  return res.redirect("/user_profile");
-                };
-                res.render("edit_partner_resume", { profileInfo: foundProfile });
-            });
-        }
-    }
-});
-
-
-// Create a profile for partner
-// 파트너 프로필 생성
-router.post("/create_new_profile", function(req, res) {
-    if (req.body.type == "freelancer") {
-        var newProfile = new PartnerProfile({
-            type: "freelancer",
-            gender: "M"
-        });
-        newProfile.save((err, createdProfile) => {
-            if(err) {
-                console.log(err);
-                req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
-                return res.redirect("/user_profile");
-            }
-            // Save the profile id in the current partner db
-            Partner.findById(req.user._id, function(err, foundUser) {
-                if (err) {
-                    console.log(err);
-                    return res.redirect("/user_profile");
-                }
-                foundUser.partnerProfile = createdProfile._id;
-                foundUser.save((err) => {
-                      if (err) {
-                          console.log(err);
-                          return res.redirect("/user_profile");
-                      }
-                      console.log("Partner Freelancer Profile Creation Successful for " + foundUser.name);
-                      return res.redirect("/edit_partner_resume");
-                });
-            });
-        });
-    } else if (req.body.type == "agency") {
-        var newProfile = new PartnerProfile({
-            type: "agency",
-            gender: "N/A"
-        });
-        newProfile.save((err, createdProfile) => {
-            if(err) {
-                console.log(err);
-                req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
-                return res.redirect("/user_profile");
-            }
-            // Save the profile id in the current partner db
-            Partner.findById(req.user._id, function(err, foundUser) {
-                if (err) {
-                    console.log(err);
-                    return res.redirect("/user_profile");
-                }
-                foundUser.partnerProfile = createdProfile._id;
-                foundUser.save((err) => {
-                      if (err) {
-                          console.log(err);
-                          return res.redirect("/user_profile");
-                      }
-                      console.log("Partner Agency Profile Creation Successful for " + foundUser.name);
-                      return res.redirect("/edit_partner_resume");
-                });
-            });
-        });
-    } else {
-        req.flash("error_profile", "프로필을 생성하는데 실패했습니다. 다시 시도 해주세요.");
-        return res.redirect("/user_profile");
-    }
-});
-
-
-// 파트너 프로필 전환 (프리랜서 <-> 에이전시)
-router.post("/convert_partnerProfile_type", function(req, res) {
-    if (req.user.type === "p") {
-        PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
-            if (err) {
-                console.log(err);
-                return res.redirect("/user_profile");
-            }
-            // if the current profile is a freelancer, change to agency
-            if (foundProfile.type === "freelancer") {
-                foundProfile.type = "agency";
-                foundProfile.gender = "N/A";
-                foundProfile.lastEditedDate = Date.now()
-            } else {
-                foundProfile.type = "freelancer";
-                foundProfile.gender = "M";
-                foundProfile.lastEditedDate = Date.now()
-            }
-            ///////// 사업자 등록증 삭제도 해야함!!! ////////
-            foundProfile.save((err) => {
-                  if (err) {
-                      console.log(err);
-                      req.flash("error_profile", "파트너 프로필을 저장하는데 문제가 발생 했습니다. 다시 시도해주세요.");
-                      return res.redirect("/user_profile");
-                  }
-                  console.log("Partner Profile Convert Successful for " + req.user.name);
-                  return res.redirect("/edit_partner_resume");
-            });
-        });
-    } else {
-        req.flash("error_profile", "클라이언트는 파트너 프로필을 생성 할수 없습니다.");
-        return res.redirect("/user_profile");
-    }
-});
 
 
 

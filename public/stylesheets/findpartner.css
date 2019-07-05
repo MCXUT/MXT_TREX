@@ -419,11 +419,11 @@ z-index: 2;
   margin: 15px;
   radius: 50%;
   border-radius: 3px;
-  -webkit-transition: 300ms ease-in-out;
-	-o-transition: 300ms ease-in-out;
-	transition: 300ms ease-in-out;
-	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
-	        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  -webkit-transition: 200ms ease-in-out;
+	-o-transition: 200ms ease-in-out;
+	transition: 200ms ease-in-out;
+	/* -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	        box-shadow: 0 0 15px rgba(0,0,0,0.3); */
 }
 
 
@@ -434,23 +434,23 @@ z-index: 2;
   height: 300px;
   radius: 50%;
   border-radius: 3px;
-  -webkit-transition: 300ms ease-in-out;
-	-o-transition: 300ms ease-in-out;
-	transition: 300ms ease-in-out;
-	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
-	        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  -webkit-transition: 200ms ease-in-out;
+	-o-transition: 200ms ease-in-out;
+	transition: 200ms ease-in-out;
+	/* -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	        box-shadow: 0 0 15px rgba(0,0,0,0.3); */
 }
 
 #wow:hover{
-  transform: translate3d(0, 3%, 0);
-	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.7);
-	        box-shadow: 0 0 5px rgba(0,0,0,0.7);
+  transform: translate3d(0, -1%, 0);
+	-webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+	        box-shadow: 0 2px 1px rgba(0,0,0,0.2);
 }
 
 #wow2:hover{
-  transform: translate3d(0, 3%, 0);
-	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.7);
-	        box-shadow: 0 0 5px rgba(0,0,0,0.7);
+  transform: translate3d(0, -1%, 0);
+	-webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+	        box-shadow: 0 2px 1px rgba(0,0,0,0.2);
 }
 
 #avatar{

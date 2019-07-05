@@ -67,20 +67,23 @@
   <div class="sidebar sticky-top sticky-offset">
   <a id="nav1" class="nav-item active" href="#?dashboard" onclick="dashBoard();"><i class="fas fa-chart-line"></i> Dashboard</a>
 
+
   <a class=" dropdown-btn" href="#?users "><i class="fas fa-users"></i> Users
       <i class="fa fa-caret-down" style="display:inline;" ></i>
     </a>
 
-    <div class="dropdown-container">
+    <div id="nav_item_users" class="dropdown-container" >
       <a id="nav2" class="nav-item" href="#?users-clients" onclick="usersClients();"><i class="fas fa-user"></i> Clients</a>
       <a id="nav3" class="nav-item" href="#?users-partners" onclick="usersPartners();"><i class="far fa-handshake"></i> Partners</a>
+      <a id="nav9" class="nav-item" href="#?users-deleted" onclick="usersDeleted();"><i class="far fa-trash-alt"></i> To be deleted</a>
     </div>
+
 
     <a class=" dropdown-btn" href="#?services "><i class="fas fa-cogs"></i> Services
         <i class="fa fa-caret-down" ></i>
       </a>
 
-      <div class="dropdown-container">
+      <div id="nav_item_services" class="dropdown-container" >
         <a id="nav4" class="nav-item" href="#?services_1" onclick="services1();"><i class="far fa-envelope"></i> Messages </a>
         <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="fas fa-tools"></i> Steven2</a>
         <a id="nav6" class="nav-item" href="#?services_3" onclick="services3();"><i class="fas fa-hammer"></i> Steven3</a>
@@ -91,7 +94,7 @@
         <i class="fa fa-caret-down" ></i><i class="fas fa-caret-up" style="display:none;"></i>
       </a>
 
-  <div class="dropdown-container">
+  <div id="nav_item_admin" class="dropdown-container" >
     <a id="nav7" class="nav-item" href="#?adminList" onclick="adminList();"><i class="fas fa-list"></i> Admin List</a>
     <a id="nav8" class="nav-item" href="#?addAdmin" onclick="addAdmin();"><i class="fas fa-plus" style="margin-left:0;padding-left:0;"></i> Add Admin</a>
   </div>
@@ -226,6 +229,12 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 </left>
 
+
+<left id="div9_users_deleted"  style="display:none;">
+<div class="content" style="padding-top:80px;">
+<h3>Users to be deleted</h3>
+</div>
+</left>
 
 
 <left id="div4_services_1"  style="display:none;">

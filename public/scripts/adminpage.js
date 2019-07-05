@@ -1,11 +1,24 @@
+
 $( document ).ready(function() {
 
     var index = getParameterByName('index');
-    var text = ["_dashBoard","_users-clients","_users-partners","_services_1","_services_2","_services_3","_adminList","_addAdmin"]
+    var text = ["_dashBoard","_users-clients","_users-partners","_services_1","_services_2","_services_3","_adminList","_addAdmin","_users_deleted"]
    // $('#div'+ index).trigger('click');
    //  $('ul > li').not('#target' + index).hide()
    $('left').not('#div' + index + text[index-1]).hide()
    $('#div'+ index + text[index-1]).show();
+   $('#nav1').removeClass('active');
+   $('#nav'+ index).addClass('active');
+
+   if(index ==2 || index == 3 || index == 9){
+       $("#nav_item_users").css({ display: "block" });
+   }
+   else if(index == 4 || index == 5 || index == 6){
+       $("#nav_item_services").css({ display: "block" });
+   }
+   else if(index == 7 || index == 8){
+       $("#nav_item_admin").css({ display: "block" });
+   }
 });
 
 
@@ -145,6 +158,7 @@ function dashBoard(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='none';
     document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function usersClients(){
@@ -156,6 +170,7 @@ function usersClients(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='none';
     document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function usersPartners(){
@@ -167,6 +182,7 @@ function usersPartners(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='none';
     document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function services1(){
@@ -178,6 +194,7 @@ function services1(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='none';
     document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function services2(){
@@ -189,6 +206,7 @@ function services2(){
   document.getElementById('div6_services_3').style.display="none";
   document.getElementById('div7_adminList').style.display='none';
   document.getElementById('div8_addAdmin').style.display='none';
+  document.getElementById('div9_users_deleted').style.display="none";
 
 }
 function services3(){
@@ -200,7 +218,7 @@ function services3(){
   document.getElementById('div6_services_3').style.display="inline";
   document.getElementById('div7_adminList').style.display='none';
   document.getElementById('div8_addAdmin').style.display='none';
-
+  document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function adminList(){
@@ -212,6 +230,7 @@ function adminList(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='inline';
     document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="none";
 }
 
 function addAdmin(){
@@ -223,5 +242,19 @@ function addAdmin(){
     document.getElementById('div6_services_3').style.display="none";
     document.getElementById('div7_adminList').style.display='none';
     document.getElementById('div8_addAdmin').style.display='inline';
+    document.getElementById('div9_users_deleted').style.display="none";
+
+}
+
+function usersDeleted(){
+    document.getElementById('div1_dashBoard').style.display='none';
+    document.getElementById('div2_users-clients').style.display='none';
+    document.getElementById('div3_users-partners').style.display='none';
+    document.getElementById('div4_services_1').style.display="none";
+    document.getElementById('div5_services_2').style.display="none";
+    document.getElementById('div6_services_3').style.display="none";
+    document.getElementById('div7_adminList').style.display='none';
+    document.getElementById('div8_addAdmin').style.display='none';
+    document.getElementById('div9_users_deleted').style.display="inline";
 
 }
