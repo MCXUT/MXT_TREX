@@ -221,20 +221,35 @@
                                         <label>타 지역 업무 가능 여부 *</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <div class="form-check form-check-inline">
-                                                    <input onclick="checkFunction()" class="form-check-input availability" type="radio" name="gender" id="male" value="M">
-                                                    <label class="form-check-label" for="male">가능</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input onclick="checkFunction()" class="form-check-input" type="radio" name="gender" id="female" value="F" checked>
-                                                    <label class="form-check-label" for="female">불가능</label>
-                                                </div>
+                                        <% if (profileInfo.otherRegion.length > 0) { %>
+                                            <div class="form-check form-check-inline">
+                                                <input onclick="checkFunction()" class="form-check-input availability" type="radio" name="avail" id="able" value="able" checked>
+                                                <label class="form-check-label" for="able">가능</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input onclick="checkFunction()" class="form-check-input" type="radio" name="avail" id="unable" value="unable">
+                                                <label class="form-check-label" for="unable">불가능</label>
+                                            </div>
+                                        <% } else { %>
+                                            <div class="form-check form-check-inline">
+                                                <input onclick="checkFunction()" class="form-check-input availability" type="radio" name="avail" id="able" value="able">
+                                                <label class="form-check-label" for="able">가능</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input onclick="checkFunction()" class="form-check-input" type="radio" name="avail" id="unable" value="unable" checked>
+                                                <label class="form-check-label" for="unable">불가능</label>
+                                            </div>
+                                        <% } %>
+                                            
                                     </div>
                                 </div>
 
 
-
+                            <% if (profileInfo.otherRegion.length > 0) { %>
+                                <div class="form-group row" id="har" style="display:flex;">
+                            <% } else { %>
                                 <div class="form-group row" id="har" style="display:none;">
+                            <% } %>
                                     <div class="col-sm-5">
                                         <label for="otherRegion" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
                                     </div>

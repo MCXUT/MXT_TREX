@@ -183,7 +183,12 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
         
         foundProfile.oneLineIntro = req.body.oneLineIntro;
         foundProfile.region = req.body.region;
-        foundProfile.otherRegion = req.body.otherRegion;
+        if (req.body.avail == "able") {
+            foundProfile.otherRegion = req.body.otherRegion;
+        } else {
+            foundProfile.otherRegion = [];
+        }
+        
         // for (var i = 0; i < req.body.otherRegion.length; i++) {
         //     foundProfile.otherRegion.push(otherRegions[i]);
         // }
