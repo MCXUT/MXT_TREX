@@ -11,6 +11,7 @@ const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
 const Message = require("../models/Message");
 const Rating = require("../models/Rating");
+const Payment = require("../models/Payment");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -87,7 +88,19 @@ router.get("/user_profile/tasks", (req, res) => {
              if(err) {
                  throw err;
              } else {
-                 res.render("userprofile_partner_task", {allPartners: allPartners});
+                 Partner.findById(req.user.id).populate("payments").exec((err, currentUser) => {
+                     //-----------edit-----------
+                     var payPartners = [];
+                     for(var i = 0; i < currentUser.payments.length; i++) {
+                         payPartners.push(String(currentUser.payments[i].associatedPartner));
+                     };
+                     //--------------------------
+                     res.render("userprofile_partner_task", {
+                         allPartners: allPartners,
+                         // payComplete: currentUser.payments,
+                         payPartners: payPartners // **edit
+                     });
+                 });
              }
           });
     }
@@ -131,8 +144,63 @@ router.post("/user_profile/tasks/rating/:id", (req, res) => {
 });
 
 router.post("/user_profile/tasks/payment/:id", (req, res) => {
-    
-    return res.redirect("/user_profile/tasks");
+    async.waterfall([
+        (done) => {
+            Partner.findById(req.user.id, (err, foundUser) => {
+                if(err) throw err;
+                if(!foundUser) {
+                    req.flash("error", "No user was found");
+                    return res.redirect("/user_profile/tasks");
+                } else {
+                    done(err, foundUser);
+                }
+            });
+        },
+        (foundUser, done) => {
+            var newPayment = {
+                dateRequested: Date.now(),
+                associatedPartner: req.params.id  //To be changed
+            };
+
+            Payment.create(newPayment, (err, createdPay) => {
+                if(err) throw err;
+                else {
+                    foundUser.payments.push(createdPay);
+                    foundUser.save();
+                    done(err, foundUser, createdPay);
+                }
+            });
+        },
+        (foundUser, createdPay, done) => {
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass,
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+              from : keys.gmailInfo.user,
+              to : keys.gmailInfo.user,
+              subject : foundUser.name + "님의 정산요청",
+              text : foundUser.name + "님이 트랙스에 " + createdPay.amount + "원 만큼의 금액을 요청하였습니다."
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    req.flash("error_reset", "Error Occured when sending the email");
+                    return res.redirect("/user_profile/tasks");
+                }
+                req.flash("success_validate", "Check your email for password reset");
+                return res.redirect("/user_profile/tasks");
+            });
+        }
+    ], (err) => {
+        if(err) next(err);
+        res.redirect("/user_profile/tasks");
+    });
 });
 
 
