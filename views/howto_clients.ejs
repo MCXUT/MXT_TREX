@@ -51,6 +51,7 @@
       margin-top: 0px;
       overflow-wrap: break-word;
       max-width: 330px !important;
+      font-size: 16px;
     }
 
     /*/파트너 활동은 어떻게 하나요? */
@@ -204,9 +205,9 @@
   <div class="sectionContent">
 
     <div>
-      <h2 id="more_questions">더 궁금한 점이 있으신가요?</h2>
-      <br><br>
-      <a href="/client_faq?index=1"><button type="button" class="btn btn-dark btn text-center" onclick="checkLogin2();">자주 묻는 질문 보러가기</button></a>
+      <h1 id="more_questions">더 궁금한 점이 있으신가요?</h1>
+      <br>
+      <a href="/client_faq?index=1"><button id="btn_outline_orange" type="button" class="btn text-center" onclick="checkLogin2();">자주 묻는 질문 보러가기</button></a>
     </div>
     <br><br>
     <hr style="width:80%;background-color:#999999;"><br>
@@ -220,21 +221,21 @@
   <div class="container" style="">
   <div class="sectionContent">
 
-      <h2>어느 지역에 일손이 필요 하신가요?</h2>
-      <br><br>
+      <h1>어느 지역에 일손이 필요 하신가요?</h1>
+      <br>
       <div>
-      <form autocomplete="off" id="searchbox"  action="/action_page.php" target="_blank" method="POST" >
-        <div class="input-group" >
+          <form autocomplete="off" id="searchbox" class="text-center" action="/action_page.php" target="_blank" method="POST" >
+            <div class="input-group">
 
 
-           <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" style="width:66%;">
-           <input id="tags2" type="text" class="form-control" placeholder="국가" name="search" style="width:20%;" >
+               <input  id="tags1" type="text" class="form-control" placeholder="필요하신 서비스가 무엇인가요?" name="search" style="width:65%;">
+               <input id="tags2" type="text" class="form-control" placeholder="국가" name="search" style="width:20%;border-right:none;" >
 
-           <button class="btn btn-warning" type="submit">
-           <i class="fas fa-search"></i></button>
-           <!-- <input type="submit" value="Submit"> -->
-        </div>
-      </form>
+               <button id="search_btn" class="btn " type="submit" >
+               <i class="fas fa-search"></i></button>
+               <!-- <input type="submit" value="Submit"> -->
+            </div>
+          </form>
       </div>
       <br><br><br>
 
@@ -244,7 +245,6 @@
   </div>
   </div>
 
-  <a href="/trex-admin?index=2">press me</a>
   <!-- /검색창 섹션 -->
         <hr style="width:73%;background-color:#999999;"><br>
   <br><br>

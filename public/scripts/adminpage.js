@@ -1,3 +1,4 @@
+
 $( document ).ready(function() {
 
     var index = getParameterByName('index');
@@ -6,6 +7,17 @@ $( document ).ready(function() {
    //  $('ul > li').not('#target' + index).hide()
    $('left').not('#div' + index + text[index-1]).hide()
    $('#div'+ index + text[index-1]).show();
+   $('#nav'+ index).addClass('active');
+   $('#nav1').removeClass('active');
+   if(index ==2 || index == 3){
+       $("#nav_item_users").css({ display: "block" });
+   }
+   else if(index == 4 || index == 5 || index == 6){
+       $("#nav_item_services").css({ display: "block" });
+   }
+   else if(index == 7 || index == 8){
+       $("#nav_item_admin").css({ display: "block" });
+   }
 });
 
 
