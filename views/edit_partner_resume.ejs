@@ -61,6 +61,11 @@
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
+            .likethis{
+                margin: 5% 10% 7%;
+                display: flex;
+                flex-wrap: wrap;
+            }
         </style>
         <title>Member - 트렉스</title>
 
@@ -133,18 +138,21 @@
                     </div>
 
                     <div class="col-md-8">
-                        <div class="text-center">
+                        <div class="likethis">
+                            <p class="basictitle">
                             <% if (profileInfo.type == "freelancer") { %>
                                 <strong><big>프리랜서 프로필</big></strong>
                             <% } else { %>
                                 <strong><big>에이전시 프로필</big></strong>
                             <% } %>
-                        </div>
+                            </p>
+                        <div class="divider"></div>
+                        <br><br>
                         <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form>
 
 
 
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data" style="width: 100%;">
                             <div class="form-group row">
                                 <div class="col-sm-5">
                                     <label for="oneLineIntro">한줄 소개 *</label>
@@ -354,6 +362,10 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                         </form>
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
+const keys = require("../../config/keys");
 const Client = require("../../models/Client");
 
 //const registerRouter = require("./registerRoute");
@@ -52,6 +54,34 @@ router.post("/register/client", function(req, res) {
             Client.createUser(user, (err, createdClient) => {
               if(err) throw err;
               //Verification.createToken(req, res, createdUser);
+              
+              // Email Trex about Client Creation
+              const transporter = nodemailer.createTransport({
+                  service: "Gmail",
+                  auth: {
+                      user: keys.gmailInfo.user,
+                      pass: keys.gmailInfo.pass
+                  },
+                  tls: {
+                      ciphers: "SSLv3"
+                  }
+              });
+              const mailOption = {
+                  from : keys.gmailInfo.user,
+                  to : keys.trexEmail.email,
+                  subject : "트렉스 클라이언트 가입",
+                  html: '<p>트렉스에 새로운 클라이언트가 가입하였습니다.</p>' +
+                        '<h3>이름: </h3>' + createdClient.name +
+                        '<h3>이메일: </h3>' + createdClient.email
+              };
+              transporter.sendMail(mailOption, (err) => {
+                  if(err) {
+                      console.log(err);
+                      return res.redirect("/");
+                  }
+                  console.log("Email successfully sent to Trex about Client creation.");
+              });
+              
               res.redirect("/");
             });
           }

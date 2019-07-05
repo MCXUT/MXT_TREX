@@ -1,4 +1,5 @@
 const passport = require("passport");
+const nodemailer = require("nodemailer");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -29,6 +30,34 @@ passport.use("client-facebook", new FacebookStrategy({
             pic: "https://graph.facebook.com/" + profile.id + "/picture?height=250&width=250"
           }).save().then((newUser) => {
             console.log("new User Created: " + newUser);
+            
+            // Email Trex about Client Creation
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+                from : keys.gmailInfo.user,
+                to : keys.trexEmail.email,
+                subject : "트렉스 클라이언트 가입",
+                html: '<p>트렉스에 새로운 클라이언트가 페이스북을 통해 가입하였습니다.</p>' +
+                      '<h3>이름: </h3>' + newUser.name +
+                      '<h3>이메일: </h3>' + newUser.email
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    console.log(err);
+                    return res.redirect("/");
+                }
+                console.log("Email successfully sent to Trex about Client Facebook creation.");
+            });
+            
             done(null, newUser);
           });
         }
@@ -66,6 +95,34 @@ passport.use("client-kakao", new KakaoStrategy({
             kakaoID: profile.id
           }).save().then((newUser) => {
             console.log("New Client Created: " + newUser);
+            
+            // Email Trex about Client Creation
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+                from : keys.gmailInfo.user,
+                to : keys.trexEmail.email,
+                subject : "트렉스 클라이언트 가입",
+                html: '<p>트렉스에 새로운 클라이언트가 카카오를 통해 가입하였습니다.</p>' +
+                      '<h3>이름: </h3>' + newUser.name +
+                      '<h3>이메일: </h3>' + newUser.email
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    console.log(err);
+                    return res.redirect("/");
+                }
+                console.log("Email successfully sent to Trex about Client Kakao creation.");
+            });
+            
             done(null, newUser);
           });
         }
@@ -96,6 +153,34 @@ passport.use("client-google",
                     googleID: profile.id
                 }).save().then((newUser) => {
                     console.log("new User Created: " + newUser);
+                    
+                    // Email Trex about Client Creation
+                    const transporter = nodemailer.createTransport({
+                        service: "Gmail",
+                        auth: {
+                            user: keys.gmailInfo.user,
+                            pass: keys.gmailInfo.pass
+                        },
+                        tls: {
+                            ciphers: "SSLv3"
+                        }
+                    });
+                    const mailOption = {
+                        from : keys.gmailInfo.user,
+                        to : keys.trexEmail.email,
+                        subject : "트렉스 클라이언트 가입",
+                        html: '<p>트렉스에 새로운 클라이언트가 구글을 통해 가입하였습니다.</p>' +
+                              '<h3>이름: </h3>' + newUser.name +
+                              '<h3>이메일: </h3>' + newUser.email
+                    };
+                    transporter.sendMail(mailOption, (err) => {
+                        if(err) {
+                            console.log(err);
+                            return res.redirect("/");
+                        }
+                        console.log("Email successfully sent to Trex about Client Google creation.");
+                    });
+                    
                     done(null, newUser);
                 });
             }
@@ -121,6 +206,34 @@ passport.use("client-naver", new NaverStrategy({
           naverID: profile.id
         }).save().then((newUser) => {
           console.log("new User Created: " + newUser);
+          
+          // Email Trex about Client Creation
+          const transporter = nodemailer.createTransport({
+              service: "Gmail",
+              auth: {
+                  user: keys.gmailInfo.user,
+                  pass: keys.gmailInfo.pass
+              },
+              tls: {
+                  ciphers: "SSLv3"
+              }
+          });
+          const mailOption = {
+              from : keys.gmailInfo.user,
+              to : keys.trexEmail.email,
+              subject : "트렉스 클라이언트 가입",
+              html: '<p>트렉스에 새로운 클라이언트가 네이버를 통해 가입하였습니다.</p>' +
+                    '<h3>이름: </h3>' + newUser.name +
+                    '<h3>이메일: </h3>' + newUser.email
+          };
+          transporter.sendMail(mailOption, (err) => {
+              if(err) {
+                  console.log(err);
+                  return res.redirect("/");
+              }
+              console.log("Email successfully sent to Trex about Client Naver creation.");
+          });
+          
           done(null, newUser);
         });
       }

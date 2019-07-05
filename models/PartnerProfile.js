@@ -38,15 +38,19 @@ var PartnerProfileSchema = mongoose.Schema({
         default: "",
         required: true
     },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
     // 본인 한줄 소개
     oneLineIntro: {
         type: String,
         default: ""
     },
     // 성별 (M, F, N/A) (에이전시일땐 N/A)
-    gender: {
-        type: String
-    },
+    // gender: {
+    //     type: String
+    // },
     // 사업자 등록증 (에이전시일때만)
     businessRegistration: {
         type: String
@@ -77,13 +81,11 @@ var PartnerProfileSchema = mongoose.Schema({
     },
     // 등록일자
     registeredDate: {
-        type: Date,
-        default: Date.now()
+        type: Date
     },
     // 최근 수정일
     lastEditedDate: {
-        type: Date,
-        default: Date.now()
+        type: Date
     },
     // 조회수
     views: {

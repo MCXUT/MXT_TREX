@@ -61,6 +61,20 @@
               font-size: 20px;
 
             }
+            .card{
+                border: 1px solid rgba(0, 0, 0, 0.5);
+              radius: 50%;
+                border-radius: 3px;
+                -webkit-transition: 200ms ease-in-out;
+              	-o-transition: 200ms ease-in-out;
+              	transition: 200ms ease-in-out;
+            }
+            .card:hover{
+              transform: translate3d(0, -1%, 0);
+            	-webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+            	        box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+            }
+
         </style>
 
         <title>Member - 트렉스</title>
@@ -135,22 +149,22 @@
 
                             <div class="divider"></div>
 
-                            <form id="createProfile" action="/user_profile/create_new_profile" method="post"></form>
-                            <div class="container" style="margin-left:7%;margin-top:50px;margin-bottom:100px;">
+                            <!-- <form id="createProfile" action="/user_profile/create_new_profile" method="post"></form> -->
+                            <div class="container" style="margin-left:10%;margin-top:50px;margin-bottom:100px; align-items: center">
                                 <div class="sectionContent">
-                                    <div class="row text-center">
-                                        <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
-                                            <button type="submit" form="createProfile" name="type" value="freelancer">
+                                    <div class="row" style="display: absolute; min-height: 250px;">
+                                        <div class="container2 col-md-3 col-sm-6 card" style="margin-right:50px !important; margin-left: 90px; width: 400px; height: 250px;">
+                                            <button type="submit" form="createProfile" name="type" value="freelancer" style="width: 177px; height: 250px">
                                                 <div class="centered">
-                                                    <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
+                                                    <img src="/static/images/nibbler.jpeg" style="height:250px; width:300px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">프리랜서</div>
                                             </button>
                                         </div>
-                                        <div class="container2 col-md-3 col-sm-6" style="margin:50px !important;">
-                                            <button type="submit" form="createProfile" name="type" value="agency">
+                                        <div class="container2 col-md-3 col-sm-6 card" style="margin-left:50px !important; width: 400px; height: 250px;">
+                                            <button type="submit" form="createProfile" name="type" value="agency" style="width:177px; height: 250px;">
                                                 <div class="centered">
-                                                    <img src="/static/images/nibbler.jpeg" style="height:200px; width:200px;">
+                                                    <img src="/static/images/nibbler.jpeg" style="height:250px; width:300px;">
                                                 </div>
                                                 <div class="centered" style="width:100%;">에이전시</div>
                                             </button>

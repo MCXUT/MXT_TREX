@@ -5,7 +5,6 @@
   <meta charset="utf-8">
 
   <% include ./partials/header %>
-    <link rel="stylesheet" href="../static/stylesheets/style.css">
     <link rel="stylesheet" href="../static/stylesheets/1partnerpage.css">
 
 <script>
@@ -52,7 +51,7 @@ function checkLogin2(){
       <h2><b>트렉스 파트너로</b></h2>
       <h2>수익을 창출하세요</h2>
       <div class="divider-vertical"></div>
-        <a href="/auth/register/partner"><button  id="button1" type="button">파트너 등록하기</button></a>
+        <a href="/auth/register/partner"><button  id="btn_orange" type="button">파트너 등록하기</button></a>
     </div>
 
   </div>
@@ -154,8 +153,8 @@ function checkLogin2(){
 <br><br>
 <!-- 업무에 지원 해 보세요! -->
 <div class="container-fluid padding text-center" >
-  <h2>업무에 지원 해보세요!</h2>
-  <h4 >트렉스 파트너만 지원 가능 합니다.</h4>
+  <h1>업무에 지원 해보세요!</h1>
+  <h2 >트렉스 파트너만 지원 가능 합니다.</h2>
   <hr style="width:100px;border:1px #595959 solid;"><br>
 <div class="container" id="apply_card">
 <div class="sectionContent">
@@ -218,7 +217,7 @@ function checkLogin2(){
 </div>
 </div>
 <br>
-<a href="#"><button type="button" class="btn btn-dark text-center" onclick="checkLogin2();">모든 업무 보기</button></a>
+<a href="#"><button id="btn_outline_orange" type="button" class="btn text-center" onclick="checkLogin2();">모든 업무 보기</button></a>
 </div>
 <!-- /업무에 지원 해 보세요! -->
 <br><br>
@@ -230,7 +229,7 @@ function checkLogin2(){
 <div class="row">
 
 <div class="col-md-12 col-lg-7">
-  <h2 style="color:#f8ba00;">자주 묻는 질문</h2>
+  <h1 style="color:#f58b44;">자주 묻는 질문</h1>
 <style>
 [data-toggle="collapse"]:after {
 display: inline-block;
@@ -309,14 +308,14 @@ transform: rotate(0deg) ;
 </ol>
 
 <!-- <a href="/partner_faq"><button type="button" id="button1">파트너 질문 더 보기</button></a> -->
-<a href="/client_faq?index=2"><button type="button" id="button1">파트너 질문 더 보기</button></a>
+<a href="/client_faq?index=2"><button type="button" id="btn_orange">파트너 질문 더 보기</button></a>
 <br><br>
 </div>
 
 
 
 <div class="col-md-12 col-lg-5">
-  <h2><span style='color:#f8ba00'>트렉스 파트너</span>의 후기</h2>
+  <h1><span style='color:#f58b44'>트렉스 파트너</span>의 후기</h1>
   <!--Carousel Wrapper-->
   <div id="slides2" class="carousel slide carousel-fade" data-ride="carousel">
     <!--Indicators-->
