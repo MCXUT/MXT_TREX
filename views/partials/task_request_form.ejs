@@ -103,7 +103,7 @@ function closeAllModal(){
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
       <div class="modal-header text-center" >
-  <h4 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
+  <h4 class="col-12 modal-title text-cente">업무 요청 Form
     <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999;"></div>
   </h4>
     <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
@@ -190,12 +190,35 @@ function closeAllModal(){
 </div>
 
 <script>
-  document.getElementById("myModal3").addEventListener("click",(e) => {
+    document.getElementById("myModal3").addEventListener("click",(e) => {
         if(e.target.className != "modal-dialog modal-sm"){
           document.getElementById("myModal2").style.opacity="1.0";
         }
 
     });
+
+    document.getElementById("myModal2").addEventListener("click",(e) => {
+        console.log(e);
+          // if(e.target.className != "modal-body"){
+          //     if(e.target.className !="col-12 modal-title text-cente"){
+          //         if(e.target.className !="tab")
+          //         document.getElementById("myModal2").style.opacity="0.5";
+          //     }
+          //   // document.getElementById("myModal2").style.opacity="0.5";
+          // }
+        if(e.target.className == "modal fade text-center show"){
+            // document.getElementById("myModal2").style.display ="block";
+            //
+            document.getElementById("myModal3").style.display="block";
+            document.getElementById("myModal3").classList.add("show");
+            document.getElementById("myModal2").style.display="block";
+            document.getElementById("myModal2").classList.add("show");
+
+            // $("#myModal3").css("z-index", "1050");
+            // document.getElementById("myModal3").style.z-index="1050";
+
+        }
+      });
 
 
 
