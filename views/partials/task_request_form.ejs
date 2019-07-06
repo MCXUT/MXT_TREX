@@ -165,7 +165,7 @@ function closeAllModal(){
 
 <!-- Modal -->
 
-<div class="modal fade" id="myModal3" role="dialog">
+<div class="modal fade" id="myModal3" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-sm" style="margin-top:12%;">
     <div class="modal-content">
       <div class="modal-header" style="display:none;">
@@ -190,13 +190,13 @@ function closeAllModal(){
 </div>
 
 <script>
+
   document.getElementById("myModal3").addEventListener("click",(e) => {
         if(e.target.className != "modal-dialog modal-sm"){
           document.getElementById("myModal2").style.opacity="1.0";
         }
 
     });
-
 
 
 
