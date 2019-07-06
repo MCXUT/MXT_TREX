@@ -39,6 +39,8 @@ const profilePicRoutes = require("./routes/profilePic");
 const coverPhotoRoutes = require("./routes/coverPhoto");
 const companyLogoRoutes = require("./routes/companyLogo");
 const messageRoutes = require("./routes/messages");
+const businessRegistrationRoutes = require("./routes/businessRegistration");
+const mediaRoutes = require("./routes/media");
 
 // Connect to mongodb
 mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
@@ -128,6 +130,8 @@ app.use("/", profilePicRoutes);
 app.use("/", coverPhotoRoutes);
 app.use("/", companyLogoRoutes);
 app.use("/", messageRoutes);
+app.use("/", businessRegistrationRoutes);
+app.use("/", mediaRoutes);
 app.use("/", adminPanelRoutes);
 
 app.set('port', process.env.PORT || 8080);

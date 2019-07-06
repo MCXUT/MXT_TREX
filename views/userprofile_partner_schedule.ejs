@@ -58,7 +58,7 @@
 
             }
             .datepicker td.active.active{
-                background-color: rgb(0, 166, 153) !important;
+                background-color: #F58B44 !important;
                 color: #fff;
                 border-color: none !important;
                 background-image: none;
@@ -68,10 +68,23 @@
             }
 
             .table-condensed{
-                width: 400px;
+                width: 650px;
+                margin-bottom: 20px !important;
+                /* border: 1px solid rgba(0, 0, 0, 0.5) !important; */
+                /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
             }
-            thead > tr{
+            .datepicker-days{
+                border: 1px solid rgba(0, 0, 0, 0.3) !important;
+                width: 690px;
+                padding: 20px;
+                padding-top: 35px;
+            }
+            /* thead > tr{
                 height: 40px;
+            } */
+            .dropdown.bootstrap-select.show-tick{
+                float: right;
+
             }
 
         </style>
@@ -89,6 +102,15 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+
+        <script src="bootstrap-datepicker.ko.js" charset="UTF-8"></script>
 
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -178,7 +200,42 @@
                                     <!-- <input type="text" style="display: none"form="basicinfoform" class="form-control date" name="schedule" multiple value="일-월-년"/> -->
                                     <!-- <span class="date" for="nal"><i class="fas fa-calendar-alt"></i></span> -->
                                 </div>
+
+                                <div class="row" style="width: 100%; float:right; margin-left: 75%" >
+
+                                    <div class="box" style="width: 13px; height: 14px; background: #F58B44; transform: translate3d(0, 50%, 0);margin-right: 4px">
+
+                                    </div>
+                                    <span style="float: right">
+                                     - 불가능 날짜
+                                    </span>
+
+                                </div>
+
+
+
+
                             </div>
+
+
+                            <div class="form-group row" id="har" style="margin-left: 10%;margin-right: 17%;">
+                                <div class="col-sm-5">
+                                    <label for="region">불가능 날짜선택(하나 이상 선택가능)</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                        <option>주중불가능</option>
+                                        <option>주말불가능</option>
+                                        <option>토요일불가능</option>
+                                        <option>일요일불가능</option>
+
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+
                             <!-- <br><br><br><br> -->
                             <!-- <input type="text" form="basicinfoform" class="form-control date" name="schedule" multiple value=""/> -->
                         </div>
@@ -274,11 +331,33 @@
 
     <script>
 
+
+
+
+
         $('.date').datepicker({
             multidate: true,
             format: 'yyyy-mm-dd',
             // leftArrow: '<i class="fas fa-chevron-left"></i>',
         });
+
+
+        $('select').selectpicker();
+
+        // $.('.date').datepicker.dates['en'] = {
+        //     days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+        //     daysShort: ["일", "월", "화", "수", "목", "금", "토"],
+        //     daysMin: ["일", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+        //     months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        //     monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        //     today: "Today",
+        //     clear: "Clear",
+        //     format: "mm/dd/yyyy",
+        //     titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+        //     weekStart: 0
+        // };
+
+
     //
     // $('.date').datepicker({
     //         uiLibrary: 'bootstrap4'
