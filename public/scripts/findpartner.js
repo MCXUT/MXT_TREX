@@ -58,7 +58,7 @@ $("input[type=checkbox]").change(function(e){
   if($(this).hasClass("rebut")){
     if($("input[class=rebut]:checked").length > 0){
       console.log($("input:checked").length);
-      $("#monsta").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta").css("backgroundColor", "#F58B44");
       $("#monsta").css("color", "#fff");
 
 
@@ -69,7 +69,7 @@ $("input[type=checkbox]").change(function(e){
     }
   } else if($(this).hasClass("rebut2")) {
     if($("input[class=rebut2]:checked").length > 0){
-      $("#monsta2").css("backgroundColor", "rgb(0, 132, 137)");
+      $("#monsta2").css("backgroundColor", "#F58B44");
       $("#monsta2").css("color", "#fff");
 
     } else{
@@ -223,7 +223,7 @@ document.querySelector("body").addEventListener("click", (e) => {
       document.getElementById("money").style.display="none";
       $("#paymentis").html(" : " + $("#slider-range").slider("values", 0) + "원 - " +
       $("#slider-range").slider("values", 1) + "원");
-      document.getElementById("moneybar").style.background="rgb(0, 132, 137)"
+      document.getElementById("moneybar").style.background="#F58B44"
       document.getElementById("moneybar").style.color="#fff"
 
 
@@ -309,7 +309,7 @@ $(function(e) {
     // today: "날짜"
   },
   $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
-    $('#nal').css("backgroundColor","rgb(0, 132, 137)");
+    $('#nal').css("backgroundColor","#F58B44");
     $('#nal').css("color","#fff");
 
   })

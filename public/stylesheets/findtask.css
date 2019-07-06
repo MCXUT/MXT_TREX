@@ -203,7 +203,7 @@ input[type=checkbox]:checked + label:before{
      color: #fff;
  }
  .checkbox input[type="checkbox"]:checked + label::before {
-     background-color: #008489;
+     background-color: #F58B44;
  }
 
  /*Adding focus styles on the outer-box of the fake checkbox*/
@@ -462,14 +462,15 @@ color: rgba(0, 0, 0, 0.6)
 }
 
 .daterangepicker td.active{
-background-color:rgb(0, 166, 153) !important;
+background-color:#F58B44 !important;
 }
 /* .daterangepicker td .in-range .end-date{
 background-color: #236298;
 } */
 
 .daterangepicker td.in-range{
-background-color: rgb(102, 226, 218);
+    background-color: #FCAD54;
+    color: #fff;
 }
 
 

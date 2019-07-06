@@ -158,8 +158,8 @@
                             <div class="divider"></div>
                             <br><br>
                             <!-- <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form> -->
-                            
-                            
+
+
                             <form action="/user_profile/edit_partner_resume" method="post" id="profileForm" style="width: 100%;">
                                 <div class="form-group row">
                                     <div class="col-sm-5">
@@ -169,9 +169,9 @@
                                         <input type="text" class="form-control" id="oneLineIntro" name="oneLineIntro" placeholder="클라이언트에게 본인 한줄 소개를 해주세요." value="<%= profileInfo.oneLineIntro %>">
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="form-group row">
                                     <div class="col-sm-5">
                                         <label for="region" style="margin-right:70px;">지역 *</label>
@@ -240,7 +240,7 @@
                                                 <label class="form-check-label" for="unable">불가능</label>
                                             </div>
                                         <% } %>
-                                            
+
                                     </div>
                                 </div>
 
@@ -291,9 +291,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="form-group row">
                                     <div class="col-sm-5">
                                         <label for="aboutMe">경력 소개 (필수 사항)</label>
@@ -302,9 +302,9 @@
                                         <textarea class="form-control" name="aboutMe" id="aboutMe" rows="12"><%= profileInfo.aboutMe %></textarea>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-5">
                                         <label for="aboutMe">업무 스케줄</label>
@@ -313,9 +313,9 @@
                                         <input type="text" name="unavailableDates" class="form-control date" placeholder="업무가 불가능한 날을 선택해주세요."/>
                                     </div>
                                 </div> -->
-                                
-                                
-                                
+
+
+
                                 <!-- <div class="form-group">
                                     <label for="exampleFormControlSelect1">Example select</label>
                                     <select class="form-control" id="exampleFormControlSelect1">
@@ -340,7 +340,7 @@
                                     <label for="exampleFormControlTextarea1">Example textarea</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div> -->
-                            
+
                                 <div style="float:right;">
                                     <input type="submit" class="btn btn-primary" style="margin-right:15px;" value="저장">
                                     <!-- <input type="submit" form="profileForm" class="btn btn-primary" value="저장" style="float:right;"> -->
@@ -349,10 +349,10 @@
                                         취소
                                     </button>
                                 </div>
-                            
+
                             </form>
-                            
-                            
+
+
 
                             <!-- Cancel Confirm Modal -->
                             <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalTitle" aria-hidden="true">
@@ -374,9 +374,9 @@
                                     </div>
                                 </div>
                             </div>
-                        
-                        
-                        
+
+
+
                         </div>
                     </div>
 
@@ -401,11 +401,11 @@
             }
         };
     </script>
-    
+
     <script>
         // Scripts for setting default selected city/country to the user's data
         $('#region').selectpicker('val', "<%= profileInfo.region %>");
-        
+
         var otherRegions = [];
         <% for (var i = 0; i < profileInfo.otherRegion.length; i++) { %>
             var one = "<%= profileInfo.otherRegion[i]%>";
