@@ -58,6 +58,8 @@ body {
     background-color: rgb( 215, 109, 38 );
     border-color: rgb( 215, 109, 38 );
 }
+
+/* end of thin exit button */
 .close1 {
   position: absolute;
   right: 8px;
@@ -84,7 +86,7 @@ body {
 .close1:after {
   transform: rotate(-45deg);
 }
-/* end of thin exit button */
+
 .container-fluid{
   padding-left: 0px;
   padding-right: 0px;
@@ -93,8 +95,8 @@ body {
 }
 
 .padding{
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 .padding2{
   padding-top: 10px;
@@ -206,13 +208,21 @@ body {
 
 /* 서비스 견적 */
 
-.centered{
+.main_carousel{
 position: absolute;
 top: 40%;
 left: 40%;
 transform: translate(-50%, -50%);
 color:white;
 /* font-weight: 200; */
+}
+.centered{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color:white;
+font-size: 22px;
 }
 #request-service{
   height: 100%;
@@ -251,16 +261,139 @@ color:white;
   width: 200px;
   -o-object-fit: contain;
 }
-/* #button3{
-  background-color:#4d4d4d;
-  border:#4d4d4d;
-  border-radius:5px;
-  height:50px;
-  color:white;
+
+.img-hover-zoom {
+  overflow: hidden;
+  height: 300px;
+  width:200px;
 }
-#button3:hover{
-  background-color: #f8ba00;
-} */
+
+.img-hover-zoom img {
+  transition: transform 0.2s ease-in-out;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.1);
+  border-radius: 0 !important;
+}
+
+
+
+
+
+
+/* Arrows */
+
+.swiper-button-prev2,
+.swiper-button-next2 {
+  position: absolute;
+  top: 40%;
+  width: 25px;
+  height: 44px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  -moz-background-size: 27px 44px;
+  -webkit-background-size: 27px 44px;
+  background-size: 27px 44px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-button-prev2.swiper-button-disabled,
+.swiper-button-next2.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.swiper-button-prev2,
+.swiper-container-rtl .swiper-button-next2 {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  left: 10px;
+  right: auto;
+}
+
+.swiper-button-prev2.swiper-button-black,
+.swiper-container-rtl .swiper-button-next2.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+
+.swiper-button-prev2.swiper-button-white,
+.swiper-container-rtl .swiper-button-next2.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+
+.swiper-button-next2,
+.swiper-container-rtl .swiper-button-prev2 {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  right: 10px;
+  left: auto;
+}
+
+.swiper-button-next2.swiper-button-black,
+.swiper-container-rtl .swiper-button-prev2.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+
+.swiper-button-next2.swiper-button-white,
+.swiper-container-rtl .swiper-button-prev2.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+
+/* Pagination Styles */
+
+.swiper-pagination2 {
+  position: absolute;
+  text-align: center;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.swiper-pagination2.swiper-pagination-hidden {
+  opacity: 0;
+}
+
+.swiper-container-vertical > .swiper-pagination2 {
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translate3d(0px, -50%, 0);
+  -moz-transform: translate3d(0px, -50%, 0);
+  -o-transform: translate(0px, -50%);
+  -ms-transform: translate3d(0px, -50%, 0);
+  transform: translate3d(0px, -50%, 0);
+}
+
+.swiper-container-vertical > .swiper-pagination2 .swiper-pagination-bullet {
+  margin: 5px 0;
+  display: block;
+}
+
+.swiper-container-horizontal > .swiper-pagination2 {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}
+
+.swiper-container-horizontal > .swiper-pagination2 .swiper-pagination-bullet {
+  margin: 0 5px;
+}
+
+
 /* /국가,지역 별 파트너 */
 
 /* Accordion Section */
@@ -538,6 +671,12 @@ figure {
     height: auto;
     padding: 70px 10px 90px;
 }
+.lunchbox2 {
+    position: relative;
+    background-color: #fff;
+    height: auto;
+
+}
 .swiper-container {
      width: 70%;
      height: 190px;
@@ -627,6 +766,8 @@ figure {
 #button1:hover {
     background-color: rgb( 45, 114, 169 );
 }
+
+
 /* .grid-item.text-center {
     font-size: 16px;
 }
