@@ -121,7 +121,7 @@
 
 
     <input type="button" name="daterange" value="업무날짜" id="nal"
-    placeholder="업무날짜" class="dropbtn datepicker" style="margin: 5px;">
+    placeholder="업무날짜" onclick="clickedFunction()" class="dropbtn datepicker" style="margin: 5px;">
 
 
 
@@ -531,6 +531,14 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDeQATlbFJtZfqNZQQAAMgdDNfT7Z078&callback=initMap"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&callback=initMap" async defer></script>
 
+
+
+<script>
+    function clickedFunction(){
+        $(".applyBtn").html("적용");
+        $(".cancelBtn").html("취소");
+        $(".applyBtn").css("background-color", "#F58B44");
+    }
 </script>
   </body>
 </html>
