@@ -414,6 +414,107 @@
 
 
 
+
+
+    <script>
+
+        $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
+            <% for (i = 0; i < allProfiles.length; i++){ %>
+                var i, input, filter, wrapper, col, juso, text, map;
+                input = document.getElementById("nal").value;
+                wrapper = document.getElementsByClassName("wow");
+                // console.log(input);
+                // // var e = new Date("07/06/2019-07/18/2019")
+                // // var f = new Date("07/08/2019")
+                // var e = new Date("07/08/2019")
+                // // console.log(e.addDays(1));
+                // console.log(e.addDays(2));
+                var startDate = new Date(input.substring(0, 10));
+                var endDate = new Date(input.substring(13, 23));
+                console.log(startDate);
+                console.log(endDate);
+                // console.log(e.includes(f));
+                var list = getDates(startDate, endDate);
+                console.log(list);
+                var f = new Date("07/09/2019");
+                console.log(f);
+                // // console.log((list.includes(e)));
+
+                // for(var e=0; e<list.length;e++){
+                // for(var r = 0; r < allProfiles[i].unavailableDates.length; r++){
+                //     for(var g = 0; g < list.length; g++){
+                //         if(allProfiles[i].unavailableDates[r].valueOf() == list[g].valueOf()){
+                //             wrapper[i].style.display = "none"
+                //         } else {
+                //             wrapper[i].style.display = "inline-block"
+                //         }
+                //     }
+                // }
+                // if(allProfiles.unavailableDates)
+                // console.log(list[e].valueOf() == f.valueOf())
+                // }
+                // var g = new Date("07/09/2019");
+                // console.log(g.valueOf()==f.valueOf());
+                // console.log(e);
+
+
+                //
+                // var i, input, filter, wrapper, col, juso, text, map;
+                // input = document.getElementById("mymyInput").value;
+                // wrapper = document.getElementsByClassName("wow");
+                // // col = wrapper.document.quarySelector(".col");
+                // juso = document.getElementsByClassName("juso");
+                // map = document.getElementById("map");
+                // // text = juso[0].textContent;
+                // console.log(wrapper);
+                // // console.log()
+                // // console.log(input);
+                // console.log(juso);
+                // // console.log(text);
+                // // console.log(juso[0].textContent.includes(input));
+                // // console.log(wrapper.length/2);
+                // for(i=0; i<wrapper.length; i++){
+                //   if(juso[i].textContent.includes(input)){
+                //     wrapper[i].style.display = "inline-block";
+                //   }
+                //   else{
+                //     wrapper[i].style.display = "none";
+                //   }
+                // }
+
+
+          $('#nal').css("backgroundColor","#F58B44");
+          $('#nal').css("color","#fff");
+        <%}%>
+    });
+
+
+
+    </script>
+
+    <script>
+        Date.prototype.addDays = function(days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        };
+
+        function getDates(startDate, stopDate) {
+            var dateArray = [];
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push(new Date (currentDate));
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+
+    </script>
+
+
+
+
+
     <script>
       var map;
 
