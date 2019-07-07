@@ -66,7 +66,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
         validateAddress(req.body.postalCode);
     }
 
-    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.state + ", " + req.body.country + ", " + req.body.postalCode;
+    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
 
     // Get coordinates of the new address
     googleMapsClient.geocode({
@@ -101,7 +101,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                 foundUser.address.streetAddress = req.body.streetAddress;
                 foundUser.address.detailedAddress = req.body.detailedAddress;
                 foundUser.address.city = req.body.city;
-                foundUser.address.state = req.body.state;
+                // foundUser.address.state = req.body.state;
                 foundUser.address.country = req.body.country;
                 foundUser.address.postalCode = req.body.postalCode;
                 foundUser.address.coordinates = newCoordinates;

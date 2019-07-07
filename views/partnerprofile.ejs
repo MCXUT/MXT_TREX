@@ -118,10 +118,16 @@
                                           <% } %>
                                         </h6>
                                     </div>
-                                    <p class="onelinedesc">비지니스 업무 전문 파트너입니다!</p>
+                                    <!-- <p class="onelinedesc">비지니스 업무 전문 파트너입니다!</p> -->
+                                    <% if (thisProfile) { %>
+                                        <p class="onelinedesc"><%= thisProfile.oneLineIntro %></p>
+                                    <% } %>
                                     <div class="row">
                                             <span><img src="/static/icons/location.svg" style="width: 17px; height: 17px"></img><b>지역</b></span>
-                                            <span>몬트리올</span>
+                                            <!-- <span>몬트리올</span> -->
+                                            <% if (thisProfile) { %>
+                                                <span><%= thisProfile.region %></span>
+                                            <% } %>
                                     </div>
                                     <div class="row">
                                             <span><img src="/static/icons/flag.svg" style="width: 17px; height: 17px"></img><b>타 지역 업무 가능 여부</b></span>
@@ -143,7 +149,12 @@
                     <div class="description-title">
                         <p class="divtitle">파트너 소개</p>
                     </div>
-                    <p id="basicContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <!-- <p id="basicContent">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p> -->
+                    <% if (thisProfile) { %>
+                        <p id="basicContent"><%= thisProfile.aboutMe %></p>
+                    <% } %>
                     <span class="readmore"><a id="expand" href="#">더보기</a></span>
                     <span class="readless"><a id="collapse" href="#">접기</a></span>
                 </div>

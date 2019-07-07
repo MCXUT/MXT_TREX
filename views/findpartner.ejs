@@ -262,15 +262,15 @@
                         </div>
                       <% } %>
 
-                    <h5><%= allPartners[i].name %>
-                    <% if(allProfiles[i].isInterviewed) { %>
-                        <i class="fas fa-award"></i>
-                    <% } %>
+                    <h5>
+                        <%= allPartners[i].name %>
+                        <% if(allProfiles[i].isInterviewed) { %>
+                            <i class="fas fa-award"></i>
+                        <% } %>
                     </h5>
                     <% if (allPartners[i].partnerProfile) { %>
-                        (<%= allProfiles[i].type %>)
-                        <%= allProfiles[i].oneLineIntro %>
-                        <%= allProfiles[i].unavailableDates %>
+                        (<%= allProfiles[i].type %>)<br>
+                        <%= allProfiles[i].oneLineIntro %><br>
                     <% } %>
 
                     <!-- <% if(allProfiles[i].isInterviewed) { %>
@@ -278,13 +278,7 @@
                     <% } %> -->
 
                     <h7 class="juso">
-                      <% if (allPartners[i].address.city && allPartners[i].address.state) { %>
-                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
-                      <% } else if (allPartners[i].address.city) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
-                      <% } else if (allPartners[i].address.state) { %>
-                          <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
-                      <% } %>
                     </h7>
                   </center>
                   </a>

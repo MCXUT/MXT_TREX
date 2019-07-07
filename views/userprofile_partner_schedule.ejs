@@ -2,10 +2,22 @@
     <head>
         <meta charset="utf-8">
         <style>
+            .showBttn {
+                display: inline !important;
+            }
+            .btn-primary {
+                /* display: inline !important; */
+                background-color:#f58b44 !important;
+                border-color:#f58b44 !important;
+            }
             .btn-primary:hover {
                 cursor: pointer;
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
+                /* background-color: #00b3db !important;
+                border-color: #00b3db !important; */
+                opacity: 0.9;
+            }
+            a:hover {
+                cursor: pointer;
             }
             #avatar{
                 border-radius: 50%;
@@ -195,20 +207,23 @@
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>일정 관리</b></p>
                                 <div class="divider"></div>
+                                <form id="editUnavailability" action="/user_profile/edit_unavailable_dates" method="post"></form>
                                 <div class="input-group form-group date">
-                                    <input type="text" id="koko" value="" style="display:none;">
+                                    <input type="text" id="koko" form="editUnavailability" name="unavailability" value="<%= unavailableDates %>" style="display:none;">
                                     <!-- <input type="text" style="display: none"form="basicinfoform" class="form-control date" name="schedule" multiple value="일-월-년"/> -->
                                     <!-- <span class="date" for="nal"><i class="fas fa-calendar-alt"></i></span> -->
                                 </div>
-
+                                
                                 <div class="row" style="width: 100%; float:right; margin-left: 75%" >
-
+                                    
                                     <div class="box" style="width: 13px; height: 14px; background: #F58B44; transform: translate3d(0, 50%, 0);margin-right: 4px">
 
                                     </div>
                                     <span style="float: right">
                                      - 불가능 날짜
                                     </span>
+                                    
+                                    <input type="submit" form="editUnavailability" value="날짜 조정" class="btn btn-primary btn-block showBttn">
 
                                 </div>
 
