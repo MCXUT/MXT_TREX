@@ -58,10 +58,10 @@ router.get("/trex-admin", function(req,res) {
 
 router.get("/deleteClient/:id", function(req,res) {
     console.log("clientID: " + req.params.id);
-    Client.findById( req.params.id , function(err, foundClient) {
+    Client.findByIdAndRemove( req.params.id , function(err, foundUser) {
         if(err) throw err;
-        console.log(foundClient);
-        DeletedAccount.createDeletedClient(foundClient, (err, deletedClient) => {
+        console.log(foundUser);
+        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
             if(err) throw err;
             res.redirect("/trex-admin?index=2");
         });
@@ -73,9 +73,17 @@ router.get("/deleteClient/:id", function(req,res) {
 
 router.get("/deletePartner/:id", function(req,res) {
     console.log("partnerID: " + req.params.id);
-    Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
-        res.redirect("/trex-admin?index=3");
+    Partner.findById( req.params.id , function(err, foundUser) {
+        if(err) throw err;
+        console.log(foundUser);
+        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
+            if(err) throw err;
+            res.redirect("/trex-admin?index=3");
+        });
     });
+    // Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
+    //     res.redirect("/trex-admin?index=3");
+    // });
 });
 
 router.get("/deleteAdmin/:id", function(req,res) {

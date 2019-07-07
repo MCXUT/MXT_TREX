@@ -1,29 +1,25 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 
 var DeletedAccountSchema = mongoose.Schema({
     deletionDate: {
         type: Date,
-        default: Date.now() + (60000*60*24*7) // 7 days
+        default: Date.now() + (60000 * 60 * 24 * 7) // 7 days
     },
-    // Both Client and Partners common types:
+    // Both Client and Partners' common types:
     // type / messageNotification / name / email / password / dateOfBirth /
     // kakaoID / naverID / googleID / facebookID / registeredDate
     type: {
-        type: String,
+        type: String
     },
     messageNotification: {
-        type: Boolean,
-        default: false
+        type: Boolean
     },
     name: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
-        type: String,
-        unique: true
-    },//, required: true},
+        type: String
+    }, //, required: true},
     password: {
         type: String
     },
@@ -45,8 +41,7 @@ var DeletedAccountSchema = mongoose.Schema({
         type: String
     },
     registeredDate: {
-        type: Date,
-        default: Date.now()
+        type: Date
     },
     // For Clients
     category: {
@@ -77,26 +72,22 @@ var DeletedAccountSchema = mongoose.Schema({
         type: String
     },
     companyLogo: {
-        type: String,
-        default: ""
+        type: String
     },
-    // For Partners
+    //PartnerSchema
     languages: {
         langchoice: [String],
         langproficiency: [String]
     },
-address: {
+    address: {
         numberAddress: {
-            type: String,
-            default: ""
+            type: String
         },
         streetAddress: {
-            type: String,
-            default: ""
+            type: String
         },
         detailedAddress: {
-            type: String,
-            default: ""
+            type: String
         },
         city: {
             type: String
@@ -112,87 +103,67 @@ address: {
         },
         coordinates: {
             lat: Number,
-            lng: Number,
-            default: {}
+            lng: Number
         }
     },
-phoneNumber: {
+    phoneNumber: {
         type: String
     },
-profilePic: {
-        type: String,
-        default: ""
+    profilePic: {
+        type: String
     },
     coverPhoto: {
-        type: String,
-        default: ""
+        type: String
     },
     partnerProfile: {
-        type: String,
-        default: ""
+        type: String
     },
-ratings: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Rating"
-        }
-    ],
-payments: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Payment"
-        }
-    ]
-}, {minimize: false});
+    ratings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Rating"
+    }],
+    payments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Payment"
+    }]
+}, {
+    minimize: false
+});
 
 var DeletedAccount = module.exports = mongoose.model('DeletedAccount', DeletedAccountSchema);
 
-module.exports.createDeletedClient = (foundClient, done) => {
+module.exports.createDeletedAccount = (foundUser, done) => {
     var toBeDeleted = new DeletedAccount({});
-    if(foundClient.type) toBeDeleted.type = foundClient.type;
-    if(foundClient.messageNotification) toBeDeleted.messageNotification = foundClient.messageNotification;
-    if(foundClient.name) toBeDeleted.name = foundClient.name;
-    if(foundClient.email) toBeDeleted.email = foundClient.email;
-    if(foundClient.password) toBeDeleted.password = foundClient.password;
-    if(foundClient.dateOfBirth) toBeDeleted.dateOfBirth = foundClient.dateOfBirth;
-    if(foundClient.category) toBeDeleted.category = foundClient.category;
-    if(foundClient.savedPartners) toBeDeleted.savedPartners = foundClient.savedPartners;
-    if(foundClient.managerPosition) toBeDeleted.managerPosition = foundClient.managerPosition;
-    if(foundClient.managerPhoneNumber) toBeDeleted.managerPhoneNumber = foundClient.managerPhoneNumber;
-    if(foundClient.companyName) toBeDeleted.companyName = foundClient.companyName;
-    if(foundClient.companyAddress) toBeDeleted.companyAddress = foundClient.companyAddress;
-    if(foundClient.companyWebsite) toBeDeleted.companyWebsite = foundClient.companyWebsite;
-    if(foundClient.companySNS) toBeDeleted.companySNS = foundClient.companySNS;
-    if(foundClient.companyDescription) toBeDeleted.companyDescription = foundClient.companyDescription;
-    if(foundClient.kakaoID) toBeDeleted.kakaoID = foundClient.kakaoID;
-    if(foundClient.facebookID) toBeDeleted.facebookID = foundClient.facebookID;
-    if(foundClient.googleID) toBeDeleted.googleID = foundClient.googleID;
-    if(foundClient.naverID) toBeDeleted.naverID = foundClient.naverID;
-    if(foundClient.companyLogo) toBeDeleted.companyLogo = foundClient.companyLogo;
-    if(foundClient.registeredDate) toBeDeleted.registeredDate = foundClient.registeredDate;
-    toBeDeleted.save(done);
-}
-
-module.exports.createDeletedPartner = (foundPartner, done) => {
-    var toBeDeleted = new DeletedAccount({});
-    if(foundPartner.type) toBeDeleted.type = foundPartner.type;
-    if(foundPartner.messageNotification) toBeDeleted.messageNotification = foundPartner.messageNotification;
-    if(foundPartner.name) toBeDeleted.name = foundPartner.name;
-    if(foundPartner.email) toBeDeleted.email = foundPartner.email;
-    if(foundPartner.password) toBeDeleted.password = foundPartner.password;
-    if(foundPartner.dateOfBirth) toBeDeleted.dateOfBirth = foundPartner.dateOfBirth;
-    if(foundPartner.languages) toBeDeleted.languages = foundPartner.languages;
-    if(foundPartner.address) toBeDeleted.address = foundPartner.address;
-    if(foundPartner.phoneNumber) toBeDeleted.phoneNumber = foundPartner.phoneNumber;
-    if(foundPartner.kakaoID) toBeDeleted.kakaoID = foundPartner.kakaoID;
-    if(foundPartner.facebookID) toBeDeleted.facebookID = foundPartner.facebookID;
-    if(foundPartner.googleID) toBeDeleted.googleID = foundPartner.googleID;
-    if(foundPartner.naverID) toBeDeleted.naverID = foundPartner.naverID;
-    if(foundPartner.profilePic) toBeDeleted.profilePic = foundPartner.profilePic;
-    if(foundPartner.coverPhoto) toBeDeleted.coverPhoto = foundPartner.coverPhoto;
-    if(foundPartner.partnerProfile) toBeDeleted.partnerProfile = foundPartner.partnerProfile;
-    if(foundPartner.registeredDate) toBeDeleted.registeredDate = foundPartner.registeredDate;
-    if(foundPartner.ratings) toBeDeleted.ratings = foundPartner.ratings;
-    if(foundPartner.payments) toBeDeleted.payments = foundPartner.payments;
+    if (foundUser.type) toBeDeleted.type = foundUser.type;
+    if (foundUser.messageNotification) toBeDeleted.messageNotification = foundUser.messageNotification;
+    if (foundUser.name) toBeDeleted.name = foundUser.name;
+    if (foundUser.email) toBeDeleted.email = foundUser.email;
+    if (foundUser.password) toBeDeleted.password = foundUser.password;
+    if (foundUser.dateOfBirth) toBeDeleted.dateOfBirth = foundUser.dateOfBirth;
+    if (foundUser.kakaoID) toBeDeleted.kakaoID = foundUser.kakaoID;
+    if (foundUser.facebookID) toBeDeleted.facebookID = foundUser.facebookID;
+    if (foundUser.googleID) toBeDeleted.googleID = foundUser.googleID;
+    if (foundUser.naverID) toBeDeleted.naverID = foundUser.naverID;
+    if (foundUser.registeredDate) toBeDeleted.registeredDate = foundUser.registeredDate;
+    //Clients
+    if (foundUser.category) toBeDeleted.category = foundUser.category;
+    if (foundUser.savedPartners) toBeDeleted.savedPartners = foundUser.savedPartners;
+    if (foundUser.managerPosition) toBeDeleted.managerPosition = foundUser.managerPosition;
+    if (foundUser.managerPhoneNumber) toBeDeleted.managerPhoneNumber = foundUser.managerPhoneNumber;
+    if (foundUser.companyName) toBeDeleted.companyName = foundUser.companyName;
+    if (foundUser.companyAddress) toBeDeleted.companyAddress = foundUser.companyAddress;
+    if (foundUser.companyWebsite) toBeDeleted.companyWebsite = foundUser.companyWebsite;
+    if (foundUser.companySNS) toBeDeleted.companySNS = foundUser.companySNS;
+    if (foundUser.companyDescription) toBeDeleted.companyDescription = foundUser.companyDescription;
+    if (foundUser.companyLogo) toBeDeleted.companyLogo = foundUser.companyLogo;
+    //Partners
+    if (foundUser.languages) toBeDeleted.languages = foundUser.languages;
+    if (foundUser.address) toBeDeleted.address = foundUser.address;
+    if (foundUser.phoneNumber) toBeDeleted.phoneNumber = foundUser.phoneNumber;
+    if (foundUser.profilePic) toBeDeleted.profilePic = foundUser.profilePic;
+    if (foundUser.coverPhoto) toBeDeleted.coverPhoto = foundUser.coverPhoto;
+    if (foundUser.partnerProfile) toBeDeleted.partnerProfile = foundUser.partnerProfile;
+    if (foundUser.ratings) toBeDeleted.ratings = foundUser.ratings;
+    if (foundUser.payments) toBeDeleted.payments = foundUser.payments;
     toBeDeleted.save(done);
 }
