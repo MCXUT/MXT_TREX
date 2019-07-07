@@ -209,6 +209,49 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
 
 
 
+// Edit partner profile unavailable dates
+// 불가능 날짜 수정
+router.post("/user_profile/edit_unavailable_dates", function(req, res) {
+    console.log(req.body.unavailability);
+    // console.log(typeof req.body.unavailability);
+    // console.log(req.body.unavailability.split(','));
+    // console.log(typeof req.body.unavailability.split(','));
+    // console.log(moment(req.body.unavailability.split(',')[0]).format('MM/DD/YYYY'));
+    // var d = req.body.unavailability.split(',');
+    // for (var i = 0; i < d.length; i++) {
+    //     d[i] = new Date(d[i]);
+    // }
+    // console.log(d);
+    // var x = new Date(req.body.unavailability.split(','))
+    // console.log(x);
+    // return res.redirect("/user_profile/schedule");
+    PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/user_profile/schedule");
+        }
+        
+        var dates = req.body.unavailability.split(',');
+        for (var i = 0; i < dates.length; i++) {
+            dates[i] = new Date(dates[i]);
+        }
+        
+        foundProfile.unavailableDates = dates;
+        foundProfile.lastEditedDate = Date.now();
+        
+        foundProfile.save((err) => {
+              if (err) {
+                console.log(err);
+                req.flash("error", "프로필을 업데이트 할수 없습니다. 다시 시도해 주세요.");
+                return res.redirect("/user_profile/schedule");
+              }
+              console.log("Partner Profile Unavailable Date Update Successful for " + req.user.name);
+              return res.redirect("/user_profile/schedule");
+        });
+    });
+});
+
+
 
 // 파트너 프로필 전환 (프리랜서 <-> 에이전시)
 // router.post("/user_profile/convert_partnerProfile_type", function(req, res) {

@@ -48,11 +48,11 @@ var ClientSchema = mongoose.Schema({
     managerPhoneNumber: {
         type: String
     },
-    // 화사 또는 기관명 
+    // 화사 또는 기관명
     companyName: {
         type: String
     },
-    // 화사 주소 
+    // 화사 주소
     companyAddress: {
         type: String
     },

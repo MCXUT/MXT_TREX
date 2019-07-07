@@ -249,22 +249,22 @@
                                                 </div>
                                             <% } %>
                                         </div>
-                                        <% if (partnerProfile.businessRegistration.length < 3) { %>
+                                        <% if (partnerProfile.businessRegistration.length < 2) { %>
                                             <div class="col-sm-8">
                                                 <form id="businessRegistrationForm" action="/user_profile/businessRegistrationUpload" method="post" enctype="multipart/form-data">
                                                     <div class="input-group">
                                                         <label class="input-group-btn">
                                                             <span class="btn btn-primary showBttn">
-                                                                검색<input type="file" name="businessRegistration" accept="image/*" multiple="multiple" style="display:none;" required />
+                                                                검색<input type="file" id="brUpload" name="businessRegistration" accept="image/*" multiple="multiple" style="display:none;" required />
                                                             </span>
                                                         </label>
                                                         <input type="text" class="form-control" value="사업자 등록증을 업로드 해주세요." readonly>
                                                     </div>
-                                                    <font size=2>파일은 사진으로만 업로드 해주세요 (.png, .jpg, .jpeg)<br>최대 총 3개까지 업로드 가능합니다.</font>
+                                                    <font size=2>파일은 사진으로만 업로드 해주세요 (.png, .jpg, .jpeg)<br>최대 총 2개까지 업로드 가능합니다.</font>
                                                 </form>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input type="submit" form="businessRegistrationForm" value="사업자 등록증 업로드" class="btn btn-primary btn-block showBttn">
+                                                <input type="submit" id="brUploadSubmit" form="businessRegistrationForm" value="사업자 등록증 업로드" class="btn btn-primary btn-block showBttn">
                                             </div>
                                         <% } %>
                                         
@@ -306,23 +306,23 @@
                                             </div>
                                         <% } %>
                                     </div>
-                                    <% if (partnerProfile.media.length < 3) { %>
+                                    <% if (partnerProfile.media.length < 8) { %>
                                         <div class="col-sm-8">
                                             <form id="mediaForm" action="/user_profile/mediaUpload" method="post" enctype="multipart/form-data">
                                                 <div class="input-group">
                                                     <label class="input-group-btn">
                                                         <span class="btn btn-primary showBttn">
-                                                            검색<input type="file" name="media" accept="image/*" multiple="multiple" style="display:none;" required />
+                                                            검색<input type="file" id="mediaUpload" name="media" accept="image/*" multiple="multiple" style="display:none;" required />
                                                         </span>
                                                     </label>
                                                     <input type="text" class="form-control" value="파일 업로드" readonly>
                                                 </div>
-                                                <font size=2>업로드 가능 파일 형식: (.png, .jpg, .jpeg)<br>최대 총 3개까지 업로드 가능합니다.</font>
+                                                <font size=2>업로드 가능 파일 형식: (.png, .jpg, .jpeg)<br>최대 총 8개까지 업로드 가능합니다.</font>
                                             </form>
                                         </div>
                                     <% } %>
                                     <div class="col-sm-4">
-                                        <input type="submit" form="mediaForm" value="파일 업로드" class="btn btn-primary btn-block showBttn">
+                                        <input type="submit" id="mediaUploadSubmit" form="mediaForm" value="파일 업로드" class="btn btn-primary btn-block showBttn">
                                     </div>
                                     
                                     <!-- Display partner's uploaded files -->
@@ -382,6 +382,36 @@
     </script>
     
     <script>
+        // $('#brUpload').change(function() {
+        //     if (this.files.length > 2){
+        //         alert('too many files');
+        //         this.value = '';
+        //     }
+        // });
+        
+        // Two functions below are for limiting the number of file uploads for 사업자등록증 and 미디어
+        $(document).ready(function(){
+            $('#brUpload').change(function(){
+                if (this.files.length > (2 - <%= partnerProfile.businessRegistration.length %>)) {
+                    alert("사업자 등록증은 최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    $('#brUploadSubmit').attr('disabled',true); 
+                } else {
+                    $('#brUploadSubmit').attr('disabled',false);
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $('#mediaUpload').change(function(){
+                if (this.files.length > (8 - <%= partnerProfile.media.length %>)) {
+                    alert("미디어는 최대 총 8개의 파일까지만 업로드 할수 있습니다.");
+                    $('#mediaUploadSubmit').attr('disabled',true); 
+                } else {
+                    $('#mediaUploadSubmit').attr('disabled',false);
+                }
+            });
+        });
+        
         // Script for file input (사업자등록증 / 미디어 in this case) button and displaying the file name
         $(function() {
             // We can attach the `fileselect` event to all file inputs on the page
@@ -395,31 +425,39 @@
             $(document).ready( function() {
                 $(':file').on('fileselect', function(event, numFiles, label) {
                     
-                    <% if(partnerProfile.businessRegistration) { %>
-                        if (numFiles > (2 - <%= partnerProfile.businessRegistration.length %>)){
-                            alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
-                        } else {
-                            var input = $(this).parents('.input-group').find(':text'),
-                                log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-                            if( input.length ) {
-                                input.val(log);
-                            } else {
-                                if( log ) alert(log);
-                            }
-                        }
-                    <% } else { %>
-                        if (numFiles > 2){
-                            alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
-                        } else {
-                            var input = $(this).parents('.input-group').find(':text'),
-                                log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-                            if( input.length ) {
-                                input.val(log);
-                            } else {
-                                if( log ) alert(log);
-                            }
-                        }
-                    <% } %>
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                    if( input.length ) {
+                        input.val(log);
+                    } else {
+                        if( log ) alert(log);
+                    }
+                    
+                    // <% if(partnerProfile.businessRegistration) { %>
+                    //     if (numFiles > (2 - <%= partnerProfile.businessRegistration.length %>)){
+                    //         alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    //     } else {
+                    //         var input = $(this).parents('.input-group').find(':text'),
+                    //             log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                    //         if( input.length ) {
+                    //             input.val(log);
+                    //         } else {
+                    //             if( log ) alert(log);
+                    //         }
+                    //     }
+                    // <% } else { %>
+                    //     if (numFiles > 2){
+                    //         alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    //     } else {
+                    //         var input = $(this).parents('.input-group').find(':text'),
+                    //             log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                    //         if( input.length ) {
+                    //             input.val(log);
+                    //         } else {
+                    //             if( log ) alert(log);
+                    //         }
+                    //     }
+                    // <% } %>
                     
                     // var input = $(this).parents('.input-group').find(':text'),
                     //   log = numFiles > 1 ? numFiles + ' files selected' : label;
