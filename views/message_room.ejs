@@ -282,6 +282,12 @@
 
         </head>
         <body>
+            <% if (currentUser.type === "c") { %>
+                <% include ./partials/profileedit-businessicon %>
+            <% } else { %>
+                <% include ./partials/profileedit-background %>
+                <% include ./partials/profileedit-image %>
+            <% } %>
             <% include ./partials/navbar %>
 
 
@@ -324,18 +330,47 @@
                 <div class="row bottom">
                     <div class="col-md-4 col-12" style="height: 80%">
                         <% if (currentUser.type === "c") { %>
+                            <div class="backgroundimgClient">
+                            </div>
+
+                            <div class="mainimg">
                             <% if (currentUser.companyLogo) { %>
-                              <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                                <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                             <% } else { %>
-                              <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
+                                <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
                             <% } %>
+                                <div class="changeslider">
+                                    사진 바꾸기<br/>
+                                    <span class="camera"></span>
+                                </div>
+                            </div>
+
                             <p class="userName"><%= currentUser.name %></p>
                         <% } else if (currentUser.type === "p") { %>
+                            <div class="backgroundimg">
+                                <% if (currentUser.coverPhoto) { %>
+                                    <img id="kokoman" src="/coverPhoto/<%= currentUser.coverPhoto %>">
+                                <% } else { %>
+                                    <img id="kokoman" src="/static/images/slider/slider-4-montreal.jpg">
+                                <% } %>
+                                <div class="changefade">
+                                    배경 사진 바꾸기
+                                    <span class="camera"></span>
+                                </div>
+                            </div>
+
+                            <div class="mainimg">
                             <% if (currentUser.profilePic) { %>
-                              <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                                <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                             <% } else { %>
-                              <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                                <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                             <% } %>
+                                <div class="changeslider">
+                                    사진 바꾸기<br/>
+                                    <span class="camera"></span>
+                                </div>
+                            </div>
+
                             <p class="userName"><%= currentUser.name %></p>
                         <% } %>
                     </div>
@@ -416,7 +451,7 @@
 
         <br><br><br><br><br><br>
 
-
+    <script src="/static/scripts/changeimg.js"></script>
     <script src="/static/scripts/profileedit.js"></script>
     <% include ./partials/footer %>
 
