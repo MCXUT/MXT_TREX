@@ -100,7 +100,7 @@
     </head>
     <body>
 
-        <% include ./partials/profileedit-image %>
+        <% include ./partials/profileedit-businessicon %>
 
         <% include ./partials/navbar %>
 
@@ -132,10 +132,10 @@
                         </div>
 
                         <div class="mainimg">
-                        <% if (currentUser.profilePic) { %>
-                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                        <% if (currentUser.companyLogo) { %>
+                            <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                         <% } else { %>
-                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                          <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
                         <% } %>
                             <div class="changeslider">
                                 사진 바꾸기<br/>
