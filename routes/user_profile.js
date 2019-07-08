@@ -163,11 +163,11 @@ router.get("/user_profile/schedule", (req, res) => {
                 console.log(err);
                 return res.redirect("/user_profile");
             }
-            var unavailability = [];
-            for (var i = 0; i < foundProfile.unavailableDates.length; i++) {
-                unavailability[i] = moment.utc(foundProfile.unavailableDates[i]).format('YYYY-MM-DD');
-            }
-            res.render("userprofile_partner_schedule", { unavailableDates: unavailability });
+            // var unavailability = [];
+            // for (var i = 0; i < foundProfile.unavailableDates.length; i++) {
+            //     unavailability[i] = moment.utc(foundProfile.unavailableDates[i]).format('YYYY-MM-DD');
+            // }
+            res.render("userprofile_partner_schedule", { unavailableDates: foundProfile.unavailableDates });
         });
     }
   }

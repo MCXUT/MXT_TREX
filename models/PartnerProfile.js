@@ -74,7 +74,7 @@ var PartnerProfileSchema = mongoose.Schema({
         default: ""
     },
     // 예약 불가능일
-    unavailableDates: [Date],
+    unavailableDates: [String],
     // 제공 서비스
     availableServices: [ServiceSchema],
     // 파트너 인터뷰 여부

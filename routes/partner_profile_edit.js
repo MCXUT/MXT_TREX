@@ -231,12 +231,12 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
             return res.redirect("/user_profile/schedule");
         }
         
-        var dates = req.body.unavailability.split(',');
-        for (var i = 0; i < dates.length; i++) {
-            dates[i] = new Date(dates[i]);
-        }
+        // var dates = req.body.unavailability.split(',');
+        // for (var i = 0; i < dates.length; i++) {
+        //     dates[i] = new Date(dates[i]);
+        // }
         
-        foundProfile.unavailableDates = dates;
+        foundProfile.unavailableDates = req.body.unavailability.split(',');
         foundProfile.lastEditedDate = Date.now();
         
         foundProfile.save((err) => {
