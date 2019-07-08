@@ -148,7 +148,7 @@ var ratingpage = () => {
 ratingpage();
 
 var clickoutsiderate = () => {
-    document.querySelector(".pumrate").addEventListener("click", (e) => {
+    $(".pumrate").on("click", (e) => {
         if(e.target.className === "pumrate pumactive") {
             $(".pumrate").fadeOut(400, () => {
                 $(".pumrate").toggleClass("pumactive");

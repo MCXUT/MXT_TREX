@@ -18,14 +18,14 @@
                top: 50%;
                -ms-transform: translateY(-50%);
                transform: translate3d(-50%,-50%,0);
-      
+
           }
           .leftside, .rightside{
               width: 100%;
               /* border: 1px solid rgba(0, 0, 0, 0.5); */
               margin-bottom: 10px;
               z-index: 2;
-      
+
           }
           #left{
             max-width: 25%;
@@ -48,7 +48,7 @@
             margin:0;
             padding-left: 2.5%;
             padding-right: 2.5%;
-      
+
           }
           #wrapper .row{
             border: 1px solid rgba(0, 0, 0, 0.3);
@@ -56,19 +56,19 @@
           }
           #wrapper h4{
             font-size: 20px;
-      
+
           }
-      
+
         </style>
         <% include ./partials/header %>
 
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <% include ./partials/profileedit-image %>
 
         <% include ./partials/navbar %>
-        
+
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
 
         <div class="profile">
@@ -86,31 +86,41 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
-                        <% if (currentUser.companyLogo) { %>
-                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimgClient">
+                        </div>
+
+                        <div class="mainimg">
+                        <% if (currentUser.profilePic) { %>
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
                         <!-- 메세지 -->
                         <div class="todisplay" id="messages">
-                        
+
                             <% if (error.length > 0) { %>
                               <span style="color:red;margin-left:70px;"><%= error_profile %></span>
                             <% } %>
-                            
-                            
+
+
                             <form action="/start_message" method="post">
                                 To: <input type="text" name="send_to"><br>
                                 Content: <textarea class="form-control" name="content" rows="5"></textarea><br>
                                 <button class="btn btn-info">메세지 만들어 보내기</button>
                             </form>
-                            
-                            
+
+
                             <!-- <% for (var i = 0; i < messages.length; i++) { %>
                                 <hr>
                                     <% if (messages[i].partnerPic) { %>
@@ -142,9 +152,9 @@
                                         </form>
                                 <hr>
                             <%  } %> -->
-                            
+
                             <!-- ///////////////////////////////////////////////// -->
-                            
+
                             <div class="wrapper" id="wrapper" style="width: 100%; height: 550px; overflow-y:scroll;
                               overflow-x: hidden; float:left; position: relative; margin:0;
                               padding-left: 2.5%; padding-right: 2.5%;">
@@ -184,16 +194,16 @@
                                     <%  } %>
                                 </div>
                             </div>
-                            
+
                             <!-- ///////////////////////////////////////////////// -->
-                            
+
                         </div>
-                        
-                      
-                      
+
+
+
                         <!-- 계정 관리 -->
                         <div class="todisplay" id="accountinfo">
-                        
+
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
@@ -263,7 +273,7 @@
                                 </div>
                                 <div class="divider"></div>
                                 <div class="row element" style="margin-left:15px;">
-                                    
+
                                       <span class="switch">
                                           <div class="input-group">
                                               <label class="input-group-btn">
@@ -274,15 +284,15 @@
                                               <input type="text" class="form-control" style="max-width:400px!important;" readonly>
                                           </div>
                                       </span>
-                                      
+
                                       <span class="switch">
                                         <font size=2>로고 사이즈는 150x150px로 맞춰주세요.</font>
                                       </span>
-                                      
+
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="row sections security" id="security">
                                 <p class="basictitle"><b>보안 정보</b></p>
                                 <form id="privateinfoform" action="/user_profile/security" method="post">
@@ -309,11 +319,13 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
+
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -352,7 +364,7 @@
             });
     });
     </script>
-    
+
     <script>
         // Script for file input (profile picture in this case) button and displaying the file name
         $(function() {
@@ -380,7 +392,7 @@
             });
         });
     </script>
-    
+
     <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>

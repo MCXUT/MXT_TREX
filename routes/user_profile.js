@@ -97,7 +97,7 @@ router.get("/user_profile/tasks", (req, res) => {
                      //--------------------------
                      res.render("userprofile_partner_task", {
                          allPartners: allPartners,
-                         // payComplete: currentUser.payments,
+                         payComplete: currentUser.payments,
                          payPartners: payPartners // **edit
                      });
                  });
@@ -136,7 +136,7 @@ router.post("/user_profile/tasks/rating/:id", (req, res) => {
 
                     currentPartner.ratings.push(newRating);
                     currentPartner.save();
-                    res.redirect("/user_profile/tasks");
+                    res.redirect("/user_profile/task_management");
                 }
             });
         }
@@ -159,9 +159,9 @@ router.post("/user_profile/tasks/payment/:id", (req, res) => {
         (foundUser, done) => {
             var newPayment = {
                 dateRequested: Date.now(),
+                requestedEmail: foundUser.email,
                 associatedPartner: req.params.id  //To be changed
             };
-
             Payment.create(newPayment, (err, createdPay) => {
                 if(err) throw err;
                 else {
@@ -186,7 +186,11 @@ router.post("/user_profile/tasks/payment/:id", (req, res) => {
               from : keys.gmailInfo.user,
               to : keys.gmailInfo.user,
               subject : foundUser.name + "님의 정산요청",
-              text : foundUser.name + "님이 트랙스에 " + createdPay.amount + "원 만큼의 금액을 요청하였습니다."
+              text : foundUser.name + "님이 트랙스에 " + createdPay.amount + "원 만큼의 금액을 요청하였습니다.",
+              html: '<p>' + foundUser.name + '님이 트랙스에 ' + createdPay.amount + '원 만큼의 금액을 요청하였습니다.</p>' +
+                    '<a href="http://' + req.headers.host + '/trex-admin/login">' +
+                        '<p>' + foundUser.name + '님의 정산 요청 수락하기</p>' +
+                    '</a>'
             };
             transporter.sendMail(mailOption, (err) => {
                 if(err) {
@@ -217,6 +221,28 @@ router.get("/user_profile/applicants_info", (req, res) => {
     }
   }
 });
+
+
+//==================== MAY GET MODIFIED ==========//
+// GET route for viewing client task info
+// 업무 관리 (클라이언트)
+router.get("/user_profile/task_management", (req, res) => {
+    if(!req.user) {
+        res.redirect("/");
+    } else {
+        if(req.user.type === "p") {
+            res.redirect("/user_profile");
+        } else {
+            Partner.find({}, (err, allPartners) => {
+                if(err) throw err;
+                else {
+                    return res.render("userprofile_client_task", { allPartners: allPartners });
+                }
+            });
+        }
+    }
+});
+//================================================//
 
 
 // GET route for viewing partner schedule info

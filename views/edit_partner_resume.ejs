@@ -2,6 +2,9 @@
     <head>
         <meta charset="utf-8">
         <style>
+            html.disabled {
+                overflow-x: hidden;
+            }
             .btn-primary:hover {
                 cursor: pointer;
                 background-color: #00b3db !important;
@@ -57,7 +60,7 @@
                 margin-left:20px;
             }
             .dropdown-menu{
-                height: 500px;
+                height: 250px;
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
@@ -65,6 +68,16 @@
                 margin: 5% 10% 7%;
                 display: flex;
                 flex-wrap: wrap;
+            }
+            .fa-list {
+                margin-right: 10px;
+            }
+            a.editservice {
+                color: rgb( 245, 139, 68 );
+            }
+            a.editservice:hover {
+                color: rgb(205, 99, 28);
+                text-decoration: underline;
             }
         </style>
         <title>Member - 트렉스</title>
@@ -78,6 +91,7 @@
     <body>
         <% include ./partials/profileedit-image %>
         <% include ./partials/profileedit-background %>
+        <% include ./partials/edit-partner-service %>
 
         <% include ./partials/navbar %>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -239,6 +253,16 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form group row">
+                                <div class="col-sm-5">
+                                    <label for="service" style="margin-right: 70px;">가능한 서비스 *</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <a href="javascript: void(0);" class="editservice"><i class="fa fa-list" aria-hidden="true"></i>편집하기</a>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <div class="col-sm-5">
                                     <label for="otherRegion">타 지역 업무 가능 여부 *</label>
@@ -259,8 +283,6 @@
                                             </div>
                                 </div>
                             </div>
-
-
 
                             <div class="form-group row" id="har" style="display: none">
                                 <div class="col-sm-5">
@@ -370,6 +392,57 @@
                 </div>
             </div>
         </div>
+        <script src="/static/scripts/profileedit.js"></script>
+
+        <script type="text/javascript">
+            var addmore = () => {
+                $(".addmore").on("click", function() {
+                    $(".servicecontents").append(manipulateAdd());
+                });
+            }
+            addmore();
+
+
+            var deletelist = () => {
+                $(".servicecontents").on("click", ".deletesection", function(e) {
+                    console.log(e);
+                    $(this).parent().remove();
+                });
+            }
+            deletelist();
+
+            var servicepage = () => {
+                $(".editservice").on("click", function(e) {
+                    $(".pum-service").fadeIn(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            servicepage();
+
+            var clickoutsideservice = () => {
+                $(".pum-service").on("click", (e) => {
+                    if(e.target.className === "pum-service pumactive") {
+                        $(".pum-service").fadeOut(400, () => {
+                            $(".pum-service").toggleClass("pumactive");
+                            $("html").toggleClass("disabled");
+                        });
+                    }
+                });
+            }
+            clickoutsideservice();
+
+            var clickexservice = () => {
+                $(".maincontent-service .exittable").click((e) => {
+                    $(".pum-service").fadeOut(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            clickexservice();
+        </script>
 
     <script>
         $('#datepicker2').datepicker({
@@ -395,6 +468,7 @@
                 input.trigger('fileselect', [numFiles, label]);
             });
             $('select').selectpicker();
+        });
         </script>
 
         <script>

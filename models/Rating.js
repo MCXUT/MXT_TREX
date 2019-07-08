@@ -6,7 +6,7 @@ var rateSchema = new mongoose.Schema({
     date: String,
     byUser: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Partner' //To be changed to Client later
+        ref: 'Client' //To be changed to Client later
     }
 });
 

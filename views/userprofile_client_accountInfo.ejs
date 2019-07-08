@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-        
+
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-        
+
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-        
+
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,14 +55,14 @@
             }
             #wrapper h4{
               font-size: 20px;
-        
+
             }
         </style>
-        
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-        
+
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -71,14 +71,14 @@
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <% include ./partials/profileedit-image %>
 
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
-        
-        <script src="js/jquery.js"></script> 
-        <script src="js/moment.min.js"></script> 
+
+        <script src="js/jquery.js"></script>
+        <script src="js/moment.min.js"></script>
         <script src="js/combodate.js"></script>
 
         <div class="profile">
@@ -89,6 +89,7 @@
                         <div class="menu">
                             <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
                             <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="task_management" href="/user_profile/task_management">업무 관리</a>
                             <% if (currentUser.messageNotification) { %>
                                 <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
                                 <a class="messages" href="/user_profile/messages">메세지</a>
@@ -101,18 +102,28 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
-                        <% if (currentUser.companyLogo) { %>
-                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimgClient">
+                        </div>
+
+                        <div class="mainimg">
+                        <% if (currentUser.profilePic) { %>
+                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
-                        
-                        
+
+
                         <!--  계정 관리  -->
                         <% if (error.length > 0) { %>
                           <span style="color:red;margin-left:70px;"><%= error %></span>
@@ -199,7 +210,7 @@
                               </div>
                               <div class="divider"></div>
                               <div class="row element" style="margin-left:15px;">
-                                  
+
                                     <span class="switch">
                                         <div class="input-group">
                                             <label class="input-group-btn">
@@ -210,18 +221,18 @@
                                             <input type="text" class="form-control" style="max-width:400px!important;" readonly>
                                         </div>
                                     </span>
-                                    
+
                                     <span class="switch">
                                       <font size=2>로고 사이즈는 150x150px로 맞춰주세요.</font>
                                     </span>
-                                    
+
                               </div>
                           </div>
-                          
-                          
+
+
                           <div class="row sections security" id="security">
                               <p class="basictitle"><b>보안 정보</b></p>
-                              <form id="privateinfoform" action="/user_profile/security" method="post">
+                              <form id="privateinfoform" action="/user_profile/account_info/security_client" method="post">
                               </form>
                               <div class="buttons privateinfo">
                                   <button class="btn btn-info editbuttons activebutton" id="edit">비밀번호 변경</a>
@@ -229,6 +240,9 @@
                                   <button class="btn btn-info editbuttons" id="confirm" form="privateinfoform">확인</a>
                               </div>
                               <div class="divider"></div>
+                              <% if (error_password.length > 0) { %>
+                                <span style="color: red"><%= error_password %></span>
+                              <% } %>
                               <div class="row element">
                                       <span class="switch active"><i class="fa fa-lock" aria-hidden="true"></i><b>비밀번호</b></span>
                                       <span class="answer switch active">********</span>
@@ -237,15 +251,15 @@
                               </div>
                               <div class="row element">
                                       <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호</b></span>
-                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPassword"></span>
                               </div>
                               <div class="row element">
                                       <span class="switch"><i class="fa fa-lock" aria-hidden="true"></i><b>새 비밀번호 확인</b></span>
-                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="currentPassword"></span>
+                                      <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPasswordConfirm"></span>
                               </div>
                           </div>
-                          
-                          
+
+
                           <div class="row sections deleteAccount" id="deleteAccount">
                               <p class="basictitle"><b>계정 삭제</b></p>
                               <form id="deleteForm" action="" method="post">
@@ -263,18 +277,19 @@
                                       <span class="switch">
                                         <p align="right" style="font-size:13px;">계정이 삭제되면 복구가 불가능 합니다!</font>
                                       </span>
-                                      
+
                               </div>
                           </div>
 
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
         </div>
 
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -346,7 +361,7 @@
             });
         });
     </script>
-    
+
     <script>
         $(function(){
             $('pickBirthday').combodate({
@@ -355,9 +370,9 @@
             });
         });
     </script>
-    
+
     <script src="/static/scripts/profileedit.js"></script>
-    
+
     <script>
     $(function() {
       $('input[name="birthday"]').daterangepicker({
@@ -370,7 +385,7 @@
       });
     });
     </script>
-    
+
     <script>
         // This sample uses the Autocomplete widget to help the user select a
         // place, then it retrieves the address components associated with that
@@ -444,9 +459,9 @@
             }
         }
     </script>
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapAPI%>&libraries=places&callback=initAutocomplete" async defer></script>
-    
+
 
     <% include ./partials/footer %>
 
