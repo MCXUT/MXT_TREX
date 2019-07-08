@@ -327,10 +327,10 @@
                             <% if (currentUser.companyLogo) { %>
                               <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                             <% } else { %>
-                              <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                              <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
                             <% } %>
                             <p class="userName"><%= currentUser.name %></p>
-                        <% } else { %>
+                        <% } else if (currentUser.type === "p") { %>
                             <% if (currentUser.profilePic) { %>
                               <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
                             <% } else { %>
@@ -359,7 +359,7 @@
                                           <% if (clientPic) { %>
                                             <img src="/logo/<%= clientPic %>" style="width:40px; height:40px;">
                                           <% } else { %>
-                                            <img src="/static/images/noprofilepic.jpeg" style="width:40px; height:40px;">
+                                            <img src="/static/images/nocompanylogo.jpeg" style="width:40px; height:40px;">
                                           <% } %>
                                       <% } %>
                                   </div>
