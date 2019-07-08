@@ -57,6 +57,13 @@
               font-size: 20px;
 
             }
+            .btn-info{
+                background-color: #F58B44 !important;
+                border-color: #F58B44 !important;
+            }
+            #cancel{
+                color: #fff !important;
+            }
         </style>
 
         <title>Member - 트렉스</title>
@@ -73,7 +80,7 @@
         <% include ./partials/profileedit-background %>
 
         <% include ./partials/navbar %>
-        
+
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
         <div class="profile">
@@ -226,7 +233,7 @@
                                         </select>
                                     </span>
                                 </div>
-                                
+
                                 <div class="row element">
                                     <span class="switch"><b style="margin-left:25px;">우편번호</b></span>
                                     <span class="switch"><input form="basicinfoform" class="form-control field" id="postal_code" name="postalCode" value="<%= accountInfo.address.postalCode %>" disabled="true"/></span>
@@ -272,8 +279,8 @@
                                         <span class="switch"><input form="privateinfoform" type="password" class="form-control" name="newPasswordConfirm"></span>
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="row sections deleteAccount" id="deleteAccount">
                                 <p class="basictitle"><b>계정 삭제</b></p>
                                 <form id="deleteForm" action="" method="post">
@@ -291,7 +298,7 @@
                                         <span class="switch">
                                           <p align="right" style="font-size:13px;">계정이 삭제되면 복구가 불가능 합니다!</font>
                                         </span>
-                                        
+
                                 </div>
                             </div>
                         </div>
@@ -475,20 +482,20 @@
             }
         }
     </script>
-    
+
     <script>
         // Scripts for setting default selected city/country to the user's data
         $(function() {
-            var defaultCity = "<%= accountInfo.address.city %>"; 
+            var defaultCity = "<%= accountInfo.address.city %>";
             $("#defaultCity").val(defaultCity);
         });
-        
+
         $(function() {
             var defaultCountry = "<%= accountInfo.address.country %>";
             $("#defaultCountry").val(defaultCountry);
         });
     </script>
-    
+
     <script>
         // Script to prevent submitting form when pressing enter at google autocomplete
         $("#autocomplete").keypress(function(e) {

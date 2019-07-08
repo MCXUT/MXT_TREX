@@ -59,7 +59,16 @@ opacity: 1;
 /* Mark the steps that are finished and valid: */
 .step.finish {
 background-color: #4CAF50;
-}</style>
+}
+
+.s2 {
+  width: 85%;
+  height: 400px;
+  overflow:hidden;
+}
+
+
+</style>
 </head>
 
 <body id="bodyfont">
@@ -69,7 +78,7 @@ background-color: #4CAF50;
 <div class="">
 </div>
   <!-- Carousel Section -->
-  <div class="container-fluid " id="mainDiv" style="padding:0px;">
+  <div class="container-fluid" id="mainDiv" style="padding:0px;">
 
   <div id="slides" class="carousel slide" data-ride="carousel" data-interval="3000" >
 
@@ -103,7 +112,7 @@ background-color: #4CAF50;
 
   </div>
 
-  <div id="caption-carousel" class="centered" style="display:block;width:100%;">
+  <div id="caption-carousel" class="main_carousel" style="display:block;width:100%;">
 
       <h1>어디로 출장 가시나요?</h1>
 
@@ -127,11 +136,12 @@ background-color: #4CAF50;
 </div>
   <!-- End of Carousel Section -->
 
+
 <!-- 기업 섭외 견적 요청 -->
 <div class="lunchbox">
 
 
-    <div class="swiper-container">
+    <div class="swiper-container swiper1">
         <div class="swiper-wrapper servicelist">
             <div class="swiper-slide container2">
                 <figure class="imagewrapper">
@@ -234,7 +244,7 @@ background-color: #4CAF50;
         </div>
     </div>
     <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
+    <div class="swiper-pagination swiper-pagination1"></div>
     <!-- Add Arrows -->
     <div class="swiper-button-next">
         <img src="/static/icons/next.svg" style="width: 40px;">
@@ -247,9 +257,9 @@ background-color: #4CAF50;
 
 <!-- /기업 섭외 견적 요청 -->
 <!-- 트렉스 간편 이용 방법 section-->
-<div class="container-fluid padding text-center" style="padding-top: 70px;">
+<div class="container-fluid padding text-center" >
 
-  <h1 id="heading" >트렉스 간편 이용 방법</h1><hr style="width:100px;border:1px #595959 solid;">
+  <h1 id="heading" >트렉스 간편 이용 방법</h1><hr style="width:100px;border:1px #595959 solid;"><br>
   <div class="container">
 <div class="sectionContent">
 <div class="row">
@@ -318,137 +328,70 @@ background-color: #4CAF50;
 
 <!-- /통역 그 이상의 서비스를 경험 해 보세요-->
 
+
+<!-- 기업 섭외 견적 요청 -->
+
+
+<!-- /기업 섭외 견적 요청 -->
+
 <!-- 국가/지역 별 파트너를 만나보세요. -->
 
 
 <div id="first-slide"class="container-fluid padding text-center">
 <h1 id="heading">국가/지역 별 파트너를 만나보세요</h1>
-<hr style="width:100px;border:1px #595959 solid;">
+<hr style="width:100px;border:1px #595959 solid;"><br>
   <div class="container">
-     <div class="sectionContent" >
-      <div class="row text-center" >
+     <div class="sectionContent">
 
-        <div class="container2 col-md-3 col-sm-6 ">
-          <a href="#"><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
-          <div class="centered">GERMANY</div></a>
-        </div>
+    <div  class="lunchbox2">
 
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img id="countries" src="/static/images/countries/1toronto.jpeg" class="center" >
-  <div class="centered">TORONTO</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img id="countries" src="/static/images/countries/2newyork.jpg" class="center">
-  <div class="centered">NEW YORK</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6 ">
-  <a href="#"><img id="countries" src="/static/images/countries/3london.jpg" class="center">
-  <div class="centered">LONDON</div></a>
-  </div>
-
-</div>
-
- <button type="button" name="button" onclick="document.getElementById('third-slide').style.display='block';document.getElementById('first-slide').style.display='none';"id="button2"><i class="fas fa-chevron-left"></i></button>
-<div class="divider2"></div>
+         <div class="swiper-container s2">
+           <!-- Additional required wrapper -->
+           <div class="swiper-wrapper">
+             <!-- Slides -->
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
+                         <div class="centered">독일</div>
+                     </a>
+             </div>
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/1toronto.jpeg" class="center" >
+                         <div class="centered">토론토</div>
+                     </a>
+             </div>
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/2newyork.jpg" >
+                         <div class="centered">뉴욕</div>
+                     </a>
+             </div>
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/3london.jpg" class="center" >
+                         <div class="centered">런던</div>
+                     </a>
+             </div>
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/4la.jpg" class="center" >
+                         <div class="centered">엘에이</div>
+                     </a>
+             </div>
+             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                     <a href="#" ><img id="countries" src="/static/images/countries/5seeall.jpg" class="center" >
+                         <div class="centered">모든 도시 보기</div>
+                     </a>
+             </div>
+           </div>
+           <!-- If we need pagination -->
+           <div class="swiper-pagination2"></div>
+         </div>
+         <!-- If we need navigation buttons -->
+         <div class="swiper-button-prev2"></div>
+         <div class="swiper-button-next2"></div>
+    </div>
+<br>
 <a href="/city_list">
   <button type="button" name="button" style="text-align:center; font-size: 16px;" id="btn_outline_orange">모든 도시 보기</button>
 </a>
-<div class="divider2"></div>
- <button type="button" name="button" onclick="document.getElementById('first-slide').style.display='none';document.getElementById('second-slide').style.display='block';"id="button2"><i class="fas fa-chevron-right"></i></button>
 
-</div>
-</div>
-</div>
-
-
-<div id="second-slide"class="container-fluid padding text-center" style="display:none;">
-  <h1 id="heading">국가/지역 별 파트너를 만나보세요</h1>
-  <hr style="width:100px;border:1px #595959 solid;">
-  <div class="container">
-    <div class="sectionContent">
-      <div class="row text-center">
-
-        <div class="container2 col-md-3 col-sm-6">
-          <a href="#"><img src="/static/images/countries/1toronto.jpeg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-          <div class="centered">TORONTO</div></a>
-        </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/countries/2newyork.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">NEW YORK</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/countries/3london.jpg" class="center" style=" height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">LONDON</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/countries/4la.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">L.A.</div></a>
-  </div>
-
-
-
-</div>
-<br>
-<button type="button" name="button" onclick="document.getElementById('first-slide').style.display='block';document.getElementById('second-slide').style.display='none';"id="button2"><i class="fas fa-chevron-left"></i></button>
-<div class="divider2"></div>
-<a href="/city_list">
-  <button type="button" name="button" style="text-align:center;" id="btn_outline_orange">모든 도시 보기</button>
-</a>
-<div class="divider2"></div>
-<button type="button" name="button" onclick="document.getElementById('second-slide').style.display='none';document.getElementById('third-slide').style.display='block';"id="button2"><i class="fas fa-chevron-right"></i></button>
-</div>
-</div>
-</div>
-
-<div id="third-slide"class="container-fluid padding text-center" style="display:none;">
-  <h1>국가/지역 별 파트너를 만나보세요</h1>
-  <hr style="width:100px;border:1px #595959 solid;">
-  <div class="container">
-    <div class="sectionContent">
-      <div class="row text-center">
-
-  <div class="container2 col-md-3 col-sm-6">
-          <a href="#"><img src="/static/images/countries/2newyork.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-          <div class="centered">NEW YORK</div></a>
-        </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/countries/3london.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">LONDON</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="#"><img src="/static/images/countries/4la.jpg" class="center" style=" height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">L.A.</div></a>
-  </div>
-
-<!-- <div class="divider2"></div> -->
-  <div class="container2 col-md-3 col-sm-6">
-  <a href="/city_list"><img src="/static/images/countries/5seeall.jpg" class="center" style="height: 300px; width: 200px;-o-object-fit: contain;">
-  <div class="centered">SEE ALL COUNTRIES</div></a>
-  </div>
-</div>
-
-<button type="button" name="button" onclick="document.getElementById('second-slide').style.display='block';document.getElementById('third-slide').style.display='none';" id="button2"><i class="fas fa-chevron-left"></i></button>
-<div class="divider2"></div>
-<a href="/city_list">
-  <button type="button" name="button" style="text-align:center;" id="btn_outline_orange">모든 도시 보기</button>
-</a>
-<div class="divider2"></div>
-<button type="button" name="button" onclick="document.getElementById('third-slide').style.display='none';document.getElementById('first-slide').style.display='block';" id="button2"><i class="fas fa-chevron-right"></i></button>
 </div>
 </div>
 </div>
@@ -596,7 +539,7 @@ transform: rotate(0deg) ;
 </div>
 </div>
 <!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
-<br><br>
+
 
 
 
@@ -606,7 +549,7 @@ transform: rotate(0deg) ;
 
   <!-- Initialize Swiper -->
   <script>
-    var swiper = new Swiper('.swiper-container', {
+    var swiper1 = new Swiper('.swiper1', {
       slidesPerView: 3,
       spaceBetween: 30,
       slidesPerGroup: 3,
@@ -620,6 +563,23 @@ transform: rotate(0deg) ;
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+    });
+
+    var mySwiper2 = new Swiper ('.s2', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        slidesPerGroup: 1,
+      loop: false,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination2',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next2',
+        prevEl: '.swiper-button-prev2',
+      },
+
     });
   </script>
 <!-- end of swiper.js -->

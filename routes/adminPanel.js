@@ -8,6 +8,7 @@ const keys = require("../config/keys");
 
 const Admin = require("../models/Admin");
 const Client = require("../models/Client");
+const DeletedAccount = require("../models/DeletedAccount");
 const Partner = require("../models/Partner");
 const Message = require("../models/Message");
 //----------To be replaced by service-------
@@ -20,7 +21,7 @@ router.get("/trex-admin/login", function(req,res){
 })
 
 router.post("/trex-admin/login", localAdmin.authenticate('local-admin', {
-  successRedirect: "/trex-admin",
+  successRedirect: "/trex-admin?index=1",
   failureRedirect: "back",
   failureFlash: true,
   successFlash: "Successfully logged in"
@@ -121,17 +122,40 @@ router.post("/confirmmail/:id", function(req, res) {
 
 router.get("/deleteClient/:id", function(req,res) {
     console.log("clientID: " + req.params.id);
-    Client.deleteOne({"_id" : req.params.id}, function(err, obj) {
-        res.redirect("/trex-admin#?users-clients");
+    Client.findByIdAndRemove( req.params.id , function(err, foundUser) {
+        if(err) throw err;
+        console.log(foundUser);
+        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
+            if(err) throw err;
+            res.redirect("/trex-admin?index=2");
+        });
     });
+    // Client.deleteOne({"_id" : req.params.id}, function(err, obj) {
+    //     res.redirect("/trex-admin?index=2");
+    // });
 });
 
 router.get("/deletePartner/:id", function(req,res) {
     console.log("partnerID: " + req.params.id);
-    Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
-        res.redirect("/trex-admin#?users-partners");
+    Partner.findById( req.params.id , function(err, foundUser) {
+        if(err) throw err;
+        console.log(foundUser);
+        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
+            if(err) throw err;
+            res.redirect("/trex-admin?index=3");
+        });
     });
+    // Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
+    //     res.redirect("/trex-admin?index=3");
+    // });
 });
+
+router.get("/deleteAdmin/:id", function(req,res) {
+    console.log("adminID: " + req.params.id);
+    Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {
+        res.redirect("/trex-admin?index=7");
+    });
+})
 
 router.post("/addAdmin", function(req, res) {
   if(!req.user) {
@@ -176,7 +200,7 @@ router.post("/addAdmin", function(req, res) {
                   });
                   Admin.createAdmin(admin, (err, createdAdmin) => {
                     if(err) throw err;
-                    res.redirect("/trex-admin");
+                    res.redirect("/trex-admin?index=7");
                   });
                 }
               });

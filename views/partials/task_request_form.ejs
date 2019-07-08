@@ -94,16 +94,24 @@ border:2px solid #e60000;
 <script>
 function closeAllModal(){
   document.getElementById('closeAll').click();
-  document.getElementById('closeAll2').click();
+  // document.getElementById('closeAll2').click();
+  document.getElementById("myModal3").style.display="none";
   document.getElementById('myModal2').style.opacity='1.0'
+  $(".modal-backdrop").removeClass("show");
+  $(".modal-backdrop").css("display", "none");
+
+}
+function gaesokFunction(){
+    document.getElementById("myModal3").style.display="none";
+    document.getElementById("myModal2").style.opacity="1.0";
 }
 </script>
 
-<div class="modal fade text-center" id="myModal2" >
+<div class="modal fade text-center" id="myModal2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
       <div class="modal-header text-center" >
-  <h4 class="col-12 modal-title text-cente"><b>업무 요청 Form</b>
+  <h4 class="col-12 modal-title text-cente">업무 요청 Form
     <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999;"></div>
   </h4>
     <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
@@ -165,7 +173,7 @@ function closeAllModal(){
 
 <!-- Modal -->
 
-<div class="modal fade" id="myModal3" role="dialog">
+<div class="modal fade" id="myModal3" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-sm" style="margin-top:12%;">
     <div class="modal-content">
       <div class="modal-header" style="display:none;">
@@ -178,7 +186,7 @@ function closeAllModal(){
       <hr style="width:100%;">
       <div  class="text-center"> <!-- class="modal-footer " -->
         <button type="button" class="btn btn-default " onclick="closeAllModal();" style="height:50px;color:#999999;">그만 두기</button>
-        <button type="button" id="button1" class="btn btn-default" onclick="document.getElementById('myModal2').style.opacity='1.0'" data-dismiss="modal">계속 하기</button>
+        <button type="button" id="button1" class="btn btn-default" onclick="gaesokFunction()" data-dismiss="modal">계속 하기</button>
 
         <br>
         <button id="closeAll2" type="button" data-dismiss="modal" style="display:none;"></button>
@@ -189,13 +197,43 @@ function closeAllModal(){
   </div>
 </div>
 
+
+
 <script>
-  document.getElementById("myModal3").addEventListener("click",(e) => {
+    document.getElementById("myModal3").addEventListener("click",(e) => {
+
         if(e.target.className != "modal-dialog modal-sm"){
           document.getElementById("myModal2").style.opacity="1.0";
+          // document.getElementById("myModal2").style.bacground=rgba(0, 0, 0, 1.2);
+
         }
 
     });
+
+    document.getElementById("myModal2").addEventListener("click",(e) => {
+        console.log(e);
+          // if(e.target.className != "modal-body"){
+          //     if(e.target.className !="col-12 modal-title text-cente"){
+          //         if(e.target.className !="tab")
+          //         document.getElementById("myModal2").style.opacity="0.5";
+          //     }
+          //   // document.getElementById("myModal2").style.opacity="0.5";
+          // }
+        if(e.target.className == "modal fade text-center show"){
+            // document.getElementById("myModal2").style.display ="block";
+            //
+            document.getElementById("myModal3").style.display="block";
+            document.getElementById("myModal3").classList.add("show");
+            document.getElementById("myModal2").style.opacity="0.8";
+            document.getElementById("myModal2").style.bacground=rgba(0, 0, 0, 1.2);
+            // document.getElementById("myModal2").classList.add("show");
+
+            // $("#myModal3").css("z-index", "1050");
+            // document.getElementById("myModal3").style.z-index="1050";
+
+        }
+      });
+
 
 
 var width = 0;

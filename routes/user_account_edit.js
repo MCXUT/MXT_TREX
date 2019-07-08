@@ -40,7 +40,7 @@ router.post("/user_profile/basicClientInfo", (req, res) => {
             console.log(err);
             return res.redirect("/user_profile/account_info");
           }
-          console.log("Client Profile Update Successful for " + foundUser.name);
+          console.log("Client Account Info Update Successful for " + foundUser.name);
           return res.redirect("/user_profile/account_info");
         });
 
@@ -66,7 +66,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
         validateAddress(req.body.postalCode);
     }
 
-    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.state + ", " + req.body.country + ", " + req.body.postalCode;
+    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
 
     // Get coordinates of the new address
     googleMapsClient.geocode({
@@ -101,7 +101,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                 foundUser.address.streetAddress = req.body.streetAddress;
                 foundUser.address.detailedAddress = req.body.detailedAddress;
                 foundUser.address.city = req.body.city;
-                foundUser.address.state = req.body.state;
+                // foundUser.address.state = req.body.state;
                 foundUser.address.country = req.body.country;
                 foundUser.address.postalCode = req.body.postalCode;
                 foundUser.address.coordinates = newCoordinates;
@@ -113,7 +113,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                         req.flash("error", "정보를 업데이트 할수 없습니다. 다시 시도해 주세요.");
                         return res.redirect("/user_profile/account_info");
                       }
-                      console.log("Partner Profile Update Successful for " + foundUser.name);
+                      console.log("Partner Account Info Update Successful for " + foundUser.name);
                       return res.redirect("/user_profile/account_info");
                 });
 

@@ -53,7 +53,7 @@
 
 
   <div class="topnav" style="background-color:white;position:fixed;width:100%;z-index:500;"> <!-- z-index:500; -->
-    <a class="logo " href="/"><img class="margin" src="/static/images/0.jpg" height="60" width="100"></img></a>
+    <a class="logo " href="/"><img class="margin" src="/static/images/trexlogo.png" height="60" width="100" style="margin-left:20px;"></img></a>
 
 
     <a  id="admin_topNav" href="https://crewmxt.com/services/contact-us" target = "_blank" ><i class="fas fa-phone-volume"></i> Contact Us</a>
@@ -75,6 +75,7 @@
     <div id="nav_item_users" class="dropdown-container" >
       <a id="nav2" class="nav-item" href="#?users-clients" onclick="usersClients();"><i class="fas fa-user"></i> Clients</a>
       <a id="nav3" class="nav-item" href="#?users-partners" onclick="usersPartners();"><i class="far fa-handshake"></i> Partners</a>
+      <a id="nav9" class="nav-item" href="#?users-deleted" onclick="usersDeleted();"><i class="far fa-trash-alt"></i> To be deleted</a>
     </div>
 
 
@@ -229,6 +230,12 @@ for (var i = 0; i < btns.length; i++) {
 </left>
 
 
+<left id="div9_users_deleted"  style="display:none;">
+<div class="content" style="padding-top:80px;">
+<h3>Users to be deleted</h3>
+</div>
+</left>
+
 
 <left id="div4_services_1"  style="display:none;">
 <div class="content" >
@@ -264,14 +271,28 @@ for (var i = 0; i < btns.length; i++) {
           <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
         </tr>
         <tr class="message thead-light" id="message_<%= i+1 %>">
-            <th ></th>
-            <th>User <%= i+1 %></th>
-            <th>Date for <%= i+1 %></th>
-            <th>Message for <%= i+1 %></th>
-            <th><i class="fas fa-trash"></i></th>
-        </tr>
-        <tr class="message" id="message_<%= i+1 %>">
             <th></th>
+            <th>User</th>
+            <th>Time</th>
+            <th>Content</th>
+            <th>Delete</th>
+        </tr>
+        <% for(var k = 0; k < messageList[i].detail.length; k++) { %>
+            <tr class="message thead-light" id="message_<%= i+1 %>">
+                <th></th>
+                <th style="font-weight:100"><% if (messageList[i].detail[k].author === 'c') { %>
+                        <%= messageList[i].clientName %>
+                    <% } else { %>
+                        <%= messageList[i].partnerName %>
+                    <% } %>
+                </th>
+                <th style="font-weight:100"><%= messageList[i].detail[k].time %>, <%= messageList[i].detail[k].date %></th>
+                <th style="font-weight:100"><%= messageList[i].detail[k].content %></th>
+                <th><i class="fas fa-trash"></i></th>
+            </tr>
+        <% } %>
+        <tr class="message thead-light" id="message_<%= i+1 %>">
+            <th ></th>
             <th></th>
             <th></th>
             <th></th>
@@ -393,7 +414,7 @@ for (var i = 0; i < btns.length; i++) {
             <td nowrap><%= adminList[i].name %></td>
             <td nowrap><%= adminList[i].email %></td>
             <td ><a href="#"><i class="far fa-edit"></i></a></td>
-            <td ><a href="#"><i class="fas fa-trash"></i></a></td>
+            <td ><a href="/deleteAdmin/<%=adminList[i]._id%>"><i class="fas fa-trash"></i></a></td>
           </tr>
       <% } %>
     </tbody>

@@ -2,10 +2,22 @@
     <head>
         <meta charset="utf-8">
         <style>
+            .showBttn {
+                display: inline !important;
+            }
+            .btn-primary {
+                /* display: inline !important; */
+                background-color:#f58b44 !important;
+                border-color:#f58b44 !important;
+            }
             .btn-primary:hover {
                 cursor: pointer;
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
+                /* background-color: #00b3db !important;
+                border-color: #00b3db !important; */
+                opacity: 0.9;
+            }
+            a:hover {
+                cursor: pointer;
             }
             #avatar{
                 border-radius: 50%;
@@ -108,15 +120,15 @@
                         </div>
 
                         <div class="mainimg">
-                        <% if (currentUser.profilePic) { %>
-                            <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
-                        <% } else { %>
-                            <img class="profileimg" src="/static/images/noprofilepic.jpeg">
-                        <% } %>
-                            <div class="changeslider">
-                                사진 바꾸기<br/>
-                                <span class="camera"></span>
-                            </div>
+                            <% if (currentUser.profilePic) { %>
+                                <img class="profileimg" src="/profilePic/<%= currentUser.profilePic %>">
+                            <% } else { %>
+                                <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                            <% } %>
+                                <div class="changeslider">
+                                    사진 바꾸기<br/>
+                                    <span class="camera"></span>
+                                </div>
                         </div>
 
                         <p class="userName"><%= currentUser.name %></p>
@@ -130,7 +142,9 @@
                             <% } %>
 
                             <% if (!partnerProfile) { %>
-                                <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;"><button class="btn btn-primary">프로필 등록</button></a>
+                                <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;">
+                                    <button class="btn btn-primary">프로필 등록</button>
+                                </a>
 
                                 <div class="row sections basic" id="basic">
 
@@ -142,7 +156,9 @@
 
                                 </div>
                             <% } else { %>
-                                <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;"><button class="btn btn-primary">프로필 수정</button></a>
+                                <a href="/user_profile/edit_partner_resume" style="float:right; margin-right:5%;">
+                                    <button class="btn btn-primary">프로필 수정</button>
+                                </a>
 
                                 <div class="row sections basic" id="basic">
 
@@ -151,19 +167,169 @@
                                     <div class="divider"></div>
 
                                     <% if (partnerProfile.isVerified) { %>
-                                        <div class="alert alert-success" role="alert" style="width:100%;">
+                                        <div class="alert alert-success" role="alert" style="width:100%;padding-top:2px;padding-bottom:2px;">
                                             이 프로필은 검증된 프로필입니다.
                                         </div>
                                     <% } else { %>
-                                        <div class="alert alert-danger" role="alert" style="width:100%;">
+                                        <div class="alert alert-danger" role="alert" style="width:100%;padding-top:2px;padding-bottom:2px;">
                                             이 프로필은 아직 검증된 프로필이 아닙니다.
                                         </div>
                                     <% } %>
-
                                     
-
-
-                                </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <label><b>한줄 소개:</b></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <%= partnerProfile.oneLineIntro %>
+                                    </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <label><b>지역:</b></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <%= partnerProfile.region %>
+                                    </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <label><b>타지역:</b></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <% if (partnerProfile.otherRegion.length > 0) { %>
+                                            <% for (var i = 0; i < partnerProfile.otherRegion.length; i++) { %>
+                                                <%= partnerProfile.otherRegion[i] %>
+                                                <% if (i < partnerProfile.otherRegion.length-1) { %>
+                                                     , 
+                                                <% } %>
+                                            <% } %>
+                                        <% } else { %>
+                                            타지역 업무 불가능
+                                        <% } %>
+                                    </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <label><b>자기 소개:</b></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <%= partnerProfile.aboutMe %>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <% if (partnerProfile.type == "agency") { %>
+                                        <div class="divider"></div>
+                                        <div class="col-sm-3">사업자 등록증</div><div class="col-sm-9"></div>
+                                        <div class="row" style="margin-bottom:50px;width:100%;">
+                                            <% for (var i = 0; i < partnerProfile.businessRegistration.length; i++) { %>
+                                                <form id="deleteForm<%= i %>" action="/user_profile/deleteBusinessRegistration/<%= partnerProfile.businessRegistration[i] %>?_method=DELETE" method="post"></form>
+                                                <div class="col">
+                                                    <a data-toggle="modal" data-target="#imageModal<%= i %>">
+                                                        <img src="/businessRegistration/<%= partnerProfile.businessRegistration[i] %>" style="width:150px;height:225px;">
+                                                    </a>
+                                                    <div class="modal fade" id="imageModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="imageModalTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="imageModalLongTitle">사업자 등록증 삭제</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    이 사업자 등록증을 삭제 하시겠습니까?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                                                    <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                                                    <button form="deleteForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                        <% if (partnerProfile.businessRegistration.length < 2) { %>
+                                            <div class="col-sm-8">
+                                                <form id="businessRegistrationForm" action="/user_profile/businessRegistrationUpload" method="post" enctype="multipart/form-data">
+                                                    <div class="input-group">
+                                                        <label class="input-group-btn">
+                                                            <span class="btn btn-primary showBttn">
+                                                                검색<input type="file" id="brUpload" name="businessRegistration" accept="image/*" multiple="multiple" style="display:none;" required />
+                                                            </span>
+                                                        </label>
+                                                        <input type="text" class="form-control" value="사업자 등록증을 업로드 해주세요." readonly>
+                                                    </div>
+                                                    <font size=2>파일은 사진으로만 업로드 해주세요 (.png, .jpg, .jpeg)<br>최대 총 2개까지 업로드 가능합니다.</font>
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="submit" id="brUploadSubmit" form="businessRegistrationForm" value="사업자 등록증 업로드" class="btn btn-primary btn-block showBttn">
+                                            </div>
+                                        <% } %>
+                                        
+                                        <!-- Display partner's uploaded files -->
+                                        
+                                        
+                                    <% } %> <!-- end of for loop -->
+                                    
+                                    <div class="divider"></div>
+                                    
+                                    <div class="col-sm-7">미디어 (이력서, 자격증 등)</div><div class="col-sm-5"></div>
+                                    <div class="row" style="margin-bottom:50px;width:100%;">
+                                        <% for (var i = 0; i < partnerProfile.media.length; i++) { %>
+                                            <form id="deleteMediaForm<%= i %>" action="/user_profile/deleteMedia/<%= partnerProfile.media[i] %>?_method=DELETE" method="post"></form>
+                                            <div class="col">
+                                                <a data-toggle="modal" data-target="#mediaModal<%= i %>">
+                                                    <img src="/media/<%= partnerProfile.media[i] %>" style="width:150px;height:225px;">
+                                                </a>
+                                                <div class="modal fade" id="mediaModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="mediaModalTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="mediaModalLongTitle">미디어 삭제</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                이 미디어를 삭제 하시겠습니까?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                                                <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                                                <button form="deleteMediaForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <% if (partnerProfile.media.length < 8) { %>
+                                        <div class="col-sm-8">
+                                            <form id="mediaForm" action="/user_profile/mediaUpload" method="post" enctype="multipart/form-data">
+                                                <div class="input-group">
+                                                    <label class="input-group-btn">
+                                                        <span class="btn btn-primary showBttn">
+                                                            검색<input type="file" id="mediaUpload" name="media" accept="image/*" multiple="multiple" style="display:none;" required />
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" class="form-control" value="파일 업로드" readonly>
+                                                </div>
+                                                <font size=2>업로드 가능 파일 형식: (.png, .jpg, .jpeg)<br>최대 총 8개까지 업로드 가능합니다.</font>
+                                            </form>
+                                        </div>
+                                    <% } %>
+                                    <div class="col-sm-4">
+                                        <input type="submit" id="mediaUploadSubmit" form="mediaForm" value="파일 업로드" class="btn btn-primary btn-block showBttn">
+                                    </div>
+                                    
+                                    <!-- Display partner's uploaded files -->
+                                    
+                                    
+                                    
+                                </div> <!-- class="row sections basic" -->
 
                             <% } %>
 
@@ -214,9 +380,39 @@
             });
     });
     </script>
-
+    
     <script>
-        // Script for file input (profile picture in this case) button and displaying the file name
+        // $('#brUpload').change(function() {
+        //     if (this.files.length > 2){
+        //         alert('too many files');
+        //         this.value = '';
+        //     }
+        // });
+        
+        // Two functions below are for limiting the number of file uploads for 사업자등록증 and 미디어
+        $(document).ready(function(){
+            $('#brUpload').change(function(){
+                if (this.files.length > (2 - <%= partnerProfile.businessRegistration.length %>)) {
+                    alert("사업자 등록증은 최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    $('#brUploadSubmit').attr('disabled',true); 
+                } else {
+                    $('#brUploadSubmit').attr('disabled',false);
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $('#mediaUpload').change(function(){
+                if (this.files.length > (8 - <%= partnerProfile.media.length %>)) {
+                    alert("미디어는 최대 총 8개의 파일까지만 업로드 할수 있습니다.");
+                    $('#mediaUploadSubmit').attr('disabled',true); 
+                } else {
+                    $('#mediaUploadSubmit').attr('disabled',false);
+                }
+            });
+        });
+        
+        // Script for file input (사업자등록증 / 미디어 in this case) button and displaying the file name
         $(function() {
             // We can attach the `fileselect` event to all file inputs on the page
             $(document).on('change', ':file', function() {
@@ -225,19 +421,52 @@
                 label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
                 input.trigger('fileselect', [numFiles, label]);
             });
-
             // We can watch for our custom `fileselect` event like this
             $(document).ready( function() {
                 $(':file').on('fileselect', function(event, numFiles, label) {
-
+                    
                     var input = $(this).parents('.input-group').find(':text'),
-                      log = numFiles > 1 ? numFiles + ' files selected' : label;
-
+                        log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
                     if( input.length ) {
-                      input.val(log);
+                        input.val(log);
                     } else {
-                      if( log ) alert(log);
+                        if( log ) alert(log);
                     }
+                    
+                    // <% if(partnerProfile.businessRegistration) { %>
+                    //     if (numFiles > (2 - <%= partnerProfile.businessRegistration.length %>)){
+                    //         alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    //     } else {
+                    //         var input = $(this).parents('.input-group').find(':text'),
+                    //             log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                    //         if( input.length ) {
+                    //             input.val(log);
+                    //         } else {
+                    //             if( log ) alert(log);
+                    //         }
+                    //     }
+                    // <% } else { %>
+                    //     if (numFiles > 2){
+                    //         alert("최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                    //     } else {
+                    //         var input = $(this).parents('.input-group').find(':text'),
+                    //             log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                    //         if( input.length ) {
+                    //             input.val(log);
+                    //         } else {
+                    //             if( log ) alert(log);
+                    //         }
+                    //     }
+                    // <% } %>
+                    
+                    // var input = $(this).parents('.input-group').find(':text'),
+                    //   log = numFiles > 1 ? numFiles + ' files selected' : label;
+                    //
+                    // if( input.length ) {
+                    //   input.val(log);
+                    // } else {
+                    //   if( log ) alert(log);
+                    // }
                 });
             });
         });

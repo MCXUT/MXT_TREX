@@ -167,6 +167,92 @@ router.post("/user_profile/create_new_profile", function(req, res) {
 });
 
 
+
+// Edit partner profile
+// 파트너 프로필 수정
+router.post("/user_profile/edit_partner_resume", function(req, res) {
+    console.log(req.body.oneLineIntro);
+    console.log(req.body.region);
+    console.log(req.body.otherRegion);
+    console.log(req.body.aboutMe);
+    PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/user_profile");
+        }
+        
+        foundProfile.oneLineIntro = req.body.oneLineIntro;
+        foundProfile.region = req.body.region;
+        if (req.body.avail == "able") {
+            foundProfile.otherRegion = req.body.otherRegion;
+        } else {
+            foundProfile.otherRegion = [];
+        }
+        
+        // for (var i = 0; i < req.body.otherRegion.length; i++) {
+        //     foundProfile.otherRegion.push(otherRegions[i]);
+        // }
+        foundProfile.aboutMe = req.body.aboutMe;
+        foundProfile.lastEditedDate = Date.now();
+        
+        foundProfile.save((err) => {
+              if (err) {
+                console.log(err);
+                req.flash("error", "프로필을 업데이트 할수 없습니다. 다시 시도해 주세요.");
+                return res.redirect("/user_profile");
+              }
+              console.log("Partner Profile Update Successful for " + req.user.name);
+              return res.redirect("/user_profile");
+        });
+    });
+});
+
+
+
+// Edit partner profile unavailable dates
+// 불가능 날짜 수정
+router.post("/user_profile/edit_unavailable_dates", function(req, res) {
+    console.log(req.body.unavailability);
+    // console.log(typeof req.body.unavailability);
+    // console.log(req.body.unavailability.split(','));
+    // console.log(typeof req.body.unavailability.split(','));
+    // console.log(moment(req.body.unavailability.split(',')[0]).format('MM/DD/YYYY'));
+    // var d = req.body.unavailability.split(',');
+    // for (var i = 0; i < d.length; i++) {
+    //     d[i] = new Date(d[i]);
+    // }
+    // console.log(d);
+    // var x = new Date(req.body.unavailability.split(','))
+    // console.log(x);
+    // return res.redirect("/user_profile/schedule");
+    PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/user_profile/schedule");
+        }
+        
+        // var dates = req.body.unavailability.split(',');
+        // for (var i = 0; i < dates.length; i++) {
+        //     dates[i] = new Date(dates[i]);
+        // }
+        
+        foundProfile.unavailableDates = req.body.unavailability.split(',');
+        foundProfile.lastEditedDate = Date.now();
+        
+        foundProfile.save((err) => {
+              if (err) {
+                console.log(err);
+                req.flash("error", "프로필을 업데이트 할수 없습니다. 다시 시도해 주세요.");
+                return res.redirect("/user_profile/schedule");
+              }
+              console.log("Partner Profile Unavailable Date Update Successful for " + req.user.name);
+              return res.redirect("/user_profile/schedule");
+        });
+    });
+});
+
+
+
 // 파트너 프로필 전환 (프리랜서 <-> 에이전시)
 // router.post("/user_profile/convert_partnerProfile_type", function(req, res) {
 //     if (req.user.type === "p") {
