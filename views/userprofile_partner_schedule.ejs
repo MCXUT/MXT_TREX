@@ -80,14 +80,14 @@
             }
 
             .table-condensed{
-                width: 650px;
+                width: 100%;
                 margin-bottom: 20px !important;
                 /* border: 1px solid rgba(0, 0, 0, 0.5) !important; */
                 /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
             }
             .datepicker-days{
                 border: 1px solid rgba(0, 0, 0, 0.3) !important;
-                width: 690px;
+                width: 300%;
                 padding: 20px;
                 padding-top: 35px;
             }
@@ -206,6 +206,9 @@
                           <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>일정 관리</b></p>
+                                <span style="float: right">
+                                    <input type="submit" form="editUnavailability" value="날짜 조정" class="btn btn-primary showBttn">
+                                </span>
                                 <div class="divider"></div>
                                 <form id="editUnavailability" action="/user_profile/edit_unavailable_dates" method="post"></form>
                                 <div class="input-group form-group date">
@@ -223,8 +226,6 @@
                                      - 불가능 날짜
                                     </span>
                                     
-                                    <input type="submit" form="editUnavailability" value="날짜 조정" class="btn btn-primary btn-block showBttn">
-
                                 </div>
 
 
@@ -250,6 +251,8 @@
                                     </select>
                                 </div>
                             </div>
+                            
+
 
                             <!-- <br><br><br><br> -->
                             <!-- <input type="text" form="basicinfoform" class="form-control date" name="schedule" multiple value=""/> -->
