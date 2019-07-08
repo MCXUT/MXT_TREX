@@ -158,17 +158,22 @@ router.get("/user_profile/schedule", (req, res) => {
     if (req.user.type === "c") {
         res.redirect("/user_profile");
     } else {
-        PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
-            if (err) {
-                console.log(err);
-                return res.redirect("/user_profile");
-            }
-            // var unavailability = [];
-            // for (var i = 0; i < foundProfile.unavailableDates.length; i++) {
-            //     unavailability[i] = moment.utc(foundProfile.unavailableDates[i]).format('YYYY-MM-DD');
-            // }
-            res.render("userprofile_partner_schedule", { unavailableDates: foundProfile.unavailableDates });
-        });
+        if (req.user.partnerProfile) {
+            PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/user_profile");
+                }
+                // var unavailability = [];
+                // for (var i = 0; i < foundProfile.unavailableDates.length; i++) {
+                //     unavailability[i] = moment.utc(foundProfile.unavailableDates[i]).format('YYYY-MM-DD');
+                // }
+                res.render("userprofile_partner_schedule", { unavailableDates: foundProfile.unavailableDates });
+            });
+        } else {
+            res.render("userprofile_partner_schedule", { unavailableDates: false });
+        }
+        
     }
   }
 });

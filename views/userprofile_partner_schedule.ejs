@@ -214,6 +214,7 @@
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
+<<<<<<< HEAD
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>일정 관리</b></p>
                                 <div class="divider"></div>
@@ -264,10 +265,68 @@
 
 
 
+=======
+                          <% if (unavailableDates) { %>
+                              <div class="row sections basic" id="basic">
+                                  <p class="basictitle"><b>일정 관리</b></p>
+                                  <span style="float: right">
+                                      <input type="submit" form="editUnavailability" value="날짜 조정" class="btn btn-primary showBttn">
+                                  </span>
+                                  <div class="divider"></div>
+                                  <form id="editUnavailability" action="/user_profile/edit_unavailable_dates" method="post"></form>
+                                  <div class="input-group form-group date">
+                                      <input type="text" id="koko" form="editUnavailability" name="unavailability" value="<%= unavailableDates %>" style="display:none;">
+                                      <!-- <input type="text" style="display: none"form="basicinfoform" class="form-control date" name="schedule" multiple value="일-월-년"/> -->
+                                      <!-- <span class="date" for="nal"><i class="fas fa-calendar-alt"></i></span> -->
+                                  </div>
+                                  
+                                  <div class="row" style="width: 100%; float:right; margin-left: 75%" >
+                                      
+                                      <div class="box" style="width: 13px; height: 14px; background: #F58B44; transform: translate3d(0, 50%, 0);margin-right: 4px">
 
-                                    </select>
-                                </div>
-                            </div>
+                                      </div>
+                                      <span style="float: right">
+                                       - 불가능 날짜
+                                      </span>
+                                      
+                                  </div>
+
+
+
+
+                              </div>
+
+
+                              <div class="form-group row" id="har" style="margin-left: 10%;margin-right: 17%;">
+                                  <div class="col-sm-5">
+                                      <label for="region">불가능 날짜선택(하나 이상 선택가능)</label>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                          <option>주중불가능</option>
+                                          <option>주말불가능</option>
+                                          <option>토요일불가능</option>
+                                          <option>일요일불가능</option>
+
+
+
+
+                                      </select>
+                                  </div>
+                              </div>
+                          <% } else { %>
+                              <div class="row sections basic" id="basic">
+                                  <p class="basictitle"><b>일정 관리</b></p>
+                                  <div class="divider"></div>
+                                  
+                                  파트너 프로필이 등록되어 있지 않습니다. 새로운 프로필을 등록해주세요.
+                                  
+                              </div>
+                          <% } %>
+                            
+                            
+>>>>>>> db3a771b06a502bf066dc9c57e67521ee3129477
+
 
                             <!-- <br><br><br><br> -->
                             <!-- <input type="text" form="basicinfoform" class="form-control date" name="schedule" multiple value=""/> -->

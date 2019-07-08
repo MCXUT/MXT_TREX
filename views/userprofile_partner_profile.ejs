@@ -391,25 +391,29 @@
         
         // Two functions below are for limiting the number of file uploads for 사업자등록증 and 미디어
         $(document).ready(function(){
-            $('#brUpload').change(function(){
-                if (this.files.length > (2 - <%= partnerProfile.businessRegistration.length %>)) {
-                    alert("사업자 등록증은 최대 총 2개의 파일까지만 업로드 할수 있습니다.");
-                    $('#brUploadSubmit').attr('disabled',true); 
-                } else {
-                    $('#brUploadSubmit').attr('disabled',false);
-                }
-            });
+            <% if (partnerProfile){ %>
+                $('#brUpload').change(function(){
+                        if (this.files.length > (2 - <%= partnerProfile.businessRegistration.length %>)) {
+                            alert("사업자 등록증은 최대 총 2개의 파일까지만 업로드 할수 있습니다.");
+                            $('#brUploadSubmit').attr('disabled',true); 
+                        } else {
+                            $('#brUploadSubmit').attr('disabled',false);
+                        }
+                });
+            <% } %>
         });
         
         $(document).ready(function(){
-            $('#mediaUpload').change(function(){
-                if (this.files.length > (8 - <%= partnerProfile.media.length %>)) {
-                    alert("미디어는 최대 총 8개의 파일까지만 업로드 할수 있습니다.");
-                    $('#mediaUploadSubmit').attr('disabled',true); 
-                } else {
-                    $('#mediaUploadSubmit').attr('disabled',false);
-                }
-            });
+            <% if (partnerProfile) { %>
+                $('#mediaUpload').change(function(){
+                        if (this.files.length > (8 - <%= partnerProfile.media.length %>)) {
+                            alert("미디어는 최대 총 8개의 파일까지만 업로드 할수 있습니다.");
+                            $('#mediaUploadSubmit').attr('disabled',true); 
+                        } else {
+                            $('#mediaUploadSubmit').attr('disabled',false);
+                        }
+                });
+            <% } %>
         });
         
         // Script for file input (사업자등록증 / 미디어 in this case) button and displaying the file name

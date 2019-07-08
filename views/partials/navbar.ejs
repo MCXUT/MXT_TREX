@@ -30,11 +30,11 @@
                                 <% } else { %>
                                   <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
                                 <% } %>
-                            <% } else { %>
+                            <% } else if (currentUser.type === "c") { %>
                                 <% if (currentUser.companyLogo) { %>
                                   <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>" style="max-height:40px;border-radius:25px;">
                                 <% } else { %>
-                                  <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                                  <img class="profileimg" src="/static/images/nocompanylogo.jpeg" style="max-height:40px;border-radius:25px;">
                                 <% } %>
                             <% } %>
                         </a>
