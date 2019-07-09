@@ -89,3 +89,15 @@ body {
     float: none;
   }
 }
+
+#sendmail_box {
+    background-color: white;
+    border: 1px solid transparent;
+    color: #007bf3
+}
+#sendmail_box:hover {
+    color: #0056b3;
+}
+#div5_services_2 button:disabled {
+    color: #d3d4d5;
+}

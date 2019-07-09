@@ -188,8 +188,18 @@ body {
   -o-object-fit: contain;
   margin-left: 0 auto;
   margin-right: 0 auto;
-  margin-top: 3.5%;
-  padding-left: 35%;
+  padding-left: 25%;
+  padding-right: 10%;
+  filter:none !important;
+}
+#slider-images3{
+  /* height: 600px; */
+  -o-object-fit: contain;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  margin-top: 1em;
+  padding-left: 10%;
+  padding-right: 5%;
   filter:none !important;
 }
 
@@ -531,12 +541,7 @@ font-size: 22px;
   .bottom-right{
     font-size: 25px;
   }
-  #caption-carousel h1{
-    font-size: 50px;
-  }
-  #caption-carousel h3{
-    font-size: 25px;
-  }
+
 
   /* end of carousel section */
   #request-service{
@@ -544,17 +549,29 @@ font-size: 22px;
     width: 200px;
     -o-object-fit: contain;
   }
+  #slider-images2{
+    margin-left: 15%;
+    padding-left: 0%;
+    padding-right:5%;
+    -o-object-fit: contain;
+  }
+  #slider-images3{
+    margin-left: 15%;
+    padding-left: 0%;
+    padding-right: 0%;
+    -o-object-fit: contain;
+  }
+  #searchbox{
+    width:60%;
+    margin-left: 9%;
+    padding-left: 22%;
+  }
   }
 @media (max-width: 768px) {
   .bottom-right{
     font-size: 20px;
   }
-  #caption-carousel h1{
-    font-size: 45px;
-  }
-  #caption-carousel h3{
-    font-size: 25px;
-  }
+
 
   #request-service{
     height: 100px;
@@ -568,9 +585,11 @@ font-size: 22px;
     font-size:40px;
   }
   #searchbox{
-    width:80%;
+    width:50%;
     padding-left:0%;
+    margin-left: 25%;
   }
+
   #countries{
     height: 230px;
     width: 150px;
@@ -583,17 +602,22 @@ font-size: 22px;
 }
 @media (max-width: 576px) {
 
-#caption-carousel h1{
-  font-size: 28px;
-}
-#caption-carousel h3{
-  font-size: 18px;
-}
-#searchbox{
-  width:250px;
-}
-#searchbox input{
-  font-size:12px;
+    #caption-carousel h1{
+      font-size: 22px;
+    }
+    #caption-carousel h2{
+      font-size: 16px;
+    }
+    #searchbox{
+        width:65%;
+        padding-left:0%;
+        padding-right: 0%;
+        margin-left: 18%;
+        margin-right: 25%;
+    }
+
+#searchbox input,#searchbox #search_btn{
+  font-size:9px;
 }
 #slider-images{
   height: 300px;
@@ -601,6 +625,16 @@ font-size: 22px;
 }
 #slider-images2{
   height: 300px;
+  margin-left: 15%;
+  padding-left: 0%;
+  padding-right:0%;
+  -o-object-fit: contain;
+}
+#slider-images3{
+  height: 300px;
+  margin-left: 15%;
+  padding-left: 0%;
+  padding-right: 0%;
   -o-object-fit: contain;
 }
 #heading{

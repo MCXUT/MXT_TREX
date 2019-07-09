@@ -2,11 +2,10 @@
     <head>
         <meta charset="utf-8">
         <style>
-            /* .btn-primary:hover {
-                cursor: pointer;
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
-            } */
+            html.disabled {
+                overflow-x: hidden;
+            }
+
             .btn-primary {
                  background-color:#f58b44 !important;
                  border-color:#f58b44 !important;
@@ -25,14 +24,12 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-
             }
             #left{
               max-width: 25%;
@@ -55,7 +52,6 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -63,13 +59,12 @@
             }
             #wrapper h4{
               font-size: 20px;
-
             }
             .dosi{
                 margin-left:20px;
             }
             .dropdown-menu{
-                height: 500px;
+                height: 250px;
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
@@ -77,6 +72,16 @@
                 margin: 5% 10% 7%;
                 display: flex;
                 flex-wrap: wrap;
+            }
+            .fa-list {
+                margin-right: 10px;
+            }
+            a.editservice {
+                color: rgb( 245, 139, 68 );
+            }
+            a.editservice:hover {
+                color: rgb(205, 99, 28);
+                text-decoration: underline;
             }
         </style>
         <title>Member - 트렉스</title>
@@ -90,6 +95,7 @@
     <body>
         <% include ./partials/profileedit-image %>
         <% include ./partials/profileedit-background %>
+        <% include ./partials/edit-partner-service %>
 
         <% include ./partials/navbar %>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -98,10 +104,14 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+       <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
-        <link rel="stylesheet" href="/static/stylesheets/profile.css">
 
-        <div class="profile">
+       <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+       <div class="profile">
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
@@ -145,7 +155,6 @@
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
 
-
                     <div class="col-md-8">
                         <div class="likethis">
                             <p class="basictitle">
@@ -171,6 +180,14 @@
                                 </div>
 
 
+                            <div class="form group row">
+                                <div class="col-sm-5">
+                                    <label for="service" style="margin-right: 70px;">가능한 서비스 *</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <a href="javascript: void(0);" class="editservice"><i class="fa fa-list" aria-hidden="true"></i>편집하기</a>
+                                </div>
+                            </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-5">
@@ -246,7 +263,50 @@
                                                 <label class="form-check-label" for="unable">불가능</label>
                                             </div>
                                         <% } %>
+                                    </div>
+                                </div>
 
+                            <div class="form-group row" id="har" style="display: none">
+                                <div class="col-sm-5">
+                                    <label for="region" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                        <option class="nara">과테말라</option>
+
+                                        <option class="dosi">과테말라시티</option>
+                                        <option class="nara">네덜란드</option>
+                                        <option class="dosi">암스테르담</option>
+                                        <option>노르웨이</option>
+                                        <option class="dosi">오슬로</option>
+                                        <option>뉴질랜드</option>
+                                        <option class="dosi">오클랜드</option>
+                                        <option>대만</option>
+                                        <option class="dosi">타이페이</option>
+                                        <option>대한민국</option>
+                                        <option class="dosi">대구</option>
+                                        <option class="dosi">대전</option>
+                                        <option class="dosi">부산</option>
+                                        <option class="dosi">서울</option>
+                                        <option class="dosi">울산</option>
+                                        <option class="dosi">인천</option>
+                                        <option class="dosi">제주</option>
+                                        <option>덴마크</option>
+                                        <option class="dosi">코펜하겐</option>
+                                        <option>도미니카공화국</option>
+                                        <option class="dosi">산토도밍고</option>
+                                        <option>독일</option>
+                                        <option class="dosi">뮌헨</option>
+                                        <option class="dosi">베를린</option>
+                                        <option class="dosi">슈투트가르트</option>
+                                        <option class="dosi">프랑크푸르트</option>
+                                        <option class="dosi">함부르크</option>
+                                        <option>라오스</option>
+                                        <option class="dosi">비엔티안</option>
+                                        <option>러시아</option>
+                                        <option class="dosi">모스크바</option>
+                                        <option class="dosi">상트페테르부르크</option>
+                                    </select>
                                     </div>
                                 </div>
 
@@ -391,13 +451,116 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        <script src="/static/scripts/profileedit.js"></script>
+
+        <script type="text/javascript">
+            var addmore = () => {
+                $(".addmore").on("click", function() {
+                    $(".servicecontents").append(manipulateAdd());
+                });
+            }
+            addmore();
+
+
+            var deletelist = () => {
+                $(".servicecontents").on("click", ".deletesection", function(e) {
+                    console.log(e);
+                    $(this).parent().remove();
+                });
+            }
+            deletelist();
+
+            var servicepage = () => {
+                $(".editservice").on("click", function(e) {
+                    $(".pum-service").fadeIn(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            servicepage();
+
+            var clickoutsideservice = () => {
+                $(".pum-service").on("click", (e) => {
+                    if(e.target.className === "pum-service pumactive") {
+                        $(".pum-service").fadeOut(400, () => {
+                            $(".pum-service").toggleClass("pumactive");
+                            $("html").toggleClass("disabled");
+                        });
+                    }
+                });
+            }
+            clickoutsideservice();
+
+            var clickexservice = () => {
+                $(".maincontent-service .exittable").click((e) => {
+                    $(".pum-service").fadeOut(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            clickexservice();
+        </script>
 
     <script>
         $('select').selectpicker();
+
+    </script>
+
+    <script>
+        // Script for file input (profile picture in this case) button and displaying the file name
+        $(function() {
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+            $('select').selectpicker();
+        });
+        </script>
+
+        <script>
+            // Script for file input (profile picture in this case) button and displaying the file name
+            $(function() {
+                // We can attach the `fileselect` event to all file inputs on the page
+                $(document).on('change', ':file', function() {
+                    var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [numFiles, label]);
+                });
+                // We can watch for our custom `fileselect` event like this
+                $(document).ready( function() {
+                    $(':file').on('fileselect', function(event, numFiles, label) {
+                        if (numFiles > 3){
+                            alert("최대 3개의 파일까지만 업로드 해주세요.");
+                        } else {
+                            var input = $(this).parents('.input-group').find(':text'),
+                                log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
+                            if( input.length ) {
+                                input.val(log);
+                            } else {
+                                if( log ) alert(log);
+                            }
+                        }
+                        // var input = $(this).parents('.input-group').find(':text'),
+                        //   log = numFiles > 1 ? numFiles + ' files selected' : label;
+                        //
+                        // if( input.length ) {
+                        //   input.val(log);
+                        // } else {
+                        //   if( log ) alert(log);
+                        // }
+                    });
+                });
+            });
+        </script>
     </script>
 
     <script src="/static/scripts/changeimg.js"></script>
@@ -429,5 +592,6 @@
 
     <% include ./partials/footer %>
 
+        <% include ./partials/footer %>
     </body>
 </html>

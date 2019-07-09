@@ -32,7 +32,7 @@ router.post("/reset/partner", (req,res) => {
               foundUser.resetPasswordExpires = Date.now() + 600000; //10 mins
               foundUser.save((err) => {
                   done(err, token, foundUser);
-              })
+              });
           });
       },
       (token, foundUser, done) => {
