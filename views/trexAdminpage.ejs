@@ -387,17 +387,17 @@ for (var i = 0; i < btns.length; i++) {
                                 <td nowrap><span style="color:red;">수락안됨</span></td>
                             <% } %>
                             <% if (profileList[i].isVerified) { %>
-                                <td nowrap><a href="/verifyProfile/<%= profileList[i].id %>">수락취소</a></td>
+                                <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락취소</a></td>
                             <% } else { %>
-                                <td nowrap><a href="/verifyProfile/<%= profileList[i].id %>">수락하기</a></td>
+                                <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락하기</a></td>
                             <% } %>
                             <% if (profileList[i].isInterviewed) { %>
-                                <td nowrap><i class="fas fa-check" style="color:green;"></i> <a href="/isInterviewed/<%= profileList[i].id %>">전환</a></td>
+                                <td nowrap><i class="fas fa-check" style="color:green;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
                             <% } else { %>
-                                <td nowrap><i class="fas fa-times" style="color:red;"></i> <a href="/isInterviewed/<%= profileList[i].id %>">전환</a></td>
+                                <td nowrap><i class="fas fa-times" style="color:red;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
                             <% } %>
-                            <td ><a href="/editProfile/<%= profileList[i]._id %>"><i class="far fa-edit"></i></a></td>
-                            <td ><a href="/deleteProfile/<%= profileList[i]._id %>"><i class="fas fa-trash"></i></a></td>
+                            <td ><a href="/trex-admin/editProfile/<%= profileList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                            <td ><a href="/trex-admin/deleteProfile/<%= profileList[i]._id %>"><i class="fas fa-trash"></i></a></td>
                         </tr>
                     <% } %>
                 <% } %>
