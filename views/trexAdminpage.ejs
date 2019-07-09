@@ -408,8 +408,7 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div6_services_3"  style="display:none;">
-<div class="content" style="padding-top:80px;">
-    <div class="content">
+    <div class="content" style="padding-top:80px;">
         <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
           <!-- Actual search box -->
@@ -432,31 +431,33 @@ for (var i = 0; i < btns.length; i++) {
             </tr>
             </thead>
             <tbody>
-            <% for(var i = 0; i < paymentList.length; i++) { %>
-                <form id="<%= paymentList[i]._id %>" action="/confirmmail/<%= paymentList[i]._id %>" method="post"></form>
-                <tr class="header">
-                  <th scope="row"><%= i+1 %></th>
-                  <td nowrap>
-                      <% if(paymentList[i].dateRequestedS) { %>
-                        <%= paymentList[i].dateRequestedS %>
+                <% for(var i = 0; i < paymentList.length; i++) { %>
+                    <form id="<%= paymentList[i]._id %>" action="/confirmmail/<%= paymentList[i]._id %>" method="post"></form>
+                    <tr class="header">
+                      <th scope="row"><%= i+1 %></th>
+                      <td nowrap>
+                          <% if(paymentList[i].dateRequestedS) { %>
+                            <%= paymentList[i].dateRequestedS %>
+                          <% } %>
+                      </td>
+                      <td nowrap><%= paymentList[i].amount %></td>
+                      <td nowrap>
+                          <% if(paymentList[i].dateConfirmedS) { %>
+                            <%= paymentList[i].dateConfirmedS %>
+                          <% } %>
+                      </td>
+                      <td nowrap><%= paymentList[i].associatedPartner %></td>
+                      <% if(paymentList[i].dateConfirmed || !paymentList[i].dateRequested) { %>
+                        <td><button id="sendmail_box" disabled><i class="fa fa-share"></i></button></td>
+                      <% } else { %>
+                          <td><button id="sendmail_box" form="<%= paymentList[i]._id %>"><i class="fa fa-share"></i></button></td>
                       <% } %>
-                  </td>
-                  <td nowrap><%= paymentList[i].amount %></td>
-                  <td nowrap>
-                      <% if(paymentList[i].dateConfirmedS) { %>
-                        <%= paymentList[i].dateConfirmedS %>
-                      <% } %>
-                  </td>
-                  <td nowrap><%= paymentList[i].associatedPartner %></td>
-                  <% if(paymentList[i].dateConfirmed || !paymentList[i].dateRequested) { %>
-                    <td><button id="sendmail_box" disabled><i class="fa fa-share"></i></button></td>
-                  <% } else { %>
-                      <td><button id="sendmail_box" form="<%= paymentList[i]._id %>"><i class="fa fa-share"></i></button></td>
-                  <% } %>
-                  <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
-                </tr>
-            <% } %>
-</div>
+                      <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 </left>
 
 <left id="div7_adminList"  style="display:none;" >

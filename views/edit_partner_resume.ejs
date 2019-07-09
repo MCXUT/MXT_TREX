@@ -99,19 +99,19 @@
 
         <% include ./partials/navbar %>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-       <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-       <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+       
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
+        <link rel="stylesheet" href="/static/stylesheets/profile.css">
 
-       <link rel="stylesheet" href="/static/stylesheets/profile.css">
-
-       <div class="profile">
+        <div class="profile">
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
@@ -265,50 +265,7 @@
                                         <% } %>
                                     </div>
                                 </div>
-
-                            <div class="form-group row" id="har" style="display: none">
-                                <div class="col-sm-5">
-                                    <label for="region" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
-                                        <option class="nara">과테말라</option>
-
-                                        <option class="dosi">과테말라시티</option>
-                                        <option class="nara">네덜란드</option>
-                                        <option class="dosi">암스테르담</option>
-                                        <option>노르웨이</option>
-                                        <option class="dosi">오슬로</option>
-                                        <option>뉴질랜드</option>
-                                        <option class="dosi">오클랜드</option>
-                                        <option>대만</option>
-                                        <option class="dosi">타이페이</option>
-                                        <option>대한민국</option>
-                                        <option class="dosi">대구</option>
-                                        <option class="dosi">대전</option>
-                                        <option class="dosi">부산</option>
-                                        <option class="dosi">서울</option>
-                                        <option class="dosi">울산</option>
-                                        <option class="dosi">인천</option>
-                                        <option class="dosi">제주</option>
-                                        <option>덴마크</option>
-                                        <option class="dosi">코펜하겐</option>
-                                        <option>도미니카공화국</option>
-                                        <option class="dosi">산토도밍고</option>
-                                        <option>독일</option>
-                                        <option class="dosi">뮌헨</option>
-                                        <option class="dosi">베를린</option>
-                                        <option class="dosi">슈투트가르트</option>
-                                        <option class="dosi">프랑크푸르트</option>
-                                        <option class="dosi">함부르크</option>
-                                        <option>라오스</option>
-                                        <option class="dosi">비엔티안</option>
-                                        <option>러시아</option>
-                                        <option class="dosi">모스크바</option>
-                                        <option class="dosi">상트페테르부르크</option>
-                                    </select>
-                                    </div>
-                                </div>
+                                
 
 
                             <% if (profileInfo.otherRegion.length > 0) { %>
@@ -509,59 +466,8 @@
     <script>
         $('select').selectpicker();
 
-    </script>
+    </script>]
 
-    <script>
-        // Script for file input (profile picture in this case) button and displaying the file name
-        $(function() {
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function() {
-                var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-            $('select').selectpicker();
-        });
-        </script>
-
-        <script>
-            // Script for file input (profile picture in this case) button and displaying the file name
-            $(function() {
-                // We can attach the `fileselect` event to all file inputs on the page
-                $(document).on('change', ':file', function() {
-                    var input = $(this),
-                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                    input.trigger('fileselect', [numFiles, label]);
-                });
-                // We can watch for our custom `fileselect` event like this
-                $(document).ready( function() {
-                    $(':file').on('fileselect', function(event, numFiles, label) {
-                        if (numFiles > 3){
-                            alert("최대 3개의 파일까지만 업로드 해주세요.");
-                        } else {
-                            var input = $(this).parents('.input-group').find(':text'),
-                                log = numFiles > 1 ? numFiles + '개의 파일 선택됨' : label;
-                            if( input.length ) {
-                                input.val(log);
-                            } else {
-                                if( log ) alert(log);
-                            }
-                        }
-                        // var input = $(this).parents('.input-group').find(':text'),
-                        //   log = numFiles > 1 ? numFiles + ' files selected' : label;
-                        //
-                        // if( input.length ) {
-                        //   input.val(log);
-                        // } else {
-                        //   if( log ) alert(log);
-                        // }
-                    });
-                });
-            });
-        </script>
-    </script>
 
     <script src="/static/scripts/changeimg.js"></script>
     <script src="/static/scripts/profileedit.js"></script>
