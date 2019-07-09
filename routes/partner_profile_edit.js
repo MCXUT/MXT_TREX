@@ -43,9 +43,13 @@ router.post("/user_profile/create_new_profile", function(req, res) {
     if (req.body.type == "freelancer") {
         var newProfile = new PartnerProfile({
             type: "freelancer",
-            // gender: "M",
-            registeredDate: Date.now(),
-            lastEditedDate: Date.now()
+            partner: {
+                name: req.user.name,
+                email: req.user.email,
+                id: req.user.id
+            },
+            registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
+            lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
         });
         newProfile.save((err, createdProfile) => {
             if(err) {
@@ -103,9 +107,13 @@ router.post("/user_profile/create_new_profile", function(req, res) {
     } else if (req.body.type == "agency") {
         var newProfile = new PartnerProfile({
             type: "agency",
-            // gender: "N/A",
-            registeredDate: Date.now(),
-            lastEditedDate: Date.now()
+            partner: {
+                name: req.user.name,
+                email: req.user.email,
+                id: req.user.id
+            },
+            registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
+            lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
         });
         newProfile.save((err, createdProfile) => {
             if(err) {
@@ -193,7 +201,7 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
         //     foundProfile.otherRegion.push(otherRegions[i]);
         // }
         foundProfile.aboutMe = req.body.aboutMe;
-        foundProfile.lastEditedDate = Date.now();
+        foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
         
         foundProfile.save((err) => {
               if (err) {
@@ -237,7 +245,7 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
         // }
         
         foundProfile.unavailableDates = req.body.unavailability.split(',');
-        foundProfile.lastEditedDate = Date.now();
+        foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
         
         foundProfile.save((err) => {
               if (err) {

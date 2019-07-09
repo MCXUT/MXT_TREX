@@ -7,6 +7,7 @@ const Client = require("../models/Client");
 const DeletedAccount = require("../models/DeletedAccount");
 const Partner = require("../models/Partner");
 const Message = require("../models/Message");
+const PartnerProfile = require("../models/PartnerProfile");
 const localAdmin = require("../config/passportStrategies/localAdmin");
 
 router.get("/trex-admin/login", function(req,res){
@@ -38,12 +39,15 @@ router.get("/trex-admin", function(req,res) {
           Partner.find({}, function(err, partners) {
             Admin.find({}, function(err, admins) {
               Message.find({}, function(err, messages) {
-                return res.render("trexAdminpage", {
-                  partnerList : partners,
-                  clientList: clients,
-                  adminList: admins,
-                  messageList: messages
-                });
+                  PartnerProfile.find({}, function(err, partnerProfiles) {
+                      return res.render("trexAdminpage", {
+                        partnerList : partners,
+                        clientList: clients,
+                        adminList: admins,
+                        messageList: messages,
+                        profileList: partnerProfiles
+                      });
+                  });
               });
             });
           });
@@ -86,12 +90,100 @@ router.get("/deletePartner/:id", function(req,res) {
     // });
 });
 
+
+router.get("/verifyProfile/:id", function(req, res) {
+    PartnerProfile.findById(req.params.id, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/trex-admin?index=5");
+        }
+        if (foundProfile.isVerified) {
+            foundProfile.isVerified = false;
+        } else {
+            foundProfile.isVerified = true;
+        }
+        foundProfile.save((err) => {
+            if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin?index=5");
+            }
+            console.log("Partner Profile verified/unverified for " + foundProfile.partner.name);
+            return res.redirect("/trex-admin?index=5");
+        });
+    });
+});
+
+
+router.get("/isInterviewed/:id", function(req, res) {
+    PartnerProfile.findById(req.params.id, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/trex-admin?index=5");
+        }
+        if (foundProfile.isInterviewed) {
+            foundProfile.isInterviewed = false;
+        } else {
+            foundProfile.isInterviewed = true;
+        }
+        foundProfile.save((err) => {
+            if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin?index=5");
+            }
+            console.log("Partner Profile isInterviewed changed for " + foundProfile.partner.name);
+            return res.redirect("/trex-admin?index=5");
+        });
+    });
+});
+
+
+router.get("/editProfile/:id", function(req, res) {
+    if (req.user) {
+        PartnerProfile.findById(req.params.id, function(err, foundProfile) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin?index=5");
+            }
+            res.render("trexAdminEditProfile", { thisProfile : foundProfile });
+        });
+    } else {
+      return res.redirect("/trex-admin/login");
+    }
+});
+
+
+router.get("/deleteProfile/:id", function(req, res) {
+    console.log("Profile ID: " + req.params.id);
+    PartnerProfile.findById(req.params.id, function(err, foundProfile) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/trex-admin?index=5");
+        }
+        Partner.findById(foundProfile.partner.id, function(err, foundPartner) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin?index=5");
+            }
+            foundProfile.remove((err) => {
+                foundPartner.partnerProfile = "";
+                foundPartner.save((err) => {
+                    res.redirect("/trex-admin?index=5");
+                });
+            });
+        });
+    });
+    // PartnerProfile.deleteOne({"_id" : req.params.id}, function(err, result) {
+    //     res.redirect("/trex-admin?index=5");
+    // });
+});
+
+
 router.get("/deleteAdmin/:id", function(req,res) {
     console.log("adminID: " + req.params.id);
     Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {
         res.redirect("/trex-admin?index=7");
     });
-})
+});
 
 router.post("/addAdmin", function(req, res) {
   if(!req.user) {
