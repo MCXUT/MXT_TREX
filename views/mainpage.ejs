@@ -94,7 +94,7 @@ background-color: #4CAF50;
     </div>
 
     <div class="carousel-item">
-      <img id="slider-images2" src="/static/images/slider/new_london.png" class="center responsive" >
+      <img id="slider-images3" src="/static/images/slider/new_london.png" class="center responsive" >
       <!-- <div class="bottom-right">LONDON</div> -->
     </div>
 
@@ -563,6 +563,18 @@ transform: rotate(0deg) ;
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      breakpoints: {
+   // when window width is <= 320px
+   800: {
+     slidesPerView: 3,
+     spaceBetweenSlides: 30
+   },
+   // when window width is <= 480px
+   576: {
+     slidesPerView: 1,
+     spaceBetweenSlides: 20
+   }
+ }
     });
 
     var mySwiper2 = new Swiper ('.s2', {
@@ -579,6 +591,18 @@ transform: rotate(0deg) ;
         nextEl: '.swiper-button-next2',
         prevEl: '.swiper-button-prev2',
       },
+      breakpoints: {
+   // when window width is <= 320px
+   800: {
+     slidesPerView: 3,
+     spaceBetweenSlides: 30
+   },
+   // when window width is <= 480px
+   576: {
+     slidesPerView: 1,
+     spaceBetweenSlides: 20
+   }
+ }
 
     });
   </script>
