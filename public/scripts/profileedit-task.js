@@ -148,7 +148,7 @@ var ratingpage = () => {
 ratingpage();
 
 var clickoutsiderate = () => {
-    document.querySelector(".pumrate").addEventListener("click", (e) => {
+    $(".pumrate").on("click", (e) => {
         if(e.target.className === "pumrate pumactive") {
             $(".pumrate").fadeOut(400, () => {
                 $(".pumrate").toggleClass("pumactive");
@@ -178,3 +178,11 @@ var formsubmit = () => {
     });
 }
 formsubmit();
+
+var sendRequestEmail = () => {
+    $(".subcontainer button").on("click", function(e) {
+        $("#paymentemail").attr("action", "/user_profile/tasks/payment/" + $(this).attr("id"));
+        $("#paymentemail").submit();
+    });
+}
+sendRequestEmail();

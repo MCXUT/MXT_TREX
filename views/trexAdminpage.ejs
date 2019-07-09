@@ -85,7 +85,7 @@
 
       <div id="nav_item_services" class="dropdown-container" >
         <a id="nav4" class="nav-item" href="#?services_1" onclick="services1();"><i class="far fa-envelope"></i> Messages </a>
-        <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="fas fa-tools"></i> Steven2</a>
+        <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="fa fa-credit-card"></i> Payments Confirm</a>
         <a id="nav6" class="nav-item" href="#?services_3" onclick="services3();"><i class="fas fa-hammer"></i> Steven3</a>
       </div>
 
@@ -325,9 +325,56 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div5_services_2"  style="display:none;">
-<div class="content" style="padding-top:80px;">
-<h3>Service 2 content</h3>
-</div>
+    <div class="content">
+        <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+
+          <!-- Actual search box -->
+          <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+            <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
+          </div>
+        </div>
+
+        <table class="table table-bordered margin2" id="myTable3" style="margin-top:60px;">
+            <thead class="thead-dark">
+            <tr >
+              <th scope="col">#</th>
+              <th scope="col">Date Requested</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date Confirmed</th>
+              <th scope="col">Assiciated Partner</th>
+              <th id="edit-sendmail" scope="col">Send Email</th>
+              <th id="edit-delete" scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < paymentList.length; i++) { %>
+                <form id="<%= paymentList[i]._id %>" action="/confirmmail/<%= paymentList[i]._id %>" method="post"></form>
+                <tr class="header">
+                  <th scope="row"><%= i+1 %></th>
+                  <td nowrap>
+                      <% if(paymentList[i].dateRequestedS) { %>
+                        <%= paymentList[i].dateRequestedS %>
+                      <% } %>
+                  </td>
+                  <td nowrap><%= paymentList[i].amount %></td>
+                  <td nowrap>
+                      <% if(paymentList[i].dateConfirmedS) { %>
+                        <%= paymentList[i].dateConfirmedS %>
+                      <% } %>
+                  </td>
+                  <td nowrap><%= paymentList[i].associatedPartner %></td>
+                  <% if(paymentList[i].dateConfirmed || !paymentList[i].dateRequested) { %>
+                    <td><button id="sendmail_box" disabled><i class="fa fa-share"></i></button></td>
+                  <% } else { %>
+                      <td><button id="sendmail_box" form="<%= paymentList[i]._id %>"><i class="fa fa-share"></i></button></td>
+                  <% } %>
+                  <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </left>
 
 

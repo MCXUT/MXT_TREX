@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/static/stylesheets/changeimg.css">
+<div class="pumimg">
+    <div class="pumimg-container">
+        <div class="maincontent">
+            <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <form id="changePic" method="post" enctype="multipart/form-data"></form>
+            <form id="defaultPic" method="post"></form>
+            <span class="switch">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary switch" style="width:100%!important;padding-left:13%;">
+                            Browse&hellip; <input form="changePic" type="file" name="companyLogo" accept="image/*" style="display:none;" required />
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" style="max-width:400px!important;" readonly>
+                </div>
+            </span>
+            <button class="btn btn-info editbuttons" id="confirm" form="changePic">교체</button>
+            <button form="defaultPic" class="btn btn-secondary editbuttons">기본 사진 사용하기</button>
+            <br/>
+            <span class="switch">
+              <font size=2>로고 사이즈는 150x150px로 맞춰주세요.</font>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    var coverPhotoForm = () => {
+        $("#changePic").on("submit", function() {
+            $(this).attr("action", window.location.href + "/companyLogoUpload");
+            $(this).submit();
+        });
+    }
+    coverPhotoForm();
+
+    var defaultPhotoForm = () => {
+        $("#defaultPic").on("submit", function() {
+            $(this).attr("action", window.location.href + "/deleteCompanyLogo?_method=DELETE");
+            $(this).submit();
+        });
+    }
+    defaultPhotoForm();
+</script>

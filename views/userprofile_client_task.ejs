@@ -63,24 +63,58 @@
 
         <% include ./partials/header %>
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     </head>
     <body>
 
         <% include ./partials/profileedit-businessicon %>
 
+        <link rel="stylesheet" href="/static/stylesheets/ratepum.css">
+        <div class="pumrate">
+            <div class="pumrate-container">
+                <div class="maincontent-rate">
+                    <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    <p><span class="nameofpartner"></span>님에게 리뷰 남기기</p>
+                    <form id="ratingform" method="post">
+                        <div class="rating">
+                            <input type="radio" name="star" id="star5" value=5><label for="star5"></label>
+                            <input type="radio" name="star" id="star4" value=4><label for="star4"></label>
+                            <input type="radio" name="star" id="star3" value=3><label for="star3"></label>
+                            <input type="radio" name="star" id="star2" value=2><label for="star2"></label>
+                            <input type="radio" name="star" id="star1" value=1><label for="star1"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea form="ratingform" class="form-control" rows="3" id="comment" name="comment"></textarea>
+                        </div>
+                        <input type="hidden" name="unique" value="">
+                        <input type="submit" name="submit" value="확인" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <% include ./partials/navbar %>
 
         <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+        <script src="js/jquery.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="js/combodate.js"></script>
 
         <div class="profile">
             <div class="tab">
                 <div class="row top">
                     <div class="col-12">
-                        <p class="setting">지원자 보기</p>
+                        <p class="setting">계정 관리</p>
                         <div class="menu">
                             <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
-                            <a class="applicants_info profileactive" href="/user_profile/applicants_info">지원자 보기</a>
-                            <a class="task_management" href="/user_profile/task_management">업무 관리</a>
+                            <a class="applicants_info" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="task_management profileactive" href="/user_profile/task_management">업무 관리</a>
                             <% if (currentUser.messageNotification) { %>
                                 <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
                                 <a class="messages" href="/user_profile/messages">메세지</a>
@@ -101,7 +135,7 @@
                         <% if (currentUser.companyLogo) { %>
                             <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
+                            <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
                         <% } %>
                             <div class="changeslider">
                                 사진 바꾸기<br/>
@@ -113,24 +147,43 @@
                     </div>
 
                     <div class="col-md-8">
-
-
-                        <!--  지원자 보기  -->
-                        <% if (error.length > 0) { %>
-                          <span style="color:red;margin-left:70px;"><%= error %></span>
-                        <% } %>
-                            <div class="row sections basic" id="basic">
-                                <p class="basictitle"><b>지원자 보기</b></p>
-
-
-
+                        <div class="row sections basic" id="basic">
+                            <p class="basictitle"><b>지정된 업무</b></p>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="row sections basic" id="basic">
+                            <p class="basictitle"><b>진행중인 업무</b></p>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="row sections basic" id="basic">
+                            <p class="basictitle"><b>완료된 업무</b></p>
+                            <div class="divider"></div>
+                            <div class="appointmentlist2">
+                                <% allPartners.forEach((partner) => { %>
+                                    <div class="appointmentcard">
+                                        <div class="container">
+                                            <p class="tasktitle">트랙스 통역업무1</p>
+                                            <div class="subcontainer">
+                                                <p class="taskcontent"><%= partner.name %></p>
+                                                <a href="javascript:void(0)" id="<%= partner._id %>">평점 남기기</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% });  %>
                             </div>
+                            <nav aria-label="Page navigation">
+                              <ul class="pagination pagination2">
+                                <li class="prevshow"><a class="page-link" href="javascript:void(0)">Previous</a></li>
+                              </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <script src="/static/scripts/changeimg.js"></script>
+        <script src="/static/scripts/profileedit-task.js"></script>
 
     <script>
     $(document).ready(() => {
@@ -164,41 +217,16 @@
                         spans.forEach((span) => {
                             $(span).toggleClass("active");
                         });
+                    } else if(parentDivisionClass[1] === "deleteinfo") {
+                        var spans = document.getElementById("deleteAccount").querySelectorAll(".switch");
+                        spans.forEach((span) => {
+                            $(span).toggleClass("active");
+                        });
                     }
                 });
             });
     });
     </script>
-
-    <script>
-        // Script for file input (profile picture in this case) button and displaying the file name
-        $(function() {
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function() {
-                var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-
-            // We can watch for our custom `fileselect` event like this
-            $(document).ready( function() {
-                $(':file').on('fileselect', function(event, numFiles, label) {
-
-                    var input = $(this).parents('.input-group').find(':text'),
-                      log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-                    if( input.length ) {
-                      input.val(log);
-                    } else {
-                      if( log ) alert(log);
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script src="/static/scripts/profileedit.js"></script>
 
     <% include ./partials/footer %>
 
