@@ -71,12 +71,21 @@ router.get("/partner_profile/:id", function(req, res) {
                     avgRating /= foundPartner.ratings.length;
                     avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
                     if(avgRating == "NaN") avgRating = 0.0;
-                    res.render("partnerprofile", {
-                        thisPartner: foundPartner,
-                        averageRating: avgRating,
-                        reviews: allInfos,
-                        thisProfile: foundProfile
-                    });
+                    if (foundProfile.isVerified) {
+                        res.render("partnerprofile", {
+                            thisPartner: foundPartner,
+                            averageRating: avgRating,
+                            reviews: allInfos,
+                            thisProfile: foundProfile
+                        });
+                    } else {
+                        res.render("partnerprofile", {
+                            thisPartner: foundPartner,
+                            averageRating: avgRating,
+                            reviews: allInfos,
+                            thisProfile: ""
+                        });
+                    }
                 }
             });
         });//PartnerProfile.findById

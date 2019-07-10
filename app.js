@@ -28,6 +28,7 @@ const partnerLoginRoutes = require("./routes/login/loginPartner");
 const clientPwResetRoutes = require("./routes/passwordReset/passwordResetClient");
 const partnerPwResetRoutes = require("./routes/passwordReset/passwordResetPartner");
 const adminPanelRoutes = require("./routes/adminPanel");
+const adminPanelPartnerProfileRoutes = require("./routes/adminPanelPartnerProfile");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -133,6 +134,7 @@ app.use("/", messageRoutes);
 app.use("/", businessRegistrationRoutes);
 app.use("/", mediaRoutes);
 app.use("/", adminPanelRoutes);
+app.use("/", adminPanelPartnerProfileRoutes);
 
 app.set('port', process.env.PORT || 8080);
 

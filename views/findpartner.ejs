@@ -276,7 +276,9 @@
                     <% } %>
 
                     <h7 class="juso">
+                        <% if (allPartners[i].address.city && allPartners[i].address.country) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
+                        <% } %>
                     </h7>
                   </center>
                   </a>
