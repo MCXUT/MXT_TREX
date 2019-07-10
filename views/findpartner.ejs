@@ -663,28 +663,28 @@
       function google(){
         var searchmap = document.getElementById("searchmap");
 
-          var input = document.getElementById("mymyInput").value;
-            var location = input;
-            axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-              params: {
-                address: location,
-                key: "<%=googleMapAPI%>"
-              }
-            })
-            .then(function(res) {
-              console.log(res);
-              var la = (res.data.results[0].geometry.location.lat);
-              var lo = (res.data.results[0].geometry.location.lng);
-              // var marker = new google.maps.Marker({
-              //   position: {lat: la, lng: lo},
-              //   map: map
-              // });
-              var center = new google.maps.LatLng(la, lo)
-              map.panTo(center);
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+        var input = document.getElementById("mymyInput").value;
+        var location = input;
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+            params: {
+            address: location,
+            key: "<%=googleMapAPI%>"
+            }
+        })
+        .then(function(res) {
+        console.log(res);
+        var la = (res.data.results[0].geometry.location.lat);
+        var lo = (res.data.results[0].geometry.location.lng);
+        // var marker = new google.maps.Marker({
+        //   position: {lat: la, lng: lo},
+        //   map: map
+        // });
+        var center = new google.maps.LatLng(la, lo)
+        map.panTo(center);
+        })
+        .catch(function(error) {
+             console.log(error);
+        });
 
       };
 
