@@ -217,7 +217,9 @@ router.get("/user_profile/applicants_info", (req, res) => {
       if (req.user.type === "p") {
           res.redirect("/user_profile");
       } else {
-          res.render("userprofile_client_applicantsInfo");
+          Partner.find({}, (err, allPartners) => {
+             res.render("userprofile_client_applicantsInfo", {allPartners:allPartners});
+          });
     }
   }
 });
@@ -269,7 +271,7 @@ router.get("/user_profile/schedule", (req, res) => {
         } else {
             res.render("userprofile_partner_schedule", { unavailableDates: false });
         }
-        
+
     }
   }
 });

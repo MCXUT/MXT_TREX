@@ -3,13 +3,20 @@
   box-sizing: border-box;
 }
 
-
+.modal-body {
+    padding: 1rem 0;
+}
 #regForm {
   background-color: #ffffff;
-  margin: 0 100px;
+  margin: auto;
   font-family: Raleway;
-  width: 70%;
+  width: 100%;
   min-width: 300px;
+  height: 350px;
+  overflow-y: auto;
+  padding-top: 10px;
+  padding-bottom: 0;
+  margin: 0 auto;
 }
 
 h1 {
@@ -68,12 +75,13 @@ border:2px solid #e60000;
 .stepbar {
     font-size: 0;
     background-color: #ccc;
-    height: 10px;
+    height: 7px;
     border-radius: 10px;
-    margin: 50px 0;
+    margin: 40px auto;
+    width: 80%;
 }
 .step {
-  height: 10px;
+  height: 7px;
   width: 0%;
   background-color: rgb(120, 166, 211);
   border: none;
@@ -88,8 +96,13 @@ border:2px solid #e60000;
     font-size: 13px;
     margin-top: -40px;
 }
+.btn-list {
+    margin: 2rem;
+
+}
 
 </style>
+
 
 <script>
 function closeAllModal(){
@@ -99,7 +112,7 @@ function closeAllModal(){
   document.getElementById('myModal2').style.opacity='1.0'
   $(".modal-backdrop").removeClass("show");
   $(".modal-backdrop").css("display", "none");
-
+  $("#regForm").trigger('reset');
 }
 function gaesokFunction(){
     document.getElementById("myModal3").style.display="none";
@@ -107,65 +120,63 @@ function gaesokFunction(){
 }
 </script>
 
+<link rel="stylesheet" href="/static/stylesheets/task-request-form.css">
+
 <div class="modal fade text-center" id="myModal2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
-      <div class="modal-header text-center" >
-  <h4 class="col-12 modal-title text-cente">업무 요청 Form
-    <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999;"></div>
-  </h4>
+    <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999; z-index:1;"></div>
     <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
-</div>
          <div class="modal-body">
+
+
+             <div class="stepbar" style="text-align:center;">
+               <span class="step" id="step"></span>
+               <p class="progression"></p>
+             </div>
 <form id="regForm" action="/action_page.php" target="_blank">
 
 
-  <div class="stepbar" style="text-align:center;">
-    <span class="step" id="step"></span>
-    <p class="progression"></p>
-  </div>
 
   <!-- Circles which indicates the steps of the form: -->
 
   <!-- One "tab" for each step in the form: -->
-  <div class="tab">Name:
-    <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
-  </div>
-  <div class="tab">Contact Info:
-    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
-    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
-  </div>
-  <div class="tab">Birthday:
-    <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-  </div>
-  <div class="tab">Login Info:
-    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-  </div>
-  <div class="tab">Birthday:
-    <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-  </div>
-  <div class="tab">Contact Info:
-    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
-    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
-  </div>
-  <div class="tab">Name:
-    <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
-    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
-  </div>
-  <div style="overflow:auto;">
-    <div style="float:right;">
-      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-    </div>
-  </div>
-
+  <% detailService.questionList.forEach((q) => { %>
+      <div class="tab">
+          <p class="qtitle"><%= q.questionName %></p>
+          <% if(q.type === "checkbox") { %>
+              <table class="radio-group">
+              <% q.options.forEach((option) => { %>
+                  <tr>
+                      <td>
+                          <label class="radio">
+                              <input type="radio" name="tongyuk" value="<%= option %>"><%= option %>
+                              <span></span>
+                          </label>
+                      </td>
+                  </tr>
+              <% }); %>
+              </table>
+          <% } else if(q.type === "dropdown") { %>
+              <select class="form-control" id="sel1">
+                  <% q.options.forEach((option) => { %>
+                      <option><%= option %></option>
+                  <% }); %>
+              </select>
+          <% } else if(q.type === "input") { %>
+              <input class="form-control" placeholder="sample">
+          <% } else if(q.type === "textarea") { %>
+              <textarea class="form-control"></textarea>
+          <% } %>
+      </div>
+  <% }); %>
 </form>
+<div>
+  <div class="btn-list">
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+  </div>
+</div>
 </div>
 </div>
 </div>

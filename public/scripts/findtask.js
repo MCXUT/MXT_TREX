@@ -252,6 +252,16 @@ document.querySelector(".close").addEventListener("click", (e) => {
 //     document.querySelector("#registerModal").style.display = "block";
 //
 // });
+$(document).ready(() => {
+    var urlParams = new URLSearchParams(window.location.search);
+
+    console.log(urlParams.get("shit"));
+    if(urlParams.get("shit") === "shit") {
+        document.querySelector("#sliderss").style.display = "block";
+        document.querySelector("#map").style.display = "none";
+    }
+});
+
 document.getElementById("formore").addEventListener("click", (e) => {
     console.log("eeee");
     document.querySelector("#sliderss").style.display = "block";

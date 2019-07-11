@@ -471,6 +471,48 @@
     margin: auto;
 }
 
+.bottom .seepartners {
+    width: 100%;
+}
+.bottom .seepartners tr {
+    border: 1px solid rgba(90, 97, 117, 0.3);
+}
+.bottom .seepartners th {
+    background-color: #d3d4e5;
+    font-size: 15px;
+}
+.bottom .seepartners th, .bottom .seepartners td {
+    max-width: 110px;
+    padding: 10px;
+}
+.bottom .seepartners td {
+    font-size: 13px;
+}
+.bottom .seepartners td a {
+    color: #559ad1;
+}
+.bottom .seepartners td a:hover {
+    color: rgb(45, 114, 169);
+}
+.bottom .seepartners td svg {
+    font-size: 13px;
+}
+.bottom .seepartners .status, .bottom .seepartners .editor {
+    text-align: center;
+}
+.bottom .seepartners .status .statuswrapper {
+    font-size: 11px;
+    border-radius: 15px;
+    background-color: #d3d4e5;
+    padding: 5px;
+}
+.seepartners .editor .delete {
+    color: red;
+}
+.seepartners .editor .delete svg {
+    font-size: 11px;
+}
+
 html.disabled {
     overflow-y: hidden;
 }
