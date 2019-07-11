@@ -221,7 +221,7 @@
                                         <div class="col-sm-3">사업자 등록증</div><div class="col-sm-9"></div>
                                         <div class="row" style="margin-bottom:50px;width:100%;">
                                             <% for (var i = 0; i < partnerProfile.businessRegistration.length; i++) { %>
-                                                <form id="deleteForm<%= i %>" action="/user_profile/deleteBusinessRegistration/<%= partnerProfile.businessRegistration[i] %>?_method=DELETE" method="post"></form>
+                                                <form id="deleteForm<%= i %>" action="/user_profile/deleteBusinessRegistration/<%= partnerProfile.businessRegistration[i] %>/<%= partnerProfile.id %>?_method=DELETE" method="post"></form>
                                                 <div class="col">
                                                     <a data-toggle="modal" data-target="#imageModal<%= i %>">
                                                         <img src="/businessRegistration/<%= partnerProfile.businessRegistration[i] %>" style="width:150px;height:225px;">
@@ -268,9 +268,6 @@
                                             </div>
                                         <% } %>
                                         
-                                        <!-- Display partner's uploaded files -->
-                                        
-                                        
                                     <% } %> <!-- end of for loop -->
                                     
                                     <div class="divider"></div>
@@ -278,7 +275,7 @@
                                     <div class="col-sm-7">미디어 (이력서, 자격증 등)</div><div class="col-sm-5"></div>
                                     <div class="row" style="margin-bottom:50px;width:100%;">
                                         <% for (var i = 0; i < partnerProfile.media.length; i++) { %>
-                                            <form id="deleteMediaForm<%= i %>" action="/user_profile/deleteMedia/<%= partnerProfile.media[i] %>?_method=DELETE" method="post"></form>
+                                            <form id="deleteMediaForm<%= i %>" action="/user_profile/deleteMedia/<%= partnerProfile.media[i] %>/<%= partnerProfile.id %>?_method=DELETE" method="post"></form>
                                             <div class="col">
                                                 <a data-toggle="modal" data-target="#mediaModal<%= i %>">
                                                     <img src="/media/<%= partnerProfile.media[i] %>" style="width:150px;height:225px;">
@@ -324,8 +321,6 @@
                                     <div class="col-sm-4">
                                         <input type="submit" id="mediaUploadSubmit" form="mediaForm" value="파일 업로드" class="btn btn-primary btn-block showBttn">
                                     </div>
-                                    
-                                    <!-- Display partner's uploaded files -->
                                     
                                     
                                     

@@ -1,76 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>admin 페이지 - 트렉스</title>
-  <meta charset="utf-8">
-
-  <% include ./partials/header %>
-  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="/static/stylesheets/auth.css">
-  <script src="/static/scripts/adminpage.js"></script>
-
-  <!-- scroll to top button -->
-  <script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-     // type();
-     movingBackgroundImage();
-  });
-  </script>
-  <div class="container-fluid">
-  <button href="#" id="scroll" style="display: none;">&uarr;<br>top</button>
-  </div>
-
-  <script>
-
-  $(document).ready(function(){
-    $(window).scroll(function(){
-        if ($(this).scrollTop() > -1) {
-            $('#scroll').fadeIn().css("z-index","4");
-        } else {
-            $('#scroll').fadeOut();
+    <title>admin 페이지 - 트렉스</title>
+    <meta charset="utf-8">
+    <style>
+        a:hover {
+            cursor:pointer;
         }
+    </style>
 
-    });
-    $('#scroll').click(function(e){
-        $("html, body").animate({ scrollTop: 0 }, 600);
-        return false;
-    });
-  });
-  </script>
-  <!-- /scroll to top button -->
+    <% include ./partials/header %>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/stylesheets/auth.css">
+    <script src="/static/scripts/adminpage.js"></script>
+
+    <!-- scroll to top button -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            // type();
+            movingBackgroundImage();
+        });
+    </script>
+    <div class="container-fluid">
+        <button href="#" id="scroll" style="display: none;">&uarr;<br>top</button>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > -1) {
+                    $('#scroll').fadeIn().css("z-index","4");
+                } else {
+                    $('#scroll').fadeOut();
+                }
+            });
+            $('#scroll').click(function(e){
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script> -->
+    <!-- /scroll to top button -->
     <link rel="stylesheet" href="../static/stylesheets/adminpage.css">
-
 
 </head>
 <body>
-
-
-
-  <div class="topnav" style="background-color:white;position:fixed;width:100%;z-index:500;"> <!-- z-index:500; -->
-    <a class="logo " href="/"><img class="margin" src="/static/images/trexlogo.png" height="60" width="100" style="margin-left:20px;"></img></a>
-
-
-    <a  id="admin_topNav" href="https://crewmxt.com/services/contact-us" target = "_blank" ><i class="fas fa-phone-volume"></i> Contact Us</a>
-    <a  id="admin_topNav"href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-<center style="font-weight:700;font-size:13px;padding-left:200px;">COPYRIGHT© 2019 MXT. ALL RIGHTS RESERVED BY CREWMXT.COM</center>
-<br>
+    <div class="topnav" style="padding-top:10px;padding-bottom:10px;background-color:white;position:fixed;width:100%;z-index:500;"> <!-- z-index:500; -->
+        <a class="logo" href="/"><img class="margin" src="/static/images/trexlogo.png" height="60" width="100" style="margin-left:20px;"></img></a>
+        
+        <a id="admin_topNav" href="https://crewmxt.com/services/contact-us" target = "_blank" ><i class="fas fa-phone-volume"></i> Contact Us</a>
+        <a id="admin_topNav"href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+    </div>
+    
+    <div style="padding:90px 5% 5% 5%;">
+        <a href="/trex-admin?index=5">< 뒤로가기</a>
+            <center><strong><big>파트너 프로필 관리</big></strong></center>
+            <span style="float:right;"><a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProfileModal" role="button">프로필 삭제</a></span>
+            <div class="modal fade" id="deleteProfileModal" tabindex="-1" role="dialog" aria-labelledby="deleteProfileModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteProfileModalLongTitle">파트너 프로필 삭제</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            이 파트너 프로필을 삭제 하시겠습니까?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                            <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                            <a href="/trex-admin/deleteProfile/<%= thisProfile._id %>" class="btn btn-danger showBttn">삭제</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>파트너 ID:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.partner.id %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>파트너 이름:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.partner.name %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>파트너 이메일:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.partner.email %>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>프로필 타입:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% if (thisProfile.type == "freelancer") { %>
+                        프리랜서
+                    <% } else if (thisProfile.type == "agency") { %>
+                        에이전시
+                    <% } %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>수락여부:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% if (thisProfile.isVerified) { %>
+                        <font color="green">수락됨</font>
+                        <span style="float:right;"><a href="/trex-admin/editProfile/verifyProfile/<%= thisProfile.id %>">수락취소</a></span>
+                    <% } else { %>
+                        <font color="red">수락 안됨</font>
+                        <span style="float:right;"><a href="/trex-admin/editProfile/verifyProfile/<%= thisProfile.id %>">수락하기</a></span>
+                    <% } %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>인터뷰 여부:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% if (thisProfile.isInterviewed) { %>
+                        <font color="green">인터뷰 완료</font>
+                        <span style="float:right;"><a href="/trex-admin/editProfile/isInterviewed/<%= thisProfile.id %>">변경</a></span>
+                    <% } else { %>
+                        <font color="red">인터뷰 미완료</font>
+                        <span style="float:right;"><a href="/trex-admin/editProfile/isInterviewed/<%= thisProfile.id %>">변경</a></span>
+                    <% } %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>등록일자:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.registeredDate %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>최근 수정일:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.lastEditedDate %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>조회수:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.views %>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>한줄 소개:</b></label>
+                </div>
+                <div class="col-sm-7">
+                    <%= thisProfile.oneLineIntro %>
+                </div>
+                <div class="col-sm-1">
+                    <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editOneLineIntroModal">변경</a></span>
+                    <div class="modal fade" id="editOneLineIntroModal" tabindex="-1" role="dialog" aria-labelledby="editOneLineIntroModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/trex-admin/editProfile/editOneLineIntro/<%= thisProfile.id %>" method="post">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editOneLineIntroModalLongTitle">한줄 소개 편집</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" class="form-control" id="oneLineIntro" name="oneLineIntro" placeholder="클라이언트에게 본인 한줄 소개를 해주세요." value="<%= thisProfile.oneLineIntro %>">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                        <button type="submit" class="btn btn-primary">편집</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>지역:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= thisProfile.region %>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>타지역:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% if (thisProfile.otherRegion.length > 0) { %>
+                        <% for (var i = 0; i < thisProfile.otherRegion.length; i++) { %>
+                            <%= thisProfile.otherRegion[i] %>
+                            <% if (i < thisProfile.otherRegion.length-1) { %>
+                                 , 
+                            <% } %>
+                        <% } %>
+                    <% } else { %>
+                        타지역 업무 불가능
+                    <% } %>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>자기소개:</b></label>
+                </div>
+                <div class="col-sm-7">
+                    <%= thisProfile.aboutMe %>
+                </div>
+                <div class="col-sm-1">
+                    <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editAboutMeModal">변경</a></span>
+                    <div class="modal fade" id="editAboutMeModal" tabindex="-1" role="dialog" aria-labelledby="editAboutMeModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/trex-admin/editProfile/editAboutMe/<%= thisProfile.id %>" method="post">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editAboutMeModalLongTitle">자기 소개 편집</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea class="form-control" name="aboutMe" id="aboutMe" rows="12"><%= thisProfile.aboutMe %></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                        <button type="submit" class="btn btn-primary">편집</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>제공 서비스:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% for (var i = 0; i < thisProfile.availableServices.length; i++) { %>
+                        <%= thisProfile.availableServices[i] %>
+                        <% if (i < thisProfile.availableServices.length-1) { %>
+                             , 
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>예약 불가능일:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <% for (var i = 0; i < thisProfile.unavailableDates.length; i++) { %>
+                        <%= thisProfile.unavailableDates[i] %>
+                        <% if (i < thisProfile.unavailableDates.length-1) { %>
+                             , 
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <% if (thisProfile.type == "agency") { %>
+                <div class="col-sm-3"><b>사업자 등록증</b></div><div class="col-sm-9"></div>
+                <div class="row" style="margin-bottom:50px;width:100%;">
+                    <% for (var i = 0; i < thisProfile.businessRegistration.length; i++) { %>
+                        <form id="deleteForm<%= i %>" action="/user_profile/deleteBusinessRegistration/<%= thisProfile.businessRegistration[i] %>/<%= thisProfile._id %>?_method=DELETE" method="post"></form>
+                        <div class="col">
+                            <%=i+1%>.<a data-toggle="modal" data-target="#imageModal<%= i %>">
+                                <img src="/businessRegistration/<%= thisProfile.businessRegistration[i] %>" style="width:150px;height:225px;">
+                            </a>
+                            <div class="modal fade" id="imageModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="imageModalTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="imageModalLongTitle">사업자 등록증 삭제</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            이 사업자 등록증을 삭제 하시겠습니까?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                            <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                            <button form="deleteForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                
+            <% } %>
+            
+            <hr>
+            
+            <div class="col-sm-7"><b>미디어 (이력서, 자격증 등)</b></div><div class="col-sm-5"></div>
+            <div class="row" style="margin-bottom:50px;width:100%;">
+                <% for (var i = 0; i < thisProfile.media.length; i++) { %>
+                    <form id="deleteMediaForm<%= i %>" action="/user_profile/deleteMedia/<%= thisProfile.media[i] %>/<%= thisProfile._id %>?_method=DELETE" method="post"></form>
+                    <div class="col">
+                        <%=i+1%>.<a data-toggle="modal" data-target="#mediaModal<%= i %>">
+                            <img src="/media/<%= thisProfile.media[i] %>" style="width:150px;height:225px;">
+                        </a>
+                        <div class="modal fade" id="mediaModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="mediaModalTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="mediaModalLongTitle">미디어 삭제</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        이 미디어를 삭제 하시겠습니까?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
+                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
+                                        <button form="deleteMediaForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            
+            
+    </div>
+    
+    
+    
+    <center style="font-weight:700;font-size:13px;">COPYRIGHT© 2019 MXT. ALL RIGHTS RESERVED BY CREWMXT.COM</center>
+    <br>
 </body>
 </html>

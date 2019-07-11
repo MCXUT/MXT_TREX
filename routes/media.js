@@ -5,7 +5,8 @@ const express = require("express"),
       Grid = require("gridfs-stream"),
       path = require("path"),
       crypto = require("crypto"),
-      mongodb = require("mongodb");
+      mongodb = require("mongodb"),
+      nodemailer = require("nodemailer");
 const app = express();
 const router = express.Router();
 
@@ -70,6 +71,36 @@ router.post("/user_profile/mediaUpload", upload.array("media"), (req, res) => {
                     return res.redirect("/user_profile");
                 }
                 console.log("Media Upload Successful");
+                
+                // Email Trex about new Media Uload
+                const transporter = nodemailer.createTransport({
+                    service: "Gmail",
+                    auth: {
+                        user: keys.gmailInfo.user,
+                        pass: keys.gmailInfo.pass
+                    },
+                    tls: {
+                        ciphers: "SSLv3"
+                    }
+                });
+                const mailOption = {
+                    from : keys.gmailInfo.user,
+                    to : keys.trexEmail.email,
+                    subject : "트렉스 파트너 미디어 업로드",
+                    html: '<p>트렉스 파트너 ' + req.user.name + '님이 새로운 미디어 파일 ' + req.files.length + '개를 업로드하였습니다.</p>' +
+                          '<h3>이름: ' + req.user.name + '</h3>' +
+                          '<h3>이메일: ' + req.user.email + '</h3>' +
+                          '<br><br><br>아래 링크를 통해 확인하세요.<br><br>' + 
+                          'http://localhost:8080/trex-admin/editProfile/' + req.user.partnerProfile
+                };
+                transporter.sendMail(mailOption, (err) => {
+                    if(err) {
+                        console.log(err);
+                        return res.redirect("/");
+                    }
+                    console.log("Email successfully sent to Trex about new Media Upload.");
+                });
+                
                 return res.redirect("/user_profile");
             });
         });
@@ -99,24 +130,44 @@ router.get("/media/:filename", (req, res) => {
 
 // @route DELETE /user_profile/deletemedia/:filename
 // @desc Delete the particular media of the current partner
-router.delete("/user_profile/deleteMedia/:filename", (req, res) => {
-    PartnerProfile.update(
-        { _id: req.user.partnerProfile },
-        { $pull: { media :  req.params.filename  } }, function(err, result) {
-            if (err) {
-                console.log(err);
-                return res.redirect("/user_profile");
-            };
-            
-            gfs.remove({filename: req.params.filename, root: "medias"}, (err, gridStore) => {
+router.delete("/user_profile/deleteMedia/:filename/:profileID", (req, res) => {
+    if (req.user.type == "p") {
+        PartnerProfile.update(
+            { _id: req.user.partnerProfile },
+            { $pull: { media :  req.params.filename  } }, function(err, result) {
                 if (err) {
                     console.log(err);
                     return res.redirect("/user_profile");
-                }
-                console.log("Media Delete Successful");
-                return res.redirect("/user_profile");
-            });
+                };
+                
+                gfs.remove({filename: req.params.filename, root: "medias"}, (err, gridStore) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/user_profile");
+                    }
+                    console.log("Media Delete Successful");
+                    return res.redirect("/user_profile");
+                });
         });
+    } else if (req.user.type == "a") {
+        PartnerProfile.update(
+            { _id: req.params.profileID },
+            { $pull: { media :  req.params.filename  } }, function(err, result) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/trex-admin/editProfile/" + req.params.profileID);
+                };
+                
+                gfs.remove({filename: req.params.filename, root: "medias"}, (err, gridStore) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/trex-admin/editProfile/" + req.params.profileID);
+                    }
+                    console.log("Media Delete Successful");
+                    return res.redirect("/trex-admin/editProfile/" + req.params.profileID);
+                });
+        });
+    }
 });
 
 module.exports = router;
