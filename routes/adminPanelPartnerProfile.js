@@ -17,6 +17,13 @@ const Payment = require("../models/Payment");
 //------------------------------------------
 const localAdmin = require("../config/passportStrategies/localAdmin");
 
+var profilePic = require("./profilePic");
+var coverPhoto = require("./coverPhoto");
+var companyLogo = require("./companyLogo");
+var businessRegistration = require("./businessRegistration");
+var media = require("./media");
+
+
 // 파트너 프로필 수락 여부 변경 (패널에서)
 router.get("/trex-admin/verifyProfile/:id", function(req, res) {
     if (req.user.type == "a") {
@@ -247,6 +254,50 @@ router.get("/trex-admin/deleteProfile/:id", function(req, res) {
     // PartnerProfile.deleteOne({"_id" : req.params.id}, function(err, result) {
     //     res.redirect("/trex-admin?index=5");
     // });
+});
+
+
+// Picture delete routes
+router.get("/trex-admin/deleteProfilePic/:id", function(req, res) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            profilePic.deleteProfilePic(req, res, req.params.id);
+            console.log("Company Logo Delete Successful for " + req.params.id);
+            return res.redirect("/trex-admin");
+        } else {
+          return res.redirect("/trex-admin/login");
+        }
+    } else {
+      return res.redirect("/trex-admin/login");
+    }
+});
+
+router.get("/trex-admin/deleteCoverPhoto/:id", function(req, res) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            coverPhoto.deleteCoverPhoto(req, res, req.params.id);
+            console.log("Company Logo Delete Successful for " + req.params.id);
+            return res.redirect("/trex-admin");
+        } else {
+          return res.redirect("/trex-admin/login");
+        }
+    } else {
+      return res.redirect("/trex-admin/login");
+    }
+});
+
+router.get("/trex-admin/deleteCompanyLogo/:id", function(req, res) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            companyLogo.deleteCompanyLogo(req, res, req.params.id);
+            console.log("Company Logo Delete Successful for " + req.params.id);
+            return res.redirect("/trex-admin");
+        } else {
+          return res.redirect("/trex-admin/login");
+        }
+    } else {
+      return res.redirect("/trex-admin/login");
+    }
 });
 
 
