@@ -105,14 +105,21 @@ function gaesokFunction(){
     document.getElementById("myModal3").style.display="none";
     document.getElementById("myModal2").style.opacity="1.0";
 }
+
+function secondmodalFunction(){
+    $("#myModal3").addClass("show");
+    $("#myModal3").css("display", "block");
+
+    document.getElementById("myModal2").style.opacity  = "0.8";
+}
 </script>
 
 <div class="modal fade text-center" id="myModal2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
       <div class="modal-header text-center" >
-  <h4 class="col-12 modal-title text-cente">업무 요청 Form
-    <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999;"></div>
+  <h4 class="col-12 modal-title text-center">업무 요청 Form
+    <div class="close1" onclick="secondmodalFunction()" style="color:#999999;"></div>
   </h4>
     <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
 </div>

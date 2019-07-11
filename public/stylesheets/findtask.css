@@ -45,6 +45,20 @@ input[type=checkbox]:checked + label:before{
   #roundswitch{
     display: none !important;
   }
+
+  #bbak{
+      padding-bottom: 47px !important;
+  }
+
+  #searchmap{
+    transform: translate3d(156px, -38px, 0) !important;
+  }
+  .form-inline{
+      position: absolute;
+      display: block;
+      /* flex-flow: wrap-reverse; */
+      height: 36px;
+  }
   .slider.round{
     display: none;
   }
@@ -54,6 +68,17 @@ input[type=checkbox]:checked + label:before{
   #wrapper {
     width: 100% !important;
     padding: 0 !important;
+  }
+  .row-card{
+      height: 180px;
+      width: 98%;
+      margin-left: 5px;
+  }
+  #left{
+      max-width: 20% !important;
+  }
+  .juso h4{
+      font-size: 20px !important;
   }
   #momtong {
     margin: 0 4% !important;
