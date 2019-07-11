@@ -19,6 +19,7 @@ const tpPassport = require("./config/passportStrategies/thirdPartyPartner");
 const app = express();
 const keys = require("./config/keys");
 
+const landingRoutes = require("./routes/landing");
 const clientRegisterRoutes = require("./routes/register/registerClient");
 const partnerRegisterRoutes = require("./routes/register/registerPartner");
 const emailVerificationRoutes = require("./routes/register/emailVerification");
@@ -94,9 +95,6 @@ app.use(function (req, res, next) {
 // mongoose.connect("mongodb+srv://mxt:1q2w3e4r!@cluster0-gdoa3.mongodb.net/TREX_Demo?retryWrites=true&w=majority");
 // var db = mongoose.connection;
 
-app.get('/', function(req,res){
-  res.render("mainpage");
-});
 
 app.get("/test", (req, res) => {
   res.render("message");
@@ -109,9 +107,6 @@ app.get("/message_second", (req, res) => {
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req,res){
-  res.render("mainpage");
-});
 
 app.use('/auth', clientRegisterRoutes);
 app.use('/auth', partnerRegisterRoutes);
@@ -121,6 +116,7 @@ app.use('/auth', clientLoginRoutes);
 app.use('/auth', partnerLoginRoutes);
 app.use("/auth", clientPwResetRoutes);
 app.use("/auth", partnerPwResetRoutes);
+app.use("/", landingRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", userAccountEdit);
@@ -138,6 +134,11 @@ app.use("/", adminPanelPartnerProfileRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
+
+//=============================//
+const dummy  = require("./routes/dummy");
+app.use("/", dummy);
+//=============================//
 
 
 app.listen(app.get('port'), () => {
