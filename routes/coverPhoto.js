@@ -137,4 +137,42 @@ router.delete("/user_profile/:tab/deletePartnerCoverPhoto", (req, res) => {
     });
 });
 
-module.exports = router;
+function deleteCoverPhoto(req, res, userID) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            Partner.findById(userID, function(err, foundPartner) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/trex-admin");
+                };
+                if (foundPartner.coverPhoto) {
+                    gfs.remove({filename: foundPartner.coverPhoto, root: "coverPhotos"}, (err, gridStore) => {
+                        if (err) {
+                            console.log(err);
+                            return res.redirect("/trex-admin");
+                        }
+                    });
+                }
+                foundPartner.coverPhoto = "";
+                foundPartner.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/trex-admin");
+                    }
+                    console.log("Partner Cover Photo Delete Successful");
+                });
+            });
+        } else {
+            console.log("Current User is not an admin.")
+        }
+    }
+}
+
+
+
+module.exports = { 
+    router: router,
+    deleteCoverPhoto: deleteCoverPhoto
+}
+
+// module.exports = router;

@@ -194,4 +194,38 @@ router.delete("/user_profile/:tab/deletePartnerProfilePic", (req, res) => {
   });
 });
 
-module.exports = router;
+
+function deleteProfilePic(req, res, userID) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            Partner.findById(userID, function(err, foundPartner) {
+                if (err) {
+                    console.log(err);
+                    return res.redirect("/trex-admin");
+                };
+                if (foundPartner.profilePic) {
+                    gfs.remove({filename: foundPartner.profilePic, root: "profilePics"}, (err, gridStore) => {
+                        if (err) { throw err; }
+                    });
+                }
+                foundPartner.profilePic = "";
+                foundPartner.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/trex-admin/");
+                    }
+                    console.log("Partner Profile Picture Delete from Admin Successful");
+                });
+            });
+        } else {
+            console.log("Current User is not an admin.")
+        }
+    }
+}
+
+
+// module.exports = router;
+module.exports = { 
+    router: router,
+    deleteProfilePic: deleteProfilePic
+}
