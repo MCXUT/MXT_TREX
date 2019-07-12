@@ -33,7 +33,6 @@ input {
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-//  background-color:#e60000;
 border:2px solid #e60000;
 }
 
@@ -160,10 +159,7 @@ function secondmodalFunction(){
 <div class="modal fade text-center" id="myModal2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" style="width:650px;">
     <div class="modal-content">
-      <div class="modal-header text-center" >
-  <h4 class="col-12 modal-title text-center">업무 요청 Form
-    <div class="close1" onclick="secondmodalFunction()" style="color:#999999;"></div>
-  </h4>
+    <div class="close1" data-toggle="modal" data-target="#myModal3" onclick="document.getElementById('myModal2').style.opacity='0.8'" style="color:#999999; z-index:1;"></div>
     <button id="closeAll" type="button" class="close" data-dismiss="modal" style="display:none;"></button>
          <div class="modal-body mainmodal">
 
@@ -211,7 +207,7 @@ function secondmodalFunction(){
           <% } else if(q.type === "input") { %>
               <input class="form-control" placeholder="sample">
           <% } else if(q.type === "textarea") { %>
-              <textarea class="form-control"></textarea>
+              <textarea rows="7" class="form-control"></textarea>
           <% } %>
       </div>
   <% }); %>

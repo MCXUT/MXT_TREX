@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
         if(err) throw err;
         Service.findById(allServices[0].id).populate("questionList").exec((err, detailService) => {
             if(err) throw err;
+            console.log(detailService);
             return res.render("mainpage", {detailService: detailService});
         });
     });

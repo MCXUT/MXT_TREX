@@ -96,14 +96,6 @@ app.use(function (req, res, next) {
 // var db = mongoose.connection;
 
 
-app.get("/test", (req, res) => {
-  res.render("message");
-});
-app.get("/message_second", (req, res) => {
-  res.render("message_second");
-});
-
-
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 

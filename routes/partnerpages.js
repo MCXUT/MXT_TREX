@@ -17,7 +17,7 @@ router.get("/partner_profile/:id", function(req, res) {
     // Partner.findById(req.params.id).populate("ratings").exec(function(err, foundUser) {
     //     var avgRating = 0;
     //     var allInfos = [];
-    // 
+    //
     //     async.each(foundUser.ratings, function(rating, done) {
     //         avgRating += rating.star;
     //         Rating.findById(rating.id).populate("byUser").exec(function(err, info) {
@@ -71,7 +71,7 @@ router.get("/partner_profile/:id", function(req, res) {
                     avgRating /= foundPartner.ratings.length;
                     avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
                     if(avgRating == "NaN") avgRating = 0.0;
-                    if (foundProfile.isVerified) {
+                    if (foundProfile && foundProfile.isVerified) {
                         res.render("partnerprofile", {
                             thisPartner: foundPartner,
                             averageRating: avgRating,
@@ -147,7 +147,7 @@ router.get("/find_partner", function(req,res){
                 } else {
                     partnerProfiles[i] = "";
                 }
-                
+
             }
             res.render("findpartner", { allPartners : allPartners , googleMapAPI: keys.googleMapAPI.key, allProfiles: partnerProfiles });
         });
