@@ -96,14 +96,6 @@ app.use(function (req, res, next) {
 // var db = mongoose.connection;
 
 
-app.get("/test", (req, res) => {
-  res.render("message");
-});
-app.get("/message_second", (req, res) => {
-  res.render("message_second");
-});
-
-
 // Set static directory
 app.use("/static", express.static(path.join(__dirname, 'public')));
 
@@ -123,9 +115,9 @@ app.use("/", userAccountEdit);
 app.use("/", partnerProfileEditRoutes);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
-app.use("/", profilePicRoutes);
-app.use("/", coverPhotoRoutes);
-app.use("/", companyLogoRoutes);
+app.use("/", profilePicRoutes.router);
+app.use("/", coverPhotoRoutes.router);
+app.use("/", companyLogoRoutes.router);
 app.use("/", messageRoutes);
 app.use("/", businessRegistrationRoutes);
 app.use("/", mediaRoutes);

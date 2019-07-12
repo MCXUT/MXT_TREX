@@ -86,6 +86,8 @@ $("input[type=checkbox]").change(function(e){
       console.log($("input:checked").length);
       $("#monsta").css("backgroundColor", "#F58B44");
       $("#monsta").css("color", "#fff");
+      $("#monsta").css("border-color", "#fff");
+
 
 
     } else{
@@ -97,6 +99,8 @@ $("input[type=checkbox]").change(function(e){
     if($("input[class=rebut2]:checked").length > 0){
       $("#monsta2").css("backgroundColor", "#F58B44");
       $("#monsta2").css("color", "#fff");
+      $("#monsta2").css("border-color", "#fff");
+
 
     } else{
       $("#monsta2").css("backgroundColor", "#fff");
@@ -225,6 +229,7 @@ $(function(e) {
   $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
     $('#nal').css("backgroundColor","#F58B44");
     $('#nal').css("color","#fff");
+    $('#nal').css("border-color","#fff");
 
   })
   , function(start, end, label) {

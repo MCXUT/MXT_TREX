@@ -33,7 +33,6 @@ input {
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-//  background-color:#e60000;
 border:2px solid #e60000;
 }
 
@@ -145,6 +144,13 @@ function closeAllModal(){
 function gaesokFunction(){
     document.getElementById("myModal3").style.display="none";
     document.getElementById("myModal2").style.opacity="1.0";
+}
+
+function secondmodalFunction(){
+    $("#myModal3").addClass("show");
+    $("#myModal3").css("display", "block");
+
+    document.getElementById("myModal2").style.opacity  = "0.8";
 }
 </script>
 
