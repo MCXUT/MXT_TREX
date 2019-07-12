@@ -87,3 +87,7 @@
 .checkbox input[type="checkbox"]:checked ~ span:after {
     transform: translate(-50%, -50%) scale(1);
 }
+textarea.form-control {
+    font-size: 18px;
+    line-height: 1;
+}
