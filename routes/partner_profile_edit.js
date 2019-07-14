@@ -10,6 +10,7 @@ const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
 const Message = require("../models/Message");
 const Rating = require("../models/Rating");
+const Service = require("../models/Service");
 
 const googleMapsClient = require('@google/maps').createClient({
   key: keys.googleMapAPI.key
@@ -30,7 +31,13 @@ router.get("/user_profile/edit_partner_resume", function(req, res) {
                   console.log(err);
                   return res.redirect("/user_profile");
                 };
-                res.render("edit_partner_resume", { profileInfo: foundProfile });
+                Service.find({}, (err, allServices) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect("/user_profile");
+                    }
+                    res.render("edit_partner_resume", { profileInfo: foundProfile, services: allServices });
+                });
             });
         }
     }

@@ -10,7 +10,7 @@
 <script>
 function checkLogin(){
   <% if(currentUser && currentUser.type === "p"){ %>
-    window.location.href='/seetask';
+    window.location.href='/find_task?shit=shit';
   <% } else { %>
     window.location.href='/auth/login';
   <% }  %>
@@ -121,7 +121,7 @@ function checkLogin2(){
 <div class="sectionContent">
 <div class="row">
 
-  <div class="col-sm-12 col-md-12 col-lg-6">
+  <div class="col-sm-12 col-md-12 col-lg-6 5860">
     <div class="card card1 padding2" onclick="checkLogin();">
       <div class="grid-container">
         <div class="grid-item item01"></div>

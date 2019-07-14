@@ -133,4 +133,40 @@ router.delete("/user_profile/:tab/deleteCompanyLogo", (req, res) => {
 });
 
 
-module.exports = router;
+function deleteCompanyLogo(req, res, userID) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            Client.findById(userID, function(err, foundClient) {
+              if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin");
+              };
+              // if a logo exists, delete
+              if (foundClient.companyLogo) {
+                gfs.remove({filename: foundClient.companyLogo, root: "companyLogos"}, (err, gridStore) => {
+                  if (err) { throw err; }
+                });
+              }
+              foundClient.companyLogo = "";
+              foundClient.save((err) => {
+                if (err) {
+                  console.log(err);
+                  return res.redirect("/trex-admin");
+                }
+                console.log("Client Company Logo Delete Successful");
+              });
+            });
+        } else {
+            console.log("Current User is not an admin.")
+        }
+    }
+}
+
+
+
+module.exports = { 
+    router: router,
+    deleteCompanyLogo: deleteCompanyLogo
+}
+
+// module.exports = router;
