@@ -218,7 +218,7 @@ div{
   color:#4d4d4d;
 }
 #accordion a:hover, #accordion a:after{
-  color:black;
+  color:#2F3033;
   text-decoration: none;
 }
 #accordion .card-header{

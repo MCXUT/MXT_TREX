@@ -369,7 +369,7 @@ z-index: 1;
 
 
 .dropdown-content a {
-color: black;
+color: #2F3033;
 
 text-decoration: none;
 display: block;
@@ -465,7 +465,7 @@ background-size: cover;
 
 #sliders a{
 text-decoration: none;
-color:black;
+color:#2F3033;
 }
 #kokoman{
   width: 100%;

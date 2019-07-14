@@ -66,6 +66,11 @@ background-color: #4CAF50;
   height: 400px;
   overflow:hidden;
 }
+.s3 {
+  width: 85%;
+  height: 200px;
+  overflow:hidden;
+}
 
 
 </style>
@@ -80,12 +85,8 @@ background-color: #4CAF50;
   <!-- Carousel Section -->
   <div class="container-fluid" id="mainDiv" style="padding:0px;">
 
-  <div id="slides" class="carousel slide" data-ride="carousel" data-interval="3000" >
+  <div id="slides" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000" >
 
-  <ul class="carousel-indicators">
-    <li data-target="#slides" data-slide-to="0" class="active"></li>
-    <li data-target="#slides" data-slide-to="1"></li>
-  </ul>
 
   <div class="carousel-inner" style="box-shadow:none !important;">
     <div class="carousel-item active">
@@ -98,17 +99,6 @@ background-color: #4CAF50;
       <!-- <div class="bottom-right">LONDON</div> -->
     </div>
 
-    <!-- <div class="carousel-item">
-      <img id="slider-images" src="/static/images/slider/slider-3-tokyo.jpg" class="center responsive" >
-
-      <div class="bottom-right">TOKYO</div>
-    </div>
-
-    <div class="carousel-item">
-      <img id="slider-images" src="/static/images/slider/slider-4-montreal.jpg" class="center responsive" >
-
-      <div class="bottom-right">MONTREAL</div>
-    </div> -->
 
   </div>
 
@@ -136,130 +126,100 @@ background-color: #4CAF50;
 </div>
   <!-- End of Carousel Section -->
 
-
 <!-- 기업 섭외 견적 요청 -->
-<div class="lunchbox">
+<div  class="lunchbox3">
 
-
-    <div class="swiper-container swiper1">
-        <div class="swiper-wrapper servicelist">
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
-                        <div class="centered">현지 통역</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
-                        <div class="centered">현지 차량</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
-                        <div class="centered">번역</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">현지 기관 섭외</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE1</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE2</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE3</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE4</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE5</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE6</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE7</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE8</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE9</div>
-                    </a>
-                </figure>
-            </div>
-            <div class="swiper-slide container2">
-                <figure class="imagewrapper">
-                    <a href="#" data-toggle="modal" data-target="#myModal2"><img id="request-service" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
-                        <div class="centered">SAMPLE10</div>
-                    </a>
-                </figure>
-            </div>
-        </div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination swiper-pagination1"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next">
-        <img src="/static/icons/next.svg" style="width: 40px;">
-    </div>
-    <div class="swiper-button-prev">
-        <img src="/static/icons/prev.svg" style="width: 40px;">
-    </div>
-
+     <div class="swiper-container s3">
+       <!-- Additional required wrapper -->
+       <div class="swiper-wrapper">
+         <!-- Slides -->
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
+                     <div class="centered">현지 통역</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
+                     <div class="centered">현지 차량</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
+                     <div class="centered">번역</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">현지 기관 섭외</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 5</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 6</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="v" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 7</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 8</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 9</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 10</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 11</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 12</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 13</div>
+                 </a>
+         </div>
+         <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+                 <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
+                     <div class="centered">서비스 14</div>
+                 </a>
+         </div>
+       </div>
+       <!-- If we need pagination -->
+       <div class="swiper-pagination3" ></div>
+     </div>
+     <!-- If we need navigation buttons -->
+     <div class="swiper-button-prev3"></div>
+     <div class="swiper-button-next3"></div>
 </div>
+
 
 <!-- /기업 섭외 견적 요청 -->
 <!-- 트렉스 간편 이용 방법 section-->
 <div class="container-fluid padding text-center" >
 
-  <h1 id="heading" >트렉스 간편 이용 방법</h1><hr style="width:100px;border:1px #595959 solid;"><br>
+      <h1 id="heading" >트렉스 간편 이용 방법</h1>
+      <!-- <hr style="width:100px;border:1px #595959 solid;">-->
+      <br>
   <div class="container">
 <div class="sectionContent">
 <div class="row">
@@ -290,7 +250,7 @@ background-color: #4CAF50;
 <div class="container-fluid padding text-center" style="background-color:#fafafa;">
 
   <h1 id="heading">통역 그 이상의 서비스를 경험 해 보세요</h1>
-  <hr style="width:100px;border:1px #595959 solid;">
+  <!-- <hr style="width:100px;border:1px #595959 solid;"> -->
   <br>
   <div class="container">
 <div class="sectionContent">
@@ -337,9 +297,10 @@ background-color: #4CAF50;
 <!-- 국가/지역 별 파트너를 만나보세요. -->
 
 
-<div id="first-slide"class="container-fluid padding text-center">
+<div id="first-slide"class="container-fluid padding text-center" style="background-color:#fafafa;">
 <h1 id="heading">국가/지역 별 파트너를 만나보세요</h1>
-<hr style="width:100px;border:1px #595959 solid;"><br>
+<!-- <hr style="width:100px;border:1px #595959 solid;"> -->
+<div style="height:70px;"></div>
   <div class="container">
      <div class="sectionContent">
 
@@ -349,39 +310,39 @@ background-color: #4CAF50;
            <!-- Additional required wrapper -->
            <div class="swiper-wrapper">
              <!-- Slides -->
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+             <div class="swiper-slide img-hover-zoom" >
                      <a href="#" ><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
                          <div class="centered">독일</div>
                      </a>
              </div>
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+             <div class="swiper-slide img-hover-zoom" >
                      <a href="#" ><img id="countries" src="/static/images/countries/1toronto.jpeg" class="center" >
                          <div class="centered">토론토</div>
                      </a>
              </div>
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
-                     <a href="#" ><img id="countries" src="/static/images/countries/2newyork.jpg" >
+             <div class="swiper-slide img-hover-zoom" >
+                     <a href="#" ><img id="countries" src="/static/images/countries/2newyork.jpg" class="center">
                          <div class="centered">뉴욕</div>
                      </a>
              </div>
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+             <div class="swiper-slide img-hover-zoom" >
                      <a href="#" ><img id="countries" src="/static/images/countries/3london.jpg" class="center" >
                          <div class="centered">런던</div>
                      </a>
              </div>
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+             <div class="swiper-slide img-hover-zoom" >
                      <a href="#" ><img id="countries" src="/static/images/countries/4la.jpg" class="center" >
                          <div class="centered">엘에이</div>
                      </a>
              </div>
-             <div class="swiper-slide img-hover-zoom" style="border-radius:0;">
+             <div class="swiper-slide img-hover-zoom" >
                      <a href="#" ><img id="countries" src="/static/images/countries/5seeall.jpg" class="center" >
                          <div class="centered">모든 도시 보기</div>
                      </a>
              </div>
            </div>
            <!-- If we need pagination -->
-           <div class="swiper-pagination2"></div>
+           <div class="swiper-pagination2" style="color:#f58b44;"></div>
          </div>
          <!-- If we need navigation buttons -->
          <div class="swiper-button-prev2"></div>
@@ -397,6 +358,16 @@ background-color: #4CAF50;
 </div>
 
 <!-- /국가/지역 별 파트너를 만나보세요. -->
+
+<!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
+<div class="container-fluid padding text-center">
+  <h1 id="heading">기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h1>
+  <div style="height:70px;"></div>
+<div class="container">
+
+</div>
+</div>
+<!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
 
 <!-- 자주 묻는 질문 & 이용후기-->
 <div class="container-fluid padding text-center" style="background-color:#fafafa;">
@@ -488,7 +459,7 @@ transform: rotate(0deg) ;
   </ul>
   <!--/.Indicators-->
   <!--Slides-->
-  <div class="carousel-inner" > <!-- add role="listbox" if needed-->
+  <div class="carousel-inner" style="box-shadow:none !important;border:1px solid #D3D4D5;"> <!-- add role="listbox" if needed-->
      <div class="carousel-item active">
        <div class="grid-container">
          <div class="grid-item item4 text-center" ><img class="rounded-circle" src="/static/images/nibbler.jpeg" style="width:70px;height:70px;"></div>
@@ -531,18 +502,7 @@ transform: rotate(0deg) ;
 </div>
 </div>
 <!-- /자주 묻는 질문 & 이용후기 -->
-<!-- 기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
-<div class="container-fluid padding text-center">
-  <h1 id="heading">기업/기관 그리고 개인이 트렉스를 사용하고 있습니다</h1>
-<div class="container">
-
-</div>
-</div>
-<!-- /기업/기관 그리고 개인이 트렉스를 사용하고 있습니다 -->
-
-
-
-
+<br>
 
 <!-- Swiper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
@@ -590,6 +550,36 @@ transform: rotate(0deg) ;
       navigation: {
         nextEl: '.swiper-button-next2',
         prevEl: '.swiper-button-prev2',
+      },
+      breakpoints: {
+   // when window width is <= 320px
+   800: {
+     slidesPerView: 3,
+     spaceBetweenSlides: 30
+   },
+   // when window width is <= 480px
+   576: {
+     slidesPerView: 1,
+     spaceBetweenSlides: 20
+   }
+ }
+
+    });
+
+
+    var mySwiper3 = new Swiper ('.s3', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+      loop: false,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination3',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next3',
+        prevEl: '.swiper-button-prev3',
       },
       breakpoints: {
    // when window width is <= 320px
