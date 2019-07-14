@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+var Q = require("q");
+var moment = require("moment");
 
 var ClientSchema = mongoose.Schema({
     type: {
@@ -92,10 +94,21 @@ var ClientSchema = mongoose.Schema({
     registeredDate: {
         type: Date,
         default: Date.now()
+    },
+    deletedAccount: {
+        isDeleted: {
+            type: Boolean,
+            default: false
+        },
+        expiredDate: {
+            type: Date
+        }
     }
 }, {minimize: false});
 
-var Client = module.exports = mongoose.model('Client', ClientSchema);
+var Client = ClientSchema.index({"expireAt" : 1}, {expireAfterSeconds: 0});
+
+Client = module.exports = mongoose.model('Client', ClientSchema);
 
 module.exports.createUser = (newUser, done) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -117,3 +130,32 @@ module.exports.comparePassword = (candidatePassword, hash, done) => {
         done(null, isMatch);
     });
 };
+
+module.exports.deleteClient = function(id) {
+    var update = {
+        isDeleted : true,
+        // 1 min = 60000
+        expiredDate: Date.now() + (60000 * 60 * 24 * 7) // + 7 days
+    }
+    Client.findOneAndUpdate({_id: id}, {$set: {deletedAccount: update}}, (err, doc) => {
+        if(err) {
+            throw err;
+        } else {
+            console.log(doc);
+        }
+    })
+}
+
+module.exports.undeleteClient = function(id) {
+    var update = {
+        isDeleted : false,
+        expiredDate : undefined
+    }
+    Client.findOneAndUpdate({_id: id}, {$set: {deletedAccount: update}}, (err, doc) => {
+        if(err) {
+            throw err;
+        } else {
+            console.log(doc);
+        }
+    })
+}

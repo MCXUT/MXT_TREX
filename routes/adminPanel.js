@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const async = require("async");
 
 const Admin = require("../models/Admin");
 const Client = require("../models/Client");
-const DeletedAccount = require("../models/DeletedAccount");
 const Partner = require("../models/Partner");
 const Message = require("../models/Message");
 const localAdmin = require("../config/passportStrategies/localAdmin");
@@ -38,12 +38,12 @@ router.get("/trex-admin", function(req,res) {
           Partner.find({}, function(err, partners) {
             Admin.find({}, function(err, admins) {
               Message.find({}, function(err, messages) {
-                return res.render("trexAdminpage", {
-                  partnerList : partners,
-                  clientList: clients,
-                  adminList: admins,
-                  messageList: messages
-                });
+                  return res.render("trexAdminpage", {
+                    partnerList : partners,
+                    clientList: clients,
+                    adminList: admins,
+                    messageList: messages
+                  });
               });
             });
           });
@@ -56,36 +56,35 @@ router.get("/trex-admin", function(req,res) {
   }
 });
 
+
+// Section for Clients
 router.get("/deleteClient/:id", function(req,res) {
     console.log("clientID: " + req.params.id);
-    Client.findByIdAndRemove( req.params.id , function(err, foundUser) {
-        if(err) throw err;
-        console.log(foundUser);
-        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
-            if(err) throw err;
-            res.redirect("/trex-admin?index=2");
-        });
-    });
-    // Client.deleteOne({"_id" : req.params.id}, function(err, obj) {
-    //     res.redirect("/trex-admin?index=2");
-    // });
+    Client.deleteClient(req.params.id);
+    res.redirect("/trex-admin?index=9");
 });
 
+
+// Section for Partners
 router.get("/deletePartner/:id", function(req,res) {
     console.log("partnerID: " + req.params.id);
-    Partner.findById( req.params.id , function(err, foundUser) {
-        if(err) throw err;
-        console.log(foundUser);
-        DeletedAccount.createDeletedAccount(foundUser, (err, deletedUser) => {
-            if(err) throw err;
-            res.redirect("/trex-admin?index=3");
-        });
-    });
-    // Partner.deleteOne({"_id" : req.params.id}, function(err, obj) {
-    //     res.redirect("/trex-admin?index=3");
-    // });
+    Partner.deletePartner(req.params.id);
+    res.redirect("/trex-admin?index=9");
 });
 
+// Section for DeletedUsers Testing
+router.get("/recoverUser/:type/:id", function(req, res) {
+    console.log(req.params.type);
+    if(req.params.type === "partner") {
+        Partner.undeletePartner(req.params.id);
+        return res.redirect("/trex-admin?index=3");
+    } else {
+        Client.undeleteClient(req.params.id);
+        return res.redirect("/trex-admin?index=2");
+    }
+});
+
+// Section for Admins
 router.get("/deleteAdmin/:id", function(req,res) {
     console.log("adminID: " + req.params.id);
     Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {

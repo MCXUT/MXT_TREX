@@ -212,16 +212,18 @@ for (var i = 0; i < btns.length; i++) {
   </thead>
   <tbody>
     <% for(var i = 0; i < partnerList.length; i++) { %>
-        <tr>
-          <th scope="row"><%= i+1 %></th>
-          <td nowrap><%= partnerList[i].registeredDate %></td>
-          <td nowrap><%= partnerList[i].name %></td>
-          <td nowrap><%= partnerList[i].email %></td>
-          <td nowrap><%= partnerList[i].dateOfBirth %></td>
-          <td nowrap><%= partnerList[i].city %>,</td>
-          <td ><a href="#"><i class="far fa-edit"></i></a></td>
-          <td ><a href="/deletePartner/<%= partnerList[i]._id %>"><i class="fas fa-trash"></i></a></td>
-        </tr>
+        <% if(!partnerList[i].deletedAccount.isDeleted) { %>
+            <tr>
+              <th scope="row"><%= i+1 %></th>
+              <td nowrap><%= partnerList[i].registeredDate %></td>
+              <td nowrap><%= partnerList[i].name %></td>
+              <td nowrap><%= partnerList[i].email %></td>
+              <td nowrap><%= partnerList[i].dateOfBirth %></td>
+              <td nowrap><%= partnerList[i].city %>,</td>
+              <td ><a href="#"><i class="far fa-edit"></i></a></td>
+              <td ><a href="/deletePartner/<%= partnerList[i]._id %>"><i class="fas fa-trash"></i></a></td>
+            </tr>
+        <% } %>
     <% } %>
   </tbody>
 </table>
@@ -232,7 +234,47 @@ for (var i = 0; i < btns.length; i++) {
 
 <left id="div9_users_deleted"  style="display:none;">
 <div class="content" style="padding-top:80px;">
-<h3>Users to be deleted</h3>
+    <table class="table table-bordered margin2" id="myTable2" style="margin-top:60px;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th id="edit-delete" scope="col">Recover</th>
+        <th id="edit-delete" scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i = 0; i < clientList.length; i++) { %>
+          <% if (clientList[i].deletedAccount.isDeleted) { %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td nowrap><%= clientList[i].deletedAccount.expiredDate %></td>
+                <td nowrap>Client</td>
+                <td nowrap><%= clientList[i].name %></td>
+                <td nowrap><%= clientList[i].email %></td>
+                <td ><a href="/recoverUser/client/<%= clientList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                <td ><a href=""><i class="fas fa-trash"></i></a></td>
+              </tr>
+            <% } %>
+      <% } %>
+      <% for(var i = 0; i < partnerList.length; i++) { %>
+          <% if (partnerList[i].deletedAccount.isDeleted) { %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td nowrap><%= partnerList[i].deletedAccount.expiredDate %></td>
+                <td nowrap>Partner</td>
+                <td nowrap><%= partnerList[i].name %></td>
+                <td nowrap><%= partnerList[i].email %></td>
+                <td ><a href="/recoverUser/partner/<%= partnerList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                <td ><a href=""><i class="fas fa-trash"></i></a></td>
+              </tr>
+            <% } %>
+      <% } %>
+    </tbody>
+    </table>
 </div>
 </left>
 

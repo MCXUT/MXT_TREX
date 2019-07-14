@@ -21,6 +21,9 @@ passport.use("local-client", new LocalStrategy({
     if(!user.password) {
         return done(null, false, {message: "Third Party Client. Try with your server"})
     }
+    if(user.deletedAccount.isDeleted) {
+        return done(null, false, {message: "Invalid Username"});
+    }
     Client.comparePassword(password, user.password, function (err, isMatch){
       if(err) throw err;
       if(!isMatch) {
