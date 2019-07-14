@@ -10,7 +10,7 @@
 <script>
 function checkLogin(){
   <% if(currentUser && currentUser.type === "p"){ %>
-    window.location.href='/seetask';
+    window.location.href='/find_task?shit=shit';
   <% } else { %>
     window.location.href='/auth/login';
   <% }  %>
@@ -25,6 +25,7 @@ function checkLogin2(){
   <% }  %>
 }
 </script>
+
 </head>
 
 <body>
@@ -45,7 +46,7 @@ function checkLogin2(){
 
 <div class="carousel-inner">
   <div class="carousel-item active">
-    <img id="slider-images" src="/static/images/partnerpage.jpg" class="center responsive" >
+    <img id="slider-images-partner-page" src="/static/images/partnerpage.jpg" class="center responsive" >
     <div class="carousel-caption" id="carousel-caption-partner">
       <h1>현지 언어가 가능하신가요?</h1>
       <h2><b>트렉스 파트너로</b></h2>
@@ -74,7 +75,7 @@ function checkLogin2(){
     <div class="grid-item item004" >검색 또는 서비스 선택을 통해 필요하신 서비스를 선택하시고 몇가지 질문을 통해 업무에 알맞는 파트너님들의 견적서를 무료로 받아보세요.</div>
   </div>
   <br>
-  <hr style="width:90%;background-color:#262626;"><br>
+  <hr style="width:90%;border: 1px solid #e5e6e6;"><br>
 
   <div class="grid-container ">
     <div class="grid-item item001" ><b>(image)</b></div>
@@ -83,7 +84,7 @@ function checkLogin2(){
     <div class="grid-item item004" >업무에 지원한 파트너님들의 프로필, 지원 메세지, 견적서를 비교해보세요. </div>
   </div>
   <br>
-  <hr style="width:90%;background-color:#262626;"><br>
+  <hr style="width:90%;border: 1px solid #e5e6e6;"><br>
 
     <div class="grid-container ">
       <div class="grid-item item001" ><b>(image)</b></div>
@@ -92,7 +93,7 @@ function checkLogin2(){
       <div class="grid-item item004" >지원자들 중 업무를 함께 진행하실 파트너님께 합격 메세지를 보내주세요. (합격 메세지를 보내시면 결재 방법 안내 이메일이 발송됩니다.)</div>
     </div>
     <br>
-    <hr style="width:90%;background-color:#262626;"><br>
+    <hr style="width:90%;border: 1px solid #e5e6e6;"><br>
 
     <div class="grid-container ">
       <div class="grid-item item001" ><b>(image)</b></div>
@@ -101,7 +102,7 @@ function checkLogin2(){
       <div class="grid-item item004" >함께 업무를 진행하실 파트너님의 견적서를 결제하신 뒤 연락처를 받으시고 업무를 진행해보세요. </div>
     </div>
     <br>
-    <hr style="width:90%;background-color:#262626;"><br>
+    <hr style="width:90%;border: 1px solid #e5e6e6;"><br>
 
 <!-- </div> -->
 </div>
@@ -114,12 +115,13 @@ function checkLogin2(){
 <div class="container-fluid padding text-center" >
   <h1>업무에 지원 해보세요!</h1>
   <h2 >트렉스 파트너만 지원 가능 합니다.</h2>
-  <hr style="width:100px;border:1px #595959 solid;"><br>
+  <!-- <hr style="width:100px;border:1px #595959 solid;"><br> -->
+  <div style="height:70px;"></div>
 <div class="container" id="apply_card">
 <div class="sectionContent">
 <div class="row">
 
-  <div class="col-sm-12 col-md-12 col-lg-6">
+  <div class="col-sm-12 col-md-12 col-lg-6 5860">
     <div class="card card1 padding2" onclick="checkLogin();">
       <div class="grid-container">
         <div class="grid-item item01"></div>

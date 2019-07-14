@@ -85,8 +85,8 @@
 
       <div id="nav_item_services" class="dropdown-container" >
         <a id="nav4" class="nav-item" href="#?services_1" onclick="services1();"><i class="far fa-envelope"></i> Messages </a>
-        <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="fas fa-tools"></i> Steven2</a>
-        <a id="nav6" class="nav-item" href="#?services_3" onclick="services3();"><i class="fas fa-hammer"></i> Steven3</a>
+        <a id="nav5" class="nav-item" href="#?services_2" onclick="services2();"><i class="far fa-file-alt"></i> Partner Profiles </a>
+        <a id="nav6" class="nav-item" href="#?services_3" onclick="services3();"><i class="fa fa-credit-card"></i> Payments Confirm</a>
       </div>
 
 
@@ -134,8 +134,8 @@ for (var i = 0; i < btns.length; i++) {
 
 <left id="div1_dashBoard"  style="display:inline;">
 <div class="content" style="padding-top:80px;">
-  dashboard content
-
+    dashboard content
+    
 </div>
 </left>
 
@@ -367,16 +367,139 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div5_services_2"  style="display:none;">
-<div class="content" style="padding-top:80px;">
-<h3>Service 2 content</h3>
-</div>
+    <div class="content" style="padding-top:80px;">
+        <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+            <!-- Actual search box -->
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+                <input id="myInput6" type="text" class="form-control" placeholder="Search" onkeyup="myFunction6()" style="position:absolute;width:25%;">
+            </div>
+        </div>
+
+        <table class="table table-bordered margin2" id="myTable6" style="margin-top:60px;">
+            <thead class="thead-dark">
+                <tr>
+                    <th id="adminPanelOrder" scope="col">#</th>
+                    <th id="adminPanelID" scope="col">파트너 ID</th>
+                    <th id="adminPanelType" scope="col">타입</th>
+                    <th id="adminPanelName" scope="col">파트너 이름</th>
+                    <th id="adminPanelEmail" scope="col">파트너 이메일</th>
+                    <th id="adminPanelBusinessRegistration" scope="col">사업자 등록증</th>
+                    <th id="adminPanelMedia" scope="col">미디어</th>
+                    <th id="adminPanelRegion" scope="col">지역</th>
+                    <th id="adminPanelOtherRegion" scope="col">타지역</th>
+                    <th id="adminPanelCreatedDate" scope="col">등록일자</th>
+                    <th id="adminPanelLastEditDate" scope="col">최근 수정일</th>
+                    <th id="adminPanelViews" scope="col">조회수</th>
+                    <th id="adminPanelVerified" scope="col">수락여부</th>
+                    <th id="adminPanelVerify" scope="col">수락하기</th>
+                    <th id="adminPanelInterviewed" scope="col">인터뷰 여부</th>
+                    <!-- <th scope="col">Address</th> -->
+                    <th id="edit-delete" scope="col">Edit</th>
+                    <th id="edit-delete" scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < profileList.length; i++) { %>
+                    <% if (profileList[i]) { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td nowrap><%= profileList[i].partner.id %></td>
+                            <% if (profileList[i].type == "freelancer") { %>
+                                <td nowrap>프리랜서</td>
+                            <% } else if (profileList[i].type == "agency") { %>
+                                <td nowrap>에이전시</td>
+                            <% } %>
+                            <td nowrap><%= profileList[i].partner.name %></td>
+                            <td nowrap><%= profileList[i].partner.email %></td>
+                            <td nowrap><%= profileList[i].businessRegistration.length %> 개</td>
+                            <td nowrap><%= profileList[i].media.length %> 개</td>
+                            <td nowrap><%= profileList[i].region %></td>
+                            <% if (profileList[i].otherRegion.length > 0) { %>
+                                <td nowrap><i class="fas fa-check" style="color:green;"></i></td>
+                            <% } else { %>
+                                <td nowrap><i class="fas fa-times" style="color:red;"></i></td>
+                            <% } %>
+                            <td nowrap><%= profileList[i].registeredDate %></td>
+                            <td nowrap><%= profileList[i].lastEditedDate %></td>
+                            <td nowrap><%= profileList[i].views %></td>
+                            <% if (profileList[i].isVerified) { %>
+                                <td nowrap><span style="color:green;">수락됨</span></td>
+                            <% } else { %>
+                                <td nowrap><span style="color:red;">수락안됨</span></td>
+                            <% } %>
+                            <% if (profileList[i].isVerified) { %>
+                                <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락취소</a></td>
+                            <% } else { %>
+                                <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락하기</a></td>
+                            <% } %>
+                            <% if (profileList[i].isInterviewed) { %>
+                                <td nowrap><i class="fas fa-check" style="color:green;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
+                            <% } else { %>
+                                <td nowrap><i class="fas fa-times" style="color:red;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
+                            <% } %>
+                            <td ><a href="/trex-admin/editProfile/<%= profileList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                            <td ><a href="/trex-admin/deleteProfile/<%= profileList[i]._id %>"><i class="fas fa-trash"></i></a></td>
+                        </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 </left>
 
 
 <left id="div6_services_3"  style="display:none;">
-<div class="content" style="padding-top:80px;">
-<h3>Service 3 content</h3>
-</div>
+    <div class="content" style="padding-top:80px;">
+        <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+
+          <!-- Actual search box -->
+          <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+            <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
+          </div>
+        </div>
+
+        <table class="table table-bordered margin2" id="myTable3" style="margin-top:60px;">
+            <thead class="thead-dark">
+            <tr >
+              <th scope="col">#</th>
+              <th scope="col">Date Requested</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date Confirmed</th>
+              <th scope="col">Assiciated Partner</th>
+              <th id="edit-sendmail" scope="col">Send Email</th>
+              <th id="edit-delete" scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < paymentList.length; i++) { %>
+                    <form id="<%= paymentList[i]._id %>" action="/confirmmail/<%= paymentList[i]._id %>" method="post"></form>
+                    <tr class="header">
+                      <th scope="row"><%= i+1 %></th>
+                      <td nowrap>
+                          <% if(paymentList[i].dateRequestedS) { %>
+                            <%= paymentList[i].dateRequestedS %>
+                          <% } %>
+                      </td>
+                      <td nowrap><%= paymentList[i].amount %></td>
+                      <td nowrap>
+                          <% if(paymentList[i].dateConfirmedS) { %>
+                            <%= paymentList[i].dateConfirmedS %>
+                          <% } %>
+                      </td>
+                      <td nowrap><%= paymentList[i].associatedPartner %></td>
+                      <% if(paymentList[i].dateConfirmed || !paymentList[i].dateRequested) { %>
+                        <td><button id="sendmail_box" disabled><i class="fa fa-share"></i></button></td>
+                      <% } else { %>
+                          <td><button id="sendmail_box" form="<%= paymentList[i]._id %>"><i class="fa fa-share"></i></button></td>
+                      <% } %>
+                      <td id="delete_box"><a href="#"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 </left>
 
 <left id="div7_adminList"  style="display:none;" >

@@ -2,11 +2,10 @@
     <head>
         <meta charset="utf-8">
         <style>
-            /* .btn-primary:hover {
-                cursor: pointer;
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
-            } */
+            html.disabled {
+                overflow-x: hidden;
+            }
+
             .btn-primary {
                  background-color:#f58b44 !important;
                  border-color:#f58b44 !important;
@@ -25,14 +24,12 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-
             }
             #left{
               max-width: 25%;
@@ -55,7 +52,6 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -63,14 +59,13 @@
             }
             #wrapper h4{
               font-size: 20px;
-
             }
             .dosi{
                 margin-left:20px;
             }
             .dropdown-menu{
-                height: 500px;
-                overflow-y: scroll;
+                height: 250px;
+                overflow-y: auto;
                 overflow-x: hidden;
             }
             .likethis{
@@ -78,6 +73,17 @@
                 display: flex;
                 flex-wrap: wrap;
             }
+            .fa-list {
+                margin-right: 10px;
+            }
+            a.editservice {
+                color: rgb( 245, 139, 68 );
+            }
+            a.editservice:hover {
+                color: rgb(205, 99, 28);
+                text-decoration: underline;
+            }
+
         </style>
         <title>Member - 트렉스</title>
 
@@ -86,20 +92,36 @@
           <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
           <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
           <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
+
+
+
+
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+          <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/i18n/defaults-*.min.js"></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css">
+
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+          <link rel="stylesheet" href="/static/stylesheets/profile.css">
+
+
+
+
+
+
+
     </head>
     <body>
         <% include ./partials/profileedit-image %>
         <% include ./partials/profileedit-background %>
+        <% include ./partials/edit-partner-service %>
 
         <% include ./partials/navbar %>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
-
-
-        <link rel="stylesheet" href="/static/stylesheets/profile.css">
 
         <div class="profile">
             <div class="tab">
@@ -145,7 +167,6 @@
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
 
-
                     <div class="col-md-8">
                         <div class="likethis">
                             <p class="basictitle">
@@ -171,6 +192,14 @@
                                 </div>
 
 
+                            <div class="form group row">
+                                <div class="col-sm-5">
+                                    <label for="service" style="margin-right: 70px;">가능한 서비스 *</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <a href="javascript: void(0);" class="editservice"><i class="fa fa-list" aria-hidden="true"></i>편집하기</a>
+                                </div>
+                            </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-5">
@@ -212,6 +241,12 @@
                                             <option>러시아</option>
                                             <option class="dosi">모스크바</option>
                                             <option class="dosi">상트페테르부르크</option>
+                                            <option>캐나다</option>
+                                            <option class="dosi">밴쿠버</option>
+                                            <option class="dosi">토론토</option>
+                                            <option class="dosi">몬트리올</option>
+                                            <option class="dosi">퀘벡</option>
+                                            <option class="dosi">위니펙</option>
                                         </select>
                                     </div>
                                 </div>
@@ -240,9 +275,9 @@
                                                 <label class="form-check-label" for="unable">불가능</label>
                                             </div>
                                         <% } %>
-
                                     </div>
                                 </div>
+
 
 
                             <% if (profileInfo.otherRegion.length > 0) { %>
@@ -288,6 +323,12 @@
                                             <option>러시아</option>
                                             <option class="dosi">모스크바</option>
                                             <option class="dosi">상트페테르부르크</option>
+                                            <option>캐나다</option>
+                                            <option class="dosi">밴쿠버</option>
+                                            <option class="dosi">토론토</option>
+                                            <option class="dosi">몬트리올</option>
+                                            <option class="dosi">퀘벡</option>
+                                            <option class="dosi">위니펙</option>
                                         </select>
                                     </div>
                                 </div>
@@ -369,7 +410,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">아니요</button>
-                                            <a href="/user_profile"><button type="button" class="btn btn-primary">정말로 취소합니다</button></a>
+                                            <a href="/user_profile"><button type="button" class="btn btn-primary">네</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -379,14 +420,66 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        <script src="/static/scripts/profileedit.js"></script>
+
+        <script type="text/javascript">
+            var addmore = () => {
+                $(".addmore").on("click", function() {
+                    $(".servicecontents").append(manipulateAdd());
+                });
+            }
+            addmore();
+
+
+            var deletelist = () => {
+                $(".servicecontents").on("click", ".deletesection", function(e) {
+                    console.log(e);
+                    $(this).parent().remove();
+                });
+            }
+            deletelist();
+
+            var servicepage = () => {
+                $(".editservice").on("click", function(e) {
+                    $(".pum-service").fadeIn(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            servicepage();
+
+            var clickoutsideservice = () => {
+                $(".pum-service").on("click", (e) => {
+                    if(e.target.className === "pum-service pumactive") {
+                        $(".pum-service").fadeOut(400, () => {
+                            $(".pum-service").toggleClass("pumactive");
+                            $("html").toggleClass("disabled");
+                        });
+                    }
+                });
+            }
+            clickoutsideservice();
+
+            var clickexservice = () => {
+                $(".maincontent-service .exittable").click((e) => {
+                    $(".pum-service").fadeOut(400, () => {
+                        $(".pum-service").toggleClass("pumactive");
+                        $("html").toggleClass("disabled");
+                    });
+                });
+            }
+            clickexservice();
+        </script>
 
     <script>
         $('select').selectpicker();
+
     </script>
+
 
     <script src="/static/scripts/changeimg.js"></script>
     <script src="/static/scripts/profileedit.js"></script>
@@ -417,5 +510,6 @@
 
     <% include ./partials/footer %>
 
+        <% include ./partials/footer %>
     </body>
 </html>

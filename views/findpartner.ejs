@@ -75,6 +75,12 @@
         margin-bottom: 10px;
         border-radius: 50%;
       }
+      /* #monsta:after{
+          border-color: #fff;
+      }
+      .dropbtn:after{
+          border-color: #fff;
+      } */
       #slider-range .ui-slider-handle { border-color: rgb(0, 132, 137); }
       #slider-range .ui-slider-range { background: rgb(0, 132, 137); }
   </style>
@@ -262,29 +268,23 @@
                         </div>
                       <% } %>
 
-                    <h5><%= allPartners[i].name %>
-                    <% if(allProfiles[i].isInterviewed) { %>
-                        <i class="fas fa-award"></i>
-                    <% } %>
+                    <h5>
+                        <%= allPartners[i].name %>
+                        <% if (allProfiles[i]) { %>
+                            <% if(allProfiles[i].isInterviewed) { %>
+                                <i class="fas fa-award"></i>
+                            <% } %>
+                        <% } %>
                     </h5>
-                    <% if (allPartners[i].partnerProfile) { %>
-                        (<%= allProfiles[i].type %>)
-                        <%= allProfiles[i].oneLineIntro %>
-                        <%= allProfiles[i].unavailableDates %>
+                    <% if (allProfiles[i]) { %>
+                        (<%= allProfiles[i].type %>)<br>
+                        <%= allProfiles[i].oneLineIntro %><br>
                     <% } %>
-
-                    <!-- <% if(allProfiles[i].isInterviewed) { %>
-                        <div style="font-size: 24px;"><i class="fas fa-award"></i></div>
-                    <% } %> -->
 
                     <h7 class="juso">
-                      <% if (allPartners[i].address.city && allPartners[i].address.state) { %>
-                          <%= allPartners[i].address.city %>, <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
-                      <% } else if (allPartners[i].address.city) { %>
+                        <% if (allPartners[i].address.city && allPartners[i].address.country) { %>
                           <%= allPartners[i].address.city %>, <%= allPartners[i].address.country %>
-                      <% } else if (allPartners[i].address.state) { %>
-                          <%= allPartners[i].address.state %>, <%= allPartners[i].address.country %>
-                      <% } %>
+                        <% } %>
                     </h7>
                   </center>
                   </a>
@@ -414,6 +414,133 @@
 
 
 
+
+
+    <script>
+
+        $('input[name="daterange"]').on('hide.daterangepicker', function(ev, picker){
+            var input = document.getElementById("nal").value;
+            var wrapper = document.getElementsByClassName("wow");
+            var startDate = new Date(input.substring(0, 10));
+            var endDate = new Date(input.substring(13, 23));
+            var list = getDates(startDate, endDate);
+            var show = [];
+            <% for (var i = 0; i < allProfiles.length; i++){ %>
+                // console.log(input);
+                // // var e = new Date("07/06/2019-07/18/2019")
+                // // var f = new Date("07/08/2019")
+                // var a = new Date("07/09/2019");
+                // // console.log(e.addDays(1));
+                // console.log(e.addDays(2));
+                // console.log(startDate);
+                // console.log(endDate);
+                // console.log(e.includes(f));
+                // console.log(list);
+                // var f = new Date("07/10/2019");
+                // console.log(a.valueOf()==f.valueOf());
+                // console.log(a.valueOf());
+                // console.log(f.valueOf());
+                // // console.log((list.includes(e)));
+
+                for(var e=0; e<list.length;e++){
+                    <% if (allProfiles[i]) { %>
+                        <% for(var r = 0; r < allProfiles[i].unavailableDates.length; r++){ %>
+                                if("<%=allProfiles[i].unavailableDates[r]%>" == moment(list[e]).format("YYYY-MM-DD")){
+                                    // wrapper[<%= i %>].style.display = "none"
+
+                                    show.push(<%= i %>);
+                                }
+
+                                // if(<%=allProfiles[i].unavailableDates[r]%> > list[e]){
+                                //         console.log("biG");
+                                // } else if(<%=allProfiles[i].unavailableDates[r]%> < list[e]){
+                                //     console.log("small");
+                                // }else{
+                                //     console.log("equal");
+                                //     wrapper[i].style.display = "none"
+                                // }
+                        <% } %>
+                    <% } %>
+                }
+                // if(allProfiles.unavailableDates)
+                // console.log(list[e].valueOf() == f.valueOf())
+                // }
+                // var g = new Date("07/09/2019");
+                // console.log(g.valueOf()==f.valueOf());
+                // console.log(e);
+
+
+                //
+                // var i, input, filter, wrapper, col, juso, text, map;
+                // input = document.getElementById("mymyInput").value;
+                // wrapper = document.getElementsByClassName("wow");
+                // // col = wrapper.document.quarySelector(".col");
+                // juso = document.getElementsByClassName("juso");
+                // map = document.getElementById("map");
+                // // text = juso[0].textContent;
+                // console.log(wrapper);
+                // // console.log()
+                // // console.log(input);
+                // console.log(juso);
+                // // console.log(text);
+                // // console.log(juso[0].textContent.includes(input));
+                // // console.log(wrapper.length/2);
+                // for(i=0; i<wrapper.length; i++){
+                //   if(juso[i].textContent.includes(input)){
+                //     wrapper[i].style.display = "inline-block";
+                //   }
+                //   else{
+                //     wrapper[i].style.display = "none";
+                //   }
+                // }
+
+
+          $('#nal').css("backgroundColor","#F58B44");
+          $('#nal').css("color","#fff");
+        <%}%>
+        if (show.length == 0) {
+            <% for (var e = 0; e < allProfiles.length; e++) { %>
+                wrapper[<%= e %>].style.display = "inline-block";
+            <% } %>
+        }
+        <% for (var e = 0; e < allProfiles.length; e++) { %>
+            for (var z = 0; z < show.length; z++) {
+                if (show[z] == <%= e %>) {
+                    wrapper[<%= e %>].style.display = "none";
+                } else {
+                    wrapper[<%= e %>].style.display = "inline-block";
+                }
+            }
+        <% } %>
+    });
+
+
+
+    </script>
+
+    <script>
+        Date.prototype.addDays = function(days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        };
+
+        function getDates(startDate, stopDate) {
+            var dateArray = [];
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push(new Date (currentDate));
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+
+    </script>
+
+
+
+
+
     <script>
       var map;
 
@@ -528,9 +655,103 @@
 
       }
       var enter = document.getElementById("mymyInput");
+      // map = new google.maps.Map(document.getElementById("map"), {zoom: 14});
       enter.addEventListener("keydown", function (e) {
+
+          var city = ["토론토", "몬트리올", "베를린", "뮌헨", "프랑크푸르트", "드레스덴", "룩셈부르크", "모나코", "브뤼셀",
+                      "브뤼헤", "앤트워프", "헨트", "인터라켄", "루체른", "취리히", "제네바", "더블린", "골웨이",
+                      "더블린", "골웨이", "북아일랜드", "하우쓰", "런던", "에딘버러", "옥스포드", "리버풀", "비엔나", "잘츠부르크",
+                      "할슈타트", "인스부르크", "로마", "피렌체", "베네치아", "밀라노", "파리", "니스", "마르세유", "보르도", "아테네",
+                      "산토리니", "하니아", "로도스 섬", "로도스", "코토르", "발레타", "몰타", "모스타르", "사라예보", "바르셀로나",
+                      "마드리드", "세비야", "그라나다", "류블랴나", "블레드", "지브롤터", "두브로브니크", "자그레브", "스플리트",
+                      "플리트비체", "이스탄불", "카파도키아", "알라냐", "안탈리아", "리스본", "포르투", "푼샬", "알부페이라",
+                      "리가", "다우가프필스", "상트페테르부르크", "블라디보스토크", "모스크바", "이르쿠츠크", "부쿠레슈티", "이아시",
+                      "브라쇼브", "오라데아", "빌니우스", "스코페", "소피아", "플로브디프", "불가리아", "바르나", "베오그라드",
+                      "브리티슬라바", "탈린", "키예프", "오데사", "체르노빌", "트빌리시", "프라하", "체스키 크룸로프", "체스키",
+                      "카를로비 바리", "플젠", "크라쿠프", "바르샤바", "그단스크", "포츠난", "부다페스트", "에게르", "오슬로",
+                      "트롬쇠", "베르겐", "스타방에르", "코펜하겐", "스톡홀름", "예테보리", "키루나", "말뫼", "레이캬비크",
+                      "아쿠레이리", "후사비크", "이사피외르뒤르", "헬싱키", "로바니에미", "루앙프라방", "방비엥", "비엔티엔",
+                      "코타키나발루", "쿠알라룸푸르", "페낭", "조호바루", "몰디브", "양곤", "만달레이", "바간", "나옹쉐",
+                      "다낭", "호치민", "하노이", "나트랑", "반다르스리브가", "발리", "자카르타", "족자카르타", "름복",
+                      "씨엠립", "프놈펜", "앙코르", "앙코르 유적", "바탐방", "방콕", "파타야", "치앙마이", "푸켓", "세부", "보라카이",
+                      "마닐라", "보홀", "타이페이", "가오슝", "타이중", "화련", "마카오", "싱가포르", "라마도", "도쿄", "오사카",
+                      "후쿠오카", "오키나와", "난징", "남경", "둥관", "벙부", "제주도", "서울", "경기도", "경주", "두바이", "아부다비",
+                      "바쿠", "암만", "페트라", "텔아비브", "예루살렘", "도하", "카트만두", "올란바토르", "테를지", "뉴델리", "델리",
+                      "첸나이", "리시케시", "알마티", "비슈케크", "로스엔젤레스", "라스베가스", "하와이", "뉴욕", "벤쿠버", "밴프",
+                      "과테말라", "푼타 카나", "산토도밍고", "칸쿤", "멕시코시티", "아카풀코", "메리다", "나소", "미국령 버진제도",
+                      "버진제도", "우유니", "라파스", "리오 데 자네이루", "상파울루", "마나우스", "브라질리아", "부에노스아이레스",
+                      "부에노스 아이레스", "푸에르토이과수", "엘 칼라파테", "살타", "산살바도르", "몬테비데오", "산티아고", "푼타아레나스",
+                      "산 페드로 데 아타카마", "발파라이소", "산호세", "보고타", "아바나", "바라데로", "파나마시티", "쿠스코",
+                      "리마", "아구아스 깔리엔떼스", "아순시온", "오클랜드", "퀸스타운", "로토루아", "웰링턴", "시드니", "멜버른",
+                      "케언즈", "퍼스", "코토르", "케이프타운", "요하네스버그", "프리토리아", "마라케시", "아가디르", "카사블랑카",
+                      "페스", "카이로", "후르가다", "룩소르", "리빙스턴", "나이로비", "모시", "아디스아바바", "히트호른", "델프트",
+                      "잔세크산스", "아른헴", "텍셀", "하를럼", "함부르크", "쾰른", "라이프치히", "포츠담",
+                      "뉘른베르크", "베른", "몽트뢰", "바젤", "루가노", "체르마트", "엥겔베르그", "슬라이고", "바스", "벨파스트",
+                      "맨체스터", "글래스고", "브라이튼", "캠브리지", "락센부르크", "쿠프슈타인", "소렌토", "나폴리", "시에나", "폼페이",
+                      "베로나", "토스카나", "아비뇽", "칸", "스트라스부르크", "리옹", "디종", "샤모니", "이라클리온", "델포이",
+                      "자킨토스", "코린토스", "발렌시아", "말라가", "토레도", "톨레도", "마요르카", "코르도바", "세고비아", "자다르",
+                      "흐바르", "트로기르", "바라주딘", "풀라", "로빈", "쿠사다시", "마르마리스", "셀주크", "시데", "카이세리", "페티예",
+                      "폰타델가다", "라고스", "코임브라", "카스카이스", "파로", "그란둘라", "유즈노사할린스크", "케플라비크", "회픈",
+                      "랑카위", "말라카", "쿠알라셀랑고르", "푸트라자야", "이포", "바고", "호이안", "푸꾸옥", "하롱베이", "후에", "닌빈", "무이네",
+                      "반둥", "바탐", "빈탄", "시아누크빌", "코사무이", "끄라비", "후아힌", "카오락", "수랏타니", "난",
+                      "푸에르토프린세스", "팔라완", "오슬롭", "앙헬레스", "다바오", "바기오", "컨딩", "이란", "타이난", "타이둥", "교토",
+                      "삿포로", "나고야", "고베", "대마도", "하코네", "베이징", "북경", "상하이", "수주", "심천", "우한", "경상도", "전라도",
+                      "강원도", "충청도", "부산", "전주", "고아", "바라나시", "아그라", "자이푸르", "마날리", "뭄바이", "샌프란시스코",
+                      "시카고", "워싱턴 DC", "워싱턴DC", "워싱턴dc", "마이애미", "샌디에고", "보스턴", "퀘백", "나이아가라", "나이아가라폴스",
+                      "옐로나이프", "캘거리", "온타리오", "빅토리아 섬", "플라야 델 카르멘", "카보산루카스", "코즈멜", "코즈멜 섬", "코즈멜섬",
+                      "과나후아토", "과달라하라", "푸에블라", "푸콘", "코야이케", "아리카", "안토파가스타", "크라이스트처치", "와이헤케 섬",
+                      "와이헤케섬", "와이헤케", "파이히아", "마운트쿡", "마운트 쿡", "아카로아", "와이토모", "골드코스트", "브리즈번", "호바트",
+                      "에들레이드", "애들레이드", "울루루", "바이런베이", "탕헤르", "리세", "슈투트가르트", "뒤셀도르프", "뷔르츠부르크",
+                      "본", "뤼데스하임", "브레멘", "샤프하우젠", "로잔", "인버네스", "요크", "웨일즈", "윈저", "서식스", "모르덴", "피사",
+                      "볼로냐", "시칠리아", "카타니아", "친퀘테레", "트리에스테", "낭트", "릴", "콜마", "안시", "몽펠리에", "랭스", "지로나",
+                      "빌바오", "라산로테", "그란카나리아섬", "테네리페섬", "테네리페", "그란카나리아", "그란카나리아 섬", "테네리페 섬",
+                      "헤레스데라프론테라", "카쉬", "이즈미르", "포르티망", "달랏", "사파", "치앙라이", "핫야이", "코창", "코팡안", "코피피",
+                      "수빅", "벳푸", "유후인", "시즈오카", "나라", "후라노", "히로시마", "장저우", "천진", "청두", "카이펑", "시안", "칭다오",
+                      "인천", "여수", "속초", "가평", "수원", "구례", "심라", "다람살라", "데라둔", "우다이푸르", "무소리에", "올랜도", "시애틀",
+                      "필라델피아", "뉴올리언스", "애틀란타", "댈러스", "오타와", "재스퍼", "휘슬러", "유콘", "캠룺브", "핼리팩스", "프리맨틀",
+                      "캔버라", "앨리스스프링스", "앨리스스프링스", "태즈메이니아", "허비베이", "다윈", "브룸", "위니펙", "오카나간", "포틀랜드",
+                      "키웨스트", "세도나", "솔트 레이크 시티 조지아", "페어뱅크스", "강릉", "울산", "지리산", "광주", "하동", "고양", "계림", "하이난",
+                      "운남성", "광저우", "항저우", "장자제", "나가사키", "닛코", "가나자와", "센다이", "가고시마", "오타루", "프라이부르크",
+                      "코블렌츠", "아헨", "레겐스부르크", "밤베르크", "퓌센", "버밍엄", "켄트", "카디프", "사이렌체스터", "본머스", "윈더미어",
+                      "토리노", "제노바", "모데나", "팔레르모", "아시시", "비첸차", "아를", "님", "라로셸", "엑상프로방스", "그라스", "보졸레",
+                      "이비자", "카디스", "푸에르테벤투라", "산티아고데콤포스", "콘수에그라", "네르하", "오스나뷔리크", "도르트문트", "마인츠",
+                      "트리어", "크산텐", "하노버", "돌로미테", "타오르미나", "볼차노", "페루자", "부세토", "티볼리", "페루즈", "푸아티에",
+                      "툴루즈", "웅플뢰르", "알자스", "코냐크", "갈리시아", "아란후에스", "사라고사", "카마쿠라", "요코하마", "시모노세키",
+                      "와카야마", "미에", "가나가와", "샤먼", "대구", "남원", "대전", "통영", "청도", "제천", "팜스프링스", "로드아릴랜드",
+                      "덴버", "잭슨", "플로리다", "애리조나", "피닉스", "휴스턴", "펜실베이니아", "뉴저지", "알래스카", "산타바바라", "파주", "춘천",
+                      "홍천", "이천", "군산", "김포", "다카야마", "구시로", "사가", "도야마", "미야자키", "돗토리", "레버쿠젠", "로텐부르크",
+                      "오프", "데어", "타우버", "아이제나흐", "바리", "파르마", "아말피", "바롤로", "레조넬에밀리아", "에기솅", "안느마스", "바이로이트",
+                      "코헴", "뢰팅엔", "슈바르츠발츠", "바이마르", "테게른제", "아오모리", "니세코", "요나고", "히메지", "시코쿠", "하코다테",
+                      "영월", "공주", "남해", "서산", "동해", "고창", "리노", "뉴헤이븐", "로플린", "서배너", "힐즈버그", "찰스턴", "디트로이트",
+                      "윌리엄스", "멤피스", "샌 안토니오", "샌안토니오", "연천", "화성", "인제", "단양", "순천", "포항", "미야기", "오카야마",
+                      "샤리", "나가노", "고치", "지토세", "바덴바덴", "비스바덴", "에르푸르트", "슈바르츠발트", "볼프스부르크", "지토세", "다테야마",
+                      "포항", "당진", "함양", "담양", "이바라키 현", "야마가타", "원주", "지토세", "디테야마", "마쓰모토"];
+          var gukga = ["네덜란드", "독일", "룩셈부르크", "모나코", "모나코", "벨기에", "스위스", "아일랜드",
+                        "영국", "오스트리아", "이탈리아", "프랑스", "그리스", "몬테네그로", "몰타", "보스니아 헤르체고비나",
+                        "스페인", "슬로베니아", "영국령 지브롤터", "크로아티아", "터키", "포르투갈", "라트비아",
+                        "루마니아", "리투아니아", "마케도니아", "불가리아", "세르비아", "슬로바키아",
+                        "에스토니아", "우크라이나", "조지아", "체코", "폴란드", "헝가리", "노르웨이", "덴마크",
+                        "스웨덴", "아이슬란드", "핀란드", "라오스", "말레이시아", "몰디브", "미얀마", "베트남",
+                        "브루나이", "인도네시아", "캄보디아", "태국", "필리핀", "대만", "마카오", "싱가포르",
+                        "홍콩", "일본", "대한민국", "한국", "아랍에미리트", "아제르바이잔", "요르단",
+                        "이스라엘", "카타르", "네팔", "몽골", "인도", "카자흐스탄", "카자하스탄", "카르기스스탄",
+                        "과테말라", "도미니카 공화국", "멕시코", "바하마", "버진아일랜드", "볼리비아",
+                        "브라질", "아르헨티나", "엘살바도르", "우루과이", "칠레", "코스타리카", "콜롬비아", "쿠바",
+                        "파나마", "페루","파라과이", "뉴질랜드", "오스트레일리아", "괌", "사이판", "팔라우",
+                        "남아프리카 공화국", "남아프리카", "모로코", "모리셔스" ,"이집트", "잠비아", "케냐",
+                        "탄자니아", "에티오피아"];
+        var big_gukga = ["캐나다", "미국", "러시아", "호주", "아시아", "북아메리카", "남아메리카", "중국"];
           if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
               google();
+              if(city.includes(enter.value)){
+                  map.setZoom(12);
+              }
+              if(gukga.includes(enter.value)){
+                  map.setZoom(6);
+              }
+              if(big_gukga.includes(enter.value)){
+                  map.setZoom(3);
+              }
           }
       });
       enter.addEventListener("keydown", function (e) {
@@ -542,28 +763,28 @@
       function google(){
         var searchmap = document.getElementById("searchmap");
 
-          var input = document.getElementById("mymyInput").value;
-            var location = input;
-            axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-              params: {
-                address: location,
-                key: "<%=googleMapAPI%>"
-              }
-            })
-            .then(function(res) {
-              console.log(res);
-              var la = (res.data.results[0].geometry.location.lat);
-              var lo = (res.data.results[0].geometry.location.lng);
-              // var marker = new google.maps.Marker({
-              //   position: {lat: la, lng: lo},
-              //   map: map
-              // });
-              var center = new google.maps.LatLng(la, lo)
-              map.panTo(center);
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+        var input = document.getElementById("mymyInput").value;
+        var location = input;
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+            params: {
+            address: location,
+            key: "<%=googleMapAPI%>"
+            }
+        })
+        .then(function(res) {
+        console.log(res);
+        var la = (res.data.results[0].geometry.location.lat);
+        var lo = (res.data.results[0].geometry.location.lng);
+        // var marker = new google.maps.Marker({
+        //   position: {lat: la, lng: lo},
+        //   map: map
+        // });
+        var center = new google.maps.LatLng(la, lo)
+        map.panTo(center);
+        })
+        .catch(function(error) {
+             console.log(error);
+        });
 
       };
 

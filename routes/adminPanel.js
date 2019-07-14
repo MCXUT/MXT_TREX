@@ -1,12 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const moment = require("moment");
 const async = require("async");
+const nodemailer = require("nodemailer");
+const keys = require("../config/keys");
 
 const Admin = require("../models/Admin");
 const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 const Message = require("../models/Message");
+const PartnerProfile = require("../models/PartnerProfile");
+//----------To be replaced by service-------
+const Payment = require("../models/Payment");
+//------------------------------------------
 const localAdmin = require("../config/passportStrategies/localAdmin");
 
 router.get("/trex-admin/login", function(req,res){
@@ -38,11 +45,23 @@ router.get("/trex-admin", function(req,res) {
           Partner.find({}, function(err, partners) {
             Admin.find({}, function(err, admins) {
               Message.find({}, function(err, messages) {
-                  return res.render("trexAdminpage", {
-                    partnerList : partners,
-                    clientList: clients,
-                    adminList: admins,
-                    messageList: messages
+                  PartnerProfile.find({}, function(err, partnerProfiles) {
+                      Payment.find({}, function(err, payments) { // To be replaced by service
+                          for(var i = 0; i < payments.length; i++) {
+                              if(payments[i].dateRequested)
+                                payments[i].dateRequestedS = moment(payments[i].dateRequested).format("YYYY-MM-DD::HH:mm");
+                              if(payments[i].dateConfirmed)
+                                payments[i].dateConfirmedS = moment(payments[i].dateConfirmed).format("YYYY-MM-DD::HH:mm");
+                          }
+                          return res.render("trexAdminpage", {
+                            partnerList : partners,
+                            clientList: clients,
+                            adminList: admins,
+                            messageList: messages,
+                            profileList: partnerProfiles,
+                            paymentList: payments // To be replaced by service
+                          });
+                      });
                   });
               });
             });
@@ -56,8 +75,54 @@ router.get("/trex-admin", function(req,res) {
   }
 });
 
+router.post("/confirmmail/:id", function(req, res) {
+    async.waterfall([
+        (done) => {
+            Payment.findById(req.params.id, (err, payConfirm) => {
+                if(err) throw err;
+                if(!payConfirm) {
+                    req.flash("error", "No payment to make confirmation");
+                    return res.redirect("/trex-admin#?services_2");
+                } else {
+                    payConfirm.dateConfirmed = Date.now();
+                    payConfirm.save();
+                    done(err, payConfirm);
+                }
+            });
+        },
+        (payConfirm, done) => {
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: keys.gmailInfo.user,
+                    pass: keys.gmailInfo.pass,
+                },
+                tls: {
+                    ciphers: "SSLv3"
+                }
+            });
+            const mailOption = {
+              from : keys.gmailInfo.user,
+              to : payConfirm.requestedEmail,
+              subject : payConfirm.requestedEmail + "님의 정산요청 완료",
+              text : payConfirm.requestedEmail + "님께서 요청하신 " + payConfirm.amount + "만큼의 금액을 송부했습니다." +
+                        "\n계좌를 확인하여 주십시오",
+            };
+            transporter.sendMail(mailOption, (err) => {
+                if(err) {
+                    req.flash("error_reset", "Error Occured when sending the email");
+                    return res.redirect("/trex-admin#?services_2");
+                }
+                req.flash("success_validate", "Check your email for password reset");
+                return res.redirect("/trex-admin#?services_2");
+            });
+        }
+    ], (err) => {
+        if(err) next(err);
+        return res.redirect("/trex-admin#?services_2");
+    });
+});
 
-// Section for Clients
 router.get("/deleteClient/:id", function(req,res) {
     console.log("clientID: " + req.params.id);
     Client.deleteClient(req.params.id);
@@ -90,7 +155,7 @@ router.get("/deleteAdmin/:id", function(req,res) {
     Admin.deleteOne({"_id" : req.params.id}, function(err, obj) {
         res.redirect("/trex-admin?index=7");
     });
-})
+});
 
 router.post("/addAdmin", function(req, res) {
   if(!req.user) {

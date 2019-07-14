@@ -51,6 +51,7 @@ navbar{
 
 .dropdown-bubble .dropdown-menu {
   margin-top:20px;
+  overflow-y: hidden !important;
 }
 
 .dropdown-bubble .dropdown-menu:before,

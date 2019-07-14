@@ -66,7 +66,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
         validateAddress(req.body.postalCode);
     }
 
-    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.state + ", " + req.body.country + ", " + req.body.postalCode;
+    var fullAddress = req.body.numberAddress + " " + req.body.streetAddress + ", " + req.body.city + ", " + req.body.country + ", " + req.body.postalCode;
 
     // Get coordinates of the new address
     googleMapsClient.geocode({
@@ -101,7 +101,7 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
                 foundUser.address.streetAddress = req.body.streetAddress;
                 foundUser.address.detailedAddress = req.body.detailedAddress;
                 foundUser.address.city = req.body.city;
-                foundUser.address.state = req.body.state;
+                // foundUser.address.state = req.body.state;
                 foundUser.address.country = req.body.country;
                 foundUser.address.postalCode = req.body.postalCode;
                 foundUser.address.coordinates = newCoordinates;
@@ -122,6 +122,40 @@ router.post("/user_profile/basicPartnerInfo", (req, res) => {
     });
 });
 
+router.post("/user_profile/account_info/security_client", (req, res) => {
+    if(!(req.body.currentPassword && req.body.newPassword && req.body.newPasswordConfirm)) {
+        req.flash("error_password", "Some information is missing");
+        return res.redirect("/user_profile/account_info");
+    }
+    if(!(req.body.newPassword === req.body.newPasswordConfirm)) {
+        req.flash("error_password", "The new passwords must match");
+        return res.redirect("/user_profile/account_info");
+    }
+
+    Client.findById(req.user.id).then((currentUser) => {
+        if(!currentUser) {
+            req.flash("error_password", "No user is found");
+            return res.redirect("/user_profile/account_info");
+        }
+
+        Client.comparePassword(req.body.currentPassword, currentUser.password, function(err, isMatch) {
+            if(err) throw err;
+            if(!isMatch) {
+                req.flash("error_password", "Current passwords don't match");
+                return res.redirect("/user_profile/account_info");
+            } else {
+                bcrypt.hash(req.body.newPassword, 10, function(err, hash) {
+                    if(err) throw err;
+                    currentUser.password = hash;
+                    currentUser.save();
+
+                    req.flash("success", "Password successfully changed");
+                    return res.redirect("/user_profile/account_info");
+                });
+            }
+        });
+    });
+});
 
 router.post("/user_profile/account_info/security_partner", (req, res) => {
     if(!(req.body.currentPassword && req.body.newPassword && req.body.newPasswordConfirm)) {

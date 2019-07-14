@@ -35,7 +35,7 @@
             }
             #sliders a{
                 text-decoration: none;
-                color:black;
+                color:#2F3033;
             }
             #wrapper{
               width: 50%;
@@ -68,35 +68,6 @@
 
         <% include ./partials/profileedit-image %>
         <% include ./partials/profileedit-background %>
-
-        <link rel="stylesheet" href="/static/stylesheets/ratepum.css">
-        <div class="pumrate">
-            <div class="pumrate-container">
-                <div class="maincontent-rate">
-<span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span><br>
-                    <p style="text-align:center;font-size:22px;padding-left:7%;">
-
-                        <span class="nameofpartner"></span>님에게 리뷰 남기기</p>
-                    <form id="ratingform " method="post">
-                        <div class="rating">
-                            <input type="radio" name="star" id="star5" value=5><label for="star5"></label>
-                            <input type="radio" name="star" id="star4" value=4><label for="star4"></label>
-                            <input type="radio" name="star" id="star3" value=3><label for="star3"></label>
-                            <input type="radio" name="star" id="star2" value=2><label for="star2"></label>
-                            <input type="radio" name="star" id="star1" value=1><label for="star1"></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea form="ratingform" class="form-control" rows="3" id="comment" name="comment"></textarea>
-                        </div>
-                        <!-- <input type="hidden" name="unique" value="" > -->
-
-                        <input type="submit" name="submit" value="확인" class="btn" id="submit-button">
-
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <% include ./partials/navbar %>
 
@@ -152,9 +123,6 @@
                     </div>
 
                     <div class="col-md-8">
-
-
-
                         <!--  업무 예약 관리  -->
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
@@ -200,24 +168,6 @@
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>진행중인 업무</b></p>
                                 <div class="divider"></div>
-                                <div class="appointmentlist2">
-                                    <% allPartners.forEach((partner) => { %>
-                                        <div class="appointmentcard">
-                                            <div class="container">
-                                                <p class="tasktitle">트랙스 통역업무1</p>
-                                                <div class="subcontainer">
-                                                    <p class="taskcontent"><%= partner.name %></p>
-                                                    <a href="javascript:void(0)" id="<%= partner._id %>">평점 남기기</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <% });  %>
-                                </div>
-                                <nav aria-label="Page navigation">
-                                  <ul class="pagination pagination2">
-                                    <li class="prevshow"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                  </ul>
-                                </nav>
                             </div>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>확정된 업무</b></p>
@@ -234,7 +184,14 @@
                                                 <p class="tasktitle">트랙스 통역업무1</p>
                                                 <div class="subcontainer">
                                                     <p class="taskcontent"><%= partner.name %></p>
-                                                    <button form="paymentemail" class="btn btn-info" name="paymentRequest">정산 요청하기</button>
+                                                    <% if(payPartners.includes(String(partner._id))) { %>
+                                                        <p class="taskcontent">요청완료</p>
+                                                        <% if(payComplete[0].dateConfirmed) { %>
+                                                            <p class="taskcontent">송금완료</p>
+                                                        <% } %>
+                                                    <% } else { %>
+                                                        <button form="paymentemail" name="paymentRequest" id="<%= partner._id %>">정산 요청하기</button>
+                                                    <% } %>
                                                 </div>
                                             </div>
                                         </div>

@@ -30,8 +30,8 @@ function changeTag(item){
     document.getElementById('div3').style.display='none';
     item.style.color='#f58b44';
     item.style.borderBottom='1px solid';
-    document.getElementById('tag2').style.color='black';
-    document.getElementById('tag3').style.color='black';
+    document.getElementById('tag2').style.color='#2F3033';
+    document.getElementById('tag3').style.color='#2F3033';
 
 }
 function changeTag2(item){
@@ -40,8 +40,8 @@ function changeTag2(item){
   document.getElementById('div3').style.display='none';
   item.style.color='#f58b44';
   item.style.borderBottom='1px solid';
-  document.getElementById('tag3').style.color='black';
-  document.getElementById('tag1').style.color='black';
+  document.getElementById('tag3').style.color='#2F3033';
+  document.getElementById('tag1').style.color='#2F3033';
 }
 function changeTag3(item){
   document.getElementById('div1').style.display='none';
@@ -49,6 +49,6 @@ function changeTag3(item){
   document.getElementById('div3').style.display='inline';
   item.style.color='#f58b44';
   item.style.borderBottom='1px solid';
-  document.getElementById('tag2').style.color='black';
-  document.getElementById('tag1').style.color='black';
+  document.getElementById('tag2').style.color='#2F3033';
+  document.getElementById('tag1').style.color='#2F3033';
 }

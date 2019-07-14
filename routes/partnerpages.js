@@ -6,6 +6,7 @@ const Client = require("../models/Client");
 const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
 const Rating = require("../models/Rating");
+const Service = require("../models/Service");
 const async = require("async");
 
 router.get("/partner_page", function(req, res) {
@@ -14,38 +15,63 @@ router.get("/partner_page", function(req, res) {
 
 // GET route for viewing partner profile page
 router.get("/partner_profile/:id", function(req, res) {
-    Partner.findById(req.params.id).populate("ratings").exec(function(err, foundUser) {
-        var avgRating = 0;
-        var allInfos = [];
+    Partner.findById(req.params.id).populate("ratings").exec(function(err, foundPartner) {
+        PartnerProfile.findById(foundPartner.partnerProfile, function(err, foundProfile) {
+            var avgRating = 0;
+            var allInfos = [];
 
-        async.each(foundUser.ratings, function(rating, done) {
-            avgRating += rating.star;
-            Rating.findById(rating.id).populate("byUser").exec(function(err, info) {
-                if(info.byUser) {
-                    allInfos.push(info);
-                } else { // Case where the rated user is deleted
-                    console.log(info.id);
-                    Rating.findByIdAndRemove(info.id).then(function(deleted) {
-                        console.log(deleted);
-                    });
-                }
-                done();
-            });
-        }, function(err) {
-            if(err) throw err;
-            else {
-                console.log(foundUser.ratings);
-                avgRating /= foundUser.ratings.length;
-                avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
-                if(avgRating == "NaN") avgRating = 0.0;
-                res.render("partnerprofile", {
-                    thisPartner: foundUser,
-                    averageRating: avgRating,
-                    reviews: allInfos
+            async.each(foundPartner.ratings, function(rating, done) {
+                avgRating += rating.star;
+                Rating.findById(rating.id).populate("byUser").exec(function(err, info) {
+                    if(info.byUser) {
+                        allInfos.push(info);
+                    } else { // Case where the rated user is deleted
+                        console.log(info.id);
+                        Rating.findByIdAndRemove(info.id).then(function(deleted) {
+                            console.log(deleted);
+                        });
+                    }
+                    done();
                 });
-            }
-        });
-    });
+            }, function(err) {
+                if(err) throw err;
+                else {
+                    avgRating /= foundPartner.ratings.length;
+                    avgRating = (Math.round(avgRating * 10) / 10).toFixed(1);
+                    if(avgRating == "NaN") avgRating = 0.0;
+                    if (foundProfile && foundProfile.isVerified) {
+                        Service.find({}, (err, allServices) => {
+                            if(err) throw err;
+                            Service.findById(allServices[0].id).populate("questionList").exec((err, detailService) => {
+                                if(err) throw err;
+                                return res.render("partnerprofile", {
+                                    detailService: detailService,
+                                    thisPartner: foundPartner,
+                                    averageRating: avgRating,
+                                    reviews: allInfos,
+                                    thisProfile: foundProfile
+                                });
+                            });
+                        });
+                    } else {
+                        Service.find({}, (err, allServices) => {
+                            if(err) throw err;
+                            Service.findById(allServices[0].id).populate("questionList").exec((err, detailService) => {
+                                if(err) throw err;
+                                return res.render("partnerprofile", {
+                                    detailService: detailService,
+                                    thisPartner: foundPartner,
+                                    averageRating: avgRating,
+                                    reviews: allInfos,
+                                    thisProfile: ""
+                                });
+                            });
+                        });
+                    }
+                }
+            });
+        });//PartnerProfile.findById
+    });//Partner.findById
 });
 
 
@@ -103,7 +129,7 @@ router.get("/find_partner", function(req,res){
                 } else {
                     partnerProfiles[i] = "";
                 }
-                
+
             }
             res.render("findpartner", { allPartners : allPartners , googleMapAPI: keys.googleMapAPI.key, allProfiles: partnerProfiles });
         });

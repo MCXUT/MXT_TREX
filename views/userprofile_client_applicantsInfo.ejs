@@ -17,14 +17,14 @@
                  top: 50%;
                  -ms-transform: translateY(-50%);
                  transform: translate3d(-50%,-50%,0);
-        
+
             }
             .leftside, .rightside{
                 width: 100%;
                 /* border: 1px solid rgba(0, 0, 0, 0.5); */
                 margin-bottom: 10px;
                 z-index: 2;
-        
+
             }
             #left{
               max-width: 25%;
@@ -47,7 +47,7 @@
               margin:0;
               padding-left: 2.5%;
               padding-right: 2.5%;
-        
+
             }
             #wrapper .row{
               border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,10 +55,10 @@
             }
             #wrapper h4{
               font-size: 20px;
-        
+
             }
         </style>
-        
+
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
@@ -66,7 +66,7 @@
     </head>
     <body>
 
-        <% include ./partials/proficiencychart %>
+        <% include ./partials/profileedit-businessicon %>
 
         <% include ./partials/navbar %>
 
@@ -80,6 +80,7 @@
                         <div class="menu">
                             <a class="task_request_info" href="/user_profile/task_request_info">견적 요청 관리</a>
                             <a class="applicants_info profileactive" href="/user_profile/applicants_info">지원자 보기</a>
+                            <a class="task_management" href="/user_profile/task_management">업무 관리</a>
                             <% if (currentUser.messageNotification) { %>
                                 <i class="fas fa-circle fa-xs" style="color:red;font-size:10px;margin-bottom:3px;"></i>
                                 <a class="messages" href="/user_profile/messages">메세지</a>
@@ -92,33 +93,82 @@
                     </div>
                 </div>
                 <div class="row bottom">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="padding:0% 0% 0% 5.2%;">
+                        <div class="backgroundimgClient">
+                        </div>
+
+                        <div class="mainimg">
                         <% if (currentUser.companyLogo) { %>
-                          <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
+                            <img class="profileimg" src="/logo/<%= currentUser.companyLogo %>">
                         <% } else { %>
-                          <img class="profileimg" src="/static/images/noprofilepic.jpeg">
+                          <img class="profileimg" src="/static/images/nocompanylogo.jpeg">
                         <% } %>
+                            <div class="changeslider">
+                                사진 바꾸기<br/>
+                                <span class="camera"></span>
+                            </div>
+                        </div>
+
                         <p class="userName"><%= currentUser.name %></p>
                     </div>
-                    
+
                     <div class="col-md-8">
-                        
-                        
+
+
                         <!--  지원자 보기  -->
                         <% if (error.length > 0) { %>
                           <span style="color:red;margin-left:70px;"><%= error %></span>
                         <% } %>
                             <div class="row sections basic" id="basic">
                                 <p class="basictitle"><b>지원자 보기</b></p>
-                              
-                        
-                        
+                                <div class="divider"></div>
+                                <table class="seepartners">
+                                    <tr>
+                                        <th>파트너</th>
+                                        <th>지원 업무</th>
+                                        <th>내용</th>
+                                        <th>프로필</th>
+                                        <th>지원 날짜</th>
+                                        <th class="status">진행 상황</th>
+                                        <th class="editor">편집</th>
+                                    </tr>
+                                    <% allPartners.forEach((partner) => { %>
+                                        <tr>
+                                            <td>
+                                                <% if (partner.profilePic) { %>
+                                                  <img class="profileimg" src="/profilePic/<%= partner.profilePic %>" style="max-height:40px;border-radius:25px;">
+                                                <% } else { %>
+                                                  <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:40px;border-radius:25px;">
+                                                <% } %>
+                                                <br/><%= partner.name %>
+                                            </td>
+                                            <td>7월 2일-5일 영국 런던 통역업무 요청</td>
+                                            <td>견적서 보기</td>
+                                            <td>
+                                                <a href="/partner_profile/<%= partner._id %>"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                <%= partner.registeredDate.getFullYear() %>년 <%= partner.registeredDate.getMonth() + 1 %>월 <%= partner.registeredDate.getDate() %>일
+                                            </td>
+                                            <td class="status">
+                                                <div class="statuswrapper">
+                                                    불합격
+                                                </div>
+                                            </td>
+                                            <td class="editor">
+                                                <span class="delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                            </td>
+                                        </tr>
+                                    <% }); %>
+                                </table>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <script src="/static/scripts/changeimg.js"></script>
 
     <script>
     $(document).ready(() => {

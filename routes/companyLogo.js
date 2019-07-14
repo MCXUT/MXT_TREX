@@ -5,7 +5,7 @@ const express = require("express"),
       Grid = require("gridfs-stream"),
       path = require("path"),
       crypto = require("crypto"),
-      mongodb = require("mongodb");      
+      mongodb = require("mongodb");
 const app = express();
 const router = express.Router();
 
@@ -57,13 +57,14 @@ const upload = multer({ storage });
 
 
 // POST route for changing company logo for client
-router.post("/user_profile/companyLogoUpload", upload.single("companyLogo"), (req, res) => {
+router.post("/user_profile/:tab/companyLogoUpload", upload.single("companyLogo"), (req, res) => {
+    console.log("fuck");
   if (req.file) {
     // Find and update client company logo
     Client.findById(req.user._id, function(err, foundUser) {
       if (err) {
         console.log(err);
-        return res.redirect("/user_profile");
+        return res.redirect("/user_profile/" + req.params.tab);
       };
       // if logo already exists, delete it
       if (foundUser.companyLogo) {
@@ -75,14 +76,14 @@ router.post("/user_profile/companyLogoUpload", upload.single("companyLogo"), (re
       foundUser.save((err) => {
         if (err) {
           console.log(err);
-          return res.redirect("/user_profile");
+          return res.redirect("/user_profile/" + req.params.tab);
         }
         console.log("Client Company Logo Update Successful");
-        return res.redirect("/user_profile/account_info");
+        return res.redirect("/user_profile/" + req.params.tab);
       });
     });
   } else { // if no new picture is selected
-    res.redirect("/user_profile");
+    res.redirect("/user_profile/" + req.params.tab);
   }
 });
 
@@ -105,13 +106,13 @@ router.get("/logo/:filename", (req, res) => {
 
 // @route DELETE /user_profile/deleteClientProfilePic
 // @desc Delete the current profile picture of the current client
-router.delete("/user_profile/deleteCompanyLogo", (req, res) => {
+router.delete("/user_profile/:tab/deleteCompanyLogo", (req, res) => {
   // if the current user is a client
   // Find and delete client profile picture
   Client.findById(req.user._id, function(err, foundUser) {
     if (err) {
       console.log(err);
-      return res.redirect("/user_profile");
+      return res.redirect("/user_profile/" + req.params.tab);
     };
     // if a logo exists, delete
     if (foundUser.companyLogo) {
@@ -123,13 +124,49 @@ router.delete("/user_profile/deleteCompanyLogo", (req, res) => {
     foundUser.save((err) => {
       if (err) {
         console.log(err);
-        return res.redirect("/user_profile");
+        return res.redirect("/user_profile/" + req.params.tab);
       }
       console.log("Client Company Logo Delete Successful");
-      return res.redirect("/user_profile/account_info");
+      return res.redirect("/user_profile/" + req.params.tab);
     });
   });
 });
 
 
-module.exports = router;
+function deleteCompanyLogo(req, res, userID) {
+    if (req.user) {
+        if (req.user.type == "a") {
+            Client.findById(userID, function(err, foundClient) {
+              if (err) {
+                console.log(err);
+                return res.redirect("/trex-admin");
+              };
+              // if a logo exists, delete
+              if (foundClient.companyLogo) {
+                gfs.remove({filename: foundClient.companyLogo, root: "companyLogos"}, (err, gridStore) => {
+                  if (err) { throw err; }
+                });
+              }
+              foundClient.companyLogo = "";
+              foundClient.save((err) => {
+                if (err) {
+                  console.log(err);
+                  return res.redirect("/trex-admin");
+                }
+                console.log("Client Company Logo Delete Successful");
+              });
+            });
+        } else {
+            console.log("Current User is not an admin.")
+        }
+    }
+}
+
+
+
+module.exports = { 
+    router: router,
+    deleteCompanyLogo: deleteCompanyLogo
+}
+
+// module.exports = router;

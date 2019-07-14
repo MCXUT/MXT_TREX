@@ -57,9 +57,9 @@ var PartnerSchema = mongoose.Schema({
         city: {
             type: String
         },
-        state: {
-            type: String
-        },
+        // state: {
+        //     type: String
+        // },
         country: {
             type: String
         },

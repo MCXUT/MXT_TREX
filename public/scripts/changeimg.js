@@ -43,7 +43,7 @@ var bckClick = () => {
 bckClick();
 
 var clickoutside = () => {
-    document.querySelector(".pumimg").addEventListener("click", (e) => {
+    $(".pumimg").on("click", (e) => {
         if(e.target.className === "pumimg pumactive") {
             $(".pumimg").fadeOut(400, () => {
                 $(".pumimg").toggleClass("pumactive");
@@ -55,7 +55,7 @@ var clickoutside = () => {
 clickoutside();
 
 var clickoutside2 = () => {
-    document.querySelector(".pumbck").addEventListener("click", (e) => {
+    $(".pumbck").on("click", (e) => {
         if(e.target.className === "pumbck pumactive") {
             $(".pumbck").fadeOut(400, () => {
                 $(".pumbck").toggleClass("pumactive");

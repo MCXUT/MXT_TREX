@@ -148,6 +148,30 @@ function myFunction5() {
   }
 }
 
+// searching in partner profile tab
+function myFunction6() {
+  var input, filter, table, tr, td, cell, i, j;
+  input = document.getElementById("myInput6");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable6");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    // Hide the row initially.
+    tr[i].style.display = "none";
+
+    td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      cell = tr[i].getElementsByTagName("td")[j];
+      if (cell) {
+        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        }
+      }
+    }
+  }
+}
+
 
 function dashBoard(){
     document.getElementById('div1_dashBoard').style.display='inline';

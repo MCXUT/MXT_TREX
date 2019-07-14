@@ -40,6 +40,17 @@ var PartnerProfileSchema = mongoose.Schema({
         default: "",
         required: true
     },
+    partner: {
+        name: {
+            type: String
+        },
+        email: {
+            type: String
+        },
+        id: {
+            type: String
+        }
+    },
     isVerified: {
         type: Boolean,
         default: false
@@ -74,7 +85,7 @@ var PartnerProfileSchema = mongoose.Schema({
         default: ""
     },
     // 예약 불가능일
-    unavailableDates: [Date],
+    unavailableDates: [String],
     // 제공 서비스
     availableServices: [ServiceSchema],
     // 파트너 인터뷰 여부
@@ -92,11 +103,11 @@ var PartnerProfileSchema = mongoose.Schema({
     },
     // 등록일자
     registeredDate: {
-        type: Date
+        type: String
     },
     // 최근 수정일
     lastEditedDate: {
-        type: Date
+        type: String
     },
     // 조회수
     views: {

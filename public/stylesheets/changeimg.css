@@ -22,7 +22,7 @@
 .maincontent {
     padding: 10px;
 }
-@keyframes drop {
+/* @keyframes drop {
     0% {opacity: 0.2;}
     100% { transform: translateY(50px);
             opacity: 1;}
@@ -31,7 +31,7 @@
     0% { transform: translateY(100px);
             opacity: 1;}
     100% {opacity: 0.2;}
-}
+} */
 
 .pumimg .pumimg-container .maincontent {
     padding-bottom: 30px;

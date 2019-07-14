@@ -2,10 +2,22 @@
     <head>
         <meta charset="utf-8">
         <style>
+            .showBttn {
+                display: inline !important;
+            }
+            .btn-primary {
+                /* display: inline !important; */
+                background-color:#f58b44 !important;
+                border-color:#f58b44 !important;
+            }
             .btn-primary:hover {
                 cursor: pointer;
-                background-color: #00b3db !important;
-                border-color: #00b3db !important;
+                /* background-color: #00b3db !important;
+                border-color: #00b3db !important; */
+                opacity: 0.9;
+            }
+            a:hover {
+                cursor: pointer;
             }
             #avatar{
                 border-radius: 50%;
@@ -58,24 +70,27 @@
 
             }
             .datepicker td.active.active{
-                background-color: #F58B44 !important;
-                color: #fff;
+                /* background-color: #F58B44 !important; */
+                background-color: #fff !important;
+                color: rgba(100, 100, 100, 0.1)!important;
+                /* color: #fff; */
                 border-color: none !important;
-                background-image: none;
+                background-image:none;
+                text-decoration: line-through;
             }
             .datepicker-days{
                 margin: 20px;
             }
 
             .table-condensed{
-                width: 650px;
+                width: 100%;
                 margin-bottom: 20px !important;
                 /* border: 1px solid rgba(0, 0, 0, 0.5) !important; */
                 /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
             }
             .datepicker-days{
                 border: 1px solid rgba(0, 0, 0, 0.3) !important;
-                width: 690px;
+                width: 300%;
                 padding: 20px;
                 padding-top: 35px;
             }
@@ -86,6 +101,16 @@
                 float: right;
 
             }
+            @media(max-width: 500px){
+                .datepicker-days{
+                    width: 150%;
+                }
+            };
+            @media(max-width: 800px){
+                .datepicker-days{
+                    width: 200%;
+                }
+            };
 
         </style>
 
@@ -110,7 +135,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
 
-        <script src="bootstrap-datepicker.ko.js" charset="UTF-8"></script>
+        <!-- <script src="bootstrap-datepicker.ko.js" charset="UTF-8"></script> -->
 
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -192,49 +217,66 @@
                           <% if (error.length > 0) { %>
                             <span style="color:red;margin-left:70px;"><%= error %></span>
                           <% } %>
-                            <div class="row sections basic" id="basic">
-                                <p class="basictitle"><b>일정 관리</b></p>
-                                <div class="divider"></div>
-                                <div class="input-group form-group date">
-                                    <input type="text" id="koko" value="" style="display:none;">
-                                    <!-- <input type="text" style="display: none"form="basicinfoform" class="form-control date" name="schedule" multiple value="일-월-년"/> -->
-                                    <!-- <span class="date" for="nal"><i class="fas fa-calendar-alt"></i></span> -->
-                                </div>
+                          
+                          <% if (unavailableDates) { %>
+                              <div class="row sections basic" id="basic">
+                                  <p class="basictitle"><b>일정 관리</b></p>
+                                  <span style="float: right">
+                                      <input type="submit" form="editUnavailability" value="날짜 조정" class="btn btn-primary showBttn">
+                                  </span>
+                                  <div class="divider"></div>
+                                  <form id="editUnavailability" action="/user_profile/edit_unavailable_dates" method="post"></form>
+                                  <div class="input-group form-group date">
+                                      <input type="text" id="koko" form="editUnavailability" name="unavailability" value="<%= unavailableDates %>" style="display:none;">
+                                      <!-- <input type="text" style="display: none"form="basicinfoform" class="form-control date" name="schedule" multiple value="일-월-년"/> -->
+                                      <!-- <span class="date" for="nal"><i class="fas fa-calendar-alt"></i></span> -->
+                                  </div>
 
-                                <div class="row" style="width: 100%; float:right; margin-left: 75%" >
+                                  <div class="row" style="width: 100%; float:right; margin-left: 75%" >
 
-                                    <div class="box" style="width: 13px; height: 14px; background: #F58B44; transform: translate3d(0, 50%, 0);margin-right: 4px">
+                                      <div class="box" style="width: 13px; height: 14px; background: #F58B44; transform: translate3d(0, 50%, 0);margin-right: 4px">
 
-                                    </div>
-                                    <span style="float: right">
-                                     - 불가능 날짜
-                                    </span>
+                                      </div>
+                                      <span style="float: right">
+                                       - 불가능 날짜
+                                      </span>
 
-                                </div>
-
-
-
-
-                            </div>
-
-
-                            <div class="form-group row" id="har" style="margin-left: 10%;margin-right: 17%;">
-                                <div class="col-sm-5">
-                                    <label for="region">불가능 날짜선택(하나 이상 선택가능)</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
-                                        <option>주중불가능</option>
-                                        <option>주말불가능</option>
-                                        <option>토요일불가능</option>
-                                        <option>일요일불가능</option>
+                                  </div>
 
 
 
 
-                                    </select>
-                                </div>
-                            </div>
+                              </div>
+
+
+                              <div class="form-group row" id="har" style="margin-left: 10%;margin-right: 17%;">
+                                  <div class="col-sm-5">
+                                      <label for="region">불가능 날짜선택(하나 이상 선택가능)</label>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <select class="selectpicker" id="region" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                          <option>주중불가능</option>
+                                          <option>주말불가능</option>
+                                          <option>토요일불가능</option>
+                                          <option>일요일불가능</option>
+
+
+
+
+                                      </select>
+                                  </div>
+                              </div>
+                          <% } else { %>
+                              <div class="row sections basic" id="basic">
+                                  <p class="basictitle"><b>일정 관리</b></p>
+                                  <div class="divider"></div>
+
+                                  파트너 프로필이 등록되어 있지 않습니다. 새로운 프로필을 등록해주세요.
+
+                              </div>
+                          <% } %>
+
+
 
                             <!-- <br><br><br><br> -->
                             <!-- <input type="text" form="basicinfoform" class="form-control date" name="schedule" multiple value=""/> -->
@@ -338,8 +380,14 @@
         $('.date').datepicker({
             multidate: true,
             format: 'yyyy-mm-dd',
+            minDate: 0,
             // leftArrow: '<i class="fas fa-chevron-left"></i>',
         });
+        // document.getElementById("date").datepicker({
+        //     multidate: true,
+        //     format: 'yyyy-mm-dd',
+        //     minDate: new Date(),
+        // });
 
 
         $('select').selectpicker();
