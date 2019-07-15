@@ -536,6 +536,13 @@ font-size: 22px;
 }
 /* End of Accordion Section */
 
+/* 기업/기관 section*/
+#institution{
+    width:100%;
+    height:100%;
+}
+/*end of 기업/기관 section*/
+
 /*footer section*/
 
 
@@ -658,6 +665,7 @@ tered{
   padding-right:0%;
   -o-object-fit: contain;
   filter: brightness(10000%) !important;
+  z-index: -1 !important;
 }
 #slider-images3{
   height: 300px;

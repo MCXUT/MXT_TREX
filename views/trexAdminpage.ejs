@@ -135,7 +135,7 @@ for (var i = 0; i < btns.length; i++) {
 <left id="div1_dashBoard"  style="display:inline;">
 <div class="content" style="padding-top:80px;">
     dashboard content
-    
+
 </div>
 </left>
 
@@ -231,8 +231,20 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div9_users_deleted"  style="display:none;">
-<div class="content" style="padding-top:80px;">
-<h3>Users to be deleted</h3>
+<div class="content" >
+
+    <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
+      <!-- Actual search box -->
+      <div class="form-group has-search">
+
+        <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
+        <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
+
+      </div>
+<button type="button" id="sync_btn" name="button"><i class="fas fa-sync"></i></button>
+    </div>
+
+
 </div>
 </left>
 

@@ -1,3 +1,12 @@
+#sync_btn{
+border:1px solid #fff;
+color:  #676D73;
+font-size: 20px;
+padding-left: 100%;
+margin-left: 39%;
+margin-top: 13% !important;
+}
+
 .auth_content p {
     font-weight: bold;
 }
@@ -172,7 +181,6 @@
     margin: 50px auto;
     margin-bottom: 0px !important;
     padding-right: 50px !important;
-
 }
 
 /* Bootstrap 4 text input with search icon */
