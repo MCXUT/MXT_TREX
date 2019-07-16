@@ -28,6 +28,7 @@
                         <option class="serv">투어 가이드</option>
                         <option class="serv">현지 시장 조사</option>
                     </select> -->
+<<<<<<< HEAD
 
                     <select class="selectpicker" id="choice1" placeholder="서비스를 선택해주세요">
                         <% for (var i = 0; i < services.length; i++) { %>
@@ -42,6 +43,28 @@
                         <% } %>
                     </select>
 
+=======
+                    
+                    
+                    <select class="selectpicker choice1" id="choice1">
+                        <option value="" selected disabled hidden>서비스를 선택해주세요</option>
+                        <% for (var i = 0; i < services.length; i++) { %>
+                            <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
+                        <% } %>
+                    </select>
+                    
+                    <% for (var i = 0; i < services.length; i++) { %>
+                        <div id="<%= services[i].serviceCategory %>" style="display:none !important;">
+                            <select class="selectpicker choice2">
+                                <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
+                                    <option value=<%= services[i].serviceName[j] %>><%= services[i].serviceName[j] %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    <% } %>
+                    
+                    
+>>>>>>> d106c8e984e9d979331f8e4c48f6a7ddced69480
                     <p class="subdivision">예상 금액</p>
                     <input type="text" class="form-control" name="">$
                      ~
@@ -55,6 +78,21 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <script>
 
+=======
+
+<script>
+    // Script for dynamically changing service name dropdown based on the selected service category value
+    $(".choice1").change(function () {
+        var id = $(this).val();
+        
+        <% for (var i = 0; i < services.length; i++) { %>
+            document.getElementById("<%= services[i].serviceCategory %>").style.display = "none";
+        <% } %>
+        
+        document.getElementById(id).style.display ="flex";
+    });
+>>>>>>> d106c8e984e9d979331f8e4c48f6a7ddced69480
 </script>

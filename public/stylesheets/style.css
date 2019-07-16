@@ -281,10 +281,17 @@ font-size: 22px;
   -o-object-fit: contain;
 }
 
-.img-hover-zoom {
+.s3 .swiper-slide.img-hover-zoom {
   overflow: hidden;
-  height: 300px;
+  height: auto;
   border-radius: 4px;
+  max-width: 300px;
+}
+
+.s2 .swiper-slide.img-hover-zoom {
+    overflow: hidden;
+    border-radius: 4px;
+    max-width: 200px;
 }
 
 .img-hover-zoom img {
@@ -316,9 +323,9 @@ font-size: 22px;
 .swiper-button-prev3,
 .swiper-button-next3 {
   position: absolute;
-  top: 40%;
   width: 25px;
   height: 44px;
+  top: 50%;
   margin-top: -22px;
   z-index: 10;
   cursor: pointer;
@@ -328,6 +335,8 @@ font-size: 22px;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+
 
 .swiper-button-prev2.swiper-button-disabled,
 .swiper-button-next2.swiper-button-disabled,
@@ -750,7 +759,6 @@ figure {
 
 .lunchbox {
     position: relative;
-    background-color: #fafafa;
     height: auto;
     padding: 70px 10px 90px;
 }
