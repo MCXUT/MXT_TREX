@@ -11,13 +11,13 @@
 
                     <select class="selectpicker" id="choice1" placeholder="서비스를 선택해주세요">
                         <% for (var i = 0; i < services.length; i++) { %>
-                            <option class="serv" value=<%= services[i].serviceCategory %><%= services[i].serviceCategory %></option>
+                            <option class="serv" value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
                         <% } %>
                     </select>
                     <select class="selectpicker" id="choice2">
                         <% for (var i = 0; i < services.length; i++) { %>
                             <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
-                                <option data-option=<%= services[i].serviceCategory %><%= services[i].serviceName[j] %></option>
+                                <option data-option=<%= services[i].serviceCategory %>><%= services[i].serviceName[j] %></option>
                             <% } %>
                         <% } %>
                     </select>
