@@ -166,7 +166,7 @@ function secondmodalFunction(){
                <span class="step" id="step"></span>
                <p class="progression"></p>
              </div>
-<form id="regForm" action="/action_page.php" target="_blank">
+<form id="regForm" action="/task_request" method="post">
 
 
 
@@ -183,12 +183,12 @@ function secondmodalFunction(){
                       <td>
                           <% if(q.type === "radio") { %>
                               <label class="radio">
-                                  <input type="radio" name="tongyuk" value="<%= option %>"><%= option %>
+                                  <input form="regForm" type="radio" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
                                   <span></span>
                               </label>
                           <% } else { %>
                               <label class="checkbox">
-                                  <input type="checkbox" name="tongyuk" value="<%= option %>"><%= option %>
+                                  <input form="regForm" type="checkbox" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
                                   <span></span>
                               </label>
                           <% } %>
@@ -197,15 +197,15 @@ function secondmodalFunction(){
               <% }); %>
               </table>
           <% } else if(q.type === "dropdown") { %>
-              <select class="form-control" id="sel1">
+              <select name="<%= q.identifier %>" form="regForm" class="form-control" id="sel1">
                   <% q.options.forEach((option) => { %>
                       <option><%= option %></option>
                   <% }); %>
               </select>
           <% } else if(q.type === "input") { %>
-              <input class="form-control" placeholder="sample">
+              <input name="<%= q.identifier %>" form="regForm" class="form-control" placeholder="sample">
           <% } else if(q.type === "textarea") { %>
-              <textarea rows="7" class="form-control"></textarea>
+              <textarea name="<%= q.identifier %>" form="regForm" rows="7" class="form-control"></textarea>
           <% } %>
       </div>
   <% }); %>

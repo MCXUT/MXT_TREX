@@ -1,3 +1,16 @@
+#btn_orange{
+    font-size: 16px;
+    background-color:#f58b44;
+    color:white;
+    border:1px solid #f58b44;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+#btn_orange:hover{
+    background-color: #f9b485;
+    border:1px solid #f9b485;
+}
 .pumrate.pumactive {
     display: block;
 }

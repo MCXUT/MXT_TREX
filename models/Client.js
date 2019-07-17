@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-var Q = require("q");
-var moment = require("moment");
 
 var ClientSchema = mongoose.Schema({
     type: {
