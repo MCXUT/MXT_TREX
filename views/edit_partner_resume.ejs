@@ -483,7 +483,7 @@
                 var addedPanel = '<div class="subservicecontents">' +
                     '<p class="subdivision">서비스</p>' +
                     '<div class="form-group col-md-4">' +
-                    '<select class="form-control choice1" id="choice1">' +
+                    '<select name="category" class="form-control choice1" id="choice1" form="addserviceform">' +
                     '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
 
                 for(var i = 0; i < services.length; i++) {
@@ -497,7 +497,7 @@
 
                 for(var i = 0; i < services.length; i++) {
                     addedPanel += '<div class="form-group col-md-4" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
-                                    '<select class="form-control choice2">';
+                                    '<select name="subcategory" class="form-control choice2" form="addserviceform">';
                     for(var j = 0; j < services[i].serviceName.length; j++) {
                         addedPanel += '<option value=' + services[i].serviceName[j] + '>' + services[i].serviceName[j] + '</option>';
                     }
@@ -506,11 +506,11 @@
                 }
 
                 addedPanel += '<p class="subdivision">예상 금액</p>' +
-                    '<input type="text" class="form-control" name="">$' +
+                    '<input type="text" class="form-control" form="addserviceform" name="minmoney">$' +
                     ' ~ ' +
-                    '<input type="text" class="form-control" name="">$' +
+                    '<input type="text" class="form-control" form="addserviceform" name="maxmoney">$' +
                     '<p class="subdivision">커멘트</p>' +
-                    '<textarea class="form-control" name="name" rows="3"></textarea>' +
+                    '<textarea class="form-control" form="addserviceform" name="commentary" rows="3"></textarea>' +
                     '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
                 '</div>';
                 // console.log(addedPanel);

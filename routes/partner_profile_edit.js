@@ -77,7 +77,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           return res.redirect("/user_profile");
                       }
                       console.log("Partner Freelancer Profile Creation Successful for " + foundUser.name);
-                      
+
                       // Email Trex about Partner Profile Creation
                       const transporter = nodemailer.createTransport({
                           service: "Gmail",
@@ -96,7 +96,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           html: '<p>트렉스 파트너 ' + req.user.name + '님이 새로운 파트너 프리랜서 프로필을 등록하였습니다.</p>' +
                                 '<h3>이름: </h3>' + req.user.name +
                                 '<h3>이메일: </h3>' + req.user.email +
-                                '<br><br><br>아래 링크를 통해 확인하세요. 아직은 게시가 안된 프로필입니다.<br>' + 
+                                '<br><br><br>아래 링크를 통해 확인하세요. 아직은 게시가 안된 프로필입니다.<br>' +
                                 'http://localhost:8080/partner_profile/' + req.user.id
                       };
                       transporter.sendMail(mailOption, (err) => {
@@ -106,7 +106,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           }
                           console.log("Email successfully sent to Trex about Partner Profile creation.");
                       });
-                      
+
                       return res.redirect("/user_profile/edit_partner_resume");
                 });
             });
@@ -141,7 +141,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           return res.redirect("/user_profile");
                       }
                       console.log("Partner Agency Profile Creation Successful for " + foundUser.name);
-                      
+
                       // Email Trex about Partner Profile Creation
                       const transporter = nodemailer.createTransport({
                           service: "Gmail",
@@ -160,7 +160,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           html: '<p>트렉스 파트너 ' + req.user.name + '님이 새로운 파트너 에이전시 프로필을 등록하였습니다.</p>' +
                                 '<h3>이름: </h3>' + req.user.name +
                                 '<h3>이메일: </h3>' + req.user.email +
-                                '<br><br><br>아래 링크를 통해 확인하세요. 아직은 게시가 안된 프로필입니다.<br>' + 
+                                '<br><br><br>아래 링크를 통해 확인하세요. 아직은 게시가 안된 프로필입니다.<br>' +
                                 'http://localhost:8080/partner_profile/' + req.user.id
                       };
                       transporter.sendMail(mailOption, (err) => {
@@ -170,7 +170,7 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                           }
                           console.log("Email successfully sent to Trex about Partner Profile creation.");
                       });
-                      
+
                       return res.redirect("/user_profile/edit_partner_resume");
                 });
             });
@@ -195,7 +195,7 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
             console.log(err);
             return res.redirect("/user_profile");
         }
-        
+
         foundProfile.oneLineIntro = req.body.oneLineIntro;
         foundProfile.region = req.body.region;
         if (req.body.avail == "able") {
@@ -203,13 +203,13 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
         } else {
             foundProfile.otherRegion = [];
         }
-        
+
         // for (var i = 0; i < req.body.otherRegion.length; i++) {
         //     foundProfile.otherRegion.push(otherRegions[i]);
         // }
         foundProfile.aboutMe = req.body.aboutMe;
         foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
-        
+
         foundProfile.save((err) => {
               if (err) {
                 console.log(err);
@@ -245,15 +245,15 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
             console.log(err);
             return res.redirect("/user_profile/schedule");
         }
-        
+
         // var dates = req.body.unavailability.split(',');
         // for (var i = 0; i < dates.length; i++) {
         //     dates[i] = new Date(dates[i]);
         // }
-        
+
         foundProfile.unavailableDates = req.body.unavailability.split(',');
         foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
-        
+
         foundProfile.save((err) => {
               if (err) {
                 console.log(err);
@@ -264,6 +264,11 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
               return res.redirect("/user_profile/schedule");
         });
     });
+});
+
+router.post("/user_profile/edit-partner-service", (req, res) => {
+    console.log(req.body);
+    res.redirect("back");
 });
 
 
@@ -328,7 +333,7 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
 //         console.log("Partner Profile Update Successful (Language) for " + foundUser.name);
 //         return res.redirect("/user_profile");
 //       });
-// 
+//
 //     });
 // });
 
