@@ -74,3 +74,7 @@
     font-weight: 500;
     padding: 10px 0 0 10px;
 }
+.subservicecontents .form-group.col-md-4 {
+    padding: 0;
+    margin: 0;
+}

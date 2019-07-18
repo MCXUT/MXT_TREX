@@ -146,30 +146,7 @@ $(document).ready(() => {
 });
 
 
-var manipulateAdd = () => {
-    return '<div class="subservicecontents">' +
-        '<p class="subdivision">서비스</p>' +
-        '<select class="selectpickerr" id="choice1" placeholder="서비스를 선택해주세요">' +
-            '<% for (var i = 0; i < services.length; i++) { %>' +
-                '<option class="serv" value=<%= services[i].serviceCategory %><%= services[i].serviceCategory %></option>' +
-            '<% } %>' +
-        '</select>' +
-        '<select class="selectpickerr" id="choice2">' +
-            '<% for (var i = 0; i < services.length; i++) { %>' +
-                '<% for (var j = 0; j < services[i].serviceName.length; j++) { %>' +
-                    '<option data-option=<%= services[i].serviceCategory %><%= services[i].serviceName[j] %></option>' +
-                '<% } %>' +
-            '<% } %>' +
-        '</select>' +
-        '<p class="subdivision">예상 금액</p>' +
-        '<input type="text" class="form-control" name="">$' +
-        ' ~ ' +
-        '<input type="text" class="form-control" name="">$' +
-        '<p class="subdivision">커멘트</p>' +
-        '<textarea class="form-control" name="name" rows="3"></textarea>' +
-        '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
-    '</div>';
-};
+
 
 $(document).ready(() => {
     $(".exit").click((e) => {

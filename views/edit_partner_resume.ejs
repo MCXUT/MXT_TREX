@@ -88,21 +88,12 @@
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-          <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
-
-
-
 
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-          <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/i18n/defaults-*.min.js"></script>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css">
+          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css"> -->
 
           <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
           <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
@@ -179,6 +170,7 @@
                             <div class="divider"></div>
                             <br><br>
                             <!-- <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form> -->
+
 
 
                             <form action="/user_profile/edit_partner_resume" method="post" id="profileForm" style="width: 100%;">
@@ -441,6 +433,19 @@
             }
             deletelist();
 
+            var switchDropdown = () => {
+                $(".servicecontents").on('change', "#choice1", function (e) {
+                    var id = $(this).val();
+
+                    <% for (var i = 0; i < services.length; i++) { %>
+                        document.getElementById("<%= services[i].serviceCategory %>").style.display = "none";
+                    <% } %>
+
+                    document.getElementById(id).style.display ="flex";
+                });
+            }
+            switchDropdown();
+
             var servicepage = () => {
                 $(".editservice").on("click", function(e) {
                     $(".pum-service").fadeIn(400, () => {
@@ -472,10 +477,49 @@
                 });
             }
             clickexservice();
+
+            var manipulateAdd = () => {
+                var services = <%- JSON.stringify(services) %>;
+                var addedPanel = '<div class="subservicecontents">' +
+                    '<p class="subdivision">서비스</p>' +
+                    '<div class="form-group col-md-4">' +
+                    '<select class="form-control choice1" id="choice1">' +
+                    '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+
+                for(var i = 0; i < services.length; i++) {
+                    addedPanel += '<option class="serv" value=' + services[i].serviceCategory + '>' + services[i].serviceCategory + '</option>';
+                }
+
+                addedPanel += '</select>' +
+                                '</div>';
+
+                console.log(addedPanel);
+
+                for(var i = 0; i < services.length; i++) {
+                    addedPanel += '<div class="form-group col-md-4" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
+                                    '<select class="form-control choice2">';
+                    for(var j = 0; j < services[i].serviceName.length; j++) {
+                        addedPanel += '<option value=' + services[i].serviceName[j] + '>' + services[i].serviceName[j] + '</option>';
+                    }
+                    addedPanel += "</select>" +
+                            "</div>";
+                }
+
+                addedPanel += '<p class="subdivision">예상 금액</p>' +
+                    '<input type="text" class="form-control" name="">$' +
+                    ' ~ ' +
+                    '<input type="text" class="form-control" name="">$' +
+                    '<p class="subdivision">커멘트</p>' +
+                    '<textarea class="form-control" name="name" rows="3"></textarea>' +
+                    '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
+                '</div>';
+                // console.log(addedPanel);
+                return addedPanel;
+            };
         </script>
 
     <script>
-        $('select').selectpicker();
+        // $('select').selectpicker();
 
     </script>
 
@@ -507,8 +551,8 @@
     </script>
 
 
+
     <% include ./partials/footer %>
 
-        <% include ./partials/footer %>
     </body>
 </html>
