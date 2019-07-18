@@ -12,7 +12,7 @@
 
                     <div class="form-group col-md-4">
                       <select class="form-control choice1" id="choice1">
-                          <option value="" selected disabled hidden>서비스를 선택해주세요</option>
+                          <option value="" selected disabled hidden>서비스 종류를 선택해주세요</option>
                           <% for (var i = 0; i < services.length; i++) { %>
                               <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
                           <% } %>
@@ -22,6 +22,7 @@
                     <% for (var i = 0; i < services.length; i++) { %>
                         <div class="form-group col-md-4" id="<%= services[i].serviceCategory %>" style="display:none !important;">
                             <select class="form-control choice2">
+                                <option value="" selected disabled hidden>서비스를 선택해주세요</option>
                                 <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
                                     <option value=<%= services[i].serviceName[j] %>><%= services[i].serviceName[j] %></option>
                                 <% } %>
