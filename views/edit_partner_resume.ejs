@@ -92,8 +92,8 @@
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css"> -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css">
 
           <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
           <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
@@ -198,7 +198,7 @@
                                         <label for="region" style="margin-right:70px;">지역 *</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select class="selectpicker" name="region" id="region" data-live-search="false">
+                                        <select class="form-control" name="region" id="region" data-live-search="false">
                                             <option value="" selected disabled hidden>지역을 선택해주세요</option>
                                             <option class="nara">과테말라</option>
                                             <option class="dosi">과테말라시티</option>
@@ -281,7 +281,7 @@
                                         <label for="otherRegion" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select class="selectpicker" name="otherRegion" id="otherRegion" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                        <select class="myselect" name="otherRegion" id="otherRegion" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
                                             <option class="nara">과테말라</option>
                                             <option class="dosi">과테말라시티</option>
                                             <option class="nara">네덜란드</option>
@@ -519,7 +519,7 @@
         </script>
 
     <script>
-        // $('select').selectpicker();
+        $('.myselect').selectpicker();
 
     </script>
 
