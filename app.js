@@ -34,6 +34,7 @@ const adminPanelPartnerProfileRoutes = require("./routes/adminPanelPartnerProfil
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
 const userAccountEdit = require("./routes/user_account_edit");
+const userAccountDelete = require("./routes/user_account_delete");
 const partnerProfileEditRoutes = require("./routes/partner_profile_edit");
 const servicePages = require("./routes/service");
 const taskRoutes = require("./routes/tasks");
@@ -45,6 +46,7 @@ const businessRegistrationRoutes = require("./routes/businessRegistration");
 const mediaRoutes = require("./routes/media");
 
 // Connect to mongodb
+mongoose.set('useFindAndModify', false); //To set for using findoneandupdate 
 mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
 const db = mongoose.connection;
 
@@ -112,6 +114,7 @@ app.use("/", landingRoutes);
 app.use('/', partnerPages);
 app.use("/", userProfile);
 app.use("/", userAccountEdit);
+app.use("/", userAccountDelete);
 app.use("/", partnerProfileEditRoutes);
 app.use("/", servicePages);
 app.use("/", taskRoutes);
