@@ -23,7 +23,8 @@
 .pum-service .pum-service-container .servicecontents {
     margin: 0 20px;
     padding: 0 20px;
-    height: auto;
+    height: 400px;
+    overflow-y: auto;
 }
 .pum-service .pum-service-container .subservicecontents {
     border-bottom: 1px solid rgba(103, 109, 115, 0.2);
@@ -74,7 +75,7 @@
     font-weight: 500;
     padding: 10px 0 0 10px;
 }
-.subservicecontents .form-group.col-md-4 {
+.subservicecontents .form-group.col-4 {
     padding: 0;
     margin: 0;
 }

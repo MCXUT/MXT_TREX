@@ -12,7 +12,7 @@
                     <p class="subdivision">서비스</p>
 
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-4">
                       <select name="category" class="form-control choice1" id="choice1" form="addserviceform">
                           <option value="" selected disabled hidden>서비스를 선택해주세요</option>
                           <% for (var i = 0; i < services.length; i++) { %>
@@ -22,7 +22,7 @@
                     </div>
 
                     <% for (var i = 0; i < services.length; i++) { %>
-                        <div class="form-group col-md-4" id="<%= services[i].serviceCategory %>" style="display:none !important;">
+                        <div class="form-group col-4" id="<%= services[i].serviceCategory %>" style="display:none !important;">
                             <select name="subcategory" class="form-control choice2" form="addserviceform">
                                 <option value="" selected disabled hidden>서비스를 선택해주세요</option>
                                 <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
