@@ -133,7 +133,16 @@ var PartnerSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Payment"
         }
-    ]
+    ],
+    deletedAccount: {
+        isDeleted: {
+            type: Boolean,
+            default: false
+        },
+        expiredDate: {
+            type: Date
+        }
+    }
 }, {minimize: false});
 
 var Partner = module.exports = mongoose.model('Partner', PartnerSchema);
@@ -158,3 +167,32 @@ module.exports.comparePassword = (candidatePassword, hash, done) => {
         done(null, isMatch);
     });
 };
+
+module.exports.deletePartner = function(id) {
+    var update = {
+        isDeleted : true,
+        // 1 min = 60000
+        expiredDate: Date.now() + (60000 * 60 * 24 * 7) // + 7 days
+    }
+    Partner.findOneAndUpdate({_id: id}, {$set: {deletedAccount: update}}, (err, doc) => {
+        if(err) {
+            throw err;
+        } else {
+            console.log(doc);
+        }
+    })
+}
+
+module.exports.undeletePartner = function(id) {
+    var update = {
+        isDeleted : false,
+        expiredDate : undefined
+    }
+    Partner.findOneAndUpdate({_id: id}, {$set: {deletedAccount: update}}, (err, doc) => {
+        if(err) {
+            throw err;
+        } else {
+            console.log(doc);
+        }
+    })
+}

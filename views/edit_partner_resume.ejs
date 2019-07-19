@@ -83,25 +83,16 @@
                 color: rgb(205, 99, 28);
                 text-decoration: underline;
             }
-            
+
         </style>
         <title>Member - 트렉스</title>
 
         <% include ./partials/header %>
-          <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
-
-
-
 
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-          <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/i18n/defaults-*.min.js"></script>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css">
 
           <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
@@ -179,8 +170,8 @@
                             <div class="divider"></div>
                             <br><br>
                             <!-- <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form> -->
-                            
-                            
+
+
 
                             <form action="/user_profile/edit_partner_resume" method="post" id="profileForm" style="width: 100%;">
                                 <div class="form-group row">
@@ -207,7 +198,7 @@
                                         <label for="region" style="margin-right:70px;">지역 *</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select class="selectpicker" name="region" id="region" data-live-search="false">
+                                        <select class="myselect" name="region" id="region" data-live-search="false">
                                             <option value="" selected disabled hidden>지역을 선택해주세요</option>
                                             <option class="nara">과테말라</option>
                                             <option class="dosi">과테말라시티</option>
@@ -290,7 +281,7 @@
                                         <label for="otherRegion" style="margin-right:70px;">타지역 (하나 이상 선택 가능)</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select class="selectpicker" name="otherRegion" id="otherRegion" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
+                                        <select class="myselect" name="otherRegion" id="otherRegion" multiple  data-live-search="false" placeholder="지역을 선택 해주세요">
                                             <option class="nara">과테말라</option>
                                             <option class="dosi">과테말라시티</option>
                                             <option class="nara">네덜란드</option>
@@ -347,41 +338,6 @@
 
 
 
-                                <!-- <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <label for="aboutMe">업무 스케줄</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" name="unavailableDates" class="form-control date" placeholder="업무가 불가능한 날을 선택해주세요."/>
-                                    </div>
-                                </div> -->
-
-
-
-                                <!-- <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Example select</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div> -->
 
                                 <div style="float:right;">
                                     <input type="submit" class="btn btn-primary" style="margin-right:15px;" value="저장">
@@ -437,11 +393,24 @@
 
             var deletelist = () => {
                 $(".servicecontents").on("click", ".deletesection", function(e) {
-                    console.log(e);
                     $(this).parent().remove();
                 });
             }
             deletelist();
+
+            var switchDropdown = () => {
+                $(".servicecontents").on('change', "#choice1", function (e) {
+                    var id = $(this).val();
+                    $(this).parent().siblings(".select2").each(function() {
+                        if($(this).attr("id") === id) {
+                            this.style.display = "flex";
+                        } else {
+                            this.style.display = "none";
+                        }
+                    });
+                });
+            }
+            switchDropdown();
 
             var servicepage = () => {
                 $(".editservice").on("click", function(e) {
@@ -474,10 +443,50 @@
                 });
             }
             clickexservice();
+
+            var manipulateAdd = () => {
+                var services = <%- JSON.stringify(services) %>;
+                var addedPanel = '<div class="subservicecontents">' +
+                    '<p class="subdivision">서비스</p>' +
+                    '<div class="form-group col-4">' +
+                    '<select name="category" class="form-control choice1" id="choice1" form="addserviceform">' +
+                    '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+
+                for(var i = 0; i < services.length; i++) {
+                    addedPanel += '<option class="serv" value=' + services[i].serviceCategory + '>' + services[i].serviceCategory + '</option>';
+                }
+
+                addedPanel += '</select>' +
+                                '</div>';
+
+                console.log(addedPanel);
+
+                for(var i = 0; i < services.length; i++) {
+                    addedPanel += '<div class="form-group col-4 select2" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
+                                    '<select name="subcategory" class="form-control choice2" form="addserviceform">' +
+                                    '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+                    for(var j = 0; j < services[i].serviceName.length; j++) {
+                        addedPanel += '<option value=' + services[i].serviceName[j] + '>' + services[i].serviceName[j] + '</option>';
+                    }
+                    addedPanel += "</select>" +
+                            "</div>";
+                }
+
+                addedPanel += '<p class="subdivision">예상 금액</p>' +
+                    '<input type="text" class="form-control" form="addserviceform" name="minmoney">$' +
+                    ' ~ ' +
+                    '<input type="text" class="form-control" form="addserviceform" name="maxmoney">$' +
+                    '<p class="subdivision">커멘트</p>' +
+                    '<textarea class="form-control" form="addserviceform" name="commentary" rows="3"></textarea>' +
+                    '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
+                '</div>';
+                // console.log(addedPanel);
+                return addedPanel;
+            };
         </script>
 
     <script>
-        $('select').selectpicker();
+        $('.myselect').selectpicker();
 
     </script>
 
@@ -507,7 +516,7 @@
         <% } %>
         $('#otherRegion').selectpicker('val', otherRegions);
     </script>
-    
+
 
 
     <% include ./partials/footer %>
