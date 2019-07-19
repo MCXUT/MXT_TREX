@@ -401,12 +401,13 @@
             var switchDropdown = () => {
                 $(".servicecontents").on('change', "#choice1", function (e) {
                     var id = $(this).val();
-
-                    <% for (var i = 0; i < services.length; i++) { %>
-                        document.getElementById("<%= services[i].serviceCategory %>").style.display = "none";
-                    <% } %>
-
-                    document.getElementById(id).style.display ="flex";
+                    $(this).parent().siblings(".select2").each(function() {
+                        if($(this).attr("id") === id) {
+                            this.style.display = "flex";
+                        } else {
+                            this.style.display = "none";
+                        }
+                    });
                 });
             }
             switchDropdown();
@@ -461,7 +462,7 @@
                 console.log(addedPanel);
 
                 for(var i = 0; i < services.length; i++) {
-                    addedPanel += '<div class="form-group col-4" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
+                    addedPanel += '<div class="form-group col-4 select2" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
                                     '<select name="subcategory" class="form-control choice2" form="addserviceform">' +
                                     '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
                     for(var j = 0; j < services[i].serviceName.length; j++) {

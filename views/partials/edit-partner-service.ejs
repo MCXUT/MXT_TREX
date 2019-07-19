@@ -22,7 +22,7 @@
                     </div>
 
                     <% for (var i = 0; i < services.length; i++) { %>
-                        <div class="form-group col-4" id="<%= services[i].serviceCategory %>" style="display:none !important;">
+                        <div class="form-group col-4 select2" id="<%= services[i].serviceCategory %>" style="display:none !important;">
                             <select name="subcategory" class="form-control choice2" form="addserviceform">
                                 <option value="" selected disabled hidden>서비스를 선택해주세요</option>
                                 <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
