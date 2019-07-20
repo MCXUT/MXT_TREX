@@ -38,3 +38,17 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // Script for dynamically changing service name dropdown based on the selected service category value
+    $(".choice1").change(function () {
+        var id = $(this).val();
+
+        <% for (var i = 0; i < services.length; i++) { %>
+            document.getElementById("<%= services[i].serviceCategory %>").style.display = "none";
+        <% } %>
+
+        document.getElementById(id).style.display ="inline-block";
+    });
+</script>

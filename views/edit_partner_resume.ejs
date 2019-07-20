@@ -518,6 +518,22 @@
     <script>
         $('.myselect').selectpicker();
 
+        $('select').on('change', function(e){
+            console.log($(".dropdown-item.active.selected > .text")[1].innerHTML);
+            
+
+            // console.log($(".kiki"));
+            // var list = ["e"];
+            // console.log($(".kiki")[3].innerHTML)
+            // for(var i = 0; i < $(".kiki").length < i++){
+            //     if($(".dropdown-item.active.selected > .text")[1].innerHTML == $(".kiki")[i].innerHTML){
+            //         list.push($(".kiki").id);
+            //         // console.log(list);
+            //     }
+            // }
+            // console.log(list);
+        })
+
     </script>
 
 
