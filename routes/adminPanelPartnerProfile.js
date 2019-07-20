@@ -8,7 +8,6 @@ const keys = require("../config/keys");
 
 const Admin = require("../models/Admin");
 const Client = require("../models/Client");
-const DeletedAccount = require("../models/DeletedAccount");
 const Partner = require("../models/Partner");
 const Message = require("../models/Message");
 const PartnerProfile = require("../models/PartnerProfile");
@@ -53,7 +52,7 @@ router.get("/trex-admin/verifyProfile/:id", function(req, res) {
     } else {
         return res.redirect("/trex-admin/login");
     }
-    
+
 });
 
 // 파트너 프로필 수락 여부 변경 (상세 페이지에서)

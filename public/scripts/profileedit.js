@@ -146,38 +146,7 @@ $(document).ready(() => {
 });
 
 
-var manipulateAdd = () => {
-    return '<div class="subservicecontents">' +
-        '<p class="subdivision">서비스</p>' +
-        '<select class="selectpicker" id="userservice" placeholder="서비스를 선택해주세요">' +
-            '<option class="serv">통역</option>' +
-            '<option class="serv">현지 차량</option>' +
-            '<option class="serv">번역</option>' +
-            '<option class="serv">기업/기관 섭외</option>' +
-            '<option class="serv">투어 가이드</option>' +
-            '<option class="serv">현지 시장 조사</option>' +
-            '<option class="serv">통역</option>' +
-            '<option class="serv">현지 차량</option>' +
-            '<option class="serv">번역</option>' +
-            '<option class="serv">기업/기관 섭외</option>' +
-            '<option class="serv">투어 가이드</option>' +
-            '<option class="serv">현지 시장 조사</option>' +
-            '<option class="serv">통역</option>' +
-            '<option class="serv">현지 차량</option>' +
-            '<option class="serv">번역</option>' +
-            '<option class="serv">기업/기관 섭외</option>' +
-            '<option class="serv">투어 가이드</option>' +
-            '<option class="serv">현지 시장 조사</option>' +
-        '</select>' +
-        '<p class="subdivision">예상 금액</p>' +
-        '<input type="text" class="form-control" name="">$' +
-        ' ~ ' +
-        '<input type="text" class="form-control" name="">$' +
-        '<p class="subdivision">커멘트</p>' +
-        '<textarea class="form-control" name="name" rows="3"></textarea>' +
-        '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
-    '</div>';
-};
+
 
 $(document).ready(() => {
     $(".exit").click((e) => {
