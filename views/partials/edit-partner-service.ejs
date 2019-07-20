@@ -10,16 +10,16 @@
                 <button class="btn btn-primary" form="addserviceform">보내기</button>
                 <div class="subservicecontents">
                     <p class="subdivision">서비스</p>
-                    
-                    
-                    
-                    <select name="category" class="form-control serviceCategory" id="serviceCategory" form="addserviceform">
+
+
+
+                    <select name="category" class="form-control col-6 serviceCategory" id="serviceCategory" form="addserviceform">
                         <option value="" selected disabled>서비스 종류를 선택해주세요</option>
                         <% for (var i = 0; i < services.length; i++) { %>
                             <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
                         <% } %>
                     </select>
-                    <select name="subcategory" class="form-control serviceName" id="serviceName" form="addserviceform" disabled>
+                    <select name="subcategory" class="form-control col-6 serviceName" id="serviceName" form="addserviceform" disabled>
                         <option value="" selected disabled>서비스 종류를 먼저 선택해주세요</option>
                     </select>
 
@@ -38,17 +38,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    // Script for dynamically changing service name dropdown based on the selected service category value
-    $(".choice1").change(function () {
-        var id = $(this).val();
-
-        <% for (var i = 0; i < services.length; i++) { %>
-            document.getElementById("<%= services[i].serviceCategory %>").style.display = "none";
-        <% } %>
-
-        document.getElementById(id).style.display ="inline-block";
-    });
-</script>
