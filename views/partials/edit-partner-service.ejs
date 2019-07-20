@@ -10,27 +10,20 @@
                 <button class="btn btn-primary" form="addserviceform">보내기</button>
                 <div class="subservicecontents">
                     <p class="subdivision">서비스</p>
+                    
+                    
+                    
+                    <select name="category" class="form-control serviceCategory" id="serviceCategory" form="addserviceform">
+                        <option value="" selected disabled>서비스 종류를 선택해주세요</option>
+                        <% for (var i = 0; i < services.length; i++) { %>
+                            <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
+                        <% } %>
+                    </select>
+                    <select name="subcategory" class="form-control serviceName" id="serviceName" form="addserviceform">
+                        <option value="" selected disabled>서비스 종류를 먼저 선택해주세요</option>
+                    </select>
 
 
-                    <div class="form-group col-4">
-                      <select name="category" class="form-control choice1" id="choice1" form="addserviceform">
-                          <option value="" selected disabled hidden>서비스를 선택해주세요</option>
-                          <% for (var i = 0; i < services.length; i++) { %>
-                              <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
-                          <% } %>
-                      </select>
-                    </div>
-
-                    <% for (var i = 0; i < services.length; i++) { %>
-                        <div class="form-group col-4 select2" id="<%= services[i].serviceCategory %>" style="display:none !important;">
-                            <select name="subcategory" class="form-control choice2" form="addserviceform">
-                                <option value="" selected disabled hidden>서비스를 선택해주세요</option>
-                                <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
-                                    <option value=<%= services[i].serviceName[j] %>><%= services[i].serviceName[j] %></option>
-                                <% } %>
-                            </select>
-                        </div>
-                    <% } %>
 
 
                     <p class="subdivision">예상 금액</p>

@@ -170,8 +170,7 @@
                             <div class="divider"></div>
                             <br><br>
                             <!-- <form id="convertProfile" action="/convert_partnerProfile_type" method="post"></form> -->
-
-
+                            
 
                             <form action="/user_profile/edit_partner_resume" method="post" id="profileForm" style="width: 100%;">
                                 <div class="form-group row">
@@ -443,34 +442,25 @@
                 });
             }
             clickexservice();
-
+            
             var manipulateAdd = () => {
                 var services = <%- JSON.stringify(services) %>;
                 var addedPanel = '<div class="subservicecontents">' +
                     '<p class="subdivision">서비스</p>' +
-                    '<div class="form-group col-4">' +
-                    '<select name="category" class="form-control choice1" id="choice1" form="addserviceform">' +
-                    '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+                    '<select name="category" class="form-control serviceCategory" id="serviceCategory" form="addserviceform">' +
+                    '<option value="" selected disabled>서비스 종류를 선택해주세요</option>';
 
                 for(var i = 0; i < services.length; i++) {
                     addedPanel += '<option class="serv" value=' + services[i].serviceCategory + '>' + services[i].serviceCategory + '</option>';
                 }
 
-                addedPanel += '</select>' +
-                                '</div>';
+                addedPanel += '</select>';
 
                 console.log(addedPanel);
-
-                for(var i = 0; i < services.length; i++) {
-                    addedPanel += '<div class="form-group col-4 select2" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
-                                    '<select name="subcategory" class="form-control choice2" form="addserviceform">' +
-                                    '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
-                    for(var j = 0; j < services[i].serviceName.length; j++) {
-                        addedPanel += '<option value=' + services[i].serviceName[j] + '>' + services[i].serviceName[j] + '</option>';
-                    }
-                    addedPanel += "</select>" +
-                            "</div>";
-                }
+                
+                addedPanel += '<select name="subcategory" class="form-control serviceName" id="serviceName" form="addserviceform">' +
+                                '<option value="" selected disabled>서비스 종류를 먼저 선택해주세요</option>' +
+                                '</select>';
 
                 addedPanel += '<p class="subdivision">예상 금액</p>' +
                     '<input type="text" class="form-control" form="addserviceform" name="minmoney">$' +
@@ -483,6 +473,46 @@
                 // console.log(addedPanel);
                 return addedPanel;
             };
+
+            // var manipulateAdd = () => {
+            //     var services = <%- JSON.stringify(services) %>;
+            //     var addedPanel = '<div class="subservicecontents">' +
+            //         '<p class="subdivision">서비스</p>' +
+            //         '<div class="form-group col-4">' +
+            //         '<select name="category" class="form-control choice1" id="choice1" form="addserviceform">' +
+            //         '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+            // 
+            //     for(var i = 0; i < services.length; i++) {
+            //         addedPanel += '<option class="serv" value=' + services[i].serviceCategory + '>' + services[i].serviceCategory + '</option>';
+            //     }
+            // 
+            //     addedPanel += '</select>' +
+            //                     '</div>';
+            // 
+            //     console.log(addedPanel);
+            // 
+            //     for(var i = 0; i < services.length; i++) {
+            //         addedPanel += '<div class="form-group col-4 select2" id="' + services[i].serviceCategory + '" style="display:none !important;">' +
+            //                         '<select name="subcategory" class="form-control choice2" form="addserviceform">' +
+            //                         '<option value="" selected disabled hidden>서비스를 선택해주세요</option>';
+            //         for(var j = 0; j < services[i].serviceName.length; j++) {
+            //             addedPanel += '<option value=' + services[i].serviceName[j] + '>' + services[i].serviceName[j] + '</option>';
+            //         }
+            //         addedPanel += "</select>" +
+            //                 "</div>";
+            //     }
+            // 
+            //     addedPanel += '<p class="subdivision">예상 금액</p>' +
+            //         '<input type="text" class="form-control" form="addserviceform" name="minmoney">$' +
+            //         ' ~ ' +
+            //         '<input type="text" class="form-control" form="addserviceform" name="maxmoney">$' +
+            //         '<p class="subdivision">커멘트</p>' +
+            //         '<textarea class="form-control" form="addserviceform" name="commentary" rows="3"></textarea>' +
+            //         '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
+            //     '</div>';
+            //     // console.log(addedPanel);
+            //     return addedPanel;
+            // };
         </script>
 
     <script>
@@ -515,6 +545,34 @@
             otherRegions.push(one);
         <% } %>
         $('#otherRegion').selectpicker('val', otherRegions);
+    </script>
+
+
+    <script>
+        // Script to dynamically change service name dropdown as service category dropdown changes
+        $(document).ready( function () {
+            $.fn.addOption = function(optText, optValue){
+                var option = new Option(optText, optValue);
+                return this.append(option);
+            };
+            $("#serviceCategory").change(function() {
+                $("#serviceName option").remove();
+                switch ($("#serviceCategory").val())
+                {
+                    <% for (var i = 0; i < services.length; i++) { %>
+                        case "<%= services[i].serviceCategory %>":
+                            $("#serviceName").addOption("서비스를 선택해주세요", "");
+                            document.getElementById("serviceName").options[0].disabled = true;
+                            <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
+                                $("#serviceName").addOption("<%= services[i].serviceName[j] %>", "<%= services[i].serviceName[j] %>");
+                            <% } %>
+                            break;
+                    <% } %>
+                    default:
+                        $("#serviceName").addOption("서비스 종류를 먼저 선택해주세요","unset");
+                }
+            });
+        });
     </script>
 
 
