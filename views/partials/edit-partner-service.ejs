@@ -5,21 +5,21 @@
             <span class="exittable"><i class="fa fa-times" aria-hidden="true"></i></span>
             <p>서비스 관리</p>
             <div class="servicecontents">
-                <form id="addserviceform" method="post" action="/user_profile/edit-partner-service"></form>
+                <!-- <form id="addserviceform" method="post" action="/user_profile/edit-partner-service"></form> -->
                 <button class="btn btn-info addmore" type="button" name="button">+추가</button>
-                <button class="btn btn-primary" form="addserviceform">보내기</button>
+                <!-- <button class="btn btn-primary" form="addserviceform">보내기</button> -->
                 <div class="subservicecontents">
                     <p class="subdivision">서비스</p>
                     
                     
                     
-                    <select name="category" class="form-control serviceCategory" id="serviceCategory" form="addserviceform">
+                    <select name="category" class="form-control serviceCategory" id="serviceCategory" form="profileForm" required>
                         <option value="" selected disabled>서비스 종류를 선택해주세요</option>
                         <% for (var i = 0; i < services.length; i++) { %>
                             <option value=<%= services[i].serviceCategory %>><%= services[i].serviceCategory %></option>
                         <% } %>
                     </select>
-                    <select name="subcategory" class="form-control serviceName" id="serviceName" form="addserviceform" disabled>
+                    <select name="subcategory" class="form-control serviceName" id="serviceName" form="profileForm" required disabled>
                         <option value="" selected disabled>서비스 종류를 먼저 선택해주세요</option>
                     </select>
 
@@ -27,11 +27,11 @@
 
 
                     <p class="subdivision">예상 금액</p>
-                    <input type="text" class="form-control" form="addserviceform" name="minmoney">$
+                    <input type="text" class="form-control" form="profileForm" name="minmoney">$
                      ~
-                    <input type="text" class="form-control" form="addserviceform" name="maxmoney">$
+                    <input type="text" class="form-control" form="profileForm" name="maxmoney">$
                     <p class="subdivision">커멘트</p>
-                    <textarea class="form-control" form="addserviceform" name="commentary" rows="3"></textarea>
+                    <textarea class="form-control" form="profileForm" name="commentary" rows="3"></textarea>
                     <button class="btn btn-info deletesection" type="button" name="button">지우기</button>
                 </div>
             </div>

@@ -197,13 +197,36 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
         }
 
         foundProfile.oneLineIntro = req.body.oneLineIntro;
+        // From Service Modal
+        if (Array.isArray(req.body.category)) {
+            var serviceArray = [];
+            for (var i = 0; i < req.body.category.length; i++) {
+                serviceArray.push({
+                    serviceCategory: req.body.category[i],
+                    serviceName: req.body.subcategory[i],
+                    minRate: req.body.minmoney[i],
+                    maxRate: req.body.maxmoney[i],
+                    aboutService: req.body.commentary[i]
+                });
+            }
+            foundProfile.availableServices = serviceArray;
+        } else {
+            var service = {
+                serviceCategory: req.body.category,
+                serviceName: req.body.subcategory,
+                minRate: req.body.minmoney,
+                maxRate: req.body.maxmoney,
+                aboutService: req.body.commentary
+            };
+            foundProfile.availableServices = service;
+        }
+        // End of Service
         foundProfile.region = req.body.region;
         if (req.body.avail == "able") {
             foundProfile.otherRegion = req.body.otherRegion;
         } else {
             foundProfile.otherRegion = [];
         }
-
         // for (var i = 0; i < req.body.otherRegion.length; i++) {
         //     foundProfile.otherRegion.push(otherRegions[i]);
         // }
@@ -267,7 +290,30 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
 });
 
 router.post("/user_profile/edit-partner-service", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
+    if (Array.isArray(req.body.category)) {
+        var testArray = [];
+        for (var i = 0; i < req.body.category.length; i++) {
+            testArray.push({
+                serviceCategory: req.body.category[i],
+                serviceName: req.body.subcategory[i],
+                minRate: req.body.minmoney[i],
+                maxRate: req.body.maxmoney[i],
+                aboutService: req.body.commentary[i]
+            });
+        }
+        console.log(testArray);
+    } else {
+        var test = {
+            serviceCategory: req.body.category,
+            serviceName: req.body.subcategory,
+            minRate: req.body.minmoney,
+            maxRate: req.body.maxmoney,
+            aboutService: req.body.commentary
+        };
+        console.log(test);
+    }
+    
     res.redirect("back");
 });
 
