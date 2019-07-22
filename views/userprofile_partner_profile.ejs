@@ -181,14 +181,22 @@
                                         <label><b>한줄 소개:</b></label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <%= partnerProfile.oneLineIntro %>
+                                        <% if (partnerProfile.oneLineIntro) { %>
+                                            <%= partnerProfile.oneLineIntro %>
+                                        <% } else { %>
+                                            한줄 소개가 등록되어 있지 않습니다.
+                                        <% } %>
                                     </div>
                                     
                                     <div class="col-sm-3">
                                         <label><b>지역:</b></label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <%= partnerProfile.region %>
+                                        <% if (partnerProfile.region) { %>
+                                            <%= partnerProfile.region %>
+                                        <% } else { %>
+                                            지역이 등록되어 있지 않습니다.
+                                        <% } %>
                                     </div>
                                     
                                     <div class="col-sm-3">
@@ -234,7 +242,11 @@
                                         <label><b>자기 소개:</b></label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <%= partnerProfile.aboutMe %>
+                                        <% if (partnerProfile.aboutMe) { %>
+                                            <%= partnerProfile.aboutMe %>
+                                        <% } else { %>
+                                            자기소개가 등록되어 있지 않습니다.
+                                        <% } %>
                                     </div>
                                     
                                     
