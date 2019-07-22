@@ -168,16 +168,18 @@ for (var i = 0; i < btns.length; i++) {
   </thead>
   <tbody>
     <% for(var i = 0; i < clientList.length; i++) { %>
-        <tr>
-          <th scope="row"><%= i+1 %></th>
-          <td nowrap><%= clientList[i].registeredDate %></td>
-          <td nowrap><%= clientList[i].name %></td>
-          <td nowrap><%= clientList[i].email %></td>
-          <td nowrap><%= clientList[i].dateOfBirth %></td>
-          <td nowrap><%= clientList[i].companyAddress %></td>
-          <td ><a href="#"><i class="far fa-edit"></i></a></td>
-          <td ><a href="/deleteClient/<%= clientList[i]._id %>"><i class="fas fa-trash"></i></a></td>
-        </tr>
+        <% if(!clientList[i].deletedAccount.isDeleted) { %>
+            <tr>
+              <th scope="row"><%= i+1 %></th>
+              <td nowrap><%= clientList[i].registeredDate %></td>
+              <td nowrap><%= clientList[i].name %></td>
+              <td nowrap><%= clientList[i].email %></td>
+              <td nowrap><%= clientList[i].dateOfBirth %></td>
+              <td nowrap><%= clientList[i].companyAddress %></td>
+              <td ><a href="#"><i class="far fa-edit"></i></a></td>
+              <td ><a href="/deleteClient/<%= clientList[i]._id %>"><i class="fas fa-trash"></i></a></td>
+            </tr>
+        <% } %>
     <% } %>
   </tbody>
 </table>

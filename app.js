@@ -30,6 +30,7 @@ const clientPwResetRoutes = require("./routes/passwordReset/passwordResetClient"
 const partnerPwResetRoutes = require("./routes/passwordReset/passwordResetPartner");
 const adminPanelRoutes = require("./routes/admin/adminPanel");
 const adminPanelPartnerProfileRoutes = require("./routes/admin/adminPanelPartnerProfile");
+const adminPanelDeleteAccountsRoutes = require("./routes/admin/adminPanelDeleteAccounts");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -126,6 +127,7 @@ app.use("/", businessRegistrationRoutes);
 app.use("/", mediaRoutes);
 app.use("/", adminPanelRoutes);
 app.use("/", adminPanelPartnerProfileRoutes);
+app.use("/", adminPanelDeleteAccountsRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
