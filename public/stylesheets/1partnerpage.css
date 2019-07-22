@@ -54,6 +54,7 @@ div{
   display: grid;
   grid-gap: 0;
   background-color: transparent;
+  min-height: 260px;
 }
 
 .grid-item {
