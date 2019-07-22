@@ -177,24 +177,24 @@
                                     <% } %>
                                     
                                     
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label><b>한줄 소개:</b></label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                         <%= partnerProfile.oneLineIntro %>
                                     </div>
                                     
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label><b>지역:</b></label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                         <%= partnerProfile.region %>
                                     </div>
                                     
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label><b>타지역:</b></label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                         <% if (partnerProfile.otherRegion.length > 0) { %>
                                             <% for (var i = 0; i < partnerProfile.otherRegion.length; i++) { %>
                                                 <%= partnerProfile.otherRegion[i] %>
@@ -207,10 +207,33 @@
                                         <% } %>
                                     </div>
                                     
-                                    <div class="col-sm-4">
+                                    
+                                    <div class="col-sm-3">
+                                        <label><b>제공 서비스:</b></label>
+                                    </div>
+                                    <% if (partnerProfile.availableServices.length > 0) { %>
+                                        <% for (var i = 0; i < partnerProfile.availableServices.length; i++) { %>
+                                            <% if (i > 0) { %>
+                                                <div class="col-sm-3"></div>
+                                            <% } %>
+                                            <div class="col-sm-9">
+                                                <b>서비스 종류: </b>&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].serviceCategory %></i><br>
+                                                <b>서비스명: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].serviceName %></i><br>
+                                                <b>예상 가격: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i>$<%= partnerProfile.availableServices[i].minRate %> ~ $<%= partnerProfile.availableServices[i].maxRate %></i><br>
+                                                <b>서비스 소개: </b>&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].aboutService %></i>
+                                            </div>
+                                        <% } %>
+                                    <% } else { %>
+                                        <div class="col-sm-9">
+                                            서비스가 등록되어 있지 않습니다.
+                                        </div>
+                                    <% } %>
+                                    
+                                    
+                                    <div class="col-sm-3">
                                         <label><b>자기 소개:</b></label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                         <%= partnerProfile.aboutMe %>
                                     </div>
                                     
@@ -411,7 +434,7 @@
             <% } %>
         });
         
-        // Script for file input (사업자등록증 / 미디어 in this case) button and displaying the file name
+        // Script for file input (사업자등록증 / 미디어 in this case) button and displaying the file name (or "*개의 파일 선택됨")
         $(function() {
             // We can attach the `fileselect` event to all file inputs on the page
             $(document).on('change', ':file', function() {

@@ -191,7 +191,11 @@
                     <label><b>한줄 소개:</b></label>
                 </div>
                 <div class="col-sm-7">
-                    <%= thisProfile.oneLineIntro %>
+                    <% if (thisProfile.oneLineIntro) { %>
+                        <%= thisProfile.oneLineIntro %>
+                    <% } else { %>
+                        아직 등록되어 있지 않습니다.
+                    <% } %>
                 </div>
                 <div class="col-sm-1">
                     <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editOneLineIntroModal">변경</a></span>
@@ -225,7 +229,11 @@
                     <label><b>지역:</b></label>
                 </div>
                 <div class="col-sm-8">
-                    <%= thisProfile.region %>
+                    <% if (thisProfile.region) { %>
+                        <%= thisProfile.region %>
+                    <% } else { %>
+                        아직 등록되어 있지 않습니다.
+                    <% } %>
                 </div>
             </div>
             <br>
@@ -252,7 +260,11 @@
                     <label><b>자기소개:</b></label>
                 </div>
                 <div class="col-sm-7">
-                    <%= thisProfile.aboutMe %>
+                    <% if (thisProfile.aboutMe) { %>
+                        <%= thisProfile.aboutMe %>
+                    <% } else { %>
+                        아직 등록되어 있지 않습니다.
+                    <% } %>
                 </div>
                 <div class="col-sm-1">
                     <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editAboutMeModal">변경</a></span>
@@ -281,30 +293,48 @@
                 </div>
             </div>
             <br>
+            
             <div class="row">
                 <div class="col-sm-4">
                     <label><b>제공 서비스:</b></label>
                 </div>
-                <div class="col-sm-8">
+                <% if (thisProfile.availableServices.length > 0) { %>
                     <% for (var i = 0; i < thisProfile.availableServices.length; i++) { %>
-                        <%= thisProfile.availableServices[i] %>
-                        <% if (i < thisProfile.availableServices.length-1) { %>
-                             , 
+                        <% if (i > 0) { %>
+                            <div class="row">
+                                <div class="col-sm-4"></div>
                         <% } %>
+                            <div class="col-sm-8">
+                                <b>서비스 종류: </b>&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].serviceCategory %></i><br>
+                                <b>서비스명: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].serviceName %></i><br>
+                                <b>예상 가격: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i>$<%= thisProfile.availableServices[i].minRate %> ~ $<%= thisProfile.availableServices[i].maxRate %></i><br>
+                                <b>서비스 소개: </b>&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].aboutService %></i>
+                            </div>
+                        </div><!-- end of <row> -->
+                        <br>
                     <% } %>
-                </div>
-            </div>
-            <br>
+                <% } else { %>
+                        <div class="col-sm-8">
+                            서비스가 아직 등록되어 있지 않습니다.
+                        </div>
+                    </div><!-- end of <row> -->
+                    <br>
+                <% } %>
+                
             <div class="row">
                 <div class="col-sm-4">
                     <label><b>예약 불가능일:</b></label>
                 </div>
                 <div class="col-sm-8">
-                    <% for (var i = 0; i < thisProfile.unavailableDates.length; i++) { %>
-                        <%= thisProfile.unavailableDates[i] %>
-                        <% if (i < thisProfile.unavailableDates.length-1) { %>
-                             , 
+                    <% if (thisProfile.unavailableDates.length > 0) { %>
+                        <% for (var i = 0; i < thisProfile.unavailableDates.length; i++) { %>
+                            <%= thisProfile.unavailableDates[i] %>
+                            <% if (i < thisProfile.unavailableDates.length-1) { %>
+                                 , 
+                            <% } %>
                         <% } %>
+                    <% } else { %>
+                        아직 등록되어 있지 않습니다.
                     <% } %>
                 </div>
             </div>
