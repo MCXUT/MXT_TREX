@@ -393,16 +393,12 @@ for (var i = 0; i < btns.length; i++) {
             <thead class="thead-dark">
                 <tr>
                     <th id="adminPanelOrder" scope="col">#</th>
-                    <th id="adminPanelID" scope="col">파트너 ID</th>
                     <th id="adminPanelType" scope="col">타입</th>
                     <th id="adminPanelName" scope="col">파트너 이름</th>
                     <th id="adminPanelEmail" scope="col">파트너 이메일</th>
                     <th id="adminPanelPartnerService" scope="col">제공 서비스</th>
                     <th id="adminPanelRegion" scope="col">지역</th>
                     <th id="adminPanelOtherRegion" scope="col">타지역</th>
-                    <th id="adminPanelCreatedDate" scope="col">등록일자</th>
-                    <th id="adminPanelLastEditDate" scope="col">최근 수정일</th>
-                    <th id="adminPanelViews" scope="col">조회수</th>
                     <th id="adminPanelVerified" scope="col">수락여부</th>
                     <th id="adminPanelVerify" scope="col">수락하기</th>
                     <th id="adminPanelInterviewed" scope="col">인터뷰 여부</th>
@@ -416,7 +412,6 @@ for (var i = 0; i < btns.length; i++) {
                     <% if (profileList[i]) { %>
                         <tr>
                             <th scope="row"><%= i+1 %></th>
-                            <td nowrap><%= profileList[i].partner.id %></td>
                             <% if (profileList[i].type == "freelancer") { %>
                                 <td nowrap>프리랜서</td>
                             <% } else if (profileList[i].type == "agency") { %>
@@ -442,9 +437,6 @@ for (var i = 0; i < btns.length; i++) {
                             <% } else { %>
                                 <td nowrap><i class="fas fa-times" style="color:red;"></i></td>
                             <% } %>
-                            <td nowrap><%= profileList[i].registeredDate %></td>
-                            <td nowrap><%= profileList[i].lastEditedDate %></td>
-                            <td nowrap><%= profileList[i].views %></td>
                             <% if (profileList[i].isVerified) { %>
                                 <td nowrap><span style="color:green;">수락됨</span></td>
                             <% } else { %>

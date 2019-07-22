@@ -16,6 +16,7 @@ const Payment = require("../models/Payment");
 //------------------------------------------
 const localAdmin = require("../config/passportStrategies/localAdmin");
 
+// require the following to use their functions to delete the files (pictures)
 var profilePic = require("./profilePic");
 var coverPhoto = require("./coverPhoto");
 var companyLogo = require("./companyLogo");
@@ -254,6 +255,7 @@ router.get("/trex-admin/deleteProfile/:id", function(req, res) {
     //     res.redirect("/trex-admin?index=5");
     // });
 });
+
 
 
 // Picture delete routes
