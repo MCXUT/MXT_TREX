@@ -4,24 +4,24 @@ const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const async = require("async");
 const nodemailer = require("nodemailer");
-const keys = require("../config/keys");
+const keys = require("../../config/keys");
 
-const Admin = require("../models/Admin");
-const Client = require("../models/Client");
-const Partner = require("../models/Partner");
-const Message = require("../models/Message");
-const PartnerProfile = require("../models/PartnerProfile");
+const Admin = require("../../models/Admin");
+const Client = require("../../models/Client");
+const Partner = require("../../models/Partner");
+const Message = require("../../models/Message");
+const PartnerProfile = require("../../models/PartnerProfile");
 //----------To be replaced by service-------
-const Payment = require("../models/Payment");
+const Payment = require("../../models/Payment");
 //------------------------------------------
-const localAdmin = require("../config/passportStrategies/localAdmin");
+const localAdmin = require("../../config/passportStrategies/localAdmin");
 
 // require the following to use their functions to delete the files (pictures)
-var profilePic = require("./profilePic");
-var coverPhoto = require("./coverPhoto");
-var companyLogo = require("./companyLogo");
-var businessRegistration = require("./businessRegistration");
-var media = require("./media");
+var profilePic = require(".././profilePic");
+var coverPhoto = require(".././coverPhoto");
+var companyLogo = require(".././companyLogo");
+var businessRegistration = require(".././businessRegistration");
+var media = require(".././media");
 
 
 // 파트너 프로필 수락 여부 변경 (패널에서)

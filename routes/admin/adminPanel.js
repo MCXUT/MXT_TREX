@@ -4,17 +4,17 @@ const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const async = require("async");
 const nodemailer = require("nodemailer");
-const keys = require("../config/keys");
+const keys = require("../../config/keys");
 
-const Admin = require("../models/Admin");
-const Client = require("../models/Client");
-const Partner = require("../models/Partner");
-const Message = require("../models/Message");
-const PartnerProfile = require("../models/PartnerProfile");
+const Admin = require("../../models/Admin");
+const Client = require("../../models/Client");
+const Partner = require("../../models/Partner");
+const Message = require("../../models/Message");
+const PartnerProfile = require("../../models/PartnerProfile");
 //----------To be replaced by service-------
-const Payment = require("../models/Payment");
+const Payment = require("../../models/Payment");
 //------------------------------------------
-const localAdmin = require("../config/passportStrategies/localAdmin");
+const localAdmin = require("../../config/passportStrategies/localAdmin");
 
 router.get("/trex-admin/login", function(req,res){
   res.render("trexAdminLogin");
