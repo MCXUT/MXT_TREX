@@ -1,11 +1,12 @@
+
+
 #sync_btn{
 border:1px solid #fff;
 color:  #676D73;
 font-size: 20px;
-padding-left: 100%;
-margin-left: 39%;
-margin-top: 13% !important;
+z-index: 100;
 }
+
 
 .auth_content p {
     font-weight: bold;
