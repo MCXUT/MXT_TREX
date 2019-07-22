@@ -17,12 +17,19 @@ const bcrypt = require("bcryptjs");
 // });
 
 var ServiceSchema = mongoose.Schema({
+    // 서비스 카테고리
+    serviceCategory: {
+        type: String
+    },
     // 서비스명
     serviceName: {
         type: String
     },
     // 서비스별 예상 가격
-    hourlyRate: {
+    minRate: {
+        type: Number
+    },
+    maxRate: {
         type: Number
     },
     // 서비스 소개

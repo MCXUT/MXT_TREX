@@ -4,17 +4,17 @@ const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const async = require("async");
 const nodemailer = require("nodemailer");
-const keys = require("../config/keys");
+const keys = require("../../config/keys");
 
-const Admin = require("../models/Admin");
-const Client = require("../models/Client");
-const Partner = require("../models/Partner");
-const Message = require("../models/Message");
-const PartnerProfile = require("../models/PartnerProfile");
+const Admin = require("../../models/Admin");
+const Client = require("../../models/Client");
+const Partner = require("../../models/Partner");
+const Message = require("../../models/Message");
+const PartnerProfile = require("../../models/PartnerProfile");
 //----------To be replaced by service-------
-const Payment = require("../models/Payment");
+const Payment = require("../../models/Payment");
 //------------------------------------------
-const localAdmin = require("../config/passportStrategies/localAdmin");
+const localAdmin = require("../../config/passportStrategies/localAdmin");
 
 router.get("/trex-admin/login", function(req,res){
   res.render("trexAdminLogin");
@@ -121,32 +121,6 @@ router.post("/confirmmail/:id", function(req, res) {
         if(err) next(err);
         return res.redirect("/trex-admin#?services_2");
     });
-});
-
-router.get("/deleteClient/:id", function(req,res) {
-    console.log("clientID: " + req.params.id);
-    Client.deleteClient(req.params.id);
-    res.redirect("/trex-admin?index=9");
-});
-
-
-// Section for Partners
-router.get("/deletePartner/:id", function(req,res) {
-    console.log("partnerID: " + req.params.id);
-    Partner.deletePartner(req.params.id);
-    res.redirect("/trex-admin?index=9");
-});
-
-// Section for DeletedUsers Testing
-router.get("/recoverUser/:type/:id", function(req, res) {
-    console.log(req.params.type);
-    if(req.params.type === "partner") {
-        Partner.undeletePartner(req.params.id);
-        return res.redirect("/trex-admin?index=3");
-    } else {
-        Client.undeleteClient(req.params.id);
-        return res.redirect("/trex-admin?index=2");
-    }
 });
 
 // Section for Admins

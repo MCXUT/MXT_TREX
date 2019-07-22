@@ -28,8 +28,9 @@ const clientLoginRoutes = require("./routes/login/loginClient");
 const partnerLoginRoutes = require("./routes/login/loginPartner");
 const clientPwResetRoutes = require("./routes/passwordReset/passwordResetClient");
 const partnerPwResetRoutes = require("./routes/passwordReset/passwordResetPartner");
-const adminPanelRoutes = require("./routes/adminPanel");
-const adminPanelPartnerProfileRoutes = require("./routes/adminPanelPartnerProfile");
+const adminPanelRoutes = require("./routes/admin/adminPanel");
+const adminPanelPartnerProfileRoutes = require("./routes/admin/adminPanelPartnerProfile");
+const adminPanelDeleteAccountsRoutes = require("./routes/admin/adminPanelDeleteAccounts");
 
 const partnerPages = require("./routes/partnerpages");
 const userProfile = require("./routes/user_profile");
@@ -46,7 +47,7 @@ const businessRegistrationRoutes = require("./routes/businessRegistration");
 const mediaRoutes = require("./routes/media");
 
 // Connect to mongodb
-mongoose.set('useFindAndModify', false); //To set for using findoneandupdate 
+mongoose.set('useFindAndModify', false); //To set for using findoneandupdate
 mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
 const db = mongoose.connection;
 
@@ -126,6 +127,7 @@ app.use("/", businessRegistrationRoutes);
 app.use("/", mediaRoutes);
 app.use("/", adminPanelRoutes);
 app.use("/", adminPanelPartnerProfileRoutes);
+app.use("/", adminPanelDeleteAccountsRoutes);
 
 app.set('port', process.env.PORT || 8080);
 
