@@ -348,9 +348,29 @@
     text-align: right;
 }
 
+
+@media (max-width: 768px) and (min-width: 576px) {
+    .tab .top .col-12 .menu a {
+        font-size: 12px;
+        margin-right: 5px;
+    }
+}
 @media (max-width: 768px) {
+    html {
+        overflow-x: auto
+    }
+    .tab .top .col-12 {
+        padding-bottom: 6px !important;
+    }
+    .tab .top .col-12 p.setting {
+        margin: 0;
+    }
+    .tab .top .col-12 .menu {
+        margin: 0;
+    }
+
     .bottom .col-md-8 .sections {
-        margin: 5% 0% 7%;
+        margin: 5% 5% 7%;
     }
     .bottom .col-md-4 {
         text-align: center;
@@ -360,7 +380,7 @@
     .bottom .col-12 .userName {
         font-size: 22px;
     }
-    .bottom .col-12 .sections .basictitle {
+    .bottom .col-md-8 .sections .basictitle {
         font-size: 18px;
         width: 30%;
     }
@@ -378,11 +398,6 @@
         font-size: 13px;
         padding: .375rem 0;
     }
-    .bottom .sections .language #inputState {
-        width: 40% !important;
-        margin-left: 10%;
-        font-size: 14px;
-    }
     .switch .form-control {
         font-size: 14px;
     }
@@ -396,7 +411,16 @@
         height: 350px;
     }
 }
-@media (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 992px) {
+    html {
+        overflow-x: auto
+    }
+    .tab .top .col-12 p.setting {
+        margin: 0;
+    }
+    .tab .top .col-12 .menu {
+        margin: 0;
+    }
     .bottom .col-12 .userName {
         font-size: 22px;
     }
@@ -412,8 +436,24 @@
     .switch .form-control {
         font-size: 14px;
     }
+    .tab .top .col-12 .menu a {
+        font-size: 15px;
+        margin-right: 13px;
+    }
 }
 @media (max-width: 576px) {
+    html {
+        overflow-x: auto
+    }
+    .tab .top .col-12 {
+        padding-bottom: 6px !important;
+    }
+    .tab .top .col-12 p.setting {
+        margin: 0;
+    }
+    .tab .top .col-12 .menu {
+        margin: 0;
+    }
     .bottom .col-12 .sections .basictitle {
         font-size: 14px;
     }
@@ -422,6 +462,10 @@
     }
     .switch .form-control {
         font-size: 12px;
+    }
+    .tab .top .col-12 .menu a {
+        font-size: 7px;
+        margin-right: 5px;
     }
 }
 
