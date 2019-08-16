@@ -238,7 +238,6 @@ for (var i = 0; i < btns.length; i++) {
     <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
       <!-- Actual search box -->
       <div class="form-group has-search">
-
         <span class="fa fa-search form-control-feedback" style="width:3%;height:3%;margin-top:8px;"></span>
         <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
 
@@ -288,7 +287,49 @@ for (var i = 0; i < btns.length; i++) {
       </tbody>
       </table>
 
+    <a href ="/sync_delete"><button type="button" id="sync_btn" name="button"><i class="fas fa-sync"></i></button></a>
 
+    <table class="table table-bordered margin2" id="myTable2" style="margin-top:20px;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th id="edit-delete" scope="col">Recover</th>
+        <th id="edit-delete" scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i = 0; i < clientList.length; i++) { %>
+          <% if (clientList[i].deletedAccount.isDeleted) { %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td nowrap style="max-width:465px !important;"><%= clientList[i].deletedAccount.expiredDate %></td>
+                <td nowrap>Client</td>
+                <td nowrap><%= clientList[i].name %></td>
+                <td nowrap><%= clientList[i].email %></td>
+                <td ><a href="/recoverUser/client/<%= clientList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                <td ><a href=""><i class="fas fa-trash"></i></a></td>
+              </tr>
+            <% } %>
+      <% } %>
+      <% for(var i = 0; i < partnerList.length; i++) { %>
+          <% if (partnerList[i].deletedAccount.isDeleted) { %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td nowrap><%= partnerList[i].deletedAccount.expiredDate %></td>
+                <td nowrap>Partner</td>
+                <td nowrap><%= partnerList[i].name %></td>
+                <td nowrap><%= partnerList[i].email %></td>
+                <td ><a href="/recoverUser/partner/<%= partnerList[i]._id %>"><i class="far fa-edit"></i></a></td>
+                <td ><a href=""><i class="fas fa-trash"></i></a></td>
+              </tr>
+            <% } %>
+      <% } %>
+    </tbody>
+    </table>
 </div>
 </left>
 
@@ -381,7 +422,7 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div5_services_2"  style="display:none;">
-    <div class="content" style="padding-top:80px;">
+    <div class="content" >
         <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
             <!-- Actual search box -->
             <div class="form-group has-search">
@@ -394,12 +435,17 @@ for (var i = 0; i < btns.length; i++) {
             <thead class="thead-dark">
                 <tr>
                     <th id="adminPanelOrder" scope="col">#</th>
+                    <th id="adminPanelID" scope="col">파트너 ID</th>
                     <th id="adminPanelType" scope="col">타입</th>
                     <th id="adminPanelName" scope="col">파트너 이름</th>
                     <th id="adminPanelEmail" scope="col">파트너 이메일</th>
-                    <th id="adminPanelPartnerService" scope="col">제공 서비스</th>
+                    <th id="adminPanelBusinessRegistration" scope="col">사업자 등록증</th>
+                    <th id="adminPanelMedia" scope="col">미디어</th>
                     <th id="adminPanelRegion" scope="col">지역</th>
                     <th id="adminPanelOtherRegion" scope="col">타지역</th>
+                    <th id="adminPanelCreatedDate" scope="col">등록일자</th>
+                    <th id="adminPanelLastEditDate" scope="col">최근 수정일</th>
+                    <th id="adminPanelViews" scope="col">조회수</th>
                     <th id="adminPanelVerified" scope="col">수락여부</th>
                     <!-- <th id="adminPanelVerify" scope="col">수락하기</th> -->
                     <th id="adminPanelInterviewed" scope="col">인터뷰 여부</th>
@@ -413,6 +459,7 @@ for (var i = 0; i < btns.length; i++) {
                     <% if (profileList[i]) { %>
                         <tr>
                             <th scope="row"><%= i+1 %></th>
+                            <td nowrap><%= profileList[i].partner.id %></td>
                             <% if (profileList[i].type == "freelancer") { %>
                                 <td nowrap>F</td>
                             <% } else if (profileList[i].type == "agency") { %>
@@ -420,24 +467,17 @@ for (var i = 0; i < btns.length; i++) {
                             <% } %>
                             <td nowrap><%= profileList[i].partner.name %></td>
                             <td nowrap><%= profileList[i].partner.email %></td>
-                            <td nowrap>
-                                <% if (profileList[i].availableServices.length > 0) { %>
-                                    <% for (var j = 0; j < profileList[i].availableServices.length; j++) { %>
-                                        <%= profileList[i].availableServices[j].serviceName %>
-                                        <% if (j != profileList[i].availableServices.length-1) { %>
-                                            ,
-                                        <% } %>
-                                    <% } %>
-                                <% } else { %>
-                                    서비스 미등록
-                                <% } %>
-                            </td>
+                            <td nowrap><%= profileList[i].businessRegistration.length %> 개</td>
+                            <td nowrap><%= profileList[i].media.length %> 개</td>
                             <td nowrap><%= profileList[i].region %></td>
                             <% if (profileList[i].otherRegion.length > 0) { %>
                                 <td nowrap><i class="fas fa-check" style="color:green;"></i></td>
                             <% } else { %>
                                 <td nowrap><i class="fas fa-times" style="color:red;"></i></td>
                             <% } %>
+                            <td nowrap><%= profileList[i].registeredDate %></td>
+                            <td nowrap><%= profileList[i].lastEditedDate %></td>
+                            <td nowrap><%= profileList[i].views %></td>
                             <% if (profileList[i].isVerified) { %>
                                 <td nowrap><span style="color:green;">수락됨</span></td>
                             <% } else { %>
@@ -454,27 +494,7 @@ for (var i = 0; i < btns.length; i++) {
                                 <td nowrap><i class="fas fa-times" style="color:red;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
                             <% } %>
                             <td ><a href="/trex-admin/editProfile/<%= profileList[i]._id %>"><i class="far fa-edit"></i></a></td>
-                            <td ><a href="#" data-toggle="modal" data-target="#deleteProfileModal<%= i %>"><i class="fas fa-trash"></i></a></td>
-                            <div class="modal fade" id="deleteProfileModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="deleteProfileModalTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteProfileModalLongTitle">파트너 프로필 삭제</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            이 파트너 프로필을 삭제 하시겠습니까?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
-                                            <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                                            <a href="/trex-admin/deleteProfile/<%= profileList[i]._id %>" class="btn btn-danger showBttn">삭제</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <td ><a href="/trex-admin/deleteProfile/<%= profileList[i]._id %>"><i class="fas fa-trash"></i></a></td>
                         </tr>
                     <% } %>
                 <% } %>
@@ -485,7 +505,7 @@ for (var i = 0; i < btns.length; i++) {
 
 
 <left id="div6_services_3"  style="display:none;">
-    <div class="content" style="padding-top:80px;">
+    <div class="content">
         <div class="main" style="padding-top:40px;padding-bottom: 0px;margin-right:70px;">
 
           <!-- Actual search box -->
