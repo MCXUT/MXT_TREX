@@ -180,8 +180,8 @@ module.exports.deletePartner = function(id) {
         } else {
             console.log(doc);
         }
-    })
-}
+    });
+};
 
 module.exports.undeletePartner = function(id) {
     var update = {
