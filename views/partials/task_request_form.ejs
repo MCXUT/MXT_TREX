@@ -168,47 +168,56 @@ function secondmodalFunction(){
              </div>
 <form id="regForm" action="/task_request" method="post">
 
+    <!-- Circles which indicates the steps of the form: -->
 
-
-  <!-- Circles which indicates the steps of the form: -->
-
-  <!-- One "tab" for each step in the form: -->
-  <% detailService.questionList.forEach((q) => { %>
-      <div class="tab">
-          <p class="qtitle"><%= q.questionName %></p>
-          <% if(q.type === "checkbox" || q.type === "radio") { %>
-              <table class="radio-group">
-              <% q.options.forEach((option) => { %>
-                  <tr>
-                      <td>
-                          <% if(q.type === "radio") { %>
-                              <label class="radio">
-                                  <input form="regForm" type="radio" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
-                                  <span></span>
-                              </label>
-                          <% } else { %>
-                              <label class="checkbox">
-                                  <input form="regForm" type="checkbox" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
-                                  <span></span>
-                              </label>
-                          <% } %>
-                      </td>
-                  </tr>
-              <% }); %>
-              </table>
-          <% } else if(q.type === "dropdown") { %>
-              <select name="<%= q.identifier %>" form="regForm" class="form-control" id="sel1">
-                  <% q.options.forEach((option) => { %>
-                      <option><%= option %></option>
-                  <% }); %>
-              </select>
-          <% } else if(q.type === "input") { %>
-              <input name="<%= q.identifier %>" form="regForm" class="form-control" placeholder="sample">
-          <% } else if(q.type === "textarea") { %>
-              <textarea name="<%= q.identifier %>" form="regForm" rows="7" class="form-control"></textarea>
-          <% } %>
-      </div>
-  <% }); %>
+    <!-- One "tab" for each step in the form: -->
+    <% detailService.questionList.forEach((q) => { %>
+        <div class="tab">
+            <p class="qtitle"><%= q.questionName %></p>
+            <% if(q.type === "checkbox" || q.type === "radio") { %>
+                <table class="radio-group">
+                <% q.options.forEach((option) => { %>
+                    <tr>
+                        <td>
+                            <% if(q.type === "radio") { %>
+                                <label class="radio">
+                                    <input form="regForm" type="radio" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
+                                    <span></span>
+                                </label>
+                            <% } else { %>
+                                <label class="checkbox">
+                                    <input form="regForm" type="checkbox" name="<%= q.identifier %>" value="<%= option %>"><%= option %>
+                                    <span></span>
+                                </label>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+                </table>
+            <% } else if(q.type === "dropdown") { %>
+                <select name="<%= q.identifier %>" form="regForm" class="form-control" id="sel1">
+                    <% q.options.forEach((option) => { %>
+                        <option><%= option %></option>
+                    <% }); %>
+                </select>
+            <% } else if(q.type === "input") { %>
+                <div class="input-group" style="width:50%; margin:0 auto;">
+                    <input name="<%= q.identifier %>" form="regForm" class="form-control" placeholder="sample">
+                    <% if (q.seed) { %>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><%= q.seed %></span>
+                        </div>
+                    <% } %>
+                </div>
+            <% } else if(q.type === "textarea") { %>
+                <textarea name="<%= q.identifier %>" form="regForm" rows="7" class="form-control"></textarea>
+            <% } else if(q.type === "daterange") { %>
+                <input type="text" name="daterange" form="regForm" class="form-control" />
+                <input id="startDate" name="startdate" type="hidden" value="">
+                <input id="endDate" name="enddate" type="hidden" value="">
+            <% } %>
+        </div>
+    <% }); %>
 </form>
 
     </div>
@@ -384,4 +393,20 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[0].className += " finish";
 }
+</script>
+
+
+
+
+<script>
+    // code for daterange picker
+    $(function() {
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'center'
+        }, function(start, end, label) {
+            // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            document.getElementById("startDate").value = start.format("MMMM Do, YYYY");
+            document.getElementById("endDate").value = end.format("MMMM Do, YYYY");
+        });
+    });
 </script>

@@ -55,8 +55,10 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                 email: req.user.email,
                 id: req.user.id
             },
-            registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
-            lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
+            // registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
+            // lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
+            registeredDate: moment(Date.now()).format("MMM Do YYYY"),
+            lastEditedDate: moment(Date.now()).format("MMM Do YYYY")
         });
         newProfile.save((err, createdProfile) => {
             if(err) {
@@ -119,8 +121,10 @@ router.post("/user_profile/create_new_profile", function(req, res) {
                 email: req.user.email,
                 id: req.user.id
             },
-            registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
-            lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
+            // registeredDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
+            // lastEditedDate: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a")
+            registeredDate: moment(Date.now()).format("MMM Do YYYY"),
+            lastEditedDate: moment(Date.now()).format("MMM Do YYYY")
         });
         newProfile.save((err, createdProfile) => {
             if(err) {
@@ -186,10 +190,10 @@ router.post("/user_profile/create_new_profile", function(req, res) {
 // Edit partner profile
 // 파트너 프로필 수정
 router.post("/user_profile/edit_partner_resume", function(req, res) {
-    console.log(req.body.oneLineIntro);
-    console.log(req.body.region);
-    console.log(req.body.otherRegion);
-    console.log(req.body.aboutMe);
+    // console.log(req.body.oneLineIntro);
+    // console.log(req.body.region);
+    // console.log(req.body.otherRegion);
+    // console.log(req.body.aboutMe);
     PartnerProfile.findById(req.user.partnerProfile, function(err, foundProfile) {
         if (err) {
             console.log(err);
@@ -231,7 +235,8 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
         //     foundProfile.otherRegion.push(otherRegions[i]);
         // }
         foundProfile.aboutMe = req.body.aboutMe;
-        foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
+        // foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
+        foundProfile.lastEditedDate = moment(Date.now()).format("MMM Do YYYY");
 
         foundProfile.save((err) => {
               if (err) {
@@ -275,7 +280,8 @@ router.post("/user_profile/edit_unavailable_dates", function(req, res) {
         // }
 
         foundProfile.unavailableDates = req.body.unavailability.split(',');
-        foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
+        // foundProfile.lastEditedDate = moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a");
+        foundProfile.lastEditedDate = moment(Date.now()).format("MMM Do YYYY");
 
         foundProfile.save((err) => {
               if (err) {

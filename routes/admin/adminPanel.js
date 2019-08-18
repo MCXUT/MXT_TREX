@@ -54,6 +54,7 @@ router.get("/trex-admin", function(req,res) {
                                 payments[i].dateConfirmedS = moment(payments[i].dateConfirmed).format("YYYY-MM-DD::HH:mm");
                           }
                           return res.render("trexAdminpage", {
+                            moment: moment,
                             partnerList : partners,
                             clientList: clients,
                             adminList: admins,

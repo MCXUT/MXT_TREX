@@ -48,4 +48,23 @@ router.get("/recoverUser/:type/:id", function(req, res) {
     }
 });
 
+router.get("/sync_delete", function(req, res) {
+    // Partner.findOne({'deletedAccount.isDeleted': true, 'deletedAccount.expiredDate': {$lt: Date.now()}}, (err,doc) => {
+    //     console.log(doc);
+    //     res.redirect("/trex-admin?index=9");
+    // });
+    Partner.deleteMany({'deletedAccount.isDeleted': true, 'deletedAccount.expiredDate': {$lt: Date.now()}}, function(err){
+        if(err) {console.log(err);}
+        else {
+            Client.deleteMany({'deletedAccount.isDeleted': true, 'deletedAccount.expiredDate': {$lt: Date.now()}}, (err) => {
+                if(err) {console.log(err);}
+                else {
+                    res.redirect("/trex-admin?index=9");
+                }
+            });
+        }
+    });
+
+})
+
 module.exports = router;

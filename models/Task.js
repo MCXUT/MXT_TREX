@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 var taskSchema = mongoose.Schema({
     servkind: String,
     location: String,
-    daterange: Date,
-    field: [String],
+    // daterange: Date,
+    startdate: String,
+    enddate: String,
+    taskfield: [String],
     numrequired: Number,
     related: [String],
     details: String,
