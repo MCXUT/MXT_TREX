@@ -12,6 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <link rel="stylesheet" href="/static/stylesheets/auth.css">
   <script src="/static/scripts/adminpage.js"></script>
 
@@ -160,7 +161,7 @@ for (var i = 0; i < btns.length; i++) {
       <th id="adminPanelRegDate" scope="col">Registration Date</th>
       <th id="adminPanelName" scope="col">Name</th>
       <th id="adminPanelEmail" scope="col">Email</th>
-      <th id="adminPanelDOB" scope="col">DOB</th>
+      <!-- <th id="adminPanelDOB" scope="col">DOB</th> -->
       <th scope="col">Address</th>
       <th id="edit-delete" scope="col">Edit</th>
       <th id="edit-delete" scope="col">Delete</th>
@@ -170,12 +171,13 @@ for (var i = 0; i < btns.length; i++) {
     <% for(var i = 0; i < clientList.length; i++) { %>
         <tr>
           <th scope="row"><%= i+1 %></th>
-          <td nowrap><%= clientList[i].registeredDate %></td>
+          <!-- <td nowrap><%= clientList[i].registeredDate %></td> -->
+          <td nowrap><%= moment(clientList[i].registeredDate).format("MMM Do YYYY") %></td>
           <td nowrap><%= clientList[i].name %></td>
           <td nowrap><%= clientList[i].email %></td>
-          <td nowrap><%= clientList[i].dateOfBirth %></td>
+          <!-- <td nowrap><%= clientList[i].dateOfBirth %></td> -->
           <td nowrap><%= clientList[i].companyAddress %></td>
-          <td ><a href="#"><i class="far fa-edit"></i></a></td>
+          <td ><a href="/editUser/client/<%= clientList[i]._id %>"><i class="far fa-edit"></i></a></td>
           <td ><a href="/deleteClient/<%= clientList[i]._id %>"><i class="fas fa-trash"></i></a></td>
         </tr>
     <% } %>
@@ -204,7 +206,7 @@ for (var i = 0; i < btns.length; i++) {
       <th scope="col">Registration Date</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">DOB</th>
+      <!-- <th scope="col">DOB</th> -->
       <th scope="col">Region</th>
       <th id="edit-delete" scope="col">Edit</th>
       <th id="edit-delete" scope="col">Delete</th>
@@ -215,12 +217,13 @@ for (var i = 0; i < btns.length; i++) {
         <% if(!partnerList[i].deletedAccount.isDeleted) { %>
             <tr>
               <th scope="row"><%= i+1 %></th>
-              <td nowrap><%= partnerList[i].registeredDate %></td>
+              <!-- <td nowrap><%= partnerList[i].registeredDate %></td> -->
+              <td nowrap><%= moment(partnerList[i].registeredDate).format("MMM Do YYYY") %></td>
               <td nowrap><%= partnerList[i].name %></td>
               <td nowrap><%= partnerList[i].email %></td>
-              <td nowrap><%= partnerList[i].dateOfBirth %></td>
-              <td nowrap><%= partnerList[i].city %>,</td>
-              <td ><a href="#"><i class="far fa-edit"></i></a></td>
+              <!-- <td nowrap><%= partnerList[i].dateOfBirth %></td> -->
+              <td nowrap><%= partnerList[i].address.city %>, <%= partnerList[i].address.country%></td>
+              <td ><a href="/editUser/partner/<%= partnerList[i]._id %>"><i class="far fa-edit"></i></a></td>
               <td ><a href="/deletePartner/<%= partnerList[i]._id %>"><i class="fas fa-trash"></i></a></td>
             </tr>
         <% } %>
@@ -242,11 +245,9 @@ for (var i = 0; i < btns.length; i++) {
         <input id="myInput3" type="text" class="form-control" placeholder="Search" onkeyup="myFunction3()" style="position:absolute;width:25%;">
 
       </div>
-
-
     </div>
 
-    <button type="button" id="sync_btn" name="button"><i class="fas fa-sync"></i></button>
+    <a href ="/sync_delete"><button type="button" id="sync_btn" name="button"><i class="fas fa-sync"></i></button></a>
 
     <table class="table table-bordered margin2" id="myTable2" style="margin-top:20px;">
     <thead class="thead-dark">
@@ -394,22 +395,22 @@ for (var i = 0; i < btns.length; i++) {
             <thead class="thead-dark">
                 <tr>
                     <th id="adminPanelOrder" scope="col">#</th>
-                    <th id="adminPanelID" scope="col">파트너 ID</th>
-                    <th id="adminPanelType" scope="col">타입</th>
+                    <!-- <th id="adminPanelID" scope="col">파트너 ID</th> -->
+                    <th id="adminPanelType" scope="col">T</th>
                     <th id="adminPanelName" scope="col">파트너 이름</th>
                     <th id="adminPanelEmail" scope="col">파트너 이메일</th>
-                    <th id="adminPanelBusinessRegistration" scope="col">사업자 등록증</th>
-                    <th id="adminPanelMedia" scope="col">미디어</th>
+                    <!-- <th id="adminPanelBusinessRegistration" scope="col">사업자 등록증</th> -->
+                    <!-- <th id="adminPanelMedia" scope="col">미디어</th> -->
                     <th id="adminPanelRegion" scope="col">지역</th>
                     <th id="adminPanelOtherRegion" scope="col">타지역</th>
-                    <th id="adminPanelCreatedDate" scope="col">등록일자</th>
+                    <!-- <th id="adminPanelCreatedDate" scope="col">등록일자</th> -->
                     <th id="adminPanelLastEditDate" scope="col">최근 수정일</th>
-                    <th id="adminPanelViews" scope="col">조회수</th>
+                    <!-- <th id="adminPanelViews" scope="col">조회수</th> -->
                     <th id="adminPanelVerified" scope="col">수락여부</th>
-                    <th id="adminPanelVerify" scope="col">수락하기</th>
-                    <th id="adminPanelInterviewed" scope="col">인터뷰 여부</th>
+                    <!-- <th id="adminPanelVerify" scope="col">수락하기</th> -->
+                    <th id="adminPanelInterviewed" scope="col">인터뷰</th>
                     <!-- <th scope="col">Address</th> -->
-                    <th id="edit-delete" scope="col">Edit</th>
+                    <th id="edit-delete" scope="col">Detail</th>
                     <th id="edit-delete" scope="col">Delete</th>
                 </tr>
             </thead>
@@ -418,39 +419,44 @@ for (var i = 0; i < btns.length; i++) {
                     <% if (profileList[i]) { %>
                         <tr>
                             <th scope="row"><%= i+1 %></th>
-                            <td nowrap><%= profileList[i].partner.id %></td>
+                            <!-- <td nowrap><%= profileList[i].partner.id %></td> -->
                             <% if (profileList[i].type == "freelancer") { %>
-                                <td nowrap>프리랜서</td>
+                                <td nowrap>F</td>
                             <% } else if (profileList[i].type == "agency") { %>
-                                <td nowrap>에이전시</td>
+                                <td nowrap>A</td>
                             <% } %>
                             <td nowrap><%= profileList[i].partner.name %></td>
                             <td nowrap><%= profileList[i].partner.email %></td>
-                            <td nowrap><%= profileList[i].businessRegistration.length %> 개</td>
-                            <td nowrap><%= profileList[i].media.length %> 개</td>
+                            <!-- <td nowrap><%= profileList[i].businessRegistration.length %> 개</td> -->
+                            <!-- <td nowrap><%= profileList[i].media.length %> 개</td> -->
                             <td nowrap><%= profileList[i].region %></td>
                             <% if (profileList[i].otherRegion.length > 0) { %>
                                 <td nowrap><i class="fas fa-check" style="color:green;"></i></td>
                             <% } else { %>
                                 <td nowrap><i class="fas fa-times" style="color:red;"></i></td>
                             <% } %>
-                            <td nowrap><%= profileList[i].registeredDate %></td>
+                            <!-- <td nowrap><%= profileList[i].registeredDate %></td> -->
                             <td nowrap><%= profileList[i].lastEditedDate %></td>
-                            <td nowrap><%= profileList[i].views %></td>
+                            <!-- <td nowrap><%= profileList[i].views %></td> -->
                             <% if (profileList[i].isVerified) { %>
                                 <td nowrap><span style="color:green;">수락됨</span></td>
                             <% } else { %>
                                 <td nowrap><span style="color:red;">수락안됨</span></td>
                             <% } %>
-                            <% if (profileList[i].isVerified) { %>
+                            <!-- <% if (profileList[i].isVerified) { %>
                                 <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락취소</a></td>
                             <% } else { %>
                                 <td nowrap><a href="/trex-admin/verifyProfile/<%= profileList[i].id %>">수락하기</a></td>
-                            <% } %>
-                            <% if (profileList[i].isInterviewed) { %>
+                            <% } %> -->
+                            <!-- <% if (profileList[i].isInterviewed) { %>
                                 <td nowrap><i class="fas fa-check" style="color:green;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
                             <% } else { %>
                                 <td nowrap><i class="fas fa-times" style="color:red;"></i> <a href="/trex-admin/isInterviewed/<%= profileList[i].id %>">변경</a></td>
+                            <% } %> -->
+                            <% if (profileList[i].isInterviewed) { %>
+                                <td nowrap><i class="fas fa-check" style="color:green;"></i></td>
+                            <% } else { %>
+                                <td nowrap><i class="fas fa-times" style="color:red;"></i></td>
                             <% } %>
                             <td ><a href="/trex-admin/editProfile/<%= profileList[i]._id %>"><i class="far fa-edit"></i></a></td>
                             <td ><a href="/trex-admin/deleteProfile/<%= profileList[i]._id %>"><i class="fas fa-trash"></i></a></td>

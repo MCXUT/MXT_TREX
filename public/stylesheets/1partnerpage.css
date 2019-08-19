@@ -162,6 +162,7 @@ div{
   font-weight: 600;
   padding-top: 22px;
   padding-right: 20px;
+  color: #2F3033;
 }
 
 .item03 {
@@ -182,6 +183,7 @@ div{
   grid-row: 2;
   font-size: 16px;
   font-weight: 500;
+  color: #2F3033;
 }
 
 .item05 {
@@ -197,6 +199,7 @@ div{
   overflow: hidden;
   text-overflow: ellipsis;
   padding-bottom: 30px;
+  color: #2F3033;
 }
 
  #apply_card{

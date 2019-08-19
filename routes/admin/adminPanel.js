@@ -53,7 +53,17 @@ router.get("/trex-admin", function(req,res) {
                               if(payments[i].dateConfirmed)
                                 payments[i].dateConfirmedS = moment(payments[i].dateConfirmed).format("YYYY-MM-DD::HH:mm");
                           }
+                          for(var i = 0; i < clients.length; i++) {
+                              if(clients[i].companyAddress) {
+                                var address = clients[i].companyAddress.split(',');
+                                clients[i].companyAddress = address[1];
+                              } else {
+                                continue;
+                              }
+                          }
+
                           return res.render("trexAdminpage", {
+                            moment: moment,
                             partnerList : partners,
                             clientList: clients,
                             adminList: admins,
@@ -74,6 +84,30 @@ router.get("/trex-admin", function(req,res) {
     return res.redirect("/trex-admin/login");
   }
 });
+
+router.get("/editUser/:type/:id", function(req,res) {
+  var id = req.params.id;
+  var type = req.params.type;
+  if(type === "client") {
+    Client.findById(id, function(err, foundClient) {
+      if(err) {
+        console.log(err);
+        return res.redirect("/trex-admin?index=2");
+      } else {
+        return res.render("trexAdminEditUsers", {current : foundClient});
+      }
+    });
+  } else {
+    Partner.findById(id, function(err, foundPartner) {
+      if(err) {
+        console.log(err);
+        return res.redirect("/trex-admin?index=3");
+      } else {
+        return res.render("trexAdminEditUsers", {current : foundPartner});
+      }
+    })
+  }
+})
 
 router.post("/confirmmail/:id", function(req, res) {
     async.waterfall([

@@ -11,6 +11,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/static/scripts/autocomplete.js"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <style>
 /* Style the form */
 #regForm {
@@ -76,7 +80,7 @@ background-color: #4CAF50;
 </style>
 </head>
 
-<body id="bodyfont">
+<body id="bodyfont" >
     <% include ./partials/navbar %>
     <% include ./partials/task_request_form %>
 
@@ -104,7 +108,7 @@ background-color: #4CAF50;
 
   <div id="caption-carousel" class="main_carousel" style="display:block;width:100%;">
 
-      <h1>어디로 출장 가시나요?</h1>
+      <h1 style="font-weight:900;">어디로 출장 가시나요?</h1>
 
       <h2 class="text-center">출장지나 파트너를 검색 해보세요!</h2>
       <br>
@@ -150,69 +154,69 @@ background-color: #4CAF50;
                              <div class="centered">번역</div>
                          </a>
                  </div>
-                 <!--<div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">현지 기관 섭외</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 5</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 6</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="v" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 7</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                         <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 8</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 9</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 10</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 11</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 12</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 13</div>
                          </a>
-                 </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 </div> -->
+                 <!-- <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 14</div>
                          </a>
-                 </div>-->
+                 </div> -->
 
                </div>
                <!-- If we need pagination -->
-               <div class="swiper-pagination3" ></div>
+               <!-- <div class="swiper-pagination3" ></div> -->
              </div>
              <!-- If we need navigation buttons -->
-             <div class="swiper-button-prev3"></div>
-             <div class="swiper-button-next3"></div>
+             <!-- <div class="swiper-button-prev3"></div>
+             <div class="swiper-button-next3"></div> -->
         </div>
     </div>
 </div>
@@ -220,74 +224,53 @@ background-color: #4CAF50;
 
 
 <!-- /기업 섭외 견적 요청 -->
-<!-- 트렉스 간편 이용 방법 section-->
-<div class="container-fluid padding text-center" >
 
-      <h1 id="heading" >트렉스 간편 이용 방법</h1>
-      <!-- <hr style="width:100px;border:1px #595959 solid;">-->
-      <br>
-  <div class="container">
-<div class="sectionContent">
-<div class="row">
-  <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/1.searchpartner.png" class="center" style="height: 100px; width: 100px; margin-bottom:10px;-o-object-fit: contain;">
-    <h2 class="steptitle">1.파트너 검색</h2>
-    <div class="stepdesc">출장지를 검색하고 알맞는 파트너에게 업무를 문의하세요.</div>
-  </div>
-
-  <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/2.reservepay.png" class="center" style="height: 100px; width: 100px;margin-bottom:10px;-o-object-fit: contain;">
-    <h2 class="steptitle">2.예약 결제</h2>
-    <div class="stepdesc">업무일자를 입력하고 예약을 확정지으세요.</div>
-  </div>
-
-  <div class="col-md-4 col-sm-4">
-    <img src="/static/images/trex-simple-use/3.proceed.png" class="center" style="height: 100px; width: 100px;margin-bottom:10px;-o-object-fit: contain;">
-    <h2 class="steptitle">3.업무 진행</h2>
-    <div class="stepdesc">성공적으로 업무를 진행하고 파트너 리뷰를 작성해주세요.</div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-<!-- end of 트렉스 간편 이용 방법 section -->
 
 <!-- 통역 그 이상의 서비스를 경험 해 보세요-->
-<div class="container-fluid padding text-center" style="background-color:#fafafa;">
-
-  <h1 id="heading">통역 그 이상의 서비스를 경험 해 보세요</h1>
-  <!-- <hr style="width:100px;border:1px #595959 solid;"> -->
-  <br>
+<div class="container-fluid padding text-center" style="background-color:#fff;">
+<h1 id="heading">Thumbtack</h1>
+<!-- <hr style="width:100px;border:1px #595959 solid;"> -->
+<div style="height:70px;"></div>
   <div class="container">
-<div class="sectionContent">
-<div class="row">
-  <div class="col-md-4 col-sm-4">
+     <div class="sectionContent">
 
-    <h2 class="font1">품질 보장</h2>
-    <br>
-    <div class="subdesc">트렉스 파트너는 본인 및 이력 확인,
-통역 업무 여부 확인을 거친 뒤 등록되며,
-인터뷰 후 활동할 수 있습니다.</div>
-  </div>
+    <div  class="lunchbox9">
 
-  <div class="col-md-4 col-sm-4">
+         <div class="swiper-container s9">
+           <!-- Additional required wrapper -->
+           <div class="swiper-wrapper">
+             <!-- Slides -->
+             <div class="swiper-slide img-hover-zoom" >
+                 <div class="grid-container" >
+                    <div class="grid-item item--1" style="border:solid 1px black">1</div>
+                    <div class="grid-item item--2" style="border:solid 1px black">2</div>
+                    <div class="grid-item item--3" style="border:solid 1px black">3</div>
+                    <div class="grid-item item--4" style="border:solid 1px black">4</div>
+                </div>
+             </div>
+             <div class="swiper-slide img-hover-zoom" >
+                 <div class="grid-container">
+                    <div class="grid-item item---1" style="border:solid 1px black">1</div>
+                    <div class="grid-item item---2" style="border:solid 1px black">2</div>
+                    <div class="grid-item item---3" style="border:solid 1px black">3</div>
+                    <div class="grid-item item---4" style="border:solid 1px black">4</div>
+                </div>
+             </div>
 
-    <h2 class="font1">간편 보장</h2>
-    <br>
-    <div class="subdesc">복잡한 고용 과정이 간편해집니다. 전 세계
-어디로 출장 가시던 간편하게 파트너
-매칭, 결제, 업무 검수까지 해결하세요.</div>
-  </div>
 
-  <div class="col-md-4 col-sm-4">
 
-    <h2 class="font1">특화 된 분야</h2>
-    <br>
-    <div class="subdesc">트렉스 파트너는 다양한 분야의 인재들로
-구성되어 있습니다. 출장 업무와 유사한
-분야에 특화된 파트너에게 업무를 맡기세요.</div>
-  </div>
-</div>
+
+           </div>
+
+         </div>
+
+
+         <!-- If we need navigation buttons -->
+         <div class="swiper-button-prev9" ></div>
+         <div class="swiper-button-next9" ></div>
+    </div>
+
+
 </div>
 </div>
 </div>
@@ -543,11 +526,10 @@ transform: rotate(0deg) ;
 </div>
 </div>
 <!-- /자주 묻는 질문 & 이용후기 -->
-<br>
+
 
 <!-- Swiper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-
   <!-- Initialize Swiper -->
   <script>
     var swiper1 = new Swiper('.swiper1', {
@@ -633,6 +615,32 @@ transform: rotate(0deg) ;
 
     });
 
+
+    var mySwiper9 = new Swiper ('.s9', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        slidesPerGroup: 1,
+      loop: false,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination9',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next9',
+        prevEl: '.swiper-button-prev9',
+      },
+      breakpoints: {
+   // when window width is <= 320px
+   800: {
+
+   },
+   // when window width is <= 480px
+   576: {
+   }
+ }
+
+    });
   </script>
   <script>
     var mainmodal = function() {
