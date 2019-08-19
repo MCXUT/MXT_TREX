@@ -32,294 +32,251 @@
     </div>
 
     <div style="padding:90px 5% 5% 5%;">
-        <a href="/trex-admin?index=5">< 뒤로가기</a>
-            <center><strong><big>파트너 프로필 관리</big></strong></center>
-            <span style="float:right;"><a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProfileModal" role="button">프로필 삭제</a></span>
-            <div class="modal fade" id="deleteProfileModal" tabindex="-1" role="dialog" aria-labelledby="deleteProfileModalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteProfileModalLongTitle">파트너 프로필 삭제</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            이 파트너 프로필을 삭제 하시겠습니까?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
-                            <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                            <a href="/trex-admin/deleteProfile/<%= thisProfile._id %>" class="btn btn-danger showBttn">삭제</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <hr>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>파트너 ID:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    <%= thisProfile.partner.id %>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>파트너 이름:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    <%= thisProfile.partner.name %>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>파트너 이메일:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    <%= thisProfile.partner.email %>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>프로필:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    thisProfile.profile.link goes here
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>한줄 소개:</b></label>
-                </div>
-                <div class="col-sm-7">
-                    <% if (thisProfile.oneLineIntro) { %>
-                        <%= thisProfile.oneLineIntro %>
-                    <% } else { %>
-                        아직 등록되어 있지 않습니다.
-                    <% } %>
-                </div>
-                <div class="col-sm-1">
-                    <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editOneLineIntroModal">변경</a></span>
-                    <div class="modal fade" id="editOneLineIntroModal" tabindex="-1" role="dialog" aria-labelledby="editOneLineIntroModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <form action="/trex-admin/editProfile/editOneLineIntro/<%= thisProfile.id %>" method="post">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editOneLineIntroModalLongTitle">한줄 소개 편집</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="text" class="form-control" id="oneLineIntro" name="oneLineIntro" placeholder="클라이언트에게 본인 한줄 소개를 해주세요." value="<%= thisProfile.oneLineIntro %>">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                                        <button type="submit" class="btn btn-primary">편집</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>지역:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    <% if (thisProfile.region) { %>
-                        <%= thisProfile.region %>
-                    <% } else { %>
-                        아직 등록되어 있지 않습니다.
-                    <% } %>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>타지역:</b></label>
-                </div>
-                <div class="col-sm-8">
-                    <% if (thisProfile.otherRegion.length > 0) { %>
-                        <% for (var i = 0; i < thisProfile.otherRegion.length; i++) { %>
-                            <%= thisProfile.otherRegion[i] %>
-                            <% if (i < thisProfile.otherRegion.length-1) { %>
-                                 ,
-                            <% } %>
-                        <% } %>
-                    <% } else { %>
-                        타지역 업무 불가능
-                    <% } %>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>자기소개:</b></label>
-                </div>
-                <div class="col-sm-7">
-                    <% if (thisProfile.aboutMe) { %>
-                        <%= thisProfile.aboutMe %>
-                    <% } else { %>
-                        아직 등록되어 있지 않습니다.
-                    <% } %>
-                </div>
-                <div class="col-sm-1">
-                    <span style="float:right;"><a href="#" class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#editAboutMeModal">변경</a></span>
-                    <div class="modal fade" id="editAboutMeModal" tabindex="-1" role="dialog" aria-labelledby="editAboutMeModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <form action="/trex-admin/editProfile/editAboutMe/<%= thisProfile.id %>" method="post">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editAboutMeModalLongTitle">자기 소개 편집</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <textarea class="form-control" name="aboutMe" id="aboutMe" rows="12"><%= thisProfile.aboutMe %></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                                        <button type="submit" class="btn btn-primary">편집</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label><b>제공 서비스:</b></label>
-                </div>
-                <% if (thisProfile.availableServices.length > 0) { %>
-                    <% for (var i = 0; i < thisProfile.availableServices.length; i++) { %>
-                        <% if (i > 0) { %>
-                            <div class="row">
-                                <div class="col-sm-4"></div>
-                        <% } %>
-                            <div class="col-sm-8">
-                                <b>서비스 종류: </b>&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].serviceCategory %></i><br>
-                                <b>서비스명: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].serviceName %></i><br>
-                                <b>예상 가격: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i>$<%= thisProfile.availableServices[i].minRate %> ~ $<%= thisProfile.availableServices[i].maxRate %></i><br>
-                                <b>서비스 소개: </b>&nbsp&nbsp&nbsp<i><%= thisProfile.availableServices[i].aboutService %></i>
-                            </div>
-                        </div><!-- end of <row> -->
-                        <br>
-                    <% } %>
+      <% if (current.type === 'c') { %>
+          <a href="/trex-admin?index=2">< 뒤로가기</a>
+      <% } else { %>
+          <a href="/trex-admin?index=3">< 뒤로가기</a>
+      <% } %>
+            <center><strong><big>
+                <% if(current.type === "c") { %>
+                    Client
                 <% } else { %>
-                        <div class="col-sm-8">
-                            서비스가 아직 등록되어 있지 않습니다.
-                        </div>
-                    </div><!-- end of <row> -->
-                    <br>
-                <% } %>
+                    Partner
+                <% } %> Info</big></strong></center>
+            <br>
+            <hr>
+
+            <% if (current.type === "p") { %>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label><b>Profile Pic:</b></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <% if (current.profilePic) { %>
+                          <img class="profileimg" src="/profilePic/<%= current.profilePic %>" style="max-height:200px;">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/noprofilepic.jpeg" style="max-height:200px;">
+                        <% } %>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label><b>Cover Photo:</b></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <% if (current.coverPhoto) { %>
+                            <img class="background" src="/coverPhoto/<%= current.coverPhoto %>" style="max-height:200px;">
+                        <% } else { %>
+                            <img class="background" src="/static/images/slider/slider-4-montreal.jpg" style="max-height:200px;">
+                        <% } %>
+                    </div>
+                </div>
+            <% } else if (current.type === "c") { %>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label><b>Company Logo:</b></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <% if (current.companyLogo) { %>
+                          <img class="profileimg" src="/logo/<%= current.companyLogo %>" style="max-height:200px;">
+                        <% } else { %>
+                          <img class="profileimg" src="/static/images/nocompanylogo.jpeg" style="max-height:200px;">
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>ID:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.id %>
+                </div>
+            </div>
+
+
+            <hr>
 
             <div class="row">
                 <div class="col-sm-4">
-                    <label><b>예약 불가능일:</b></label>
+                    <label><b>Name:</b></label>
                 </div>
                 <div class="col-sm-8">
-                    <% if (thisProfile.unavailableDates.length > 0) { %>
-                        <% for (var i = 0; i < thisProfile.unavailableDates.length; i++) { %>
-                            <%= thisProfile.unavailableDates[i] %>
-                            <% if (i < thisProfile.unavailableDates.length-1) { %>
-                                 ,
-                            <% } %>
-                        <% } %>
-                    <% } else { %>
-                        아직 등록되어 있지 않습니다.
-                    <% } %>
+                    <%= current.name %>
                 </div>
             </div>
-            <br>
-            <hr>
-            <% if (thisProfile.type == "agency") { %>
-                <div class="col-sm-3"><b>사업자 등록증</b></div><div class="col-sm-9"></div>
-                <div class="row" style="margin-bottom:50px;width:100%;">
-                    <% for (var i = 0; i < thisProfile.businessRegistration.length; i++) { %>
-                        <form id="deleteForm<%= i %>" action="/user_profile/deleteBusinessRegistration/<%= thisProfile.businessRegistration[i] %>/<%= thisProfile._id %>?_method=DELETE" method="post"></form>
-                        <div class="col">
-                            <%=i+1%>.<a data-toggle="modal" data-target="#imageModal<%= i %>">
-                                <img src="/businessRegistration/<%= thisProfile.businessRegistration[i] %>" style="width:150px;height:225px;">
-                            </a>
-                            <div class="modal fade" id="imageModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="imageModalTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="imageModalLongTitle">사업자 등록증 삭제</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            이 사업자 등록증을 삭제 하시겠습니까?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
-                                            <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                                            <button form="deleteForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <% } %>
-                </div>
 
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>Email:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.email %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>DOB:</b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.dateOfBirth %>
+                </div>
+            </div>
+            <hr>
+            <% if(current.type === "c") { %>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Category: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.category %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Position: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.managerPosition %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Phone Number: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.managerPhoneNumber %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Company Name: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.companyName %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Company Address: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.companyAddress %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Company Website: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.companyWebsite %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Company SNS: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.companySNS %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Registered Date: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.registeredDate %>
+                  </div>
+              </div>
+              <hr>
             <% } %>
 
-            <hr>
+            <% if(current.type === "p") { %>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Profile Edit Link:</b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <a href = "/trex-admin/editProfile/<%=current.partnerProfile%>">/trex-admin/editProfile/<%=current.partnerProfile%></a>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>DOB: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.dateOfBirth %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Address: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.address.numberAddress %> <%= current.address.streetAddress %>, <%= current.address.city %> <%= current.address.country %>, <%= current.address.postalCode %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Phnoe number: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.phoneNumber %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label><b>Registered Date: </b></label>
+                  </div>
+                  <div class="col-sm-8">
+                      <%= current.registeredDate %>
+                  </div>
+              </div>
+              <hr>
+            <% } %>
 
-            <div class="col-sm-7"><b>미디어 (이력서, 자격증 등)</b></div><div class="col-sm-5"></div>
-            <div class="row" style="margin-bottom:50px;width:100%;">
-                <% for (var i = 0; i < thisProfile.media.length; i++) { %>
-                    <form id="deleteMediaForm<%= i %>" action="/user_profile/deleteMedia/<%= thisProfile.media[i] %>/<%= thisProfile._id %>?_method=DELETE" method="post"></form>
-                    <div class="col">
-                        <%=i+1%>.<a data-toggle="modal" data-target="#mediaModal<%= i %>">
-                            <img src="/media/<%= thisProfile.media[i] %>" style="width:150px;height:225px;">
-                        </a>
-                        <div class="modal fade" id="mediaModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="mediaModalTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="mediaModalLongTitle">미디어 삭제</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        이 미디어를 삭제 하시겠습니까?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary showBttn" data-dismiss="modal">취소</button>
-                                        <!-- <a href="/user_profile/deleteBusinessRegistration/" class="btn btn-danger showBttn">삭제</a> -->
-                                        <button form="deleteMediaForm<%= i %>" class="btn btn-danger showBttn">삭제</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <% } %>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>Kakao ID: </b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.kakaoID %>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>Facebook ID: </b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.facebookID %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>Google ID: </b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.googleID %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label><b>Naver ID: </b></label>
+                </div>
+                <div class="col-sm-8">
+                    <%= current.naverID %>
+                </div>
+            </div>
+            <hr>
 
 
     </div>
