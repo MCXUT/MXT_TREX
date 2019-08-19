@@ -6,6 +6,8 @@ html {
 }
 html,body {
     height: 100%;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
 h1{
     font-size: 30px;
