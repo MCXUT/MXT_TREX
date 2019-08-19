@@ -136,21 +136,21 @@ background-color: #4CAF50;
                <div class="swiper-wrapper" style="padding-bottom:500px;margin-bottom:500px;">
                  <!-- Slides -->
                  <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
-                         <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
+                         <a href="javascript: void(0)" id="통역" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/1.translationservice.jpg" class="center" >
                              <div class="centered">현지 통역</div>
                          </a>
                  </div>
                  <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
-                         <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
+                         <a href="javascript: void(0)" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/2.rideservice.jpg" class="center" >
                              <div class="centered">현지 차량</div>
                          </a>
                  </div>
                  <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
-                         <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
+                         <a href="javascript: void(0)" id="번역" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/3.translationservice2.jpg" >
                              <div class="centered">번역</div>
                          </a>
                  </div>
-                 <div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
+                 <!--<div class="swiper-slide img-hover-zoom" id="swiper3_wrapper">
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">현지 기관 섭외</div>
                          </a>
@@ -204,7 +204,7 @@ background-color: #4CAF50;
                          <a href="#" data-toggle="modal" data-target="#myModal2"><img id="services" src="/static/images/request-service-estimate/4.castagency.jpg" class="center" >
                              <div class="centered">서비스 14</div>
                          </a>
-                 </div>
+                 </div>-->
 
                </div>
                <!-- If we need pagination -->
@@ -317,7 +317,7 @@ background-color: #4CAF50;
            <div class="swiper-wrapper">
              <!-- Slides -->
              <div class="swiper-slide img-hover-zoom" >
-                     <a href="#" ><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
+                     <a href="javascript: void(0)" ><img id="countries" src="/static/images/countries/0germany.jpg" class="center" >
                          <div class="centered">독일</div>
                      </a>
              </div>
@@ -633,6 +633,62 @@ transform: rotate(0deg) ;
 
     });
 
+  </script>
+  <script>
+    var mainmodal = function() {
+        $(".s3 a").on("click", function(e) {
+            var category = $(this).attr("id");
+            var allhtml = appendQs(category);
+            $("#myModal2 .mainmodal").append(allhtml);
+            console.log($("#myModal2 .mainmodal"));
+        });
+    }
+    mainmodal();
+    //console.log($(".modal.fade.text-center"));
+
+    var appendQs = function(category) {
+        var returningDom = '<form id="regForm" action="/task_request" method="post">';
+
+        var detailService = <%- JSON.stringify(detailService) %>;
+        var serviceClicked;
+
+        for(var i = 0; i < detailService.length; i++) {
+            if(detailService[i].serviceCategory === category) {
+                serviceClicked = detailService[i];
+                break;
+            }
+        }
+
+        for(var i = 0; i < serviceClicked.questionList.length; i++) {
+            var q = serviceClicked.questionList[i];
+            returningDom += '<div class="tab">' +
+                '<p class="qtitle">' + q.questionName + '</p>';
+
+            if(q.type === 'checkbox' || q.type === "radio") {
+                returningDom += '<table class="radio-group">';
+
+                for(var j = 0; j < q.options.length; j++) {
+                    var option = q.options[j];
+                    returningDom += '<tr><td>';
+
+                    if(q.type === "radio") {
+                        returningDom += '<label class="radio">' +
+                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '">' + option +
+                        '<span></span></label>';
+                    } else {
+                        returningDom += '<label class="checkbox">' +
+                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '">' + option +
+                        '<span></span></label>';
+                    }
+
+                    returningDom += '</td></tr>';
+                }
+                returningDom += '</table>';
+            }
+            returningDom += '</div>';
+        }
+        return returningDom;
+    }
   </script>
 <!-- end of swiper.js -->
 

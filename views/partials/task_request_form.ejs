@@ -129,30 +129,10 @@ border:2px solid #e60000;
 </style>
 
 
-<script>
-function closeAllModal(){
-  document.getElementById('closeAll').click();
-  // document.getElementById('closeAll2').click();
-  document.getElementById("myModal3").style.display="none";
-  document.getElementById('myModal2').style.opacity='1.0'
-  $(".modal-backdrop").removeClass("show");
-  $(".modal-backdrop").css("display", "none");
-  $("#regForm").trigger('reset');
-}
-function gaesokFunction(){
-    document.getElementById("myModal3").style.display="none";
-    document.getElementById("myModal2").style.opacity="1.0";
-}
 
-function secondmodalFunction(){
-    $("#myModal3").addClass("show");
-    $("#myModal3").css("display", "block");
-
-    document.getElementById("myModal2").style.opacity  = "0.8";
-}
-</script>
 
 <link rel="stylesheet" href="/static/stylesheets/task-request-form.css">
+
 
 <div class="modal fade text-center" id="myModal2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" style="width:650px;">
@@ -168,12 +148,10 @@ function secondmodalFunction(){
              </div>
 <form id="regForm" action="/task_request" method="post">
 
-
-
   <!-- Circles which indicates the steps of the form: -->
 
   <!-- One "tab" for each step in the form: -->
-  <% detailService.questionList.forEach((q) => { %>
+  <% detailService[1].questionList.forEach((q) => { %>
       <div class="tab">
           <p class="qtitle"><%= q.questionName %></p>
           <% if(q.type === "checkbox" || q.type === "radio") { %>
@@ -261,26 +239,11 @@ function secondmodalFunction(){
     });
 
     document.getElementById("myModal2").addEventListener("click",(e) => {
-        console.log(e);
-          // if(e.target.className != "modal-body"){
-          //     if(e.target.className !="col-12 modal-title text-cente"){
-          //         if(e.target.className !="tab")
-          //         document.getElementById("myModal2").style.opacity="0.5";
-          //     }
-          //   // document.getElementById("myModal2").style.opacity="0.5";
-          // }
         if(e.target.className == "modal fade text-center show"){
-            // document.getElementById("myModal2").style.display ="block";
-            //
             document.getElementById("myModal3").style.display="block";
             document.getElementById("myModal3").classList.add("show");
             document.getElementById("myModal2").style.opacity="0.8";
             document.getElementById("myModal2").style.bacground=rgba(0, 0, 0, 1.2);
-            // document.getElementById("myModal2").classList.add("show");
-
-            // $("#myModal3").css("z-index", "1050");
-            // document.getElementById("myModal3").style.z-index="1050";
-
         }
       });
 
@@ -326,12 +289,16 @@ function showTab(n) {
   if (n == (x.length - 1)) {
     document.getElementById("nextBtn").innerHTML = "확인";
   }
+
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
 }
 
 
 function nextPrev(n) {
+  if(n == -1) {
+      document.getElementById("nextBtn").innerHTML = "다음";
+  }
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
@@ -384,4 +351,31 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[0].className += " finish";
 }
+</script>
+
+<script>
+function closeAllModal(){
+  document.getElementById('closeAll').click();
+  // document.getElementById('closeAll2').click();
+  document.getElementById("myModal3").style.display="none";
+  document.getElementById('myModal2').style.opacity='1.0'
+  $(".modal-backdrop").removeClass("show");
+  $(".modal-backdrop").css("display", "none");
+  $("#regForm").trigger('reset');
+}
+function gaesokFunction(){
+    document.getElementById("myModal3").style.display="none";
+    document.getElementById("myModal2").style.opacity="1.0";
+}
+
+function secondmodalFunction(){
+    $("#myModal3").addClass("show");
+    $("#myModal3").css("display", "block");
+
+    document.getElementById("myModal2").style.opacity  = "0.8";
+}
+</script>
+
+<script>
+
 </script>

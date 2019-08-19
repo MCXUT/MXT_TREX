@@ -1,16 +1,30 @@
 const express = require("express");
 const router = express.Router();
+const async = require("async");
 
 const Service = require("../models/Service");
 const Question = require("../models/Question");
 const Task = require("../models/Task");
 
 router.get("/", (req, res) => {
+    var allInfos = [];
     Service.find({}, (err, allServices) => {
         if(err) throw err;
-        Service.findById(allServices[0].id).populate("questionList").exec((err, detailService) => {
+        async.each(allServices, function(service, done) {
+            Service.findById(service.id).populate("questionList").exec((err, detailService) => {
+                if(err) throw err;
+                if(detailService.questionList) {
+                    allInfos.push(detailService);
+                } else {
+                    Service.findByIdAndRemove(service.id).then(function(deleted) {
+                        console.log(deleted);
+                    });
+                }
+                done();
+            });
+        }, function(err) {
             if(err) throw err;
-            return res.render("mainpage", {detailService: detailService});
+            return res.render("mainpage", {detailService: allInfos});
         });
     });
 });
