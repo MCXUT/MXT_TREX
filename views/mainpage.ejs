@@ -661,15 +661,18 @@ transform: rotate(0deg) ;
             var allhtml = appendQs(category);
             $("#myModal2 .mainmodal").append(allhtml);
 
+            // page tracking variables set in the beginning
             tabs = document.getElementsByClassName("tab");
             currentTab = 0;
             width = 0;
 
+            // file variables set in the beginning
             dropFileForm = document.getElementById("regForm");
             fileLabelText = document.getElementById("fileLabelText");
             uploadStatus = document.getElementById("uploadStatus");
             fileInput = document.getElementById("fileInput");
 
+            // execute daterangepicker function when the form is added in the beginning
             if($('input[name="daterange"]').length > 0) {
                 // code for daterange picker
                 $(function() {
@@ -681,6 +684,10 @@ transform: rotate(0deg) ;
                     });
                 });
             }
+
+            // Always turn the button text into "Next" from "Submit" in the beginning
+            // of the form
+            document.getElementById("nextBtn").innerHTML = "다음";
 
             showTab(currentTab, tabs); // Display the current tab
         });
@@ -715,7 +722,7 @@ transform: rotate(0deg) ;
 
                     if(q.type === "radio") {
                         returningDom += '<label class="radio">' +
-                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '">' + option +
+                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '" required>' + option +
                         '<span></span></label>';
                     } else {
                         returningDom += '<label class="checkbox">' +
