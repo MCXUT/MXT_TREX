@@ -27,9 +27,13 @@
 
 
                     <p class="subdivision">예상 금액</p>
-                    $<input type="text" class="form-control" form="profileForm" name="minmoney">
+                    <!-- $<input type="text" class="form-control" form="profileForm" name="minmoney">
                      ~
-                    $<input type="text" class="form-control" form="profileForm" name="maxmoney">
+                    $<input type="text" class="form-control" form="profileForm" name="maxmoney"> -->
+                    <input type="text" class="form-control" form="profileForm" name="approxRte">원 
+                    <select name="unit" class="form-control col-6 serviceUnit" id="serviceUnit" form="profileForm" style="display:inline;width:20%;" required disabled>
+                        <option value="" selected disabled></option>
+                    </select>
                     <p class="subdivision">커멘트</p>
                     <textarea class="form-control" form="profileForm" name="commentary" rows="3"></textarea>
                     <button class="btn btn-info deletesection" type="button" name="button">지우기</button>

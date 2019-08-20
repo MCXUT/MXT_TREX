@@ -30,10 +30,6 @@ var PartnerSchema = mongoose.Schema({
     dateOfBirth: {
         type: String
     },
-    languages: {
-        langchoice: [String],
-        langproficiency: [String]
-    },
     // address: {
     //   unit: String,
     //   street: String,
@@ -81,10 +77,6 @@ var PartnerSchema = mongoose.Schema({
     //   lng: Number,
     //   default: {}
     // },
-    languages: { // only for partners?
-      langchoice: [String],
-      langproficiency: [String]
-    },
     phoneNumber: {
         type: String
     },

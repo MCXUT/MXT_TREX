@@ -227,7 +227,7 @@
                                             <div class="col-sm-9">
                                                 <b>서비스 종류: </b>&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].serviceCategory %></i><br>
                                                 <b>서비스명: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].serviceName %></i><br>
-                                                <b>예상 가격: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i>$<%= partnerProfile.availableServices[i].minRate %> ~ $<%= partnerProfile.availableServices[i].maxRate %></i><br>
+                                                <b>예상 가격: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].approxRate %>원<%= partnerProfile.availableServices[i].unit %></i><br>
                                                 <b>서비스 소개: </b>&nbsp&nbsp&nbsp<i><%= partnerProfile.availableServices[i].aboutService %></i>
                                             </div>
                                         <% } %>

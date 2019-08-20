@@ -447,9 +447,10 @@
                                 '</select>';
 
                 addedPanel += '<p class="subdivision">예상 금액</p>' +
-                    '$<input type="text" class="form-control" form="profileForm" name="minmoney">' +
-                    ' ~ ' +
-                    '$<input type="text" class="form-control" form="profileForm" name="maxmoney">' +
+                    '<input type="text" class="form-control" form="profileForm" name="approxRte">원 ' +
+                    '<select name="unit" class="form-control col-6 serviceUnit" id="serviceUnit" form="profileForm" style="display:inline;width:20%;" required disabled>' +
+                        '<option value="" selected disabled></option>' +
+                    '</select>' +
                     '<p class="subdivision">커멘트</p>' +
                     '<textarea class="form-control" form="profileForm" name="commentary" rows="3"></textarea>' +
                     '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
@@ -503,9 +504,12 @@
             $(".servicecontents").on('change', '.serviceCategory', function(e) {
                 // only fetch the neighboring #serviceName dropdown
                 var siblingServName = $(this).siblings("#serviceName");
+                var siblingServUnit = $(this).siblings("#serviceUnit");
 
                 siblingServName[0].disabled = false;
                 siblingServName.children("option").remove();
+                siblingServUnit[0].disabled = false;
+                siblingServUnit.children("option").remove();
                 switch ($(this).val())
                 {
                     <% for (var i = 0; i < services.length; i++) { %>
@@ -515,10 +519,21 @@
                             <% for (var j = 0; j < services[i].serviceName.length; j++) { %>
                                 siblingServName.addOption("<%= services[i].serviceName[j] %>", "<%= services[i].serviceName[j] %>");
                             <% } %>
+                            <% if (services[i].unit.length == 0) { %>
+                                siblingServUnit[0].disabled = true;
+                            <% } else { %>
+                                <% for (var j = 0; j < services[i].unit.length; j++) { %>
+                                    siblingServUnit.addOption("<%= services[i].unit[j] %>", "<%= services[i].unit[j] %>");
+                                <% } %>
+                            <% } %>
+                            // <% for (var j = 0; j < services[i].unit.length; j++) { %>
+                            //     siblingServUnit.addOption("<%= services[i].unit[j] %>", "<%= services[i].unit[j] %>");
+                            // <% } %>
                             break;
                     <% } %>
                     default:
                         siblingServName.addOption("서비스 종류를 먼저 선택해주세요","unset");
+                        siblingServUnit.addOption("서비스 종류를 먼저 선택해주세요","unset");
                 }
             });
         });
@@ -536,8 +551,10 @@
                     var defaultService = {
                         serviceCategory: "<%= profileInfo.availableServices[i].serviceCategory %>",
                         serviceName: "<%= profileInfo.availableServices[i].serviceName %>",
-                        minRate: <%= profileInfo.availableServices[i].minRate %>,
-                        maxRate: <%= profileInfo.availableServices[i].maxRate %>,
+                        // minRate: <%= profileInfo.availableServices[i].minRate %>,
+                        // maxRate: <%= profileInfo.availableServices[i].maxRate %>,
+                        approxRate: "<%= profileInfo.availableServices[i].approxRate %>",
+                        unit: "<%= profileInfo.availableServices[i].unit %>",
                         aboutService: "<%= profileInfo.availableServices[i].aboutService %>"
                     };
                     $(".servicecontents").append(defaultSet(defaultService));
@@ -580,10 +597,28 @@
 
 
             addedPanel += '<p class="subdivision">예상 금액</p>' +
-                '$<input type="text" class="form-control" form="profileForm" name="minmoney" value=' + defaultService.minRate + '>' +
-                ' ~ ' +
-                '$<input type="text" class="form-control" form="profileForm" name="maxmoney" value=' + defaultService.maxRate + '>' +
-                '<p class="subdivision">커멘트</p>' +
+                // '$<input type="text" class="form-control" form="profileForm" name="minmoney" value=' + defaultService.minRate + '>' +
+                // ' ~ ' +
+                // '$<input type="text" class="form-control" form="profileForm" name="maxmoney" value=' + defaultService.maxRate + '>' +
+                '<input type="text" class="form-control" form="profileForm" name="approxRte" value=' + defaultService.approxRate + '>원 ';
+            
+            if (services[i].unit.length == 0) {
+                addedPanel += '<select name="unit" class="form-control col-6 serviceUnit" id="serviceUnit" form="profileForm" style="display:inline;width:20%;" required disabled>' +
+                                '<option value="" selected disabled></option>' +
+                                '</select>';
+            } else {
+                addedPanel += '<select name="unit" class="form-control col-6 serviceUnit" id="serviceUnit" form="profileForm" style="display:inline;width:20%;" required>';
+                for (var j = 0; j < services[i].unit.length; j++) {
+                    if (services[i].unit[j] == defaultService.unit) {
+                        addedPanel += '<option selected value="' + services[i].unit[j] + '">' + services[i].unit[j] + '</option>';
+                    } else {
+                        addedPanel += '<option value="' + services[i].unit[j] + '">' + services[i].unit[j] + '</option>';
+                    }
+                }
+                addedPanel += '</select>';
+            }
+            
+            addedPanel += '<p class="subdivision">커멘트</p>' +
                 '<textarea class="form-control" form="profileForm" name="commentary" rows="3">' + defaultService.aboutService + '</textarea>' +
                 '<button class="btn btn-info deletesection" type="button" name="button">지우기</button>' +
             '</div>';
