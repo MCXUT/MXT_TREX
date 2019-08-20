@@ -643,9 +643,10 @@ transform: rotate(0deg) ;
     });
   </script>
   <script>
+    var width;
     var numOfTabs;
     var tabs;
-    var currentTab = 0; // Current tab is set to be the first tab (0)
+    var currentTab; // Current tab is set to be the first tab (0)
 
     // file related variables
     var dropFileForm;
@@ -661,6 +662,8 @@ transform: rotate(0deg) ;
             $("#myModal2 .mainmodal").append(allhtml);
 
             tabs = document.getElementsByClassName("tab");
+            currentTab = 0;
+            width = 0;
 
             dropFileForm = document.getElementById("regForm");
             fileLabelText = document.getElementById("fileLabelText");
@@ -679,7 +682,7 @@ transform: rotate(0deg) ;
                 });
             }
 
-            showTab(0, tabs); // Display the current tab
+            showTab(currentTab, tabs); // Display the current tab
         });
     });
     //console.log($(".modal.fade.text-center"));
@@ -764,7 +767,6 @@ transform: rotate(0deg) ;
         return returningDom;
     }
 
-    var width = 0;
     var progressionIndicator = document.querySelector(".progression");
 
     var nextButton = () => {
@@ -884,7 +886,6 @@ transform: rotate(0deg) ;
           showFiles(droppedFiles);
       }
       function showFiles(files) {
-          console.log(files);
           if(files.length > 1) {
               fileLabelText.innerHTML = files.length + "files selected";
           } else {

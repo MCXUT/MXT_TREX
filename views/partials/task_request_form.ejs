@@ -191,7 +191,6 @@ border:2px solid #e60000;
 
         if(e.target.className != "modal-dialog modal-sm"){
           document.getElementById("myModal2").style.opacity="1.0";
-          // document.getElementById("myModal2").style.bacground=rgba(0, 0, 0, 1.2);
 
         }
 
@@ -218,7 +217,9 @@ function closeAllModal(){
   document.getElementById('myModal2').style.opacity='1.0'
   $(".modal-backdrop").removeClass("show");
   $(".modal-backdrop").css("display", "none");
-  $("#regForm").trigger('reset');
+  document.querySelector(".step").style.width = 0;
+  document.querySelector(".progression").innerHTML = "";
+  $("#regForm").trigger('remove');
 }
 function gaesokFunction(){
     document.getElementById("myModal3").style.display="none";
