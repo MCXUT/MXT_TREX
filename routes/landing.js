@@ -35,8 +35,7 @@ router.get("/", (req, res) => {
 
 router.post("/task_request", (req, res) => {
     console.log(req.body);
-    console.log(req.files);
-    //req.body.numrequired = parseInt(req.body.numrequired.split("")[0]);
+    req.body.numrequired = parseInt(req.body.numrequired.split("")[0]);
     var newTask = new Task(req.body);
     newTask.save((err) => {
         if(err) throw err;
