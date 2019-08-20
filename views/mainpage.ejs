@@ -642,19 +642,19 @@ transform: rotate(0deg) ;
 
     });
   </script>
-  <script>
+  <!-- <script>
     var mainmodal = function() {
         $(".s3 a").on("click", function(e) {
             var category = $(this).attr("id");
             var allhtml = appendQs(category);
             $("#myModal2 .mainmodal").append(allhtml);
-            console.log($("#myModal2 .mainmodal"));
         });
     }
     mainmodal();
     //console.log($(".modal.fade.text-center"));
 
     var appendQs = function(category) {
+        $("#regForm").trigger('remove');
         var returningDom = '<form id="regForm" action="/task_request" method="post">';
 
         var detailService = <%- JSON.stringify(detailService) %>;
@@ -666,6 +666,7 @@ transform: rotate(0deg) ;
                 break;
             }
         }
+
 
         for(var i = 0; i < serviceClicked.questionList.length; i++) {
             var q = serviceClicked.questionList[i];
@@ -685,7 +686,7 @@ transform: rotate(0deg) ;
                         '<span></span></label>';
                     } else {
                         returningDom += '<label class="checkbox">' +
-                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '">' + option +
+                        '<input form="regForm" type="checkbox" name="' + q.identifier + '" value="' + option + '">' + option +
                         '<span></span></label>';
                     }
 
@@ -697,7 +698,7 @@ transform: rotate(0deg) ;
         }
         return returningDom;
     }
-  </script>
+  </script> -->
 <!-- end of swiper.js -->
 
 

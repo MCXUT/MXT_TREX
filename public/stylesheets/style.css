@@ -552,7 +552,6 @@ font-size: 22px;
     background-color: rgba(255, 255, 255, 0);
 }
 #button1{
-  background-color:#f8ba00;
   border:#f8ba00;
   border-radius:5px;
   height:50px;
@@ -869,7 +868,7 @@ figure {
 #button1 {
     font-size: 16px;
     color: white;
-    background-color: #559ad1;
+    background-color: #f58b44;
 }
 #button1:hover {
     background-color: rgb( 45, 114, 169 );

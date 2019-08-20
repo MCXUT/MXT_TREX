@@ -146,12 +146,12 @@ border:2px solid #e60000;
                <span class="step" id="step"></span>
                <p class="progression"></p>
              </div>
-<form id="regForm" action="/task_request" method="post">
+<form id="regForm" action="/task_request" method="post" enctype="multipart/form-data" onsubmit="uploadFiles(event)">
 
     <!-- Circles which indicates the steps of the form: -->
 
     <!-- One "tab" for each step in the form: -->
-    <% detailService.questionList.forEach((q) => { %>
+    <% detailService[2].questionList.forEach((q) => { %>
         <div class="tab">
             <p class="qtitle"><%= q.questionName %></p>
             <% if(q.type === "checkbox" || q.type === "radio") { %>
@@ -195,6 +195,20 @@ border:2px solid #e60000;
                 <input type="text" name="daterange" form="regForm" class="form-control" />
                 <input id="startDate" name="startdate" type="hidden" value="">
                 <input id="endDate" name="enddate" type="hidden" value="">
+            <% } else if(q.type === "file") { %>
+                <input type="file" name="files" id="fileInput" multiple onchange="addFiles(event)">
+                <label for="fileInput" id="fileLabel"
+                ondragover="overrideDefault(event); fileHover()"
+                ondragenter="overrideDefault(event); fileHover()"
+                ondragleave="overrideDefault(event); fileHoverEnd()"
+                ondrop="overrideDefault(event); fileHoverEnd(); addFiles(event)">
+                    <i class="fa fa-download fa-5x"></i>
+                    <br>
+                    <span id="fileLabelText">
+                        파일을 드래그 혹은 선택해주세요!</span>
+                    <br>
+                    <span id="uploadStatus"></span>
+                </label>
             <% } %>
         </div>
     <% }); %>
@@ -384,6 +398,56 @@ function secondmodalFunction(){
     $("#myModal3").css("display", "block");
 
     document.getElementById("myModal2").style.opacity  = "0.8";
+}
+
+var dropFileForm = document.getElementById("regForm");
+var fileLabelText = document.getElementById("fileLabelText");
+var uploadStatus = document.getElementById("uploadStatus");
+var fileInput = document.getElementById("fileInput");
+var droppedFiles;
+
+function overrideDefault(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function fileHover() {
+    dropFileForm.classList.add("fileHover");
+}
+function fileHoverEnd() {
+    dropFileForm.classList.remove("fileHover");
+}
+
+function addFiles(e) {
+    droppedFiles = e.target.files || e.dataTransfer.files;
+    showFiles(droppedFiles);
+}
+function showFiles(files) {
+    if(files.length > 1) {
+        fileLabelText.innerHTML = files.length + "files selected";
+    } else {
+        fileLabelText.innerHTML = files[0].name;
+    }
+}
+// function uploadFiles(e) {
+//     e.preventDefault();
+//     changeStatus("Uploading...");
+//
+//     var formData = new FormData();
+//     for(var i = 0,file; file=droppedFiles[i]; i++) {
+//         formData.append(fileInput.name, file, file.name);
+//     }
+//
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function(data) {
+//         //handle server response and change status of upload process via
+//         //changeStatus(text)
+//         xhr.open(dropFileForm.method, dropFileForm.action, true);
+//         xhr.send(formData);
+//     }
+// }
+function changeStatus(text) {
+    uploadStatus.innerHTML = text;
 }
 </script>
 
