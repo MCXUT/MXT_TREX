@@ -26,11 +26,18 @@ var ServiceSchema = mongoose.Schema({
         type: String
     },
     // 서비스별 예상 가격
-    minRate: {
+    // minRate: {
+    //     type: Number
+    // },
+    // maxRate: {
+    //     type: Number
+    // },
+    approxRate: {
         type: Number
     },
-    maxRate: {
-        type: Number
+    //단위
+    unit: {
+        type: String
     },
     // 서비스 소개
     aboutService: {

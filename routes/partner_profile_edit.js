@@ -208,8 +208,10 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
                 serviceArray.push({
                     serviceCategory: req.body.category[i],
                     serviceName: req.body.subcategory[i],
-                    minRate: req.body.minmoney[i],
-                    maxRate: req.body.maxmoney[i],
+                    // minRate: req.body.minmoney[i],
+                    // maxRate: req.body.maxmoney[i],
+                    approxRate: req.body.approxRate[i],
+                    unit: req.body.unit[i],
                     aboutService: req.body.commentary[i]
                 });
             }
@@ -218,8 +220,10 @@ router.post("/user_profile/edit_partner_resume", function(req, res) {
             var service = {
                 serviceCategory: req.body.category,
                 serviceName: req.body.subcategory,
-                minRate: req.body.minmoney,
-                maxRate: req.body.maxmoney,
+                // minRate: req.body.minmoney,
+                // maxRate: req.body.maxmoney,
+                approxRate: req.body.approxRate[i],
+                unit: req.body.unit[i],
                 aboutService: req.body.commentary
             };
             foundProfile.availableServices = service;
