@@ -26,7 +26,6 @@ router.get("/partner_profile/:id", function(req, res) {
                     if(info.byUser) {
                         allInfos.push(info);
                     } else { // Case where the rated user is deleted
-                        console.log(info.id);
                         Rating.findByIdAndRemove(info.id).then(function(deleted) {
                             console.log(deleted);
                         });

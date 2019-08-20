@@ -47,9 +47,15 @@ const businessRegistrationRoutes = require("./routes/businessRegistration");
 const mediaRoutes = require("./routes/media");
 
 // Connect to mongodb
+mongoose.set("useCreateIndex", true);
 mongoose.set('useFindAndModify', false); //To set for using findoneandupdate
 mongoose.connect("mongodb+srv://" + keys.mongodb2.user + ":" + keys.mongodb2.pass + "@cluster0-vnpud.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
-const db = mongoose.connection;
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {
+    console.log("Successfully connection");
+})
 
 // Set view engines
 app.set("views", path.join(__dirname, "views"));

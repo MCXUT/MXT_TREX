@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-md navbar-light">
         <!-- <div class="container"> -->
             <a class="logo" href="/"><img src="/static/images/trexlogo.png"></img></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
+            <button class="navbar-toggler fixed-bottom" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -13,13 +13,11 @@
                     <% if (currentUser.type === "c") { %>
                         <li class="nav-item">
                             <a class="nav-link" href="/find_partner" id="fplink">
-                                <!-- <img src="/static/icons/findpartner.svg" style="width: 15px; height: 15px; margin-right: 3px;"></img> -->
                                 파트너 찾기</a>
                         </li>
                     <% } else if (currentUser.type === "p") { %>
                         <li class="nav-item">
                             <a class="nav-link" href="/partner_page" id="pplink">
-                                <!-- <img src="/static/icons/partnerpage.svg" style="width: 20px; height: 20px; margin-right: 3px;"></img> -->
                                 파트너 페이지</a>
                         </li>
                     <% } %>
