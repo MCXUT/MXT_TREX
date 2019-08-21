@@ -711,9 +711,9 @@ transform: rotate(0deg) ;
 
         for(var i = 0; i < serviceClicked.questionList.length; i++) {
             var q = serviceClicked.questionList[i];
-            returningDom += '<div class="tab">' +
-                '<p class="qtitle">' + q.questionName + '</p>';
             if(q.type === 'checkbox' || q.type === "radio") {
+                returningDom += '<div class="tab 118687">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
                 returningDom += '<table class="radio-group">';
 
                 for(var j = 0; j < q.options.length; j++) {
@@ -722,11 +722,11 @@ transform: rotate(0deg) ;
 
                     if(q.type === "radio") {
                         returningDom += '<label class="radio">' +
-                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '" required>' + option +
+                        '<input form="regForm" type="radio" name="' + q.identifier + '" value="' + option + '" onclick="removeErr(event)">' + option +
                         '<span></span></label>';
                     } else {
                         returningDom += '<label class="checkbox">' +
-                        '<input form="regForm" type="checkbox" name="' + q.identifier + '" value="' + option + '">' + option +
+                        '<input form="regForm" type="checkbox" name="' + q.identifier + '" value="' + option + '" onclick="removeErr(event)">' + option +
                         '<span></span></label>';
                     }
 
@@ -734,24 +734,32 @@ transform: rotate(0deg) ;
                 }
                 returningDom += '</table>';
             } else if(q.type === "dropdown") {
+                returningDom += '<div class="tab 158702">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
                 returningDom += '<select name="' + q.identifier + '" form="regForm"' +
-                                'class="form-control" id="sel1">';
+                                'class="form-control" id="sel1" onchange="removeErr(event)">';
                 for(var j = 0; j < q.options.length; j++) {
                     returningDom += '<option>' + q.options[j] + '</option>';
                 }
                 returningDom += "</select>";
             } else if(q.type === "input") {
+                returningDom += '<div class="tab 338754">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
                 returningDom += '<div class="input-group" style="width: 50%; margin: 0 auto;">' +
-                                    '<input name="' + q.identifier + 'form="regForm" class="form-control" placeholder="sample">';
+                                    '<input name="' + q.identifier + 'form="regForm" class="form-control" placeholder="sample" onkeyup="removeErr(event)">';
                 if(q.seed) {
                     returningDom += '<div class="input-group-append">' +
                                         '<span class="input-group-text">' + q.seed + '</span></div>';
                 }
                 returningDom += "</div>";
             } else if(q.type === "textarea") {
-                returningDom += '<textarea name="' + q.identifier + '" form="regForm" rows="7" class="form-control"></textarea>';
+                returningDom += '<div class="tab 013329">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
+                returningDom += '<textarea name="' + q.identifier + '" form="regForm" rows="7" class="form-control" onkeyup="removeErr(event)"></textarea>';
             } else if(q.type === "file") {
-                returningDom += '<input type="file" name="files" id="fileInput" multiple onchange="addFiles(event)">' +
+                returningDom += '<div class="tab 957292">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
+                returningDom += '<input type="file" name="files" id="fileInput" multiple onchange="removeErr(event);addFiles(event)">' +
                                 '<label for="fileInput" id="fileLabel"' +
                                 'ondragover="overrideDefault(event); fileHover()"' +
                                 'ondragenter="overrideDefault(event); fileHover()"' +
@@ -765,7 +773,9 @@ transform: rotate(0deg) ;
                                 '<span id="uploadStatus"></span>' +
                                 '</label>';
             } else if(q.type === "daterange") {
-                returningDom += '<input type="text" name="daterange" form="regForm" class="form-control" />' +
+                returningDom += '<div class="tab 648523">' +
+                    '<p class="qtitle">' + q.questionName + '</p>';
+                returningDom += '<input type="text" name="daterange" form="regForm" class="form-control" onchange="removeErr(event)" />' +
                                 '<input id="startDate" name="startdate" type="hidden" value="">' +
                                 '<input id="endDate" name="enddate" type="hidden" value="">';
             }
@@ -824,7 +834,13 @@ transform: rotate(0deg) ;
       // This function will figure out which tab to display
       var x = document.getElementsByClassName("tab");
       // Exit the function if any field in the current tab is invalid:
-      if (n == 1 && !validateForm()) return false;
+      if (n == 1 && !validateForm()) {
+          return false;
+      }
+
+      // Remove the err message since the page is filled
+      document.querySelector(".FF400444").innerHTML = "";
+
       // Hide the current tab:
       x[currentTab].style.display = "none";
       // Increase or decrease the current tab by 1:
@@ -845,8 +861,32 @@ transform: rotate(0deg) ;
     function validateForm() {
       // This function deals with validation of the form fields
       var x, y, i, valid = true;
+      var checked = false;
       x = document.getElementsByClassName("tab");
-      y = x[currentTab].getElementsByTagName("input");
+
+      // validate input type beforehand
+      if(x[currentTab].classList[1] === "118687" || x[currentTab].classList[1] === "338754" || x[currentTab].classList[1] === "648523" || x[currentTab].classList[1] === "957292") {
+          y = x[currentTab].getElementsByTagName("input");
+
+          if(y[0].type === "radio" || y[0].type === "checkbox") {
+              for(var i = 0; i < y.length; i++) {
+                  if(y[i].checked === true) {
+                      return true;
+                  }
+              }
+
+              // err code for no options selected
+              var errCode = document.querySelector(".FF400444");
+              errCode.innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 옵션을 하나 이상 선택해주셔야 합니다.';
+              return false;
+          }
+      } else if(x[currentTab].classList[1] === "013329") {
+          y = x[currentTab].getElementsByTagName("textarea");
+      } else if(x[currentTab].classList[1] === "158702") {
+          y = x[currentTab].getElementsByTagName("select");
+      }
+
+
       // A loop that checks every input field in the current tab:
       for (i = 0; i < y.length; i++) {
         // If a field is empty...
@@ -860,6 +900,16 @@ transform: rotate(0deg) ;
       // If the valid status is true, mark the step as finished and valid:
       if (valid) {
         // document.getElementsByClassName("step")[currentTab].className += " finish";
+      } else {
+          if(y[0].name === "daterange") { // date error message
+              document.querySelector(".FF400444").innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 기간을 선택해주셔야 합니다.';
+          } else if(y[0].type === "file") {
+              document.querySelector(".FF400444").innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 파일을 하나 이상 선택해주세요.';
+          }
+          else {
+              // input has not been filled yet in this case
+              document.querySelector(".FF400444").innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 빈칸을 채워주셔야 합니다.';
+          }
       }
       return valid; // return the valid status
     }
@@ -872,6 +922,10 @@ transform: rotate(0deg) ;
       }
       //... and adds the "active" class on the current step:
       x[0].className += " finish";
+    }
+
+    function removeErr(e) {
+        document.querySelector(".FF400444").innerHTML = "";
     }
   </script>
   <script>
