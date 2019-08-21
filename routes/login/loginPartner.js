@@ -6,12 +6,15 @@ const thirdPartyPartner = require("../../config/passportStrategies/thirdPartyPar
 
 // Local Strategy for Partner log-in
 router.post('/login/partner', localPartner.authenticate('local-partner', {
-    successRedirect: "/",
     failureRedirect: "back",
     failureFlash: true,
     successFlash: "Successfully logged in"
 }), (req, res) => {
-
+    if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
+        return res.redirect(req.body.referer);
+    } else {
+        res.redirect("/");
+    }
 });
 
 // Facebook Login for Partner

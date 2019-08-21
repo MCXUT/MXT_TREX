@@ -6,12 +6,15 @@ const thirdPartyClient = require("../../config/passportStrategies/thirdPartyClie
 
 // Local Strategy for Client log-in
 router.post('/login/client', localClient.authenticate('local-client', {
-    successRedirect: "/",
     failureRedirect: "back",
     failureFlash: true,
     successFlash: "Successfully logged in"
 }), (req, res) => {
-
+    if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
+        return res.redirect(req.body.referer);
+    } else {
+        res.redirect("/");
+    }
 });
 
 // Facebook Login for Client

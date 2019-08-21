@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="../static/stylesheets/1partnerpage.css">
 
 <script>
-function checkLogin(){
-  <% if(currentUser && currentUser.type === "p"){ %>
-    window.location.href='/find_task?shit=shit';
-  <% } else { %>
-    window.location.href='/auth/login';
-  <% }  %>
-}
+// function checkLogin(){
+//   <% if(currentUser && currentUser.type === "p"){ %>
+//     window.location.href='/find_task?shit=shit';
+//   <% } else { %>
+//     window.location.href='/auth/login';
+//   <% }  %>
+// }
 
-function checkLogin2(){
-
-  <% if(currentUser && currentUser.type === "p"){ %>
-    window.location.href='/find_task';
-  <% } else { %>
-    window.location.href='/auth/login';
-  <% }  %>
-}
+// function checkLogin2(){
+// 
+//   <% if(currentUser && currentUser.type === "p"){ %>
+//     window.location.href='/find_task';
+//   <% } else { %>
+//     window.location.href='/auth/login';
+//   <% }  %>
+// }
 </script>
 
 </head>
@@ -180,7 +180,8 @@ function checkLogin2(){
 </div>
 </div>
 <br>
-<a href="#"><button id="btn_outline_orange" type="button" class="btn text-center" onclick="checkLogin2();">모든 업무 보기</button></a>
+<!-- <a href="#"><button id="btn_outline_orange" type="button" class="btn text-center" onclick="checkLogin2();">모든 업무 보기</button></a> -->
+<a href="/find_task"><button id="btn_outline_orange" type="button" class="btn text-center" onclick="checkLogin2();">모든 업무 보기</button></a>
 </div>
 <!-- /업무에 지원 해 보세요! -->
 

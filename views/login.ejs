@@ -45,6 +45,7 @@
 
             <form class="clientform active" action="/auth/login/client" method="POST">
               <p style="text-align:center;color:black;">클라이언트로 로그인하기</p><br>
+                  <input type="hidden" name="referer" value=<%= referer %>>
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
@@ -60,6 +61,7 @@
 
             <form class="partnerform" action="/auth/login/partner" method="POST">
               <p style="text-align:center;color:black;">파트너로 로그인하기</p><br>
+                  <input type="hidden" name="referer" value=<%= referer %>>
                 <p>이메일</p>
                     <input type="text" class="log form-control" name="email" required>
                 <p>비밀번호</p>
