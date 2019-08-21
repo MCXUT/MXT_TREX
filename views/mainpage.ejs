@@ -679,8 +679,8 @@ transform: rotate(0deg) ;
                     $('input[name="daterange"]').daterangepicker({
                         opens: 'center'
                     }, function(start, end, label) {
-                        document.getElementById("startDate").value = start.format("MMMM Do, YYYY");
-                        document.getElementById("endDate").value = end.format("MMMM Do, YYYY");
+                        document.getElementById("startDate").value = start.format("MMM Do, YYYY");
+                        document.getElementById("endDate").value = end.format("MMM Do, YYYY");
                     });
                 });
             }

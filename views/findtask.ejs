@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -28,17 +29,17 @@
 
     <!-- jquery slide selector -->
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-  <!-- glyphicon -->
-  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="../static/stylesheets/findtask.css">
+    <!-- glyphicon -->
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../static/stylesheets/findtask.css">
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 
@@ -52,41 +53,48 @@
     </script> -->
     <% include ./partials/navbar %>
 
-  <style>
+    <style>
+        #kokoman {
+            width: 100%;
+            height: 35%;
+            background-image: url("../static/images/slider/slider-2-london.jpg");
+            background-size: cover;
+        }
 
-  #kokoman {
-  width: 100%;
-  height: 35%;
-  background-image: url("../static/images/slider/slider-2-london.jpg");
-  background-size: cover;
-  }
+        #avatar {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+        }
 
-  #avatar {
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-size: cover;
-  }
-  #profile{
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    background-size: cover;
-  }
-  #slider-range .ui-slider-handle { border-color: rgb(0, 132, 137); }
-  #slider-range .ui-slider-range { background: rgb(0, 132, 137); }
-  </style>
+        #profile {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+        }
 
-  </head>
-  <body onload="dontdoit()">
+        #slider-range .ui-slider-handle {
+            border-color: rgb(0, 132, 137);
+        }
 
-  <div id="momtong" style="margin: 0 5%">
-    <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px;
+        #slider-range .ui-slider-range {
+            background: rgb(0, 132, 137);
+        }
+    </style>
+
+</head>
+
+<body onload="dontdoit()">
+
+    <div id="momtong" style="margin: 0 5%">
+        <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px;
     padding-top: 20px" id="bbak">
 
 
 
-    <!-- <span>
+            <!-- <span>
     <button aria-haspopup="true" aria-expanded=
     "false" aria-controls="menuItemComponent-guest_picker" class="_1i67wnzj dropbtn"
     style="margin: 5px;" id="login">
@@ -120,410 +128,314 @@
     </span> -->
 
 
-    <input type="button" name="daterange" value="업무날짜" id="nal"
-    placeholder="업무날짜" onclick="clickedFunction()" class="dropbtn datepicker" style="margin: 5px;">
+            <input type="button" name="daterange" value="업무날짜" id="nal" placeholder="업무날짜" onclick="clickedFunction()" class="dropbtn datepicker" style="margin: 5px;">
 
 
 
 
 
-  <div class="dropdown" style="margin: 5px;">
-    <button onclick="myFunction()" class="dropbtn" id="monsta">업종/전공</button>
-    <div id="myDropdown" class="dropdown-content checkbox">
-      <input type="checkbox" class="rebut" id="checkbox_1"><label for="checkbox_1">과학</label><br>
-      <input type="checkbox" class="rebut" id="checkbox_2"><label for="checkbox_2">IT/기술</label><br>
-      <input type="checkbox" class="rebut" id="checkbox_3"><label for="checkbox_3">교육</label><br>
-      <input type="checkbox" class="rebut" id="checkbox_4"><label for="checkbox_4">금융/회계</label><br>
-    </div>
-  </div>
+            <div class="dropdown" style="margin: 5px;">
+                <button onclick="myFunction()" class="dropbtn" id="monsta">업종/전공</button>
+                <div id="myDropdown" class="dropdown-content checkbox">
+                    <input type="checkbox" class="rebut" id="checkbox_1"><label for="checkbox_1">과학</label><br>
+                    <input type="checkbox" class="rebut" id="checkbox_2"><label for="checkbox_2">IT/기술</label><br>
+                    <input type="checkbox" class="rebut" id="checkbox_3"><label for="checkbox_3">교육</label><br>
+                    <input type="checkbox" class="rebut" id="checkbox_4"><label for="checkbox_4">금융/회계</label><br>
+                </div>
+            </div>
 
-  <div class="dropdown" style="margin: 5px;">
-    <button onclick="myFunction2()" class="dropbtn" style="margin-right: 5px;"
-    id="monsta2">서비스</button>
-    <div id="myDropdown2" class="dropdown-content checkbox">
-      <input id="checkbox_5" class="rebut2" type="checkbox"><label for="checkbox_5">통역</label>
-      <input id="cha" class="rebut2" type="checkbox"><label for="cha">차량</label>
-      <input type="checkbox" class="rebut2" id="elsee"><label for="elsee">등등</label>
-    </div>
-  </div>
-
-
-
+            <div class="dropdown" style="margin: 5px;">
+                <button onclick="myFunction2()" class="dropbtn" style="margin-right: 5px;" id="monsta2">서비스</button>
+                <div id="myDropdown2" class="dropdown-content checkbox">
+                    <input id="checkbox_5" class="rebut2" type="checkbox"><label for="checkbox_5">통역</label>
+                    <input id="cha" class="rebut2" type="checkbox"><label for="cha">차량</label>
+                    <input type="checkbox" class="rebut2" id="elsee"><label for="elsee">등등</label>
+                </div>
+            </div>
 
 
 
 
 
 
-  <!-- <form class="form-inline" style="float: right"> -->
-  <div class="form-inline" style="float: right;">
-    <input type="text" class="form-control mr-sm-2" id="mymyInput"
-      placeholder="지역검색" aria-label="Search">
-    <button style="transform: translate3d(-50px, 0, 0); background: transparent;"
-      class="btn my-sm-0" id="searchmap" onclick="jusoFunction()"
-      type="submit"><i class="fas fa-search"></i>
-    </button>
-  </div>
-  <!-- </form> -->
-
-</div>
-
-  <br>
 
 
-  <div class="wrapper" id="wrapper" style="width: 50%; height: 550px; overflow-y:scroll;
+
+            <!-- <form class="form-inline" style="float: right"> -->
+            <div class="form-inline" style="float: right;">
+                <input type="text" class="form-control mr-sm-2" id="mymyInput" placeholder="지역검색" aria-label="Search">
+                <button style="transform: translate3d(-50px, 0, 0); background: transparent;" class="btn my-sm-0" id="searchmap" onclick="jusoFunction()" type="submit"><i class="fas fa-search"></i>
+                </button>
+            </div>
+            <!-- </form> -->
+
+        </div>
+
+        <br>
+
+
+        <div class="wrapper" id="wrapper" style="width: 50%; height: 550px; overflow-y:scroll;
     overflow-x: hidden; float:left; position: relative; margin:0;
     padding-left: 2.5%; padding-right: 2.5%;">
-    <div id="sliders">
-      <div class="row 5860" id="formore" style="margin-bottom: 10px; cursor: pointer;">
-        <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-          <div class="col" id="left">
-            <div class="leftside">
-              <center>
-                <img id="avatar" src="static/images/nibbler.jpeg">
-              </center>
+            <div id="sliders">
+                <% for (var i = 0; i < allTasks.length; i++) { %>
+                    <div class="row 5860" id="formore" style="margin-bottom: 10px; cursor: pointer;">
+                        <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
+                        <div class="col" id="left">
+                            <div class="leftside">
+                                <center>
+                                    <img id="avatar" src="static/images/nibbler.jpeg">
+                                </center>
+                            </div>
+                        </div>
+                        <div class="col" id="right">
+                            <div class="rightside">
+                                <br>
+                                <div class="text-left juso">
+                                    <h4><%= allTasks[i].servkind %>@<%= allTasks[i].location %></h4>
+                                </div>
+                                <div class="text-left">
+                                    <span class="body-trex"><%= allTasks[i].startdate %>부터 <%= allTasks[i].enddate %> 스케쥴 어떠세요? <i class="fas fa-angle-right"></i></span>
+                                    <br><br>
+                                    자동차 전시회 함께 참여하여...
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- </a> -->
+
+                    </div>
+                    
+                    
+                <% } %>
+                
+                
+                
+                
+                
+                
+                
+
             </div>
-          </div>
-        <div class="col" id="right">
-            <div class="rightside">
-              <br>
-              <div class="text-left juso">
-                <h4>트렉스 #통역업무 @영국</h4>
-              </div>
-          <div class="text-left">
-            <span class="body-trex" >9월 7일날 스케쥴 어떠세요?<i class="fas fa-angle-right"></i></span>
-            <br><br>
-            자동차 전시회 함께 참여하여...
-          </div>
-
         </div>
-      </div>
-        <!-- </a> -->
 
-    </div>
-    <div class="row" style="margin-bottom: 10px;">
-      <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-        <div class="col" id="left">
-          <div class="leftside">
-            <center>
-              <img id="avatar" src="static/images/nibbler.jpeg">
-            </center>
-          </div>
-        </div>
-      <div class="col" id="right">
-          <div class="rightside">
-            <br>
-            <div class="text-left">
-              <h4>트렉스 #통역업무 @영국</h4>
+
+        <div id="map"></div>
+
+        <% for (var i = 0; i < allTasks.length; i++) { %>
+            <div id="sliderss" style="display: none; width: 50%; height: 550px; margin-left: 52%; overflow-y:scroll; overflow-x: hidden;">
+                <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px">
+                    <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
+                    <div class="col" id="left">
+                        <div class="leftside">
+                            <center>
+                                <img id="avatar" src="static/images/nibbler.jpeg">
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col" id="right">
+                        <div class="rightside">
+                            <button class="close" id="close" data-dismiss="modal" aria-label="Close">+</button><br>
+                            <div class="text-left">
+                                <h4><%= allTasks[i].servkind %>@<%= allTasks[i].location %></h4>
+                            </div>
+                            <div class="text-left">
+                                <span class="body-trex">Trex, <i class="fas fa-map-marker-alt"></i> Montreal, CA</span>
+                                <br><br>
+                                게시일: 3일 전 조회 42
+                            </div>
+                            <div class="text-right">
+                                <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;">저장</a>
+                                <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;
+                  margin-right: 10px; background-color: #0073b1; color: #fff">
+                                    지원</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row" id="moreinfo" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin-bottom: 10px;">
+                    <div class="col">
+                        <h6>채용공고</h6>
+                        <ul style="margin=0; padding: 0;list-style-type: none;">
+                            <li>지원자 0명</li>
+                            <li>해당 없음</li>
+                        </ul>
+                    </div>
+                    <div class="col" style="border-right: 1px solid rgba(0, 0, 0, 0.2); border-left:1px solid rgba(0, 0, 0, 0.2);">
+                        <h6>회사</h6>
+                        <ul style="margin=0; padding: 0;list-style-type: none;">
+                            <li>직원 16,003명</li>
+                            <li>Sunnyvale, CA</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h6>1촌</h6>
+                        <ul style="margin=0; padding: 0;list-style-type: none;">
+                            <li>동문 74명</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row" style="padding: 15px; display: block">
+                    <h4 class="text-left">주요업무</h4>
+                    <h6 class="text-left">게시자: </h6>
+                    <img style="float: left;" id="profile" src="static/images/nibbler.jpeg">
+                    <div style="transform: translate3d(1.3%, 0, 0)">
+                        <div class="text-left">Jessica Kim</div>
+                        <div class="text-left">Open[IN] doors for top sales talent!</div><br>
+                    </div><br>
+                    <div class="bodyinfo text-left">
+                        Sales Development Representative 1<br><br>
+                        LinkedIn was built to help professionals achieve more in their careers,
+                        and every day millions of people use our products to make connections, discover
+                        opportunities and gain insights. Our global reach means we get to make a direct
+                        impact on the world’s workforce in ways no other company can. We’re much more
+                        than a digital resume - we transform lives through innovative products and technology.
+                        <br><br>Job Description<br><br>
+                        Our Client in North York offers fully integrated fiber optic sensing technology to deliver accurate and continuous monitoring of multidimensional performance data for many industrial applications. This product offering is an
+                        end-to-end hardware/software platform integrated with Industrial Internet of Things (IIoT). Their products are used in harsh environments, hard-to-access locations and heavy-duty applications where conventional sensor technologies
+                        fail, lose performance or cannot be effectively deployed.
+                    </div>
+                </div>
+
             </div>
-        <div class="text-left">
-          <span class="body-trex" >9월 7일날 스케쥴 어떠세요?<i class="fas fa-angle-right"></i></span>
-          <br><br>
-          자동차 전시회 함께 참여하여...
-        </div>
-
-      </div>
-    </div>
-      <!-- </a> -->
-
-  </div>
-  <div class="row" style="margin-bottom: 10px;">
-    <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-      <div class="col" id="left">
-        <div class="leftside">
-          <center>
-            <img id="avatar" src="static/images/nibbler.jpeg">
-          </center>
-        </div>
-      </div>
-    <div class="col" id="right">
-        <div class="rightside">
-          <br>
-          <div class="text-left">
-            <h4>트렉스 #통역업무 @영국</h4>
-          </div>
-      <div class="text-left">
-        <span class="body-trex" >9월 7일날 스케쥴 어떠세요?<i class="fas fa-angle-right"></i></span>
-        <br><br>
-        자동차 전시회 함께 참여하여...
-      </div>
-
-    </div>
-  </div>
-    <!-- </a> -->
-
-</div>
-<div class="row" style="margin-bottom: 10px;">
-  <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-    <div class="col" id="left">
-      <div class="leftside">
-        <center>
-          <img id="avatar" src="static/images/nibbler.jpeg">
-        </center>
-      </div>
-    </div>
-  <div class="col" id="right">
-      <div class="rightside">
-        <br>
-        <div class="text-left">
-          <h4>트렉스 #통역업무 @영국</h4>
-        </div>
-    <div class="text-left">
-      <span class="body-trex" >9월 7일날 스케쥴 어떠세요?<i class="fas fa-angle-right"></i></span>
-      <br><br>
-      자동차 전시회 함께 참여하여...
-    </div>
-
-  </div>
-</div>
-  <!-- </a> -->
-
-</div>
-<div class="row" style="margin-bottom: 10px;">
-  <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-    <div class="col" id="left">
-      <div class="leftside">
-        <center>
-          <img id="avatar" src="static/images/nibbler.jpeg">
-        </center>
-      </div>
-    </div>
-        <div class="col" id="right">
-            <div class="rightside">
-              <br>
-              <div class="text-left">
-                <h4>트렉스 #통역업무 @영국</h4>
-              </div>
-          <div class="text-left">
-            <span class="body-trex" >9월 7일날 스케쥴 어떠세요?<i class="fas fa-angle-right"></i></span>
-            <br><br>
-            자동차 전시회 함께 참여하여...
-        </div>
-
-      </div>
-    </div>
-
-
-    </div>
-
-  </div>
-</div>
-
-
-      <div id="map"></div>
-
-
-      <div id="sliderss" style="display: none; width: 50%; height: 550px; margin-left: 52% ;overflow-y:scroll;
-      overflow-x: hidden">
-        <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px">
-          <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
-            <div class="col" id="left">
-              <div class="leftside">
-                <center>
-                  <img id="avatar" src="static/images/nibbler.jpeg">
-                </center>
-              </div>
-            </div>
-          <div class="col" id="right">
-              <div class="rightside">
-                <button class="close" id="close" data-dismiss="modal" aria-label="Close">+</button><br>
-            <div class="text-left">
-              <h4>트렉스 #통역업무 @영국</h4>
-            </div>
-            <div class="text-left">
-              <span class="body-trex" >Trex, <i class="fas fa-map-marker-alt"></i> Montreal, CA</span>
-              <br><br>
-              게시일: 3일 전  조회 42
-            </div>
-            <div class="text-right">
-              <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;">저장</a>
-              <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;
-              margin-right: 10px; background-color: #0073b1; color: #fff">
-                지원</a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="row" id="moreinfo" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin-bottom: 10px;">
-          <div class="col">
-            <h6>채용공고</h6>
-            <ul style="margin=0; padding: 0;list-style-type: none;">
-              <li>지원자 0명</li>
-              <li>해당 없음</li>
-            </ul>
-          </div>
-          <div class="col" style="border-right: 1px solid rgba(0, 0, 0, 0.2); border-left:1px solid rgba(0, 0, 0, 0.2);">
-            <h6>회사</h6>
-            <ul style="margin=0; padding: 0;list-style-type: none;">
-              <li>직원 16,003명</li>
-              <li>Sunnyvale, CA</li>
-            </ul>
-          </div>
-          <div class="col">
-            <h6>1촌</h6>
-            <ul style="margin=0; padding: 0;list-style-type: none;">
-              <li>동문 74명</li>
-            </ul>
-          </div>
-
-      </div>
-      <div class="row" style="padding: 15px; display: block">
-        <h4 class="text-left">주요업무</h4>
-        <h6 class="text-left">게시자: </h6>
-        <img style="float: left;"id="profile" src="static/images/nibbler.jpeg">
-        <div style="transform: translate3d(1.3%, 0, 0)">
-          <div class="text-left">Jessica Kim</div>
-          <div class="text-left">Open[IN] doors for top sales talent!</div><br>
-        </div><br>
-        <div class="bodyinfo text-left">
-          Sales Development Representative 1<br><br>
-          LinkedIn was built to help professionals achieve more in their careers,
-          and every day millions of people use our products to make connections, discover
-          opportunities and gain insights. Our global reach means we get to make a direct
-          impact on the world’s workforce in ways no other company can. We’re much more
-          than a digital resume - we transform lives through innovative products and technology.
-          LinkedIn was built to help professionals achieve more in their careers,
-          and every day millions of people use our products to make connections, discover
-          opportunities and gain insights. Our global reach means we get to make a direct
-          impact on the world’s workforce in ways no other company can. We’re much more
-          than a digital resume - we transform lives through innovative products and technology.
-          <br><br>Job Description<br><br>
-          Our Client in North York offers fully integrated fiber optic sensing technology to deliver accurate and continuous monitoring of multidimensional performance data for many industrial applications. This product offering is an end-to-end hardware/software platform integrated with Industrial Internet of Things (IIoT). Their products are used in harsh environments, hard-to-access locations and heavy-duty applications where conventional sensor technologies fail, lose performance or cannot be effectively deployed.
-        </div>
-      </div>
-
-    </div>
+        <% } %>
+        
 
     </div>
 
 
     <script>
-      var map;
-      function initMap() {
-          //Map options
-          var options = {
-            zoom: 12,
-            center: {lat: 45.510260, lng: -73.575745}
-          }
+        var map;
 
-          //New map
-          map = new google.maps.Map(document.getElementById("map"), options);
+        function initMap() {
+            //Map options
+            var options = {
+                zoom: 12,
+                center: {
+                    lat: 45.510260,
+                    lng: -73.575745
+                }
+            }
 
-          var markers = [];
+            //New map
+            map = new google.maps.Map(document.getElementById("map"), options);
 
-          // Loop through and add markers
-          for(var i = 0; i < markers.length; i++){
-            addMarker(markers[i]);
-          }
+            var markers = [];
 
-          var lastInfoWindow = false;
+            // Loop through and add markers
+            for (var i = 0; i < markers.length; i++) {
+                addMarker(markers[i]);
+            }
 
-          function addMarker(props){
-            var marker = new google.maps.Marker({
-              position: props.coords,
-              map:map
+            var lastInfoWindow = false;
+
+            function addMarker(props) {
+                var marker = new google.maps.Marker({
+                    position: props.coords,
+                    map: map
+                });
+
+                // Check for customicon
+                if (props.iconImage) {
+                    // Set icon image
+                    marker.setIcon(props.iconImage);
+                }
+
+                //Check contents
+                if (props.content) {
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: props.content
+                    });
+
+                    marker.addListener('click', function() {
+                        // Close last opened infowindow so that only one is open
+                        if (lastInfoWindow) {
+                            lastInfoWindow.close();
+                        }
+                        lastInfoWindow = infoWindow;
+                        infoWindow.open(map, marker);
+                    });
+
+                    // Add event listener for closing the infowindow when clicked on map
+                    google.maps.event.addListener(map, "click", function(event) {
+                        infoWindow.close();
+                    });
+
+                }
+
+            };
+
+            var searchmap = document.getElementById("searchmap");
+            searchmap.addEventListener('click', function() {
+                var input = document.getElementById("mymyInput").value;
+                var location = input;
+                axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+                        params: {
+                            address: location,
+                            key: "<%=googleMapAPI%>"
+                        }
+                    })
+                    .then(function(res) {
+                        console.log(res);
+                        var la = (res.data.results[0].geometry.location.lat);
+                        var lo = (res.data.results[0].geometry.location.lng);
+                        // var marker = new google.maps.Marker({
+                        //   position: {lat: la, lng: lo},
+                        //   map: map
+                        // });
+                        var center = new google.maps.LatLng(la, lo)
+                        map.panTo(center);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
             });
 
-            // Check for customicon
-            if(props.iconImage){
-              // Set icon image
-              marker.setIcon(props.iconImage);
+            // var centerControlDiv = document.getElementById('searchmap');
+            // var centerControlDiv = document.createElement('div');
+            var centerControl = new CenterControl(centerControlDiv, map);
+            centerControlDiv.index = 1;
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+
+        }
+        var enter = document.getElementById("mymyInput");
+        enter.addEventListener("keydown", function(e) {
+            if (e.keyCode === 13) { //checks whether the pressed key is "Enter"
+                google();
             }
+        });
 
-            //Check contents
-            if(props.content){
-              var infoWindow = new google.maps.InfoWindow({
-                content:props.content
-              });
+        function google() {
+            var searchmap = document.getElementById("searchmap");
 
-              marker.addListener('click', function(){
-                // Close last opened infowindow so that only one is open
-                if (lastInfoWindow) {
-                  lastInfoWindow.close();
-                }
-                lastInfoWindow = infoWindow;
-                infoWindow.open(map, marker);
-              });
-
-              // Add event listener for closing the infowindow when clicked on map
-              google.maps.event.addListener(map, "click", function(event) {
-                infoWindow.close();
-              });
-
-            }
-
-          };
-
-          var searchmap = document.getElementById("searchmap");
-          searchmap.addEventListener('click', function(){
             var input = document.getElementById("mymyInput").value;
-              var location = input;
-              axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-                params: {
-                  address: location,
-                  key: "<%=googleMapAPI%>"
-                }
-              })
-              .then(function(res) {
-                console.log(res);
-                var la = (res.data.results[0].geometry.location.lat);
-                var lo = (res.data.results[0].geometry.location.lng);
-                // var marker = new google.maps.Marker({
-                //   position: {lat: la, lng: lo},
-                //   map: map
-                // });
-                var center = new google.maps.LatLng(la, lo)
-                map.panTo(center);
-              })
-              .catch(function(error) {
-                console.log(error);
-              });
-          });
-
-          // var centerControlDiv = document.getElementById('searchmap');
-          // var centerControlDiv = document.createElement('div');
-          var centerControl = new CenterControl(centerControlDiv, map);
-          centerControlDiv.index = 1;
-          map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
-
-      }
-      var enter = document.getElementById("mymyInput");
-      enter.addEventListener("keydown", function (e) {
-          if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-              google();
-          }
-      });
-
-      function google(){
-        var searchmap = document.getElementById("searchmap");
-
-          var input = document.getElementById("mymyInput").value;
             var location = input;
             axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-              params: {
-                address: location,
-                key: "<%=googleMapAPI%>"
-              }
-            })
-            .then(function(res) {
-              console.log(res);
-              var la = (res.data.results[0].geometry.location.lat);
-              var lo = (res.data.results[0].geometry.location.lng);
-              // var marker = new google.maps.Marker({
-              //   position: {lat: la, lng: lo},
-              //   map: map
-              // });
-              var center = new google.maps.LatLng(la, lo)
-              map.panTo(center);
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+                    params: {
+                        address: location,
+                        key: "<%=googleMapAPI%>"
+                    }
+                })
+                .then(function(res) {
+                    console.log(res);
+                    var la = (res.data.results[0].geometry.location.lat);
+                    var lo = (res.data.results[0].geometry.location.lng);
+                    // var marker = new google.maps.Marker({
+                    //   position: {lat: la, lng: lo},
+                    //   map: map
+                    // });
+                    var center = new google.maps.LatLng(la, lo)
+                    map.panTo(center);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
 
-      };
+        };
     </script>
 
     <script src="/static/scripts/findtask.js"></script>
@@ -533,12 +445,13 @@
 
 
 
-<script>
-    function clickedFunction(){
-        $(".applyBtn").html("적용");
-        $(".cancelBtn").html("취소");
-        $(".applyBtn").css("background-color", "#F58B44");
-    }
-</script>
-  </body>
+    <script>
+        function clickedFunction() {
+            $(".applyBtn").html("적용");
+            $(".cancelBtn").html("취소");
+            $(".applyBtn").css("background-color", "#F58B44");
+        }
+    </script>
+</body>
+
 </html>
