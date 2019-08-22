@@ -7,10 +7,19 @@ const Partner = require("../models/Partner");
 const PartnerProfile = require("../models/PartnerProfile");
 const Rating = require("../models/Rating");
 const Service = require("../models/Service");
+const Task = require("../models/Task");
 const async = require("async");
 
 router.get("/partner_page", function(req, res) {
-    res.render("partnerpage");
+    Task.find({}, (err, allTasks) => {
+        if (err) {
+            console.log(err);
+            req.flash("error", "업무 목록을 불러오는데 문제가 발생했습니다. 다시 시도해주세요.");
+            return res.redirect("/");
+        }
+        
+        res.render("partnerpage", { allTasks: allTasks });
+    });
 });
 
 // GET route for viewing partner profile page

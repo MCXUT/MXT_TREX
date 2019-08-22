@@ -161,14 +161,14 @@ input[type=checkbox]:checked + label:before{
   width: 50%;
   height: 550px;
 }
-.close {
+/* .close {
     position: absolute;
     top: 0;
     right: 14px;
     font-size: 42px;
     transform: rotate(45deg);
     cursor: pointer;
-}
+} */
 
  .checkbox input[type="checkbox"] {
      opacity: 0;

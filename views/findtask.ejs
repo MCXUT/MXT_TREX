@@ -179,7 +179,7 @@
     padding-left: 2.5%; padding-right: 2.5%;">
             <div id="sliders">
                 <% for (var i = 0; i < allTasks.length; i++) { %>
-                    <div class="row 5860" id="formore" style="margin-bottom: 10px; cursor: pointer;">
+                    <div class="row 5860" id="formore<%=i%>" style="margin-bottom: 10px; cursor: pointer;">
                         <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
                         <div class="col" id="left">
                             <div class="leftside">
@@ -195,9 +195,9 @@
                                     <h4><%= allTasks[i].servkind %>@<%= allTasks[i].location %></h4>
                                 </div>
                                 <div class="text-left">
-                                    <span class="body-trex"><%= allTasks[i].startdate %>부터 <%= allTasks[i].enddate %> 스케쥴 어떠세요? <i class="fas fa-angle-right"></i></span>
-                                    <br><br>
-                                    자동차 전시회 함께 참여하여...
+                                    <span class="body-trex"><%= allTasks[i].startdate %>부터 <%= allTasks[i].enddate %> <i class="fas fa-angle-right"></i></span>
+                                    <!-- <br><br> -->
+                                    <!-- 자동차 전시회 함께 참여하여... -->
                                 </div>
 
                             </div>
@@ -209,13 +209,6 @@
                     
                 <% } %>
                 
-                
-                
-                
-                
-                
-                
-
             </div>
         </div>
 
@@ -223,7 +216,7 @@
         <div id="map"></div>
 
         <% for (var i = 0; i < allTasks.length; i++) { %>
-            <div id="sliderss" style="display: none; width: 50%; height: 550px; margin-left: 52%; overflow-y:scroll; overflow-x: hidden;">
+            <div id="sliderss<%=i%>" style="display: none; width: 50%; height: 550px; margin-left: 52%; overflow-y:scroll; overflow-x: hidden;">
                 <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-bottom: 10px">
                     <!-- <a href="https://platum.kr/archives/115769" target="_blank"> -->
                     <div class="col" id="left">
@@ -235,27 +228,24 @@
                     </div>
                     <div class="col" id="right">
                         <div class="rightside">
-                            <button class="close" id="close" data-dismiss="modal" aria-label="Close">+</button><br>
+                            <button class="close" id="close<%=i%>" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
                             <div class="text-left">
                                 <h4><%= allTasks[i].servkind %>@<%= allTasks[i].location %></h4>
                             </div>
                             <div class="text-left">
-                                <span class="body-trex">Trex, <i class="fas fa-map-marker-alt"></i> Montreal, CA</span>
-                                <br><br>
-                                게시일: 3일 전 조회 42
+                                <span class="body-trex">Trex, <i class="fas fa-map-marker-alt"></i> <%= allTasks[i].location %></span>
+                                <br>
+                                일정: <%= allTasks[i].startdate %>부터 <%= allTasks[i].enddate %>
                             </div>
                             <div class="text-right">
-                                <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;">저장</a>
-                                <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;
-                  margin-right: 10px; background-color: #0073b1; color: #fff">
-                                    지원</a>
+                                <br>
+                                <!-- <a href="" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;">저장</a> -->
+                                <a href="/task/apply/<%= allTasks[i].id %>" style="border: 1px solid rgba(0, 0, 0, 0.2); padding: 10px;margin-right: 10px; background-color: #0073b1; color: #fff">지원</a>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <div class="row" id="moreinfo" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin-bottom: 10px;">
+                <!-- <div class="row" id="moreinfo" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin-bottom: 10px;">
                     <div class="col">
                         <h6>채용공고</h6>
                         <ul style="margin=0; padding: 0;list-style-type: none;">
@@ -277,8 +267,8 @@
                         </ul>
                     </div>
 
-                </div>
-                <div class="row" style="padding: 15px; display: block">
+                </div> -->
+                <!-- <div class="row" style="padding: 15px; display: block">
                     <h4 class="text-left">주요업무</h4>
                     <h6 class="text-left">게시자: </h6>
                     <img style="float: left;" id="profile" src="static/images/nibbler.jpeg">
@@ -298,7 +288,7 @@
                         end-to-end hardware/software platform integrated with Industrial Internet of Things (IIoT). Their products are used in harsh environments, hard-to-access locations and heavy-duty applications where conventional sensor technologies
                         fail, lose performance or cannot be effectively deployed.
                     </div>
-                </div>
+                </div> -->
 
             </div>
         <% } %>
@@ -451,6 +441,29 @@
             $(".cancelBtn").html("취소");
             $(".applyBtn").css("background-color", "#F58B44");
         }
+    </script>
+    
+    <script>
+        <% for (var i = 0; i < allTasks.length; i++) { %>
+            document.getElementById("formore<%=i%>").addEventListener("click", (e) => {
+                // console.log("eeee");
+                console.log("sliderss<%=i%>");
+                <% for (var j = 0; j < allTasks.length; j++) { %>
+                    document.querySelector("#sliderss<%=j%>").style.display = "none";
+                <% } %>
+                document.querySelector("#sliderss<%=i%>").style.display = "block";
+                document.querySelector("#map").style.display = "none";
+            });
+        <% } %>
+    </script>
+    
+    <script>
+        <% for (var i = 0; i < allTasks.length; i++) { %>
+            document.getElementById("close<%=i%>").addEventListener("click", (e) => {
+                document.querySelector("#sliderss<%=i%>").style.display = "none";
+                document.querySelector("#map").style.display = "block";
+            });
+        <% } %>
     </script>
 </body>
 

@@ -17,7 +17,7 @@ router.get("/city_list", (req, res) => {
 
 router.get("/find_task", (req, res) => {
     if (!req.user) {
-        return res.render("login", { referer: req.headers.referer });
+        return res.render("login", { referer: "/find_task" });
     } else if (req.user.type !== "p") {
         return res.redirect("/");
     } else {
@@ -29,6 +29,24 @@ router.get("/find_task", (req, res) => {
             }
             
             res.render("findtask", { googleMapAPI: keys.googleMapAPI.key , allTasks: allTasks });
+        });
+    }
+});
+
+router.get("/task/apply/:id", (req, res) => {
+    if (!req.user) {
+        return res.render("login", { referer: "/find_task" });
+    } else if (req.user.type !== "p") {
+        return res.redirect("/");
+    } else {
+        Task.findById(req.params.id, (err, task) => {
+            if (err) {
+                console.log(err);
+                req.flash("error", "업무 목록을 불러오는데 문제가 발생했습니다. 다시 시도해주세요.");
+                return res.redirect("/");
+            }
+            
+            res.render("partials/applymodal", { task: task });
         });
     }
 });

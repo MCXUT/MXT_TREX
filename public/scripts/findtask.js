@@ -245,10 +245,10 @@ $(function(e) {
 //
 // });
 
-document.querySelector(".close").addEventListener("click", (e) => {
-    document.querySelector("#sliderss").style.display = "none";
-    document.querySelector("#map").style.display = "block";
-});
+// document.querySelector(".close").addEventListener("click", (e) => {
+//     document.querySelector("#sliderss").style.display = "none";
+//     document.querySelector("#map").style.display = "block";
+// });
 
 
 // document.getElementsByClassName("datepicker").defaultValue = "날짜";
@@ -267,11 +267,13 @@ $(document).ready(() => {
     }
 });
 
-document.getElementById("formore").addEventListener("click", (e) => {
-    console.log("eeee");
-    document.querySelector("#sliderss").style.display = "block";
-    document.querySelector("#map").style.display = "none";
-});
+// <% for (var i = 0; i < allTasks.length; i++) { %>
+//     document.getElementById("formore<%=i%>").addEventListener("click", (e) => {
+//         console.log("eeee");
+//         document.querySelector("#sliderss").style.display = "block";
+//         document.querySelector("#map").style.display = "none";
+//     });
+// <% } %>
 
 
 
