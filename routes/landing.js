@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         async.each(allServices, function(service, done) {
             Service.findById(service.id).populate("questionList").exec((err, detailService) => {
                 if(err) throw err;
-                if(detailService.questionList) {
+                if(detailService.questionList.length > 0) {
                     allInfos.push(detailService);
                 } else {
                     Service.findByIdAndRemove(service.id).then(function(deleted) {
